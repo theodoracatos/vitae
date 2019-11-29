@@ -9,10 +9,5 @@ namespace Persistency.Data
         {
 
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("server=.;database=myDb;trusted_connection=true;");
-        }
     }
 }
