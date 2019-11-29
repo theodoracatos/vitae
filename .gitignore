@@ -338,3 +338,9 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/CVitae/wwwroot/js/site.min.js
+/CVitae/wwwroot/js/site.js.map
+/CVitae/wwwroot/js/site.js
+/CVitae/wwwroot/js/resume.min.js
+/CVitae/wwwroot/js/resume.js.map
+/CVitae/wwwroot/js/resume.js
