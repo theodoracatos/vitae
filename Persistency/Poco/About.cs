@@ -7,6 +7,8 @@ namespace Persistency.Poco
 {
     public class About
     {
+        [Key]
+        public int AboutID { get; set; }
         [Required]
         public byte[] Photo { get; set; }
         public string Slogan { get; set; }

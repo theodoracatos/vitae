@@ -1,0 +1,2 @@
+﻿add-migration -startupproject CVitae -project Persistency -context ApplicationContext vNext
+update-database -startupproject CVitae -project Persistency -context ApplicationContext
