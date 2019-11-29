@@ -6,9 +6,5 @@ namespace Persistency.Data
     public class ApplicationContext : DbContext
     {
         public virtual DbSet<Person> Persons { get; set; }
-
-        public ApplicationContext()
-        {
-        }
     }
 }
