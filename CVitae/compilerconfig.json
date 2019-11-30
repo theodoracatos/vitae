@@ -2,5 +2,13 @@
   {
     "outputFile": "wwwroot/css/site.css",
     "inputFile": "wwwroot/css/site.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/_bootstrap-overrides.css",
+    "inputFile": "wwwroot/css/_bootstrap-overrides.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/resume.css",
+    "inputFile": "wwwroot/css/resume.scss"
   }
 ]
