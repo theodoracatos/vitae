@@ -1,5 +1,4 @@
-﻿"use strict"; // Start of use strict
-declare var $;
+﻿declare var $;
 
 $(function () {
 
