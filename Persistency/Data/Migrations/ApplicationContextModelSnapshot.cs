@@ -72,6 +72,39 @@ namespace Persistency.Data.Migrations
                     b.ToTable("Award");
                 });
 
+            modelBuilder.Entity("Persistency.Poco.Curriculum", b =>
+                {
+                    b.Property<int>("CurriculumID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FriendlyId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid>("Identifier")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("PersonID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CurriculumID");
+
+                    b.HasIndex("FriendlyId");
+
+                    b.HasIndex("Identifier");
+
+                    b.HasIndex("PersonID");
+
+                    b.ToTable("Curriculum");
+                });
+
             modelBuilder.Entity("Persistency.Poco.Interest", b =>
                 {
                     b.Property<int>("InterestID")
@@ -219,6 +252,13 @@ namespace Persistency.Data.Migrations
                 {
                     b.HasOne("Persistency.Poco.Person", null)
                         .WithMany("Awards")
+                        .HasForeignKey("PersonID");
+                });
+
+            modelBuilder.Entity("Persistency.Poco.Curriculum", b =>
+                {
+                    b.HasOne("Persistency.Poco.Person", "Person")
+                        .WithMany()
                         .HasForeignKey("PersonID");
                 });
 

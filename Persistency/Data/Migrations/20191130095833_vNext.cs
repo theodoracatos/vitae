@@ -74,6 +74,29 @@ namespace Persistency.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Curriculum",
+                columns: table => new
+                {
+                    CurriculumID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Identifier = table.Column<Guid>(nullable: false),
+                    FriendlyId = table.Column<string>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    LastUpdated = table.Column<DateTime>(nullable: false),
+                    PersonID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Curriculum", x => x.CurriculumID);
+                    table.ForeignKey(
+                        name: "FK_Curriculum_Persons_PersonID",
+                        column: x => x.PersonID,
+                        principalTable: "Persons",
+                        principalColumn: "PersonID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Interest",
                 columns: table => new
                 {
@@ -163,6 +186,21 @@ namespace Persistency.Data.Migrations
                 column: "PersonID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Curriculum_FriendlyId",
+                table: "Curriculum",
+                column: "FriendlyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Curriculum_Identifier",
+                table: "Curriculum",
+                column: "Identifier");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Curriculum_PersonID",
+                table: "Curriculum",
+                column: "PersonID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Interest_PersonID",
                 table: "Interest",
                 column: "PersonID");
@@ -192,6 +230,9 @@ namespace Persistency.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Award");
+
+            migrationBuilder.DropTable(
+                name: "Curriculum");
 
             migrationBuilder.DropTable(
                 name: "Interest");

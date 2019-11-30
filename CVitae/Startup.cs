@@ -24,7 +24,12 @@ namespace CVitae
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<IdentityContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<IdentityContext>();
-            services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddRazorPages()
+                .AddRazorRuntimeCompilation()
+                .AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AddAreaPageRoute("CV", "/CV/index", "id");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +60,8 @@ namespace CVitae
             {
                 endpoints.MapRazorPages();
             });
+
+
         }
     }
 }

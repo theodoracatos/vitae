@@ -1,2 +1,3 @@
-﻿add-migration -startupproject CVitae -project Persistency -context ApplicationContext vNext
-update-database -startupproject CVitae -project Persistency -context ApplicationContext
+﻿EntityFrameworkCore\add-migration -startupproject CVitae -project Persistency -context AppliactionContext vNext
+EntityFrameworkCore\update-database -startupproject CVitae -project Persistency -context ApplicationContext
+EntityFrameworkCore\update-database -startupproject CVitae -project Persistency -context ApplicationContext –migration $InitialDatabase

@@ -12,6 +12,12 @@ namespace Persistency.Data
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
+
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Curriculum>().HasIndex(c => c.Identifier);
+            modelBuilder.Entity<Curriculum>().HasIndex(c => c.FriendlyId);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

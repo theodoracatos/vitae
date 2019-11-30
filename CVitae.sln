@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CVitae", "CVitae\CVitae.csproj", "{A505D93A-B628-4B12-93D5-732A72698F87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistency", "Persistency\Persistency.csproj", "{2DB3EF86-4169-41F5-81DB-EA46CD417289}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistency", "Persistency\Persistency.csproj", "{2DB3EF86-4169-41F5-81DB-EA46CD417289}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{E9637DB5-7705-492D-9B9B-943E1CD83F49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "Library\Library.csproj", "{E9637DB5-7705-492D-9B9B-943E1CD83F49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
