@@ -10,11 +10,14 @@ namespace Persistency.Poco
         [Key]
         public int EducationID { get; set; }
         [Required]
+        [MaxLength(100)]
         public string SchoolName { get; set; }
+        [MaxLength(100)]
         public string SchoolLink { get; set; }
         [Required]
+        [MaxLength(100)]
         public string Subject { get; set; }
-        public decimal Grade { get; set; }
+        public decimal? Grade { get; set; }
         public DateTime Start { get; set; }
         public DateTime? End { get; set; }
     }

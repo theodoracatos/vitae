@@ -8,7 +8,7 @@ namespace Persistency.Data
 {
     public class ApplicationContext : DbContext
     {
-        public virtual DbSet<Person> Persons { get; set; }
+        public virtual DbSet<Curriculum> Curriculums { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {

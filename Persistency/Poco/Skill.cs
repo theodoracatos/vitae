@@ -7,7 +7,8 @@ namespace Persistency.Poco
         [Key]
         public int SkillID { get; set; }
         [Required]
+        [MaxLength(100)]
         public string Name { get; set; }
-        public float Rate { get; set; }
+        public float? Rate { get; set; }
     }
 }

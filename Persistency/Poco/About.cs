@@ -11,6 +11,7 @@ namespace Persistency.Poco
         public int AboutID { get; set; }
         [Required]
         public byte[] Photo { get; set; }
+        [MaxLength(4000)]
         public string Slogan { get; set; }
         public byte[] CV { get; set; }
     }

@@ -16,6 +16,7 @@ namespace Persistency.Poco
         public string CompanyLink { get; set; }
         [Required]
         public string City { get; set; }
+        [MaxLength(1000)]
         public string Resumee { get; set; }
         public DateTime Start { get; set; }
         public DateTime? End { get; set; }

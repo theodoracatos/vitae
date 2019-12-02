@@ -11,7 +11,10 @@ namespace Persistency.Poco
         [Key]
         public int CurriculumID { get; set; }
         public Guid Identifier { get; set; }
+        [MaxLength(100)]
         public string FriendlyId { get; set; }
+        [MaxLength(100)]
+        public string Password { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime LastUpdated { get; set; }
         public virtual Person Person { get; set; }
