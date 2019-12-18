@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Persistency.Extensions;
 using Persistency.Poco;
 using System.Diagnostics;
 using System.IO;
@@ -16,6 +17,7 @@ namespace Persistency.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.RemovePluralizingTableNameConvention();
             modelBuilder.Entity<Curriculum>().HasIndex(c => c.Identifier);
             modelBuilder.Entity<Curriculum>().HasIndex(c => c.FriendlyId);
         }

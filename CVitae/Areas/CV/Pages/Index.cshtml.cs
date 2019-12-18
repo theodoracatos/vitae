@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Persistency.Data;
 using QRCoder;
 
 namespace CVitae.Areas.CV.Pages
@@ -13,15 +14,30 @@ namespace CVitae.Areas.CV.Pages
     [Area("CV")]
     public class IndexModel : PageModel
     {
+        #region Variables
+
+        private readonly ApplicationContext appContext;
+
+        #endregion
+
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+
         public Guid Guid { get; set; }
         public string QRTag { get; set; }
 
+        public IndexModel(ApplicationContext appContext)
+        {
+            this.appContext = appContext;
+        }
+
         public void OnGet(Guid id)
         {
+            //if(appContext.Curriculums)
+
             Guid = id;
             QRTag = CreateQRCode(id);
         }
-
 
 
         private string CreateQRCode(Guid id)
