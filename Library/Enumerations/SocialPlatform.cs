@@ -1,4 +1,4 @@
-﻿namespace Library.Enumeration
+﻿namespace Library.Enumerations
 {
     public enum SocialPlatform
     {

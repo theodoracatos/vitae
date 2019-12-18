@@ -4,8 +4,10 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Library.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Persistency.Data;
 using QRCoder;
 
@@ -20,8 +22,7 @@ namespace CVitae.Areas.CV.Pages
 
         #endregion
 
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
+        public PersonVM PersonVM { get; set; } = new PersonVM();
 
         public Guid Guid { get; set; }
         public string QRTag { get; set; }
@@ -31,12 +32,36 @@ namespace CVitae.Areas.CV.Pages
             this.appContext = appContext;
         }
 
-        public void OnGet(Guid id)
+        public IActionResult OnGet(Guid id)
         {
-            //if(appContext.Curriculums)
+            if (appContext.Curriculums.Any(c => c.Identifier == id))
+            {
+                var curriculum = appContext.Curriculums
+                    .Include(c => c.Person)
+                    .Include(c => c.Person.About)
+                    .Single(c => c.Identifier == id);
 
-            Guid = id;
-            QRTag = CreateQRCode(id);
+                // Set values
+                PersonVM.Firstname = curriculum.Person.Firstname;
+                PersonVM.Lastname = curriculum.Person.Lastname;
+                PersonVM.Street = curriculum.Person.Street;
+                PersonVM.StreetNo = curriculum.Person.StreetNo;
+                PersonVM.City = curriculum.Person.City;
+                PersonVM.ZipCode = curriculum.Person.ZipCode;
+                PersonVM.Email = curriculum.Person.Email;
+                PersonVM.MobileNumber = curriculum.Person.MobileNumber;
+                PersonVM.Slogan = curriculum.Person.About.Slogan;
+
+
+                Guid = id;
+                QRTag = CreateQRCode(id);
+
+                return Page();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
 

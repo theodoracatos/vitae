@@ -28,6 +28,9 @@ namespace Persistency.Poco
         [MaxLength(100)]
         public string Email { get; set; }
         [Required]
+        [MaxLength(16)]
+        public string MobileNumber { get; set; }
+
         public virtual About About { get; set; }
         public virtual ICollection<LanguageSkill> Languages { get; set; }
         public virtual ICollection<SocialLink> SocialLinks { get; set; }

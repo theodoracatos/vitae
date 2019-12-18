@@ -194,7 +194,7 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AboutID")
+                    b.Property<int?>("AboutID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Birthday")
@@ -221,6 +221,11 @@ namespace Persistency.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<string>("MobileNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(16)")
+                        .HasMaxLength(16);
 
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(100)")
@@ -328,9 +333,7 @@ namespace Persistency.Data.Migrations
                 {
                     b.HasOne("Persistency.Poco.About", "About")
                         .WithMany()
-                        .HasForeignKey("AboutID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AboutID");
                 });
 
             modelBuilder.Entity("Persistency.Poco.Skill", b =>
