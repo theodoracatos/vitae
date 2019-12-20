@@ -134,6 +134,57 @@ namespace Persistency.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Education",
+                columns: table => new
+                {
+                    EducationID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SchoolName = table.Column<string>(maxLength: 100, nullable: false),
+                    SchoolLink = table.Column<string>(maxLength: 100, nullable: true),
+                    Subject = table.Column<string>(maxLength: 100, nullable: false),
+                    Grade = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
+                    Start = table.Column<DateTime>(nullable: false),
+                    End = table.Column<DateTime>(nullable: true),
+                    PersonID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Education", x => x.EducationID);
+                    table.ForeignKey(
+                        name: "FK_Education_Person_PersonID",
+                        column: x => x.PersonID,
+                        principalTable: "Person",
+                        principalColumn: "PersonID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Experience",
+                columns: table => new
+                {
+                    ExperienceID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    JobTitle = table.Column<string>(nullable: false),
+                    CompanyName = table.Column<string>(nullable: false),
+                    CompanyLink = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: false),
+                    Resumee = table.Column<string>(maxLength: 1000, nullable: true),
+                    Start = table.Column<DateTime>(nullable: false),
+                    End = table.Column<DateTime>(nullable: true),
+                    PersonID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Experience", x => x.ExperienceID);
+                    table.ForeignKey(
+                        name: "FK_Experience_Person_PersonID",
+                        column: x => x.PersonID,
+                        principalTable: "Person",
+                        principalColumn: "PersonID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Interest",
                 columns: table => new
                 {
@@ -244,6 +295,16 @@ namespace Persistency.Data.Migrations
                 column: "PersonID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Education_PersonID",
+                table: "Education",
+                column: "PersonID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Experience_PersonID",
+                table: "Experience",
+                column: "PersonID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Interest_PersonID",
                 table: "Interest",
                 column: "PersonID");
@@ -281,6 +342,12 @@ namespace Persistency.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Curriculum");
+
+            migrationBuilder.DropTable(
+                name: "Education");
+
+            migrationBuilder.DropTable(
+                name: "Experience");
 
             migrationBuilder.DropTable(
                 name: "Interest");

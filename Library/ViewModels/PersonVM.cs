@@ -16,5 +16,6 @@ namespace Library.ViewModels
         public string Photo { get; set; }
 
         public IList<SocialLinkVM> SocialLinks { get; set; }
+        public IList<ExperienceVM> Experiences { get; set; }
     }
 }

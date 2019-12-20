@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Persistency.Poco
@@ -17,6 +18,7 @@ namespace Persistency.Poco
         [Required]
         [MaxLength(100)]
         public string Subject { get; set; }
+        [Column(TypeName = "decimal(18,4)")]
         public decimal? Grade { get; set; }
         public DateTime Start { get; set; }
         public DateTime? End { get; set; }

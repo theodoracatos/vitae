@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20191219143431_v.1.0.0")]
+    [Migration("20191220140345_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,6 +115,88 @@ namespace Persistency.Data.Migrations
                     b.HasIndex("PersonID");
 
                     b.ToTable("Curriculum");
+                });
+
+            modelBuilder.Entity("Persistency.Poco.Education", b =>
+                {
+                    b.Property<int>("EducationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("End")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("Grade")
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<int?>("PersonID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SchoolLink")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("SchoolName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("EducationID");
+
+                    b.HasIndex("PersonID");
+
+                    b.ToTable("Education");
+                });
+
+            modelBuilder.Entity("Persistency.Poco.Experience", b =>
+                {
+                    b.Property<int>("ExperienceID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("End")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("JobTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PersonID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Resumee")
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ExperienceID");
+
+                    b.HasIndex("PersonID");
+
+                    b.ToTable("Experience");
                 });
 
             modelBuilder.Entity("Persistency.Poco.Interest", b =>
@@ -308,6 +390,20 @@ namespace Persistency.Data.Migrations
                 {
                     b.HasOne("Persistency.Poco.Person", "Person")
                         .WithMany()
+                        .HasForeignKey("PersonID");
+                });
+
+            modelBuilder.Entity("Persistency.Poco.Education", b =>
+                {
+                    b.HasOne("Persistency.Poco.Person", null)
+                        .WithMany("Educations")
+                        .HasForeignKey("PersonID");
+                });
+
+            modelBuilder.Entity("Persistency.Poco.Experience", b =>
+                {
+                    b.HasOne("Persistency.Poco.Person", null)
+                        .WithMany("Experiences")
                         .HasForeignKey("PersonID");
                 });
 

@@ -37,29 +37,7 @@ namespace CVitae.Areas.CV.Pages
         {
             if (appContext.Curriculums.Any(c => c.Identifier == id))
             {
-                var curriculum = appContext.Curriculums
-                    .Include(c => c.Person)
-                    .Include(c => c.Person.About)
-                    .Include(c => c.Person.SocialLinks)
-                    .Single(c => c.Identifier == id);
-
-                // Set values
-                PersonVM.Firstname = curriculum.Person.Firstname;
-                PersonVM.Lastname = curriculum.Person.Lastname;
-                PersonVM.Street = curriculum.Person.Street;
-                PersonVM.StreetNo = curriculum.Person.StreetNo;
-                PersonVM.City = curriculum.Person.City;
-                PersonVM.ZipCode = curriculum.Person.ZipCode;
-                PersonVM.Email = curriculum.Person.Email;
-                PersonVM.MobileNumber = curriculum.Person.MobileNumber;
-                PersonVM.Slogan = curriculum.Person.About.Slogan;
-                PersonVM.Photo = curriculum.Person.About.Photo;
-                
-                PersonVM.SocialLinks = new List<SocialLinkVM>();
-                foreach(var socialLink in curriculum.Person.SocialLinks.OrderByDescending(s => s.SocialLinkID))
-                {
-                    PersonVM.SocialLinks.Add(new SocialLinkVM() { SocialPlatform = socialLink.SocialPlatform, Hyperlink = socialLink.Hyperlink });
-                }
+                FillValues(id);
 
                 Guid = id;
                 QRTag = CreateQRCode(id);
@@ -69,6 +47,55 @@ namespace CVitae.Areas.CV.Pages
             else
             {
                 return NotFound();
+            }
+        }
+
+        private void FillValues(Guid id)
+        {
+            var curriculum = appContext.Curriculums
+                    .Include(c => c.Person)
+                    .Include(c => c.Person.About)
+                    .Include(c => c.Person.SocialLinks)
+                    .Include(c => c.Person.Experiences)
+                    .Single(c => c.Identifier == id);
+
+            // Set values
+            PersonVM.Firstname = curriculum.Person.Firstname;
+            PersonVM.Lastname = curriculum.Person.Lastname;
+            PersonVM.Street = curriculum.Person.Street;
+            PersonVM.StreetNo = curriculum.Person.StreetNo;
+            PersonVM.City = curriculum.Person.City;
+            PersonVM.ZipCode = curriculum.Person.ZipCode;
+            PersonVM.Email = curriculum.Person.Email;
+            PersonVM.MobileNumber = curriculum.Person.MobileNumber;
+            PersonVM.Slogan = curriculum.Person.About.Slogan;
+            PersonVM.Photo = curriculum.Person.About.Photo;
+
+            // Social links
+            PersonVM.SocialLinks = new List<SocialLinkVM>();
+            foreach (var socialLink in curriculum.Person.SocialLinks.OrderByDescending(s => s.SocialLinkID))
+            {
+                PersonVM.SocialLinks.Add(new SocialLinkVM()
+                { 
+                    SocialPlatform = socialLink.SocialPlatform,
+                    Hyperlink = socialLink.Hyperlink
+                });
+            }
+
+            // Experiences
+            PersonVM.Experiences = new List<ExperienceVM>();
+            foreach (var experience in curriculum.Person.Experiences)
+            {
+                PersonVM.Experiences.Add(new ExperienceVM()
+                {
+                    JobTitle = experience.JobTitle,
+                    CompanyName = experience.CompanyName,
+                    CompanyLink = experience.CompanyLink,
+                    City = experience.City,
+                    Resumee = experience.Resumee,
+                    Start = experience.Start,
+                    End = experience.End
+                });
             }
         }
 
