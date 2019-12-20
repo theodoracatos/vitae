@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Library.Extensions;
 using Library.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -39,6 +40,7 @@ namespace CVitae.Areas.CV.Pages
                 var curriculum = appContext.Curriculums
                     .Include(c => c.Person)
                     .Include(c => c.Person.About)
+                    .Include(c => c.Person.SocialLinks)
                     .Single(c => c.Identifier == id);
 
                 // Set values
@@ -51,7 +53,13 @@ namespace CVitae.Areas.CV.Pages
                 PersonVM.Email = curriculum.Person.Email;
                 PersonVM.MobileNumber = curriculum.Person.MobileNumber;
                 PersonVM.Slogan = curriculum.Person.About.Slogan;
-
+                PersonVM.Photo = curriculum.Person.About.Photo;
+                
+                PersonVM.SocialLinks = new List<SocialLinkVM>();
+                foreach(var socialLink in curriculum.Person.SocialLinks.OrderByDescending(s => s.SocialLinkID))
+                {
+                    PersonVM.SocialLinks.Add(new SocialLinkVM() { SocialPlatform = socialLink.SocialPlatform, Hyperlink = socialLink.Hyperlink });
+                }
 
                 Guid = id;
                 QRTag = CreateQRCode(id);

@@ -34,7 +34,7 @@ namespace Persistency.Data.Migrations
                 {
                     AboutID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Photo = table.Column<byte[]>(nullable: false),
+                    Photo = table.Column<string>(type: "varchar(MAX)", nullable: false),
                     Slogan = table.Column<string>(maxLength: 4000, nullable: true),
                     CV = table.Column<byte[]>(nullable: true)
                 },

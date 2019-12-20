@@ -1,4 +1,6 @@
-﻿namespace Library.ViewModels
+﻿using System.Collections.Generic;
+
+namespace Library.ViewModels
 {
     public class PersonVM
     {
@@ -11,5 +13,8 @@
         public string Email { get; set; }
         public string MobileNumber { get; set; }
         public string Slogan { get; set; }
+        public string Photo { get; set; }
+
+        public IList<SocialLinkVM> SocialLinks { get; set; }
     }
 }

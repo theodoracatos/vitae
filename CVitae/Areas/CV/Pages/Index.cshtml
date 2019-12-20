@@ -32,7 +32,7 @@
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">Clarence Taylor</span>
             <span class="d-none d-lg-block">
-                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="~/img/profile.jpg" alt="">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="@Model.PersonVM.Photo" alt="">
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,23 +71,19 @@
                     <span class="text-primary">@Model.PersonVM.Lastname</span>
                 </h1>
                 <div class="subheading mb-5">
-                    @Model.PersonVM.Street @Model.PersonVM.StreetNo · @Model.PersonVM.ZipCode @Model.PersonVM.City · @Model.PersonVM.MobileNumber ·
+                    @Model.PersonVM.Street @Model.PersonVM.StreetNo · @Model.PersonVM.ZipCode @Model.PersonVM.City · <a href="tel:@(Model.PersonVM.MobileNumber)">@Model.PersonVM.MobileNumber</a> ·
                     <a href="mailto:@(Model.PersonVM.Email)">@Model.PersonVM.Email</a>
                 </div>
                 <p class="lead mb-5">@Model.PersonVM.Slogan</p>
                 <div class="social-icons">
-                    <a href="#">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
+                    @{
+                        foreach(var socialLink in Model.PersonVM.SocialLinks)
+                        {
+                           <a href="@socialLink.Hyperlink" target="_blank">
+                               <i class="@socialLink.SocialPlatform.Description()"></i>
+                           </a>
+                        }
+                      }
                 </div>
                 @*<img class="mt-2 rounded" src="@String.Format("data:image/png;base64,{0}", Model.QRTag)" />*@
             </div>

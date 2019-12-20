@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20191218230355_v.1.0.0")]
+    [Migration("20191219143431_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,9 +31,9 @@ namespace Persistency.Data.Migrations
                     b.Property<byte[]>("CV")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<byte[]>("Photo")
+                    b.Property<string>("Photo")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("varchar(MAX)");
 
                     b.Property<string>("Slogan")
                         .HasColumnType("nvarchar(4000)")

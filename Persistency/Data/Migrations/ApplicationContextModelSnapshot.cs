@@ -29,9 +29,9 @@ namespace Persistency.Data.Migrations
                     b.Property<byte[]>("CV")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<byte[]>("Photo")
+                    b.Property<string>("Photo")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("varchar(MAX)");
 
                     b.Property<string>("Slogan")
                         .HasColumnType("nvarchar(4000)")
