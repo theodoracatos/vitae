@@ -8,25 +8,35 @@ namespace Persistency.Poco
     {
         [Key]
         public int PersonID { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string Firstname { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string Lastname { get; set; }
+
         public DateTime Birthday { get; set; }
+
         public bool Gender { get; set; }
+
         [MaxLength(100)]
         public string Street { get; set; }
+
         [MaxLength(10)]
         public string StreetNo { get; set; }
+
         [MaxLength(10)]
         public int ZipCode { get; set; }
+
         [MaxLength(100)]
         public string City { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string Email { get; set; }
+
         [Required]
         [MaxLength(16)]
         public string MobileNumber { get; set; }

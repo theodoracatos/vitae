@@ -8,9 +8,12 @@ namespace Persistency.Poco
     {
         [Key]
         public int SocialLinkID { get; set; }
+
         [Required]
         public SocialPlatform SocialPlatform { get; set; }
+
         [Required]
+        [MaxLength(100)]
         public string Hyperlink { get; set; }
     }
 }

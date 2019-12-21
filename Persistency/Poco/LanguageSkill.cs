@@ -1,5 +1,4 @@
-﻿using Library.Enumerations;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Persistency.Poco
 {
@@ -7,7 +6,9 @@ namespace Persistency.Poco
     {
         [Key]
         public int LanguageSkillID { get; set; }
+
         public float Rate { get; set; }
+
         [Required]
         public virtual Language Language { get; set; }
     }

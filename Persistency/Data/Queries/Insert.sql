@@ -25,16 +25,27 @@ VALUES (4, 'https://www.xing.com/profile/Alexandros_Theodoracatos/cv', 1)
 
 
 INSERT INTO [Experience]
-VALUES ('Senior Software Ingenieur', 'Quilvest (Switzerland) Ltd.', 'http://quilvest.com', 'Zürich', 'Architektur und Fullstack-Entwicklung elektronischer Businessprozesse, realisiert mit neuesten .NET Web-Technologien. Technischer Lead folgender eigenentwickelter Applikationssysteme: Intranet, eBanking, MBO-System, Client-OnBoard-Dokumentenerstellung. Projektleitung mit fachlicher Führung von 5 – 7 Mitarbeitern (länderübergreifend). Regelmässige Schulung und Coaching von Mitarbeitern (auf Deutsch und Englisch)', '2011-02-01', null, 1)
+VALUES ('Senior Softwareingenieur', 'Quilvest (Switzerland) Ltd.', 'http://quilvest.com', 'Zürich', 'Architektur und Fullstack-Entwicklung elektronischer Businessprozesse, realisiert mit neuesten .NET Web-Technologien. Technischer Lead folgender eigenentwickelter Applikationssysteme: Intranet, eBanking, MBO-System, Client-OnBoard-Dokumentenerstellung. Projektleitung mit fachlicher Führung von 5 – 7 Mitarbeitern (länderübergreifend). Regelmässige Schulung und Coaching von Mitarbeitern (auf Deutsch und Englisch)', '2011-02-01', null, 1)
+
+INSERT INTO [Experience]
+VALUES ('Software Ingenieur', 'Ruf Telematik AG', 'http://ruf.ch', 'Schlieren', 'Architektur, Spezifikation, Design, Implementation, Test und Dokumentation von Softwarekomponenten und Multimediaapplikationen. Projektarbeit: Anforderungsspezifikation, Umsetzung, Engineering, Test und Projektleitung mit direktem Kundenkontakt', '2008-11-01', '2011-01-31', 1)
+
+INSERT INTO [Experience]
+VALUES ('Freelancer', 'Ruf Telematik AG', 'http://ruf.ch', 'Schlieren', 'Entwicklung von Tools und Diagnoseprogrammen für Embedded-Geräte', '2005-09-01', '2008-10-01', 1)
+
+INSERT INTO [Experience]
+VALUES ('Trainee', 'ABB Schweiz AG', 'http://abb.ch', 'Zürich', 'Entwicklung von Systemtools für elektrische Schaltanlagen (IEC 61850). Entwicklung von diversen Multimediaapplikationen für Firmenpräsentationen (Demos)', '2003-08-01', '2005-08-01', 1)
 
 
-
+INSERT INTO [Education]
+VALUES (''
 
 select * from [Person]
 select * from [About]
 select * from [Curriculum]
 select * from [SocialLink]
 select * from [Experience]
+select * from [Education]
 
 delete [About]
 DBCC CHECKIDENT ('[About]', RESEED, 0);

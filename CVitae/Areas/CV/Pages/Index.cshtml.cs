@@ -97,6 +97,22 @@ namespace CVitae.Areas.CV.Pages
                     End = experience.End
                 });
             }
+
+            // Education
+            PersonVM.Educations = new List<EducationVM>();
+            foreach (var education in curriculum.Person.Educations)
+            {
+                PersonVM.Educations.Add(new EducationVM()
+                {
+                    SchoolName = education.SchoolName,
+                    SchoolLink = education.SchoolName,
+                    Subject = education.Subject,
+                    Start = education.Start,
+                    End = education.End,
+                    Grade = education.Grade
+                });
+            }
+
         }
 
 
