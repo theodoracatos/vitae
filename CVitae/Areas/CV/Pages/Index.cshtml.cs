@@ -57,6 +57,7 @@ namespace CVitae.Areas.CV.Pages
                     .Include(c => c.Person.About)
                     .Include(c => c.Person.SocialLinks)
                     .Include(c => c.Person.Experiences)
+                    .Include(c => c.Person.Educations)
                     .Single(c => c.Identifier == id);
 
             // Set values
@@ -84,7 +85,7 @@ namespace CVitae.Areas.CV.Pages
 
             // Experiences
             PersonVM.Experiences = new List<ExperienceVM>();
-            foreach (var experience in curriculum.Person.Experiences)
+            foreach (var experience in curriculum.Person.Experiences.OrderByDescending(e => e.Start))
             {
                 PersonVM.Experiences.Add(new ExperienceVM()
                 {
@@ -100,13 +101,16 @@ namespace CVitae.Areas.CV.Pages
 
             // Education
             PersonVM.Educations = new List<EducationVM>();
-            foreach (var education in curriculum.Person.Educations)
+            foreach (var education in curriculum.Person.Educations.OrderByDescending(e => e.Start))
             {
                 PersonVM.Educations.Add(new EducationVM()
                 {
                     SchoolName = education.SchoolName,
                     SchoolLink = education.SchoolName,
                     Subject = education.Subject,
+                    City = education.City,
+                    Title = education.Title,
+                    Resumee = education.Resumee,
                     Start = education.Start,
                     End = education.End,
                     Grade = education.Grade

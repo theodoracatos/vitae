@@ -17,9 +17,16 @@ namespace Library.ViewModels
 
         [Required]
         [MaxLength(100)]
+        public string Title { get; set; }
+
+        [Required]
+        [MaxLength(100)]
         public string Subject { get; set; }
 
-        public decimal? Grade { get; set; }
+        [MaxLength(1000)]
+        public string Resumee { get; set; }
+
+        public float? Grade { get; set; }
 
         public DateTime Start { get; set; }
 

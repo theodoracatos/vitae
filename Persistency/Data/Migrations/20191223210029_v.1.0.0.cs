@@ -141,8 +141,11 @@ namespace Persistency.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SchoolName = table.Column<string>(maxLength: 100, nullable: false),
                     SchoolLink = table.Column<string>(maxLength: 100, nullable: true),
+                    City = table.Column<string>(maxLength: 100, nullable: false),
+                    Title = table.Column<string>(maxLength: 100, nullable: false),
                     Subject = table.Column<string>(maxLength: 100, nullable: false),
-                    Grade = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
+                    Resumee = table.Column<string>(maxLength: 1000, nullable: true),
+                    Grade = table.Column<float>(nullable: true),
                     Start = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: true),
                     PersonID = table.Column<int>(nullable: true)
@@ -164,10 +167,10 @@ namespace Persistency.Data.Migrations
                 {
                     ExperienceID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    JobTitle = table.Column<string>(nullable: false),
-                    CompanyName = table.Column<string>(nullable: false),
-                    CompanyLink = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: false),
+                    JobTitle = table.Column<string>(maxLength: 100, nullable: false),
+                    CompanyName = table.Column<string>(maxLength: 100, nullable: false),
+                    CompanyLink = table.Column<string>(maxLength: 1000, nullable: true),
+                    City = table.Column<string>(maxLength: 100, nullable: false),
                     Resumee = table.Column<string>(maxLength: 1000, nullable: true),
                     Start = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: true),
@@ -260,7 +263,7 @@ namespace Persistency.Data.Migrations
                     SocialLinkID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SocialPlatform = table.Column<int>(nullable: false),
-                    Hyperlink = table.Column<string>(nullable: false),
+                    Hyperlink = table.Column<string>(maxLength: 100, nullable: false),
                     PersonID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

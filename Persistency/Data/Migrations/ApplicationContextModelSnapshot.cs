@@ -122,14 +122,23 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal?>("Grade")
-                        .HasColumnType("decimal(18,4)");
+                    b.Property<float?>("Grade")
+                        .HasColumnType("real");
 
                     b.Property<int?>("PersonID")
                         .HasColumnType("int");
+
+                    b.Property<string>("Resumee")
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
 
                     b.Property<string>("SchoolLink")
                         .HasColumnType("nvarchar(100)")
@@ -144,6 +153,11 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
@@ -164,21 +178,25 @@ namespace Persistency.Data.Migrations
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("CompanyLink")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("JobTitle")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<int?>("PersonID")
                         .HasColumnType("int");
@@ -362,7 +380,8 @@ namespace Persistency.Data.Migrations
 
                     b.Property<string>("Hyperlink")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<int?>("PersonID")
                         .HasColumnType("int");

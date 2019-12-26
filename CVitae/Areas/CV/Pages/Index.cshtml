@@ -47,10 +47,10 @@
                     <a class="nav-link js-scroll-trigger" href="#experience">Erfahrung</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#education">Education</a>
+                    <a class="nav-link js-scroll-trigger" href="#education">Ausbildung</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+                    <a class="nav-link js-scroll-trigger" href="#languages">Sprachen</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
@@ -125,9 +125,10 @@
                     {
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                             <div class="resume-content">
-                                <h3 class="mb-0"><a href="mailto:@(education.SchoolName)">@education.SchoolLink</a></h3>
-                                <div class="subheading mb-3">@education.Subject</div>
-                                <p>Note: @education.Grade</p>
+                                 <h3 class="mb-0">@education.Title, @education.Subject</h3>
+                                 <div class="subheading mb-3"><a href="mailto:@(education.SchoolName)">@education.SchoolLink</a>, @education.City</div>
+                                 <p>Note: @education.Grade</p>
+                                 <p>@education.Resumee</p>
                             </div>
                             <div class="resume-date text-md-right">
                                 <span class="text-primary">@education.Start.ToString("MMMM yyyy") - @(education.End?.ToString("MMMM yyyy") ?? "jetzt")</span>
@@ -141,7 +142,7 @@
 
         <hr class="m-0">
 
-        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="skills">
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="languages">
             <div class="w-100">
                 <h2 class="mb-5">Skills</h2>
 
