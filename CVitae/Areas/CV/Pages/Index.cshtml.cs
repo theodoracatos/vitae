@@ -58,6 +58,7 @@ namespace CVitae.Areas.CV.Pages
                     .Include(c => c.Person.SocialLinks)
                     .Include(c => c.Person.Experiences)
                     .Include(c => c.Person.Educations)
+                    .Include(c => c.Person.LanguageSkills)
                     .Single(c => c.Identifier == id);
 
             // Set values
@@ -117,8 +118,21 @@ namespace CVitae.Areas.CV.Pages
                 });
             }
 
+            // Languages
+            PersonVM.LanguageSkills = new List<LanguageSkillVM>();
+            foreach (var languageSkill in curriculum.Person.LanguageSkills)
+            {
+                PersonVM.LanguageSkills.Add(new LanguageSkillVM()
+                {
+                    Language = new LanguageVM()
+                    {
+                        Name = languageSkill.Language.Name,
+                        IsoCode = languageSkill.Language.IsoCode
+                    },
+                     Rate = languageSkill.Rate
+                });
+            }
         }
-
 
         private string CreateQRCode(Guid id)
         {

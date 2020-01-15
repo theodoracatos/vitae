@@ -35,5 +35,7 @@ namespace Library.ViewModels
         public IList<SocialLinkVM> SocialLinks { get; set; }
         public IList<ExperienceVM> Experiences { get; set; }
         public IList<EducationVM> Educations { get; set; }
+
+        public IList<LanguageSkillVM> LanguageSkills { get; set; }
     }
 }

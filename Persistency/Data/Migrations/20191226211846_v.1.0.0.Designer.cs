@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20191223210029_v.1.0.0")]
+    [Migration("20191226211846_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -256,6 +256,7 @@ namespace Persistency.Data.Migrations
                         .HasMaxLength(2);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
@@ -442,7 +443,7 @@ namespace Persistency.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Persistency.Poco.Person", null)
-                        .WithMany("Languages")
+                        .WithMany("LanguageSkills")
                         .HasForeignKey("PersonID");
                 });
 

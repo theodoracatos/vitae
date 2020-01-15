@@ -1,12 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Persistency.Poco
+namespace Library.ViewModels
 {
-    public class Language
+    public class LanguageVM
     {
-        [Key]
-        public int LanguageID { get; set; }
-
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }

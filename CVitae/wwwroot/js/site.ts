@@ -3,4 +3,9 @@
 
 // Write your Javascript code.
 
-function test() {}
+$(function () {
+    $('input').rating({
+        filled: 'fas fa-star',
+        empty: 'far fa-stary'
+    });;
+});

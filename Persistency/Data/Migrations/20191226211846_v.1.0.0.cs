@@ -49,7 +49,7 @@ namespace Persistency.Data.Migrations
                 {
                     LanguageID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 100, nullable: true),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
                     IsoCode = table.Column<string>(maxLength: 2, nullable: false)
                 },
                 constraints: table =>

@@ -254,6 +254,7 @@ namespace Persistency.Data.Migrations
                         .HasMaxLength(2);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
@@ -440,7 +441,7 @@ namespace Persistency.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Persistency.Poco.Person", null)
-                        .WithMany("Languages")
+                        .WithMany("LanguageSkills")
                         .HasForeignKey("PersonID");
                 });
 
