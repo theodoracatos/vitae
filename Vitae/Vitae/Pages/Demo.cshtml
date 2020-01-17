@@ -28,7 +28,7 @@
             <div class="form-group">
                 <label class="control-label" asp-for="@Model.SelectedCountry"></label>
                 <select asp-for="@Model.SelectedCountry" asp-items="@(new SelectList(Html.GetEnumSelectList<Country>(), "Value", "Text"))" class="form-control input-normal">
-                    <option value="" disabled="disabled" selected="selected">-- Select --</option>
+                    <option value="" selected="selected">-- Select --</option>
                 </select>
                 <span asp-validation-for="@Model.SelectedCountry" class="text-danger"></span>
             </div>

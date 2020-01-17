@@ -12,7 +12,7 @@ namespace Vitae.Pages
 {
     public enum Country
     {
-        Switzerland,
+        Switzerland = 1,
         Germany,
         Austria,
         Italia,
