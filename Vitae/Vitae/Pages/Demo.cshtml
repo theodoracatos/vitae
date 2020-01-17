@@ -1,0 +1,85 @@
+﻿@page
+@model DemoModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="mb-3">
+    <h1 class="d-inline">U30 Club <i id="loading" class="fas fa-sync fa-spin ml-2"></i></h1>
+</div>
+
+<form method="post" data-ajax-method="post" data-ajax-update="#panel" data-ajax-loading="#loading" data-ajax-mode="">
+    <div class="card">
+        <div class="card-header">
+            Sync
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label class="control-label" asp-for="@Model.Name"></label>
+                <input class="form-control" type="text" asp-for="@Model.Name" />
+                <small class="form-text text-muted">Only Peter has access to the U30 club</small>
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="@Model.Birthdate"></label>
+                <input class="form-control datetimepicker" asp-format="{0:dd.MM.yyyy}" asp-for="@Model.Birthdate" type="text" />
+                <span asp-validation-for="@Model.Birthdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="@Model.SelectedCountry"></label>
+                <select asp-for="@Model.SelectedCountry" asp-items="@(new SelectList(Html.GetEnumSelectList<Country>(), "Value", "Text"))" class="form-control input-normal">
+                    <option value="" disabled="disabled" selected="selected">-- Select --</option>
+                </select>
+                <span asp-validation-for="@Model.SelectedCountry" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-2 mb-2">
+        <div id="panel">
+            @await Html.PartialAsync("_DemoPartial")
+        </div>
+
+        <div class="card-footer">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <button asp-page-handler="AddField" data-ajax="true" class="btn btn-dark cancel" type="submit">+ Attr</button>
+                <button asp-page-handler="RemoveField" data-ajax="true" class="btn btn-secondary cancel" type="submit">- Attr</button>
+            </div>
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                <button asp-page-handler="Increment" data-ajax="true" type="submit" class="btn btn-success cancel">+ Age</button>
+                <button asp-page-handler="Decrement" data-ajax="true" type="submit" class="btn btn-danger cancel">- Age</button>
+            </div>
+            <div class="btn-group mr-2" role="group" aria-label="Third group">
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalDialog">Dialog</button>
+            </div>
+            <div class="btn-group mr-2" role="group" aria-label="Fourth group">
+                <button asp-page-handler="Redirect" type="submit" class="btn btn-warning cancel">Redirect</button>
+                <button asp-page-handler="Save" type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Here you could add some AJAX as well...
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button asp-page-handler="Reset" type="submit" class="btn btn-danger cancel">Reset</button>
+                    <button asp-page-handler="Reset" type="button" class="btn btn-warning confirmation cancel" data-dismiss="modal">Reset (confirm)</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

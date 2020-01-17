@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "font-awesome@5.11.2",
+      "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "pretty-checkbox@3.0.0",
+      "destination": "wwwroot/lib/pretty-checkbox/"
+    },
+    {
+      "library": "jquery-confirm@3.3.4",
+      "destination": "wwwroot/lib/jquery-confirm/"
+    },
+    {
+      "library": "twitter-bootstrap@4.4.1",
+      "destination": "wwwroot/lib/twitter-bootstrap/"
+    },
+    {
+      "library": "jquery@3.4.1",
+      "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "library": "jquery-validate@1.19.1",
+      "destination": "wwwroot/lib/jquery-validate/"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "@chenfengyuan/datepicker@1.0.9",
+      "destination": "wwwroot/lib/@chenfengyuan/datepicker/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "jquery-validation-bootstrap-tooltip@0.10.3",
+      "destination": "wwwroot/lib/jquery-validation-bootstrap-tooltip/"
+    }
+  ]
+}
