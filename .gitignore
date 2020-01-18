@@ -3,3 +3,12 @@
 ################################################################################
 
 /Vitae/.vs/Vitae
+/Vitae/Library/bin/Debug/netcoreapp3.0
+/Vitae/Library/obj
+/Vitae/Persistency/bin/Debug/netcoreapp3.0
+/Vitae/Persistency/obj
+/Vitae/Vitae/bin/Debug/netcoreapp3.1
+/Vitae/Vitae/obj
+/Vitae/Library/bin/Debug/netcoreapp3.1
+/Vitae/Persistency/bin/Debug/netcoreapp3.1
+/Vitae/Vitae/Vitae.csproj.user

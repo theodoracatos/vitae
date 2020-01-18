@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vitae", "Vitae\Vitae.csproj", "{75760E20-95DA-4499-930C-C4C74395B3B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vitae", "Vitae\Vitae.csproj", "{75760E20-95DA-4499-930C-C4C74395B3B2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistency", "Persistency\Persistency.csproj", "{D92F0C20-CE41-47D4-97A4-B0B8D3101BE9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "Library\Library.csproj", "{7FC154B7-2805-4311-B150-E3AB39E2B2A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{75760E20-95DA-4499-930C-C4C74395B3B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75760E20-95DA-4499-930C-C4C74395B3B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75760E20-95DA-4499-930C-C4C74395B3B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D92F0C20-CE41-47D4-97A4-B0B8D3101BE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D92F0C20-CE41-47D4-97A4-B0B8D3101BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D92F0C20-CE41-47D4-97A4-B0B8D3101BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D92F0C20-CE41-47D4-97A4-B0B8D3101BE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FC154B7-2805-4311-B150-E3AB39E2B2A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FC154B7-2805-4311-B150-E3AB39E2B2A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FC154B7-2805-4311-B150-E3AB39E2B2A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FC154B7-2805-4311-B150-E3AB39E2B2A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
