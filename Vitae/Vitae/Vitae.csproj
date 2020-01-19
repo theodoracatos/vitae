@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-Vitae-5C8B8D1D-E117-4A75-8C41-258AB2F19151</UserSecretsId>
+    <AssemblyName>Vitae</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
