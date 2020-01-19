@@ -1,7 +1,7 @@
 ﻿/* ADD */
-EntityFrameworkCore\add-migration -startupproject CVitae -project Persistency -context ApplicationContext v.1.0.0
-EntityFrameworkCore\update-database -startupproject CVitae -project Persistency -context ApplicationContext
+EntityFrameworkCore\add-migration -startupproject Vitae -project Persistency -context ApplicationContext v.1.0.0
+EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context ApplicationContext
 
 /* REMOVE */
-EntityFrameworkCore\update-database -startupproject CVitae -project Persistency -context ApplicationContext –migration 0
-EntityFrameworkCore\remove-migration -startupproject CVitae -project Persistency -context ApplicationContext
+EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context ApplicationContext –migration 0
+EntityFrameworkCore\remove-migration -startupproject Vitae -project Persistency -context ApplicationContext
