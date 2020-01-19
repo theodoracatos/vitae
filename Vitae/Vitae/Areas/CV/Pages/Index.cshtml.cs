@@ -37,7 +37,11 @@ namespace CVitae.Areas.CV.Pages
 
         public IActionResult OnGet(Guid id)
         {
-            if (appContext.Curriculums.Any(c => c.Identifier == id))
+            if(id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
+            {
+                return NotFound();
+            }
+            else
             {
                 FillValues(id);
 
@@ -45,10 +49,6 @@ namespace CVitae.Areas.CV.Pages
                 QRTag = CreateQRCode(id);
 
                 return Page();
-            }
-            else
-            {
-                return NotFound();
             }
         }
 

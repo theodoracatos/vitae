@@ -105,7 +105,7 @@ section.resume-section {
   padding-bottom: 5rem !important;
   max-width: 75rem; }
   section.resume-section .resume-item .resume-date {
-    min-width: none; }
+    min-width: 0; }
 
 @media (min-width: 768px) {
   section.resume-section {
