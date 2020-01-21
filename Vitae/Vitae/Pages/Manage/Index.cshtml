@@ -1,8 +1,9 @@
 ﻿@page "{id}"
 @model Vitae.IndexModel
+@inject IStringLocalizer<SharedResource> Localizer
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = Localizer["Manage"];
 }
 
-<h1>Manage</h1>
+<h1>@Localizer["Manage"]</h1>
 
