@@ -7,3 +7,55 @@
 
 <h1>@Localizer["Manage"]</h1>
 
+<form class="form-horizontal" method="post" data-ajax-method="post" data-ajax-update="#panel" data-ajax-loading="#loading" data-ajax-mode="">
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label class="control-label" asp-for="@Model.PersonVM.Firstname"></label>
+            <input class="form-control" type="text" asp-for="@Model.PersonVM.Firstname" />
+            <span asp-validation-for="@Model.PersonVM.Firstname" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-7">
+            <label class="control-label" asp-for="@Model.PersonVM.Lastname"></label>
+            <input class="form-control" type="text" asp-for="@Model.PersonVM.Lastname" />
+            <span asp-validation-for="@Model.PersonVM.Lastname" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-10">
+            <label class="control-label" asp-for="@Model.PersonVM.Street"></label>
+            <input class="form-control" type="text" asp-for="@Model.PersonVM.Street" />
+            <span asp-validation-for="@Model.PersonVM.Street" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label" asp-for="@Model.PersonVM.StreetNo"></label>
+            <input class="form-control" type="text" asp-for="@Model.PersonVM.StreetNo" />
+            <span asp-validation-for="@Model.PersonVM.StreetNo" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label class="control-label" asp-for="@Model.PersonVM.ZipCode"></label>
+            <input class="form-control" type="text" asp-for="@Model.PersonVM.ZipCode" />
+            <span asp-validation-for="@Model.PersonVM.ZipCode" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-10">
+            <label class="control-label" asp-for="@Model.PersonVM.City"></label>
+            <input class="form-control" type="text" asp-for="@Model.PersonVM.City" />
+            <span asp-validation-for="@Model.PersonVM.City" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label class="control-label" asp-for="@Model.PersonVM.State"></label>
+            <input class="form-control" type="text" asp-for="@Model.PersonVM.State" />
+            <span asp-validation-for="@Model.PersonVM.State" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="control-label" asp-for="@Model.PersonVM.State"></label>
+            <input class="form-control" type="text" asp-for="@Model.PersonVM.State" />
+            <span asp-validation-for="@Model.PersonVM.State" class="text-danger"></span>
+        </div>
+    </div>
+
+    <input type="submit" value="Save" />
+    </form>

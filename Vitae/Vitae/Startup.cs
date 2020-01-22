@@ -39,6 +39,7 @@ namespace Vitae
                 {
                     options.Conventions.AddAreaPageRoute("CV", "/CV/index", "id");
                 });
+
             if (hostingEnvironment.IsDevelopment())
             {
                 builder.AddRazorRuntimeCompilation();

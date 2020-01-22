@@ -117,7 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="City" xml:space="preserve">
+    <value>Stadt</value>
+  </data>
+  <data name="CityRequired" xml:space="preserve">
+    <value>Eine Stadt wird benötigt</value>
+  </data>
+  <data name="Firstname" xml:space="preserve">
+    <value>Vorname</value>
+  </data>
+  <data name="FirstnameRequired" xml:space="preserve">
+    <value>Ein Vorname wird benötigt</value>
+  </data>
+  <data name="Lastname" xml:space="preserve">
+    <value>Nachname</value>
+  </data>
+  <data name="LastnameRequired" xml:space="preserve">
+    <value>Ein Nachname wird benötigt</value>
+  </data>
   <data name="Manage" xml:space="preserve">
-    <value>Manage</value>
+    <value>Bearbeiten</value>
+  </data>
+  <data name="Manage1" xml:space="preserve">
+    <value>Ändern</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Kanton / Bundesland</value>
+  </data>
+  <data name="StateRequired" xml:space="preserve">
+    <value>Ein Kanton / Bundesland wird benötigt</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Strasse</value>
+  </data>
+  <data name="StreetNo" xml:space="preserve">
+    <value>Nr.</value>
+  </data>
+  <data name="StreetNoRequired" xml:space="preserve">
+    <value>Eine Nr. wird benötigt</value>
+  </data>
+  <data name="StreetRequired" xml:space="preserve">
+    <value>Eine Strasse wird benötigt</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Postleitzahl</value>
+  </data>
+  <data name="ZipCodeRequired" xml:space="preserve">
+    <value>Eine Postleitzahl wird benötigt</value>
   </data>
 </root>
