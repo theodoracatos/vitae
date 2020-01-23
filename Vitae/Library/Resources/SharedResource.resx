@@ -123,6 +123,9 @@
   <data name="CityRequired" xml:space="preserve">
     <value>A city is required</value>
   </data>
+  <data name="CountryCode" xml:space="preserve">
+    <value>Country code</value>
+  </data>
   <data name="Firstname" xml:space="preserve">
     <value>Firstname</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="Manage1" xml:space="preserve">
     <value>Manage</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>

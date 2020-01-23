@@ -41,6 +41,7 @@ namespace Persistency.Poco
         [MaxLength(16)]
         public string MobileNumber { get; set; }
 
+        public virtual Country Country { get; set; }
         public virtual About About { get; set; }
         public virtual ICollection<Education> Educations { get; set; }
         public virtual ICollection<Experience> Experiences { get; set; }
