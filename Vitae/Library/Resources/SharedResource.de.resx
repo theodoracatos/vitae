@@ -124,7 +124,13 @@
     <value>Eine Stadt wird benötigt</value>
   </data>
   <data name="CountryCode" xml:space="preserve">
-    <value>Country code</value>
+    <value>Ländercode</value>
+  </data>
+  <data name="CountryName" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="CountryRequired" xml:space="preserve">
+    <value>Ein Land wird benötigt</value>
   </data>
   <data name="Firstname" xml:space="preserve">
     <value>Vorname</value>
@@ -139,13 +145,7 @@
     <value>Ein Nachname wird benötigt</value>
   </data>
   <data name="Manage" xml:space="preserve">
-    <value>Bearbeiten</value>
-  </data>
-  <data name="Manage1" xml:space="preserve">
     <value>Ändern</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>

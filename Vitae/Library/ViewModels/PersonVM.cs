@@ -41,6 +41,7 @@ namespace Library.ViewModels
         [MaxLength(5)]
         public int ZipCode { get; set; }
 
+        public CountryVM Country { get; set; }
 
         [Required]
         [MaxLength(100)]

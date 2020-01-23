@@ -8,15 +8,11 @@ namespace Library.ViewModels
 {
     public class CountryVM
     {
-        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.FirstnameRequired))]
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Name), Prompt = nameof(SharedResource.Name))]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.CountryRequired))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CountryName), Prompt = nameof(SharedResource.CountryName))]
         [MaxLength(100)]
         public string Name { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.LastnameRequired))]
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CountryCode), Prompt = nameof(SharedResource.CountryCode))]
-        [MinLength(2)]
-        [MaxLength(2)]
         public string CountryCode { get; set; }
 
     }
