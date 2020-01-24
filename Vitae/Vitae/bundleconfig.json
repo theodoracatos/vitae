@@ -10,5 +10,11 @@
     "inputFiles": [
       "wwwroot/js/resume.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/resume.min.css",
+    "inputFiles": [
+      "wwwroot/css/resume.css"
+    ]
   }
 ]
