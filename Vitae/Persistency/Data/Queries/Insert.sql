@@ -1,11 +1,258 @@
-USE CVitae
+USE Vitae
 GO
+
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AF', 'Afghanistan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AL', 'Albania')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('DZ', 'Algeria')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('DS', 'American Samoa')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AD', 'Andorra')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AO', 'Angola')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AI', 'Anguilla')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AQ', 'Antarctica')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AG', 'Antigua and Barbuda')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AR', 'Argentina')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AM', 'Armenia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AW', 'Aruba')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AU', 'Australia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AT', 'Austria')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AZ', 'Azerbaijan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BS', 'Bahamas')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BH', 'Bahrain')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BD', 'Bangladesh')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BB', 'Barbados')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BY', 'Belarus')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BE', 'Belgium')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BZ', 'Belize')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BJ', 'Benin')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BM', 'Bermuda')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BT', 'Bhutan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BO', 'Bolivia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BA', 'Bosnia and Herzegovina')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BW', 'Botswana')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BV', 'Bouvet Island')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BR', 'Brazil')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('IO', 'British Indian Ocean Territory')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BN', 'Brunei Darussalam')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BG', 'Bulgaria')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BF', 'Burkina Faso')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('BI', 'Burundi')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('KH', 'Cambodia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CM', 'Cameroon')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CA', 'Canada')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CV', 'Cape Verde')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('KY', 'Cayman Islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CF', 'Central African Republic')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TD', 'Chad')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CL', 'Chile')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CN', 'China')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CX', 'Christmas Island')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CC', 'Cocos (Keeling) Islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CO', 'Colombia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('KM', 'Comoros')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CD', 'Democratic Republic of the Congo')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CG', 'Republic of Congo')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CK', 'Cook Islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CR', 'Costa Rica')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('HR', 'Croatia (Hrvatska)')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CU', 'Cuba')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CY', 'Cyprus')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CZ', 'Czech Republic')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('DK', 'Denmark')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('DJ', 'Djibouti')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('DM', 'Dominica')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('DO', 'Dominican Republic')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TP', 'East Timor')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('EC', 'Ecuador')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('EG', 'Egypt')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SV', 'El Salvador')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GQ', 'Equatorial Guinea')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('ER', 'Eritrea')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('EE', 'Estonia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('ET', 'Ethiopia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('FK', 'Falkland Islands (Malvinas)')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('FO', 'Faroe Islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('FJ', 'Fiji')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('FI', 'Finland')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('FR', 'France')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('FX', 'France, Metropolitan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GF', 'French Guiana')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PF', 'French Polynesia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TF', 'French Southern Territories')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GA', 'Gabon')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GM', 'Gambia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GE', 'Georgia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('DE', 'Germany')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GH', 'Ghana')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GI', 'Gibraltar')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GK', 'Guernsey')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GR', 'Greece')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GL', 'Greenland')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GD', 'Grenada')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GP', 'Guadeloupe')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GU', 'Guam')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GT', 'Guatemala')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GN', 'Guinea')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GW', 'Guinea-Bissau')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GY', 'Guyana')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('HT', 'Haiti')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('HM', 'Heard and Mc Donald Islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('HN', 'Honduras')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('HK', 'Hong Kong')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('HU', 'Hungary')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('IS', 'Iceland')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('IN', 'India')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('IM', 'Isle of Man')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('ID', 'Indonesia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('IR', 'Iran (Islamic Republic of)')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('IQ', 'Iraq')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('IE', 'Ireland')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('IL', 'Israel')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('IT', 'Italy')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CI', 'Ivory Coast')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('JE', 'Jersey')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('JM', 'Jamaica')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('JP', 'Japan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('JO', 'Jordan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('KZ', 'Kazakhstan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('KE', 'Kenya')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('KI', 'Kiribati')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('KP', 'Korea, Democratic People''s Republic of')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('KR', 'Korea, Republic of')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('XK', 'Kosovo')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('KW', 'Kuwait')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('KG', 'Kyrgyzstan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('LA', 'Lao People''s Democratic Republic')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('LV', 'Latvia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('LB', 'Lebanon')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('LS', 'Lesotho')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('LR', 'Liberia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('LY', 'Libyan Arab Jamahiriya')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('LI', 'Liechtenstein')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('LT', 'Lithuania')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('LU', 'Luxembourg')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MO', 'Macau')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MK', 'North Macedonia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MG', 'Madagascar')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MW', 'Malawi')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MY', 'Malaysia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MV', 'Maldives')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('ML', 'Mali')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MT', 'Malta')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MH', 'Marshall Islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MQ', 'Martinique')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MR', 'Mauritania')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MU', 'Mauritius')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TY', 'Mayotte')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MX', 'Mexico')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('FM', 'Micronesia, Federated States of')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MD', 'Moldova, Republic of')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MC', 'Monaco')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MN', 'Mongolia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('ME', 'Montenegro')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MS', 'Montserrat')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MA', 'Morocco')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MZ', 'Mozambique')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MM', 'Myanmar')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('NA', 'Namibia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('NR', 'Nauru')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('NP', 'Nepal')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('NL', 'Netherlands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AN', 'Netherlands Antilles')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('NC', 'New Caledonia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('NZ', 'New Zealand')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('NI', 'Nicaragua')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('NE', 'Niger')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('NG', 'Nigeria')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('NU', 'Niue')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('NF', 'Norfolk Island')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('MP', 'Northern Mariana Islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('NO', 'Norway')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('OM', 'Oman')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PK', 'Pakistan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PW', 'Palau')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PS', 'Palestine')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PA', 'Panama')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PG', 'Papua New Guinea')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PY', 'Paraguay')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PE', 'Peru')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PH', 'Philippines')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PN', 'Pitcairn')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PL', 'Poland')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PT', 'Portugal')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PR', 'Puerto Rico')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('QA', 'Qatar')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('RE', 'Reunion')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('RO', 'Romania')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('RU', 'Russian Federation')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('RW', 'Rwanda')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('KN', 'Saint Kitts and Nevis')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('LC', 'Saint Lucia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('VC', 'Saint Vincent and the Grenadines')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('WS', 'Samoa')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SM', 'San Marino')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('ST', 'Sao Tome and Principe')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SA', 'Saudi Arabia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SN', 'Senegal')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('RS', 'Serbia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SC', 'Seychelles')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SL', 'Sierra Leone')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SG', 'Singapore')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SK', 'Slovakia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SI', 'Slovenia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SB', 'Solomon Islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SO', 'Somalia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('ZA', 'South Africa')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GS', 'South Georgia South Sandwich Islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SS', 'South Sudan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('ES', 'Spain')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('LK', 'Sri Lanka')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SH', 'St. Helena')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('PM', 'St. Pierre and Miquelon')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SD', 'Sudan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SR', 'Suriname')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SJ', 'Svalbard and Jan Mayen Islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SZ', 'Swaziland')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SE', 'Sweden')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('CH', 'Switzerland')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('SY', 'Syrian Arab Republic')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TW', 'Taiwan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TJ', 'Tajikistan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TZ', 'Tanzania, United Republic of')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TH', 'Thailand')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TG', 'Togo')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TK', 'Tokelau')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TO', 'Tonga')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TT', 'Trinidad and Tobago')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TN', 'Tunisia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TR', 'Turkey')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TM', 'Turkmenistan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TC', 'Turks and Caicos Islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('TV', 'Tuvalu')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('UG', 'Uganda')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('UA', 'Ukraine')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('AE', 'United Arab Emirates')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('GB', 'United Kingdom')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('US', 'United States')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('UM', 'United States minor outlying islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('UY', 'Uruguay')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('UZ', 'Uzbekistan')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('VU', 'Vanuatu')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('VA', 'Vatican City State')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('VE', 'Venezuela')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('VN', 'Vietnam')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('VG', 'Virgin Islands (British)')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('VI', 'Virgin Islands (U.S.)')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('WF', 'Wallis and Futuna Islands')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('EH', 'Western Sahara')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('YE', 'Yemen')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('ZM', 'Zambia')
+INSERT INTO [Country] ([CountryCode], [Name]) VALUES ('ZW', 'Zimbabwe')
 
 INSERT INTO [About]
 VALUES('','"Great things in business are never done by one person. They’re done by a team of people." Steve Jobs', null)
 
 INSERT INTO [Person]
-VALUES ('Alexandros', 'Theodoracatos', '1983-06-23', 1, 'Zwischenbächen', 143, 8048, 'Zurich', 'theodoracatos@gmail.com', '+41 78 704 44 38', 1)
+VALUES ('Alexandros', 'Theodoracatos', '1983-06-23', 1, 'Zwischenbächen', 143, 8048, 'Zurich', 'theodoracatos@gmail.com', '+41 78 704 44 38', 1, 1)
 
 INSERT INTO [Curriculum]
 VALUES ('a05c13a8-21fb-42c9-a5bc-98b7d94f464a', 'theodoracatos', null, GETDATE(), GETDATE(), 1)
@@ -69,35 +316,35 @@ VALUES ('Serbisch', 'sr')
 
 
 
-INSERT INTO [LanguageSkill] 
+--INSERT INTO [LanguageSkill] 
 
 
 -------------------
 
-select * from [Person]
-select * from [About]
-select * from [Curriculum]
-select * from [SocialLink]
-select * from [Experience]
-select * from [Education]
-select * from [Language]
-select * from [LanguageSkill]
+--select * from [Person]
+--select * from [About]
+--select * from [Curriculum]
+--select * from [SocialLink]
+--select * from [Experience]
+--select * from [Education]
+--select * from [Language]
+--select * from [LanguageSkill]
 
-delete [About]
-DBCC CHECKIDENT ('[About]', RESEED, 0);
-GO
+--delete [About]
+--DBCC CHECKIDENT ('[About]', RESEED, 0);
+--GO
 
-delete [Person]
-DBCC CHECKIDENT ('[Person]', RESEED, 0);
-GO
+--delete [Person]
+--DBCC CHECKIDENT ('[Person]', RESEED, 0);
+--GO
 
-delete [Curriculum]
-DBCC CHECKIDENT ('[Curriculum]', RESEED, 0);
-GO
+--delete [Curriculum]
+--DBCC CHECKIDENT ('[Curriculum]', RESEED, 0);
+--GO
 
-delete [SocialLink]
-DBCC CHECKIDENT ('[Curriculum]', RESEED, 0);
-GO
+--delete [SocialLink]
+--DBCC CHECKIDENT ('[Curriculum]', RESEED, 0);
+--GO
 
 --------------------------------
 

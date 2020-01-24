@@ -44,6 +44,20 @@ namespace Persistency.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Country",
+                columns: table => new
+                {
+                    CountryID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CountryCode = table.Column<string>(maxLength: 2, nullable: true),
+                    Name = table.Column<string>(maxLength: 100, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Country", x => x.CountryID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Language",
                 columns: table => new
                 {
@@ -73,6 +87,7 @@ namespace Persistency.Data.Migrations
                     City = table.Column<string>(maxLength: 100, nullable: true),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
                     MobileNumber = table.Column<string>(maxLength: 16, nullable: false),
+                    CountryID = table.Column<int>(nullable: true),
                     AboutID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -83,6 +98,12 @@ namespace Persistency.Data.Migrations
                         column: x => x.AboutID,
                         principalTable: "About",
                         principalColumn: "AboutID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Person_Country_CountryID",
+                        column: x => x.CountryID,
+                        principalTable: "Country",
+                        principalColumn: "CountryID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -328,6 +349,11 @@ namespace Persistency.Data.Migrations
                 column: "AboutID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Person_CountryID",
+                table: "Person",
+                column: "CountryID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Skill_PersonID",
                 table: "Skill",
                 column: "PersonID");
@@ -372,6 +398,9 @@ namespace Persistency.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "About");
+
+            migrationBuilder.DropTable(
+                name: "Country");
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",

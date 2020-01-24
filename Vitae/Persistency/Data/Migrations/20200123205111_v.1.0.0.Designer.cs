@@ -10,14 +10,14 @@ using Persistency.Data;
 namespace Persistency.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20191226211846_v.1.0.0")]
+    [Migration("20200123205111_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.1")
+                .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -77,6 +77,26 @@ namespace Persistency.Data.Migrations
                     b.HasIndex("PersonID");
 
                     b.ToTable("Award");
+                });
+
+            modelBuilder.Entity("Persistency.Poco.Country", b =>
+                {
+                    b.Property<int>("CountryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CountryCode")
+                        .HasColumnType("nvarchar(2)")
+                        .HasMaxLength(2);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("CountryID");
+
+                    b.ToTable("Country");
                 });
 
             modelBuilder.Entity("Persistency.Poco.Curriculum", b =>
@@ -307,6 +327,9 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<int?>("CountryID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
@@ -345,6 +368,8 @@ namespace Persistency.Data.Migrations
                     b.HasKey("PersonID");
 
                     b.HasIndex("AboutID");
+
+                    b.HasIndex("CountryID");
 
                     b.ToTable("Person");
                 });
@@ -452,6 +477,10 @@ namespace Persistency.Data.Migrations
                     b.HasOne("Persistency.Poco.About", "About")
                         .WithMany()
                         .HasForeignKey("AboutID");
+
+                    b.HasOne("Persistency.Poco.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryID");
                 });
 
             modelBuilder.Entity("Persistency.Poco.Skill", b =>
