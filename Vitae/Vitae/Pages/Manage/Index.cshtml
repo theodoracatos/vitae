@@ -64,7 +64,7 @@
                                 <div class="form-group col-md-6">
                                     <label class="control-label" asp-for="@Model.Person.Country"></label>
                                     <select asp-for="@Model.Person.Country" class="form-control" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
-                                        <option value="" selected="selected">-- Select --</option>
+                                        <option value="" selected="selected" disabled="disabled">-- @Localizer["Select"] --</option>
                                     </select>
                                 </div>
                             </div>

@@ -156,6 +156,9 @@
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>
   </data>
+  <data name="Select" xml:space="preserve">
+    <value>Auswählen</value>
+  </data>
   <data name="State" xml:space="preserve">
     <value>Kanton / Bundesland</value>
   </data>
