@@ -124,13 +124,19 @@
     <value>A city is required</value>
   </data>
   <data name="CountryCode" xml:space="preserve">
-    <value>Country code</value>
+    <value>Code</value>
   </data>
   <data name="CountryName" xml:space="preserve">
-    <value>Country name</value>
+    <value>Country</value>
   </data>
   <data name="CountryRequired" xml:space="preserve">
     <value>A country is required</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>A email is required</value>
   </data>
   <data name="Firstname" xml:space="preserve">
     <value>Firstname</value>
@@ -160,10 +166,10 @@
     <value>Street</value>
   </data>
   <data name="StreetNo" xml:space="preserve">
-    <value>Street number</value>
+    <value>Number</value>
   </data>
   <data name="StreetNoRequired" xml:space="preserve">
-    <value>A street number is required</value>
+    <value>A number is required</value>
   </data>
   <data name="StreetRequired" xml:space="preserve">
     <value>A street is required</value>

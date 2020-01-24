@@ -13,5 +13,16 @@ namespace Persistency.Poco
 
         [MaxLength(100)]
         public string Name { get; set; }
+
+        [MaxLength(100)]
+        public string Nicename { get; set; }
+
+        [MinLength(3)]
+        [MaxLength(3)]
+        public string Iso3 { get; set; }
+
+        public int Numcode { get; set; }
+
+        public int Phonecode { get; set; }
     }
 }

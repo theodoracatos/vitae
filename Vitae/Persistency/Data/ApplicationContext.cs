@@ -10,6 +10,7 @@ namespace Persistency.Data
     public class ApplicationContext : DbContext
     {
         public virtual DbSet<Curriculum> Curriculums { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {

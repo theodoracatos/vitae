@@ -10,6 +10,7 @@ $(document).ready(function () {
         }
     );
 
+    /* Confirmation */
     $('.confirmation').on('click', function () {
         var formaction = $(this).attr('formaction');
         var hasCancel = $(this).hasClass("cancel");
@@ -50,6 +51,7 @@ $(document).ready(function () {
         return false;
     });
 
+    /* Required (*) */
     $('input[type=text], select').each(function () {
         var req = $(this).attr('data-val-required');
         if (undefined != req) {
@@ -59,5 +61,10 @@ $(document).ready(function () {
                 label.append('<span style="color:red"> *</span>');
             }
         }
+    });
+
+    /* Tab change */
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $('.bs-tooltip-top').remove();
     });
 });

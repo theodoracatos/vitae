@@ -124,13 +124,19 @@
     <value>Eine Stadt wird benötigt</value>
   </data>
   <data name="CountryCode" xml:space="preserve">
-    <value>Ländercode</value>
+    <value>Code</value>
   </data>
   <data name="CountryName" xml:space="preserve">
     <value>Land</value>
   </data>
   <data name="CountryRequired" xml:space="preserve">
     <value>Ein Land wird benötigt</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>Eine Email wird benötigt</value>
   </data>
   <data name="Firstname" xml:space="preserve">
     <value>Vorname</value>

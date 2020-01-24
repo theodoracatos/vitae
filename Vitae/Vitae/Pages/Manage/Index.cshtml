@@ -5,57 +5,85 @@
     ViewData["Title"] = Localizer["Manage"];
 }
 
-<h1>@Localizer["Manage"]</h1>
+<h1 class="spacer">@Localizer["Manage"]</h1>
 
-<form class="form-horizontal" method="post" data-ajax-method="post" data-ajax-update="#panel" data-ajax-loading="#loading" data-ajax-mode="">
-    <div class="form-row">
-        <div class="form-group col-md-5">
-            <label class="control-label" asp-for="@Model.PersonVM.Firstname"></label>
-            <input class="form-control" type="text" asp-for="@Model.PersonVM.Firstname" />
-            <span asp-validation-for="@Model.PersonVM.Firstname" class="text-danger"></span>
+        <nav class="register">
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Personalies</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <form class="form-horizontal" method="post" data-ajax-method="post" data-ajax-update="#panel" data-ajax-loading="#loading" data-ajax-mode="">
+                    <div id="panel">
+                        <div class="bd-form">
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <label class="control-label" asp-for="@Model.Person.Firstname"></label>
+                                    <input class="form-control" type="text" asp-for="@Model.Person.Firstname" />
+                                    <span asp-validation-for="@Model.Person.Firstname" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <label class="control-label" asp-for="@Model.Person.Lastname"></label>
+                                    <input class="form-control" type="text" asp-for="@Model.Person.Lastname" />
+                                    <span asp-validation-for="@Model.Person.Lastname" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-10">
+                                    <label class="control-label" asp-for="@Model.Person.Street"></label>
+                                    <input class="form-control" type="text" asp-for="@Model.Person.Street" />
+                                    <span asp-validation-for="@Model.Person.Street" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label class="control-label" asp-for="@Model.Person.StreetNo"></label>
+                                    <input class="form-control" type="text" asp-for="@Model.Person.StreetNo" />
+                                    <span asp-validation-for="@Model.Person.StreetNo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label class="control-label" asp-for="@Model.Person.ZipCode"></label>
+                                    <input class="form-control" type="text" asp-for="@Model.Person.ZipCode" />
+                                    <span asp-validation-for="@Model.Person.ZipCode" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-10">
+                                    <label class="control-label" asp-for="@Model.Person.City"></label>
+                                    <input class="form-control" type="text" asp-for="@Model.Person.City" />
+                                    <span asp-validation-for="@Model.Person.City" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" asp-for="@Model.Person.State"></label>
+                                    <input class="form-control" type="text" asp-for="@Model.Person.State" />
+                                    <span asp-validation-for="@Model.Person.State" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" asp-for="@Model.Person.Country"></label>
+                                    <select asp-for="@Model.Person.Country" class="form-control" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
+                                        <option value="" selected="selected">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label class="control-label" asp-for="@Model.Person.Email"></label>
+                                    <input class="form-control" type="text" asp-for="@Model.Person.Email" />
+                                    <span asp-validation-for="@Model.Person.Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <input type="submit" value="Save" class="btn btn-success float-right" />
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                </form>
+             </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
         </div>
-        <div class="form-group col-md-7">
-            <label class="control-label" asp-for="@Model.PersonVM.Lastname"></label>
-            <input class="form-control" type="text" asp-for="@Model.PersonVM.Lastname" />
-            <span asp-validation-for="@Model.PersonVM.Lastname" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-10">
-            <label class="control-label" asp-for="@Model.PersonVM.Street"></label>
-            <input class="form-control" type="text" asp-for="@Model.PersonVM.Street" />
-            <span asp-validation-for="@Model.PersonVM.Street" class="text-danger"></span>
-        </div>
-        <div class="form-group col-md-2">
-            <label class="control-label" asp-for="@Model.PersonVM.StreetNo"></label>
-            <input class="form-control" type="text" asp-for="@Model.PersonVM.StreetNo" />
-            <span asp-validation-for="@Model.PersonVM.StreetNo" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-2">
-            <label class="control-label" asp-for="@Model.PersonVM.ZipCode"></label>
-            <input class="form-control" type="text" asp-for="@Model.PersonVM.ZipCode" />
-            <span asp-validation-for="@Model.PersonVM.ZipCode" class="text-danger"></span>
-        </div>
-        <div class="form-group col-md-10">
-            <label class="control-label" asp-for="@Model.PersonVM.City"></label>
-            <input class="form-control" type="text" asp-for="@Model.PersonVM.City" />
-            <span asp-validation-for="@Model.PersonVM.City" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <label class="control-label" asp-for="@Model.PersonVM.State"></label>
-            <input class="form-control" type="text" asp-for="@Model.PersonVM.State" />
-            <span asp-validation-for="@Model.PersonVM.State" class="text-danger"></span>
-        </div>
-        <div class="form-group col-md-4">
-            <label class="control-label" asp-for="@Model.PersonVM.State"></label>
-            <input class="form-control" type="text" asp-for="@Model.PersonVM.State" />
-            <span asp-validation-for="@Model.PersonVM.State" class="text-danger"></span>
-        </div>
-    </div>
-
-    <input type="submit" value="Save" />
-    </form>

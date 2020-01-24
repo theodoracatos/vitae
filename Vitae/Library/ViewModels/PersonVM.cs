@@ -41,11 +41,17 @@ namespace Library.ViewModels
         [MaxLength(5)]
         public int ZipCode { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.CountryRequired))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CountryName), Prompt = nameof(SharedResource.CountryName))]
         public CountryVM Country { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.EmailRequired))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Email), Prompt = nameof(SharedResource.Email))]
+        [EmailAddress(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.EmailRequired))]
         [MaxLength(100)]
         public string Email { get; set; }
+
+
         public string MobileNumber { get; set; }
         public string Slogan { get; set; }
         public string Photo { get; set; }

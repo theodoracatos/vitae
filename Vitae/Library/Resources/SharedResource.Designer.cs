@@ -79,7 +79,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Country code.
+        ///   Looks up a localized string similar to Code.
         /// </summary>
         public static string CountryCode {
             get {
@@ -88,7 +88,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Country name.
+        ///   Looks up a localized string similar to Country.
         /// </summary>
         public static string CountryName {
             get {
@@ -102,6 +102,24 @@ namespace Library.Resources {
         public static string CountryRequired {
             get {
                 return ResourceManager.GetString("CountryRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A email is required.
+        /// </summary>
+        public static string EmailRequired {
+            get {
+                return ResourceManager.GetString("EmailRequired", resourceCulture);
             }
         }
         
@@ -187,7 +205,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Street number.
+        ///   Looks up a localized string similar to Number.
         /// </summary>
         public static string StreetNo {
             get {
@@ -196,7 +214,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A street number is required.
+        ///   Looks up a localized string similar to A number is required.
         /// </summary>
         public static string StreetNoRequired {
             get {
