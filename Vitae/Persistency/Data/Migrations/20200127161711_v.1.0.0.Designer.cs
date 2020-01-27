@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200127154738_v.1.0.0")]
+    [Migration("20200127161711_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -302,8 +302,8 @@ namespace Persistency.Data.Migrations
 
                     b.Property<string>("LanguageCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(2)")
-                        .HasMaxLength(2);
+                        .HasColumnType("nvarchar(3)")
+                        .HasMaxLength(3);
 
                     b.Property<string>("Name")
                         .IsRequired()

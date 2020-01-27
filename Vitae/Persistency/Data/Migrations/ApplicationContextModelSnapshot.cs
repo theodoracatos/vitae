@@ -300,8 +300,8 @@ namespace Persistency.Data.Migrations
 
                     b.Property<string>("LanguageCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(2)")
-                        .HasMaxLength(2);
+                        .HasColumnType("nvarchar(3)")
+                        .HasMaxLength(3);
 
                     b.Property<string>("Name")
                         .IsRequired()

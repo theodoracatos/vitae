@@ -70,7 +70,7 @@ namespace Persistency.Data.Migrations
                 {
                     LanguageID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LanguageCode = table.Column<string>(maxLength: 2, nullable: false),
+                    LanguageCode = table.Column<string>(maxLength: 3, nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Name_de = table.Column<string>(maxLength: 100, nullable: false),
                     Name_fr = table.Column<string>(maxLength: 100, nullable: false),
