@@ -1,8 +1,8 @@
 ﻿using Library.Resources;
-using System;
-using System.Collections.Generic;
+
+using Microsoft.AspNetCore.Mvc;
+
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Library.ViewModels
 {
@@ -11,9 +11,12 @@ namespace Library.ViewModels
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.CountryRequired))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CountryName), Prompt = nameof(SharedResource.CountryName))]
         [MaxLength(100)]
+        [BindProperty]
         public string Name { get; set; }
-
+        [BindProperty]
         public string CountryCode { get; set; }
 
+        [BindProperty]
+        public int? PhoneCode { get; set; }
     }
 }

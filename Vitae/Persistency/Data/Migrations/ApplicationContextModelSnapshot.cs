@@ -88,11 +88,41 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("nvarchar(2)")
                         .HasMaxLength(2);
 
+                    b.Property<string>("Iso3")
+                        .HasColumnType("nvarchar(3)")
+                        .HasMaxLength(3);
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<string>("Name_de")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_es")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_fr")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_it")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("NumCode")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PhoneCode")
+                        .HasColumnType("int");
+
                     b.HasKey("CountryID");
+
+                    b.HasIndex("CountryCode")
+                        .IsUnique()
+                        .HasFilter("[CountryCode] IS NOT NULL");
 
                     b.ToTable("Country");
                 });
@@ -268,7 +298,7 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("IsoCode")
+                    b.Property<string>("LanguageCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(2)")
                         .HasMaxLength(2);
@@ -278,7 +308,30 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<string>("Name_de")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_es")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_fr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_it")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
                     b.HasKey("LanguageID");
+
+                    b.HasIndex("LanguageCode")
+                        .IsUnique();
 
                     b.ToTable("Language");
                 });
@@ -359,8 +412,8 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<int>("ZipCode")
-                        .HasColumnType("int")
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
                     b.HasKey("PersonID");

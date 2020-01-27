@@ -129,7 +129,7 @@ namespace CVitae.Areas.CV.Pages
                     Language = new LanguageVM()
                     {
                         Name = languageSkill.Language.Name,
-                        IsoCode = languageSkill.Language.IsoCode
+                        LanguageCode = languageSkill.Language.LanguageCode
                     },
                      Rate = languageSkill.Rate
                 });

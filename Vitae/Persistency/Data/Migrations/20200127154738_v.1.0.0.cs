@@ -50,7 +50,14 @@ namespace Persistency.Data.Migrations
                     CountryID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CountryCode = table.Column<string>(maxLength: 2, nullable: true),
-                    Name = table.Column<string>(maxLength: 100, nullable: true)
+                    Name = table.Column<string>(maxLength: 100, nullable: true),
+                    Name_de = table.Column<string>(maxLength: 100, nullable: true),
+                    Name_fr = table.Column<string>(maxLength: 100, nullable: true),
+                    Name_it = table.Column<string>(maxLength: 100, nullable: true),
+                    Name_es = table.Column<string>(maxLength: 100, nullable: true),
+                    Iso3 = table.Column<string>(maxLength: 3, nullable: true),
+                    NumCode = table.Column<int>(nullable: true),
+                    PhoneCode = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,8 +70,12 @@ namespace Persistency.Data.Migrations
                 {
                     LanguageID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    LanguageCode = table.Column<string>(maxLength: 2, nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
-                    IsoCode = table.Column<string>(maxLength: 2, nullable: false)
+                    Name_de = table.Column<string>(maxLength: 100, nullable: false),
+                    Name_fr = table.Column<string>(maxLength: 100, nullable: false),
+                    Name_it = table.Column<string>(maxLength: 100, nullable: false),
+                    Name_es = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,7 +94,7 @@ namespace Persistency.Data.Migrations
                     Gender = table.Column<bool>(nullable: false),
                     Street = table.Column<string>(maxLength: 100, nullable: true),
                     StreetNo = table.Column<string>(maxLength: 10, nullable: true),
-                    ZipCode = table.Column<int>(maxLength: 10, nullable: false),
+                    ZipCode = table.Column<string>(maxLength: 10, nullable: true),
                     City = table.Column<string>(maxLength: 100, nullable: true),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
                     MobileNumber = table.Column<string>(maxLength: 16, nullable: false),
@@ -304,6 +315,13 @@ namespace Persistency.Data.Migrations
                 column: "PersonID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Country_CountryCode",
+                table: "Country",
+                column: "CountryCode",
+                unique: true,
+                filter: "[CountryCode] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Curriculum_FriendlyId",
                 table: "Curriculum",
                 column: "FriendlyId");
@@ -332,6 +350,12 @@ namespace Persistency.Data.Migrations
                 name: "IX_Interest_PersonID",
                 table: "Interest",
                 column: "PersonID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Language_LanguageCode",
+                table: "Language",
+                column: "LanguageCode",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_LanguageSkill_LanguageID",

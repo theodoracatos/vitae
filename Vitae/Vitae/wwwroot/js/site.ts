@@ -2,6 +2,16 @@
 declare var $;
 
 $(document).ready(function () {
+    loadingProcedure();
+});
+
+function ajaxCompleted() {
+    loadingProcedure();
+    $('.bs-tooltip-top').remove();
+}
+
+
+function loadingProcedure() {
     $('.datetimepicker').datepicker(
         {
             format: 'dd.mm.yyyy',
@@ -63,8 +73,13 @@ $(document).ready(function () {
         }
     });
 
-    /* Tab change */
+/* Tab change */
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         $('.bs-tooltip-top').remove();
     });
-});
+
+/* Event subscription */
+    //$("select[name='Person.Country']").on('change', function () {
+
+    //});
+}

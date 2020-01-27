@@ -102,6 +102,7 @@ $(document).ready(function () {
             success: function (data, status, xhr) {
                 asyncOnSuccess(element, data, xhr.getResponseHeader("Content-Type") || "text/html");
                 getFunction(element.getAttribute("data-ajax-success"), ["data", "status", "xhr"]).apply(element, arguments);
+                ajaxCompleted(); // QVS
                 loading.hide();
             },
             error: function () {

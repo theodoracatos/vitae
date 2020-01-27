@@ -144,6 +144,15 @@
   <data name="FirstnameRequired" xml:space="preserve">
     <value>Ein Vorname wird benötigt</value>
   </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Geschlecht</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="LanguageRequired" xml:space="preserve">
+    <value>Eine Sprache wird benötigt</value>
+  </data>
   <data name="Lastname" xml:space="preserve">
     <value>Nachname</value>
   </data>
@@ -153,11 +162,35 @@
   <data name="Manage" xml:space="preserve">
     <value>Ändern</value>
   </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>Mobiltelefon</value>
+  </data>
+  <data name="MobileNumberRequired" xml:space="preserve">
+    <value>Ein Mobiltelefon wird benötigt</value>
+  </data>
+  <data name="Mr" xml:space="preserve">
+    <value>Herr</value>
+  </data>
+  <data name="Ms" xml:space="preserve">
+    <value>Frau</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Foto</value>
+  </data>
+  <data name="PhotoRequired" xml:space="preserve">
+    <value>Ein Foto wird benötigt</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Auswählen</value>
+  </data>
+  <data name="Slogan" xml:space="preserve">
+    <value>Slogan</value>
+  </data>
+  <data name="SloganRequired" xml:space="preserve">
+    <value>Ein slogan wird benötigt</value>
   </data>
   <data name="State" xml:space="preserve">
     <value>Kanton / Bundesland</value>

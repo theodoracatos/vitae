@@ -10,6 +10,6 @@ namespace Library.ViewModels
 
         [Required]
         [MaxLength(2)]
-        public string IsoCode { get; set; }
+        public string LanguageCode { get; set; }
     }
 }

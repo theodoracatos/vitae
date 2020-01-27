@@ -11,6 +11,7 @@ namespace Persistency.Data
     {
         public virtual DbSet<Curriculum> Curriculums { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Language> Languages { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
@@ -19,8 +20,11 @@ namespace Persistency.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.RemovePluralizingTableNameConvention();
+
             modelBuilder.Entity<Curriculum>().HasIndex(c => c.Identifier);
             modelBuilder.Entity<Curriculum>().HasIndex(c => c.FriendlyId);
+            modelBuilder.Entity<Country>().HasIndex(c => c.CountryCode).IsUnique();
+            modelBuilder.Entity<Language>().HasIndex(c => c.LanguageCode).IsUnique();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

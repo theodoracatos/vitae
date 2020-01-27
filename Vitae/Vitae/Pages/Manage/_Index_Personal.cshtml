@@ -1,0 +1,102 @@
+﻿@model Vitae.Pages.Manage.IndexModel
+@inject IStringLocalizer<SharedResource> Localizer
+
+<div class="bd-form">
+    <div class="form-row">
+        <div class="col-md">
+            <label class="control-label" asp-for="@Model.Person.Gender"></label>
+            <div class="form-group">
+                <div class="pretty p-default p-round">
+                    <input type="radio" value="1" name="@nameof(Model.Person.Gender)" @(Model.Person?.Gender ?? true ? "checked" : "")>
+                    <div class="state">
+                        <label>@Localizer["Mr"]</label>
+                    </div>
+                </div>
+                <div class="pretty p-default p-round">
+                    <input type="radio" value="0" name="@nameof(Model.Person.Gender)" @(Model.Person?.Gender ?? true ? "" : "checked")>
+                    <div class="state">
+                        <label>@Localizer["Ms"]</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label class="control-label" asp-for="@Model.Person.Firstname"></label>
+            <input class="form-control" type="text" asp-for="@Model.Person.Firstname" />
+            <span asp-validation-for="@Model.Person.Firstname" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-7">
+            <label class="control-label" asp-for="@Model.Person.Lastname"></label>
+            <input class="form-control" type="text" asp-for="@Model.Person.Lastname" />
+            <span asp-validation-for="@Model.Person.Lastname" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-10">
+            <label class="control-label" asp-for="@Model.Person.Street"></label>
+            <input class="form-control" type="text" asp-for="@Model.Person.Street" />
+            <span asp-validation-for="@Model.Person.Street" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-2">
+            <label class="control-label" asp-for="@Model.Person.StreetNo"></label>
+            <input class="form-control" type="text" asp-for="@Model.Person.StreetNo" />
+            <span asp-validation-for="@Model.Person.StreetNo" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label class="control-label" asp-for="@Model.Person.ZipCode"></label>
+            <input class="form-control" type="text" asp-for="@Model.Person.ZipCode" />
+            <span asp-validation-for="@Model.Person.ZipCode" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-10">
+            <label class="control-label" asp-for="@Model.Person.City"></label>
+            <input class="form-control" type="text" asp-for="@Model.Person.City" />
+            <span asp-validation-for="@Model.Person.City" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label class="control-label" asp-for="@Model.Person.State"></label>
+            <input class="form-control" type="text" asp-for="@Model.Person.State" />
+            <span asp-validation-for="@Model.Person.State" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="control-label" asp-for="@Model.Person.CountryCode"></label>
+            <select asp-for="@Model.Person.CountryCode" class="form-control" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))" onchange="$('#btnChangeCountry').trigger('click');">
+                <option value="" selected="selected" disabled="disabled">-- @Localizer["Select"] --</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="control-label" asp-for="@Model.Person.LanguageCode"></label>
+            <select asp-for="@Model.Person.LanguageCode" class="form-control" asp-items="@(new SelectList(@Model.Languages, "LanguageCode", "Name"))">
+                <option value="" selected="selected" disabled="disabled">-- @Localizer["Select"] --</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="control-label" asp-for="@Model.Person.MobileNumber"></label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                        <span class="input-group-text">@Model.PhonePrefix</span>
+                    </div>
+                <input class="form-control" type="text" asp-for="@Model.Person.MobileNumber" />
+                <span asp-validation-for="@Model.Person.MobileNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="control-label" asp-for="@Model.Person.Email"></label>
+            <input class="form-control" type="text" asp-for="@Model.Person.Email" />
+            <span asp-validation-for="@Model.Person.Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" class="btn btn-secondary cancel d-none">ChangeCountry</button>
+            <button asp-page-handler="Save" type="submit" class="btn btn-primary float-right">Save</button>
+        </div>
+    </div>
+</div>

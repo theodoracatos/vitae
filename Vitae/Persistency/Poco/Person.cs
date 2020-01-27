@@ -28,7 +28,7 @@ namespace Persistency.Poco
         public string StreetNo { get; set; }
 
         [MaxLength(10)]
-        public int ZipCode { get; set; }
+        public string ZipCode { get; set; }
 
         [MaxLength(100)]
         public string City { get; set; }
