@@ -120,3 +120,11 @@ body {
     background-color: $qvs-gold-color !important;
     border-color: $qvs-gold-color !important;
 }
+
+.input-group > .input-group-prepend {
+    flex: 0 0 50px;
+}
+
+.input-group .input-group-text {
+    width: 100%;
+}

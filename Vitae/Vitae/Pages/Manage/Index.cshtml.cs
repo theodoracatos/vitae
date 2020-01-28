@@ -52,6 +52,7 @@ namespace Vitae.Pages.Manage
 
         public IActionResult OnPostSave()
         {
+            FillViewModel();
             return Page();
         }
 
@@ -62,7 +63,7 @@ namespace Vitae.Pages.Manage
         public IActionResult OnPostChangeCountry()
         {
             FillViewModel();
-            ModelState.Clear();
+            //ModelState.Clear();
 
             return GetPartialViewResult("_Index_Personal");
         }

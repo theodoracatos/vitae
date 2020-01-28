@@ -3,6 +3,8 @@ declare var $;
 
 $(document).ready(function () {
     loadingProcedure();
+    alert();
+    $("form").validate();
 });
 
 function ajaxCompleted() {
