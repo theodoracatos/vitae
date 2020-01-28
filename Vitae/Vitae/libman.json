@@ -36,14 +36,8 @@
       "destination": "wwwroot/lib/@chenfengyuan/datepicker/"
     },
     {
-      "provider": "unpkg",
-      "library": "jquery-validation-bootstrap-tooltip@0.10.3",
-      "destination": "wwwroot/lib/jquery-validation-bootstrap-tooltip/"
+      "library": "jquery-easing@1.4.1",
+      "destination": "wwwroot/lib/jquery-easing/"
     }
-  ,
-{
-  "library": "jquery-easing@1.4.1",
-  "destination": "wwwroot/lib/jquery-easing/"
-}
-]
+  ]
 }

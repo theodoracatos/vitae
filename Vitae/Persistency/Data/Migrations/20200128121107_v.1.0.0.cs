@@ -90,16 +90,18 @@ namespace Persistency.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Firstname = table.Column<string>(maxLength: 100, nullable: false),
                     Lastname = table.Column<string>(maxLength: 100, nullable: false),
-                    Birthday = table.Column<DateTime>(nullable: false),
+                    Birthday = table.Column<DateTime>(nullable: true),
                     Gender = table.Column<bool>(nullable: false),
                     Street = table.Column<string>(maxLength: 100, nullable: true),
                     StreetNo = table.Column<string>(maxLength: 10, nullable: true),
                     ZipCode = table.Column<string>(maxLength: 10, nullable: true),
                     City = table.Column<string>(maxLength: 100, nullable: true),
+                    State = table.Column<string>(maxLength: 100, nullable: true),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
                     MobileNumber = table.Column<string>(maxLength: 16, nullable: false),
                     CountryID = table.Column<int>(nullable: true),
-                    AboutID = table.Column<int>(nullable: true)
+                    AboutID = table.Column<int>(nullable: true),
+                    LanguageID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -115,6 +117,12 @@ namespace Persistency.Data.Migrations
                         column: x => x.CountryID,
                         principalTable: "Country",
                         principalColumn: "CountryID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Person_Language_LanguageID",
+                        column: x => x.LanguageID,
+                        principalTable: "Language",
+                        principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -378,6 +386,11 @@ namespace Persistency.Data.Migrations
                 column: "CountryID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Person_LanguageID",
+                table: "Person",
+                column: "LanguageID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Skill_PersonID",
                 table: "Skill",
                 column: "PersonID");
@@ -415,9 +428,6 @@ namespace Persistency.Data.Migrations
                 name: "SocialLink");
 
             migrationBuilder.DropTable(
-                name: "Language");
-
-            migrationBuilder.DropTable(
                 name: "Person");
 
             migrationBuilder.DropTable(
@@ -425,6 +435,9 @@ namespace Persistency.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Country");
+
+            migrationBuilder.DropTable(
+                name: "Language");
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",

@@ -121,10 +121,30 @@ body {
     border-color: $qvs-gold-color !important;
 }
 
+.input-validation-error {
+    border-color: $qvs-error-color;
+    background-color: rgba(255,0,0,0.02);
+}
+
+span.field-validation-error {
+    font-size: 0.8em;
+    margin-left: 0.2em;
+    box-decoration-break: clone;
+}
+
 .input-group > .input-group-prepend {
     flex: 0 0 50px;
 }
 
 .input-group .input-group-text {
     width: 100%;
+}
+
+/* Datetimepicker */
+.datetimepicker[readonly]{
+    
+}
+
+.dtpicker {
+    cursor: pointer;
 }

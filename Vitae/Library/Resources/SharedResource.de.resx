@@ -117,11 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Über</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Geburtstag</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>Ort</value>
-  </data>
-  <data name="CityRequired" xml:space="preserve">
-    <value>Eine Stadt wird benötigt</value>
   </data>
   <data name="CountryCode" xml:space="preserve">
     <value>Code</value>
@@ -129,20 +132,11 @@
   <data name="CountryName" xml:space="preserve">
     <value>Land</value>
   </data>
-  <data name="CountryRequired" xml:space="preserve">
-    <value>Ein Land wird benötigt</value>
-  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
-  <data name="EmailRequired" xml:space="preserve">
-    <value>Eine Email wird benötigt</value>
-  </data>
   <data name="Firstname" xml:space="preserve">
     <value>Vorname</value>
-  </data>
-  <data name="FirstnameRequired" xml:space="preserve">
-    <value>Ein Vorname wird benötigt</value>
   </data>
   <data name="Gender" xml:space="preserve">
     <value>Geschlecht</value>
@@ -150,14 +144,8 @@
   <data name="Language" xml:space="preserve">
     <value>Sprache</value>
   </data>
-  <data name="LanguageRequired" xml:space="preserve">
-    <value>Eine Sprache wird benötigt</value>
-  </data>
   <data name="Lastname" xml:space="preserve">
     <value>Nachname</value>
-  </data>
-  <data name="LastnameRequired" xml:space="preserve">
-    <value>Ein Nachname wird benötigt</value>
   </data>
   <data name="Manage" xml:space="preserve">
     <value>Ändern</value>
@@ -165,20 +153,20 @@
   <data name="MobileNumber" xml:space="preserve">
     <value>Mobiltelefon</value>
   </data>
-  <data name="MobileNumberRequired" xml:space="preserve">
-    <value>Ein Mobiltelefon wird benötigt</value>
-  </data>
   <data name="Mr" xml:space="preserve">
     <value>Herr</value>
   </data>
   <data name="Ms" xml:space="preserve">
     <value>Frau</value>
   </data>
+  <data name="Personalies" xml:space="preserve">
+    <value>Personalien</value>
+  </data>
   <data name="Photo" xml:space="preserve">
     <value>Foto</value>
   </data>
-  <data name="PhotoRequired" xml:space="preserve">
-    <value>Ein Foto wird benötigt</value>
+  <data name="Required" xml:space="preserve">
+    <value>Bitte einen Wert angeben</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>
@@ -189,14 +177,8 @@
   <data name="Slogan" xml:space="preserve">
     <value>Slogan</value>
   </data>
-  <data name="SloganRequired" xml:space="preserve">
-    <value>Ein slogan wird benötigt</value>
-  </data>
   <data name="State" xml:space="preserve">
     <value>Kanton / Bundesland</value>
-  </data>
-  <data name="StateRequired" xml:space="preserve">
-    <value>Ein Kanton / Bundesland wird benötigt</value>
   </data>
   <data name="Street" xml:space="preserve">
     <value>Strasse</value>
@@ -204,16 +186,7 @@
   <data name="StreetNo" xml:space="preserve">
     <value>Nr.</value>
   </data>
-  <data name="StreetNoRequired" xml:space="preserve">
-    <value>Eine Nr. wird benötigt</value>
-  </data>
-  <data name="StreetRequired" xml:space="preserve">
-    <value>Eine Strasse wird benötigt</value>
-  </data>
   <data name="ZipCode" xml:space="preserve">
-    <value>Postleitzahl</value>
-  </data>
-  <data name="ZipCodeRequired" xml:space="preserve">
-    <value>Eine Postleitzahl wird benötigt</value>
+    <value>PLZ</value>
   </data>
 </root>

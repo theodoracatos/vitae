@@ -6,21 +6,23 @@
         <div class="col-md">
             <label class="control-label" asp-for="@Model.Person.Gender"></label>
             <div class="form-group">
-                <div class="pretty p-default p-round">
-                    <input type="radio" value="1" name="@nameof(Model.Person.Gender)" @(Model.Person?.Gender ?? true ? "checked" : "")>
-                    <div class="state">
-                        <label>@Localizer["Mr"]</label>
+              
+                    <div class="pretty p-default p-round">
+                        <input type="radio" asp-for="@Model.Person.Gender" value="true" checked="@(Model.Person?.Gender ?? false ? "checked" : null)"/>
+                        <div class="state">
+                            <label>@Localizer["Mr"]</label>
+                        </div>
                     </div>
-                </div>
-                <div class="pretty p-default p-round">
-                    <input type="radio" value="0" name="@nameof(Model.Person.Gender)" @(Model.Person?.Gender ?? true ? "" : "checked")>
-                    <div class="state">
-                        <label>@Localizer["Ms"]</label>
+                    <div class="pretty p-default p-round">
+                        <input type="radio" asp-for="@Model.Person.Gender" value="false" checked="@(Model.Person?.Gender ?? true ? null : "checked")"/>
+                        <div class="state">
+                            <label>@Localizer["Ms"]</label>
+                        </div>
                     </div>
-                </div>
+                <span asp-validation-for="@Model.Person.Gender" class="text-danger d-block"></span>
             </div>
         </div>
-    </div>
+        </div>
     <div class="form-row">
         <div class="form-group col-md-5">
             <label class="control-label" asp-for="@Model.Person.Firstname"></label>
@@ -34,12 +36,12 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-10">
+        <div class="form-group col-md-9">
             <label class="control-label" asp-for="@Model.Person.Street"></label>
             <input class="form-control" type="text" asp-for="@Model.Person.Street" />
             <span asp-validation-for="@Model.Person.Street" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-3">
             <label class="control-label" asp-for="@Model.Person.StreetNo"></label>
             <input class="form-control" type="text" asp-for="@Model.Person.StreetNo" />
             <span asp-validation-for="@Model.Person.StreetNo" class="text-danger"></span>
@@ -51,43 +53,50 @@
             <input class="form-control" type="text" asp-for="@Model.Person.ZipCode" />
             <span asp-validation-for="@Model.Person.ZipCode" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-10">
+        <div class="form-group col-md-7">
             <label class="control-label" asp-for="@Model.Person.City"></label>
             <input class="form-control" type="text" asp-for="@Model.Person.City" />
             <span asp-validation-for="@Model.Person.City" class="text-danger"></span>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label class="control-label" asp-for="@Model.Person.State"></label>
             <input class="form-control" type="text" asp-for="@Model.Person.State" />
             <span asp-validation-for="@Model.Person.State" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-4">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-5">
             <label class="control-label" asp-for="@Model.Person.CountryCode"></label>
             <select asp-for="@Model.Person.CountryCode" class="form-control" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))" onchange="$('#btnChangeCountry').trigger('click');">
                 <option value="" selected="selected" disabled="disabled">-- @Localizer["Select"] --</option>
             </select>
+            <span asp-validation-for="@Model.Person.CountryCode" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
             <label class="control-label" asp-for="@Model.Person.LanguageCode"></label>
             <select asp-for="@Model.Person.LanguageCode" class="form-control" asp-items="@(new SelectList(@Model.Languages, "LanguageCode", "Name"))">
                 <option value="" selected="selected" disabled="disabled">-- @Localizer["Select"] --</option>
             </select>
+            <span asp-validation-for="@Model.Person.LanguageCode" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label class="control-label" asp-for="@Model.Person.Birthday"></label>
+            <input class="form-control datetimepicker" type="text" asp-format="{0:dd.MM.yyyy}" asp-for="@Model.Person.Birthday" />
+            <span asp-validation-for="@Model.Person.Birthday" class="text-danger"></span>
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-5">
             <label class="control-label" asp-for="@Model.Person.MobileNumber"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                        <span class="input-group-text">@Model.PhonePrefix</span>
-                    </div>
+                    <span class="input-group-text">@Model.PhonePrefix</span>
+                </div>
                 <input class="form-control" type="text" asp-for="@Model.Person.MobileNumber" />
-                <span asp-validation-for="@Model.Person.MobileNumber" class="text-danger"></span>
             </div>
+            <span asp-validation-for="@Model.Person.MobileNumber" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-7">
             <label class="control-label" asp-for="@Model.Person.Email"></label>
             <input class="form-control" type="text" asp-for="@Model.Person.Email" />
             <span asp-validation-for="@Model.Person.Email" class="text-danger"></span>
@@ -95,8 +104,8 @@
     </div>
     <div class="form-row">
         <div class="form-group col">
-            <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" class="btn btn-secondary cancel d-none">ChangeCountry</button>
-            <button asp-page-handler="Save" type="submit" class="btn btn-primary float-right cancel">Save</button>
+            <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-secondary cancel d-none">ChangeCountry</button>
+            <button asp-page-handler="SavePersonal" type="submit" class="btn btn-success float-right">Save</button>
         </div>
     </div>
 </div>

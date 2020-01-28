@@ -7,13 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 using Persistency.Data;
-
+using Persistency.Poco;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Vitae.Pages.Manage
 {
@@ -38,21 +40,72 @@ namespace Vitae.Pages.Manage
 
         public IActionResult OnGet(Guid id)
         {
-            if (id == Guid.Empty)
+            if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
             {
                 return NotFound();
             }
+            else
+            {
+                var curriculum = GetCurriculum(id);
+                Person = new PersonVM()
+                {
+                    Birthday = curriculum.Person.Birthday,
+                    City = curriculum.Person.City,
+                    CountryCode = curriculum.Person.Country.CountryCode,
+                    Email = curriculum.Person.Email,
+                    Firstname = curriculum.Person.Firstname,
+                    Lastname = curriculum.Person.Lastname,
+                    Gender = curriculum.Person.Gender,
+                    LanguageCode = curriculum.Person.Language.LanguageCode,
+                    MobileNumber = curriculum.Person.MobileNumber,
+                    Street = curriculum.Person.Street,
+                    StreetNo = curriculum.Person.StreetNo,
+                    ZipCode = curriculum.Person.ZipCode,
+                    State = curriculum.Person.State
+                };
 
-            FillViewModel();
-
-            return Page();
+                FillSelectionViewModel();
+                return Page();
+            }
         }
 
         #region SYNC
 
-        public IActionResult OnPostSave()
+        public async Task<IActionResult> OnPostSavePersonalAsync(Guid id)
         {
-            FillViewModel();
+            if (ModelState.IsValid)
+            {
+                var curriculum = GetCurriculum(id);
+                curriculum.Person.Birthday = Person.Birthday;
+                curriculum.Person.City = Person.City;
+                curriculum.Person.Country = appContext.Countries.Single(c => c.CountryCode == Person.CountryCode);
+                curriculum.Person.Email = Person.Email;
+                curriculum.Person.Firstname = Person.Firstname;
+                curriculum.Person.Lastname = Person.Lastname;
+                curriculum.Person.Gender = Person.Gender.Value;
+                curriculum.Person.Language = appContext.Languages.Single(l => l.LanguageCode == Person.LanguageCode);
+                curriculum.Person.MobileNumber = Person.MobileNumber;
+                curriculum.Person.Street = Person.Street;
+                curriculum.Person.StreetNo = Person.StreetNo;
+                curriculum.Person.ZipCode = Person.ZipCode;
+                curriculum.Person.State = Person.State;
+
+                await appContext.SaveChangesAsync();
+            }
+
+            FillSelectionViewModel();
+            return Page();
+        }
+
+        public IActionResult OnPostSaveAbout()
+        {
+            FillSelectionViewModel();
+            return Page();
+        }
+
+        public IActionResult OnPostSaveEducation()
+        {
+            FillSelectionViewModel();
             return Page();
         }
 
@@ -62,16 +115,35 @@ namespace Vitae.Pages.Manage
 
         public IActionResult OnPostChangeCountry()
         {
-            FillViewModel();
-            //ModelState.Clear();
+            FillSelectionViewModel();
 
             return GetPartialViewResult("_Index_Personal");
+        }
+
+        public IActionResult OnPostChangeAbout()
+        {
+            FillSelectionViewModel();
+
+            return GetPartialViewResult("_Index_About");
         }
 
         #endregion
 
         #region Helper
-        private void FillViewModel()
+
+        private Curriculum GetCurriculum(Guid id)
+        {
+            var curriculum = appContext.Curriculums
+                    .Include(c => c.Person)
+                    .Include(c => c.Person.Country)
+                    .Include(c => c.Person.Language)
+                    .Single(c => c.Identifier == id);
+
+            return curriculum;
+        }
+
+
+        private void FillSelectionViewModel()
         {
             Countries = appContext.Countries.OrderBy(c => c.Name).Select(c => new CountryVM()
             {
@@ -96,6 +168,7 @@ namespace Vitae.Pages.Manage
 
             PhonePrefix = !string.IsNullOrEmpty(Person?.CountryCode) ? "+" + Countries.Where(c => c.CountryCode == Person.CountryCode).Select(c => c.PhoneCode).Single().ToString() : string.Empty;
         }
+
         private PartialViewResult GetPartialViewResult(string viewName)
         {
             // Ajax

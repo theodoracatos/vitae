@@ -53,8 +53,6 @@ $(document).ready(function () {
 
         mode = (element.getAttribute("data-ajax-mode") || "").toUpperCase();
         $(element.getAttribute("data-ajax-update")).each(function (i, update) {
-            var top;
-
             switch (mode) {
                 case "BEFORE":
                     $(update).prepend(data);
@@ -181,6 +179,7 @@ $(document).ready(function () {
             target = $(evt.target),
             form = $(target.parents("form")[0]);
 
+        $(form).attr('data-ajax-update', $(this).attr('data-ajax-update'));
         $(form).attr('data-ajax', 'true');
         form.data(data_click, name ? [{ name: name, value: evt.currentTarget.value }] : []);
         form.data(data_target, target);

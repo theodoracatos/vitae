@@ -17,7 +17,7 @@ namespace Persistency.Poco
         [MaxLength(100)]
         public string Lastname { get; set; }
 
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
 
         public bool Gender { get; set; }
 
@@ -32,6 +32,8 @@ namespace Persistency.Poco
 
         [MaxLength(100)]
         public string City { get; set; }
+        [MaxLength(100)]
+        public string State { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -43,6 +45,8 @@ namespace Persistency.Poco
 
         public virtual Country Country { get; set; }
         public virtual About About { get; set; }
+        public virtual Language Language { get; set; }
+
         public virtual ICollection<Education> Educations { get; set; }
         public virtual ICollection<Experience> Experiences { get; set; }
         public virtual ICollection<LanguageSkill> LanguageSkills { get; set; }

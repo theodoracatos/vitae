@@ -61,20 +61,29 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birthday.
+        /// </summary>
+        public static string Birthday {
+            get {
+                return ResourceManager.GetString("Birthday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
         public static string City {
             get {
                 return ResourceManager.GetString("City", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A city is required.
-        /// </summary>
-        public static string CityRequired {
-            get {
-                return ResourceManager.GetString("CityRequired", resourceCulture);
             }
         }
         
@@ -97,15 +106,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A country is required.
-        /// </summary>
-        public static string CountryRequired {
-            get {
-                return ResourceManager.GetString("CountryRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {
@@ -115,29 +115,11 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An email address is required.
-        /// </summary>
-        public static string EmailRequired {
-            get {
-                return ResourceManager.GetString("EmailRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Firstname.
         /// </summary>
         public static string Firstname {
             get {
                 return ResourceManager.GetString("Firstname", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A firstname is required.
-        /// </summary>
-        public static string FirstnameRequired {
-            get {
-                return ResourceManager.GetString("FirstnameRequired", resourceCulture);
             }
         }
         
@@ -160,29 +142,11 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A language is required.
-        /// </summary>
-        public static string LanguageRequired {
-            get {
-                return ResourceManager.GetString("LanguageRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Lastname.
         /// </summary>
         public static string Lastname {
             get {
                 return ResourceManager.GetString("Lastname", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A lastname is required.
-        /// </summary>
-        public static string LastnameRequired {
-            get {
-                return ResourceManager.GetString("LastnameRequired", resourceCulture);
             }
         }
         
@@ -205,15 +169,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A mobile number is required.
-        /// </summary>
-        public static string MobileNumberRequired {
-            get {
-                return ResourceManager.GetString("MobileNumberRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Mr.
         /// </summary>
         public static string Mr {
@@ -232,6 +187,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Personalies.
+        /// </summary>
+        public static string Personalies {
+            get {
+                return ResourceManager.GetString("Personalies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Photo.
         /// </summary>
         public static string Photo {
@@ -241,11 +205,11 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A photo is required.
+        ///   Looks up a localized string similar to Please add a value.
         /// </summary>
-        public static string PhotoRequired {
+        public static string Required {
             get {
-                return ResourceManager.GetString("PhotoRequired", resourceCulture);
+                return ResourceManager.GetString("Required", resourceCulture);
             }
         }
         
@@ -277,29 +241,11 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A slogan is required.
-        /// </summary>
-        public static string SloganRequired {
-            get {
-                return ResourceManager.GetString("SloganRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to State.
         /// </summary>
         public static string State {
             get {
                 return ResourceManager.GetString("State", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A state is required.
-        /// </summary>
-        public static string StateRequired {
-            get {
-                return ResourceManager.GetString("StateRequired", resourceCulture);
             }
         }
         
@@ -322,38 +268,11 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A number is required.
-        /// </summary>
-        public static string StreetNoRequired {
-            get {
-                return ResourceManager.GetString("StreetNoRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A street is required.
-        /// </summary>
-        public static string StreetRequired {
-            get {
-                return ResourceManager.GetString("StreetRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ZIP-Code.
         /// </summary>
         public static string ZipCode {
             get {
                 return ResourceManager.GetString("ZipCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A ZIP-Code is required.
-        /// </summary>
-        public static string ZipCodeRequired {
-            get {
-                return ResourceManager.GetString("ZipCodeRequired", resourceCulture);
             }
         }
     }

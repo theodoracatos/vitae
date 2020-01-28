@@ -1,0 +1,12 @@
+﻿@model Vitae.Pages.Manage.IndexModel
+@inject IStringLocalizer<SharedResource> Localizer
+
+    <div class="bd-form">
+
+        <div class="form-row">
+            <div class="form-group col">
+                <button id="btnChangeAbout" asp-page-handler="ChangeAbout" data-ajax="true" data-ajax-update="#panel_about" class="btn btn-secondary cancel">ChangeAbout</button>
+                <button asp-page-handler="SaveAbout" type="submit" class="btn btn-success float-right">Save</button>
+            </div>
+        </div>
+    </div>

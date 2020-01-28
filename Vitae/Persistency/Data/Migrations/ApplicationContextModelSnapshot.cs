@@ -371,7 +371,7 @@ namespace Persistency.Data.Migrations
                     b.Property<int?>("AboutID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<DateTime?>("Birthday")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("City")
@@ -394,6 +394,9 @@ namespace Persistency.Data.Migrations
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("LanguageID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Lastname")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
@@ -403,6 +406,10 @@ namespace Persistency.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(16)")
                         .HasMaxLength(16);
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(100)")
@@ -421,6 +428,8 @@ namespace Persistency.Data.Migrations
                     b.HasIndex("AboutID");
 
                     b.HasIndex("CountryID");
+
+                    b.HasIndex("LanguageID");
 
                     b.ToTable("Person");
                 });
@@ -532,6 +541,10 @@ namespace Persistency.Data.Migrations
                     b.HasOne("Persistency.Poco.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryID");
+
+                    b.HasOne("Persistency.Poco.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageID");
                 });
 
             modelBuilder.Entity("Persistency.Poco.Skill", b =>

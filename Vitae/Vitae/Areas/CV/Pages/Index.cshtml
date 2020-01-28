@@ -29,7 +29,7 @@
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">Clarence Taylor</span>
             <span class="d-none d-lg-block">
-                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="@Model.PersonVM.Photo" alt="">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="@Model.Person.About.Photo" alt="">
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,17 +64,17 @@
         <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
             <div class="w-100">
                 <h1 class="mb-0">
-                    @Model.PersonVM.Firstname
-                    <span class="text-primary">@Model.PersonVM.Lastname</span>
+                    @Model.Person.Firstname
+                    <span class="text-primary">@Model.Person.Lastname</span>
                 </h1>
                 <div class="subheading mb-5">
-                    @Model.PersonVM.Street @Model.PersonVM.StreetNo · @Model.PersonVM.ZipCode @Model.PersonVM.City · <a href="tel:@(Model.PersonVM.MobileNumber)">@Model.PersonVM.MobileNumber</a> ·
-                    <a href="mailto:@(Model.PersonVM.Email)">@Model.PersonVM.Email</a>
+                    @Model.Person.Street @Model.Person.StreetNo · @Model.Person.ZipCode @Model.Person.City · <a href="tel:@(Model.Person.MobileNumber)">@Model.Person.MobileNumber</a> ·
+                    <a href="mailto:@(Model.Person.Email)">@Model.Person.Email</a>
                 </div>
-                <p class="lead mb-5">@Model.PersonVM.Slogan</p>
+                <p class="lead mb-5">@Model.Person.About.Slogan</p>
                 <div class="social-icons">
                     @{
-                        foreach (var socialLink in Model.PersonVM.SocialLinks)
+                        foreach (var socialLink in Model.Person.SocialLinks)
                         {
                            <a href="@socialLink.Hyperlink" target="_blank">
                                <i class="@socialLink.SocialPlatform.Description()"></i>
@@ -92,7 +92,7 @@
             <div class="w-100">
                 <h2 class="mb-5">Erfahrung</h2>
                 @{
-                    foreach (var experience in Model.PersonVM.Experiences)
+                    foreach (var experience in Model.Person.Experiences)
                     {
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                             <div class="resume-content">
@@ -118,7 +118,7 @@
                 <h2 class="mb-5">Ausbildung</h2>
 
                 @{
-                    foreach (var education in Model.PersonVM.Educations)
+                    foreach (var education in Model.Person.Educations)
                     {
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                             <div class="resume-content">
