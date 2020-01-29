@@ -1,8 +1,10 @@
 ﻿declare var jQuery;
 declare var $;
+declare var Resources;
 
 $(document).ready(function () {
     loadingProcedure();
+    alert(Resources.SharedResource.About)
 });
 
 function ajaxCompleted() {

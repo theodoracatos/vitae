@@ -73,8 +73,10 @@
     <script src="~/lib/jquery.filer/js/jquery.filer.min.js"></script>
 
     <script src="~/js/jquery.unobtrusive-ajax.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 
+    <resources names='new[] { "SharedResource" }'></resources>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>
