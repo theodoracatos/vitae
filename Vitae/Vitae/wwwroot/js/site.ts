@@ -15,6 +15,7 @@ function loadingProcedure() {
     setRequiredLabel();
     loadCropper();
     loadImageComponent();
+    loadFilerUpload();
 }
 
 function setupDatepicker() {
@@ -161,4 +162,11 @@ function readImage(file) {
     reader.readAsDataURL(file);
     $('#divPreview').toggleClass("d-none");
     $('#divSelector').toggleClass("d-none");
+}
+
+function loadFilerUpload() {
+    $('.filer').filer(
+    {
+        showThumbs: true
+    });
 }
