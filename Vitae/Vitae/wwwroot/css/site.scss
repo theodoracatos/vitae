@@ -75,6 +75,10 @@ body {
 /***********/
 /*   QVS   */
 /***********/
+.fa-fw{
+    margin-right: 0.5em;
+}
+
 #loading {
     display: none;
 }
@@ -140,6 +144,10 @@ span.field-validation-error {
     width: 100%;
 }
 
+.cursor-pointer{
+    cursor: pointer;
+}
+
 /* Datetimepicker */
 .datetimepicker[readonly]{
     
@@ -147,4 +155,32 @@ span.field-validation-error {
 
 .dtpicker {
     cursor: pointer;
+}
+
+/* Cropper */
+.cropContainer {
+    /* Never limit the container height here */
+    max-width: 100%;
+    display: inline-block;
+}
+
+.cropContainer img {
+    height: 300px;
+    max-height: 300px;
+}
+
+.cropper-wrap-box, .cropper-drag-box, .cropper-bg {
+    border-radius: 4px;
+}
+
+#divPreview {
+    border-radius: 4px;
+    padding: 4px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }

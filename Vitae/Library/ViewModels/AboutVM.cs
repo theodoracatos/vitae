@@ -14,9 +14,8 @@ namespace Library.ViewModels
         [BindProperty]
         public string Slogan { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Photo), Prompt = nameof(SharedResource.Photo))]
-        [MaxLength(100)]
         [BindProperty]
         public string Photo { get; set; }
 

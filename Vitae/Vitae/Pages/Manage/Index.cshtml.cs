@@ -12,17 +12,25 @@ using Microsoft.Extensions.Localization;
 
 using Persistency.Data;
 using Persistency.Poco;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Vitae.Helper;
 
 namespace Vitae.Pages.Manage
 {
     public class IndexModel : PageModel
     {
+        private const string PAGE_INDEX_PERSONAL = "_Index_Personal";
+        private const string PAGE_INDEX_ABOUT = "_Index_About";
+
         [BindProperty]
         public PersonVM Person { get; set; }
+        [BindProperty]
+        public AboutVM About { get; set; }
+
         public IEnumerable<CountryVM> Countries { get; set; }
         public IEnumerable<LanguageVM> Languages { get; set; }
         public string PhonePrefix { get; set; }
@@ -40,6 +48,8 @@ namespace Vitae.Pages.Manage
 
         public IActionResult OnGet(Guid id)
         {
+            // TODO: Check if id is from person x
+
             if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
             {
                 return NotFound();
@@ -63,6 +73,11 @@ namespace Vitae.Pages.Manage
                     ZipCode = curriculum.Person.ZipCode,
                     State = curriculum.Person.State
                 };
+                About = new AboutVM()
+                {
+                    Photo = curriculum.Person.About.Photo,
+                    Slogan = curriculum.Person.About.Slogan
+                };
 
                 FillSelectionViewModel();
                 return Page();
@@ -71,9 +86,16 @@ namespace Vitae.Pages.Manage
 
         #region SYNC
 
+
+        #endregion
+
+        #region AJAX
+
         public async Task<IActionResult> OnPostSavePersonalAsync(Guid id)
         {
-            if (ModelState.IsValid)
+            // TODO: Check if id is from person x
+
+            if (ModelState.IsValid(nameof(Person)))
             {
                 var curriculum = GetCurriculum(id);
                 curriculum.Person.Birthday = Person.Birthday;
@@ -94,40 +116,35 @@ namespace Vitae.Pages.Manage
             }
 
             FillSelectionViewModel();
-            return Page();
+
+            return GetPartialViewResult(PAGE_INDEX_PERSONAL);
         }
-
-        public IActionResult OnPostSaveAbout()
-        {
-            FillSelectionViewModel();
-            return Page();
-        }
-
-        public IActionResult OnPostSaveEducation()
-        {
-            FillSelectionViewModel();
-            return Page();
-        }
-
-        #endregion
-
-        #region AJAX
 
         public IActionResult OnPostChangeCountry()
         {
             FillSelectionViewModel();
 
-            return GetPartialViewResult("_Index_Personal");
+            return GetPartialViewResult(PAGE_INDEX_PERSONAL);
         }
 
-        public IActionResult OnPostChangeAbout()
+        public async Task<IActionResult> OnPostSaveAbout(Guid id)
         {
-            FillSelectionViewModel();
+            // TODO: Check if id is from person x
+            if (ModelState.IsValid(nameof(About)))
+            {
+                var curriculum = GetCurriculum(id);
+                curriculum.Person.About.Slogan = About.Slogan;
+                curriculum.Person.About.Photo = About.Photo;
 
-            return GetPartialViewResult("_Index_About");
+                await appContext.SaveChangesAsync();
+            }
+
+            FillSelectionViewModel();
+            return GetPartialViewResult(PAGE_INDEX_ABOUT);
         }
 
         #endregion
+
 
         #region Helper
 
@@ -137,6 +154,7 @@ namespace Vitae.Pages.Manage
                     .Include(c => c.Person)
                     .Include(c => c.Person.Country)
                     .Include(c => c.Person.Language)
+                    .Include(c => c.Person.About)
                     .Single(c => c.Identifier == id);
 
             return curriculum;

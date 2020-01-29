@@ -38,6 +38,10 @@
     {
       "library": "jquery-easing@1.4.1",
       "destination": "wwwroot/lib/jquery-easing/"
+    },
+    {
+      "library": "cropper@4.1.0",
+      "destination": "wwwroot/lib/cropper/"
     }
   ]
 }

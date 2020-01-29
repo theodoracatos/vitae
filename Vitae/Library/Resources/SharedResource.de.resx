@@ -123,6 +123,9 @@
   <data name="Birthday" xml:space="preserve">
     <value>Geburtstag</value>
   </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Durchsuchen</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>Ort</value>
   </data>
@@ -165,8 +168,14 @@
   <data name="Photo" xml:space="preserve">
     <value>Foto</value>
   </data>
+  <data name="RemovePicture" xml:space="preserve">
+    <value>Dieses Bild entfernen</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>Bitte einen Wert angeben</value>
+  </data>
+  <data name="RequiredSelection" xml:space="preserve">
+    <value>Bitte einen Wert auswählen</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>

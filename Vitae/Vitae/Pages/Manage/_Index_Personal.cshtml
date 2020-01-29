@@ -1,28 +1,27 @@
 ﻿@model Vitae.Pages.Manage.IndexModel
-@inject IStringLocalizer<SharedResource> Localizer
 
 <div class="bd-form">
     <div class="form-row">
-        <div class="col-md">
+        <div class="col">
             <label class="control-label" asp-for="@Model.Person.Gender"></label>
             <div class="form-group">
               
                     <div class="pretty p-default p-round">
                         <input type="radio" asp-for="@Model.Person.Gender" value="true" checked="@(Model.Person?.Gender ?? false ? "checked" : null)"/>
                         <div class="state">
-                            <label>@Localizer["Mr"]</label>
+                            <label>@SharedResource.Mr</label>
                         </div>
                     </div>
                     <div class="pretty p-default p-round">
                         <input type="radio" asp-for="@Model.Person.Gender" value="false" checked="@(Model.Person?.Gender ?? true ? null : "checked")"/>
                         <div class="state">
-                            <label>@Localizer["Ms"]</label>
+                            <label>@SharedResource.Ms</label>
                         </div>
                     </div>
                 <span asp-validation-for="@Model.Person.Gender" class="text-danger d-block"></span>
             </div>
         </div>
-        </div>
+    </div>
     <div class="form-row">
         <div class="form-group col-md-5">
             <label class="control-label" asp-for="@Model.Person.Firstname"></label>
@@ -68,14 +67,14 @@
         <div class="form-group col-md-5">
             <label class="control-label" asp-for="@Model.Person.CountryCode"></label>
             <select asp-for="@Model.Person.CountryCode" class="form-control" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))" onchange="$('#btnChangeCountry').trigger('click');">
-                <option value="" selected="selected" disabled="disabled">-- @Localizer["Select"] --</option>
+                <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
             </select>
             <span asp-validation-for="@Model.Person.CountryCode" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
             <label class="control-label" asp-for="@Model.Person.LanguageCode"></label>
             <select asp-for="@Model.Person.LanguageCode" class="form-control" asp-items="@(new SelectList(@Model.Languages, "LanguageCode", "Name"))">
-                <option value="" selected="selected" disabled="disabled">-- @Localizer["Select"] --</option>
+                <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
             </select>
             <span asp-validation-for="@Model.Person.LanguageCode" class="text-danger"></span>
         </div>
@@ -104,8 +103,8 @@
     </div>
     <div class="form-row">
         <div class="form-group col">
-            <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-secondary cancel d-none">ChangeCountry</button>
-            <button asp-page-handler="SavePersonal" type="submit" class="btn btn-success float-right">Save</button>
+            <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-secondary cancel d-none"></button>
+            <button asp-page-handler="SavePersonal" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-success float-right">@SharedResource.Save</button>
         </div>
     </div>
 </div>
