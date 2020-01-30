@@ -296,7 +296,7 @@ INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it],
 INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('gl', 'Galician', 'Galicisch', 'Galicien', 'Galiziano', 'Gallego')
 INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('ka', 'Georgian', 'georgisch', 'Géorgien', 'Georgiano', 'Georgiano')
 INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('de', 'German', 'Deutsch', 'En allemand', 'Tedesco', 'Alemán')
-INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('gsw', 'Swiss German', 'Schweizerdeutsch', 'Suisse allemand', 'Svizzero Tedesco', 'Suizo-alemán')
+--INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('gsw', 'Swiss German', 'Schweizerdeutsch', 'Suisse allemand', 'Svizzero Tedesco', 'Suizo-alemán')
 INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('el', 'Greek', 'Griechisch', 'Grec', 'Greco', 'Griego')
 INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('kl', 'Greenlandic', 'Grönländisch', 'Groenlandais', 'Groenlandia', 'Groenlandia')
 INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('gn', 'Guarani', 'Guarani', 'Guarani', 'Guarani', 'Guaraní')
@@ -394,12 +394,13 @@ INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it],
 INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('yo', 'Yoruba', 'Yoruba', 'Yoruba', 'Yoruba', 'Yoruba')
 INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('zu', 'Zulu', 'Zulu', 'Zulu', 'Zulu', 'Zulú')
 
+select * from Vfile
 
-INSERT INTO [About]
-VALUES('','"Great things in business are never done by one person. They’re done by a team of people." Steve Jobs', null)
+--INSERT INTO [About]
+--VALUES('','"Great things in business are never done by one person. They’re done by a team of people." Steve Jobs',  null)
 
 INSERT INTO [Person]
-VALUES ('Alexandros', 'Theodoracatos', '1983-06-23', 1, 'Zwischenbächen', 143, 8048, 'Zürich', 'Zürich', 'theodoracatos@gmail.com', '787044438', 1, 1, 41)
+VALUES ('Alexandros', 'Theodoracatos', '1983-06-23', 1, 'Zwischenbächen', 143, 8048, 'Zürich', 'Zürich', 'theodoracatos@gmail.com', '787044438', 1, null, 41)
 
 INSERT INTO [Curriculum]
 VALUES ('a05c13a8-21fb-42c9-a5bc-98b7d94f464a', 'theodoracatos', null, GETDATE(), GETDATE(), 1)

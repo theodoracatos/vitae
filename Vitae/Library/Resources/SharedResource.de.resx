@@ -120,14 +120,29 @@
   <data name="About" xml:space="preserve">
     <value>Über</value>
   </data>
+  <data name="AllowedFiles" xml:space="preserve">
+    <value>Dateien sind zum Hochladen erlaubt</value>
+  </data>
   <data name="Birthday" xml:space="preserve">
     <value>Geburtstag</value>
   </data>
   <data name="Browse" xml:space="preserve">
     <value>Durchsuchen</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>Datei zum upload auswählen</value>
+  </data>
+  <data name="ChosenFile" xml:space="preserve">
+    <value>Datei wurde ausgewählt</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>Ort</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Bestätigung</value>
   </data>
   <data name="CountryCode" xml:space="preserve">
     <value>Code</value>
@@ -135,11 +150,26 @@
   <data name="CountryName" xml:space="preserve">
     <value>Land</value>
   </data>
+  <data name="CV" xml:space="preserve">
+    <value>Lebenslauf</value>
+  </data>
+  <data name="DropFile" xml:space="preserve">
+    <value>Legen Sie eine Datei zum Hochladen ab</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="FilesTooLarge" xml:space="preserve">
+    <value>Die Dateien sind zu gross</value>
+  </data>
+  <data name="FileTooLarge" xml:space="preserve">
+    <value>ist zu gross - die maximale Grösse beträgt</value>
+  </data>
   <data name="Firstname" xml:space="preserve">
     <value>Vorname</value>
+  </data>
+  <data name="FolderUpload" xml:space="preserve">
+    <value>Ordner dürfen nicht hochgeladen werden </value>
   </data>
   <data name="Gender" xml:space="preserve">
     <value>Geschlecht</value>
@@ -162,11 +192,32 @@
   <data name="Ms" xml:space="preserve">
     <value>Frau</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Only" xml:space="preserve">
+    <value>Nur</value>
+  </data>
+  <data name="OnlyPdf" xml:space="preserve">
+    <value>Nur PDF-Dateien können hochgeladen werden</value>
+  </data>
   <data name="Personalies" xml:space="preserve">
     <value>Personalien</value>
   </data>
   <data name="Photo" xml:space="preserve">
     <value>Foto</value>
+  </data>
+  <data name="PleaseConfirm" xml:space="preserve">
+    <value>Bitte bestätigen</value>
+  </data>
+  <data name="PleaseUpload" xml:space="preserve">
+    <value>Bitte beachten Sie die Dateigrösse von</value>
+  </data>
+  <data name="RemoveFileConfirmation" xml:space="preserve">
+    <value>Möchten Sie diese Datei wirklich entfernen</value>
   </data>
   <data name="RemovePicture" xml:space="preserve">
     <value>Dieses Bild entfernen</value>
@@ -194,6 +245,12 @@
   </data>
   <data name="StreetNo" xml:space="preserve">
     <value>Nr.</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warnung</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>PLZ</value>

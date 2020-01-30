@@ -4,7 +4,6 @@ declare var Resources;
 
 $(document).ready(function () {
     loadingProcedure();
-    alert(Resources.SharedResource.About)
 });
 
 function ajaxCompleted() {
@@ -31,7 +30,7 @@ function setupDatepicker() {
 }
 
 function setRequiredLabel() {
-    $('input[type=text], input[type=hidden], input[type=radio], select, textarea').each(function () {
+    $('input[type=text], input[type=hidden], input[type=radio], input[type=file], select, textarea').each(function () {
         var req = $(this).attr('data-val-required');
         if (undefined != req) {
             var label = $('label[for="' + $(this).attr('id') + '"]');
@@ -49,11 +48,12 @@ function configureConfirmationModal() {
         var hasCancel = $(this).hasClass("cancel");
         var formmethod = $('form').attr('method');
         $.confirm({
-            title: "Please confirm",
+            title: Resources.SharedResource.PleaseConfirm,
             theme: "bootstrap",
             buttons: {
                 Ok: {
-                    keys: ['Enter'],
+                    keys: ['enter'],
+                    text: Resources.SharedResource.Ok,
                     action: function () {
                         if (formmethod == 'post') {
                             if (hasCancel) {
@@ -74,7 +74,8 @@ function configureConfirmationModal() {
                     }
                 },
                 Cancel: {
-                    keys: ['Esc'],
+                    keys: ['esc'],
+                    text: Resources.SharedResource.Cancel,
                     action: function () {
 
                     }
@@ -144,9 +145,9 @@ function loadImageComponent() {
 
     // Images
     $("#btnRemoveImage").click(function (e) {
-        $('#divPreview').toggleClass("d-none");
-        $('#divSelector').toggleClass("d-none");
-
+        $('#divPreview').addClass("d-none");
+        $('#divSelector').removeClass("d-none");
+        $("#imgInput").val('');
         $("#imgPreview").attr('src', '');
         $(".imgPhoto").val('');
         $("#imgFormFileName").val('');
@@ -162,13 +163,74 @@ function readImage(file) {
         loadCropper();
     };
     reader.readAsDataURL(file);
-    $('#divPreview').toggleClass("d-none");
-    $('#divSelector').toggleClass("d-none");
+    $('#divPreview').removeClass("d-none");
+    $('#divSelector').addClass("d-none");
 }
 
 function loadFilerUpload() {
-    $('.filer').filer(
-    {
-        showThumbs: true
+    $('#btnRemoveFile').click(function (e) {
+        $('.uploadedFile').addClass("d-none");
+        $('#About_Vfile_FileName').val('');
     });
+
+    $(':not(.jFiler) > .filer').filer(
+        {
+            showThumbs: true,
+            limit: 1,
+            fileMaxSize: 10,
+            extensions: ['application/pdf'],
+            onSelect: function () {
+                $('.uploadedFile').hide();
+            },
+            onRemove: function () {
+                $('.uploadedFile').show();
+            },
+            captions: {
+                button: Resources.SharedResource.Browse,
+                feedback: Resources.SharedResource.ChooseFile,
+                feedback2: Resources.SharedResource.ChosenFile,
+                drop: Resources.SharedResource.DropFile,
+                removeConfirmation: Resources.SharedResource.RemoveFileConfirmation + "?",
+                errors: {
+                    filesLimit: Resources.SharedResource.Only + " {{fi-limit}} " + Resources.SharedResource.AllowedFiles,
+                    filesType: Resources.SharedResource.OnlyPdf,
+                    filesSize: "{{fi-name}} " + Resources.SharedResource.FileTooLarge + " {{fi-fileMaxSize}} MB.",
+                    filesSizeAll: Resources.SharedResource.FilesTooLarge + "! " + Resources.SharedResource.PleaseUpload + " {{fi-maxSize}} MB.",
+                    folderUpload: Resources.SharedResource.FolderUpload
+                }
+            },
+            templates: {
+                removeConfirmation: false,
+            },
+            dialogs: {
+                alert: function (text) {
+                    $.alert({
+                        title: Resources.SharedResource.Warning,
+                        content: text,
+                    });
+                },
+                confirm: function (text, callback) {
+                    $.confirm({
+                        title: Resources.SharedResource.Confirm,
+                        content: text,
+                        buttons: {
+                            Yes: {
+                                keys: ['enter'],
+                                text: Resources.SharedResource.Yes,
+                                action: function() {
+                                    callback()
+                                }
+                            },
+                            No: {
+                                keys: ['esc'],
+                                text: Resources.SharedResource.No,
+                                action: function () {
+                                    null
+                                }
+                            }
+                        }
+                    });
+                }
+            },
+        });
 }

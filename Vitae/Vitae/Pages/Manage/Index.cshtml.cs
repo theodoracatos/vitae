@@ -15,6 +15,7 @@ using Persistency.Poco;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Vitae.Helper;
@@ -46,6 +47,9 @@ namespace Vitae.Pages.Manage
             requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
         }
 
+        #region SYNC
+
+
         public IActionResult OnGet(Guid id)
         {
             // TODO: Check if id is from person x
@@ -75,8 +79,13 @@ namespace Vitae.Pages.Manage
                 };
                 About = new AboutVM()
                 {
-                    Photo = curriculum.Person.About.Photo,
-                    Slogan = curriculum.Person.About.Slogan
+                    Photo = curriculum.Person.About?.Photo,
+                    Slogan = curriculum.Person.About?.Slogan,
+                    Vfile = new VfileVM()
+                    {
+                        FileName = curriculum.Person.About?.Vfile?.FileName,
+                        Identifier = curriculum.Person.About?.Vfile?.Identifier ?? Guid.Empty
+                    }
                 };
 
                 FillSelectionViewModel();
@@ -84,9 +93,19 @@ namespace Vitae.Pages.Manage
             }
         }
 
-        #region SYNC
+        public IActionResult OnGetOpenFile(Guid identifier)
+        {
+            if (appContext.Vfiles.Any(v => v.Identifier == identifier))
+            {
+                var vfile = appContext.Vfiles.Single(v => v.Identifier == identifier);
 
-
+                return File(vfile.Content, vfile.MimeType, vfile.FileName);
+            }
+            else
+            {
+                throw new FileNotFoundException(identifier.ToString());
+            }
+        }
         #endregion
 
         #region AJAX
@@ -133,8 +152,38 @@ namespace Vitae.Pages.Manage
             if (ModelState.IsValid(nameof(About)))
             {
                 var curriculum = GetCurriculum(id);
+                curriculum.Person.About = curriculum.Person.About == null ? new About() : curriculum.Person.About;
                 curriculum.Person.About.Slogan = About.Slogan;
                 curriculum.Person.About.Photo = About.Photo;
+
+                if (About.Vfile?.Content != null)
+                {
+                    using (var stream = About.Vfile.Content.OpenReadStream())
+                    {
+                        using (var reader = new BinaryReader(stream))
+                        {
+                            var identifier = Guid.NewGuid();
+                            byte[] bytes = reader.ReadBytes((int)About.Vfile.Content.Length);
+                            curriculum.Person.About.Vfile = new Vfile()
+                            {
+                                Content = bytes,
+                                FileName = About.Vfile.Content.FileName,
+                                Identifier = identifier,
+                                MimeType = "application/pdf"
+                            };
+                            // Update VM
+                            About.Vfile.Identifier = identifier;
+                            About.Vfile.FileName = About.Vfile.Content.FileName;
+                        }
+                    }
+                }
+                else if(About.Vfile?.FileName == null && About.Vfile.Identifier != Guid.Empty)
+                {
+                    appContext.Vfiles.Remove(appContext.Vfiles.Single(v => v.Identifier == About.Vfile.Identifier));
+                    // Update VM
+                    About.Vfile.Identifier = Guid.Empty;
+                    About.Vfile.FileName = null;
+                }
 
                 await appContext.SaveChangesAsync();
             }
@@ -155,6 +204,7 @@ namespace Vitae.Pages.Manage
                     .Include(c => c.Person.Country)
                     .Include(c => c.Person.Language)
                     .Include(c => c.Person.About)
+                    .Include(c => c.Person.About.Vfile)
                     .Single(c => c.Identifier == id);
 
             return curriculum;

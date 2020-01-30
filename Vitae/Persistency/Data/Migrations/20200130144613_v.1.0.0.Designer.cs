@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200128121107_v.1.0.0")]
+    [Migration("20200130144613_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,9 +28,6 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<byte[]>("CV")
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<string>("Photo")
                         .IsRequired()
                         .HasColumnType("varchar(MAX)");
@@ -39,7 +36,12 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("nvarchar(4000)")
                         .HasMaxLength(4000);
 
+                    b.Property<int?>("VfileID")
+                        .HasColumnType("int");
+
                     b.HasKey("AboutID");
+
+                    b.HasIndex("VfileID");
 
                     b.ToTable("About");
                 });
@@ -484,6 +486,41 @@ namespace Persistency.Data.Migrations
                     b.HasIndex("PersonID");
 
                     b.ToTable("SocialLink");
+                });
+
+            modelBuilder.Entity("Persistency.Poco.Vfile", b =>
+                {
+                    b.Property<int>("VfileID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<byte[]>("Content")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
+
+                    b.Property<Guid>("Identifier")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MimeType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("VfileID");
+
+                    b.HasIndex("Identifier")
+                        .IsUnique();
+
+                    b.ToTable("Vfile");
+                });
+
+            modelBuilder.Entity("Persistency.Poco.About", b =>
+                {
+                    b.HasOne("Persistency.Poco.Vfile", "Vfile")
+                        .WithMany()
+                        .HasForeignKey("VfileID");
                 });
 
             modelBuilder.Entity("Persistency.Poco.Award", b =>

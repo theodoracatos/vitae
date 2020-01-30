@@ -15,6 +15,6 @@ namespace Persistency.Poco
         [MaxLength(4000)]
         public string Slogan { get; set; }
 
-        public byte[] CV { get; set; }
+        public virtual Vfile Vfile { get; set; }
     }
 }

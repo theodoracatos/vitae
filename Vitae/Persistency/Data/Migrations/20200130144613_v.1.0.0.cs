@@ -29,21 +29,6 @@ namespace Persistency.Data.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.CreateTable(
-                name: "About",
-                columns: table => new
-                {
-                    AboutID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Photo = table.Column<string>(type: "varchar(MAX)", nullable: false),
-                    Slogan = table.Column<string>(maxLength: 4000, nullable: true),
-                    CV = table.Column<byte[]>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_About", x => x.AboutID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Country",
                 columns: table => new
                 {
@@ -80,6 +65,43 @@ namespace Persistency.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Language", x => x.LanguageID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Vfile",
+                columns: table => new
+                {
+                    VfileID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Identifier = table.Column<Guid>(nullable: false),
+                    Content = table.Column<byte[]>(nullable: true),
+                    MimeType = table.Column<string>(nullable: true),
+                    FileName = table.Column<string>(maxLength: 1000, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vfile", x => x.VfileID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "About",
+                columns: table => new
+                {
+                    AboutID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Photo = table.Column<string>(type: "varchar(MAX)", nullable: false),
+                    Slogan = table.Column<string>(maxLength: 4000, nullable: true),
+                    VfileID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_About", x => x.AboutID);
+                    table.ForeignKey(
+                        name: "FK_About_Vfile_VfileID",
+                        column: x => x.VfileID,
+                        principalTable: "Vfile",
+                        principalColumn: "VfileID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -318,6 +340,11 @@ namespace Persistency.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_About_VfileID",
+                table: "About",
+                column: "VfileID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Award_PersonID",
                 table: "Award",
                 column: "PersonID");
@@ -399,6 +426,12 @@ namespace Persistency.Data.Migrations
                 name: "IX_SocialLink_PersonID",
                 table: "SocialLink",
                 column: "PersonID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vfile_Identifier",
+                table: "Vfile",
+                column: "Identifier",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -438,6 +471,9 @@ namespace Persistency.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Language");
+
+            migrationBuilder.DropTable(
+                name: "Vfile");
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",

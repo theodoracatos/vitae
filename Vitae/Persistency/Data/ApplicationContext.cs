@@ -12,6 +12,7 @@ namespace Persistency.Data
         public virtual DbSet<Curriculum> Curriculums { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
+        public virtual DbSet<Vfile> Vfiles { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
@@ -25,6 +26,7 @@ namespace Persistency.Data
             modelBuilder.Entity<Curriculum>().HasIndex(c => c.FriendlyId);
             modelBuilder.Entity<Country>().HasIndex(c => c.CountryCode).IsUnique();
             modelBuilder.Entity<Language>().HasIndex(c => c.LanguageCode).IsUnique();
+            modelBuilder.Entity<Vfile>().HasIndex(c => c.Identifier).IsUnique();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

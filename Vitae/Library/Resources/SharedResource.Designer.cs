@@ -70,6 +70,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to files are allowed to be uploaded.
+        /// </summary>
+        public static string AllowedFiles {
+            get {
+                return ResourceManager.GetString("AllowedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Birthday.
         /// </summary>
         public static string Birthday {
@@ -88,11 +97,47 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a file to upload.
+        /// </summary>
+        public static string ChooseFile {
+            get {
+                return ResourceManager.GetString("ChooseFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to file has been chosen.
+        /// </summary>
+        public static string ChosenFile {
+            get {
+                return ResourceManager.GetString("ChosenFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
         public static string City {
             get {
                 return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
             }
         }
         
@@ -115,6 +160,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CV.
+        /// </summary>
+        public static string CV {
+            get {
+                return ResourceManager.GetString("CV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drop a file to upload.
+        /// </summary>
+        public static string DropFile {
+            get {
+                return ResourceManager.GetString("DropFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {
@@ -124,11 +187,38 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Files you&apos;ve choosed are too large.
+        /// </summary>
+        public static string FilesTooLarge {
+            get {
+                return ResourceManager.GetString("FilesTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to is too large - max filesize is.
+        /// </summary>
+        public static string FileTooLarge {
+            get {
+                return ResourceManager.GetString("FileTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Firstname.
         /// </summary>
         public static string Firstname {
             get {
                 return ResourceManager.GetString("Firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not allowed to upload folders.
+        /// </summary>
+        public static string FolderUpload {
+            get {
+                return ResourceManager.GetString("FolderUpload", resourceCulture);
             }
         }
         
@@ -196,6 +286,42 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only.
+        /// </summary>
+        public static string Only {
+            get {
+                return ResourceManager.GetString("Only", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only PDF files are allowed to be uploaded.
+        /// </summary>
+        public static string OnlyPdf {
+            get {
+                return ResourceManager.GetString("OnlyPdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Personalies.
         /// </summary>
         public static string Personalies {
@@ -210,6 +336,33 @@ namespace Library.Resources {
         public static string Photo {
             get {
                 return ResourceManager.GetString("Photo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please confirm.
+        /// </summary>
+        public static string PleaseConfirm {
+            get {
+                return ResourceManager.GetString("PleaseConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please upload files up to.
+        /// </summary>
+        public static string PleaseUpload {
+            get {
+                return ResourceManager.GetString("PleaseUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to remove this file.
+        /// </summary>
+        public static string RemoveFileConfirmation {
+            get {
+                return ResourceManager.GetString("RemoveFileConfirmation", resourceCulture);
             }
         }
         
@@ -291,6 +444,24 @@ namespace Library.Resources {
         public static string StreetNo {
             get {
                 return ResourceManager.GetString("StreetNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        public static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
         
