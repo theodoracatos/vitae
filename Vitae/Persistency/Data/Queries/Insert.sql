@@ -394,8 +394,6 @@ INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it],
 INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('yo', 'Yoruba', 'Yoruba', 'Yoruba', 'Yoruba', 'Yoruba')
 INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('zu', 'Zulu', 'Zulu', 'Zulu', 'Zulu', 'Zulú')
 
-select * from Vfile
-
 --INSERT INTO [About]
 --VALUES('','"Great things in business are never done by one person. They’re done by a team of people." Steve Jobs',  null)
 
@@ -448,11 +446,11 @@ VALUES ('Kantonsschule SH', 'https://kanti.ch', 'Schaffhausen', 'Matura', 'Natur
 
 --INSERT INTO [LanguageSkill] 
 
-
 -------------------
 
 --select * from [Person]
 --select * from [About]
+--select * from [Vfile]
 --select * from [Curriculum]
 --select * from [SocialLink]
 --select * from [Experience]

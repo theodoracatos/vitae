@@ -141,6 +141,9 @@
   <data name="City" xml:space="preserve">
     <value>Ort</value>
   </data>
+  <data name="City1" xml:space="preserve">
+    <value>Stadt</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Bestätigung</value>
   </data>
@@ -156,8 +159,14 @@
   <data name="DropFile" xml:space="preserve">
     <value>Legen Sie eine Datei zum Hochladen ab</value>
   </data>
+  <data name="Education" xml:space="preserve">
+    <value>Ausbildung</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>Ende</value>
   </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Die Dateien sind zu gross</value>
@@ -173,6 +182,9 @@
   </data>
   <data name="Gender" xml:space="preserve">
     <value>Geschlecht</value>
+  </data>
+  <data name="Grade" xml:space="preserve">
+    <value>Note</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Sprache</value>
@@ -228,14 +240,26 @@
   <data name="RequiredSelection" xml:space="preserve">
     <value>Bitte einen Wert auswählen</value>
   </data>
+  <data name="Resumee" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>
+  </data>
+  <data name="SchoolLink" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="SchoolName" xml:space="preserve">
+    <value>Ausbildungsstätte</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Auswählen</value>
   </data>
   <data name="Slogan" xml:space="preserve">
     <value>Slogan</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
   </data>
   <data name="State" xml:space="preserve">
     <value>Kanton / Bundesland</value>
@@ -245,6 +269,12 @@
   </data>
   <data name="StreetNo" xml:space="preserve">
     <value>Nr.</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Thema der Ausbildung</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel der Ausbildung</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warnung</value>
