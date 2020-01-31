@@ -70,6 +70,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to files are allowed to be uploaded.
         /// </summary>
         public static string AllowedFiles {
@@ -318,6 +327,15 @@ namespace Library.Resources {
         public static string Ms {
             get {
                 return ResourceManager.GetString("Ms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nationality.
+        /// </summary>
+        public static string Nationality {
+            get {
+                return ResourceManager.GetString("Nationality", resourceCulture);
             }
         }
         

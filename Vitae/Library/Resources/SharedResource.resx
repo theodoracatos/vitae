@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="AllowedFiles" xml:space="preserve">
     <value>files are allowed to be uploaded</value>
   </data>
@@ -203,6 +206,9 @@
   </data>
   <data name="Ms" xml:space="preserve">
     <value>Ms</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>Nationality</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>

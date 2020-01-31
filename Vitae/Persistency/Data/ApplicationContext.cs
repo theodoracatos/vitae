@@ -12,6 +12,7 @@ namespace Persistency.Data
         public virtual DbSet<Curriculum> Curriculums { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
+        public virtual DbSet<Month> Months { get; set; }
         public virtual DbSet<Vfile> Vfiles { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)

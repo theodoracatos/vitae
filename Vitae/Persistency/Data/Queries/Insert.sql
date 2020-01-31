@@ -394,6 +394,20 @@ INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it],
 INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('yo', 'Yoruba', 'Yoruba', 'Yoruba', 'Yoruba', 'Yoruba')
 INSERT INTO [Language] ([LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES ('zu', 'Zulu', 'Zulu', 'Zulu', 'Zulu', 'Zulú')
 
+INSERT INTO [Month] ([MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (1, 'January', 'Januar', 'Janvier', 'Gennaio', 'Enero');
+INSERT INTO [Month] ([MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (2, 'February', 'Februar', 'Février', 'Febbraio', 'Febrero');
+INSERT INTO [Month] ([MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (3, 'March', 'März', 'Mars', 'Marzo', 'March');
+INSERT INTO [Month] ([MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (4, 'April', 'April', 'Avril', 'Aprile', 'Abril');
+INSERT INTO [Month] ([MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (5, 'May', 'Mai', 'Mai', 'Maggio', 'May');
+INSERT INTO [Month] ([MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (6, 'June', 'Juni', 'Juin', 'Giugno', 'Junio');
+INSERT INTO [Month] ([MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (7, 'July', 'Juli', 'Juillet', 'Luglio', 'Julio');
+INSERT INTO [Month] ([MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (8, 'August', 'August', 'Août', 'Agosto', 'August');
+INSERT INTO [Month] ([MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (9, 'September', 'September', 'Septembre', 'Settembre', 'Septiembre');
+INSERT INTO [Month] ([MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (10, 'October', 'Oktober', 'Octobre', 'Ottobre', 'Octubre');
+INSERT INTO [Month] ([MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (11, 'November', 'November', 'Novembre', 'Novembre', 'Noviembre');
+INSERT INTO [Month] ([MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (12, 'December', 'Dezember', 'Décembre', 'Dicembre', 'Diciembre');
+
+
 --INSERT INTO [About]
 --VALUES('','"Great things in business are never done by one person. They’re done by a team of people." Steve Jobs',  null)
 

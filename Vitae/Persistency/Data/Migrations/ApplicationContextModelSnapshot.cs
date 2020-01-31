@@ -117,6 +117,9 @@ namespace Persistency.Data.Migrations
                     b.Property<int?>("NumCode")
                         .HasColumnType("int");
 
+                    b.Property<int?>("PersonID")
+                        .HasColumnType("int");
+
                     b.Property<int>("PhoneCode")
                         .HasColumnType("int");
 
@@ -125,6 +128,8 @@ namespace Persistency.Data.Migrations
                     b.HasIndex("CountryCode")
                         .IsUnique()
                         .HasFilter("[CountryCode] IS NOT NULL");
+
+                    b.HasIndex("PersonID");
 
                     b.ToTable("Country");
                 });
@@ -363,6 +368,41 @@ namespace Persistency.Data.Migrations
                     b.ToTable("LanguageSkill");
                 });
 
+            modelBuilder.Entity("Persistency.Poco.Month", b =>
+                {
+                    b.Property<int>("MonthID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MonthCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_de")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_es")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_fr")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_it")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("MonthID");
+
+                    b.ToTable("Month");
+                });
+
             modelBuilder.Entity("Persistency.Poco.Person", b =>
                 {
                     b.Property<int>("PersonID")
@@ -525,6 +565,13 @@ namespace Persistency.Data.Migrations
                 {
                     b.HasOne("Persistency.Poco.Person", null)
                         .WithMany("Awards")
+                        .HasForeignKey("PersonID");
+                });
+
+            modelBuilder.Entity("Persistency.Poco.Country", b =>
+                {
+                    b.HasOne("Persistency.Poco.Person", null)
+                        .WithMany("Nationalities")
                         .HasForeignKey("PersonID");
                 });
 

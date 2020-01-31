@@ -1,4 +1,5 @@
-﻿using Library.Resources;
+﻿using Library.Attributes;
+using Library.Resources;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -27,13 +28,15 @@ namespace Library.ViewModels
         [BindProperty]
         public string Lastname { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Birthday), Prompt = nameof(SharedResource.Birthday))]
-        [DataType(DataType.Date)]
-        [Range(typeof(DateTime), "1/1/1900", "1/1/2020", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
-        [RegularExpression(@"^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [BindProperty]
-        public DateTime? Birthday { get; set; }
+        public int Birthday_Day { get; set; }
+
+        [BindProperty]
+        public int Birthday_Month { get; set; }
+
+        [BindProperty]
+        public int Birthday_Year { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Street), Prompt = nameof(SharedResource.Street))]
@@ -91,6 +94,14 @@ namespace Library.ViewModels
         public string MobileNumber { get; set; }
 
         public AboutVM About { get; set; }
+
+        [ClassicMovie(1999)]
+        public string Film { get; set; }
+
+        [RequiredArray(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Nationality), Prompt = nameof(SharedResource.Nationality))]
+        [BindProperty]
+        public string[] Nationalities { get; set; }
 
         public IList<SocialLinkVM> SocialLinks { get; set; }
         public IList<ExperienceVM> Experiences { get; set; }

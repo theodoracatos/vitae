@@ -34,6 +34,7 @@ namespace Vitae.Pages.Manage
 
         public IEnumerable<CountryVM> Countries { get; set; }
         public IEnumerable<LanguageVM> Languages { get; set; }
+        public IEnumerable<MonthVM> Months { get; set; }
         public string PhonePrefix { get; set; }
 
         private readonly IStringLocalizer<SharedResource> localizer;
@@ -63,7 +64,9 @@ namespace Vitae.Pages.Manage
                 var curriculum = GetCurriculum(id);
                 Person = new PersonVM()
                 {
-                    Birthday = curriculum.Person.Birthday,
+                    Birthday_Day = curriculum.Person.Birthday.Value.Day,
+                    Birthday_Month = curriculum.Person.Birthday.Value.Month,
+                    Birthday_Year = curriculum.Person.Birthday.Value.Year,
                     City = curriculum.Person.City,
                     CountryCode = curriculum.Person.Country.CountryCode,
                     Email = curriculum.Person.Email,
@@ -75,7 +78,8 @@ namespace Vitae.Pages.Manage
                     Street = curriculum.Person.Street,
                     StreetNo = curriculum.Person.StreetNo,
                     ZipCode = curriculum.Person.ZipCode,
-                    State = curriculum.Person.State
+                    State = curriculum.Person.State,
+                    Nationalities = curriculum.Person.Nationalities?.Select(n => n.CountryCode).ToArray() ?? new string[1] { "" }
                 };
                 About = new AboutVM()
                 {
@@ -110,6 +114,16 @@ namespace Vitae.Pages.Manage
 
         #region AJAX
 
+        public IActionResult OnPostAddNationality(Guid id)
+        {
+            Person.Nationalities = Person.Nationalities == null ? new string[1] : Person.Nationalities;
+            Person.Nationalities.Append("");
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_INDEX_PERSONAL);
+        }
+
         public async Task<IActionResult> OnPostSavePersonalAsync(Guid id)
         {
             // TODO: Check if id is from person x
@@ -117,7 +131,7 @@ namespace Vitae.Pages.Manage
             if (ModelState.IsValid(nameof(Person)))
             {
                 var curriculum = GetCurriculum(id);
-                curriculum.Person.Birthday = Person.Birthday;
+                curriculum.Person.Birthday = new DateTime(Person.Birthday_Year, Person.Birthday_Month, Person.Birthday_Day);
                 curriculum.Person.City = Person.City;
                 curriculum.Person.Country = appContext.Countries.Single(c => c.CountryCode == Person.CountryCode);
                 curriculum.Person.Email = Person.Email;
@@ -133,6 +147,22 @@ namespace Vitae.Pages.Manage
 
                 await appContext.SaveChangesAsync();
             }
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_INDEX_PERSONAL);
+        }
+
+        public IActionResult OnPostChangeBirthday()
+        {
+            DateTime tempDate;
+            do
+            {
+                if (!DateTime.TryParse($"{Person.Birthday_Year}-{Person.Birthday_Month}-{Person.Birthday_Day}", out tempDate))
+                {
+                    --Person.Birthday_Day; // Decrement (wrong day)
+                }
+            } while (tempDate == DateTime.MinValue);
 
             FillSelectionViewModel();
 
@@ -232,6 +262,16 @@ namespace Vitae.Pages.Manage
                         requestCulture.RequestCulture.Culture.Name == "it" ? c.Name_it :
                         requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
                         c.Name
+            });
+
+            Months = appContext.Months.OrderBy(c => c.MonthCode).Select(c => new MonthVM()
+            {
+                MonthCode = c.MonthCode,
+                Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :
+            requestCulture.RequestCulture.Culture.Name == "fr" ? c.Name_fr :
+            requestCulture.RequestCulture.Culture.Name == "it" ? c.Name_it :
+            requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
+            c.Name
             });
 
             PhonePrefix = !string.IsNullOrEmpty(Person?.CountryCode) ? "+" + Countries.Where(c => c.CountryCode == Person.CountryCode).Select(c => c.PhoneCode).Single().ToString() : string.Empty;

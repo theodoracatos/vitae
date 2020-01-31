@@ -63,14 +63,42 @@
     <script src="~/lib/@@chenfengyuan/datepicker/dist/datepicker.min.js"></script>
     <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-
     <script src="~/lib/jquery-confirm/jquery-confirm.min.js"></script>
     <script src="~/lib/font-awesome/js/all.min.js"></script>
     <script src="~/lib/cropper/cropper.min.js"></script>
     <script src="~/lib/jquery.filer/js/jquery.filer.min.js"></script>
+    <script>
+            $.validator.addMethod('classicmovie', function (value, element, params) {
+        //var genre = $(params[0]).val(), year = params[1], date = new Date(value);
 
+        //// The Classic genre has a value of '0'.
+        //if (genre && genre.length > 0 && genre[0] === '0') {
+        //    // The release date for a Classic is valid if it's no greater than the given year.
+        //    return date.getUTCFullYear() <= year;
+        //}
+
+        //return true;
+
+                return false;
+    });
+
+    $.validator.unobtrusive.adapters.add('classicmovie', ['year'], function (options) {
+        var element = $(options.form).find('select#Movie_Genre')[0];
+
+        options.rules['classicmovie'] = [element, parseInt(options.params['year'])];
+        options.messages['classicmovie'] = options.message;
+    });
+    </script>
+    @*<script>
+        jQuery.validator.addMethod("emptyarray", function (value, element, param) {
+            if (element.value === "") { // change
+                return false;
+            }
+            return true;
+        });
+        jQuery.validator.unobtrusive.adapters.addBool("emptyarray");
+    </script>*@
     <script src="~/js/jquery.unobtrusive-ajax.js"></script>
-
     <resources names='new[] { "SharedResource" }'></resources>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
