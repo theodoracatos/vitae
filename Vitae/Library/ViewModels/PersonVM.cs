@@ -95,13 +95,23 @@ namespace Library.ViewModels
 
         public AboutVM About { get; set; }
 
-        [ClassicMovie(1999)]
-        public string Film { get; set; }
 
-        [RequiredArray(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Nationality), Prompt = nameof(SharedResource.Nationality))]
         [BindProperty]
-        public string[] Nationalities { get; set; }
+
+        [ArrayNotEmpty]
+        public int[] CentreCodeId { get; set; }
+
+        [ArrayNotEmpty]
+        [Required]
+        public IList<string> Nationalities { get; set; }
+
+        //[ArrayNotEmpty(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
+        //[Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Nationality), Prompt = nameof(SharedResource.Nationality))]
+        [ClassicMovie(1000)]
+        [ArrayNotEmpty]
+        public string Film { get; set; }
+
 
         public IList<SocialLinkVM> SocialLinks { get; set; }
         public IList<ExperienceVM> Experiences { get; set; }

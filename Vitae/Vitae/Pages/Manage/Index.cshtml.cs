@@ -79,7 +79,7 @@ namespace Vitae.Pages.Manage
                     StreetNo = curriculum.Person.StreetNo,
                     ZipCode = curriculum.Person.ZipCode,
                     State = curriculum.Person.State,
-                    Nationalities = curriculum.Person.Nationalities?.Select(n => n.CountryCode).ToArray() ?? new string[1] { "" }
+                    Nationalities = curriculum.Person.Nationalities?.Select(n => n.CountryCode).ToList() ?? new List<string>() { "" }
                 };
                 About = new AboutVM()
                 {

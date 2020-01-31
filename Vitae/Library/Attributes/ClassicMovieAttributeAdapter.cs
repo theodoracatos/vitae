@@ -51,21 +51,4 @@ namespace Library.Attributes
         public override string GetErrorMessage(ModelValidationContextBase validationContext) =>
             Attribute.GetErrorMessage();
     }
-
-    public class CustomValidationAttributeAdapterProvider : IValidationAttributeAdapterProvider
-    {
-        private readonly IValidationAttributeAdapterProvider baseProvider =
-            new ValidationAttributeAdapterProvider();
-
-        public IAttributeAdapter GetAttributeAdapter(ValidationAttribute attribute,
-            IStringLocalizer stringLocalizer)
-        {
-            if (attribute is ClassicMovieAttribute classicMovieAttribute)
-            {
-                return new ClassicMovieAttributeAdapter(classicMovieAttribute, stringLocalizer);
-            }
-
-            return baseProvider.GetAttributeAdapter(attribute, stringLocalizer);
-        }
-    }
 }
