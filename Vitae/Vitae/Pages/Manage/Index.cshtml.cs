@@ -265,7 +265,7 @@ namespace Vitae.Pages.Manage
 
         private void FillSelectionViewModel()
         {
-            Countries = appContext.Countries.OrderBy(c => c.Name).Select(c => new CountryVM()
+            Countries = appContext.Countries.Select(c => new CountryVM()
             {
                 CountryCode = c.CountryCode,
                 Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :
@@ -274,9 +274,9 @@ namespace Vitae.Pages.Manage
                         requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
                         c.Name,
                 PhoneCode = c.PhoneCode
-            });
+            }).OrderBy(c => c.Name);
 
-            Languages = appContext.Languages.OrderBy(c => c.Name).Select(c => new LanguageVM()
+            Languages = appContext.Languages.Select(c => new LanguageVM()
             {
                 LanguageCode = c.LanguageCode,
                 Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :
@@ -284,9 +284,9 @@ namespace Vitae.Pages.Manage
                         requestCulture.RequestCulture.Culture.Name == "it" ? c.Name_it :
                         requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
                         c.Name
-            });
+            }).OrderBy(c => c.Name);
 
-            Nationalities = appContext.Countries.OrderBy(c => c.Name).Select(c => new CountryVM()
+            Nationalities = appContext.Countries.Select(c => new CountryVM()
             {
                 CountryCode = c.CountryCode,
                 Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :
@@ -295,9 +295,9 @@ namespace Vitae.Pages.Manage
             requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
             c.Name,
                 PhoneCode = c.PhoneCode
-            });
+            }).OrderBy(c => c.Name);
 
-            Months = appContext.Months.OrderBy(c => c.MonthCode).Select(c => new MonthVM()
+            Months = appContext.Months.Select(c => new MonthVM()
             {
                 MonthCode = c.MonthCode,
                 Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :
@@ -305,9 +305,14 @@ namespace Vitae.Pages.Manage
             requestCulture.RequestCulture.Culture.Name == "it" ? c.Name_it :
             requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
             c.Name
-            });
+            }).OrderBy(c => c.MonthCode);
 
             PhonePrefix = !string.IsNullOrEmpty(Person?.CountryCode) ? "+" + Countries.Where(c => c.CountryCode == Person.CountryCode).Select(c => c.PhoneCode).Single().ToString() : string.Empty;
+
+            if (Person.Nationalities == null)
+            {
+                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() };
+            }
         }
 
         private PartialViewResult GetPartialViewResult(string viewName)

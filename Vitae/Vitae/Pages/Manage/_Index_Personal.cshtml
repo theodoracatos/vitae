@@ -7,13 +7,13 @@
                 <div class="form-group">
 
                     <div class="pretty p-default p-round">
-                        <input type="radio" id="Gender_Male" asp-for="@Model.Person.Gender" value="true" checked="@(Model.Person?.Gender ?? false ? "checked" : null)" />
+                        <input type="radio" asp-for="@Model.Person.Gender" value="true" checked="@(Model.Person?.Gender ?? false ? "checked" : null)" />
                         <div class="state">
                             <label>@SharedResource.Mr</label>
                         </div>
                     </div>
                     <div class="pretty p-default p-round">
-                        <input type="radio" id="Gender_Female" asp-for="@Model.Person.Gender" value="false" checked="@(Model.Person?.Gender ?? true ? null : "checked")" />
+                        <input type="radio" id="gender2" asp-for="@Model.Person.Gender" value="false" checked="@(Model.Person?.Gender ?? true ? null : "checked")" />
                         <div class="state">
                             <label>@SharedResource.Ms</label>
                         </div>
@@ -92,8 +92,8 @@
             <div class="form-group col">
                 <label class="control-label" asp-for="@Model.Person.Nationalities"></label>
                 <div>
-                    <button id="addNationality" asp-page-handler="AddNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-outline-success cancel"><i class="fas fa-plus"></i></button>
-                    <button id="removeNationality" asp-page-handler="RemoveNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-outline-danger cancel"><i class="fas fa-minus"></i></button>
+                    <button asp-page-handler="AddNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-outline-success cancel"><i class="fas fa-plus"></i></button>
+                    <button asp-page-handler="RemoveNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-outline-danger cancel"><i class="fas fa-minus"></i></button>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
                 {
                     <div class="form-row">
                         <div class="form-group col">
-                            @(i + 1). <label class="control-label mr-1" asp-for="@Model.Person.Nationalities[i].CountryCode"></label>
+                            @(i + 1).<label class="control-label ml-1" asp-for="@Model.Person.Nationalities[i].CountryCode"></label>
                             <select asp-for="@Model.Person.Nationalities[i].CountryCode" class="form-control" asp-items="@(new SelectList(@Model.Nationalities, "CountryCode", "Name"))">
                                 <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                             </select>
