@@ -176,7 +176,7 @@ $(document).ready(function () {
     //new code from QVS
     $(document).on("click", "button[data-ajax=true], input[data-ajax=true]", function (evt) {
         var name = evt.currentTarget.name,
-            target = $(evt.target),
+            target = $(evt.currentTarget),
             form = $(target.parents("form")[0]);
 
         $(form).attr('data-ajax-update', $(this).attr('data-ajax-update'));

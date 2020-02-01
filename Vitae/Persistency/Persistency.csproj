@@ -57,6 +57,10 @@
     <Compile Remove="Data\Migrations\20200130123252_v.1.0.0.Designer.cs" />
     <Compile Remove="Data\Migrations\20200130144613_v.1.0.0.cs" />
     <Compile Remove="Data\Migrations\20200130144613_v.1.0.0.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200131072640_v.1.0.0.cs" />
+    <Compile Remove="Data\Migrations\20200131072640_v.1.0.0.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200131185537_v.1.0.0.cs" />
+    <Compile Remove="Data\Migrations\20200131185537_v.1.0.0.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

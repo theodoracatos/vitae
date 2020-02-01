@@ -234,6 +234,9 @@
   <data name="PleaseUpload" xml:space="preserve">
     <value>Bitte beachten Sie die Dateigrösse von</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
   <data name="RemoveFileConfirmation" xml:space="preserve">
     <value>Möchten Sie diese Datei wirklich entfernen</value>
   </data>

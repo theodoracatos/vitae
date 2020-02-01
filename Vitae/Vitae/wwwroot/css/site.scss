@@ -117,7 +117,7 @@ body {
 }
 
 /* Bootstrap overrides */
-.btn-success:focus {
+/*.btn-success:focus {
     box-shadow: 0 0 0 0.2rem rgba(208, 187, 149, 0.5) !important;
 }
 
@@ -129,7 +129,7 @@ body {
 .btn-success:hover {
     background-color: $qvs-gold-color !important;
     border-color: $qvs-gold-color !important;
-}
+}*/
 
 .input-validation-error {
     border-color: $qvs-error-color;

@@ -90,55 +90,47 @@
 
         <div class="form-row">
             <div class="form-group col">
-                @Html.ListBoxFor(m => m.Person.CentreCodeId
-                      , new SelectList(Enumerable.Range(1, 31))
-                      , new { @class = "form-control select2 courseList", @id = "ddlCentreCode" })
-                @Html.ValidationMessageFor(m => m.Person.CentreCodeId)
-            </div>
-
-            @*@for (int i = 0; i < Model.Person.Nationalities?.ToList().Count; i++)
-        {
-            <div class="form-group col">
-                <label class="control-label" asp-for="@Model.Person.Nationalities"></label> @(i + 1)
-                <select asp-for="@Model.Person.Nationalities[i]" class="form-control" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
-                    <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
-                </select>
-                <span asp-validation-for="@Model.Person.Nationalities[i]" class="text-danger"></span>
-            </div>
-        }*@
-            <div class="form-group col">
-                <button asp-page-handler="AddNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-success float-right">@SharedResource.Add</button>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col">
-                <label class="control-label" asp-for="@Model.Person.Film"></label>
-                <select asp-for="@Model.Person.Film" class="form-control" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))"></select>
-                    <span asp-validation-for="@Model.Person.Film" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-5">
-                <label class="control-label" asp-for="@Model.Person.MobileNumber"></label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">@Model.PhonePrefix</span>
-                    </div>
-                    <input class="form-control" type="text" asp-for="@Model.Person.MobileNumber" />
+                <label class="control-label" asp-for="@Model.Person.Nationalities"></label>
+                <div>
+                    <button id="addNationality" asp-page-handler="AddNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-outline-success cancel"><i class="fas fa-plus"></i></button>
+                    <button id="removeNationality" asp-page-handler="RemoveNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-outline-danger cancel"><i class="fas fa-minus"></i></button>
                 </div>
-                <span asp-validation-for="@Model.Person.MobileNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-7">
-                <label class="control-label" asp-for="@Model.Person.Email"></label>
-                <input class="form-control" type="text" asp-for="@Model.Person.Email" />
-                <span asp-validation-for="@Model.Person.Email" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-row">
-            <div class="form-group col">
-                <button id="btnChangeBirthday" asp-page-handler="ChangeBirthday" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-secondary cancel d-none"></button>
-                <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-secondary cancel d-none"></button>
-                <button asp-page-handler="SavePersonal" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-success float-right">@SharedResource.Save</button>
+                @for (int i = 0; i < Model.Person.Nationalities.Count; i++)
+                {
+                    <div class="form-row">
+                        <div class="form-group col">
+                            @(i + 1). <label class="control-label mr-1" asp-for="@Model.Person.Nationalities[i].CountryCode"></label>
+                            <select asp-for="@Model.Person.Nationalities[i].CountryCode" class="form-control" asp-items="@(new SelectList(@Model.Nationalities, "CountryCode", "Name"))">
+                                <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
+                            </select>
+                            <span asp-validation-for="@Model.Person.Nationalities[i].CountryCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                }
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label class="control-label" asp-for="@Model.Person.MobileNumber"></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">@Model.PhonePrefix</span>
+                            </div>
+                            <input class="form-control" type="text" asp-for="@Model.Person.MobileNumber" />
+                        </div>
+                        <span asp-validation-for="@Model.Person.MobileNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-7">
+                        <label class="control-label" asp-for="@Model.Person.Email"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Person.Email" />
+                        <span asp-validation-for="@Model.Person.Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <button id="btnChangeBirthday" asp-page-handler="ChangeBirthday" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-secondary cancel d-none"></button>
+                        <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-secondary cancel d-none"></button>
+                        <button asp-page-handler="SavePersonal" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-success float-right">@SharedResource.Save</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>

@@ -10,11 +10,6 @@ namespace Library.Attributes
 
         public IAttributeAdapter GetAttributeAdapter(ValidationAttribute attribute, IStringLocalizer stringLocalizer)
         {
-            if (attribute is ArrayNotEmptyAttribute arrayNotEmptyAttribute)
-            {
-                return new ArrayNotEmptyAttributeAdapter(arrayNotEmptyAttribute, stringLocalizer);
-            }
-
             if (attribute is ClassicMovieAttribute classicMovieAttribute)
             {
                 return new ClassicMovieAttributeAdapter(classicMovieAttribute, stringLocalizer);

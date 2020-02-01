@@ -3,30 +3,20 @@ declare var $;
 declare var Resources;
 
 (function ($) {
-    $.validator.addMethod('arraynotempty', function (value, element, params) {
-        if (element.value === "") { // change
-            return false;
-        }
-        return true;
-    });
-    $.validator.unobtrusive.adapters.add("arraynotempty", function (options) {
-        //options.rules["arraynotempty"] = "#" + options.element.name.replace('.', '_'); // mvc html helpers
-        options.messages["arraynotempty"] = options.message;
-    });
+    //addJQueryValidators();
+})(jQuery);
 
-
+function addJQueryValidators() {
     $.validator.addMethod('classicmovie', function (value, element, params) {
-        //var genre = $(params[0]).val(), year = params[1], date = new Date(value);
+        var genre = $(params[0]).val(), year = params[1], date = new Date(value);
 
-        //// The Classic genre has a value of '0'.
-        //if (genre && genre.length > 0 && genre[0] === '0') {
-        //    // The release date for a Classic is valid if it's no greater than the given year.
-        //    return date.getUTCFullYear() <= year;
-        //}
+        // The Classic genre has a value of '0'.
+        if (genre && genre.length > 0 && genre[0] === '0') {
+            // The release date for a Classic is valid if it's no greater than the given year.
+            return date.getUTCFullYear() <= year;
+        }
 
-        //return true;
-
-        return false;
+        return true;
     });
 
     $.validator.unobtrusive.adapters.add('classicmovie', ['year'], function (options) {
@@ -35,8 +25,7 @@ declare var Resources;
         options.rules['classicmovie'] = [element, parseInt(options.params['year'])];
         options.messages['classicmovie'] = options.message;
     });
-})(jQuery);
-
+}
 
 $(document).ready(function () {
     loadingProcedure();
@@ -66,6 +55,7 @@ function setupDatepicker() {
 }
 
 function setRequiredLabel() {
+
     $('input[type=text], input[type=hidden], input[type=radio], input[type=file], select, textarea').each(function () {
         var req = $(this).attr('data-val-required');
         if (undefined != req) {

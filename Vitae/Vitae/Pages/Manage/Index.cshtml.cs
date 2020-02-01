@@ -34,6 +34,7 @@ namespace Vitae.Pages.Manage
 
         public IEnumerable<CountryVM> Countries { get; set; }
         public IEnumerable<LanguageVM> Languages { get; set; }
+        public IEnumerable<CountryVM> Nationalities { get; set; }
         public IEnumerable<MonthVM> Months { get; set; }
         public string PhonePrefix { get; set; }
 
@@ -79,7 +80,7 @@ namespace Vitae.Pages.Manage
                     StreetNo = curriculum.Person.StreetNo,
                     ZipCode = curriculum.Person.ZipCode,
                     State = curriculum.Person.State,
-                    Nationalities = curriculum.Person.Nationalities?.Select(n => n.CountryCode).ToList() ?? new List<string>() { "" }
+                    Nationalities = curriculum.Person.Nationalities?.Select(n => new NationalityVM { CountryCode = n.CountryCode }).ToList() ?? new List<NationalityVM>() { new NationalityVM() }
                 };
                 About = new AboutVM()
                 {
@@ -114,10 +115,31 @@ namespace Vitae.Pages.Manage
 
         #region AJAX
 
-        public IActionResult OnPostAddNationality(Guid id)
+        public IActionResult OnPostAddNationality()
         {
-            Person.Nationalities = Person.Nationalities == null ? new string[1] : Person.Nationalities;
-            Person.Nationalities.Append("");
+            if (Person.Nationalities == null)
+            {
+                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() };
+            }
+            else if (Person.Nationalities.Count < 3)
+            {
+                Person.Nationalities.Add(new NationalityVM());
+            }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_INDEX_PERSONAL);
+        }
+
+        public IActionResult OnPostRemoveNationality()
+        {
+            if (Person.Nationalities == null)
+            {
+                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() };
+            }
+            else if(Person.Nationalities.Count > 1)
+            {
+                Person.Nationalities.RemoveAt(Person.Nationalities.Count - 1);
+            }
 
             FillSelectionViewModel();
 
@@ -262,6 +284,17 @@ namespace Vitae.Pages.Manage
                         requestCulture.RequestCulture.Culture.Name == "it" ? c.Name_it :
                         requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
                         c.Name
+            });
+
+            Nationalities = appContext.Countries.OrderBy(c => c.Name).Select(c => new CountryVM()
+            {
+                CountryCode = c.CountryCode,
+                Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :
+            requestCulture.RequestCulture.Culture.Name == "fr" ? c.Name_fr :
+            requestCulture.RequestCulture.Culture.Name == "it" ? c.Name_it :
+            requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
+            c.Name,
+                PhoneCode = c.PhoneCode
             });
 
             Months = appContext.Months.OrderBy(c => c.MonthCode).Select(c => new MonthVM()
