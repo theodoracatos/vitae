@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Vitae.Helper;
 
 namespace Vitae.Pages.Manage
@@ -80,7 +81,7 @@ namespace Vitae.Pages.Manage
                     StreetNo = curriculum.Person.StreetNo,
                     ZipCode = curriculum.Person.ZipCode,
                     State = curriculum.Person.State,
-                    Nationalities = curriculum.Person.Nationalities?.Select(n => new NationalityVM { CountryCode = n.CountryCode }).ToList() ?? new List<NationalityVM>() { new NationalityVM() }
+                    Nationalities = curriculum.Person.PersonCountries?.Select(n => new NationalityVM { CountryCode = n.Country.CountryCode }).ToList() ?? new List<NationalityVM>() { new NationalityVM() }
                 };
                 About = new AboutVM()
                 {
@@ -149,7 +150,6 @@ namespace Vitae.Pages.Manage
         public async Task<IActionResult> OnPostSavePersonalAsync(Guid id)
         {
             // TODO: Check if id is from person x
-
             if (ModelState.IsValid(nameof(Person)))
             {
                 var curriculum = GetCurriculum(id);
@@ -166,8 +166,18 @@ namespace Vitae.Pages.Manage
                 curriculum.Person.StreetNo = Person.StreetNo;
                 curriculum.Person.ZipCode = Person.ZipCode;
                 curriculum.Person.State = Person.State;
+                curriculum.Person.PersonCountries = appContext.Countries
+                    .Where(a => Person.Nationalities
+                    .Select(n => n.CountryCode).Contains(a.CountryCode))
+                    .Select(c => new PersonCountry()
+                    {
+                        Country = c,
+                        Person = curriculum.Person,
+                        CountryID = c.CountryID,
+                        PersonID = curriculum.Person.PersonID
+                    }).ToList();
 
-                await appContext.SaveChangesAsync();
+            await appContext.SaveChangesAsync();
             }
 
             FillSelectionViewModel();
@@ -246,13 +256,13 @@ namespace Vitae.Pages.Manage
 
         #endregion
 
-
         #region Helper
 
         private Curriculum GetCurriculum(Guid id)
         {
             var curriculum = appContext.Curriculums
                     .Include(c => c.Person)
+                    .Include(c => c.Person.PersonCountries).ThenInclude(pc => pc.Country)
                     .Include(c => c.Person.Country)
                     .Include(c => c.Person.Language)
                     .Include(c => c.Person.About)
@@ -261,7 +271,6 @@ namespace Vitae.Pages.Manage
 
             return curriculum;
         }
-
 
         private void FillSelectionViewModel()
         {
@@ -309,7 +318,7 @@ namespace Vitae.Pages.Manage
 
             PhonePrefix = !string.IsNullOrEmpty(Person?.CountryCode) ? "+" + Countries.Where(c => c.CountryCode == Person.CountryCode).Select(c => c.PhoneCode).Single().ToString() : string.Empty;
 
-            if (Person.Nationalities == null)
+            if (Person.Nationalities == null || Person.Nationalities.Count == 0)
             {
                 Person.Nationalities = new List<NationalityVM>() { new NationalityVM() };
             }

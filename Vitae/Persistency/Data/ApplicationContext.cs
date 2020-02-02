@@ -23,11 +23,24 @@ namespace Persistency.Data
         {
             modelBuilder.RemovePluralizingTableNameConvention();
 
+            /* Index, unique */
             modelBuilder.Entity<Curriculum>().HasIndex(c => c.Identifier);
             modelBuilder.Entity<Curriculum>().HasIndex(c => c.FriendlyId);
             modelBuilder.Entity<Country>().HasIndex(c => c.CountryCode).IsUnique();
             modelBuilder.Entity<Language>().HasIndex(c => c.LanguageCode).IsUnique();
             modelBuilder.Entity<Vfile>().HasIndex(c => c.Identifier).IsUnique();
+
+            /* N-M */
+            modelBuilder.Entity<PersonCountry>()
+                .HasKey(pc => new { pc.PersonID, pc.CountryID});
+            modelBuilder.Entity<PersonCountry>()
+                .HasOne(pc => pc.Person)
+                .WithMany(p => p.PersonCountries)
+                .HasForeignKey(pc => pc.PersonID);
+            modelBuilder.Entity<PersonCountry>()
+                .HasOne(pc => pc.Country)
+                .WithMany(c => c.PersonCountries)
+                .HasForeignKey(pc => pc.CountryID);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

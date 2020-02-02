@@ -48,7 +48,7 @@ namespace Persistency.Poco
         public virtual Language Language { get; set; }
 
         
-        public virtual ICollection<Country> Nationalities { get; set; }
+        public virtual ICollection<PersonCountry> PersonCountries { get; set; }
         public virtual ICollection<Education> Educations { get; set; }
         public virtual ICollection<Experience> Experiences { get; set; }
         public virtual ICollection<LanguageSkill> LanguageSkills { get; set; }

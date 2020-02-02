@@ -29,6 +29,27 @@ namespace Persistency.Data.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.CreateTable(
+                name: "Country",
+                columns: table => new
+                {
+                    CountryID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CountryCode = table.Column<string>(maxLength: 2, nullable: true),
+                    Name = table.Column<string>(maxLength: 100, nullable: true),
+                    Name_de = table.Column<string>(maxLength: 100, nullable: true),
+                    Name_fr = table.Column<string>(maxLength: 100, nullable: true),
+                    Name_it = table.Column<string>(maxLength: 100, nullable: true),
+                    Name_es = table.Column<string>(maxLength: 100, nullable: true),
+                    Iso3 = table.Column<string>(maxLength: 3, nullable: true),
+                    NumCode = table.Column<int>(nullable: true),
+                    PhoneCode = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Country", x => x.CountryID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Language",
                 columns: table => new
                 {
@@ -132,6 +153,12 @@ namespace Persistency.Data.Migrations
                         principalColumn: "AboutID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
+                        name: "FK_Person_Country_CountryID",
+                        column: x => x.CountryID,
+                        principalTable: "Country",
+                        principalColumn: "CountryID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Person_Language_LanguageID",
                         column: x => x.LanguageID,
                         principalTable: "Language",
@@ -156,34 +183,6 @@ namespace Persistency.Data.Migrations
                     table.PrimaryKey("PK_Award", x => x.AwardID);
                     table.ForeignKey(
                         name: "FK_Award_Person_PersonID",
-                        column: x => x.PersonID,
-                        principalTable: "Person",
-                        principalColumn: "PersonID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Country",
-                columns: table => new
-                {
-                    CountryID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CountryCode = table.Column<string>(maxLength: 2, nullable: true),
-                    Name = table.Column<string>(maxLength: 100, nullable: true),
-                    Name_de = table.Column<string>(maxLength: 100, nullable: true),
-                    Name_fr = table.Column<string>(maxLength: 100, nullable: true),
-                    Name_it = table.Column<string>(maxLength: 100, nullable: true),
-                    Name_es = table.Column<string>(maxLength: 100, nullable: true),
-                    Iso3 = table.Column<string>(maxLength: 3, nullable: true),
-                    NumCode = table.Column<int>(nullable: true),
-                    PhoneCode = table.Column<int>(nullable: false),
-                    PersonID = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Country", x => x.CountryID);
-                    table.ForeignKey(
-                        name: "FK_Country_Person_PersonID",
                         column: x => x.PersonID,
                         principalTable: "Person",
                         principalColumn: "PersonID",
@@ -317,6 +316,30 @@ namespace Persistency.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PersonCountry",
+                columns: table => new
+                {
+                    PersonID = table.Column<int>(nullable: false),
+                    CountryID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonCountry", x => new { x.PersonID, x.CountryID });
+                    table.ForeignKey(
+                        name: "FK_PersonCountry_Country_CountryID",
+                        column: x => x.CountryID,
+                        principalTable: "Country",
+                        principalColumn: "CountryID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PersonCountry_Person_PersonID",
+                        column: x => x.PersonID,
+                        principalTable: "Person",
+                        principalColumn: "PersonID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Skill",
                 columns: table => new
                 {
@@ -374,11 +397,6 @@ namespace Persistency.Data.Migrations
                 column: "CountryCode",
                 unique: true,
                 filter: "[CountryCode] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Country_PersonID",
-                table: "Country",
-                column: "PersonID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Curriculum_FriendlyId",
@@ -442,6 +460,11 @@ namespace Persistency.Data.Migrations
                 column: "LanguageID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PersonCountry_CountryID",
+                table: "PersonCountry",
+                column: "CountryID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Skill_PersonID",
                 table: "Skill",
                 column: "PersonID");
@@ -456,26 +479,10 @@ namespace Persistency.Data.Migrations
                 table: "Vfile",
                 column: "Identifier",
                 unique: true);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Person_Country_CountryID",
-                table: "Person",
-                column: "CountryID",
-                principalTable: "Country",
-                principalColumn: "CountryID",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_About_Vfile_VfileID",
-                table: "About");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Country_Person_PersonID",
-                table: "Country");
-
             migrationBuilder.DropTable(
                 name: "Award");
 
@@ -498,13 +505,13 @@ namespace Persistency.Data.Migrations
                 name: "Month");
 
             migrationBuilder.DropTable(
+                name: "PersonCountry");
+
+            migrationBuilder.DropTable(
                 name: "Skill");
 
             migrationBuilder.DropTable(
                 name: "SocialLink");
-
-            migrationBuilder.DropTable(
-                name: "Vfile");
 
             migrationBuilder.DropTable(
                 name: "Person");
@@ -517,6 +524,9 @@ namespace Persistency.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Language");
+
+            migrationBuilder.DropTable(
+                name: "Vfile");
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",

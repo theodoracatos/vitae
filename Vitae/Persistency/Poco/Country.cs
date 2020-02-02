@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Persistency.Poco
 {
@@ -34,5 +35,7 @@ namespace Persistency.Poco
         public int? NumCode { get; set; }
 
         public int PhoneCode { get; set; }
+
+        public ICollection<PersonCountry> PersonCountries { get; set; }
     }
 }

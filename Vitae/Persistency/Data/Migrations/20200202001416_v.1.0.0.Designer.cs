@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200131190128_v.1.0.0")]
+    [Migration("20200202001416_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,9 +119,6 @@ namespace Persistency.Data.Migrations
                     b.Property<int?>("NumCode")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PersonID")
-                        .HasColumnType("int");
-
                     b.Property<int>("PhoneCode")
                         .HasColumnType("int");
 
@@ -130,8 +127,6 @@ namespace Persistency.Data.Migrations
                     b.HasIndex("CountryCode")
                         .IsUnique()
                         .HasFilter("[CountryCode] IS NOT NULL");
-
-                    b.HasIndex("PersonID");
 
                     b.ToTable("Country");
                 });
@@ -478,6 +473,21 @@ namespace Persistency.Data.Migrations
                     b.ToTable("Person");
                 });
 
+            modelBuilder.Entity("Persistency.Poco.PersonCountry", b =>
+                {
+                    b.Property<int>("PersonID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CountryID")
+                        .HasColumnType("int");
+
+                    b.HasKey("PersonID", "CountryID");
+
+                    b.HasIndex("CountryID");
+
+                    b.ToTable("PersonCountry");
+                });
+
             modelBuilder.Entity("Persistency.Poco.Skill", b =>
                 {
                     b.Property<int>("SkillID")
@@ -570,13 +580,6 @@ namespace Persistency.Data.Migrations
                         .HasForeignKey("PersonID");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Country", b =>
-                {
-                    b.HasOne("Persistency.Poco.Person", null)
-                        .WithMany("Nationalities")
-                        .HasForeignKey("PersonID");
-                });
-
             modelBuilder.Entity("Persistency.Poco.Curriculum", b =>
                 {
                     b.HasOne("Persistency.Poco.Person", "Person")
@@ -631,6 +634,21 @@ namespace Persistency.Data.Migrations
                     b.HasOne("Persistency.Poco.Language", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageID");
+                });
+
+            modelBuilder.Entity("Persistency.Poco.PersonCountry", b =>
+                {
+                    b.HasOne("Persistency.Poco.Country", "Country")
+                        .WithMany("PersonCountries")
+                        .HasForeignKey("CountryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Persistency.Poco.Person", "Person")
+                        .WithMany("PersonCountries")
+                        .HasForeignKey("PersonID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Persistency.Poco.Skill", b =>
