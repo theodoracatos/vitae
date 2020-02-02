@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200202010152_v.1.0.0")]
+    [Migration("20200202183417_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -479,6 +479,9 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("CountryID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Order")
                         .HasColumnType("int");
 
                     b.HasKey("PersonID", "CountryID");

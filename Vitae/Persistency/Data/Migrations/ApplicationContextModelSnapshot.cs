@@ -479,6 +479,9 @@ namespace Persistency.Data.Migrations
                     b.Property<int>("CountryID")
                         .HasColumnType("int");
 
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
                     b.HasKey("PersonID", "CountryID");
 
                     b.HasIndex("CountryID");

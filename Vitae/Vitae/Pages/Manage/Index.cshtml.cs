@@ -81,7 +81,7 @@ namespace Vitae.Pages.Manage
                     StreetNo = curriculum.Person.StreetNo,
                     ZipCode = curriculum.Person.ZipCode,
                     State = curriculum.Person.State,
-                    Nationalities = curriculum.Person.PersonCountries?.Select(n => new NationalityVM { CountryCode = n.Country.CountryCode }).ToList() ?? new List<NationalityVM>() { new NationalityVM() }
+                    Nationalities = curriculum.Person.PersonCountries?.OrderBy(pc => pc.Order).Select(n => new NationalityVM { CountryCode = n.Country.CountryCode }).ToList() ?? new List<NationalityVM>() { new NationalityVM() }
                 };
                 About = new AboutVM()
                 {
@@ -166,19 +166,20 @@ namespace Vitae.Pages.Manage
                 curriculum.Person.StreetNo = Person.StreetNo;
                 curriculum.Person.ZipCode = Person.ZipCode;
                 curriculum.Person.State = Person.State;
-                curriculum.Person.PersonCountries = appContext.Countries
-                    .Where(ac => Person.Nationalities
-                    .Select(n => n.CountryCode).Contains(ac.CountryCode))
-                    .Select((c, index) => new PersonCountry()
+                foreach (var nationality in Person.Nationalities)
+                {
+                    var personCountry = new PersonCountry()
                     {
-                        Country = c,
+                        Country = appContext.Countries.Single(c => c.CountryCode == nationality.CountryCode),
+                        CountryID = appContext.Countries.Single(c => c.CountryCode == nationality.CountryCode).CountryID,
                         Person = curriculum.Person,
-                        CountryID = c.CountryID,
-                        PersonID = curriculum.Person.PersonID
-                    }).ToList();
+                        PersonID = curriculum.Person.PersonID,
+                        Order = Person.Nationalities.IndexOf(nationality)
+                    };
+                    curriculum.Person.PersonCountries.Add(personCountry);
+                }
 
                 await appContext.SaveChangesAsync();
-
             }
 
             FillSelectionViewModel();

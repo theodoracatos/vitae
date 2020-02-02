@@ -320,7 +320,8 @@ namespace Persistency.Data.Migrations
                 columns: table => new
                 {
                     PersonID = table.Column<int>(nullable: false),
-                    CountryID = table.Column<int>(nullable: false)
+                    CountryID = table.Column<int>(nullable: false),
+                    Order = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
