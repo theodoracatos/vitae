@@ -92,8 +92,8 @@
             <div class="form-group col">
                 <label class="control-label" asp-for="@Model.Person.Nationalities"></label>
                 <div>
-                    <button asp-page-handler="AddNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-outline-success cancel"><i class="fas fa-plus"></i></button>
-                    <button asp-page-handler="RemoveNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-outline-danger cancel"><i class="fas fa-minus"></i></button>
+                    <button asp-page-handler="AddNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-outline-success cancel" disabled="@(Model.Person.Nationalities?.Count <= 2 ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                    <button asp-page-handler="RemoveNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-outline-danger cancel" disabled="@(Model.Person.Nationalities?.Count <= 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
                 </div>
             </div>
         </div>

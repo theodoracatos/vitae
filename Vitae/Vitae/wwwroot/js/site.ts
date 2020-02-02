@@ -201,11 +201,6 @@ function readImage(file) {
 }
 
 function loadFilerUpload() {
-    $('#btnRemoveFile').click(function (e) {
-        $('.uploadedFile').addClass("d-none");
-        $('#About_Vfile_FileName').val('');
-    });
-
     $(':not(.jFiler) > .filer').filer(
         {
             showThumbs: true,

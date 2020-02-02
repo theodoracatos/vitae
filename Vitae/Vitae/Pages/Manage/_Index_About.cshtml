@@ -12,7 +12,7 @@
             <div class="form-group col">
                 <label class="control-label" asp-for="@Model.About.Photo"></label>
                 <div id="divSelector" class="form-group @(string.IsNullOrEmpty(@Model.About.Photo) ? null : "d-none")">
-                    <button class="btn btn-secondary btn-block" type="button" onclick="$('#imgInput').trigger('click')">@SharedResource.Browse...</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick="$('#imgInput').trigger('click')">@SharedResource.Browse...</button>
                     <span asp-validation-for="@Model.About.Photo" class="text-danger"></span>
                 </div>
                 <div id="divPreview" class="form-group bd-form-group @(string.IsNullOrEmpty(@Model.About.Photo) ? "d-none" : null)">
@@ -31,15 +31,13 @@
             <div class="form-group col">
                 <label class="control-label" asp-for="@Model.About.Vfile.Content"></label>
                 <div class="bd-form-group">
-                    <input id="uploadedFile" type="file" asp-for="@Model.About.Vfile.Content" class="filer" />
-                    <div class="uploadedFile @(Model.About.Vfile?.Identifier == Guid.Empty ? "d-none" : null)">
+                    <input id="uploadedFile" type="file" asp-for="@Model.About.Vfile.Content" class="@(Model.About.Vfile?.FileName == null ? "filer" : "d-none")" />
+                    <div class="uploadedFile @(Model.About.Vfile?.FileName == null ? "d-none" : null)">
                         <a class="btn btn-outline-secondary" asp-page-handler="OpenFile" asp-route-identifier="@Model.About.Vfile?.Identifier" title="@Model.About.Vfile?.FileName">
                             <i class="far fa-file-pdf fa-1x"></i>
                             @Model.About.Vfile?.FileName
                         </a>
-                        <button id="btnRemoveFile" type="button" class="btn btn-danger">
-                            <i class="far fa-trash-alt"></i>
-                        </button>
+                        <button asp-page-handler="RemoveFile" data-ajax="true" data-ajax-update="#panel_about" class="btn btn-danger cancel"><i class="far fa-trash-alt"></i></button>
                     </div>
                 </div>
             </div>
@@ -51,7 +49,7 @@
                 <input type="hidden" asp-for="@Model.About.Vfile.Identifier" />
                 <input type="text" asp-for="@Model.About.Photo" class="imgPhoto invisible" />
                 <input id="imgInput" type="file" class="invisible" accept="image/jpeg, image/png" style="height:0; width: 0" />
-                <button asp-page-handler="SaveAbout" data-ajax="true" data-ajax-update="#panel_about" type="submit" class="btn btn-success float-right">@SharedResource.Save</button>
+                <button asp-page-handler="SaveAbout" data-ajax="true" data-ajax-update="#panel_about" class="btn btn-success float-right">@SharedResource.Save</button>
             </div>
         </div>
     </div>

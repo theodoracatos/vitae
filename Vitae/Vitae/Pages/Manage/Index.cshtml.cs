@@ -166,6 +166,9 @@ namespace Vitae.Pages.Manage
                 curriculum.Person.StreetNo = Person.StreetNo;
                 curriculum.Person.ZipCode = Person.ZipCode;
                 curriculum.Person.State = Person.State;
+
+                // Nationality
+                curriculum.Person.PersonCountries.Clear();
                 foreach (var nationality in Person.Nationalities)
                 {
                     var personCountry = new PersonCountry()
@@ -253,6 +256,15 @@ namespace Vitae.Pages.Manage
             }
 
             FillSelectionViewModel();
+            return GetPartialViewResult(PAGE_INDEX_ABOUT);
+        }
+
+        public IActionResult OnPostRemoveFile()
+        {
+            FillSelectionViewModel();
+
+            About.Vfile.FileName = null;
+
             return GetPartialViewResult(PAGE_INDEX_ABOUT);
         }
 
