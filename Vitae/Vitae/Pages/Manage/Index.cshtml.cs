@@ -167,9 +167,9 @@ namespace Vitae.Pages.Manage
                 curriculum.Person.ZipCode = Person.ZipCode;
                 curriculum.Person.State = Person.State;
                 curriculum.Person.PersonCountries = appContext.Countries
-                    .Where(a => Person.Nationalities
-                    .Select(n => n.CountryCode).Contains(a.CountryCode))
-                    .Select(c => new PersonCountry()
+                    .Where(ac => Person.Nationalities
+                    .Select(n => n.CountryCode).Contains(ac.CountryCode))
+                    .Select((c, index) => new PersonCountry()
                     {
                         Country = c,
                         Person = curriculum.Person,
@@ -177,7 +177,8 @@ namespace Vitae.Pages.Manage
                         PersonID = curriculum.Person.PersonID
                     }).ToList();
 
-            await appContext.SaveChangesAsync();
+                await appContext.SaveChangesAsync();
+
             }
 
             FillSelectionViewModel();
