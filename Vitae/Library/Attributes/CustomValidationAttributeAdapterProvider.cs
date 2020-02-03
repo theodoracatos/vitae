@@ -10,9 +10,9 @@ namespace Library.Attributes
 
         public IAttributeAdapter GetAttributeAdapter(ValidationAttribute attribute, IStringLocalizer stringLocalizer)
         {
-            if (attribute is AgelimitAttribute agelimitAttribute)
+            if (attribute is AgeLimitAttribute agelimitAttribute)
             {
-                return new agelimitAttributeAdapter(agelimitAttribute, stringLocalizer);
+                return new AgeLimitAttributeAdapter(agelimitAttribute, stringLocalizer);
             }
 
             return baseProvider.GetAttributeAdapter(attribute, stringLocalizer);
