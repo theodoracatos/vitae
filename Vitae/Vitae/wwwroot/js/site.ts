@@ -3,33 +3,47 @@ declare var $;
 declare var Resources;
 
 (function ($) {
-    //addJQueryValidators();
+    addJQueryValidators();
 })(jQuery);
 
 function addJQueryValidators() {
-    $.validator.addMethod('classicmovie', function (value, element, params) {
-        var genre = $(params[0]).val(), year = params[1], date = new Date(value);
+    $.validator.addMethod('agelimit', function (value, element, params) {
+        var date = new Date();
+        var year = params[1];
 
-        // The Classic genre has a value of '0'.
-        if (genre && genre.length > 0 && genre[0] === '0') {
-            // The release date for a Classic is valid if it's no greater than the given year.
-            return date.getUTCFullYear() <= year;
-        }
-
-        return true;
+        return (parseInt(value) < date.getUTCFullYear() - year);
     });
 
-    $.validator.unobtrusive.adapters.add('classicmovie', ['year'], function (options) {
-        var element = $(options.form).find('select#Movie_Genre')[0];
+    $.validator.unobtrusive.adapters.add('agelimit', ['year'], function (options) {
+        var element = $(options.form).find('select#Person_Birthday_Year')[0];
 
-        options.rules['classicmovie'] = [element, parseInt(options.params['year'])];
-        options.messages['classicmovie'] = options.message;
+        options.rules['agelimit'] = [element, parseInt(options.params['year'])];
+        options.messages['agelimit'] = options.message;
     });
 }
 
 $(document).ready(function () {
     loadingProcedure();
+    setupSbAdmin();
 });
+
+function setupSbAdmin() {
+    // Add active state to sidbar nav links
+    var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
+    $("#layoutSidenav_nav .sb-sidenav a.nav-link").each(function () {
+        if (this.href === path) {
+            $(this).addClass("active");
+        }
+    });
+
+    // Toggle the side navigation
+    $("#sidebarToggle").on("click", function (e) {
+        e.preventDefault();
+        $("body").toggleClass("sb-sidenav-toggled");
+    });
+
+    $('#dataTable').DataTable();
+}
 
 function ajaxCompleted() {
     loadingProcedure();
@@ -43,6 +57,7 @@ function loadingProcedure() {
     loadCropper();
     loadImageComponent();
     loadFilerUpload();
+    initializeTooltips();
 }
 
 function resetFormValidator(formId) {
@@ -50,6 +65,12 @@ function resetFormValidator(formId) {
     $(formId).removeData('unobtrusiveValidation');
     $.validator.unobtrusive.parse(formId);
 }
+
+function initializeTooltips() {
+    /* Tooltips */
+    $("body").tooltip({ selector: '[data-toggle=tooltip]', container: 'body' });
+}
+
 
 function setupDatepicker() {
     $('.datetimepicker').datepicker(
