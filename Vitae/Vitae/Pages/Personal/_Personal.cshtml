@@ -1,6 +1,6 @@
-﻿@model Vitae.Pages.Manage.IndexModel
+﻿@model Vitae.Pages.Personal.IndexModel
 
-<div class="bd-form">
+<div id="panel">
     <div class="form-row">
         <div class="col">
             <label class="control-label" asp-for="@Model.Person.Gender"></label>
@@ -35,12 +35,12 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-7">
+        <div class="form-group col-md-8">
             <label class="control-label" asp-for="@Model.Person.Street"></label>
             <input class="form-control" type="text" asp-for="@Model.Person.Street" />
             <span asp-validation-for="@Model.Person.Street" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-4">
             <label class="control-label" asp-for="@Model.Person.StreetNo"></label>
             <input class="form-control" type="text" asp-for="@Model.Person.StreetNo" />
             <span asp-validation-for="@Model.Person.StreetNo" class="text-danger"></span>
@@ -52,12 +52,12 @@
             <input class="form-control" type="text" asp-for="@Model.Person.ZipCode" />
             <span asp-validation-for="@Model.Person.ZipCode" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-6">
             <label class="control-label" asp-for="@Model.Person.City"></label>
             <input class="form-control" type="text" asp-for="@Model.Person.City" />
             <span asp-validation-for="@Model.Person.City" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-4">
             <label class="control-label" asp-for="@Model.Person.State"></label>
             <input class="form-control" type="text" asp-for="@Model.Person.State" />
             <span asp-validation-for="@Model.Person.State" class="text-danger"></span>
@@ -71,14 +71,14 @@
             </select>
             <span asp-validation-for="@Model.Person.CountryCode" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
             <label class="control-label" asp-for="@Model.Person.LanguageCode"></label>
             <select asp-for="@Model.Person.LanguageCode" class="form-control" asp-items="@(new SelectList(@Model.Languages, "LanguageCode", "Name"))">
                 <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
             </select>
             <span asp-validation-for="@Model.Person.LanguageCode" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-4">
             <label class="control-label" asp-for="@Model.Person.Birthday_Day"></label>
             <div class="d-flex">
                 <select asp-for="@Model.Person.Birthday_Day" class="form-control w-auto d-inline-flex mr-2" asp-items="@(new SelectList(Enumerable.Range(1, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
@@ -92,8 +92,8 @@
         <div class="form-group col">
             <label class="control-label" asp-for="@Model.Person.Nationalities"></label>
             <div>
-                <button asp-page-handler="AddNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Person.Nationalities?.Count <= 2 ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                <button asp-page-handler="RemoveNationality" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Person.Nationalities?.Count <= 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                <button asp-page-handler="AddNationality" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Person.Nationalities?.Count <= 2 ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                <button asp-page-handler="RemoveNationality" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Person.Nationalities?.Count <= 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
             </div>
         </div>
     </div>
@@ -101,16 +101,17 @@
     {
         <div class="form-row">
             <div class="form-group col">
-                @(i + 1).<label class="control-label ml-1" asp-for="@Model.Person.Nationalities[i].CountryCode"></label>
+                <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Person.Nationalities[i].CountryCode"></label>
                 <select asp-for="@Model.Person.Nationalities[i].CountryCode" class="form-control" asp-items="@(new SelectList(@Model.Nationalities, "CountryCode", "Name"))">
                     <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                 </select>
                 <span asp-validation-for="@Model.Person.Nationalities[i].CountryCode" class="text-danger"></span>
+                <input type="hidden" asp-for="@Model.Person.Nationalities[i].Order" />
             </div>
         </div>
     }
     <div class="form-row">
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-4">
             <label class="control-label" asp-for="@Model.Person.MobileNumber"></label>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -120,17 +121,17 @@
             </div>
             <span asp-validation-for="@Model.Person.MobileNumber" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-7">
+        <div class="form-group col-md-8">
             <label class="control-label" asp-for="@Model.Person.Email"></label>
             <input class="form-control" type="text" asp-for="@Model.Person.Email" />
             <span asp-validation-for="@Model.Person.Email" class="text-danger"></span>
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col">
-            <button id="btnChangeBirthday" asp-page-handler="ChangeBirthday" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-secondary cancel d-none"></button>
-            <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-secondary cancel d-none"></button>
-            <button asp-page-handler="SavePersonal" data-ajax="true" data-ajax-update="#panel_personal" class="btn btn-success float-right">@SharedResource.Save</button>
+        <div class="form-group col mb-0">
+            <button id="btnChangeBirthday" asp-page-handler="ChangeBirthday" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+            <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+            <button type="submit" class="btn btn-outline-success float-right">@SharedResource.Save</button>
         </div>
     </div>
 </div>

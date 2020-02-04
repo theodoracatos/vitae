@@ -10,11 +10,11 @@ body, nav {
 
 h1{
     margin-top: 0.75em;
-    margin-bottom: 1em;
+    margin-bottom: 0.75em;
 }
 
 .fa-fw{
-    margin-right: 0.5em;
+    margin-right: 0.5rem;
 }
 
 #loading {
@@ -52,6 +52,10 @@ h1{
 
 .spacer {
     margin-bottom: 2rem;
+}
+
+.control-label {
+    font-family: Lato-Bold, Arial, Helvetica, sans-serif;
 }
 
 /* Bootstrap overrides */

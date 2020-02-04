@@ -126,6 +126,9 @@
   <data name="AllowedFiles" xml:space="preserve">
     <value>files are allowed to be uploaded</value>
   </data>
+  <data name="Awards" xml:space="preserve">
+    <value>Awards</value>
+  </data>
   <data name="Birthday" xml:space="preserve">
     <value>Birthday</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="CountryName" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="CurriculumVitae" xml:space="preserve">
+    <value>Curriculum Vitae</value>
+  </data>
   <data name="CV" xml:space="preserve">
     <value>CV</value>
   </data>
@@ -170,6 +176,9 @@
   </data>
   <data name="End" xml:space="preserve">
     <value>End</value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>Experience</value>
   </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Files you've choosed are too large</value>
@@ -189,11 +198,20 @@
   <data name="Grade" xml:space="preserve">
     <value>Grade</value>
   </data>
+  <data name="Interests" xml:space="preserve">
+    <value>Interests</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Languages</value>
+  </data>
   <data name="Lastname" xml:space="preserve">
     <value>Lastname</value>
+  </data>
+  <data name="LoggedInAs" xml:space="preserve">
+    <value>Logged in as</value>
   </data>
   <data name="Manage" xml:space="preserve">
     <value>Manage</value>
@@ -206,6 +224,9 @@
   </data>
   <data name="Ms" xml:space="preserve">
     <value>Ms</value>
+  </data>
+  <data name="MyVitae" xml:space="preserve">
+    <value>My Vitae</value>
   </data>
   <data name="Nationality" xml:space="preserve">
     <value>Nationality</value>
@@ -221,6 +242,12 @@
   </data>
   <data name="OnlyPdf" xml:space="preserve">
     <value>Only PDF files are allowed to be uploaded</value>
+  </data>
+  <data name="PersonalData" xml:space="preserve">
+    <value>Personal data</value>
+  </data>
+  <data name="PersonalDetails" xml:space="preserve">
+    <value>Personal details</value>
   </data>
   <data name="Personalies" xml:space="preserve">
     <value>Personalies</value>

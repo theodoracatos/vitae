@@ -5,9 +5,6 @@ using Library.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
@@ -20,20 +17,17 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Vitae.Helper;
+using Vitae.Code;
 
-namespace Vitae.Pages.Manage
+namespace Vitae.Pages.Personal
 {
-    public class IndexModel : PageModel
+    public class IndexModel : BasePageModel
     {
-        private const string PAGE_INDEX_PERSONAL = "_Index_Personal";
-        private const string PAGE_INDEX_ABOUT = "_Index_About";
+        private const string PAGE_PERSONAL = "_Personal";
+        private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // TODO: to be read from header
 
         [BindProperty]
         public PersonVM Person { get; set; }
-        [BindProperty]
-        public AboutVM About { get; set; }
-
         public IEnumerable<CountryVM> Countries { get; set; }
         public IEnumerable<LanguageVM> Languages { get; set; }
         public IEnumerable<CountryVM> Nationalities { get; set; }
@@ -53,18 +47,15 @@ namespace Vitae.Pages.Manage
 
         #region SYNC
 
-
-        public IActionResult OnGet(Guid id)
+        public IActionResult OnGet()
         {
-            // TODO: Check if id is from person x
-
             if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
             {
                 return NotFound();
             }
             else
             {
-                var curriculum = GetCurriculum(id);
+                var curriculum = GetCurriculum();
                 Person = new PersonVM()
                 {
                     Birthday_Day = curriculum.Person.Birthday.Value.Day,
@@ -82,17 +73,7 @@ namespace Vitae.Pages.Manage
                     StreetNo = curriculum.Person.StreetNo,
                     ZipCode = curriculum.Person.ZipCode,
                     State = curriculum.Person.State,
-                    Nationalities = curriculum.Person.PersonCountries?.OrderBy(pc => pc.Order).Select(n => new NationalityVM { CountryCode = n.Country.CountryCode }).ToList() ?? new List<NationalityVM>() { new NationalityVM() }
-                };
-                About = new AboutVM()
-                {
-                    Photo = curriculum.Person.About?.Photo,
-                    Slogan = curriculum.Person.About?.Slogan,
-                    Vfile = new VfileVM()
-                    {
-                        FileName = curriculum.Person.About?.Vfile?.FileName,
-                        Identifier = curriculum.Person.About?.Vfile?.Identifier ?? Guid.Empty
-                    }
+                    Nationalities = curriculum.Person.PersonCountries?.OrderBy(pc => pc.Order).Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order } ).ToList() ?? new List<NationalityVM>() { new NationalityVM() { Order = 1 } }
                 };
 
                 FillSelectionViewModel();
@@ -100,60 +81,11 @@ namespace Vitae.Pages.Manage
             }
         }
 
-        public IActionResult OnGetOpenFile(Guid identifier)
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (appContext.Vfiles.Any(v => v.Identifier == identifier))
+            if (ModelState.IsValid)
             {
-                var vfile = appContext.Vfiles.Single(v => v.Identifier == identifier);
-
-                return File(vfile.Content, vfile.MimeType, vfile.FileName);
-            }
-            else
-            {
-                throw new FileNotFoundException(identifier.ToString());
-            }
-        }
-        #endregion
-
-        #region AJAX
-
-        public IActionResult OnPostAddNationality()
-        {
-            if (Person.Nationalities == null)
-            {
-                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() };
-            }
-            else if (Person.Nationalities.Count < 3)
-            {
-                Person.Nationalities.Add(new NationalityVM());
-            }
-            FillSelectionViewModel();
-
-            return GetPartialViewResult(PAGE_INDEX_PERSONAL);
-        }
-
-        public IActionResult OnPostRemoveNationality()
-        {
-            if (Person.Nationalities == null)
-            {
-                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() };
-            }
-            else if(Person.Nationalities.Count > 1)
-            {
-                Person.Nationalities.RemoveAt(Person.Nationalities.Count - 1);
-            }
-
-            FillSelectionViewModel();
-
-            return GetPartialViewResult(PAGE_INDEX_PERSONAL);
-        }
-
-        public async Task<IActionResult> OnPostSavePersonalAsync(Guid id)
-        {
-            // TODO: Check if id is from person x
-            if (ModelState.IsValid(nameof(Person)))
-            {
-                var curriculum = GetCurriculum(id);
+                var curriculum = GetCurriculum();
                 curriculum.Person.Birthday = new DateTime(Person.Birthday_Year, Person.Birthday_Month, Person.Birthday_Day);
                 curriculum.Person.City = Person.City;
                 curriculum.Person.Country = appContext.Countries.Single(c => c.CountryCode == Person.CountryCode);
@@ -188,7 +120,42 @@ namespace Vitae.Pages.Manage
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_INDEX_PERSONAL);
+            return Page();
+        }
+
+        #endregion
+
+        #region AJAX
+
+        public IActionResult OnPostAddNationality()
+        {
+            if (Person.Nationalities == null)
+            {
+                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 1 } };
+            }
+            else if (Person.Nationalities.Count < 3)
+            {
+                Person.Nationalities.Add(new NationalityVM() { Order = Person.Nationalities.Count + 1 });
+            }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_PERSONAL);
+        }
+
+        public IActionResult OnPostRemoveNationality()
+        {
+            if (Person.Nationalities == null)
+            {
+                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 1 } };
+            }
+            else if (Person.Nationalities.Count > 1)
+            {
+                Person.Nationalities.RemoveAt(Person.Nationalities.Count - 1);
+            }
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_PERSONAL);
         }
 
         public IActionResult OnPostChangeBirthday()
@@ -204,76 +171,21 @@ namespace Vitae.Pages.Manage
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_INDEX_PERSONAL);
+            return GetPartialViewResult(PAGE_PERSONAL);
         }
 
         public IActionResult OnPostChangeCountry()
         {
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_INDEX_PERSONAL);
-        }
-
-        public async Task<IActionResult> OnPostSaveAbout(Guid id)
-        {
-            // TODO: Check if id is from person x
-            if (ModelState.IsValid(nameof(About)))
-            {
-                var curriculum = GetCurriculum(id);
-                curriculum.Person.About = curriculum.Person.About == null ? new About() : curriculum.Person.About;
-                curriculum.Person.About.Slogan = About.Slogan;
-                curriculum.Person.About.Photo = About.Photo;
-
-                if (About.Vfile?.Content != null)
-                {
-                    using (var stream = About.Vfile.Content.OpenReadStream())
-                    {
-                        using (var reader = new BinaryReader(stream))
-                        {
-                            var identifier = Guid.NewGuid();
-                            byte[] bytes = reader.ReadBytes((int)About.Vfile.Content.Length);
-                            curriculum.Person.About.Vfile = new Vfile()
-                            {
-                                Content = bytes,
-                                FileName = About.Vfile.Content.FileName,
-                                Identifier = identifier,
-                                MimeType = "application/pdf"
-                            };
-                            // Update VM
-                            About.Vfile.Identifier = identifier;
-                            About.Vfile.FileName = About.Vfile.Content.FileName;
-                        }
-                    }
-                }
-                else if(About.Vfile?.FileName == null && About.Vfile.Identifier != Guid.Empty)
-                {
-                    appContext.Vfiles.Remove(appContext.Vfiles.Single(v => v.Identifier == About.Vfile.Identifier));
-                    // Update VM
-                    About.Vfile.Identifier = Guid.Empty;
-                    About.Vfile.FileName = null;
-                }
-
-                await appContext.SaveChangesAsync();
-            }
-
-            FillSelectionViewModel();
-            return GetPartialViewResult(PAGE_INDEX_ABOUT);
-        }
-
-        public IActionResult OnPostRemoveFile()
-        {
-            FillSelectionViewModel();
-
-            About.Vfile.FileName = null;
-
-            return GetPartialViewResult(PAGE_INDEX_ABOUT);
+            return GetPartialViewResult(PAGE_PERSONAL);
         }
 
         #endregion
 
         #region Helper
 
-        private Curriculum GetCurriculum(Guid id)
+        private Curriculum GetCurriculum()
         {
             var curriculum = appContext.Curriculums
                     .Include(c => c.Person)
@@ -335,23 +247,8 @@ namespace Vitae.Pages.Manage
 
             if (Person.Nationalities == null || Person.Nationalities.Count == 0)
             {
-                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() };
+                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 1 } };
             }
-        }
-
-        private PartialViewResult GetPartialViewResult(string viewName)
-        {
-            // Ajax
-            var dataDictionary = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { { nameof(IndexModel), this } };
-            dataDictionary.Model = this;
-
-            PartialViewResult result = new PartialViewResult()
-            {
-                ViewName = viewName,
-                ViewData = dataDictionary,
-            };
-
-            return result;
         }
         #endregion
     }

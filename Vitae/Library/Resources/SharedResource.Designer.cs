@@ -88,6 +88,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Awards.
+        /// </summary>
+        public static string Awards {
+            get {
+                return ResourceManager.GetString("Awards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Birthday.
         /// </summary>
         public static string Birthday {
@@ -178,6 +187,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curriculum Vitae.
+        /// </summary>
+        public static string CurriculumVitae {
+            get {
+                return ResourceManager.GetString("CurriculumVitae", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CV.
         /// </summary>
         public static string CV {
@@ -219,6 +237,15 @@ namespace Library.Resources {
         public static string End {
             get {
                 return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience.
+        /// </summary>
+        public static string Experience {
+            get {
+                return ResourceManager.GetString("Experience", resourceCulture);
             }
         }
         
@@ -277,6 +304,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Interests.
+        /// </summary>
+        public static string Interests {
+            get {
+                return ResourceManager.GetString("Interests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -286,11 +322,29 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Languages.
+        /// </summary>
+        public static string Languages {
+            get {
+                return ResourceManager.GetString("Languages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lastname.
         /// </summary>
         public static string Lastname {
             get {
                 return ResourceManager.GetString("Lastname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logged in as.
+        /// </summary>
+        public static string LoggedInAs {
+            get {
+                return ResourceManager.GetString("LoggedInAs", resourceCulture);
             }
         }
         
@@ -327,6 +381,15 @@ namespace Library.Resources {
         public static string Ms {
             get {
                 return ResourceManager.GetString("Ms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Vitae.
+        /// </summary>
+        public static string MyVitae {
+            get {
+                return ResourceManager.GetString("MyVitae", resourceCulture);
             }
         }
         
@@ -372,6 +435,24 @@ namespace Library.Resources {
         public static string OnlyPdf {
             get {
                 return ResourceManager.GetString("OnlyPdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal data.
+        /// </summary>
+        public static string PersonalData {
+            get {
+                return ResourceManager.GetString("PersonalData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal details.
+        /// </summary>
+        public static string PersonalDetails {
+            get {
+                return ResourceManager.GetString("PersonalDetails", resourceCulture);
             }
         }
         

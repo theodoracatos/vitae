@@ -12,5 +12,8 @@ namespace Library.ViewModels
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Nationality), Prompt = nameof(SharedResource.Nationality))]
         [BindProperty]
         public string CountryCode { get; set; }
+
+        [BindProperty]
+        public int Order { get; set; }
     }
 }
