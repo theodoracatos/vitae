@@ -1,12 +1,12 @@
 ﻿@page
-@model Vitae.Pages.About.IndexModel
+@model Vitae.Pages.Education.IndexModel
 
-<h1><i class="fas fa-image fa-fw"></i>@SharedResource.About</h1>
+<h1><i class="fas fa-university fa-fw"></i>@SharedResource.Education</h1>
 
 <div class="card mb-4">
     <div class="card-body">
         <form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
-            @await Html.PartialAsync("_About", Model)
+            @await Html.PartialAsync("_Education", Model)
         </form>
     </div>
 </div>

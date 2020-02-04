@@ -40,7 +40,48 @@ namespace Vitae.Pages.About
         }
 
         #region SYNC
-        public async Task<IActionResult> OnPostAsync(Guid id)
+
+        public IActionResult OnGet()
+        {
+            // TODO: Check if id is from person x
+            if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
+            {
+                return NotFound();
+            }
+            else
+            {
+                var curriculum = GetCurriculum();
+
+                About = new AboutVM()
+                {
+                    Photo = curriculum.Person.About?.Photo,
+                    Slogan = curriculum.Person.About?.Slogan,
+                    Vfile = new VfileVM()
+                    {
+                        FileName = curriculum.Person.About?.Vfile?.FileName,
+                        Identifier = curriculum.Person.About?.Vfile?.Identifier ?? Guid.Empty
+                    }
+                };
+
+                return Page();
+            }
+        }
+
+        public IActionResult OnGetOpenFile(Guid identifier)
+        {
+            if (appContext.Vfiles.Any(v => v.Identifier == identifier))
+            {
+                var vfile = appContext.Vfiles.Single(v => v.Identifier == identifier);
+
+                return File(vfile.Content, vfile.MimeType, vfile.FileName);
+            }
+            else
+            {
+                throw new FileNotFoundException(identifier.ToString());
+            }
+        }
+
+        public async Task<IActionResult> OnPostAsync()
         {
             // TODO: Check if id is from person x
             if (ModelState.IsValid)
@@ -84,34 +125,10 @@ namespace Vitae.Pages.About
 
             return Page();
         }
+
         #endregion
 
         #region AJAX
-        public IActionResult OnGet()
-        {
-            // TODO: Check if id is from person x
-            if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
-            {
-                return NotFound();
-            }
-            else
-            {
-                var curriculum = GetCurriculum();
-
-                About = new AboutVM()
-                {
-                    Photo = curriculum.Person.About?.Photo,
-                    Slogan = curriculum.Person.About?.Slogan,
-                    Vfile = new VfileVM()
-                    {
-                        FileName = curriculum.Person.About?.Vfile?.FileName,
-                        Identifier = curriculum.Person.About?.Vfile?.Identifier ?? Guid.Empty
-                    }
-                };
-
-                return Page();
-            }
-        }
 
         public IActionResult OnPostRemoveFile()
         {
