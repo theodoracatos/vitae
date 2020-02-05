@@ -13,8 +13,8 @@ h1{
     margin-bottom: 0.75em;
 }
 
-.fa-fw{
-    margin-right: 0.75rem;
+.fa-fw {
+    margin-right: 0.5rem;
 }
 
 #loading {
@@ -23,6 +23,10 @@ h1{
 
 .jconfirm-box {
     border-top: solid 4px $qvs-gold-color !important;
+}
+
+h1 svg {
+    color: $qvs-gold-color;
 }
 
 .tooltip-inner {
