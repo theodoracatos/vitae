@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Persistency.Poco
 {
     public class Month
     {
         [Key]
-        public int MonthID { get; set; }
+        public Guid MonthID { get; set; }
 
         public int MonthCode { get; set; }
 

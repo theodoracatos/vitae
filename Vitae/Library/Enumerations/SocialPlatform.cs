@@ -5,7 +5,7 @@ namespace Library.Enumerations
     public enum SocialPlatform
     {
         [Description("fab fa-facebook-f")]
-        Facebook,
+        Facebook = 1,
         [Description("fab fa-twitter")]
         Twitter,
         [Description("fab fa-linkedin-in")]

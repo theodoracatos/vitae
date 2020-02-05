@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Persistency.Poco
 {
     public class Interest
     {
         [Key]
-        public int InterestID { get; set; }
+        public Guid InterestID { get; set; }
 
         [Required]
         [MaxLength(100)]

@@ -6,7 +6,7 @@ namespace Persistency.Poco
     public class Award
     {
         [Key]
-        public int AwardID { get; set; }
+        public Guid AwardID { get; set; }
 
         [Required]
         [MaxLength(100)]

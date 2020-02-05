@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Persistency.Poco
@@ -6,7 +7,7 @@ namespace Persistency.Poco
     public class About
     {
         [Key]
-        public int AboutID { get; set; }
+        public Guid AboutID { get; set; }
 
         [Required]
         [Column(TypeName = "varchar(MAX)")]

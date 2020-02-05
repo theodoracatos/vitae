@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Persistency.Poco
 {
     public class Vfile
     {
         [Key]
-        public int VfileID { get; set; }
+        public Guid VfileID { get; set; }
 
         public Guid Identifier { get; set; }
 

@@ -1,11 +1,11 @@
 ﻿@model Vitae.Pages.About.IndexModel
 
-<div class="card mb-4">
-    <div class="card-header font-weight-bold">
-        @SharedResource.About
-    </div>
-    <div class="card-body">
-        <div id="panel">
+<div id="panel">
+    <div class="card mb-4">
+        <div class="card-header font-weight-bold">
+            @SharedResource.About
+        </div>
+        <div class="card-body">
             <div class="form-row">
                 <div class="form-group col">
                     <label class="control-label" asp-for="@Model.About.Slogan"></label>

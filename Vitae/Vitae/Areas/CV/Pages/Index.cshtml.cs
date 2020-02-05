@@ -84,7 +84,7 @@ namespace CVitae.Areas.CV.Pages
 
             // Social links
             SocialLinks = new List<SocialLinkVM>();
-            foreach (var socialLink in curriculum.Person.SocialLinks.OrderByDescending(s => s.SocialLinkID))
+            foreach (var socialLink in curriculum.Person.SocialLinks.OrderByDescending(s => s.Order))
             {
                 SocialLinks.Add(new SocialLinkVM()
                 { 

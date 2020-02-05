@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Persistency.Poco
@@ -6,7 +7,7 @@ namespace Persistency.Poco
     public class Country
     { 
         [Key]
-        public int CountryID { get; set; }
+        public Guid CountryID { get; set; }
 
         [MinLength(2)]
         [MaxLength(2)]

@@ -32,8 +32,7 @@ namespace Persistency.Data.Migrations
                 name: "Country",
                 columns: table => new
                 {
-                    CountryID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CountryID = table.Column<Guid>(nullable: false),
                     CountryCode = table.Column<string>(maxLength: 2, nullable: true),
                     Name = table.Column<string>(maxLength: 100, nullable: true),
                     Name_de = table.Column<string>(maxLength: 100, nullable: true),
@@ -53,8 +52,7 @@ namespace Persistency.Data.Migrations
                 name: "Language",
                 columns: table => new
                 {
-                    LanguageID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LanguageID = table.Column<Guid>(nullable: false),
                     LanguageCode = table.Column<string>(maxLength: 3, nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Name_de = table.Column<string>(maxLength: 100, nullable: false),
@@ -71,8 +69,7 @@ namespace Persistency.Data.Migrations
                 name: "Month",
                 columns: table => new
                 {
-                    MonthID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MonthID = table.Column<Guid>(nullable: false),
                     MonthCode = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: true),
                     Name_de = table.Column<string>(maxLength: 100, nullable: true),
@@ -89,8 +86,7 @@ namespace Persistency.Data.Migrations
                 name: "Vfile",
                 columns: table => new
                 {
-                    VfileID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    VfileID = table.Column<Guid>(nullable: false),
                     Identifier = table.Column<Guid>(nullable: false),
                     Content = table.Column<byte[]>(nullable: true),
                     MimeType = table.Column<string>(nullable: true),
@@ -105,11 +101,10 @@ namespace Persistency.Data.Migrations
                 name: "About",
                 columns: table => new
                 {
-                    AboutID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AboutID = table.Column<Guid>(nullable: false),
                     Photo = table.Column<string>(type: "varchar(MAX)", nullable: false),
                     Slogan = table.Column<string>(maxLength: 4000, nullable: true),
-                    VfileID = table.Column<int>(nullable: true)
+                    VfileID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -126,8 +121,7 @@ namespace Persistency.Data.Migrations
                 name: "Person",
                 columns: table => new
                 {
-                    PersonID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PersonID = table.Column<Guid>(nullable: false),
                     Firstname = table.Column<string>(maxLength: 100, nullable: false),
                     Lastname = table.Column<string>(maxLength: 100, nullable: false),
                     Birthday = table.Column<DateTime>(nullable: true),
@@ -139,9 +133,9 @@ namespace Persistency.Data.Migrations
                     State = table.Column<string>(maxLength: 100, nullable: true),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
                     MobileNumber = table.Column<string>(maxLength: 16, nullable: false),
-                    CountryID = table.Column<int>(nullable: true),
-                    AboutID = table.Column<int>(nullable: true),
-                    LanguageID = table.Column<int>(nullable: true)
+                    CountryID = table.Column<Guid>(nullable: true),
+                    AboutID = table.Column<Guid>(nullable: true),
+                    LanguageID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -170,13 +164,12 @@ namespace Persistency.Data.Migrations
                 name: "Award",
                 columns: table => new
                 {
-                    AwardID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AwardID = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: false),
                     AwardedFrom = table.Column<string>(maxLength: 100, nullable: false),
                     AwardedOn = table.Column<DateTime>(nullable: false),
-                    PersonID = table.Column<int>(nullable: true)
+                    PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -193,14 +186,13 @@ namespace Persistency.Data.Migrations
                 name: "Curriculum",
                 columns: table => new
                 {
-                    CurriculumID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CurriculumID = table.Column<Guid>(nullable: false),
                     Identifier = table.Column<Guid>(nullable: false),
                     FriendlyId = table.Column<string>(maxLength: 100, nullable: true),
                     Password = table.Column<string>(maxLength: 100, nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     LastUpdated = table.Column<DateTime>(nullable: false),
-                    PersonID = table.Column<int>(nullable: true)
+                    PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -217,8 +209,7 @@ namespace Persistency.Data.Migrations
                 name: "Education",
                 columns: table => new
                 {
-                    EducationID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EducationID = table.Column<Guid>(nullable: false),
                     SchoolName = table.Column<string>(maxLength: 100, nullable: false),
                     SchoolLink = table.Column<string>(maxLength: 100, nullable: true),
                     City = table.Column<string>(maxLength: 100, nullable: false),
@@ -229,7 +220,7 @@ namespace Persistency.Data.Migrations
                     Start = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: true),
                     Order = table.Column<int>(nullable: false),
-                    PersonID = table.Column<int>(nullable: true)
+                    PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -246,8 +237,7 @@ namespace Persistency.Data.Migrations
                 name: "Experience",
                 columns: table => new
                 {
-                    ExperienceID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ExperienceID = table.Column<Guid>(nullable: false),
                     JobTitle = table.Column<string>(maxLength: 100, nullable: false),
                     CompanyName = table.Column<string>(maxLength: 100, nullable: false),
                     CompanyLink = table.Column<string>(maxLength: 1000, nullable: true),
@@ -255,7 +245,8 @@ namespace Persistency.Data.Migrations
                     Resumee = table.Column<string>(maxLength: 1000, nullable: true),
                     Start = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: true),
-                    PersonID = table.Column<int>(nullable: true)
+                    Order = table.Column<int>(nullable: false),
+                    PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -272,11 +263,10 @@ namespace Persistency.Data.Migrations
                 name: "Interest",
                 columns: table => new
                 {
-                    InterestID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    InterestID = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
-                    PersonID = table.Column<int>(nullable: true)
+                    PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -293,11 +283,10 @@ namespace Persistency.Data.Migrations
                 name: "LanguageSkill",
                 columns: table => new
                 {
-                    LanguageSkillID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LanguageSkillID = table.Column<Guid>(nullable: false),
                     Rate = table.Column<float>(nullable: false),
-                    LanguageID = table.Column<int>(nullable: false),
-                    PersonID = table.Column<int>(nullable: true)
+                    LanguageID = table.Column<Guid>(nullable: false),
+                    PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -320,8 +309,8 @@ namespace Persistency.Data.Migrations
                 name: "PersonCountry",
                 columns: table => new
                 {
-                    PersonID = table.Column<int>(nullable: false),
-                    CountryID = table.Column<int>(nullable: false),
+                    PersonID = table.Column<Guid>(nullable: false),
+                    CountryID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -345,11 +334,10 @@ namespace Persistency.Data.Migrations
                 name: "Skill",
                 columns: table => new
                 {
-                    SkillID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SkillID = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Rate = table.Column<float>(nullable: true),
-                    PersonID = table.Column<int>(nullable: true)
+                    PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -366,11 +354,11 @@ namespace Persistency.Data.Migrations
                 name: "SocialLink",
                 columns: table => new
                 {
-                    SocialLinkID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SocialLinkID = table.Column<Guid>(nullable: false),
                     SocialPlatform = table.Column<int>(nullable: false),
                     Hyperlink = table.Column<string>(maxLength: 100, nullable: false),
-                    PersonID = table.Column<int>(nullable: true)
+                    Order = table.Column<int>(nullable: false),
+                    PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {

@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Persistency.Poco
 {
     public class LanguageSkill
     {
         [Key]
-        public int LanguageSkillID { get; set; }
+        public Guid LanguageSkillID { get; set; }
 
         public float Rate { get; set; }
 

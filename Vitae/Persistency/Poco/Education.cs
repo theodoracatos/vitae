@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Persistency.Poco
 {
     public class Education
     {
         [Key]
-        public int EducationID { get; set; }
+        public Guid EducationID { get; set; }
 
         [Required]
         [MaxLength(100)]

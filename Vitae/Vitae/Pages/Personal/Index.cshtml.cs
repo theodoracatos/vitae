@@ -206,10 +206,10 @@ namespace Vitae.Pages.Personal
             Countries = appContext.Countries.Select(c => new CountryVM()
             {
                 CountryCode = c.CountryCode,
-                Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :
-                        requestCulture.RequestCulture.Culture.Name == "fr" ? c.Name_fr :
-                        requestCulture.RequestCulture.Culture.Name == "it" ? c.Name_it :
-                        requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
+                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
+                        requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
+                        requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
+                        requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
                         c.Name,
                 PhoneCode = c.PhoneCode
             }).OrderBy(c => c.Name);
@@ -217,20 +217,20 @@ namespace Vitae.Pages.Personal
             Languages = appContext.Languages.Select(c => new LanguageVM()
             {
                 LanguageCode = c.LanguageCode,
-                Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :
-                        requestCulture.RequestCulture.Culture.Name == "fr" ? c.Name_fr :
-                        requestCulture.RequestCulture.Culture.Name == "it" ? c.Name_it :
-                        requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
+                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
+                        requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
+                        requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
+                        requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
                         c.Name
             }).OrderBy(c => c.Name);
 
             Nationalities = appContext.Countries.Select(c => new CountryVM()
             {
                 CountryCode = c.CountryCode,
-                Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :
-            requestCulture.RequestCulture.Culture.Name == "fr" ? c.Name_fr :
-            requestCulture.RequestCulture.Culture.Name == "it" ? c.Name_it :
-            requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
+                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
+            requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
+            requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
+            requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
             c.Name,
                 PhoneCode = c.PhoneCode
             }).OrderBy(c => c.Name);
@@ -239,9 +239,9 @@ namespace Vitae.Pages.Personal
             {
                 MonthCode = c.MonthCode,
                 Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :
-            requestCulture.RequestCulture.Culture.Name == "fr" ? c.Name_fr :
-            requestCulture.RequestCulture.Culture.Name == "it" ? c.Name_it :
-            requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
+            requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
+            requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
+            requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
             c.Name
             }).OrderBy(c => c.MonthCode);
 

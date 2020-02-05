@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200205132649_v.1.0.0")]
+    [Migration("20200205154451_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,10 +23,9 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.About", b =>
                 {
-                    b.Property<int>("AboutID")
+                    b.Property<Guid>("AboutID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Photo")
                         .IsRequired()
@@ -36,8 +35,8 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("nvarchar(4000)")
                         .HasMaxLength(4000);
 
-                    b.Property<int?>("VfileID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("VfileID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("AboutID");
 
@@ -48,10 +47,9 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Award", b =>
                 {
-                    b.Property<int>("AwardID")
+                    b.Property<Guid>("AwardID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AwardedFrom")
                         .IsRequired()
@@ -71,8 +69,8 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int?>("PersonID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("PersonID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("AwardID");
 
@@ -83,10 +81,9 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Country", b =>
                 {
-                    b.Property<int>("CountryID")
+                    b.Property<Guid>("CountryID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CountryCode")
                         .HasColumnType("nvarchar(2)")
@@ -133,10 +130,9 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Curriculum", b =>
                 {
-                    b.Property<int>("CurriculumID")
+                    b.Property<Guid>("CurriculumID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -155,8 +151,8 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int?>("PersonID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("PersonID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CurriculumID");
 
@@ -171,10 +167,9 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Education", b =>
                 {
-                    b.Property<int>("EducationID")
+                    b.Property<Guid>("EducationID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -190,8 +185,8 @@ namespace Persistency.Data.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PersonID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("PersonID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Resumee")
                         .HasColumnType("nvarchar(1000)")
@@ -228,10 +223,9 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Experience", b =>
                 {
-                    b.Property<int>("ExperienceID")
+                    b.Property<Guid>("ExperienceID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -255,8 +249,11 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int?>("PersonID")
+                    b.Property<int>("Order")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("PersonID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Resumee")
                         .HasColumnType("nvarchar(1000)")
@@ -274,10 +271,9 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Interest", b =>
                 {
-                    b.Property<int>("InterestID")
+                    b.Property<Guid>("InterestID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)")
@@ -288,8 +284,8 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int?>("PersonID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("PersonID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("InterestID");
 
@@ -300,10 +296,9 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Language", b =>
                 {
-                    b.Property<int>("LanguageID")
+                    b.Property<Guid>("LanguageID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LanguageCode")
                         .IsRequired()
@@ -345,16 +340,15 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.LanguageSkill", b =>
                 {
-                    b.Property<int>("LanguageSkillID")
+                    b.Property<Guid>("LanguageSkillID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("LanguageID")
-                        .HasColumnType("int");
+                    b.Property<Guid>("LanguageID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("PersonID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("PersonID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<float>("Rate")
                         .HasColumnType("real");
@@ -370,10 +364,9 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Month", b =>
                 {
-                    b.Property<int>("MonthID")
+                    b.Property<Guid>("MonthID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("MonthCode")
                         .HasColumnType("int");
@@ -405,13 +398,12 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Person", b =>
                 {
-                    b.Property<int>("PersonID")
+                    b.Property<Guid>("PersonID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("AboutID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("AboutID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Birthday")
                         .HasColumnType("datetime2");
@@ -420,8 +412,8 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int?>("CountryID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("CountryID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -436,8 +428,8 @@ namespace Persistency.Data.Migrations
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("LanguageID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("LanguageID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Lastname")
                         .IsRequired()
@@ -478,11 +470,11 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.PersonCountry", b =>
                 {
-                    b.Property<int>("PersonID")
-                        .HasColumnType("int");
+                    b.Property<Guid>("PersonID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CountryID")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CountryID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Order")
                         .HasColumnType("int");
@@ -496,18 +488,17 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Skill", b =>
                 {
-                    b.Property<int>("SkillID")
+                    b.Property<Guid>("SkillID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int?>("PersonID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("PersonID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<float?>("Rate")
                         .HasColumnType("real");
@@ -521,18 +512,20 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.SocialLink", b =>
                 {
-                    b.Property<int>("SocialLinkID")
+                    b.Property<Guid>("SocialLinkID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Hyperlink")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int?>("PersonID")
+                    b.Property<int>("Order")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("PersonID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("SocialPlatform")
                         .HasColumnType("int");
@@ -546,10 +539,9 @@ namespace Persistency.Data.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Vfile", b =>
                 {
-                    b.Property<int>("VfileID")
+                    b.Property<Guid>("VfileID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<byte[]>("Content")
                         .HasColumnType("varbinary(max)");

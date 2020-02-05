@@ -6,7 +6,7 @@ namespace Persistency.Poco
     public class Curriculum
     {
         [Key]
-        public int CurriculumID { get; set; }
+        public Guid CurriculumID { get; set; }
 
         public Guid Identifier { get; set; }
 

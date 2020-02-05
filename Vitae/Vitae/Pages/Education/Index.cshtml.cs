@@ -141,6 +141,22 @@ namespace Vitae.Pages.Education
             return GetPartialViewResult(PAGE_EDUCATION);
         }
 
+        public IActionResult OnPostUpEducation()
+        {
+            // TODO - + now() date end
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_EDUCATION);
+        }
+
+        public IActionResult OnPostDownEducation()
+        {
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_EDUCATION);
+        }
+
         #endregion
 
         #region Helper
@@ -160,10 +176,10 @@ namespace Vitae.Pages.Education
             Months = appContext.Months.Select(c => new MonthVM()
             {
                 MonthCode = c.MonthCode,
-                Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :
-                requestCulture.RequestCulture.Culture.Name == "fr" ? c.Name_fr :
-                requestCulture.RequestCulture.Culture.Name == "it" ? c.Name_it :
-                requestCulture.RequestCulture.Culture.Name == "es" ? c.Name_es :
+                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
+                requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
+                requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
+                requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
                 c.Name
             }).OrderBy(c => c.MonthCode);
         }
