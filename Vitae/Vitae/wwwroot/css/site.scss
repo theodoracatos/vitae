@@ -85,54 +85,53 @@ h1 svg {
 span.field-validation-error {
     font-size: 0.8em;
     margin-left: 0.2em;
+    -webkit-box-decoration-break: clone;
+    -o-box-decoration-break: clone;
     box-decoration-break: clone;
 }
 
-.input-group > .input-group-prepend {
-    flex: 0 0 50px;
-}
+    .input-group > .input-group-prepend {
+        flex: 0 0 50px;
+    }
 
-.input-group .input-group-text {
-    width: 100%;
-}
+    .input-group .input-group-text {
+        width: 100%;
+    }
 
-.cursor-pointer{
-    cursor: pointer;
-}
+    .cursor-pointer {
+        cursor: pointer;
+    }
 
-.eqfont {
-    font-family: monospace;
-}
+    .eqfont {
+        font-family: monospace;
+    }
+    /* Datetimepicker */
+    .datetimepicker[readonly] {
+    }
 
-/* Datetimepicker */
-.datetimepicker[readonly] {
-}
+    .dtpicker {
+        cursor: pointer;
+    }
+    /* Cropper */
+    .cropContainer {
+        /* Never limit the container height here */
+        max-width: 100%;
+        display: inline-block;
+    }
 
-.dtpicker {
-    cursor: pointer;
-}
+    .cropContainer img {
+        height: 300px;
+        max-height: 300px;
+    }
 
-/* Cropper */
-.cropContainer {
-    /* Never limit the container height here */
-    max-width: 100%;
-    display: inline-block;
-}
+    .cropper-wrap-box, .cropper-drag-box, .cropper-bg {
+        border-radius: 4px;
+    }
+    /* Filer */
+    .jFiler-theme-default .jFiler-input {
+        font-size: 0.9rem;
+    }
 
-.cropContainer img {
-    height: 300px;
-    max-height: 300px;
-}
-
-.cropper-wrap-box, .cropper-drag-box, .cropper-bg {
-    border-radius: 4px;
-}
-
-/* Filer */
-.jFiler-theme-default .jFiler-input {
-    font-size: 0.9rem;
-}
-
-.jFiler-item:last-child{
-    margin-bottom: 0;
-}
+    .jFiler-item:last-child {
+        margin-bottom: 0;
+    }

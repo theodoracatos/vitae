@@ -1,5 +1,4 @@
-﻿using Library.Extensions;
-using Library.Resources;
+﻿using Library.Resources;
 using Library.ViewModels;
 
 using Microsoft.AspNetCore.Http;
@@ -13,7 +12,6 @@ using Persistency.Poco;
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,6 +26,7 @@ namespace Vitae.Pages.Personal
 
         [BindProperty]
         public PersonVM Person { get; set; }
+
         public IEnumerable<CountryVM> Countries { get; set; }
         public IEnumerable<LanguageVM> Languages { get; set; }
         public IEnumerable<CountryVM> Nationalities { get; set; }
@@ -36,7 +35,6 @@ namespace Vitae.Pages.Personal
         public int MaxNationalities { get; } = 3;
         public int YearStart { get; } = 1900;
         public string PhonePrefix { get; set; }
-        
 
         private readonly IStringLocalizer<SharedResource> localizer;
         private readonly ApplicationContext appContext;
@@ -77,7 +75,9 @@ namespace Vitae.Pages.Personal
                     StreetNo = curriculum.Person.StreetNo,
                     ZipCode = curriculum.Person.ZipCode,
                     State = curriculum.Person.State,
-                    Nationalities = curriculum.Person.PersonCountries?.OrderBy(pc => pc.Order).Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order } ).ToList() ?? new List<NationalityVM>() { new NationalityVM() { Order = 1 } }
+                    Nationalities = curriculum.Person.PersonCountries?.OrderBy(pc => pc.Order)
+                    .Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order } )
+                    .ToList() ?? new List<NationalityVM>() { new NationalityVM() { Order = 1 } }
                 };
 
                 FillSelectionViewModel();
@@ -196,8 +196,6 @@ namespace Vitae.Pages.Personal
                     .Include(c => c.Person.PersonCountries).ThenInclude(pc => pc.Country)
                     .Include(c => c.Person.Country)
                     .Include(c => c.Person.Language)
-                    .Include(c => c.Person.About)
-                    .Include(c => c.Person.About.Vfile)
                     .Single(c => c.Identifier == id);
 
             return curriculum;

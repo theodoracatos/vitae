@@ -143,9 +143,6 @@ namespace Vitae.Pages.About
         {
             var curriculum = appContext.Curriculums
                     .Include(c => c.Person)
-                    .Include(c => c.Person.PersonCountries).ThenInclude(pc => pc.Country)
-                    .Include(c => c.Person.Country)
-                    .Include(c => c.Person.Language)
                     .Include(c => c.Person.About)
                     .Include(c => c.Person.About.Vfile)
                     .Single(c => c.Identifier == id);

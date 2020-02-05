@@ -37,17 +37,18 @@ namespace Library.ViewModels
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Grade), Prompt = nameof(SharedResource.Grade))]
         [Range(0, float.MaxValue, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        [DisplayFormat(DataFormatString = "{0:$#.##}")]
         public float? Grade { get; set; }
 
-        public int Education_Month { get; set; }
-
-        public int Education_Year { get; set; }
-
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Start), Prompt = nameof(SharedResource.Start))]
-        public DateTime? Start { get; set; }
+        public int Education_Start_Month { get; set; }
+
+        public int Education_Start_Year { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.End), Prompt = nameof(SharedResource.End))]
-        public DateTime? End { get; set; }
+        public int Education_End_Month { get; set; }
+
+        public int Education_End_Year { get; set; }
 
         public int Order { get; set; }
     }

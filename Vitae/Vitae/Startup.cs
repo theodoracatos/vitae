@@ -1,4 +1,5 @@
 using Library.Attributes;
+using Library.Resources;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -20,7 +21,8 @@ namespace Vitae
     {
         private const string DEFAULT_CULTURE = "en";
         private readonly IWebHostEnvironment hostingEnvironment;
-        private CultureInfo[] SupportedCultures = new[] { new CultureInfo(DEFAULT_CULTURE), new CultureInfo("de") };
+        private CultureInfo[] SupportedCultures = new[] { new CultureInfo("de-CH") };
+        private CultureInfo[] SupportedUiCultures = new[] { new CultureInfo(DEFAULT_CULTURE), new CultureInfo("de") };
 
         public IConfiguration Configuration { get; }
 
@@ -47,6 +49,20 @@ namespace Vitae
                 builder.AddRazorRuntimeCompilation();
             }
 
+            services.AddMvc(options =>
+            {
+                options.ModelBindingMessageProvider.SetValueIsInvalidAccessor(x => string.Format(SharedResource.ValueIsInvalidAccessor, x));
+                options.ModelBindingMessageProvider.SetValueMustBeANumberAccessor(x => string.Format(SharedResource.ValueMustBeANumberAccessor, x));
+                options.ModelBindingMessageProvider.SetMissingBindRequiredValueAccessor(x => string.Format(SharedResource.MissingBindRequiredValueAccessor, x));
+                options.ModelBindingMessageProvider.SetAttemptedValueIsInvalidAccessor((x, y) => string.Format(SharedResource.AttemptedValueIsInvalidAccessor, x, y));
+                options.ModelBindingMessageProvider.SetMissingKeyOrValueAccessor(() => string.Format(SharedResource.MissingKeyOrValueAccessor));
+                options.ModelBindingMessageProvider.SetUnknownValueIsInvalidAccessor(x => string.Format(SharedResource.UnknownValueIsInvalidAccessor, x));
+                options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(x => string.Format(SharedResource.ValueMustNotBeNullAccessor, x));
+                options.ModelBindingMessageProvider.SetMissingRequestBodyRequiredValueAccessor(() => string.Format(SharedResource.MissingRequestBodyRequiredValueAccessor));
+                options.ModelBindingMessageProvider.SetNonPropertyAttemptedValueIsInvalidAccessor(x => string.Format(SharedResource.NonPropertyAttemptedValueIsInvalidAccessor, x));
+                options.ModelBindingMessageProvider.SetNonPropertyUnknownValueIsInvalidAccessor(() => string.Format(SharedResource.NonPropertyUnknownValueIsInvalidAccessor));
+                options.ModelBindingMessageProvider.SetNonPropertyValueMustBeANumberAccessor(() => string.Format(SharedResource.NonPropertyValueMustBeANumberAccessor));
+            });
             services.AddLocalization();
             services.AddSingleton<IValidationAttributeAdapterProvider, CustomValidationAttributeAdapterProvider>();
             services.Configure<RequestLocalizationOptions>(options =>
@@ -81,7 +97,7 @@ namespace Vitae
             {
                 DefaultRequestCulture = new RequestCulture(DEFAULT_CULTURE),
                 SupportedCultures = SupportedCultures, // Formatting numbers, dates, etc.
-                SupportedUICultures = SupportedCultures // UI strings that we have localized.
+                SupportedUICultures = SupportedUiCultures // UI strings that we have localized.
             });
             app.UseRouting();
 

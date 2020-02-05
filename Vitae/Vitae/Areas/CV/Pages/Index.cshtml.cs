@@ -121,8 +121,10 @@ namespace CVitae.Areas.CV.Pages
                     City = education.City,
                     Title = education.Title,
                     Resumee = education.Resumee,
-                    Start = education.Start,
-                    End = education.End,
+                    Education_Start_Month = education.Start.Month,
+                    Education_Start_Year = education.Start.Year,
+                    Education_End_Month = education.End.Value.Month,
+                    Education_End_Year = education.End.Value.Year,
                     Grade = education.Grade
                 });
             }

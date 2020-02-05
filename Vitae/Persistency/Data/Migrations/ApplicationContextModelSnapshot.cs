@@ -185,6 +185,9 @@ namespace Persistency.Data.Migrations
                     b.Property<float?>("Grade")
                         .HasColumnType("real");
 
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
                     b.Property<int?>("PersonID")
                         .HasColumnType("int");
 

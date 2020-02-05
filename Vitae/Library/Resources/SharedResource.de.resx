@@ -126,6 +126,9 @@
   <data name="AllowedFiles" xml:space="preserve">
     <value>Dateien sind zum Hochladen erlaubt</value>
   </data>
+  <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
+    <value>Der Wert '{0}' ist nicht gültig für {1}</value>
+  </data>
   <data name="Awards" xml:space="preserve">
     <value>Errungenschaften</value>
   </data>
@@ -216,6 +219,15 @@
   <data name="Manage" xml:space="preserve">
     <value>Ändern</value>
   </data>
+  <data name="MissingBindRequiredValueAccessor" xml:space="preserve">
+    <value>Ein Wert für das '{0}' Feld wurde nicht angegben</value>
+  </data>
+  <data name="MissingKeyOrValueAccessor" xml:space="preserve">
+    <value>Ein Wert wird benötigt</value>
+  </data>
+  <data name="MissingRequestBodyRequiredValueAccessor" xml:space="preserve">
+    <value>Ein nicht leerer request body wird benötigt</value>
+  </data>
   <data name="MobileNumber" xml:space="preserve">
     <value>Mobiltelefon</value>
   </data>
@@ -233,6 +245,15 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>Nein</value>
+  </data>
+  <data name="NonPropertyAttemptedValueIsInvalidAccessor" xml:space="preserve">
+    <value>Der Wert '{0}' ist nicht gültig</value>
+  </data>
+  <data name="NonPropertyUnknownValueIsInvalidAccessor" xml:space="preserve">
+    <value>Der gelieferte Wert ist ungültig</value>
+  </data>
+  <data name="NonPropertyValueMustBeANumberAccessor" xml:space="preserve">
+    <value>Das Feld muss eine Nummer sein</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
@@ -314,6 +335,18 @@
   </data>
   <data name="Title" xml:space="preserve">
     <value>Titel der Ausbildung</value>
+  </data>
+  <data name="UnknownValueIsInvalidAccessor" xml:space="preserve">
+    <value>Der gelieferte Wert ist ungültig für {0}</value>
+  </data>
+  <data name="ValueIsInvalidAccessor" xml:space="preserve">
+    <value>Der Wert '{0}' ist ungültig</value>
+  </data>
+  <data name="ValueMustBeANumberAccessor" xml:space="preserve">
+    <value>Das Feld {0} muss eine Nummer sein</value>
+  </data>
+  <data name="ValueMustNotBeNullAccessor" xml:space="preserve">
+    <value>Der Wert '{0}' ist ungültig</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warnung</value>

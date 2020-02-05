@@ -228,6 +228,7 @@ namespace Persistency.Data.Migrations
                     Grade = table.Column<float>(nullable: true),
                     Start = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: true),
+                    Order = table.Column<int>(nullable: false),
                     PersonID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
