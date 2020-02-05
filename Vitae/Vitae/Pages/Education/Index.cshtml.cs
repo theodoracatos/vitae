@@ -141,17 +141,24 @@ namespace Vitae.Pages.Education
             return GetPartialViewResult(PAGE_EDUCATION);
         }
 
-        public IActionResult OnPostUpEducation()
+        public IActionResult OnPostUpEducation(int order)
         {
             // TODO - + now() date end
+            var education = Educations[order];
+            Educations[order] = Educations[order - 1];
+            Educations[order - 1] = education;
 
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EDUCATION);
         }
 
-        public IActionResult OnPostDownEducation()
+        public IActionResult OnPostDownEducation(int order)
         {
+            var education = Educations[order];
+            Educations[order] = Educations[order + 1];
+            Educations[order + 1] = education;
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EDUCATION);

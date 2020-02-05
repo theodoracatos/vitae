@@ -9,11 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistency", "Persistency\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "Library\Library.csproj", "{7FC154B7-2805-4311-B150-E3AB39E2B2A1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Miscellaneous", "Miscellaneous", "{511FAE55-3602-4979-8EB3-A2F9AEE0C989}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\Users\theod\Desktop\startbootstrap-sb-admin-gh-pages.zip = ..\..\Users\theod\Desktop\startbootstrap-sb-admin-gh-pages.zip
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

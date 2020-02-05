@@ -131,8 +131,10 @@
                     <span asp-validation-for="@Model.Person.Email" class="text-danger"></span>
                 </div>
             </div>
+        </div>
+        <div class="card-footer">
             <div class="form-row">
-                <div class="form-group col mb-0">
+                <div class="form-group col mb-0 text-right">
                     <button id="btnChangeBirthday" asp-page-handler="ChangeBirthday" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                     <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                     <button type="submit" class="btn btn-outline-success float-right">@SharedResource.Save</button>
