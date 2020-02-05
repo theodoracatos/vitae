@@ -339,6 +339,9 @@
   <data name="UnknownValueIsInvalidAccessor" xml:space="preserve">
     <value>Der gelieferte Wert ist ungültig für {0}</value>
   </data>
+  <data name="UntilNow" xml:space="preserve">
+    <value>Bis jetzt</value>
+  </data>
   <data name="ValueIsInvalidAccessor" xml:space="preserve">
     <value>Der Wert '{0}' ist ungültig</value>
   </data>

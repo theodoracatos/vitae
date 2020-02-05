@@ -46,9 +46,12 @@ namespace Library.ViewModels
         public int Education_Start_Year { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.End), Prompt = nameof(SharedResource.End))]
-        public int Education_End_Month { get; set; }
+        public int? Education_End_Month { get; set; }
 
-        public int Education_End_Year { get; set; }
+        public int? Education_End_Year { get; set; }
+
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.UntilNow), Prompt = nameof(SharedResource.UntilNow))]
+        public bool UntilNow { get; set; }
 
         public int Order { get; set; }
     }

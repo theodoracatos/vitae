@@ -727,6 +727,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Until now.
+        /// </summary>
+        public static string UntilNow {
+            get {
+                return ResourceManager.GetString("UntilNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The value &apos;{0}&apos; is invalid.
         /// </summary>
         public static string ValueIsInvalidAccessor {

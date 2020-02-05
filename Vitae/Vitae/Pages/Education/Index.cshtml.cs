@@ -62,8 +62,9 @@ namespace Vitae.Pages.Education
                         City = e.City,
                         Education_Start_Month = e.Start.Month,
                         Education_Start_Year = e.Start.Year,
-                        Education_End_Month = e.End.Value.Month,
-                        Education_End_Year = e.End.Value.Year,
+                        Education_End_Month = e.End.HasValue ? e.End.Value.Month : DateTime.Now.Month,
+                        Education_End_Year = e.End.HasValue ? e.End.Value.Year : DateTime.Now.Year,
+                        UntilNow = !e.End.HasValue,
                         Grade = e.Grade,
                         Order = e.Order,
                         Resumee = e.Resumee,
@@ -91,7 +92,7 @@ namespace Vitae.Pages.Education
                     {
                         City = e.City,
                         Start = new DateTime(e.Education_Start_Year, e.Education_Start_Month, 1),
-                        End = new DateTime(e.Education_End_Year, e.Education_End_Month, DateTime.DaysInMonth(e.Education_End_Year, e.Education_End_Month)),
+                        End = e.UntilNow ? null : (DateTime?)new DateTime(e.Education_End_Year.Value, e.Education_End_Month.Value, DateTime.DaysInMonth(e.Education_End_Year.Value, e.Education_End_Month.Value)),
                         Grade = e.Grade,
                         Order = e.Order,
                         Resumee = e.Resumee,
@@ -110,15 +111,22 @@ namespace Vitae.Pages.Education
         #endregion
 
         #region AJAX
+        public IActionResult OnPostChangeUntilNow(int order)
+        { 
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_EDUCATION);
+        }
+
         public IActionResult OnPostAddEducation()
         {
             if (Educations == null)
             {
-                Educations = new List<EducationVM>() { new EducationVM() { Order = 1 } };
+                Educations = new List<EducationVM>() { new EducationVM() { Order = 0 } };
             }
             else if (Educations.Count < MaxEducations)
             {
-                Educations.Add(new EducationVM() { Order = Educations.Count + 1 });
+                Educations.Add(new EducationVM() { Order = Educations.Count });
             }
             FillSelectionViewModel();
 
@@ -129,7 +137,7 @@ namespace Vitae.Pages.Education
         {
             if (Educations == null)
             {
-                Educations = new List<EducationVM>() { new EducationVM() { Order = 1 } };
+                Educations = new List<EducationVM>() { new EducationVM() { Order = 0} };
             }
             else if (Educations.Count > 1)
             {

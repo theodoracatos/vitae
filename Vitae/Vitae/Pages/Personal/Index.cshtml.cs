@@ -77,7 +77,7 @@ namespace Vitae.Pages.Personal
                     State = curriculum.Person.State,
                     Nationalities = curriculum.Person.PersonCountries?.OrderBy(pc => pc.Order)
                     .Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order } )
-                    .ToList() ?? new List<NationalityVM>() { new NationalityVM() { Order = 1 } }
+                    .ToList() ?? new List<NationalityVM>() { new NationalityVM() { Order = 0 } }
                 };
 
                 FillSelectionViewModel();
@@ -135,11 +135,11 @@ namespace Vitae.Pages.Personal
         {
             if (Person.Nationalities == null)
             {
-                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 1 } };
+                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 0 } };
             }
             else if (Person.Nationalities.Count < MaxNationalities)
             {
-                Person.Nationalities.Add(new NationalityVM() { Order = Person.Nationalities.Count + 1 });
+                Person.Nationalities.Add(new NationalityVM() { Order = Person.Nationalities.Count });
             }
             FillSelectionViewModel();
 
@@ -150,7 +150,7 @@ namespace Vitae.Pages.Personal
         {
             if (Person.Nationalities == null)
             {
-                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 1 } };
+                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 0 } };
             }
             else if (Person.Nationalities.Count > 1)
             {
@@ -249,7 +249,7 @@ namespace Vitae.Pages.Personal
 
             if (Person.Nationalities == null || Person.Nationalities.Count == 0)
             {
-                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 1 } };
+                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 0 } };
             }
         }
         #endregion
