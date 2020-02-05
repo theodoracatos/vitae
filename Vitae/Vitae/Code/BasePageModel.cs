@@ -21,5 +21,7 @@ namespace Vitae.Code
 
             return result;
         }
+
+        protected abstract void FillSelectionViewModel();
     }
 }

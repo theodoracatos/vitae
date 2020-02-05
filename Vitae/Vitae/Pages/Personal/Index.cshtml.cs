@@ -32,7 +32,11 @@ namespace Vitae.Pages.Personal
         public IEnumerable<LanguageVM> Languages { get; set; }
         public IEnumerable<CountryVM> Nationalities { get; set; }
         public IEnumerable<MonthVM> Months { get; set; }
+
+        public int MaxNationalities { get; } = 3;
+        public int YearStart { get; } = 1900;
         public string PhonePrefix { get; set; }
+        
 
         private readonly IStringLocalizer<SharedResource> localizer;
         private readonly ApplicationContext appContext;
@@ -133,7 +137,7 @@ namespace Vitae.Pages.Personal
             {
                 Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 1 } };
             }
-            else if (Person.Nationalities.Count < 3)
+            else if (Person.Nationalities.Count < MaxNationalities)
             {
                 Person.Nationalities.Add(new NationalityVM() { Order = Person.Nationalities.Count + 1 });
             }
@@ -199,7 +203,7 @@ namespace Vitae.Pages.Personal
             return curriculum;
         }
 
-        private void FillSelectionViewModel()
+        protected override void FillSelectionViewModel()
         {
             Countries = appContext.Countries.Select(c => new CountryVM()
             {

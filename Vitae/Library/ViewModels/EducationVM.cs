@@ -1,4 +1,5 @@
 ﻿using Library.Resources;
+
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -8,38 +9,46 @@ namespace Library.ViewModels
     {
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.SchoolName), Prompt = nameof(SharedResource.SchoolName))]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string SchoolName { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.SchoolLink), Prompt = nameof(SharedResource.SchoolLink))]
-        [MaxLength(100)]
+        [Url(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
+        [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string SchoolLink { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.City), Prompt = nameof(SharedResource.City))]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string City { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Title), Prompt = nameof(SharedResource.Title))]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string Title { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Subject), Prompt = nameof(SharedResource.Subject))]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string Subject { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Resumee), Prompt = nameof(SharedResource.Resumee))]
-        [MaxLength(1000)]
+        [MaxLength(1000, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string Resumee { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Grade), Prompt = nameof(SharedResource.Grade))]
+        [Range(0, float.MaxValue, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public float? Grade { get; set; }
 
+        public int Education_Month { get; set; }
+
+        public int Education_Year { get; set; }
+
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Start), Prompt = nameof(SharedResource.Start))]
-        public DateTime Start { get; set; }
+        public DateTime? Start { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.End), Prompt = nameof(SharedResource.End))]
         public DateTime? End { get; set; }
+
+        public int Order { get; set; }
     }
 }

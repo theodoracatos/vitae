@@ -29,7 +29,7 @@
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">Clarence Taylor</span>
             <span class="d-none d-lg-block">
-                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="@Model.Person.About.Photo" alt="">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="@Model.About.Photo" alt="">
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,10 +71,10 @@
                     @Model.Person.Street @Model.Person.StreetNo · @Model.Person.ZipCode @Model.Person.City · <a href="tel:@(Model.Person.MobileNumber)">@Model.Person.MobileNumber</a> ·
                     <a href="mailto:@(Model.Person.Email)">@Model.Person.Email</a>
                 </div>
-                <p class="lead mb-5">@Model.Person.About.Slogan</p>
+                <p class="lead mb-5">@Model.About.Slogan</p>
                 <div class="social-icons">
                     @{
-                        foreach (var socialLink in Model.Person.SocialLinks)
+                        foreach (var socialLink in Model.SocialLinks)
                         {
                            <a href="@socialLink.Hyperlink" target="_blank">
                                <i class="@socialLink.SocialPlatform.Description()"></i>
@@ -92,7 +92,7 @@
             <div class="w-100">
                 <h2 class="mb-5">Erfahrung</h2>
                 @{
-                    foreach (var experience in Model.Person.Experiences)
+                    foreach (var experience in Model.Experiences)
                     {
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                             <div class="resume-content">
@@ -118,7 +118,7 @@
                 <h2 class="mb-5">Ausbildung</h2>
 
                 @{
-                    foreach (var education in Model.Person.Educations)
+                    foreach (var education in Model.Educations)
                     {
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                             <div class="resume-content">
@@ -128,7 +128,7 @@
                                  <p>@education.Resumee</p>
                             </div>
                             <div class="resume-date text-md-right">
-                                <span class="text-primary">@education.Start.ToString("MMMM yyyy") - @(education.End?.ToString("MMMM yyyy") ?? "jetzt")</span>
+                                <span class="text-primary">@education.Start?.ToString("MMMM yyyy") - @(education.End?.ToString("MMMM yyyy") ?? "jetzt")</span>
                             </div>
                         </div>
                     }

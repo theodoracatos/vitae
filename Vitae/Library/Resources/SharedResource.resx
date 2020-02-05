@@ -261,6 +261,9 @@
   <data name="PleaseUpload" xml:space="preserve">
     <value>Please upload files up to</value>
   </data>
+  <data name="ProperValue" xml:space="preserve">
+    <value>Please enter a proper value</value>
+  </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
   </data>

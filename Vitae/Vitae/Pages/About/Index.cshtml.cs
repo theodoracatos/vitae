@@ -152,6 +152,8 @@ namespace Vitae.Pages.About
 
             return curriculum;
         }
+
+        protected override void FillSelectionViewModel() { }
         #endregion
     }
 }

@@ -25,7 +25,14 @@ namespace CVitae.Areas.CV.Pages
 
         #endregion
 
-        public PersonVM Person { get; set; } = new PersonVM() { About = new AboutVM() };
+        public PersonVM Person { get; set; } = new PersonVM();
+        public AboutVM About { get; set; } = new AboutVM();
+
+        public IList<SocialLinkVM> SocialLinks { get; set; }
+        public IList<ExperienceVM> Experiences { get; set; }
+        public IList<EducationVM> Educations { get; set; }
+
+        public IList<LanguageSkillVM> LanguageSkills { get; set; }
 
         public Guid Guid { get; set; }
         public string QRTag { get; set; }
@@ -72,14 +79,14 @@ namespace CVitae.Areas.CV.Pages
            Person.ZipCode = curriculum.Person.ZipCode;
            Person.Email = curriculum.Person.Email;
            Person.MobileNumber = curriculum.Person.MobileNumber;
-           Person.About.Slogan = curriculum.Person.About.Slogan;
-           Person.About.Photo = curriculum.Person.About.Photo;
+           About.Slogan = curriculum.Person.About.Slogan;
+           About.Photo = curriculum.Person.About.Photo;
 
             // Social links
-            Person.SocialLinks = new List<SocialLinkVM>();
+            SocialLinks = new List<SocialLinkVM>();
             foreach (var socialLink in curriculum.Person.SocialLinks.OrderByDescending(s => s.SocialLinkID))
             {
-                Person.SocialLinks.Add(new SocialLinkVM()
+                SocialLinks.Add(new SocialLinkVM()
                 { 
                     SocialPlatform = socialLink.SocialPlatform,
                     Hyperlink = socialLink.Hyperlink
@@ -87,10 +94,10 @@ namespace CVitae.Areas.CV.Pages
             }
 
             // Experiences
-            Person.Experiences = new List<ExperienceVM>();
+            Experiences = new List<ExperienceVM>();
             foreach (var experience in curriculum.Person.Experiences.OrderByDescending(e => e.Start))
             {
-                Person.Experiences.Add(new ExperienceVM()
+                Experiences.Add(new ExperienceVM()
                 {
                     JobTitle = experience.JobTitle,
                     CompanyName = experience.CompanyName,
@@ -103,10 +110,10 @@ namespace CVitae.Areas.CV.Pages
             }
 
             // Education
-            Person.Educations = new List<EducationVM>();
+            Educations = new List<EducationVM>();
             foreach (var education in curriculum.Person.Educations.OrderByDescending(e => e.Start))
             {
-                Person.Educations.Add(new EducationVM()
+                Educations.Add(new EducationVM()
                 {
                     SchoolName = education.SchoolName,
                     SchoolLink = education.SchoolName,
@@ -121,10 +128,10 @@ namespace CVitae.Areas.CV.Pages
             }
 
             // Languages
-            Person.LanguageSkills = new List<LanguageSkillVM>();
+            LanguageSkills = new List<LanguageSkillVM>();
             foreach (var languageSkill in curriculum.Person.LanguageSkills)
             {
-                Person.LanguageSkills.Add(new LanguageSkillVM()
+                LanguageSkills.Add(new LanguageSkillVM()
                 {
                     Language = new LanguageVM()
                     {

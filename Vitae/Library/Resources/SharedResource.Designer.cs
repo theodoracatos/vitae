@@ -493,6 +493,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter a proper value.
+        /// </summary>
+        public static string ProperValue {
+            get {
+                return ResourceManager.GetString("ProperValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string Remove {

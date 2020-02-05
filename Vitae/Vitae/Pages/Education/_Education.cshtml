@@ -1,11 +1,89 @@
 ﻿@model Vitae.Pages.Education.IndexModel
 
-<div id="panel">
-    <div class="form-row">
-        <div class="form-group col">
-            @*<label class="control-label" asp-for="@Model.About.Slogan"></label>
-                <textarea asp-for="@Model.About.Slogan" class="form-control"></textarea>
-                <span asp-validation-for="@Model.About.Slogan" class="text-danger"></span>*@
+    <div id="panel">
+        <div class="form-row">
+            <div class="form-group col">
+                <label class="control-label" asp-for="@Model.Educations"></label>
+                <div>
+                    <button asp-page-handler="AddEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Educations?.Count < Model.MaxEducations ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                    <button asp-page-handler="RemoveEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Educations?.Count <= 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                </div>
+            </div>
         </div>
+        @for (int i = 0; i < Model.Educations.Count; i++)
+        {
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Educations[i].SchoolName"></label>
+                    <input class="form-control" type="text" asp-for="@Model.Educations[i].SchoolName" />
+                    <span asp-validation-for="@Model.Educations[i].SchoolName" class="text-danger"></span>
+                    <input type="hidden" asp-for="@Model.Educations[i].Order" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label" asp-for="@Model.Educations[i].SchoolLink"></label>
+                    <input class="form-control" type="text" asp-for="@Model.Educations[i].SchoolLink" />
+                    <span asp-validation-for="@Model.Educations[i].SchoolLink" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label class="control-label" asp-for="@Model.Educations[i].City"></label>
+                    <input class="form-control" type="text" asp-for="@Model.Educations[i].City" />
+                    <span asp-validation-for="@Model.Educations[i].City" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label class="control-label" asp-for="@Model.Educations[i].Title"></label>
+                    <input class="form-control" type="text" asp-for="@Model.Educations[i].Title" />
+                    <span asp-validation-for="@Model.Educations[i].Title" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-5">
+                    <label class="control-label" asp-for="@Model.Educations[i].Subject"></label>
+                    <input class="form-control" type="text" asp-for="@Model.Educations[i].Subject" />
+                    <span asp-validation-for="@Model.Educations[i].Subject" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="control-label" asp-for="@Model.Educations[i].Grade"></label>
+                    <input class="form-control" type="text" asp-for="@Model.Educations[i].Grade" />
+                    <span asp-validation-for="@Model.Educations[i].Grade" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label class="control-label" asp-for="@Model.Educations[i].Resumee"></label>
+                    <textarea asp-for="@Model.Educations[i].Resumee" class="form-control"></textarea>
+                    <span asp-validation-for="@Model.Educations[i].Resumee" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="control-label" asp-for="@Model.Educations[i].Start"></label>
+                    <div class="d-flex">
+                        <select asp-for="@Model.Educations[i].Education_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
+                        <select asp-for="@Model.Educations[i].Education_Year" class="form-control w-auto d-inline-flex" asp-items="@(new SelectList(Enumerable.Range(Model.YearStart, DateTime.Now.Year - Model.YearStart).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label" asp-for="@Model.Educations[i].End"></label>
+                    <input class="form-control datetimepicker" asp-format="{0:dd.mm.yyyy}" type="text" asp-for="@Model.Educations[i].End" />
+                    <span asp-validation-for="@Model.Educations[i].End" class="text-danger"></span>
+                </div>
+            </div>
+            @if (i < Model.Educations.Count - 1)
+            {
+                <div class="form-row">
+                    <div class="form-group col">
+                        <hr />
+                    </div>
+                </div>
+            }
+        }
+
+        <div class="form-row">
+            <div class="form-group col mb-0">
+                <button type="submit" class="btn btn-outline-success float-right">@SharedResource.Save</button>
+            </div>
+        </div>
+
     </div>
-</div>
