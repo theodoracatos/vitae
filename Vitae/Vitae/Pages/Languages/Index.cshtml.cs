@@ -78,11 +78,11 @@ namespace Vitae.Pages.Languages
                 appContext.RemoveRange(curriculum.Person.LanguageSkills);
 
                 curriculum.Person.LanguageSkills =
-                    LanguageSkills.Select(e => new Poco.LanguageSkill()
+                    LanguageSkills.Select(l => new Poco.LanguageSkill()
                     {
-                        Order = e.Order,
-                        Rate = e.Rate,
-                        Language = appContext.Languages.Single(l => l.LanguageCode == e.LanguageCode)
+                        Order = l.Order,
+                        Rate = l.Rate,
+                        Language = appContext.Languages.Single(la => la.LanguageCode == l.LanguageCode)
                     }).ToList();
 
                 await appContext.SaveChangesAsync();

@@ -147,6 +147,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
   <data name="ChooseFile" xml:space="preserve">
     <value>Choose a file to upload</value>
   </data>
@@ -194,6 +197,9 @@
   </data>
   <data name="End" xml:space="preserve">
     <value>End</value>
+  </data>
+  <data name="Etc" xml:space="preserve">
+    <value>…</value>
   </data>
   <data name="Experience" xml:space="preserve">
     <value>Experience</value>
@@ -353,6 +359,12 @@
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
+  </data>
+  <data name="Skills" xml:space="preserve">
+    <value>Skills</value>
+  </data>
+  <data name="Skillset" xml:space="preserve">
+    <value>Skillset</value>
   </data>
   <data name="Slogan" xml:space="preserve">
     <value>Slogan</value>

@@ -147,7 +147,7 @@ namespace Persistency.Migrations
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: false),
                     AwardedFrom = table.Column<string>(maxLength: 100, nullable: false),
-                    Link = table.Column<string>(maxLength: 200, nullable: true),
+                    Link = table.Column<string>(maxLength: 255, nullable: true),
                     AwardedOn = table.Column<DateTime>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     PersonID = table.Column<Guid>(nullable: true)
@@ -192,7 +192,7 @@ namespace Persistency.Migrations
                 {
                     EducationID = table.Column<Guid>(nullable: false),
                     SchoolName = table.Column<string>(maxLength: 100, nullable: false),
-                    SchoolLink = table.Column<string>(maxLength: 200, nullable: true),
+                    SchoolLink = table.Column<string>(maxLength: 255, nullable: true),
                     City = table.Column<string>(maxLength: 100, nullable: false),
                     Title = table.Column<string>(maxLength: 100, nullable: false),
                     Subject = table.Column<string>(maxLength: 100, nullable: false),
@@ -221,7 +221,7 @@ namespace Persistency.Migrations
                     ExperienceID = table.Column<Guid>(nullable: false),
                     JobTitle = table.Column<string>(maxLength: 100, nullable: false),
                     CompanyName = table.Column<string>(maxLength: 100, nullable: false),
-                    CompanyLink = table.Column<string>(maxLength: 200, nullable: true),
+                    CompanyLink = table.Column<string>(maxLength: 255, nullable: true),
                     City = table.Column<string>(maxLength: 100, nullable: false),
                     Resumee = table.Column<string>(maxLength: 4000, nullable: true),
                     Start = table.Column<DateTime>(nullable: false),
@@ -247,6 +247,8 @@ namespace Persistency.Migrations
                     InterestID = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
+                    Link = table.Column<string>(maxLength: 255, nullable: true),
+                    Order = table.Column<int>(nullable: false),
                     PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -317,8 +319,9 @@ namespace Persistency.Migrations
                 columns: table => new
                 {
                     SkillID = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 100, nullable: false),
-                    Rate = table.Column<float>(nullable: true),
+                    Category = table.Column<string>(maxLength: 100, nullable: false),
+                    Skillset = table.Column<string>(maxLength: 1000, nullable: true),
+                    Order = table.Column<int>(nullable: false),
                     PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>

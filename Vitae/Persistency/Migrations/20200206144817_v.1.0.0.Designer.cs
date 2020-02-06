@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200206134246_v.1.0.0")]
+    [Migration("20200206144817_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,8 +65,8 @@ namespace Persistency.Migrations
                         .HasMaxLength(1000);
 
                     b.Property<string>("Link")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -200,8 +200,8 @@ namespace Persistency.Migrations
                         .HasMaxLength(1000);
 
                     b.Property<string>("SchoolLink")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("SchoolName")
                         .IsRequired()
@@ -240,8 +240,8 @@ namespace Persistency.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("CompanyLink")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -286,10 +286,17 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("PersonID")
                         .HasColumnType("uniqueidentifier");
@@ -502,16 +509,20 @@ namespace Persistency.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Category")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("PersonID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<float?>("Rate")
-                        .HasColumnType("real");
+                    b.Property<string>("Skillset")
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
 
                     b.HasKey("SkillID");
 

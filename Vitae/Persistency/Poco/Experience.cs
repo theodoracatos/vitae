@@ -16,7 +16,7 @@ namespace Persistency.Poco
         [MaxLength(100)]
         public string CompanyName { get; set; }
 
-        [MaxLength(200)]
+        [MaxLength(255)]
         public string CompanyLink { get; set; }
 
         [Required]

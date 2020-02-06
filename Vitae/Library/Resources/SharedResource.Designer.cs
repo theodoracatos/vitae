@@ -151,6 +151,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose a file to upload.
         /// </summary>
         public static string ChooseFile {
@@ -291,6 +300,15 @@ namespace Library.Resources {
         public static string End {
             get {
                 return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ….
+        /// </summary>
+        public static string Etc {
+            get {
+                return ResourceManager.GetString("Etc", resourceCulture);
             }
         }
         
@@ -768,6 +786,24 @@ namespace Library.Resources {
         public static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skills.
+        /// </summary>
+        public static string Skills {
+            get {
+                return ResourceManager.GetString("Skills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skillset.
+        /// </summary>
+        public static string Skillset {
+            get {
+                return ResourceManager.GetString("Skillset", resourceCulture);
             }
         }
         

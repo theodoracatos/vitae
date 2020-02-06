@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="~/lib/Chart.js/Chart.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap-rating/bootstrap-rating.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap4-tagsinput/tagsinput.css" />
 
     <link rel="stylesheet" href="~/css/sbadmin.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -77,6 +78,10 @@
                         <a class="nav-link" href="/@(nameof(Awards))">
                             <div class="sb-nav-link-icon"><i class="fas fa-trophy"></i></div>
                             @SharedResource.Awards
+                        </a>
+                        <a class="nav-link" href="/@(nameof(Skills))">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
+                            @SharedResource.Skills
                         </a>
                         <div class="sb-sidenav-menu-heading">@SharedResource.CurriculumVitae</div>
                         <a class="nav-link" asp-area="CV" asp-page="/Index" asp-route-id="a05c13a8-21fb-42c9-a5bc-98b7d94f464a">
@@ -166,6 +171,7 @@
     <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/lib/Chart.js/Chart.min.js"></script>
     <script src="~/lib/bootstrap-rating/bootstrap-rating.min.js"></script>
+    <script src="~/lib/bootstrap4-tagsinput/tagsinput.js"></script>
     <script src="~/js/jquery.unobtrusive-ajax.js"></script>
 
     <resources names='new[] { "SharedResource" }'></resources>

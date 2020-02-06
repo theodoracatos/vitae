@@ -14,5 +14,10 @@ namespace Persistency.Poco
 
         [MaxLength(1000)]
         public string Description { get; set; }
+
+        [MaxLength(255)]
+        public string Link { get; set; }
+
+        public int Order { get; set; }
     }
 }

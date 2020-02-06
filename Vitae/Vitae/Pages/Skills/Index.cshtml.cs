@@ -20,22 +20,22 @@ using Vitae.Code;
 
 using Poco = Persistency.Poco;
 
-namespace Vitae.Pages.Interests
+namespace Vitae.Pages.Skills
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_INTERESTS = "_Interests";
+        private const string PAGE_SKILLS = "_Skills";
         private readonly IStringLocalizer<SharedResource> localizer;
         private readonly ApplicationContext appContext;
         private readonly IRequestCultureFeature requestCulture;
 
         private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Interests), Prompt = nameof(SharedResource.Interests))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Skills), Prompt = nameof(SharedResource.Skills))]
         [BindProperty]
-        public IList<InterestVM> Interests { get; set; }
+        public IList<SkillVM> Skills { get; set; }
 
-        public int MaxInterests { get; } = 20;
+        public int MaxSkills { get; } = 10;
 
         public IndexModel(IStringLocalizer<SharedResource> localizer, ApplicationContext appContext, IHttpContextAccessor httpContextAccessor)
         {
@@ -56,13 +56,12 @@ namespace Vitae.Pages.Interests
             {
                 var curriculum = GetCurriculum();
 
-                Interests = curriculum.Person.Interests.OrderBy(ir => ir.Order)
-                    .Select(i => new InterestVM()
+                Skills = curriculum.Person.Skills.OrderBy(ls => ls.Order)
+                    .Select(s => new SkillVM()
                     {
-                        Description = i.Description,
-                        Link = i.Link,
-                        Name = i.Name,
-                        Order = i.Order
+                        Category = s.Category,
+                        Order = s.Order,
+                        Skillset = s.Skillset
                     }).ToList();
 
                 FillSelectionViewModel();
@@ -74,15 +73,14 @@ namespace Vitae.Pages.Interests
             if (ModelState.IsValid)
             {
                 var curriculum = GetCurriculum();
-                appContext.RemoveRange(curriculum.Person.Interests);
+                appContext.RemoveRange(curriculum.Person.Skills);
 
-                curriculum.Person.Interests =
-                    Interests.Select(i => new Poco.Interest()
+                curriculum.Person.Skills =
+                    Skills.Select(s => new Poco.Skill()
                     {
-                        Description = i.Description,
-                        Link = i.Link,
-                        Name = i.Name,
-                        Order = i.Order
+                        Category = s.Category,
+                        Order = s.Order,
+                        Skillset = s.Skillset
                     }).ToList();
 
                 await appContext.SaveChangesAsync();
@@ -94,53 +92,53 @@ namespace Vitae.Pages.Interests
         #endregion
 
         #region AJAX
-        public IActionResult OnPostAddInterest()
+        public IActionResult OnPostAddSkill()
         {
-            if (Interests.Count == 0)
+            if (Skills.Count == 0)
             {
-                Interests.Add(new InterestVM() { Order = 1 });
+                Skills.Add(new SkillVM() { Order = 1 });
             }
-            else if (Interests.Count < MaxInterests)
+            else if (Skills.Count < MaxSkills)
             {
-                Interests.Add(new InterestVM() { Order = Interests.Count });
+                Skills.Add(new SkillVM() { Order = Skills.Count });
             }
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_INTERESTS);
+            return GetPartialViewResult(PAGE_SKILLS);
         }
 
-        public IActionResult OnPostRemoveInterest()
+        public IActionResult OnPostRemoveSkill()
         {
-            if (Interests.Count > 0)
+            if (Skills.Count > 0)
             {
-                Interests.RemoveAt(Interests.Count - 1);
+                Skills.RemoveAt(Skills.Count - 1);
             }
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_INTERESTS);
+            return GetPartialViewResult(PAGE_SKILLS);
         }
 
-        public IActionResult OnPostUpInterest(int order)
+        public IActionResult OnPostUpSkill(int order)
         {
-            var interest = Interests[order];
-            Interests[order] = Interests[order - 1];
-            Interests[order - 1] = interest;
+            var skill = Skills[order];
+            Skills[order] = Skills[order - 1];
+            Skills[order - 1] = skill;
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_INTERESTS);
+            return GetPartialViewResult(PAGE_SKILLS);
         }
 
-        public IActionResult OnPostDownInterest(int order)
+        public IActionResult OnPostDownSkill(int order)
         {
-            var interest = Interests[order];
-            Interests[order] = Interests[order + 1];
-            Interests[order + 1] = interest;
+            var skill = Skills[order];
+            Skills[order] = Skills[order + 1];
+            Skills[order + 1] = skill;
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_INTERESTS);
+            return GetPartialViewResult(PAGE_SKILLS);
         }
         #endregion
 
@@ -150,7 +148,7 @@ namespace Vitae.Pages.Interests
         {
             var curriculum = appContext.Curriculums
                     .Include(c => c.Person)
-                    .Include(c => c.Person.Interests)
+                    .Include(c => c.Person.Skills)
                     .Single(c => c.Identifier == id);
 
             return curriculum;
@@ -158,7 +156,6 @@ namespace Vitae.Pages.Interests
 
         protected override void FillSelectionViewModel()
         {
-
         }
 
         #endregion

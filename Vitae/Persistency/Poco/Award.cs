@@ -20,7 +20,7 @@ namespace Persistency.Poco
         [MaxLength(100)]
         public string AwardedFrom { get; set; }
 
-        [MaxLength(200)]
+        [MaxLength(255)]
         public string Link { get; set; }
 
         public DateTime AwardedOn { get; set; }

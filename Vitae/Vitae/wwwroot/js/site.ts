@@ -60,6 +60,7 @@ function loadingProcedure() {
     loadImageComponent();
     loadFilerUpload();
     initializeTooltips();
+    initializeTagsinput();
 }
 
 function resetFormValidator(formId) {
@@ -324,4 +325,14 @@ function startRating() {
                 }
             });
         }
-    });}
+    });
+}
+
+function initializeTagsinput() {
+    $('.tagsinput').tagsinput(
+        {
+            trimValue: true,
+            maxChars: 50
+        }
+    );
+}
