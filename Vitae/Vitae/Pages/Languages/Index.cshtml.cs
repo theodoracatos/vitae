@@ -65,12 +65,7 @@ namespace Vitae.Pages.Languages
                         Order = l.Order,
                         Rate = l.Rate
                     }).ToList();
-                    
-                if(LanguageSkills.Count == 0)
-                {
-                    LanguageSkills.Add(new LanguageSkillVM() { Order = 1 });
-                }
-
+                
                 FillSelectionViewModel();
                 return Page();
             }
@@ -101,9 +96,9 @@ namespace Vitae.Pages.Languages
         #region AJAX
         public IActionResult OnPostAddLanguageSkill()
         {
-            if (LanguageSkills == null)
+            if (LanguageSkills.Count == 0)
             {
-                LanguageSkills = new List<LanguageSkillVM>() { new LanguageSkillVM() { Order = 0 } };
+                LanguageSkills.Add(new LanguageSkillVM() { Order = 1 });
             }
             else if (LanguageSkills.Count < MaxLanguageSkills)
             {
@@ -116,11 +111,7 @@ namespace Vitae.Pages.Languages
 
         public IActionResult OnPostRemoveLanguageSkill()
         {
-            if (LanguageSkills == null)
-            {
-                LanguageSkills = new List<LanguageSkillVM>() { new LanguageSkillVM() { Order = 0 } };
-            }
-            else if (LanguageSkills.Count > 1)
+            if (LanguageSkills.Count > 0)
             {
                 LanguageSkills.RemoveAt(LanguageSkills.Count - 1);
             }

@@ -11,7 +11,7 @@
                     <label class="control-label" asp-for="@Model.Experiences"></label>
                     <div>
                         <button asp-page-handler="AddExperience" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Experiences?.Count < Model.MaxExperiences ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveExperience" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Experiences?.Count <= 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                        <button asp-page-handler="RemoveExperience" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Experiences?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
                     </div>
                 </div>
             </div>

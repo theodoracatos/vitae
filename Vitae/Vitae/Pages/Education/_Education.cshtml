@@ -11,7 +11,7 @@
                     <label class="control-label" asp-for="@Model.Educations"></label>
                     <div>
                         <button asp-page-handler="AddEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Educations?.Count < Model.MaxEducations ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Educations?.Count <= 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                        <button asp-page-handler="RemoveEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Educations?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
                     </div>
                 </div>
             </div>

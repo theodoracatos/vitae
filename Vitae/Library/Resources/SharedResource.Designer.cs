@@ -61,7 +61,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
+        ///   Looks up a localized string similar to Further details.
         /// </summary>
         public static string About {
             get {

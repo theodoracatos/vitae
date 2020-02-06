@@ -73,7 +73,7 @@ namespace Vitae.Pages.Experience
                         CompanyName = e.CompanyName,
                         JobTitle = e.JobTitle
                     })
-                    .ToList() ?? new List<ExperienceVM>() { new ExperienceVM() { Order = 1 } };
+                    .ToList();
 
                 FillSelectionViewModel();
                 return Page();
@@ -118,9 +118,9 @@ namespace Vitae.Pages.Experience
 
         public IActionResult OnPostAddExperience()
         {
-            if (Experiences == null)
+            if (Experiences.Count == 0)
             {
-                Experiences = new List<ExperienceVM>() { new ExperienceVM() { Order = 0 } };
+                Experiences.Add(new ExperienceVM() { Order = 1 });
             }
             else if (Experiences.Count < MaxExperiences)
             {
@@ -133,11 +133,7 @@ namespace Vitae.Pages.Experience
 
         public IActionResult OnPostRemoveExperience()
         {
-            if (Experiences == null)
-            {
-                Experiences = new List<ExperienceVM>() { new ExperienceVM() { Order = 0 } };
-            }
-            else if (Experiences.Count > 1)
+            if (Experiences.Count > 0)
             {
                 Experiences.RemoveAt(Experiences.Count - 1);
             }

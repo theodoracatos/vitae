@@ -74,7 +74,7 @@ namespace Vitae.Pages.Education
                         Subject = e.Subject,
                         Title = e.Title
                     })
-                    .ToList() ?? new List<EducationVM>() { new EducationVM() { Order = 1 } };
+                    .ToList();
 
                 FillSelectionViewModel();
                 return Page();
@@ -121,9 +121,9 @@ namespace Vitae.Pages.Education
 
         public IActionResult OnPostAddEducation()
         {
-            if (Educations == null)
+            if (Educations.Count == 0)
             {
-                Educations = new List<EducationVM>() { new EducationVM() { Order = 0 } };
+                Educations.Add(new EducationVM() { Order = 1 });
             }
             else if (Educations.Count < MaxEducations)
             {
@@ -136,11 +136,7 @@ namespace Vitae.Pages.Education
 
         public IActionResult OnPostRemoveEducation()
         {
-            if (Educations == null)
-            {
-                Educations = new List<EducationVM>() { new EducationVM() { Order = 0} };
-            }
-            else if (Educations.Count > 1)
+            if (Educations.Count > 0)
             {
                 Educations.RemoveAt(Educations.Count - 1);
             }
