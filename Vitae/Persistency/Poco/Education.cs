@@ -12,7 +12,7 @@ namespace Persistency.Poco
         [MaxLength(100)]
         public string SchoolName { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(200)]
         public string SchoolLink { get; set; }
 
         [Required]

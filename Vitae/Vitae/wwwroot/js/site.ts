@@ -200,6 +200,7 @@ function loadImageComponent() {
     // Images
     $("#btnRemoveImage").click(function (e) {
         $('#divPreview').addClass("d-none");
+        $('#divPreview').removeClass("d-flex");
         $('#divSelector').removeClass("d-none");
         $("#imgInput").val('');
         $("#imgPreview").attr('src', '');

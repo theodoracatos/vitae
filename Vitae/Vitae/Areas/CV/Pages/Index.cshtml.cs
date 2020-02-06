@@ -104,8 +104,8 @@ namespace CVitae.Areas.CV.Pages
                     CompanyLink = experience.CompanyLink,
                     City = experience.City,
                     Resumee = experience.Resumee,
-                    Start = experience.Start,
-                    End = experience.End
+                    //Start = experience.Start,
+                    //End = experience.End
                 });
             }
 
@@ -121,10 +121,10 @@ namespace CVitae.Areas.CV.Pages
                     City = education.City,
                     Title = education.Title,
                     Resumee = education.Resumee,
-                    Education_Start_Month = education.Start.Month,
-                    Education_Start_Year = education.Start.Year,
-                    Education_End_Month = education.End.Value.Month,
-                    Education_End_Year = education.End.Value.Year,
+                    Start_Month = education.Start.Month,
+                    Start_Year = education.Start.Year,
+                    End_Month = education.End.Value.Month,
+                    End_Year = education.End.Value.Year,
                     Grade = education.Grade
                 });
             }

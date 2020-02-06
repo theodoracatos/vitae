@@ -16,14 +16,14 @@ namespace Persistency.Poco
         [MaxLength(100)]
         public string CompanyName { get; set; }
 
-        [MaxLength(1000)]
+        [MaxLength(200)]
         public string CompanyLink { get; set; }
 
         [Required]
         [MaxLength(100)]
         public string City { get; set; }
 
-        [MaxLength(1000)]
+        [MaxLength(4000)]
         public string Resumee { get; set; }
 
         public DateTime Start { get; set; }

@@ -60,10 +60,10 @@ namespace Vitae.Pages.Education
                 Educations = curriculum.Person.Educations?.OrderBy(ed => ed.Order)
                     .Select(e => new EducationVM() {
                         City = e.City,
-                        Education_Start_Month = e.Start.Month,
-                        Education_Start_Year = e.Start.Year,
-                        Education_End_Month = e.End.HasValue ? e.End.Value.Month : DateTime.Now.Month,
-                        Education_End_Year = e.End.HasValue ? e.End.Value.Year : DateTime.Now.Year,
+                        Start_Month = e.Start.Month,
+                        Start_Year = e.Start.Year,
+                        End_Month = e.End.HasValue ? e.End.Value.Month : DateTime.Now.Month,
+                        End_Year = e.End.HasValue ? e.End.Value.Year : DateTime.Now.Year,
                         UntilNow = !e.End.HasValue,
                         Grade = e.Grade,
                         Order = e.Order,
@@ -91,8 +91,8 @@ namespace Vitae.Pages.Education
                     Educations.Select(e => new Poco.Education()
                     {
                         City = e.City,
-                        Start = new DateTime(e.Education_Start_Year, e.Education_Start_Month, 1),
-                        End = e.UntilNow ? null : (DateTime?)new DateTime(e.Education_End_Year.Value, e.Education_End_Month.Value, DateTime.DaysInMonth(e.Education_End_Year.Value, e.Education_End_Month.Value)),
+                        Start = new DateTime(e.Start_Year, e.Start_Month, 1),
+                        End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, DateTime.DaysInMonth(e.End_Year.Value, e.End_Month.Value)),
                         Grade = e.Grade,
                         Order = e.Order,
                         Resumee = e.Resumee,

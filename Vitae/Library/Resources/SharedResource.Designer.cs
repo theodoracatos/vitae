@@ -88,7 +88,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The value &apos;{0}&apos; is not valid for {1}.
+        ///   Looks up a localized string similar to The value &apos;{0}&apos; is not valid for {y}.
         /// </summary>
         public static string AttemptedValueIsInvalidAccessor {
             get {
@@ -165,6 +165,15 @@ namespace Library.Resources {
         public static string City1 {
             get {
                 return ResourceManager.GetString("City1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company name.
+        /// </summary>
+        public static string CompanyName {
+            get {
+                return ResourceManager.GetString("CompanyName", resourceCulture);
             }
         }
         
@@ -318,6 +327,15 @@ namespace Library.Resources {
         public static string Interests {
             get {
                 return ResourceManager.GetString("Interests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Job title.
+        /// </summary>
+        public static string JobTitle {
+            get {
+                return ResourceManager.GetString("JobTitle", resourceCulture);
             }
         }
         
@@ -628,15 +646,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Link.
-        /// </summary>
-        public static string SchoolLink {
-            get {
-                return ResourceManager.GetString("SchoolLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Educational institution.
         /// </summary>
         public static string SchoolName {
@@ -732,6 +741,15 @@ namespace Library.Resources {
         public static string UntilNow {
             get {
                 return ResourceManager.GetString("UntilNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link.
+        /// </summary>
+        public static string URL {
+            get {
+                return ResourceManager.GetString("URL", resourceCulture);
             }
         }
         

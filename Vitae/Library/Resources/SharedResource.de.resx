@@ -127,7 +127,7 @@
     <value>Dateien sind zum Hochladen erlaubt</value>
   </data>
   <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
-    <value>Der Wert '{0}' ist nicht gültig für {1}</value>
+    <value>Der Wert '{0}' ist nicht gültig für {y}</value>
   </data>
   <data name="Awards" xml:space="preserve">
     <value>Errungenschaften</value>
@@ -152,6 +152,9 @@
   </data>
   <data name="City1" xml:space="preserve">
     <value>Stadt</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Firmenname</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Bestätigung</value>
@@ -203,6 +206,9 @@
   </data>
   <data name="Interests" xml:space="preserve">
     <value>Interessen</value>
+  </data>
+  <data name="JobTitle" xml:space="preserve">
+    <value>Jobtitel</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Sprache</value>
@@ -306,9 +312,6 @@
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>
   </data>
-  <data name="SchoolLink" xml:space="preserve">
-    <value>URL</value>
-  </data>
   <data name="SchoolName" xml:space="preserve">
     <value>Ausbildungsstätte</value>
   </data>
@@ -341,6 +344,9 @@
   </data>
   <data name="UntilNow" xml:space="preserve">
     <value>Bis jetzt</value>
+  </data>
+  <data name="URL" xml:space="preserve">
+    <value>Link</value>
   </data>
   <data name="ValueIsInvalidAccessor" xml:space="preserve">
     <value>Der Wert '{0}' ist ungültig</value>

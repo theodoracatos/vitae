@@ -12,9 +12,9 @@ namespace Library.ViewModels
         [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string SchoolName { get; set; }
 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.SchoolLink), Prompt = nameof(SharedResource.SchoolLink))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.URL), Prompt = nameof(SharedResource.URL))]
         [Url(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
-        [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        [MaxLength(200, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string SchoolLink { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.City), Prompt = nameof(SharedResource.City))]
@@ -41,14 +41,14 @@ namespace Library.ViewModels
         public float? Grade { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Start), Prompt = nameof(SharedResource.Start))]
-        public int Education_Start_Month { get; set; }
+        public int Start_Month { get; set; }
 
-        public int Education_Start_Year { get; set; }
+        public int Start_Year { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.End), Prompt = nameof(SharedResource.End))]
-        public int? Education_End_Month { get; set; }
+        public int? End_Month { get; set; }
 
-        public int? Education_End_Year { get; set; }
+        public int? End_Year { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.UntilNow), Prompt = nameof(SharedResource.UntilNow))]
         public bool UntilNow { get; set; }

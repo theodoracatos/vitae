@@ -15,7 +15,6 @@ namespace Library.ViewModels
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Photo), Prompt = nameof(SharedResource.Photo))]
         public string Photo { get; set; }
 
-        [BindProperty]
         public VfileVM Vfile { get; set; }
     }
 }

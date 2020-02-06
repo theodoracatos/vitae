@@ -1,11 +1,19 @@
 ﻿@model Vitae.Pages.Experience.IndexModel
 
-<div id="panel">
-    <div class="form-row">
-        <div class="form-group col">
-            @*<label class="control-label" asp-for="@Model.About.Slogan"></label>
-                <textarea asp-for="@Model.About.Slogan" class="form-control"></textarea>
-                <span asp-validation-for="@Model.About.Slogan" class="text-danger"></span>*@
+    <div id="panel">
+        <div class="card mb-4">
+            <div class="card-header font-weight-bold">
+                @SharedResource.Experience
+            </div>
+            <div class="card-body">
+              
+            </div>
+            <div class="card-footer">
+                <div class="form-row">
+                    <div class="form-group col mb-0 text-right">
+                        <button type="submit" class="btn btn-outline-success float-right">@SharedResource.Save</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
