@@ -69,7 +69,7 @@ namespace Persistency.Migrations
                     Identifier = table.Column<Guid>(nullable: false),
                     Content = table.Column<byte[]>(nullable: true),
                     MimeType = table.Column<string>(nullable: true),
-                    FileName = table.Column<string>(maxLength: 1000, nullable: true)
+                    FileName = table.Column<string>(maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -192,7 +192,7 @@ namespace Persistency.Migrations
                 {
                     EducationID = table.Column<Guid>(nullable: false),
                     SchoolName = table.Column<string>(maxLength: 100, nullable: false),
-                    SchoolLink = table.Column<string>(maxLength: 255, nullable: true),
+                    Link = table.Column<string>(maxLength: 255, nullable: true),
                     City = table.Column<string>(maxLength: 100, nullable: false),
                     Title = table.Column<string>(maxLength: 100, nullable: false),
                     Subject = table.Column<string>(maxLength: 100, nullable: false),
@@ -221,7 +221,7 @@ namespace Persistency.Migrations
                     ExperienceID = table.Column<Guid>(nullable: false),
                     JobTitle = table.Column<string>(maxLength: 100, nullable: false),
                     CompanyName = table.Column<string>(maxLength: 100, nullable: false),
-                    CompanyLink = table.Column<string>(maxLength: 255, nullable: true),
+                    Link = table.Column<string>(maxLength: 255, nullable: true),
                     City = table.Column<string>(maxLength: 100, nullable: false),
                     Resumee = table.Column<string>(maxLength: 4000, nullable: true),
                     Start = table.Column<DateTime>(nullable: false),
@@ -341,7 +341,7 @@ namespace Persistency.Migrations
                 {
                     SocialLinkID = table.Column<Guid>(nullable: false),
                     SocialPlatform = table.Column<int>(nullable: false),
-                    Hyperlink = table.Column<string>(maxLength: 100, nullable: false),
+                    Link = table.Column<string>(maxLength: 255, nullable: false),
                     Order = table.Column<int>(nullable: false),
                     PersonID = table.Column<Guid>(nullable: true)
                 },

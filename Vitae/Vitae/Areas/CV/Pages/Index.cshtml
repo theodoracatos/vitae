@@ -76,7 +76,7 @@
                     @{
                         foreach (var socialLink in Model.SocialLinks)
                         {
-                           <a href="@socialLink.Hyperlink" target="_blank">
+                           <a href="@socialLink.Link" target="_blank">
                                <i class="@socialLink.SocialPlatform.Description()"></i>
                            </a>
                         }
@@ -123,7 +123,7 @@
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                             <div class="resume-content">
                                  <h3 class="mb-0">@education.Title, @education.Subject</h3>
-                                 <div class="subheading mb-3"><a href="mailto:@(education.SchoolName)">@education.SchoolLink</a>, @education.City</div>
+                                 <div class="subheading mb-3"><a href="mailto:@(education.SchoolName)">@education.Link</a>, @education.City</div>
                                  <p>Note: @education.Grade</p>
                                  <p>@education.Resumee</p>
                             </div>

@@ -68,6 +68,7 @@ namespace Vitae.Pages.Sociallinks
                 return Page();
             }
         }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)

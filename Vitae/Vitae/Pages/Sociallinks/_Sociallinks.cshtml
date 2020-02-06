@@ -10,8 +10,8 @@
                 <div class="form-group col">
                     <label class="control-label" asp-for="@Model.SocialLinks"></label>
                     <div>
-                        <button asp-page-handler="AddSociallink" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.SocialLinks?.Count < Model.MaxSocialLinks ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveSociallink" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.SocialLinks?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                        <button asp-page-handler="AddSocialLink" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.SocialLinks?.Count < Model.MaxSocialLinks ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                        <button asp-page-handler="RemoveSocialLink" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.SocialLinks?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
                     </div>
                 </div>
             </div>
@@ -21,8 +21,8 @@
                 <div class="form-row">
                     <div class="form-group col mt-1">
                         <div class="text-right">
-                            <button asp-page-handler="UpSociallink" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(i > 0 ? null : "disabled")"><i class="fas fa-arrow-up"></i></button>
-                            <button asp-page-handler="DownSociallink" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(i == Model.SocialLinks.Count - 1 ? "disabled": null)"><i class="fas fa-arrow-down"></i></button>
+                            <button asp-page-handler="UpSocialLink" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(i > 0 ? null : "disabled")"><i class="fas fa-arrow-up"></i></button>
+                            <button asp-page-handler="DownSocialLink" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(i == Model.SocialLinks.Count - 1 ? "disabled": null)"><i class="fas fa-arrow-down"></i></button>
                         </div>
                     </div>
                 </div>
