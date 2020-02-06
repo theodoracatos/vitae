@@ -69,7 +69,7 @@ namespace Vitae.Pages.Experience
                         UntilNow = !e.End.HasValue,
                         Order = e.Order,
                         Resumee = e.Resumee,
-                        CompanyLink = e.CompanyLink,
+                        Link = e.Link,
                         CompanyName = e.CompanyName,
                         JobTitle = e.JobTitle
                     })
@@ -95,7 +95,7 @@ namespace Vitae.Pages.Experience
                         End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, DateTime.DaysInMonth(e.End_Year.Value, e.End_Month.Value)),
                         Order = e.Order,
                         Resumee = e.Resumee,
-                        CompanyLink = e.CompanyLink,
+                        Link = e.Link,
                         CompanyName = e.CompanyName,
                         JobTitle = e.JobTitle
                     }).ToList();

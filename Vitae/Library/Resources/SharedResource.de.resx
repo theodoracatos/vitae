@@ -364,10 +364,16 @@
     <value>Skills</value>
   </data>
   <data name="Skillset" xml:space="preserve">
-    <value>Kernkompetenz</value>
+    <value>Kernkompetenzen</value>
   </data>
   <data name="Slogan" xml:space="preserve">
     <value>Slogan</value>
+  </data>
+  <data name="SocialLinks" xml:space="preserve">
+    <value>Soziale Verbindungen</value>
+  </data>
+  <data name="SocialPlatform" xml:space="preserve">
+    <value>Soziale Plattform</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>

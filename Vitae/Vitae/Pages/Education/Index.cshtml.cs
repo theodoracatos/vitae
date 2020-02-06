@@ -69,7 +69,7 @@ namespace Vitae.Pages.Education
                         Grade = e.Grade,
                         Order = e.Order,
                         Resumee = e.Resumee,
-                        SchoolLink = e.SchoolLink,
+                        Link = e.Link,
                         SchoolName = e.SchoolName,
                         Subject = e.Subject,
                         Title = e.Title
@@ -97,7 +97,7 @@ namespace Vitae.Pages.Education
                         Grade = e.Grade,
                         Order = e.Order,
                         Resumee = e.Resumee,
-                        SchoolLink = e.SchoolLink,
+                        Link = e.Link,
                         SchoolName = e.SchoolName,
                         Subject = e.Subject,
                         Title = e.Title

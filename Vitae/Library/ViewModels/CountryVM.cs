@@ -10,7 +10,9 @@ namespace Library.ViewModels
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CountryName), Prompt = nameof(SharedResource.CountryName))]
         [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string Name { get; set; }
+
         public string CountryCode { get; set; }
+
         public int? PhoneCode { get; set; }
     }
 }

@@ -89,7 +89,7 @@ namespace CVitae.Areas.CV.Pages
                 SocialLinks.Add(new SocialLinkVM()
                 { 
                     SocialPlatform = socialLink.SocialPlatform,
-                    Hyperlink = socialLink.Hyperlink
+                    Link = socialLink.Link
                 });
             }
 
@@ -101,7 +101,7 @@ namespace CVitae.Areas.CV.Pages
                 {
                     JobTitle = experience.JobTitle,
                     CompanyName = experience.CompanyName,
-                    CompanyLink = experience.CompanyLink,
+                    Link = experience.Link,
                     City = experience.City,
                     Resumee = experience.Resumee,
                     //Start = experience.Start,
@@ -116,7 +116,7 @@ namespace CVitae.Areas.CV.Pages
                 Educations.Add(new EducationVM()
                 {
                     SchoolName = education.SchoolName,
-                    SchoolLink = education.SchoolName,
+                    Link = education.Link,
                     Subject = education.Subject,
                     City = education.City,
                     Title = education.Title,

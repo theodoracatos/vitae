@@ -369,6 +369,12 @@
   <data name="Slogan" xml:space="preserve">
     <value>Slogan</value>
   </data>
+  <data name="SocialLinks" xml:space="preserve">
+    <value>Social links</value>
+  </data>
+  <data name="SocialPlatform" xml:space="preserve">
+    <value>Social platform</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>

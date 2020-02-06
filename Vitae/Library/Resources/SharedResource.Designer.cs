@@ -817,6 +817,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Social links.
+        /// </summary>
+        public static string SocialLinks {
+            get {
+                return ResourceManager.GetString("SocialLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Social platform.
+        /// </summary>
+        public static string SocialPlatform {
+            get {
+                return ResourceManager.GetString("SocialPlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         public static string Start {

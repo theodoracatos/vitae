@@ -99,6 +99,10 @@
     <Compile Remove="Migrations\20200206134246_v.1.0.0.Designer.cs" />
     <Compile Remove="Migrations\20200206141058_v.1.0.0.cs" />
     <Compile Remove="Migrations\20200206141058_v.1.0.0.Designer.cs" />
+    <Compile Remove="Migrations\20200206144817_v.1.0.0.cs" />
+    <Compile Remove="Migrations\20200206144817_v.1.0.0.Designer.cs" />
+    <Compile Remove="Migrations\20200206215129_v.1.0.0.cs" />
+    <Compile Remove="Migrations\20200206215129_v.1.0.0.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

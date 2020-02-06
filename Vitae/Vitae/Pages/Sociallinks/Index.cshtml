@@ -1,0 +1,12 @@
+﻿@page
+@model Vitae.Pages.Sociallinks.IndexModel
+
+@{
+    ViewData["Title"] = @SharedResource.Sociallinks;
+}
+
+<h1><i class="fab fa-twitter"></i>@SharedResource.Sociallinks</h1>
+
+<form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
+    @await Html.PartialAsync("_Sociallinks", Model)
+</form>

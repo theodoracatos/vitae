@@ -14,8 +14,8 @@ namespace Persistency.Poco
         public SocialPlatform SocialPlatform { get; set; }
 
         [Required]
-        [MaxLength(100)]
-        public string Hyperlink { get; set; }
+        [MaxLength(255)]
+        public string Link { get; set; }
 
         public int Order { get; set; }
     }

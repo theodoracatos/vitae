@@ -14,7 +14,7 @@ namespace Persistency.Poco
 
         public string MimeType { get; set; }
 
-        [MaxLength(1000)]
+        [MaxLength(255)]
         public string FileName { get; set; }
     }
 }

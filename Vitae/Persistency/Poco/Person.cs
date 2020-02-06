@@ -32,6 +32,7 @@ namespace Persistency.Poco
 
         [MaxLength(100)]
         public string City { get; set; }
+
         [MaxLength(100)]
         public string State { get; set; }
 
