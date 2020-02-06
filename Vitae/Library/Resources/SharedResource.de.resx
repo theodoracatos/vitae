@@ -133,7 +133,7 @@
     <value>Verliehen von</value>
   </data>
   <data name="AwardedOn" xml:space="preserve">
-    <value>Verliehen am</value>
+    <value>Verliehen im</value>
   </data>
   <data name="Awards" xml:space="preserve">
     <value>Errungenschaften</value>

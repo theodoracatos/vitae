@@ -456,16 +456,22 @@ VALUES (NEWID(), 'Kantonsschule SH', 'https://kanti.ch', 'Schaffhausen', 'Matura
 
 
 INSERT INTO [LanguageSkill] 
-VALUES(4, 2, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 4, 1, (SELECT [LanguageID] FROM [Language] ORDER BY [LanguageID] OFFSET 1 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [LanguageSkill] 
-VALUES(3, 4, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 3, 2, (SELECT [LanguageID] FROM [Language] ORDER BY [LanguageID] OFFSET 2 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [LanguageSkill] 
-VALUES(2, 5, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 2, 3, (SELECT [LanguageID] FROM [Language] ORDER BY [LanguageID] OFFSET 3 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [LanguageSkill] 
-VALUES(1, 8, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 1, 4, (SELECT [LanguageID] FROM [Language] ORDER BY [LanguageID] OFFSET 4 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Award]
+VALUES(NEWID(), 'ZHAW Alumni Award', 'Best award ever from ZHAW', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', '2012-01-01', 1,  (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Award]
+VALUES(NEWID(), 'ZHAW Alumni Award', 'Secend award from ZHAW', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', '2011-01-01', 2,  (SELECT TOP 1 [PersonID] FROM [Person]))
 
 -------------------
 

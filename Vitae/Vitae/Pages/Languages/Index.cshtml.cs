@@ -150,7 +150,7 @@ namespace Vitae.Pages.Languages
         {
             var curriculum = appContext.Curriculums
                     .Include(c => c.Person)
-                    .Include(c => c.Person.LanguageSkills)
+                    .Include(c => c.Person.LanguageSkills).ThenInclude(ls => ls.Language)
                     .Single(c => c.Identifier == id);
 
             return curriculum;

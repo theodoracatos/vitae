@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistency.Data;
 
-namespace Persistency.Data.Migrations
+namespace Persistency.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200206133205_v.1.0.0")]
+    [Migration("20200206134246_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

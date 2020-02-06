@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
     <Compile Remove="Data\Migrations\20191218230355_v.1.0.0.cs" />
     <Compile Remove="Data\Migrations\20191218230355_v.1.0.0.Designer.cs" />
     <Compile Remove="Data\Migrations\20191220111224_v.1.0.0.cs" />
@@ -89,6 +91,10 @@
     <Compile Remove="Data\Migrations\20200206100413_v.1.0.0.Designer.cs" />
     <Compile Remove="Data\Migrations\20200206100525_v.1.0.0.cs" />
     <Compile Remove="Data\Migrations\20200206100525_v.1.0.0.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200206133205_v.1.0.0.cs" />
+    <Compile Remove="Data\Migrations\20200206133205_v.1.0.0.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200206133414_v.1.0.0.cs" />
+    <Compile Remove="Data\Migrations\20200206133414_v.1.0.0.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
