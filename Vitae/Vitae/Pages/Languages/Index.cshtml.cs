@@ -33,7 +33,7 @@ namespace Vitae.Pages.Languages
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Languages), Prompt = nameof(SharedResource.Languages))]
         [BindProperty]
-        public List<LanguageSkillVM> LanguageSkills { get; set; }
+        public IList<LanguageSkillVM> LanguageSkills { get; set; }
 
         public IEnumerable<LanguageVM> Languages { get; set; }
 

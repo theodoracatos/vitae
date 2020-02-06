@@ -97,6 +97,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Awarded from.
+        /// </summary>
+        public static string AwardedFrom {
+            get {
+                return ResourceManager.GetString("AwardedFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Awarded on.
+        /// </summary>
+        public static string AwardedOn {
+            get {
+                return ResourceManager.GetString("AwardedOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Awards.
         /// </summary>
         public static string Awards {
@@ -219,6 +237,15 @@ namespace Library.Resources {
         public static string CV {
             get {
                 return ResourceManager.GetString("CV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
@@ -498,6 +525,15 @@ namespace Library.Resources {
         public static string MyVitae {
             get {
                 return ResourceManager.GetString("MyVitae", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         

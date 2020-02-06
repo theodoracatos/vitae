@@ -1,11 +1,75 @@
 ﻿@model Vitae.Pages.Awards.IndexModel
 
 <div id="panel">
-    <div class="form-row">
-        <div class="form-group col">
-            @*<label class="control-label" asp-for="@Model.About.Slogan"></label>
-                <textarea asp-for="@Model.About.Slogan" class="form-control"></textarea>
-                <span asp-validation-for="@Model.About.Slogan" class="text-danger"></span>*@
+    <div class="card mb-4">
+        <div class="card-header font-weight-bold">
+            @SharedResource.Awards
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label class="control-label" asp-for="@Model.Awards"></label>
+                    <div>
+                        <button asp-page-handler="AddAward" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Awards?.Count < Model.MaxAwards ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                        <button asp-page-handler="RemoveAward" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Awards?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+            </div>
+            @for (int i = 0; i < Model.Awards.Count; i++)
+            {
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Awards[i].Name"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Awards[i].Name" />
+                        <span asp-validation-for="@Model.Awards[i].Name" class="text-danger"></span>
+                        <input type="hidden" asp-for="@Model.Awards[i].Order" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Awards[i].Link"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Awards[i].Link" />
+                        <span asp-validation-for="@Model.Awards[i].Link" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.Awards[i].Description"></label>
+                        <textarea asp-for="@Model.Awards[i].Description" class="form-control"></textarea>
+                        <span asp-validation-for="@Model.Awards[i].Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.Awards[i].Month"></label>
+                        <div class="d-flex">
+                            <select asp-for="@Model.Awards[i].Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                            <select asp-for="@Model.Awards[i].Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Constants.YEAR_START, DateTime.Now.Year - Constants.YEAR_START + 1).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col mt-1">
+                        <div class="text-right">
+                            <button asp-page-handler="UpAward" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(i > 0 ? null : "disabled")"><i class="fas fa-arrow-up"></i></button>
+                            <button asp-page-handler="DownAward" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(i == Model.Awards.Count - 1 ? "disabled": null)"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                    </div>
+                </div>
+                @if (i < Model.Awards.Count - 1)
+                {
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <hr />
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="card-footer">
+            <div class="form-row">
+                <div class="form-group col mb-0 text-right">
+                    <button type="submit" class="btn btn-outline-success float-right">@SharedResource.Save</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

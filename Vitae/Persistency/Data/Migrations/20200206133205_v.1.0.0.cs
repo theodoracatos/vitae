@@ -168,7 +168,9 @@ namespace Persistency.Data.Migrations
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: false),
                     AwardedFrom = table.Column<string>(maxLength: 100, nullable: false),
+                    Link = table.Column<string>(maxLength: 200, nullable: true),
                     AwardedOn = table.Column<DateTime>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
                     PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
