@@ -128,8 +128,10 @@ span.field-validation-error {
     border-radius: 4px;
 }
 /* Filer */
-.jFiler-input{
+.jFiler-input {
     margin-bottom: 0 !important;
+    height: 40px !important;
+    border-color: rgb(108, 117, 125) !important;
 }
 
 .jFiler-theme-default .jFiler-input {
@@ -142,14 +144,24 @@ span.field-validation-error {
 
 .jFiler-input-button {
     background-image: none !important;
-    padding-top: 5px !important;
-    color: #495057 !important;
+    padding-top: 7px !important;
+    color: #6C757D !important;
+    padding-bottom: 25px !important;
+    font-family: Lato-Regular, Arial, Helvetica, sans-serif !important;
+    border-color: rgb(108, 117, 125) !important;
 }
-
+.jFiler-input-button:focus {
+    box-shadow: none !important;
+}
+.jFiler-input-button:hover {
+    background-color: #6C757D !important;
+    color: #fff !important;
+}
 .jFiler-input-caption {
     background-image: none !important;
-    padding-top: 5px !important;
-    color: #495057 !important;
+    padding-top: 7px !important;
+    color: #6C757D !important;
+    font-family: Lato-Regular, Arial, Helvetica, sans-serif !important;
 }
 
 .jFiler-item:last-child {

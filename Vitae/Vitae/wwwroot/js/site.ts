@@ -230,6 +230,7 @@ function loadFilerUpload() {
             showThumbs: true,
             limit: 1,
             fileMaxSize: 10,
+            icon: '<i class="fas fa-plus"></i>',
             extensions: ['application/pdf'],
             onSelect: function () {
                 $('.uploadedFile').hide();
@@ -238,7 +239,7 @@ function loadFilerUpload() {
                 $('.uploadedFile').show();
             },
             captions: {
-                button: Resources.SharedResource.Browse,
+                button: Resources.SharedResource.Browse + "...",
                 feedback: Resources.SharedResource.ChooseFile,
                 feedback2: Resources.SharedResource.ChosenFile,
                 drop: Resources.SharedResource.DropFile,
@@ -253,6 +254,7 @@ function loadFilerUpload() {
             },
             templates: {
                 removeConfirmation: false,
+
             },
             dialogs: {
                 alert: function (text) {

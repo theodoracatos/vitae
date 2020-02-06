@@ -455,8 +455,17 @@ INSERT INTO [Education]
 VALUES (NEWID(), 'Kantonsschule SH', 'https://kanti.ch', 'Schaffhausen', 'Matura', 'Naturwissenschaften (Profil N)', 'Naturwissenschaftlich–mathematischeMatura mit Schwerpunkten in Chemie / Biologie', '4.5', '1998-08-01', '2002-07-01', 4, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 
+INSERT INTO [LanguageSkill] 
+VALUES(4, 2, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
---INSERT INTO [LanguageSkill] 
+INSERT INTO [LanguageSkill] 
+VALUES(3, 4, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [LanguageSkill] 
+VALUES(2, 5, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [LanguageSkill] 
+VALUES(1, 8, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 -------------------
 
