@@ -136,6 +136,9 @@ span.field-validation-error {
 
 .jFiler-theme-default .jFiler-input {
     font-size: 1rem;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 .jFiler-items-list{
@@ -170,45 +173,44 @@ span.field-validation-error {
 
 
 /* Rating */
-.rating-symbol {
-    cursor: help;
-}
+    .rating-symbol {
+        cursor: help;
+    }
 
-.rating-symbol {
-    color: $main-font-light;
-    cursor: pointer;
-    display: inline-block;
-    vertical-align: bottom;
-}
+    .rating-symbol {
+        color: $main-font-light;
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: bottom;
+    }
 
-.rating-symbol-foreground {
-    color: $qvs-gold-color;
-}
+    .rating-symbol-foreground {
+        color: $qvs-gold-color;
+    }
+    /* Tagsinput */
+    .bootstrap-tagsinput {
+        min-height: 38px;
+    }
 
-/* Tagsinput */
-.bootstrap-tagsinput {
-   min-height: 38px;
-}
+    .badge.badge-info {
+        margin-left: 0.75em;
+        font-weight: 400;
+        color: #fff;
+        background-color: #6c757d;
+        border: 1px solid #6c757d;
+    }
 
-.badge.badge-info {
-    margin-left: 0.75em;
-    font-weight: 400;
-    color: #fff;
-    background-color: #6c757d;
-    border: 1px solid #6c757d;
-}
+    .bootstrap-tagsinput input {
+        margin-top: 2px;
+        margin-left: 0.5em;
+        color: #495057 !important;
+    }
 
-.bootstrap-tagsinput input {
-    margin-top: 2px;
-    margin-left: 0.5em;
-    color: #495057 !important;
-}
+    .bootstrap-tagsinput .badge {
+        margin-top: 0px;
+        padding: 3px 0px 3px 5px;
+    }
 
-.bootstrap-tagsinput .badge {
-    margin-top: 0px;
-    padding: 3px 0px 3px 5px;
-}
-
-.bootstrap-tagsinput span[data-role="remove"]:after {
-    background-color: transparent !important;
-}
+    .bootstrap-tagsinput span[data-role="remove"]:after {
+        background-color: transparent !important;
+    }
