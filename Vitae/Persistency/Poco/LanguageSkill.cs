@@ -12,5 +12,7 @@ namespace Persistency.Poco
 
         [Required]
         public virtual Language Language { get; set; }
+
+        public int Order { get; set; }
     }
 }

@@ -1,6 +1,10 @@
 ﻿@page
 @model Vitae.Pages.Education.IndexModel
 
+@{
+    ViewData["Title"] = @SharedResource.Education;
+}
+
 <h1><i class="fas fa-university fa-fw"></i>@SharedResource.Education</h1>
 
 <form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">

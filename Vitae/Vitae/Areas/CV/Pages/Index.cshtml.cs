@@ -135,11 +135,11 @@ namespace CVitae.Areas.CV.Pages
             {
                 LanguageSkills.Add(new LanguageSkillVM()
                 {
-                    Language = new LanguageVM()
-                    {
-                        Name = languageSkill.Language.Name,
-                        LanguageCode = languageSkill.Language.LanguageCode
-                    },
+                    //Language = new LanguageVM()
+                    //{
+                    //    Name = languageSkill.Language.Name,
+                    //    LanguageCode = languageSkill.Language.LanguageCode
+                    //},
                      Rate = languageSkill.Rate
                 });
             }

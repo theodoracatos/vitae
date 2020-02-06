@@ -241,6 +241,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Educations.
+        /// </summary>
+        public static string Educations {
+            get {
+                return ResourceManager.GetString("Educations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {
@@ -331,11 +340,56 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Job experiences.
+        /// </summary>
+        public static string JobExperiences {
+            get {
+                return ResourceManager.GetString("JobExperiences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Job title.
         /// </summary>
         public static string JobTitle {
             get {
                 return ResourceManager.GetString("JobTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basic knowledge.
+        /// </summary>
+        public static string KnowledgeBasic {
+            get {
+                return ResourceManager.GetString("KnowledgeBasic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business fluent.
+        /// </summary>
+        public static string KnowledgeBusinessFluent {
+            get {
+                return ResourceManager.GetString("KnowledgeBusinessFluent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fluently.
+        /// </summary>
+        public static string KnowledgeFluent {
+            get {
+                return ResourceManager.GetString("KnowledgeFluent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Native language.
+        /// </summary>
+        public static string KnowledgeNative {
+            get {
+                return ResourceManager.GetString("KnowledgeNative", resourceCulture);
             }
         }
         
@@ -444,6 +498,15 @@ namespace Library.Resources {
         public static string MyVitae {
             get {
                 return ResourceManager.GetString("MyVitae", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nationalities.
+        /// </summary>
+        public static string Nationalities {
+            get {
+                return ResourceManager.GetString("Nationalities", resourceCulture);
             }
         }
         
@@ -579,6 +642,15 @@ namespace Library.Resources {
         public static string ProperValue {
             get {
                 return ResourceManager.GetString("ProperValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Knowledge.
+        /// </summary>
+        public static string Rate {
+            get {
+                return ResourceManager.GetString("Rate", resourceCulture);
             }
         }
         

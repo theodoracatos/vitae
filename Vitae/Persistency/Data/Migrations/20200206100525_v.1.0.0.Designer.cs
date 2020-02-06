@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200205203441_v.1.0.0")]
+    [Migration("20200206100525_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -193,8 +193,8 @@ namespace Persistency.Data.Migrations
                         .HasMaxLength(1000);
 
                     b.Property<string>("SchoolLink")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("SchoolName")
                         .IsRequired()
@@ -233,8 +233,8 @@ namespace Persistency.Data.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("CompanyLink")
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -256,8 +256,8 @@ namespace Persistency.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Resumee")
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasColumnType("nvarchar(4000)")
+                        .HasMaxLength(4000);
 
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
@@ -346,6 +346,9 @@ namespace Persistency.Data.Migrations
 
                     b.Property<Guid>("LanguageID")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("PersonID")
                         .HasColumnType("uniqueidentifier");

@@ -155,3 +155,20 @@ span.field-validation-error {
 .jFiler-item:last-child {
     margin-bottom: 0;
 }
+
+
+/* Rating */
+.rating-symbol {
+    cursor: help;
+}
+
+.rating-symbol {
+    color: $main-font-light;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.rating-symbol-foreground {
+    color: $qvs-gold-color;
+}

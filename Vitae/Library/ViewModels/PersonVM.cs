@@ -75,7 +75,7 @@ namespace Library.ViewModels
         [MaxLength(16, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string MobileNumber { get; set; }
 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Nationality), Prompt = nameof(SharedResource.Nationality))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Nationalities), Prompt = nameof(SharedResource.Nationalities))]
         public IList<NationalityVM> Nationalities { get; set; }
     }
 }

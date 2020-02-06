@@ -3,5 +3,8 @@ EntityFrameworkCore\add-migration -startupproject Vitae -project Persistency -co
 EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context ApplicationContext
 
 /* REMOVE */
-EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context ApplicationContext –migration 0
+EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context ApplicationContext –migration 00000000000000_CreateIdentitySchema
 EntityFrameworkCore\remove-migration -startupproject Vitae -project Persistency -context ApplicationContext
+
+/* REVERT ALL */
+EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context ApplicationContext –migration 0

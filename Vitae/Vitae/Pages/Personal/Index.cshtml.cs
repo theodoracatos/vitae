@@ -12,6 +12,7 @@ using Persistency.Poco;
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,6 +23,10 @@ namespace Vitae.Pages.Personal
     public class IndexModel : BasePageModel
     {
         private const string PAGE_PERSONAL = "_Personal";
+        private readonly IStringLocalizer<SharedResource> localizer;
+        private readonly ApplicationContext appContext;
+        private readonly IRequestCultureFeature requestCulture;
+
         private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // TODO: to be read from header
 
         [BindProperty]
@@ -29,16 +34,12 @@ namespace Vitae.Pages.Personal
 
         public IEnumerable<CountryVM> Countries { get; set; }
         public IEnumerable<LanguageVM> Languages { get; set; }
+
         public IEnumerable<CountryVM> Nationalities { get; set; }
         public IEnumerable<MonthVM> Months { get; set; }
 
         public int MaxNationalities { get; } = 3;
-        public int YearStart { get; } = 1900;
         public string PhonePrefix { get; set; }
-
-        private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly ApplicationContext appContext;
-        private readonly IRequestCultureFeature requestCulture;
 
         public IndexModel(IStringLocalizer<SharedResource> localizer, ApplicationContext appContext, IHttpContextAccessor httpContextAccessor)
         {

@@ -12,6 +12,7 @@ using Persistency.Poco;
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,17 +25,17 @@ namespace Vitae.Pages.Education
     public class IndexModel : BasePageModel
     {
         private const string PAGE_EDUCATION = "_Education";
-        private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
-
-        [BindProperty]
-        public List<EducationVM> Educations { get; set; }
-
-        public int MaxEducations { get; } = 20;
-        public int YearStart { get; } = 1900;
-
         private readonly IStringLocalizer<SharedResource> localizer;
         private readonly ApplicationContext appContext;
         private readonly IRequestCultureFeature requestCulture;
+
+        private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
+
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Educations), Prompt = nameof(SharedResource.Educations))]
+        [BindProperty]
+        public IList<EducationVM> Educations { get; set; }
+
+        public int MaxEducations { get; } = 20;
 
         public IEnumerable<MonthVM> Months { get; set; }
 
@@ -151,7 +152,6 @@ namespace Vitae.Pages.Education
 
         public IActionResult OnPostUpEducation(int order)
         {
-            // TODO - + now() date end
             var education = Educations[order];
             Educations[order] = Educations[order - 1];
             Educations[order - 1] = education;

@@ -12,6 +12,7 @@ using Persistency.Poco;
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,17 +25,17 @@ namespace Vitae.Pages.Experience
     public class IndexModel : BasePageModel
     {
         private const string PAGE_EXPERIENCE = "_Experience";
-        private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
-
-        [BindProperty]
-        public List<ExperienceVM> Experiences { get; set; }
-
-        public int MaxExperiences { get; } = 20;
-        public int YearStart { get; } = 1900;
-
         private readonly IStringLocalizer<SharedResource> localizer;
         private readonly ApplicationContext appContext;
         private readonly IRequestCultureFeature requestCulture;
+
+        private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
+
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.JobExperiences), Prompt = nameof(SharedResource.JobExperiences))]
+        [BindProperty]
+        public IList<ExperienceVM> Experiences { get; set; }
+
+        public int MaxExperiences { get; } = 20;
 
         public IEnumerable<MonthVM> Months { get; set; }
 
@@ -57,7 +58,7 @@ namespace Vitae.Pages.Experience
             {
                 var curriculum = GetCurriculum();
 
-                Experiences = curriculum.Person.Experiences?.OrderBy(ed => ed.Order)
+                Experiences = curriculum.Person.Experiences?.OrderBy(ex => ex.Order)
                     .Select(e => new ExperienceVM()
                     {
                         City = e.City,
@@ -84,7 +85,7 @@ namespace Vitae.Pages.Experience
             if (ModelState.IsValid)
             {
                 var curriculum = GetCurriculum();
-                appContext.RemoveRange(curriculum.Person.Educations);
+                appContext.RemoveRange(curriculum.Person.Experiences);
 
                 curriculum.Person.Experiences =
                     Experiences.Select(e => new Poco.Experience()
@@ -148,10 +149,9 @@ namespace Vitae.Pages.Experience
 
         public IActionResult OnPostUpExperience(int order)
         {
-            // TODO - + now() date end
-            var education = Experiences[order];
+            var experience = Experiences[order];
             Experiences[order] = Experiences[order - 1];
-            Experiences[order - 1] = education;
+            Experiences[order - 1] = experience;
 
             FillSelectionViewModel();
 
@@ -160,9 +160,9 @@ namespace Vitae.Pages.Experience
 
         public IActionResult OnPostDownExperience(int order)
         {
-            var education = Experiences[order];
+            var experience = Experiences[order];
             Experiences[order] = Experiences[order + 1];
-            Experiences[order + 1] = education;
+            Experiences[order + 1] = experience;
 
             FillSelectionViewModel();
 

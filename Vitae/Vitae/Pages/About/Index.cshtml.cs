@@ -23,14 +23,14 @@ namespace Vitae.Pages.About
     public class IndexModel : BasePageModel
     {
         private const string PAGE_ABOUT = "_About";
+        private readonly IStringLocalizer<SharedResource> localizer;
+        private readonly ApplicationContext appContext;
+        private readonly IRequestCultureFeature requestCulture;
+
         private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
 
         [BindProperty]
         public AboutVM About { get; set; }
-
-        private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly ApplicationContext appContext;
-        private readonly IRequestCultureFeature requestCulture;
 
         public IndexModel(IStringLocalizer<SharedResource> localizer, ApplicationContext appContext, IHttpContextAccessor httpContextAccessor)
         {

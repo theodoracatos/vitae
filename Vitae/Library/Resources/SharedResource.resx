@@ -177,6 +177,9 @@
   <data name="Education" xml:space="preserve">
     <value>Education</value>
   </data>
+  <data name="Educations" xml:space="preserve">
+    <value>Educations</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
@@ -207,8 +210,23 @@
   <data name="Interests" xml:space="preserve">
     <value>Interests</value>
   </data>
+  <data name="JobExperiences" xml:space="preserve">
+    <value>Job experiences</value>
+  </data>
   <data name="JobTitle" xml:space="preserve">
     <value>Job title</value>
+  </data>
+  <data name="KnowledgeBasic" xml:space="preserve">
+    <value>Basic knowledge</value>
+  </data>
+  <data name="KnowledgeBusinessFluent" xml:space="preserve">
+    <value>Business fluent</value>
+  </data>
+  <data name="KnowledgeFluent" xml:space="preserve">
+    <value>Fluently</value>
+  </data>
+  <data name="KnowledgeNative" xml:space="preserve">
+    <value>Native language</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
@@ -245,6 +263,9 @@
   </data>
   <data name="MyVitae" xml:space="preserve">
     <value>My Vitae</value>
+  </data>
+  <data name="Nationalities" xml:space="preserve">
+    <value>Nationalities</value>
   </data>
   <data name="Nationality" xml:space="preserve">
     <value>Nationality</value>
@@ -290,6 +311,9 @@
   </data>
   <data name="ProperValue" xml:space="preserve">
     <value>Please enter a proper value</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Knowledge</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
