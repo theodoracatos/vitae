@@ -130,6 +130,12 @@ namespace Vitae.Pages.Personal
         #endregion
 
         #region AJAX
+        public IActionResult OnPostSelectChange()
+        {
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_PERSONAL);
+        }
 
         public IActionResult OnPostAddNationality()
         {

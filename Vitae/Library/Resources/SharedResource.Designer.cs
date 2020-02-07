@@ -187,15 +187,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City.
-        /// </summary>
-        public static string City1 {
-            get {
-                return ResourceManager.GetString("City1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Company name.
         /// </summary>
         public static string CompanyName {
@@ -354,6 +345,15 @@ namespace Library.Resources {
         public static string FolderUpload {
             get {
                 return ResourceManager.GetString("FolderUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Function.
+        /// </summary>
+        public static string Function {
+            get {
+                return ResourceManager.GetString("Function", resourceCulture);
             }
         }
         

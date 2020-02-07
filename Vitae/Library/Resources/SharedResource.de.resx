@@ -157,9 +157,6 @@
     <value>Datei wurde ausgewählt</value>
   </data>
   <data name="City" xml:space="preserve">
-    <value>Ort</value>
-  </data>
-  <data name="City1" xml:space="preserve">
     <value>Stadt</value>
   </data>
   <data name="CompanyName" xml:space="preserve">
@@ -215,6 +212,9 @@
   </data>
   <data name="FolderUpload" xml:space="preserve">
     <value>Ordner dürfen nicht hochgeladen werden </value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Funktion</value>
   </data>
   <data name="Gender" xml:space="preserve">
     <value>Geschlecht</value>

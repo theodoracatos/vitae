@@ -201,11 +201,18 @@ namespace Persistency.Migrations
                     Start = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: true),
                     Order = table.Column<int>(nullable: false),
+                    CountryID = table.Column<Guid>(nullable: true),
                     PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Education", x => x.EducationID);
+                    table.ForeignKey(
+                        name: "FK_Education_Country_CountryID",
+                        column: x => x.CountryID,
+                        principalTable: "Country",
+                        principalColumn: "CountryID",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Education_Person_PersonID",
                         column: x => x.PersonID,
@@ -227,11 +234,18 @@ namespace Persistency.Migrations
                     Start = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: true),
                     Order = table.Column<int>(nullable: false),
+                    CountryID = table.Column<Guid>(nullable: true),
                     PersonID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Experience", x => x.ExperienceID);
+                    table.ForeignKey(
+                        name: "FK_Experience_Country_CountryID",
+                        column: x => x.CountryID,
+                        principalTable: "Country",
+                        principalColumn: "CountryID",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Experience_Person_PersonID",
                         column: x => x.PersonID,
@@ -389,9 +403,19 @@ namespace Persistency.Migrations
                 column: "PersonID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Education_CountryID",
+                table: "Education",
+                column: "CountryID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Education_PersonID",
                 table: "Education",
                 column: "PersonID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Experience_CountryID",
+                table: "Experience",
+                column: "CountryID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Experience_PersonID",

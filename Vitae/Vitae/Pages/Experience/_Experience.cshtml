@@ -31,7 +31,14 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col">
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Experiences[i].CountryCode"></label>
+                        <select asp-for="@Model.Experiences[i].CountryCode" class="form-control" onchange="$('#btnChangeCountry').trigger('click');" asp-items="@(new SelectList(@Model.Countries.Where(c => c.CountryCode == Model.Experiences[i].CountryCode || !Model.Experiences.Select(e => e.CountryCode).Contains(c.CountryCode)), "CountryCode", "Name"))">
+                            <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
+                        </select>
+                        <span asp-validation-for="@Model.Experiences[i].CountryCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
                         <label class="control-label" asp-for="@Model.Experiences[i].City"></label>
                         <input class="form-control" type="text" asp-for="@Model.Experiences[i].City" />
                         <span asp-validation-for="@Model.Experiences[i].City" class="text-danger"></span>
@@ -39,8 +46,15 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.Experiences[i].JobTitle"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Experiences[i].JobTitle" />
+                        <span asp-validation-for="@Model.Experiences[i].JobTitle" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
                         <label class="control-label" asp-for="@Model.Experiences[i].Resumee"></label>
-                        <textarea asp-for="@Model.Experiences[i].Resumee" class="form-control"></textarea>
+                        <textarea rows="3" asp-for="@Model.Experiences[i].Resumee" class="form-control"></textarea>
                         <span asp-validation-for="@Model.Experiences[i].Resumee" class="text-danger"></span>
                     </div>
                 </div>
@@ -98,6 +112,7 @@
         <div class="card-footer">
             <div class="form-row">
                 <div class="form-group col mb-0 text-right">
+                    <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                     <button type="submit" class="btn btn-outline-success float-right">@SharedResource.Save</button>
                 </div>
             </div>

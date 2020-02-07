@@ -35,6 +35,8 @@ namespace Vitae.Pages.Education
         [BindProperty]
         public IList<EducationVM> Educations { get; set; }
 
+        public IEnumerable<CountryVM> Countries { get; set; }
+
         public int MaxEducations { get; } = 20;
 
         public IEnumerable<MonthVM> Months { get; set; }
@@ -72,7 +74,8 @@ namespace Vitae.Pages.Education
                         Link = e.Link,
                         SchoolName = e.SchoolName,
                         Subject = e.Subject,
-                        Title = e.Title
+                        Title = e.Title,
+                        CountryCode = e.Country.CountryCode
                     })
                     .ToList();
 
@@ -100,7 +103,8 @@ namespace Vitae.Pages.Education
                         Link = e.Link,
                         SchoolName = e.SchoolName,
                         Subject = e.Subject,
-                        Title = e.Title
+                        Title = e.Title,
+                        Country = appContext.Countries.Single(c => c.CountryCode == e.CountryCode)
                     }).ToList();
 
                 await appContext.SaveChangesAsync();
@@ -112,6 +116,12 @@ namespace Vitae.Pages.Education
         #endregion
 
         #region AJAX
+        public IActionResult OnPostChangeCountry()
+        {
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_EDUCATION);
+        }
         public IActionResult OnPostChangeUntilNow(int order)
         { 
             FillSelectionViewModel();
@@ -176,7 +186,7 @@ namespace Vitae.Pages.Education
         {
             var curriculum = appContext.Curriculums
                     .Include(c => c.Person)
-                    .Include(c => c.Person.Educations)
+                    .Include(c => c.Person.Educations).ThenInclude(e => e.Country)
                     .Single(c => c.Identifier == id);
 
             return curriculum;
@@ -193,6 +203,17 @@ namespace Vitae.Pages.Education
                 requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
                 c.Name
             }).OrderBy(c => c.MonthCode);
+
+            Countries = appContext.Countries.Select(c => new CountryVM()
+            {
+                CountryCode = c.CountryCode,
+                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
+            requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
+            requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
+            requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
+            c.Name,
+                PhoneCode = c.PhoneCode
+            }).OrderBy(c => c.Name);
         }
         #endregion
     }

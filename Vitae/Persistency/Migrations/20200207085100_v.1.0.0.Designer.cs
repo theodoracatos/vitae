@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200206223905_v.1.0.0")]
+    [Migration("20200207085100_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -183,6 +183,9 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<Guid?>("CountryID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime2");
 
@@ -223,6 +226,8 @@ namespace Persistency.Migrations
 
                     b.HasKey("EducationID");
 
+                    b.HasIndex("CountryID");
+
                     b.HasIndex("PersonID");
 
                     b.ToTable("Education");
@@ -243,6 +248,9 @@ namespace Persistency.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<Guid?>("CountryID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime2");
@@ -270,6 +278,8 @@ namespace Persistency.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ExperienceID");
+
+                    b.HasIndex("CountryID");
 
                     b.HasIndex("PersonID");
 
@@ -608,6 +618,10 @@ namespace Persistency.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Education", b =>
                 {
+                    b.HasOne("Persistency.Poco.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryID");
+
                     b.HasOne("Persistency.Poco.Person", null)
                         .WithMany("Educations")
                         .HasForeignKey("PersonID");
@@ -615,6 +629,10 @@ namespace Persistency.Migrations
 
             modelBuilder.Entity("Persistency.Poco.Experience", b =>
                 {
+                    b.HasOne("Persistency.Poco.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryID");
+
                     b.HasOne("Persistency.Poco.Person", null)
                         .WithMany("Experiences")
                         .HasForeignKey("PersonID");

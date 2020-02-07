@@ -159,9 +159,6 @@
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
-  <data name="City1" xml:space="preserve">
-    <value>City</value>
-  </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Company name</value>
   </data>
@@ -215,6 +212,9 @@
   </data>
   <data name="FolderUpload" xml:space="preserve">
     <value>You are not allowed to upload folders</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Function</value>
   </data>
   <data name="Gender" xml:space="preserve">
     <value>Gender</value>

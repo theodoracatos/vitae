@@ -1,4 +1,5 @@
-﻿using Library.Resources;
+﻿using Library.Enumerations;
+using Library.Resources;
 using Library.ViewModels;
 
 using Microsoft.AspNetCore.Http;
@@ -35,7 +36,7 @@ namespace Vitae.Pages.Sociallinks
         [BindProperty]
         public IList<SocialLinkVM> SocialLinks { get; set; }
 
-        public int MaxSocialLinks { get; } = 10;
+        public int MaxSocialLinks { get; } = Enum.GetNames(typeof(SocialPlatform)).Length;
 
         public IndexModel(IStringLocalizer<SharedResource> localizer, ApplicationContext appContext, IHttpContextAccessor httpContextAccessor)
         {
@@ -93,6 +94,14 @@ namespace Vitae.Pages.Sociallinks
         #endregion
 
         #region AJAX
+
+        public IActionResult OnPostSelectChange()
+        {
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_SOCIALLINKS);
+        }
+
         public IActionResult OnPostAddSocialLink()
         {
             if (SocialLinks.Count == 0)

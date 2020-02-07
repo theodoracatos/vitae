@@ -31,5 +31,7 @@ namespace Persistency.Poco
         public DateTime? End { get; set; }
 
         public int Order { get; set; }
+
+        public virtual Country Country { get; set; }
     }
 }

@@ -47,7 +47,6 @@ namespace Vitae.Pages.Languages
         }
 
         #region SYNC
-
         public IActionResult OnGet()
         {
             if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
@@ -94,6 +93,13 @@ namespace Vitae.Pages.Languages
         #endregion
 
         #region AJAX
+        public IActionResult OnPostSelectChange()
+        {
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_LANGUAGES);
+        }
+
         public IActionResult OnPostAddLanguageSkill()
         {
             if (LanguageSkills.Count == 0)

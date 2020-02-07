@@ -106,7 +106,7 @@
                 <div class="form-row">
                     <div class="form-group col">
                         <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Person.Nationalities[i].CountryCode"></label>
-                        <select asp-for="@Model.Person.Nationalities[i].CountryCode" class="form-control" asp-items="@(new SelectList(@Model.Nationalities.Where(n => n.CountryCode == Model.Person.Nationalities[i].CountryCode || !Model.Person.Nationalities.Select(na => na.CountryCode).Contains(n.CountryCode)), "CountryCode", "Name"))">
+                        <select asp-for="@Model.Person.Nationalities[i].CountryCode" class="form-control" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Nationalities.Where(n => n.CountryCode == Model.Person.Nationalities[i].CountryCode || !Model.Person.Nationalities.Select(na => na.CountryCode).Contains(n.CountryCode)), "CountryCode", "Name"))">
                             <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                         </select>
                         <span asp-validation-for="@Model.Person.Nationalities[i].CountryCode" class="text-danger"></span>
@@ -135,6 +135,7 @@
         <div class="card-footer">
             <div class="form-row">
                 <div class="form-group col mb-0 text-right">
+                    <button id="btnSelectChange" asp-page-handler="SelectChange" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                     <button id="btnChangeBirthday" asp-page-handler="ChangeBirthday" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                     <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                     <button type="submit" class="btn btn-outline-success float-right">@SharedResource.Save</button>
