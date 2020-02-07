@@ -177,6 +177,9 @@
   <data name="CV" xml:space="preserve">
     <value>CV</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
@@ -221,6 +224,9 @@
   </data>
   <data name="Grade" xml:space="preserve">
     <value>Grade</value>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Homepage</value>
   </data>
   <data name="Interests" xml:space="preserve">
     <value>Interests</value>
@@ -308,6 +314,9 @@
   </data>
   <data name="OnlyPdf" xml:space="preserve">
     <value>Only PDF files are allowed to be uploaded</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
   </data>
   <data name="PersonalData" xml:space="preserve">
     <value>Personal data</value>
