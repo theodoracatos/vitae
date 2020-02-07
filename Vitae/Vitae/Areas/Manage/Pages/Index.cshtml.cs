@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace Vitae.Pages
+namespace Vitae.Areas.Manage.Pages
 {
 
     public class IndexModel : PageModel
@@ -12,7 +12,7 @@ namespace Vitae.Pages
 
         public IndexModel(ILogger<IndexModel> logger)
         {
-            
+            _logger = logger;
         }
 
         public void OnGet()

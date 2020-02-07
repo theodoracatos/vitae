@@ -1,0 +1,12 @@
+﻿@page
+@model Vitae.Areas.Manage.Pages.Experience.IndexModel
+
+@{
+    ViewData["Title"] = @SharedResource.Experience;
+}
+
+<h1><i class="fas fa-briefcase fa-fw"></i>@SharedResource.Experience</h1>
+
+<form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
+    @await Html.PartialAsync("_Experience", Model)
+</form>

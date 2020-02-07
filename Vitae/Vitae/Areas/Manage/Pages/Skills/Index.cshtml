@@ -1,0 +1,12 @@
+﻿@page
+@model Vitae.Areas.Manage.Pages.Skills.IndexModel
+
+@{
+    ViewData["Title"] = @SharedResource.Skills;
+}
+
+<h1><i class="fas fa-tools fa-fw"></i>@SharedResource.Skills</h1>
+
+<form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
+    @await Html.PartialAsync("_Skills", Model)
+</form>

@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Vitae</title>
+
+    @await Html.PartialAsync("_Styles")
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <button class="btn btn-link order-1" id="sidebarToggle" href="#">
+            <i class="fas fa-bars"></i>
+        </button>
+        <a class="navbar-brand" href="/">
+            @*<img src="~/img/Logo_short_bicolor_three.png" title="Vitae" class="ml-1 pl-1 mr-2 pr-1" />&middot;<img src="~/img/Logo_white.png" class="ml-2 pl-1" title="Vitae" />*@
+            qCRM WEB
+        </a><!-- Navbar Search-->
+        <!-- Navbar-->
+        <ul class="navbar-nav ml-auto ml-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    @*<a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
+                        <div class="dropdown-divider"></div>*@
+                    <a class="dropdown-item" href="login.html">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading mt-2">@SharedResource.PersonalData</div>
+
+                        <a class="nav-link" href="/Manage/@(nameof(Personal))">
+                            <div class="sb-nav-link-icon"><i class="fas fa-address-book"></i></div>
+                            @SharedResource.PersonalDetails
+                        </a>
+                        <a class="nav-link" href="/Manage/@(nameof(About))">
+                            <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
+                            @SharedResource.About
+                        </a>
+                        <a class="nav-link" href="/Manage/@(nameof(Education))">
+                            <div class="sb-nav-link-icon"><i class="fas fa-university"></i></div>
+                            @SharedResource.Education
+                        </a>
+                        <a class="nav-link" href="/Manage/@(nameof(Experience))">
+                            <div class="sb-nav-link-icon"><i class="fas fa-briefcase"></i></div>
+                            @SharedResource.Experience
+                        </a>
+                        <a class="nav-link" href="/Manage/@(nameof(Languages))">
+                            <div class="sb-nav-link-icon"><i class="fas fa-globe-americas"></i></div>
+                            @SharedResource.Languages
+                        </a>
+                        <a class="nav-link" href="/Manage/@(nameof(Interests))">
+                            <div class="sb-nav-link-icon"><i class="fas fa-volleyball-ball"></i></div>
+                            @SharedResource.Interests
+                        </a>
+                        <a class="nav-link" href="/Manage/@(nameof(Awards))">
+                            <div class="sb-nav-link-icon"><i class="fas fa-trophy"></i></div>
+                            @SharedResource.Awards
+                        </a>
+                        <a class="nav-link" href="/Manage/@(nameof(Sociallinks))">
+                            <div class="sb-nav-link-icon"><i class="fab fa-twitter"></i></div>
+                            @SharedResource.SocialLinks
+                        </a>
+                        <a class="nav-link" href="/Manage/@(nameof(Skills))">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
+                            @SharedResource.Skills
+                        </a>
+                        <div class="sb-sidenav-menu-heading">@SharedResource.CurriculumVitae</div>
+                        <a class="nav-link" asp-area="CV" asp-page="Index" asp-route-id="a05c13a8-21fb-42c9-a5bc-98b7d94f464a">
+                            <div class="sb-nav-link-icon"><i class="fas fa-address-card"></i></div>
+                            @SharedResource.MyVitae
+                        </a>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">@SharedResource.LoggedInAs</div>
+                    Alexandros Theodoracatos
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-end small">
+                        <div class="text-muted">Copyright &copy; 2020 &middot; Vitae</div>
+                        @*<div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>*@
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    @*<body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">Vitae</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Manage/Index" asp-route-id="a05c13a8-21fb-42c9-a5bc-98b7d94f464a">Manage</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="CV" asp-page="/Index" asp-route-id="a05c13a8-21fb-42c9-a5bc-98b7d94f464a">CV</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2020 - Vitae - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            </div>
+        </footer>*@
+
+    @await Html.PartialAsync("_Scripts")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

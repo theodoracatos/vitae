@@ -5,22 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Vitae</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
-
-    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/jquery-confirm/jquery-confirm.min.css" />
-    <link rel="stylesheet" href="~/lib/@@chenfengyuan/datepicker/dist/datepicker.min.css" />
-    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
-    <link rel="stylesheet" href="~/lib/pretty-checkbox/pretty-checkbox.min.css" />
-    <link rel="stylesheet" href="~/lib/cropper/cropper.min.css" />
-    <link rel="stylesheet" href="~/lib/jquery.filer/css/jquery.filer.min.css" />
-    <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css" />
-    <link rel="stylesheet" href="~/lib/Chart.js/Chart.min.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap-rating/bootstrap-rating.min.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap4-tagsinput/tagsinput.css" />
-
-    <link rel="stylesheet" href="~/css/sbadmin.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    @await Html.PartialAsync("_Styles")
 </head>
 
 <body class="sb-nav-fixed">
@@ -52,65 +37,9 @@
             </footer>
         </div>
     </div>
-    @*<body>
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-page="/Index">Vitae</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <partial name="_LoginPartial" />
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Manage/Index" asp-route-id="a05c13a8-21fb-42c9-a5bc-98b7d94f464a">Manage</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="CV" asp-page="/Index" asp-route-id="a05c13a8-21fb-42c9-a5bc-98b7d94f464a">CV</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
 
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2020 - Vitae - <a asp-area="" asp-page="/Privacy">Privacy</a>
-            </div>
-        </footer>*@
 
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/@@chenfengyuan/datepicker/dist/datepicker.min.js"></script>
-    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/lib/jquery-confirm/jquery-confirm.min.js"></script>
-    <script src="~/lib/font-awesome/js/all.min.js"></script>
-    <script src="~/lib/cropper/cropper.min.js"></script>
-    <script src="~/lib/jquery.filer/js/jquery.filer.min.js"></script>
-    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
-    <script src="~/lib/Chart.js/Chart.min.js"></script>
-    <script src="~/lib/bootstrap-rating/bootstrap-rating.min.js"></script>
-    <script src="~/lib/bootstrap4-tagsinput/tagsinput.js"></script>
-    <script src="~/js/jquery.unobtrusive-ajax.js"></script>
-
-    <resources names='new[] { "SharedResource" }'></resources>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await Html.PartialAsync("_Scripts")
     @RenderSection("Scripts", required: false)
 </body>
 </html>
