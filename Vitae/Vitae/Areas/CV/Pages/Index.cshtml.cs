@@ -21,7 +21,7 @@ namespace CVitae.Areas.CV.Pages
     {
         #region Variables
 
-        private readonly ApplicationContext appContext;
+        private readonly VitaeContext vitaeContext;
 
         #endregion
 
@@ -37,14 +37,14 @@ namespace CVitae.Areas.CV.Pages
         public Guid Guid { get; set; }
         public string QRTag { get; set; }
 
-        public IndexModel(ApplicationContext appContext)
+        public IndexModel(VitaeContext vitaeContext)
         {
-            this.appContext = appContext;
+            this.vitaeContext = vitaeContext;
         }
 
         public IActionResult OnGet(Guid id)
         {
-            if(id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
+            if(id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
             {
                 return NotFound();
             }
@@ -61,7 +61,7 @@ namespace CVitae.Areas.CV.Pages
 
         private void FillValues(Guid id)
         {
-            var curriculum = appContext.Curriculums
+            var curriculum = vitaeContext.Curriculums
                     .Include(c => c.Person)
                     .Include(c => c.Person.About)
                     .Include(c => c.Person.SocialLinks)

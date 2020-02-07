@@ -26,7 +26,7 @@ namespace Vitae.Pages.Interests
     {
         private const string PAGE_INTERESTS = "_Interests";
         private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly ApplicationContext appContext;
+        private readonly VitaeContext vitaeContext;
         private readonly IRequestCultureFeature requestCulture;
 
         private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
@@ -37,10 +37,10 @@ namespace Vitae.Pages.Interests
 
         public int MaxInterests { get; } = 20;
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, ApplicationContext appContext, IHttpContextAccessor httpContextAccessor)
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor)
         {
             this.localizer = localizer;
-            this.appContext = appContext;
+            this.vitaeContext = vitaeContext;
             requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
         }
 
@@ -48,7 +48,7 @@ namespace Vitae.Pages.Interests
 
         public IActionResult OnGet()
         {
-            if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
+            if (id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
             {
                 return NotFound();
             }
@@ -74,7 +74,7 @@ namespace Vitae.Pages.Interests
             if (ModelState.IsValid)
             {
                 var curriculum = GetCurriculum();
-                appContext.RemoveRange(curriculum.Person.Interests);
+                vitaeContext.RemoveRange(curriculum.Person.Interests);
 
                 curriculum.Person.Interests =
                     Interests.Select(i => new Poco.Interest()
@@ -85,7 +85,7 @@ namespace Vitae.Pages.Interests
                         Order = i.Order
                     }).ToList();
 
-                await appContext.SaveChangesAsync();
+                await vitaeContext.SaveChangesAsync();
             }
 
             FillSelectionViewModel();
@@ -148,7 +148,7 @@ namespace Vitae.Pages.Interests
 
         private Curriculum GetCurriculum()
         {
-            var curriculum = appContext.Curriculums
+            var curriculum = vitaeContext.Curriculums
                     .Include(c => c.Person)
                     .Include(c => c.Person.Interests)
                     .Single(c => c.Identifier == id);

@@ -27,7 +27,7 @@ namespace Vitae.Pages.Sociallinks
     {
         private const string PAGE_SOCIALLINKS = "_Sociallinks";
         private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly ApplicationContext appContext;
+        private readonly VitaeContext vitaeContext;
         private readonly IRequestCultureFeature requestCulture;
 
         private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
@@ -38,10 +38,10 @@ namespace Vitae.Pages.Sociallinks
 
         public int MaxSocialLinks { get; } = Enum.GetNames(typeof(SocialPlatform)).Length;
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, ApplicationContext appContext, IHttpContextAccessor httpContextAccessor)
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor)
         {
             this.localizer = localizer;
-            this.appContext = appContext;
+            this.vitaeContext = vitaeContext;
             requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
         }
 
@@ -49,7 +49,7 @@ namespace Vitae.Pages.Sociallinks
 
         public IActionResult OnGet()
         {
-            if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
+            if (id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
             {
                 return NotFound();
             }
@@ -75,7 +75,7 @@ namespace Vitae.Pages.Sociallinks
             if (ModelState.IsValid)
             {
                 var curriculum = GetCurriculum();
-                appContext.RemoveRange(curriculum.Person.SocialLinks);
+                vitaeContext.RemoveRange(curriculum.Person.SocialLinks);
 
                 curriculum.Person.SocialLinks =
                     SocialLinks.Select(s => new Poco.SocialLink()
@@ -85,7 +85,7 @@ namespace Vitae.Pages.Sociallinks
                         Link = s.Link
                     }).ToList();
 
-                await appContext.SaveChangesAsync();
+                await vitaeContext.SaveChangesAsync();
             }
 
             FillSelectionViewModel();
@@ -156,7 +156,7 @@ namespace Vitae.Pages.Sociallinks
 
         private Curriculum GetCurriculum()
         {
-            var curriculum = appContext.Curriculums
+            var curriculum = vitaeContext.Curriculums
                     .Include(c => c.Person)
                     .Include(c => c.Person.SocialLinks)
                     .Single(c => c.Identifier == id);

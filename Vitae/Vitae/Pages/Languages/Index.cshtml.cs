@@ -26,7 +26,7 @@ namespace Vitae.Pages.Languages
     {
         private const string PAGE_LANGUAGES = "_Languages";
         private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly ApplicationContext appContext;
+        private readonly VitaeContext vitaeContext;
         private readonly IRequestCultureFeature requestCulture;
 
         private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
@@ -39,17 +39,17 @@ namespace Vitae.Pages.Languages
 
         public int MaxLanguageSkills { get; } = 10;
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, ApplicationContext appContext, IHttpContextAccessor httpContextAccessor)
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor)
         {
             this.localizer = localizer;
-            this.appContext = appContext;
+            this.vitaeContext = vitaeContext;
             requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
         }
 
         #region SYNC
         public IActionResult OnGet()
         {
-            if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
+            if (id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
             {
                 return NotFound();
             }
@@ -74,17 +74,17 @@ namespace Vitae.Pages.Languages
             if (ModelState.IsValid)
             {
                 var curriculum = GetCurriculum();
-                appContext.RemoveRange(curriculum.Person.LanguageSkills);
+                vitaeContext.RemoveRange(curriculum.Person.LanguageSkills);
 
                 curriculum.Person.LanguageSkills =
                     LanguageSkills.Select(l => new Poco.LanguageSkill()
                     {
                         Order = l.Order,
                         Rate = l.Rate,
-                        Language = appContext.Languages.Single(la => la.LanguageCode == l.LanguageCode)
+                        Language = vitaeContext.Languages.Single(la => la.LanguageCode == l.LanguageCode)
                     }).ToList();
 
-                await appContext.SaveChangesAsync();
+                await vitaeContext.SaveChangesAsync();
             }
 
             FillSelectionViewModel();
@@ -154,7 +154,7 @@ namespace Vitae.Pages.Languages
 
         private Curriculum GetCurriculum()
         {
-            var curriculum = appContext.Curriculums
+            var curriculum = vitaeContext.Curriculums
                     .Include(c => c.Person)
                     .Include(c => c.Person.LanguageSkills).ThenInclude(ls => ls.Language)
                     .Single(c => c.Identifier == id);
@@ -164,7 +164,7 @@ namespace Vitae.Pages.Languages
 
         protected override void FillSelectionViewModel()
         {
-            Languages = appContext.Languages.Select(c => new LanguageVM()
+            Languages = vitaeContext.Languages.Select(c => new LanguageVM()
             {
                 LanguageCode = c.LanguageCode,
                 Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :

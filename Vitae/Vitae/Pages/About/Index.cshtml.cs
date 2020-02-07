@@ -24,7 +24,7 @@ namespace Vitae.Pages.About
     {
         private const string PAGE_ABOUT = "_About";
         private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly ApplicationContext appContext;
+        private readonly VitaeContext vitaeContext;
         private readonly IRequestCultureFeature requestCulture;
 
         private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
@@ -32,10 +32,10 @@ namespace Vitae.Pages.About
         [BindProperty]
         public AboutVM About { get; set; }
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, ApplicationContext appContext, IHttpContextAccessor httpContextAccessor)
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor)
         {
             this.localizer = localizer;
-            this.appContext = appContext;
+            this.vitaeContext = vitaeContext;
             requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
         }
 
@@ -44,7 +44,7 @@ namespace Vitae.Pages.About
         public IActionResult OnGet()
         {
             // TODO: Check if id is from person x
-            if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
+            if (id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
             {
                 return NotFound();
             }
@@ -69,9 +69,9 @@ namespace Vitae.Pages.About
 
         public IActionResult OnGetOpenFile(Guid identifier)
         {
-            if (appContext.Vfiles.Any(v => v.Identifier == identifier))
+            if (vitaeContext.Vfiles.Any(v => v.Identifier == identifier))
             {
-                var vfile = appContext.Vfiles.Single(v => v.Identifier == identifier);
+                var vfile = vitaeContext.Vfiles.Single(v => v.Identifier == identifier);
 
                 return File(vfile.Content, vfile.MimeType, vfile.FileName);
             }
@@ -114,13 +114,13 @@ namespace Vitae.Pages.About
                 }
                 else if (About.Vfile?.FileName == null && About.Vfile.Identifier != Guid.Empty)
                 {
-                    appContext.Vfiles.Remove(appContext.Vfiles.Single(v => v.Identifier == About.Vfile.Identifier));
+                    vitaeContext.Vfiles.Remove(vitaeContext.Vfiles.Single(v => v.Identifier == About.Vfile.Identifier));
                     // Update VM
                     About.Vfile.Identifier = Guid.Empty;
                     About.Vfile.FileName = null;
                 }
 
-                await appContext.SaveChangesAsync();
+                await vitaeContext.SaveChangesAsync();
             }
 
             return Page();
@@ -141,7 +141,7 @@ namespace Vitae.Pages.About
         #region Helper
         private Curriculum GetCurriculum()
         {
-            var curriculum = appContext.Curriculums
+            var curriculum = vitaeContext.Curriculums
                     .Include(c => c.Person)
                     .Include(c => c.Person.About)
                     .Include(c => c.Person.About.Vfile)

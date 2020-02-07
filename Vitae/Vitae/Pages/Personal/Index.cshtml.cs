@@ -23,7 +23,7 @@ namespace Vitae.Pages.Personal
     {
         private const string PAGE_PERSONAL = "_Personal";
         private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly ApplicationContext appContext;
+        private readonly VitaeContext vitaeContext;
         private readonly IRequestCultureFeature requestCulture;
 
         private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // TODO: to be read from header
@@ -40,10 +40,10 @@ namespace Vitae.Pages.Personal
         public int MaxNationalities { get; } = 3;
         public string PhonePrefix { get; set; }
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, ApplicationContext appContext, IHttpContextAccessor httpContextAccessor)
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor)
         {
             this.localizer = localizer;
-            this.appContext = appContext;
+            this.vitaeContext = vitaeContext;
             requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
         }
 
@@ -51,7 +51,7 @@ namespace Vitae.Pages.Personal
 
         public IActionResult OnGet()
         {
-            if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
+            if (id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
             {
                 return NotFound();
             }
@@ -92,12 +92,12 @@ namespace Vitae.Pages.Personal
                 var curriculum = GetCurriculum();
                 curriculum.Person.Birthday = new DateTime(Person.Birthday_Year, Person.Birthday_Month, Person.Birthday_Day);
                 curriculum.Person.City = Person.City;
-                curriculum.Person.Country = appContext.Countries.Single(c => c.CountryCode == Person.CountryCode);
+                curriculum.Person.Country = vitaeContext.Countries.Single(c => c.CountryCode == Person.CountryCode);
                 curriculum.Person.Email = Person.Email;
                 curriculum.Person.Firstname = Person.Firstname;
                 curriculum.Person.Lastname = Person.Lastname;
                 curriculum.Person.Gender = Person.Gender.Value;
-                curriculum.Person.Language = appContext.Languages.Single(l => l.LanguageCode == Person.LanguageCode);
+                curriculum.Person.Language = vitaeContext.Languages.Single(l => l.LanguageCode == Person.LanguageCode);
                 curriculum.Person.MobileNumber = Person.MobileNumber;
                 curriculum.Person.Street = Person.Street;
                 curriculum.Person.StreetNo = Person.StreetNo;
@@ -110,8 +110,8 @@ namespace Vitae.Pages.Personal
                 {
                     var personCountry = new PersonCountry()
                     {
-                        Country = appContext.Countries.Single(c => c.CountryCode == nationality.CountryCode),
-                        CountryID = appContext.Countries.Single(c => c.CountryCode == nationality.CountryCode).CountryID,
+                        Country = vitaeContext.Countries.Single(c => c.CountryCode == nationality.CountryCode),
+                        CountryID = vitaeContext.Countries.Single(c => c.CountryCode == nationality.CountryCode).CountryID,
                         Person = curriculum.Person,
                         PersonID = curriculum.Person.PersonID,
                         Order = Person.Nationalities.IndexOf(nationality)
@@ -119,7 +119,7 @@ namespace Vitae.Pages.Personal
                     curriculum.Person.PersonCountries.Add(personCountry);
                 }
 
-                await appContext.SaveChangesAsync();
+                await vitaeContext.SaveChangesAsync();
             }
 
             FillSelectionViewModel();
@@ -197,7 +197,7 @@ namespace Vitae.Pages.Personal
 
         private Curriculum GetCurriculum()
         {
-            var curriculum = appContext.Curriculums
+            var curriculum = vitaeContext.Curriculums
                     .Include(c => c.Person)
                     .Include(c => c.Person.PersonCountries).ThenInclude(pc => pc.Country)
                     .Include(c => c.Person.Country)
@@ -209,7 +209,7 @@ namespace Vitae.Pages.Personal
 
         protected override void FillSelectionViewModel()
         {
-            Countries = appContext.Countries.Select(c => new CountryVM()
+            Countries = vitaeContext.Countries.Select(c => new CountryVM()
             {
                 CountryCode = c.CountryCode,
                 Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
@@ -220,7 +220,7 @@ namespace Vitae.Pages.Personal
                 PhoneCode = c.PhoneCode
             }).OrderBy(c => c.Name);
 
-            Languages = appContext.Languages.Select(c => new LanguageVM()
+            Languages = vitaeContext.Languages.Select(c => new LanguageVM()
             {
                 LanguageCode = c.LanguageCode,
                 Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
@@ -230,7 +230,7 @@ namespace Vitae.Pages.Personal
                         c.Name
             }).OrderBy(c => c.Name);
 
-            Nationalities = appContext.Countries.Select(c => new CountryVM()
+            Nationalities = vitaeContext.Countries.Select(c => new CountryVM()
             {
                 CountryCode = c.CountryCode,
                 Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
@@ -241,7 +241,7 @@ namespace Vitae.Pages.Personal
                 PhoneCode = c.PhoneCode
             }).OrderBy(c => c.Name);
 
-            Months = appContext.Months.Select(c => new MonthVM()
+            Months = vitaeContext.Months.Select(c => new MonthVM()
             {
                 MonthCode = c.MonthCode,
                 Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :

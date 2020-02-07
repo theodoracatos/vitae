@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+
 using Persistency.Extensions;
 using Persistency.Poco;
+
 using System.Diagnostics;
 using System.IO;
 
 namespace Persistency.Data
 {
-    public class ApplicationContext : DbContext
+    public class VitaeContext : DbContext
     {
         public virtual DbSet<Curriculum> Curriculums { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
@@ -15,7 +17,7 @@ namespace Persistency.Data
         public virtual DbSet<Month> Months { get; set; }
         public virtual DbSet<Vfile> Vfiles { get; set; }
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        public VitaeContext(DbContextOptions<VitaeContext> options) : base(options)
         {
 
         }

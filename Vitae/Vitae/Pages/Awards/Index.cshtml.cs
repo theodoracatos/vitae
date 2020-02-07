@@ -26,7 +26,7 @@ namespace Vitae.Pages.Awards
     {
         private const string PAGE_AWARDS = "_Awards";
         private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly ApplicationContext appContext;
+        private readonly VitaeContext vitaeContext;
         private readonly IRequestCultureFeature requestCulture;
 
         private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
@@ -39,10 +39,10 @@ namespace Vitae.Pages.Awards
 
         public int MaxAwards { get; } = 20;
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, ApplicationContext appContext, IHttpContextAccessor httpContextAccessor)
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor)
         {
             this.localizer = localizer;
-            this.appContext = appContext;
+            this.vitaeContext = vitaeContext;
             requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
         }
 
@@ -50,7 +50,7 @@ namespace Vitae.Pages.Awards
 
         public IActionResult OnGet()
         {
-            if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
+            if (id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
             {
                 return NotFound();
             }
@@ -79,7 +79,7 @@ namespace Vitae.Pages.Awards
             if (ModelState.IsValid)
             {
                 var curriculum = GetCurriculum();
-                appContext.RemoveRange(curriculum.Person.Awards);
+                vitaeContext.RemoveRange(curriculum.Person.Awards);
 
                 curriculum.Person.Awards =
                     Awards.Select(a => new Poco.Award()
@@ -92,7 +92,7 @@ namespace Vitae.Pages.Awards
                         Order = a.Order
                     }).ToList();
 
-                await appContext.SaveChangesAsync();
+                await vitaeContext.SaveChangesAsync();
             }
 
             FillSelectionViewModel();
@@ -155,7 +155,7 @@ namespace Vitae.Pages.Awards
 
         private Curriculum GetCurriculum()
         {
-            var curriculum = appContext.Curriculums
+            var curriculum = vitaeContext.Curriculums
                     .Include(c => c.Person)
                     .Include(c => c.Person.Awards)
                     .Single(c => c.Identifier == id);
@@ -165,7 +165,7 @@ namespace Vitae.Pages.Awards
 
         protected override void FillSelectionViewModel()
         {
-            Months = appContext.Months.Select(c => new MonthVM()
+            Months = vitaeContext.Months.Select(c => new MonthVM()
             {
                 MonthCode = c.MonthCode,
                 Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :

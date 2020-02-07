@@ -26,7 +26,7 @@ namespace Vitae.Pages.Experience
     {
         private const string PAGE_EXPERIENCE = "_Experience";
         private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly ApplicationContext appContext;
+        private readonly VitaeContext vitaeContext;
         private readonly IRequestCultureFeature requestCulture;
 
         private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
@@ -41,10 +41,10 @@ namespace Vitae.Pages.Experience
 
         public IEnumerable<MonthVM> Months { get; set; }
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, ApplicationContext appContext, IHttpContextAccessor httpContextAccessor)
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor)
         {
             this.localizer = localizer;
-            this.appContext = appContext;
+            this.vitaeContext = vitaeContext;
             requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
         }
 
@@ -52,7 +52,7 @@ namespace Vitae.Pages.Experience
 
         public IActionResult OnGet()
         {
-            if (id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
+            if (id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
             {
                 return NotFound();
             }
@@ -88,7 +88,7 @@ namespace Vitae.Pages.Experience
             if (ModelState.IsValid)
             {
                 var curriculum = GetCurriculum();
-                appContext.RemoveRange(curriculum.Person.Experiences);
+                vitaeContext.RemoveRange(curriculum.Person.Experiences);
 
                 curriculum.Person.Experiences =
                     Experiences.Select(e => new Poco.Experience()
@@ -101,10 +101,10 @@ namespace Vitae.Pages.Experience
                         Link = e.Link,
                         CompanyName = e.CompanyName,
                         JobTitle = e.JobTitle,
-                        Country = appContext.Countries.Single(c => c.CountryCode == e.CountryCode)
+                        Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode)
                     }).ToList();
 
-                await appContext.SaveChangesAsync();
+                await vitaeContext.SaveChangesAsync();
             }
 
             FillSelectionViewModel();
@@ -181,7 +181,7 @@ namespace Vitae.Pages.Experience
 
         private Curriculum GetCurriculum()
         {
-            var curriculum = appContext.Curriculums
+            var curriculum = vitaeContext.Curriculums
                     .Include(c => c.Person)
                     .Include(c => c.Person.Experiences).ThenInclude(e => e.Country)
                     .Single(c => c.Identifier == id);
@@ -191,7 +191,7 @@ namespace Vitae.Pages.Experience
 
         protected override void FillSelectionViewModel()
         {
-            Months = appContext.Months.Select(c => new MonthVM()
+            Months = vitaeContext.Months.Select(c => new MonthVM()
             {
                 MonthCode = c.MonthCode,
                 Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
@@ -201,7 +201,7 @@ namespace Vitae.Pages.Experience
                 c.Name
             }).OrderBy(c => c.MonthCode);
 
-            Countries = appContext.Countries.Select(c => new CountryVM()
+            Countries = vitaeContext.Countries.Select(c => new CountryVM()
             {
                 CountryCode = c.CountryCode,
                 Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
