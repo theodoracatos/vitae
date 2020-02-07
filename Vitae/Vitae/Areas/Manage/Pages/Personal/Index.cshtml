@@ -8,5 +8,5 @@
 <h1><i class="fas fa-address-book fa-fw"></i>@SharedResource.PersonalDetails</h1>
 
 <form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
-    @await Html.PartialAsync("_Personal", Model)
+    <partial name="_Personal" model="Model" />
 </form>
