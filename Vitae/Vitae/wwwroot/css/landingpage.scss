@@ -1,58 +1,57 @@
-﻿/*
- * Base structure
- */
-html,
-body {
+﻿html, body {
     height: 100%;
-    background-color: #333;
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     display: -ms-flexbox;
     display: flex;
     color: #fff;
-    background: url('/img/Background2.jpg') no-repeat center center fixed;
+    background: url('/img/Background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
 }
 
-.cover-container {
-   
+h1 {
+    font-family: "Lato-Bold";
+    font-weight: bold;
+    font-size: 3.5em !important;
 }
 
-
-/*
- * Header
- */
-.masthead {
-    margin-bottom: 2rem;
+h2{
+    font-size: 1em !important;
 }
 
-.masthead-brand {
-    margin-bottom: 0;
-}
-
-.nav-masthead .nav-link + .nav-link {
-    margin-left: 1rem;
-}
-
-/*
- * Cover
- */
-.cover {
-  
-}
-
-.footer {
-
-    width: 100%;
-    /* Set the fixed height of the footer here */
+header {
     height: 60px;
-    line-height: 60px; /* Vertically center the text there */
-    background-color: #f5f5f5;
 }
 
+main {
+    flex: auto;
+}
 
+footer {
+    height: 60px;
+    opacity: 0.9;
+}
 
+.leftbox {
+    margin-top: 25%;
+    margin-left: 17%;
+    margin-right: 17%;
+}
+
+.rightbox {
+    margin: 20% 27% 0 10%;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}

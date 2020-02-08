@@ -79,6 +79,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Give a boost to your career.
+        /// </summary>
+        public static string AdText1 {
+            get {
+                return ResourceManager.GetString("AdText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Want to improve your curriculum vitae? No problem - with VITAE you present yourself in the best possible light. Create a free account now!.
+        /// </summary>
+        public static string AdText2 {
+            get {
+                return ResourceManager.GetString("AdText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to files are allowed to be uploaded.
         /// </summary>
         public static string AllowedFiles {
@@ -736,6 +754,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create an account.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string Remove {
@@ -813,6 +840,15 @@ namespace Library.Resources {
         public static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign in.
+        /// </summary>
+        public static string SignIn {
+            get {
+                return ResourceManager.GetString("SignIn", resourceCulture);
             }
         }
         

@@ -123,6 +123,12 @@
   <data name="Add" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
+  <data name="AdText1" xml:space="preserve">
+    <value>Fördern Sie Ihre Karriere</value>
+  </data>
+  <data name="AdText2" xml:space="preserve">
+    <value>Möchten Sie Ihren Lebenslauf verbessern? Kein Problem - mit VITAE präsentieren Sie sich im bestmöglichen Licht. Erstellen Sie jetzt ein kostenloses Konto!</value>
+  </data>
   <data name="AllowedFiles" xml:space="preserve">
     <value>Dateien sind zum Hochladen erlaubt</value>
   </data>
@@ -342,6 +348,9 @@
   <data name="Rate" xml:space="preserve">
     <value>Kenntniss</value>
   </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
   <data name="Remove" xml:space="preserve">
     <value>Entfernen</value>
   </data>
@@ -368,6 +377,9 @@
   </data>
   <data name="Select" xml:space="preserve">
     <value>Auswählen</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Einloggen</value>
   </data>
   <data name="Skills" xml:space="preserve">
     <value>Skills</value>

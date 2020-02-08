@@ -1,11 +1,15 @@
-﻿@import '_fonts.scss';
-@import '_colors.scss';
+﻿@import 'scsslib/_fonts.scss';
+@import 'scsslib/_colors.scss';
 
 /***********/
 /*   QVS   */
 /***********/
 body, nav {
     font-family: Lato-Regular, Arial, Helvetica, sans-serif;
+}
+
+nav{
+    min-height: 60px;
 }
 
 h1 {

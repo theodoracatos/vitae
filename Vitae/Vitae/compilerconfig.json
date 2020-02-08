@@ -4,10 +4,6 @@
     "inputFile": "wwwroot/css/site.scss"
   },
   {
-    "outputFile": "wwwroot/css/_colors.css",
-    "inputFile": "wwwroot/css/_colors.scss"
-  },
-  {
     "outputFile": "wwwroot/css/resume.css",
     "inputFile": "wwwroot/css/resume.scss"
   },

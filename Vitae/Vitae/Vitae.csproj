@@ -55,16 +55,4 @@
     <Folder Include="Areas\CV\Pages\" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Content Update="wwwroot\css\_colors.css">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="wwwroot\css\_colors.min.css">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>

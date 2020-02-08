@@ -5,55 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Vitae</title>
 
-    <link rel="stylesheet" href="~/css/landingpage.css" />
+    @RenderSection("Styles", required: false)
     <partial name="_Styles" />
 </head>
 
-    <body class="text-center">
-
-        <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
-            <header class="masthead mb-auto">
-                <div class="inner">
-                    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                        <a class="navbar-brand" href="/">
-                            @*<img src="~/img/Logo_short_bicolor_three.png" title="Vitae" class="ml-1 pl-1 mr-2 pr-1" />&middot;<img src="~/img/Logo_white.png" class="ml-2 pl-1" title="Vitae" />*@
-                            qCRM WEB
-                        </a>
-                        <button class="navbar-toggler" aria-expanded="false" aria-controls="navbarCollapse" aria-label="Toggle navigation" type="button" data-target="#navbarCollapse" data-toggle="collapse">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarCollapse">
-
-                        </div>
-                    </nav>
-                </div>
-            </header>
-
-            <main role="main" class="inner cover">
-                <h1 class="cover-heading">Cover your page.</h1>
-                <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-                <p class="lead">
-                    <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
-                </p>
-                @RenderBody()
-            </main>
-
-            <footer class="mt-auto footer">
-                <div class="inner">
-                    <div class="d-flex align-items-center justify-content-end small mr-5">
-                        <div class="text-muted">Copyright &copy; 2020 &middot; Vitae</div>
-                                @*<div>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="/">
+                <img src="~/img/Logo_short_bicolor_four.png" title="Vitae" class="ml-1 pl-1 mr-2 pr-1" />&middot;<img src="~/img/Logo_white.png" class="ml-2 pl-1" title="Vitae" />
+            </a>
+            <div class="ml-auto">
+                <a href="/Identity/Account/Login" class="text-white mr-4 pr-2">@SharedResource.SignIn</a>
+                <a href="/Identity/Account/Register" class="btn btn-success">@SharedResource.Register</a>
+            </div>
+        </nav>
+    </header>
+    @*<partial name="_CookieConsentPartial" />*@
+    <main>
+        @RenderBody()
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-end small mr-5">
+                <div class="text-muted">Copyright &copy; 2020, Vitae &middot; Made with ❤ in Switzerland</div>
+                @*<div>
                         <a href="#">Privacy Policy</a>
                         &middot;
                         <a href="#">Terms &amp; Conditions</a>
                     </div>*@
-                    </div>
-                </div>
-            </footer>
+            </div>
         </div>
-
-
-        <partial name="_Scripts" />
-        @RenderSection("Scripts", required: false)
-    </body>
+    </footer>
+    <partial name="_Scripts" />
+    @RenderSection("Scripts", required: false)
+</body>
 </html>
