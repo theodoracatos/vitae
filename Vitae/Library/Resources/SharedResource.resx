@@ -168,14 +168,23 @@
   <data name="CompanyName" xml:space="preserve">
     <value>Company name</value>
   </data>
+  <data name="CompareFailed" xml:space="preserve">
+    <value>The password and confirmation password do not match.</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
   </data>
   <data name="CountryCode" xml:space="preserve">
     <value>Code</value>
   </data>
   <data name="CountryName" xml:space="preserve">
     <value>Country</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Create a new account.</value>
   </data>
   <data name="CurriculumVitae" xml:space="preserve">
     <value>Curriculum Vitae</value>
@@ -267,6 +276,9 @@
   <data name="LoggedInAs" xml:space="preserve">
     <value>Logged in as</value>
   </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>Use a local account to log in.</value>
+  </data>
   <data name="Manage" xml:space="preserve">
     <value>Manage</value>
   </data>
@@ -324,6 +336,12 @@
   <data name="Overview" xml:space="preserve">
     <value>Overview</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordErrorLength" xml:space="preserve">
+    <value>The {0} must be at least {2} and at max {1} characters long.</value>
+  </data>
   <data name="PersonalData" xml:space="preserve">
     <value>Personal data</value>
   </data>
@@ -350,6 +368,9 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Create an account</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me?</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>

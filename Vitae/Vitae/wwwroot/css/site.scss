@@ -66,25 +66,14 @@ h1 svg {
     font-family: Lato-Bold, Arial, Helvetica, sans-serif;
 }
 
-/* Bootstrap overrides */
-/*.btn-success:focus {
-    box-shadow: 0 0 0 0.2rem rgba(208, 187, 149, 0.5) !important;
-}
-
-.btn-success {
-    background-color: $qvs-lightgold-color !important;
-    border-color: $qvs-lightgold-color !important;
-}
-
-.btn-success:hover {
-    background-color: $qvs-gold-color !important;
-    border-color: $qvs-gold-color !important;
-}*/
-
 /* Misc */
 .input-validation-error {
     border-color: $qvs-error-color;
     background-color: rgba(255,0,0,0.02);
+}
+
+.validation-summary-errors li {
+    font-size: 0.8em;
 }
 
 span.field-validation-error {

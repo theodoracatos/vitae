@@ -55,4 +55,12 @@
     <Folder Include="Areas\CV\Pages\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Content Update="Areas\Identity\Pages\Account\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

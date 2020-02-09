@@ -64,6 +64,10 @@
       "provider": "unpkg",
       "library": "bootstrap4-tagsinput@4.1.3",
       "destination": "wwwroot/lib/bootstrap4-tagsinput/"
+    },
+    {
+      "library": "pretty-checkbox@3.0.0",
+      "destination": "wwwroot/lib/pretty-checkbox/"
     }
   ]
 }

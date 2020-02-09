@@ -168,14 +168,23 @@
   <data name="CompanyName" xml:space="preserve">
     <value>Firmenname</value>
   </data>
+  <data name="CompareFailed" xml:space="preserve">
+    <value>Die Passwörter stimmen nicht überein</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Bestätigung</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Passwort bestätigen</value>
   </data>
   <data name="CountryCode" xml:space="preserve">
     <value>Code</value>
   </data>
   <data name="CountryName" xml:space="preserve">
     <value>Land</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Ein neues Konto eröffnen</value>
   </data>
   <data name="CurriculumVitae" xml:space="preserve">
     <value>Curriculum Vitae</value>
@@ -267,6 +276,9 @@
   <data name="LoggedInAs" xml:space="preserve">
     <value>Eingeloggt als</value>
   </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>Melden Sie sich mit einem Konto an.</value>
+  </data>
   <data name="Manage" xml:space="preserve">
     <value>Ändern</value>
   </data>
@@ -324,6 +336,12 @@
   <data name="Overview" xml:space="preserve">
     <value>Übersicht</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="PasswordErrorLength" xml:space="preserve">
+    <value>Das {0} muss mindestens {2} und höchstens {1} Zeichen lang sein.</value>
+  </data>
   <data name="PersonalData" xml:space="preserve">
     <value>Personalien</value>
   </data>
@@ -350,6 +368,9 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Registrieren</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Eingeloggt bleiben</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Entfernen</value>
