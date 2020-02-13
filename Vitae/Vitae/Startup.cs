@@ -17,6 +17,7 @@ using Persistency.Poco.ApplicationDb;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Vitae.Code;
 
 namespace Vitae
 {
@@ -40,7 +41,9 @@ namespace Vitae
         {
             services.AddDbContext<VitaeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddErrorDescriber<CustomIdentityErrorDescriber>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

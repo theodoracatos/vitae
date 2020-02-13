@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>Weitere Angaben</value>
   </data>
+  <data name="AccountLockedOut" xml:space="preserve">
+    <value>Benutzerkonto gesperrt.</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
@@ -177,8 +180,17 @@
   <data name="CompareFailed" xml:space="preserve">
     <value>Die Passwörter stimmen nicht überein</value>
   </data>
+  <data name="ConcurrencyFailure" xml:space="preserve">
+    <value>Objekt wurde in der Zwischenzeit geändert.</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Bestätigung</value>
+  </data>
+  <data name="ConfirmEMail" xml:space="preserve">
+    <value>E-Mail bestätigen</value>
+  </data>
+  <data name="ConfirmEMailThankYou" xml:space="preserve">
+    <value>Vielen Dank für die Bestätigung Ihrer E-Mail.</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Passwort bestätigen</value>
@@ -201,11 +213,23 @@
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
+  <data name="DefaultError" xml:space="preserve">
+    <value>Ein unbekannter Fehler ist aufgetreten.</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Beschreibung</value>
   </data>
   <data name="DropFile" xml:space="preserve">
     <value>Legen Sie eine Datei zum Hochladen ab</value>
+  </data>
+  <data name="DuplicateEmail" xml:space="preserve">
+    <value>E-Mail '{0}' ist bereits vergeben.</value>
+  </data>
+  <data name="DuplicateRoleName" xml:space="preserve">
+    <value>Der Rollenname '{0}' ist bereits vergeben.</value>
+  </data>
+  <data name="DuplicateUserName" xml:space="preserve">
+    <value>Der Benutzername '{0}' ist bereits vergeben.</value>
   </data>
   <data name="Education" xml:space="preserve">
     <value>Ausbildung</value>
@@ -224,6 +248,9 @@
   </data>
   <data name="End" xml:space="preserve">
     <value>Ende</value>
+  </data>
+  <data name="ErrorConfirmEMail" xml:space="preserve">
+    <value>Fehler bei der Bestätigung Ihrer E-Mail.</value>
   </data>
   <data name="Etc" xml:space="preserve">
     <value>…</value>
@@ -258,6 +285,24 @@
   <data name="Interests" xml:space="preserve">
     <value>Interessen</value>
   </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>E-Mail '{0}' ist ungültig.</value>
+  </data>
+  <data name="InvalidLoginAttempt" xml:space="preserve">
+    <value>Ungültiger Anmeldeversuch.</value>
+  </data>
+  <data name="InvalidLoginAttempt1" xml:space="preserve">
+    <value>Ungültiger Anmeldeversuch.</value>
+  </data>
+  <data name="InvalidRoleName" xml:space="preserve">
+    <value>Der Rollenname '{0}' ist ungültig.</value>
+  </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>Ungültiges Token.</value>
+  </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value>Benutzername '{0}' ist ungültig (kann nur Buchstaben oder Ziffern enthalten).</value>
+  </data>
   <data name="JobExperiences" xml:space="preserve">
     <value>Job-Erfahrungen</value>
   </data>
@@ -287,6 +332,9 @@
   </data>
   <data name="LoggedInAs" xml:space="preserve">
     <value>Eingeloggt als</value>
+  </data>
+  <data name="LoginAlreadyAssociated" xml:space="preserve">
+    <value>Ein Benutzer mit diesem Login existiert bereits.</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Melden Sie sich mit einem Konto an.</value>
@@ -356,6 +404,24 @@
   </data>
   <data name="PasswordForgot" xml:space="preserve">
     <value>Passwort vergessen</value>
+  </data>
+  <data name="PasswordMismatch" xml:space="preserve">
+    <value>Falsches Kennwort.</value>
+  </data>
+  <data name="PasswordRequiresDigit" xml:space="preserve">
+    <value>Passwörter müssen mindestens eine Ziffer ('0'-'9') haben.</value>
+  </data>
+  <data name="PasswordRequiresLower" xml:space="preserve">
+    <value>Passwörter müssen mindestens ein Kleinbuchstabe ('a'-'z') haben.</value>
+  </data>
+  <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
+    <value>Passwörter müssen mindestens ein nicht alphanumerisches Zeichen enthalten.</value>
+  </data>
+  <data name="PasswordRequiresUpper" xml:space="preserve">
+    <value>Passwörter müssen mindestens ein Großbuchstabenzeichen ('A'-'Z') haben.</value>
+  </data>
+  <data name="PasswordTooShort" xml:space="preserve">
+    <value>Passwörter müssen mindestens {0} Zeichen enthalten.</value>
   </data>
   <data name="PersonalData" xml:space="preserve">
     <value>Personalien</value>
@@ -467,6 +533,21 @@
   </data>
   <data name="URL" xml:space="preserve">
     <value>Link</value>
+  </data>
+  <data name="UserAlreadyHasPassword" xml:space="preserve">
+    <value>Der Benutzer hat bereits ein Passwort gesetzt.</value>
+  </data>
+  <data name="UserAlreadyInRole" xml:space="preserve">
+    <value>Der Benutzer ist bereits in der Rolle '{0}'.</value>
+  </data>
+  <data name="UserLockoutNotEnabled" xml:space="preserve">
+    <value>Die Sperre ist für diesen Benutzer nicht aktiviert.</value>
+  </data>
+  <data name="UserLoggedIn" xml:space="preserve">
+    <value>Angemeldeter Benutzer.</value>
+  </data>
+  <data name="UserNotInRole" xml:space="preserve">
+    <value>Der Benutzer ist nicht in der Rolle '{0}'.</value>
   </data>
   <data name="ValueIsInvalidAccessor" xml:space="preserve">
     <value>Der Wert '{0}' ist ungültig</value>

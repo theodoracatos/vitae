@@ -26,6 +26,7 @@
                             <label asp-for="Input.ConfirmPassword"></label>
                             <input asp-for="Input.ConfirmPassword" class="form-control" />
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col mb-0 text-right">
