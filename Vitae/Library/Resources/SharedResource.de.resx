@@ -156,6 +156,12 @@
   <data name="Category" xml:space="preserve">
     <value>Kategorie</value>
   </data>
+  <data name="CheckYourEmail" xml:space="preserve">
+    <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Passwort zurückzusetzen.</value>
+  </data>
+  <data name="CheckYourEmailConfirm" xml:space="preserve">
+    <value> Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu bestätigen.</value>
+  </data>
   <data name="ChooseFile" xml:space="preserve">
     <value>Datei zum upload auswählen</value>
   </data>
@@ -209,6 +215,12 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="EmailSent" xml:space="preserve">
+    <value>E-Mail wurde verschickt</value>
+  </data>
+  <data name="EmailSent	E-Mail wurde verschickt" xml:space="preserve">
+    <value />
   </data>
   <data name="End" xml:space="preserve">
     <value>Ende</value>
@@ -342,6 +354,9 @@
   <data name="PasswordErrorLength" xml:space="preserve">
     <value>Das {0} muss mindestens {2} und höchstens {1} Zeichen lang sein.</value>
   </data>
+  <data name="PasswordForgot" xml:space="preserve">
+    <value>Passwort vergessen</value>
+  </data>
   <data name="PersonalData" xml:space="preserve">
     <value>Personalien</value>
   </data>
@@ -369,6 +384,12 @@
   <data name="Register" xml:space="preserve">
     <value>Registrieren</value>
   </data>
+  <data name="RegisterANewUser" xml:space="preserve">
+    <value>Einen neuen Benutzer registrieren</value>
+  </data>
+  <data name="RegisterConfirmation" xml:space="preserve">
+    <value>Registrierungsbestätigung</value>
+  </data>
   <data name="RememberMe" xml:space="preserve">
     <value>Eingeloggt bleiben</value>
   </data>
@@ -380,6 +401,9 @@
   </data>
   <data name="RemovePicture" xml:space="preserve">
     <value>Dieses Bild entfernen</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Anfordern</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>Bitte einen Wert angeben</value>

@@ -178,6 +178,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please check your email to reset your password..
+        /// </summary>
+        public static string CheckYourEmail {
+            get {
+                return ResourceManager.GetString("CheckYourEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Please check your email to confirm your account..
+        /// </summary>
+        public static string CheckYourEmailConfirm {
+            get {
+                return ResourceManager.GetString("CheckYourEmailConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose a file to upload.
         /// </summary>
         public static string ChooseFile {
@@ -336,6 +354,15 @@ namespace Library.Resources {
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The E-Mail has been sent.
+        /// </summary>
+        public static string EmailSent {
+            get {
+                return ResourceManager.GetString("EmailSent", resourceCulture);
             }
         }
         
@@ -736,6 +763,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Forgot your password?.
+        /// </summary>
+        public static string PasswordForgot {
+            get {
+                return ResourceManager.GetString("PasswordForgot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Personal data.
         /// </summary>
         public static string PersonalData {
@@ -817,6 +853,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Register a new user.
+        /// </summary>
+        public static string RegisterANewUser {
+            get {
+                return ResourceManager.GetString("RegisterANewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register confirmation.
+        /// </summary>
+        public static string RegisterConfirmation {
+            get {
+                return ResourceManager.GetString("RegisterConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remember me?.
         /// </summary>
         public static string RememberMe {
@@ -849,6 +903,15 @@ namespace Library.Resources {
         public static string RemovePicture {
             get {
                 return ResourceManager.GetString("RemovePicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Request.
+        /// </summary>
+        public static string Request {
+            get {
+                return ResourceManager.GetString("Request", resourceCulture);
             }
         }
         

@@ -156,6 +156,12 @@
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="CheckYourEmail" xml:space="preserve">
+    <value>Please check your email to reset your password.</value>
+  </data>
+  <data name="CheckYourEmailConfirm" xml:space="preserve">
+    <value> Please check your email to confirm your account.</value>
+  </data>
   <data name="ChooseFile" xml:space="preserve">
     <value>Choose a file to upload</value>
   </data>
@@ -209,6 +215,9 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="EmailSent" xml:space="preserve">
+    <value>The E-Mail has been sent</value>
   </data>
   <data name="End" xml:space="preserve">
     <value>End</value>
@@ -342,6 +351,9 @@
   <data name="PasswordErrorLength" xml:space="preserve">
     <value>The {0} must be at least {2} and at max {1} characters long.</value>
   </data>
+  <data name="PasswordForgot" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
   <data name="PersonalData" xml:space="preserve">
     <value>Personal data</value>
   </data>
@@ -369,6 +381,12 @@
   <data name="Register" xml:space="preserve">
     <value>Create an account</value>
   </data>
+  <data name="RegisterANewUser" xml:space="preserve">
+    <value>Register a new user</value>
+  </data>
+  <data name="RegisterConfirmation" xml:space="preserve">
+    <value>Register confirmation</value>
+  </data>
   <data name="RememberMe" xml:space="preserve">
     <value>Remember me?</value>
   </data>
@@ -380,6 +398,9 @@
   </data>
   <data name="RemovePicture" xml:space="preserve">
     <value>Remove this picture</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Request</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>Please add a value</value>
