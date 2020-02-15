@@ -8,5 +8,6 @@ namespace Vitae.Code
     public static class Constants
     {
         public const int YEAR_START = 1900;
+        public const string SENDER_MAIL = "info@cvitae.ch";
     }
 }

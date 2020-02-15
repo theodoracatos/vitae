@@ -174,6 +174,9 @@
   <data name="City" xml:space="preserve">
     <value>Stadt</value>
   </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>hier klicken</value>
+  </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Firmenname</value>
   </data>
@@ -202,7 +205,7 @@
     <value>Land</value>
   </data>
   <data name="CreateAccount" xml:space="preserve">
-    <value>Ein neues Konto eröffnen</value>
+    <value>Ein neues Konto eröffnen.</value>
   </data>
   <data name="CurriculumVitae" xml:space="preserve">
     <value>Curriculum Vitae</value>
@@ -242,9 +245,6 @@
   </data>
   <data name="EmailSent" xml:space="preserve">
     <value>E-Mail wurde verschickt</value>
-  </data>
-  <data name="EmailSent	E-Mail wurde verschickt" xml:space="preserve">
-    <value />
   </data>
   <data name="End" xml:space="preserve">
     <value>Ende</value>
@@ -289,9 +289,6 @@
     <value>E-Mail '{0}' ist ungültig.</value>
   </data>
   <data name="InvalidLoginAttempt" xml:space="preserve">
-    <value>Ungültiger Anmeldeversuch.</value>
-  </data>
-  <data name="InvalidLoginAttempt1" xml:space="preserve">
     <value>Ungültiger Anmeldeversuch.</value>
   </data>
   <data name="InvalidRoleName" xml:space="preserve">
@@ -393,9 +390,6 @@
   <data name="OnlyPdf" xml:space="preserve">
     <value>Nur PDF-Dateien können hochgeladen werden</value>
   </data>
-  <data name="Overview" xml:space="preserve">
-    <value>Übersicht</value>
-  </data>
   <data name="Password" xml:space="preserve">
     <value>Passwort</value>
   </data>
@@ -403,7 +397,7 @@
     <value>Das {0} muss mindestens {2} und höchstens {1} Zeichen lang sein.</value>
   </data>
   <data name="PasswordForgot" xml:space="preserve">
-    <value>Passwort vergessen</value>
+    <value>Passwort vergessen?</value>
   </data>
   <data name="PasswordMismatch" xml:space="preserve">
     <value>Falsches Kennwort.</value>
@@ -434,6 +428,9 @@
   </data>
   <data name="Photo" xml:space="preserve">
     <value>Foto</value>
+  </data>
+  <data name="PleaseClickHereToConfirm" xml:space="preserve">
+    <value>Bitte bestätigen Sie ihr Benutzerkonto in dem Sie</value>
   </data>
   <data name="PleaseConfirm" xml:space="preserve">
     <value>Bitte bestätigen</value>
@@ -476,6 +473,24 @@
   </data>
   <data name="RequiredSelection" xml:space="preserve">
     <value>Bitte einen Wert auswählen</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Zurücksetzen</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="ResetPasswordConfirmation" xml:space="preserve">
+    <value>Passwort erfolgreich zurückgesetzt</value>
+  </data>
+  <data name="ResetPasswordText1" xml:space="preserve">
+    <value>Ihr Passwort wurde zurückgesetzt. Bitte</value>
+  </data>
+  <data name="ResetPasswordText2" xml:space="preserve">
+    <value>klicken Sie hier um sich anzumelden.</value>
+  </data>
+  <data name="ResetYourPassword" xml:space="preserve">
+    <value>Setzen Sie ihr Passwort zurück</value>
   </data>
   <data name="Resumee" xml:space="preserve">
     <value>Beschreibung</value>
@@ -522,6 +537,9 @@
   <data name="Subject" xml:space="preserve">
     <value>Thema der Ausbildung</value>
   </data>
+  <data name="SupplyCode" xml:space="preserve">
+    <value>Für das Zurücksetzen des Passworts muss ein Code angegeben werden.</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Titel der Ausbildung</value>
   </data>
@@ -539,6 +557,9 @@
   </data>
   <data name="UserAlreadyInRole" xml:space="preserve">
     <value>Der Benutzer ist bereits in der Rolle '{0}'.</value>
+  </data>
+  <data name="UserCreatedWithPassword" xml:space="preserve">
+    <value>Ein neues Benutzerkonto wurde erstellt</value>
   </data>
   <data name="UserLockoutNotEnabled" xml:space="preserve">
     <value>Die Sperre ist für diesen Benutzer nicht aktiviert.</value>
@@ -560,6 +581,9 @@
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warnung</value>
+  </data>
+  <data name="WelcomeToVitae" xml:space="preserve">
+    <value>Willkommen bei VITAE</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>

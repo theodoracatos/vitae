@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using System.Web;
+using Library.Helper;
 using Library.Resources;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -80,7 +83,7 @@ namespace Vitae.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation(SharedResource.UserCreatedWithPassword);
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -90,8 +93,12 @@ namespace Vitae.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    var bodyText = new StreamReader(@$"{CodeHelper.AssemblyDirectory}/MailTemplates/Register.html").ReadToEnd();
+                    bodyText.Replace("${WELCOME}", HttpUtility.HtmlEncode(SharedResource.WelcomeToVitae));
+                    bodyText.Replace("${WELCOME_TEXT}", HttpUtility.HtmlEncode($"{SharedResource.PleaseClickHereToConfirm} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{SharedResource.ClickHere}</a>."));
+                    bodyText.Replace("${YEAR}", DateTime.Now.Year.ToString());
+
+                    await _emailSender.SendEmailAsync(Input.Email, HttpUtility.HtmlEncode(SharedResource.ConfirmEMail), bodyText);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

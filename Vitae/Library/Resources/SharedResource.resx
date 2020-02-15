@@ -163,7 +163,7 @@
     <value>Please check your email to reset your password.</value>
   </data>
   <data name="CheckYourEmailConfirm" xml:space="preserve">
-    <value> Please check your email to confirm your account.</value>
+    <value>Please check your email to confirm your account.</value>
   </data>
   <data name="ChooseFile" xml:space="preserve">
     <value>Choose a file to upload</value>
@@ -173,6 +173,9 @@
   </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>clicking here</value>
   </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Company name</value>
@@ -288,9 +291,6 @@
   <data name="InvalidLoginAttempt" xml:space="preserve">
     <value>Invalid login attempt.</value>
   </data>
-  <data name="InvalidLoginAttempt1" xml:space="preserve">
-    <value>Invalid login attempt.</value>
-  </data>
   <data name="InvalidRoleName" xml:space="preserve">
     <value>Role name '{0}' is invalid.</value>
   </data>
@@ -390,9 +390,6 @@
   <data name="OnlyPdf" xml:space="preserve">
     <value>Only PDF files are allowed to be uploaded</value>
   </data>
-  <data name="Overview" xml:space="preserve">
-    <value>Overview</value>
-  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -431,6 +428,9 @@
   </data>
   <data name="Photo" xml:space="preserve">
     <value>Photo</value>
+  </data>
+  <data name="PleaseClickHereToConfirm" xml:space="preserve">
+    <value>Please confirm your email account by</value>
   </data>
   <data name="PleaseConfirm" xml:space="preserve">
     <value>Please confirm</value>
@@ -473,6 +473,24 @@
   </data>
   <data name="RequiredSelection" xml:space="preserve">
     <value>Please select a value</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="ResetPasswordConfirmation" xml:space="preserve">
+    <value>Reset password confirmation</value>
+  </data>
+  <data name="ResetPasswordText1" xml:space="preserve">
+    <value>Your password has been reset. Please</value>
+  </data>
+  <data name="ResetPasswordText2" xml:space="preserve">
+    <value>click here to log in.</value>
+  </data>
+  <data name="ResetYourPassword" xml:space="preserve">
+    <value>Reset your password</value>
   </data>
   <data name="Resumee" xml:space="preserve">
     <value>Summary</value>
@@ -519,6 +537,9 @@
   <data name="Subject" xml:space="preserve">
     <value>Subject of education</value>
   </data>
+  <data name="SupplyCode" xml:space="preserve">
+    <value>A code must be supplied for password reset.</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Title of education</value>
   </data>
@@ -536,6 +557,9 @@
   </data>
   <data name="UserAlreadyInRole" xml:space="preserve">
     <value>User already in role '{0}'.</value>
+  </data>
+  <data name="UserCreatedWithPassword" xml:space="preserve">
+    <value>User created a new account with password.</value>
   </data>
   <data name="UserLockoutNotEnabled" xml:space="preserve">
     <value>Lockout is not enabled for this user.</value>
@@ -557,6 +581,9 @@
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>
+  </data>
+  <data name="WelcomeToVitae" xml:space="preserve">
+    <value>Welcome to VITAE</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>

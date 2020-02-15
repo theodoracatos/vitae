@@ -1,7 +1,7 @@
 ﻿@page
 @model Vitae.Areas.Identity.Pages.Account.RegisterConfirmationModel
 @{
-    ViewData["Title"] = "Register confirmation";
+    ViewData["Title"] = SharedResource.RegisterConfirmation;
 }
 
 <div class="container h-100">
@@ -12,10 +12,8 @@
                 <hr />
                 <div class="form-row">
                     <div class="form-group col">
-                        <p>
                             @SharedResource.CheckYourEmailConfirm
                             <a id="confirm-link" href="@Model.EmailConfirmationUrl">Confirm (Demo)</a>
-                        </p>
                     </div>
                 </div>
                 <div class="form-row">
