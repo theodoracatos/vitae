@@ -86,7 +86,7 @@ function setupDatepicker() {
 }
 
 function setRequiredLabel() {
-    $('input[type=text], input[type=hidden], input[type=radio], input[type=file], select, textarea').each(function () {
+    $('input[type=text], input[type=password], input[type=email], input[type=hidden], input[type=radio], input[type=file], select, textarea').each(function () {
         var req = $(this).attr('data-val-required');
         if (undefined != req) {
             $('label[for="' + $(this).attr('id') + '"]').each(function () {

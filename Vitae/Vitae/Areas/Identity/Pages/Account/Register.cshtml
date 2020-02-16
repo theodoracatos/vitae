@@ -11,7 +11,6 @@
                     <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
                         <h4><i class="fas fa-user-circle fa-fw"></i>@SharedResource.CreateAccount</h4>
                         <hr />
-                        @*<div asp-validation-summary="All" class="text-danger"></div>*@
                         <div class="form-group">
                             <label asp-for="Input.Email"></label>
                             <input asp-for="Input.Email" class="form-control" />
@@ -26,12 +25,10 @@
                             <label asp-for="Input.ConfirmPassword"></label>
                             <input asp-for="Input.ConfirmPassword" class="form-control" />
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col mb-0 text-right">
-                                <button type="submit" class="btn btn-outline-success">@SharedResource.Register</button>
-                            </div>
+                        <partial name="_StatusMessage" model="new KeyValuePair<bool, string>(ViewData.ModelState.IsValid, string.Empty)" />
+                        <div class="form-group col mb-0 text-right">
+                            <button type="submit" class="btn btn-outline-success">@SharedResource.Register</button>
                         </div>
                     </form>
                 </div>

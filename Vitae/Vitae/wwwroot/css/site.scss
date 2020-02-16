@@ -72,14 +72,11 @@ h1 svg {
     background-color: rgba(255,0,0,0.02);
 }
 
-.validation-summary-errors li {
-    font-size: 0.8em;
-}
 
 .validation-summary-errors ul {
-    list-style: none;
+    /*list-style: none;*/
     margin-left: -37px;
-    margin-top: 3px;
+    margin-bottom: 0px;
 }
 
 span.field-validation-error {

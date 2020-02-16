@@ -1222,6 +1222,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please reset your password by.
+        /// </summary>
+        public static string ResetPasswordBy {
+            get {
+                return ResourceManager.GetString("ResetPasswordBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset password confirmation.
         /// </summary>
         public static string ResetPasswordConfirmation {
@@ -1398,6 +1407,15 @@ namespace Library.Resources {
         public static string SupplyCode {
             get {
                 return ResourceManager.GetString("SupplyCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string TheLogout {
+            get {
+                return ResourceManager.GetString("TheLogout", resourceCulture);
             }
         }
         

@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Library.Resources;
+using System.IO;
+using System.Web;
+using Library.Helper;
 
 namespace Vitae.Areas.Identity.Pages.Account
 {
@@ -59,10 +62,13 @@ namespace Vitae.Areas.Identity.Pages.Account
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
-                await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                var bodyText = new StringBuilder(new StreamReader(@$"{CodeHelper.AssemblyDirectory}/MailTemplates/Mail.html").ReadToEnd());
+                bodyText.Replace("${TITLE}", HttpUtility.HtmlEncode(SharedResource.ResetPassword));
+                bodyText.Replace("${BODY_TEXT}", $"{HttpUtility.HtmlEncode(SharedResource.ResetPasswordBy)} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{HttpUtility.HtmlEncode(SharedResource.ClickHere)}</a>.");
+                bodyText.Replace("${YEAR}", DateTime.Now.Year.ToString());
+
+                await _emailSender.SendEmailAsync(Input.Email, SharedResource.ResetPassword, bodyText.ToString());
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

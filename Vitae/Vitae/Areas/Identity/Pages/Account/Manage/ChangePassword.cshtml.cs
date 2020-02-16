@@ -32,6 +32,9 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
         [TempData]
         public string StatusMessage { get; set; }
 
+        [TempData]
+        public bool Success { get; set; }
+
         public class InputModel
         {
             [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
@@ -94,6 +97,7 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
             StatusMessage = SharedResource.PasswordChanged;
+            Success = true;
 
             return RedirectToPage();
         }
