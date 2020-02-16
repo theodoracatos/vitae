@@ -159,6 +159,12 @@
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
+  <data name="Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
   <data name="CheckYourEmail" xml:space="preserve">
     <value>Please check your email to reset your password.</value>
   </data>
@@ -206,6 +212,9 @@
   </data>
   <data name="CreateAccount" xml:space="preserve">
     <value>Create a new account.</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Current password</value>
   </data>
   <data name="CurriculumVitae" xml:space="preserve">
     <value>Curriculum Vitae</value>
@@ -330,11 +339,20 @@
   <data name="LoggedInAs" xml:space="preserve">
     <value>Logged in as</value>
   </data>
+  <data name="Loggedout" xml:space="preserve">
+    <value>Logged out</value>
+  </data>
+  <data name="LoggedoutMessage" xml:space="preserve">
+    <value>You have successfully logged out of the application.</value>
+  </data>
   <data name="LoginAlreadyAssociated" xml:space="preserve">
     <value>A user with this login already exists.</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Use a local account to log in.</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
   </data>
   <data name="Manage" xml:space="preserve">
     <value>Manage</value>
@@ -369,6 +387,9 @@
   <data name="Nationality" xml:space="preserve">
     <value>Nationality</value>
   </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
@@ -392,6 +413,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Your password has been changed.</value>
   </data>
   <data name="PasswordErrorLength" xml:space="preserve">
     <value>The {0} must be at least {2} and at max {1} characters long.</value>
@@ -542,6 +566,12 @@
   </data>
   <data name="Title" xml:space="preserve">
     <value>Title of education</value>
+  </data>
+  <data name="UnableToLoadUser" xml:space="preserve">
+    <value>Unable to load user with email</value>
+  </data>
+  <data name="UnableToLoadUserID" xml:space="preserve">
+    <value>Unable to load user with ID </value>
   </data>
   <data name="UnknownValueIsInvalidAccessor" xml:space="preserve">
     <value>The supplied value is invalid for {0}</value>

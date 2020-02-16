@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200207121524_v.1.0.0")]
+    [Migration("20200216135328_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -159,6 +159,12 @@ namespace Persistency.Migrations
                         .HasMaxLength(100);
 
                     b.Property<Guid?>("PersonID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ShortIdentifier")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CurriculumID");

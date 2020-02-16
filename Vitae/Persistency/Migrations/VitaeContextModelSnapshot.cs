@@ -159,6 +159,12 @@ namespace Persistency.Migrations
                     b.Property<Guid?>("PersonID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("ShortIdentifier")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("CurriculumID");
 
                     b.HasIndex("FriendlyId");

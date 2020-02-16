@@ -14,19 +14,19 @@
                     <hr />
                     <div class="form-row">
                         <div class="form-group col">
-                            <partial name="_StatusMessage" model="Model.StatusMessage" />
+                            <partial name="_StatusMessage" model="new KeyValuePair<bool, string>(Model.Succeeded, Model.StatusMessage)" />
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col mb-0 text-right">
                             @{
-                                if (Model.StatusMessage.StartsWith("Error"))
+                                if (Model.Succeeded)
                                 {
-                                    <a class="btn btn-outline-danger" href="/">@SharedResource.Homepage</a>
+                                    <a class="btn btn-outline-success" href="/Manage">@SharedResource.Dashboard</a>
                                 }
                                 else
                                 {
-                                    <a class="btn btn-outline-success" href="/Manage">@SharedResource.Dashboard</a>
+                                    <a class="btn btn-outline-danger" href="/">@SharedResource.Homepage</a>
                                 }
                             }
                         </div>

@@ -159,6 +159,12 @@
   <data name="Category" xml:space="preserve">
     <value>Kategorie</value>
   </data>
+  <data name="Change" xml:space="preserve">
+    <value>Ändern</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Passwort ändern</value>
+  </data>
   <data name="CheckYourEmail" xml:space="preserve">
     <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Passwort zurückzusetzen.</value>
   </data>
@@ -206,6 +212,9 @@
   </data>
   <data name="CreateAccount" xml:space="preserve">
     <value>Ein neues Konto eröffnen.</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Aktuelles Passwort</value>
   </data>
   <data name="CurriculumVitae" xml:space="preserve">
     <value>Curriculum Vitae</value>
@@ -330,11 +339,20 @@
   <data name="LoggedInAs" xml:space="preserve">
     <value>Eingeloggt als</value>
   </data>
+  <data name="Loggedout" xml:space="preserve">
+    <value>Abgemeldet</value>
+  </data>
+  <data name="LoggedoutMessage" xml:space="preserve">
+    <value>Sie haben sich erfolgreich abgemeldet.</value>
+  </data>
   <data name="LoginAlreadyAssociated" xml:space="preserve">
     <value>Ein Benutzer mit diesem Login existiert bereits.</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Melden Sie sich mit einem Konto an.</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Abmelden</value>
   </data>
   <data name="Manage" xml:space="preserve">
     <value>Ändern</value>
@@ -369,6 +387,9 @@
   <data name="Nationality" xml:space="preserve">
     <value>Nationalität</value>
   </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Neues Passwort</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>Nein</value>
   </data>
@@ -392,6 +413,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Passwort</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Das Passwort wurde geändert.</value>
   </data>
   <data name="PasswordErrorLength" xml:space="preserve">
     <value>Das {0} muss mindestens {2} und höchstens {1} Zeichen lang sein.</value>
@@ -542,6 +566,12 @@
   </data>
   <data name="Title" xml:space="preserve">
     <value>Titel der Ausbildung</value>
+  </data>
+  <data name="UnableToLoadUser" xml:space="preserve">
+    <value>Benutzer mit folgender E-Mail Adresse konnte nicht geladen werden:</value>
+  </data>
+  <data name="UnableToLoadUserID" xml:space="preserve">
+    <value>Benutzer mit folgender ID konnte nicht geladen werden:</value>
   </data>
   <data name="UnknownValueIsInvalidAccessor" xml:space="preserve">
     <value>Der gelieferte Wert ist ungültig für {0}</value>

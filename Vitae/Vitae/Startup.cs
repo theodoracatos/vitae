@@ -14,7 +14,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using Persistency.Data;
-using Persistency.Poco.ApplicationDb;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

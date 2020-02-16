@@ -168,7 +168,9 @@ namespace Persistency.Migrations
                 columns: table => new
                 {
                     CurriculumID = table.Column<Guid>(nullable: false),
+                    UserID = table.Column<Guid>(nullable: false),
                     Identifier = table.Column<Guid>(nullable: false),
+                    ShortIdentifier = table.Column<string>(nullable: true),
                     FriendlyId = table.Column<string>(maxLength: 100, nullable: true),
                     Password = table.Column<string>(maxLength: 100, nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
