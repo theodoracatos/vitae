@@ -1,43 +1,51 @@
 ﻿@page
 @model Vitae.Areas.Identity.Pages.Account.Manage.EmailModel
 @{
-    ViewData["Title"] = "Manage Email";
-    ViewData["ActivePage"] = ManageNavPages.Email;
+    ViewData["Title"] = @SharedResource.ChangeEmail;
 }
 
-<h4>@ViewData["Title"]</h4>
-<partial name="_StatusMessage" model="new KeyValuePair<bool, string>(true, Model.StatusMessage)" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="email-form" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                @if (Model.IsEmailConfirmed)
-                {
-                    <div class="input-group">
-                        <input asp-for="Email" class="form-control" disabled />
-                        <div class="input-group-append">
-                            <span class="input-group-text text-success font-weight-bold">✓</span>
+
+<h1><i class="fas fa-envelope-open-text fa-fw"></i>@SharedResource.ChangeEmail</h1>
+
+<div id="panel">
+    <form id="email-form" method="post">
+        <div class="card mb-4">
+            <div class="card-header font-weight-bold">
+                @SharedResource.ChangeEmail
+            </div>
+            <div class="card-body">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    @if (Model.IsEmailConfirmed)
+                    {
+                        <div class="input-group">
+                            <input asp-for="Email" class="form-control" disabled />
+                            <div class="input-group-append">
+                                <span class="input-group-text text-success font-weight-bold">✓</span>
+                            </div>
                         </div>
+                    }
+                    else
+                    {
+                        <input asp-for="Email" class="form-control" disabled />
+                        <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">@SharedResource.SendVerificationEmail</button>
+                    }
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.NewEmail"></label>
+                    <input asp-for="Input.NewEmail" class="form-control" />
+                    <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
+                </div>
+                <partial name="_StatusMessage" model="new KeyValuePair<bool, string>(ViewData.ModelState.IsValid, Model.StatusMessage)" />
+            </div>
+            <div class="card-footer">
+                <div class="form-row">
+                    <div class="form-group col mb-0 text-right">
+                        <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="btn btn-outline-success float-right">@SharedResource.ChangeEmail</button>
                     </div>
-                }
-                 else
-                {
-                    <input asp-for="Email" class="form-control" disabled />
-                    <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
-                }
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.NewEmail"></label>
-                <input asp-for="Input.NewEmail" class="form-control" />
-                <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
-            </div>
-            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="btn btn-primary">Change email</button>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}

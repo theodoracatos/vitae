@@ -162,6 +162,9 @@
   <data name="Change" xml:space="preserve">
     <value>Change</value>
   </data>
+  <data name="ChangeEmail" xml:space="preserve">
+    <value>Change email</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Change password</value>
   </data>
@@ -387,6 +390,9 @@
   <data name="Nationality" xml:space="preserve">
     <value>Nationality</value>
   </data>
+  <data name="NewEmail" xml:space="preserve">
+    <value>New email</value>
+  </data>
   <data name="NewPassword" xml:space="preserve">
     <value>New password</value>
   </data>
@@ -530,6 +536,9 @@
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
+  </data>
+  <data name="SendVerificationEmail" xml:space="preserve">
+    <value>Send verification email</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign in</value>
