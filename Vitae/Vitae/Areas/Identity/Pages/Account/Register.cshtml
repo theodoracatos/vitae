@@ -27,7 +27,7 @@
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
                         <partial name="_StatusMessage" model="new KeyValuePair<bool, string>(ViewData.ModelState.IsValid, string.Empty)" />
-                        <div class="form-group col mb-0 text-right">
+                        <div class="form-group mb-0 text-right">
                             <button type="submit" class="btn btn-outline-success">@SharedResource.Register</button>
                         </div>
                     </form>

@@ -261,9 +261,9 @@ namespace Library.Resources {
         /// <summary>
         ///   Looks up a localized string similar to clicking here.
         /// </summary>
-        public static string ClickHere {
+        public static string ClickingHere {
             get {
-                return ResourceManager.GetString("ClickHere", resourceCulture);
+                return ResourceManager.GetString("ClickingHere", resourceCulture);
             }
         }
         
@@ -304,20 +304,38 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirmation link to change email sent. Please check your email..
+        /// </summary>
+        public static string ConfirmationEmailSent {
+            get {
+                return ResourceManager.GetString("ConfirmationEmailSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm email.
         /// </summary>
-        public static string ConfirmEMail {
+        public static string ConfirmEmail {
             get {
-                return ResourceManager.GetString("ConfirmEMail", resourceCulture);
+                return ResourceManager.GetString("ConfirmEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm your email.
+        /// </summary>
+        public static string ConfirmEmail1 {
+            get {
+                return ResourceManager.GetString("ConfirmEmail1", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Thank you for confirming your email..
         /// </summary>
-        public static string ConfirmEMailThankYou {
+        public static string ConfirmEmailThankYou {
             get {
-                return ResourceManager.GetString("ConfirmEMailThankYou", resourceCulture);
+                return ResourceManager.GetString("ConfirmEmailThankYou", resourceCulture);
             }
         }
         
@@ -475,11 +493,29 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your email has been already confirmed..
+        /// </summary>
+        public static string EmailAlreadyConfirmed {
+            get {
+                return ResourceManager.GetString("EmailAlreadyConfirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The E-Mail has been sent.
         /// </summary>
         public static string EmailSent {
             get {
                 return ResourceManager.GetString("EmailSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your email is unchanged..
+        /// </summary>
+        public static string EmailUnchanged {
+            get {
+                return ResourceManager.GetString("EmailUnchanged", resourceCulture);
             }
         }
         
@@ -495,9 +531,9 @@ namespace Library.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error confirming your email..
         /// </summary>
-        public static string ErrorConfirmEMail {
+        public static string ErrorConfirmEmail {
             get {
-                return ResourceManager.GetString("ErrorConfirmEMail", resourceCulture);
+                return ResourceManager.GetString("ErrorConfirmEmail", resourceCulture);
             }
         }
         
@@ -1087,6 +1123,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please check your email..
+        /// </summary>
+        public static string PleaseCheckEmail {
+            get {
+                return ResourceManager.GetString("PleaseCheckEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please confirm your email account by.
         /// </summary>
         public static string PleaseClickHereToConfirm {
@@ -1578,6 +1623,15 @@ namespace Library.Resources {
         public static string ValueMustNotBeNullAccessor {
             get {
                 return ResourceManager.GetString("ValueMustNotBeNullAccessor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verification email sent..
+        /// </summary>
+        public static string VerificationEmailSent {
+            get {
+                return ResourceManager.GetString("VerificationEmailSent", resourceCulture);
             }
         }
         

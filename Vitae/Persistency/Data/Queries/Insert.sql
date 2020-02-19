@@ -4,6 +4,13 @@ GO
 BEGIN TRY
     BEGIN TRANSACTION
 
+-- Roles
+IF NOT EXISTS(SELECT 1 FROM [dbo].[AspNetRoles])
+BEGIN
+    INSERT INTO [dbo].[AspNetRoles]([Id], [Name], [NormalizedName]) VALUES (NEWID(), 'Admin', 'ADMIN')
+    INSERT INTO [dbo].[AspNetRoles]([Id], [Name], [NormalizedName]) VALUES (NEWID(), 'User', 'USER')
+END
+
 -- Country
 INSERT INTO [Country] ([CountryID], [CountryCode], [Name_de], [Name_fr], [Name_it], [Name_es], [Name], [Iso3], [NumCode], [PhoneCode]) VALUES (NEWID(), 'AF', 'Afghanistan', 'Afghanistan', 'Afghanistan', 'Afganistán', 'Afghanistan', 'AFG', 4, 93)
 INSERT INTO [Country] ([CountryID], [CountryCode], [Name_de], [Name_fr], [Name_it], [Name_es], [Name], [Iso3], [NumCode], [PhoneCode]) VALUES (NEWID(), 'AL', 'Albanien', 'Albanie', 'Albania', 'Albania', 'Albania', 'ALB', 8, 355)

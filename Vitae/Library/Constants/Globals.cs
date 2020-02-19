@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace Vitae.Code
+namespace Library.Constants
 {
-    public static class Constants
+    public static class Globals
     {
         public const int YEAR_START = 1900;
         public const string SENDER_MAIL = "info@cvitae.ch";

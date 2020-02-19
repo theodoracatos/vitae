@@ -1,4 +1,5 @@
-﻿using Library.Helper;
+﻿using Library.Constants;
+using Library.Helper;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 
@@ -30,13 +31,12 @@ namespace Vitae.Code
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress(Constants.SENDER_MAIL, Options.SendGridUser),
+                From = new EmailAddress(Globals.SENDER_MAIL, Options.SendGridUser),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
             };
             msg.AddAttachment("Logo.png", Convert.ToBase64String(File.ReadAllBytes($@"{CodeHelper.AssemblyDirectory}/MailTemplates/Logo.png")), "image/png", "inline", "logo");
-            msg.AddAttachment("Background.jpg", Convert.ToBase64String(File.ReadAllBytes($@"{CodeHelper.AssemblyDirectory}/MailTemplates/Background.jpg")), "image/jpg", "inline", "background");
             msg.AddTo(new EmailAddress(email));
 
             // Disable click tracking.

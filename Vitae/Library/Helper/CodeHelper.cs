@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace Library.Helper
@@ -22,9 +23,14 @@ namespace Library.Helper
             }
         }
 
-        public static string GetMailBodyText(string title, string body, string mailtemplate = "Mail.html")
+        public async static Task<string> GetMailBodyTextAsync(string title, string body, string mailtemplate = "Mail.html")
         {
-            var bodyText = new StringBuilder(new StreamReader(@$"{AssemblyDirectory}/MailTemplates/{mailtemplate}").ReadToEnd());
+            StringBuilder bodyText;
+
+            using(var reader = new StreamReader(@$"{AssemblyDirectory}/MailTemplates/{mailtemplate}"))
+            {
+                bodyText = new StringBuilder(await reader.ReadToEndAsync());
+            }
             bodyText.Replace("${TITLE}", title);
             bodyText.Replace("${BODY_TEXT}", body);
             bodyText.Replace("${YEAR}", DateTime.Now.Year.ToString());

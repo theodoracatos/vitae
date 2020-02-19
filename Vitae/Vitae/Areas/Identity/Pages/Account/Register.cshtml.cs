@@ -93,8 +93,8 @@ namespace Vitae.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    var bodyText = CodeHelper.GetMailBodyText(HttpUtility.HtmlEncode(SharedResource.WelcomeToVitae), $"{HttpUtility.HtmlEncode(SharedResource.PleaseClickHereToConfirm)} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{HttpUtility.HtmlEncode(SharedResource.ClickHere)}</a>.");
-                    await _emailSender.SendEmailAsync(Input.Email, SharedResource.ConfirmEMail, bodyText);
+                    var bodyText = await CodeHelper.GetMailBodyTextAsync(HttpUtility.HtmlEncode(SharedResource.WelcomeToVitae), $"{HttpUtility.HtmlEncode(SharedResource.PleaseClickHereToConfirm)} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{HttpUtility.HtmlEncode(SharedResource.ClickingHere)}</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, SharedResource.ConfirmEmail, bodyText);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

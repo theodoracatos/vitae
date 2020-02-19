@@ -1,4 +1,5 @@
 using Library.Attributes;
+using Library.Enumerations;
 using Library.Resources;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -17,6 +18,8 @@ using Persistency.Data;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Security.Claims;
 using Vitae.Code;
 
 namespace Vitae
@@ -42,7 +45,9 @@ namespace Vitae
             services.AddDbContext<VitaeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddClaimsPrincipalFactory<CurriculumClaimFactory>()
                 .AddErrorDescriber<CustomIdentityErrorDescriber>();
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -92,6 +97,7 @@ namespace Vitae
             var builder = services.AddRazorPages()
                 .AddRazorPagesOptions(options =>
                 {
+                    options.Conventions.AuthorizeAreaFolder("Manage", "/");
                     options.Conventions.AddAreaPageRoute("CV", "/CV/index", "id");
                 });
 

@@ -1,7 +1,9 @@
-﻿using Library.Resources;
+﻿using Library.Constants;
+using Library.Resources;
 using Library.ViewModels;
 
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +15,7 @@ using Persistency.Poco;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 using Vitae.Code;
@@ -25,8 +28,8 @@ namespace Vitae.Areas.Manage.Pages.Personal
         private readonly IStringLocalizer<SharedResource> localizer;
         private readonly VitaeContext vitaeContext;
         private readonly IRequestCultureFeature requestCulture;
-
-        private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // TODO: to be read from header
+        private readonly Guid curriculumID;
+        private readonly ClaimsIdentity claimsIdentity;
 
         [BindProperty]
         public PersonVM Person { get; set; }
@@ -40,18 +43,20 @@ namespace Vitae.Areas.Manage.Pages.Personal
         public int MaxNationalities { get; } = 3;
         public string PhonePrefix { get; set; }
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor)
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
         {
             this.localizer = localizer;
             this.vitaeContext = vitaeContext;
             requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
+            claimsIdentity = httpContextAccessor.HttpContext.User.Identities.Single();
+            curriculumID = Guid.Parse(claimsIdentity.Claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value);
         }
 
         #region SYNC
 
         public IActionResult OnGet()
         {
-            if (id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
+            if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == curriculumID))
             {
                 return NotFound();
             }
@@ -60,22 +65,22 @@ namespace Vitae.Areas.Manage.Pages.Personal
                 var curriculum = GetCurriculum();
                 Person = new PersonVM()
                 {
-                    Birthday_Day = curriculum.Person.Birthday.Value.Day,
-                    Birthday_Month = curriculum.Person.Birthday.Value.Month,
-                    Birthday_Year = curriculum.Person.Birthday.Value.Year,
-                    City = curriculum.Person.City,
-                    CountryCode = curriculum.Person.Country.CountryCode,
-                    Email = curriculum.Person.Email,
-                    Firstname = curriculum.Person.Firstname,
-                    Lastname = curriculum.Person.Lastname,
-                    Gender = curriculum.Person.Gender,
-                    LanguageCode = curriculum.Person.Language.LanguageCode,
-                    MobileNumber = curriculum.Person.MobileNumber,
-                    Street = curriculum.Person.Street,
-                    StreetNo = curriculum.Person.StreetNo,
-                    ZipCode = curriculum.Person.ZipCode,
-                    State = curriculum.Person.State,
-                    Nationalities = curriculum.Person.PersonCountries?.OrderBy(pc => pc.Order)
+                    Birthday_Day = curriculum.Person?.Birthday.Value.Day ?? 1,
+                    Birthday_Month = curriculum.Person?.Birthday.Value.Month ?? 1,
+                    Birthday_Year = curriculum.Person?.Birthday.Value.Year ?? DateTime.Now.Year - 1,
+                    City = curriculum.Person?.City,
+                    CountryCode = curriculum.Person?.Country.CountryCode,
+                    Email = curriculum.Person?.Email ?? claimsIdentity.Name,
+                    Firstname = curriculum.Person?.Firstname,
+                    Lastname = curriculum.Person?.Lastname,
+                    Gender = curriculum.Person?.Gender,
+                    LanguageCode = curriculum.Person?.Language.LanguageCode,
+                    MobileNumber = curriculum.Person?.MobileNumber,
+                    Street = curriculum.Person?.Street,
+                    StreetNo = curriculum.Person?.StreetNo,
+                    ZipCode = curriculum.Person?.ZipCode,
+                    State = curriculum.Person?.State,
+                    Nationalities = curriculum.Person?.PersonCountries?.OrderBy(pc => pc.Order)
                     .Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order } )
                     .ToList() ?? new List<NationalityVM>() { new NationalityVM() { Order = 0 } }
                 };
@@ -202,7 +207,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
                     .Include(c => c.Person.PersonCountries).ThenInclude(pc => pc.Country)
                     .Include(c => c.Person.Country)
                     .Include(c => c.Person.Language)
-                    .Single(c => c.Identifier == id);
+                    .Single(c => c.Identifier == curriculumID);
 
             return curriculum;
         }
@@ -244,7 +249,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
             Months = vitaeContext.Months.Select(c => new MonthVM()
             {
                 MonthCode = c.MonthCode,
-                Name = requestCulture.RequestCulture.Culture.Name == "de" ? c.Name_de :
+                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
             requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
             requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
             requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :

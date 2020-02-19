@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Library.Constants;
+using Library.Enumerations;
 using Library.Resources;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -17,13 +21,15 @@ namespace Vitae.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ConfirmEmailModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<IdentityUser> userManager;
         private readonly VitaeContext vitaeContext;
+        private readonly SignInManager<IdentityUser> signInManager;
 
-        public ConfirmEmailModel(UserManager<IdentityUser> userManager, VitaeContext vitaeContext)
+        public ConfirmEmailModel(UserManager<IdentityUser> userManager, VitaeContext vitaeContext, SignInManager<IdentityUser> signInManager)
         {
-            _userManager = userManager;
+            this.userManager = userManager;
             this.vitaeContext = vitaeContext;
+            this.signInManager = signInManager;
         }
 
         [TempData]
@@ -39,33 +45,48 @@ namespace Vitae.Areas.Identity.Pages.Account
                 return RedirectToPage("/Index");
             }
              
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await userManager.FindByIdAsync(userId);
             if (user == null)
             {
                 return NotFound($"{SharedResource.UnableToLoadUserID} '{userId}'.");
             }
 
-            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var result = await _userManager.ConfirmEmailAsync(user, code);
-            StatusMessage = result.Succeeded ? SharedResource.ConfirmEMailThankYou : SharedResource.ErrorConfirmEMail;
-            Succeeded = result.Succeeded;
-
-            if (result.Succeeded)
+            if (!user.EmailConfirmed)
             {
-                var guid = Guid.NewGuid();
-                vitaeContext.Curriculums.Add(
-                    new Curriculum()
-                    {
-                        Identifier = guid,
-                        ShortIdentifier = Convert.ToBase64String(guid.ToByteArray()),
-                        UserID = Guid.Parse(user.Id),
-                        CreatedOn = DateTime.Now,
-                        FriendlyId = Convert.ToBase64String(guid.ToByteArray()),
-                        LastUpdated = DateTime.Now
-                    }
-                );
+                code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+                var result = await userManager.ConfirmEmailAsync(user, code);
+                StatusMessage = result.Succeeded ? SharedResource.ConfirmEmailThankYou : SharedResource.ErrorConfirmEmail;
+                Succeeded = result.Succeeded;
 
-                await vitaeContext.SaveChangesAsync();
+                if (result.Succeeded)
+                {
+                    // CV
+                    var guid = Guid.NewGuid();
+                    vitaeContext.Curriculums.Add(
+                        new Curriculum()
+                        {
+                            Identifier = guid,
+                            ShortIdentifier = Convert.ToBase64String(guid.ToByteArray()),
+                            UserID = Guid.Parse(user.Id),
+                            CreatedOn = DateTime.Now,
+                            FriendlyId = (DateTime.Now.Ticks - new DateTime(2020, 1, 1).Ticks).ToString("x"),
+                            LastUpdated = DateTime.Now
+                        }
+                    );
+
+                    await vitaeContext.SaveChangesAsync();
+
+                    // Role & Claims
+                    await userManager.AddToRoleAsync(user, Roles.USER);
+                    var claim = new Claim(Claims.CURRICULUM_ID, vitaeContext.Curriculums.Single(c => c.Identifier == guid).Identifier.ToString());
+                    await userManager.AddClaimAsync(user, claim);
+
+                    await signInManager.SignInAsync(user, isPersistent: false);
+                }
+            }
+            else
+            {
+                StatusMessage = SharedResource.EmailAlreadyConfirmed;
             }
 
             return Page();

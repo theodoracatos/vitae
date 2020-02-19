@@ -127,7 +127,7 @@
     <value>Hinzufügen</value>
   </data>
   <data name="AdText1" xml:space="preserve">
-    <value>Fördern Sie Ihre Karriere</value>
+    <value>Geben Sie Ihrer Karriere einen Boost</value>
   </data>
   <data name="AdText2" xml:space="preserve">
     <value>Möchten Sie Ihren Lebenslauf verbessern? Kein Problem - mit VITAE präsentieren Sie sich im bestmöglichen Licht. Erstellen Sie jetzt ein kostenloses Konto!</value>
@@ -183,7 +183,7 @@
   <data name="City" xml:space="preserve">
     <value>Stadt</value>
   </data>
-  <data name="ClickHere" xml:space="preserve">
+  <data name="ClickingHere" xml:space="preserve">
     <value>hier klicken</value>
   </data>
   <data name="CompanyName" xml:space="preserve">
@@ -198,10 +198,16 @@
   <data name="Confirm" xml:space="preserve">
     <value>Bestätigung</value>
   </data>
-  <data name="ConfirmEMail" xml:space="preserve">
+  <data name="ConfirmationEmailSent" xml:space="preserve">
+    <value>Bestätigungslink zur E-Mail-Änderung wurde versandt.</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
     <value>E-Mail bestätigen</value>
   </data>
-  <data name="ConfirmEMailThankYou" xml:space="preserve">
+  <data name="ConfirmEmail1" xml:space="preserve">
+    <value>Bestätigen Sie Ihr E-Mail</value>
+  </data>
+  <data name="ConfirmEmailThankYou" xml:space="preserve">
     <value>Vielen Dank für die Bestätigung Ihrer E-Mail.</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
@@ -255,13 +261,19 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="EmailAlreadyConfirmed" xml:space="preserve">
+    <value>Ihre E-Mail wurde bereits bestätigt.</value>
+  </data>
   <data name="EmailSent" xml:space="preserve">
     <value>E-Mail wurde verschickt</value>
+  </data>
+  <data name="EmailUnchanged" xml:space="preserve">
+    <value>Ihre E-Mail wurde nicht verändert.</value>
   </data>
   <data name="End" xml:space="preserve">
     <value>Ende</value>
   </data>
-  <data name="ErrorConfirmEMail" xml:space="preserve">
+  <data name="ErrorConfirmEmail" xml:space="preserve">
     <value>Fehler bei der Bestätigung Ihrer E-Mail.</value>
   </data>
   <data name="Etc" xml:space="preserve">
@@ -459,6 +471,9 @@
   <data name="Photo" xml:space="preserve">
     <value>Foto</value>
   </data>
+  <data name="PleaseCheckEmail" xml:space="preserve">
+    <value>Bitte überprüfen Sie Ihre E-Mail.</value>
+  </data>
   <data name="PleaseClickHereToConfirm" xml:space="preserve">
     <value>Bitte bestätigen Sie ihr Benutzerkonto in dem Sie</value>
   </data>
@@ -537,7 +552,7 @@
   <data name="Select" xml:space="preserve">
     <value>Auswählen</value>
   </data>
-  <data name="SendVerificationEmail1" xml:space="preserve">
+  <data name="SendVerificationEmail" xml:space="preserve">
     <value>Sende E-Mail-Verifikation</value>
   </data>
   <data name="SignIn" xml:space="preserve">
@@ -623,6 +638,9 @@
   </data>
   <data name="ValueMustNotBeNullAccessor" xml:space="preserve">
     <value>Der Wert '{0}' ist ungültig</value>
+  </data>
+  <data name="VerificationEmailSent" xml:space="preserve">
+    <value>Verifikations-E-Mail wurde verschickt.</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warnung</value>

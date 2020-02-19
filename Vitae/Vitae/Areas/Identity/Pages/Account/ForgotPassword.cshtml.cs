@@ -62,7 +62,7 @@ namespace Vitae.Areas.Identity.Pages.Account
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
-                var bodyText = CodeHelper.GetMailBodyText(HttpUtility.HtmlEncode(SharedResource.ResetPassword), $"{HttpUtility.HtmlEncode(SharedResource.ResetPasswordBy)} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{HttpUtility.HtmlEncode(SharedResource.ClickHere)}</a>.");
+                var bodyText = await CodeHelper.GetMailBodyTextAsync(HttpUtility.HtmlEncode(SharedResource.ResetPassword), $"{HttpUtility.HtmlEncode(SharedResource.ResetPasswordBy)} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{HttpUtility.HtmlEncode(SharedResource.ClickingHere)}</a>.");
                 await _emailSender.SendEmailAsync(Input.Email, SharedResource.ResetPassword, bodyText);
 
                 return RedirectToPage("./ForgotPasswordConfirmation");

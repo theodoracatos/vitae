@@ -183,7 +183,7 @@
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
-  <data name="ClickHere" xml:space="preserve">
+  <data name="ClickingHere" xml:space="preserve">
     <value>clicking here</value>
   </data>
   <data name="CompanyName" xml:space="preserve">
@@ -198,10 +198,16 @@
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
-  <data name="ConfirmEMail" xml:space="preserve">
+  <data name="ConfirmationEmailSent" xml:space="preserve">
+    <value>Confirmation link to change email sent. Please check your email.</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
     <value>Confirm email</value>
   </data>
-  <data name="ConfirmEMailThankYou" xml:space="preserve">
+  <data name="ConfirmEmail1" xml:space="preserve">
+    <value>Confirm your email</value>
+  </data>
+  <data name="ConfirmEmailThankYou" xml:space="preserve">
     <value>Thank you for confirming your email.</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
@@ -255,13 +261,19 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="EmailAlreadyConfirmed" xml:space="preserve">
+    <value>Your email has been already confirmed.</value>
+  </data>
   <data name="EmailSent" xml:space="preserve">
     <value>The E-Mail has been sent</value>
+  </data>
+  <data name="EmailUnchanged" xml:space="preserve">
+    <value>Your email is unchanged.</value>
   </data>
   <data name="End" xml:space="preserve">
     <value>End</value>
   </data>
-  <data name="ErrorConfirmEMail" xml:space="preserve">
+  <data name="ErrorConfirmEmail" xml:space="preserve">
     <value>Error confirming your email.</value>
   </data>
   <data name="Etc" xml:space="preserve">
@@ -459,6 +471,9 @@
   <data name="Photo" xml:space="preserve">
     <value>Photo</value>
   </data>
+  <data name="PleaseCheckEmail" xml:space="preserve">
+    <value>Please check your email.</value>
+  </data>
   <data name="PleaseClickHereToConfirm" xml:space="preserve">
     <value>Please confirm your email account by</value>
   </data>
@@ -623,6 +638,9 @@
   </data>
   <data name="ValueMustNotBeNullAccessor" xml:space="preserve">
     <value>The value '{0}' is invalid</value>
+  </data>
+  <data name="VerificationEmailSent" xml:space="preserve">
+    <value>Verification email sent.</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>
