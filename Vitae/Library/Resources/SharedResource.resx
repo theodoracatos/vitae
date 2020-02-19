@@ -429,6 +429,9 @@
   <data name="OnlyPdf" xml:space="preserve">
     <value>Only PDF files are allowed to be uploaded</value>
   </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>

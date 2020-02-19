@@ -10673,7 +10673,12 @@ body {
 .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
     padding-left: 225px;
     top: 56px;
-    background-color: #343a40;
+    background: #dee2e6 url('/img/Background_Manage.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: right;
 }
 
 #layoutError {
@@ -10726,13 +10731,10 @@ body {
     flex-direction: column;
     height: 100%;
     flex-wrap: nowrap;
-    background-color: #343a40 !important;
 }
 
 .sb-sidenav .sb-sidenav-menu {
     flex-grow: 1;
-    background-color: #212529 !important;
-    border-bottom-right-radius: 12px;
 }
 
         .sb-sidenav .sb-sidenav-menu .nav {
@@ -10853,3 +10855,10 @@ body {
     .sb-sidenav-light .sb-sidenav-footer {
         background-color: #e9ecef;
     }
+
+
+footer {
+    line-height: 62px;
+    background-color: #343a40;
+    color: rgba(255, 255, 255, 0.5);
+}

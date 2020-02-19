@@ -8,12 +8,6 @@ body, nav {
     font-family: Lato-Regular, Arial, Helvetica, sans-serif;
 }
 
-footer {
-    line-height: 62px;
-    background-color: #343a40;
-    color: rgba(255, 255, 255, 0.5);
-}
-
 nav{
     min-height: 60px;
 }
@@ -28,10 +22,10 @@ h1 {
 }
 
 #panel .card {
-    background-color: rgb(239,248,255);
+    background-color: rgba(241,250,255, 0.8);
 }
 #panel .card .card-header, .card-footer {
-    background-color: rgb(230,239,249) !important;
+    background-color: rgba(236,245,255, 0.8) !important;
 }
 
 .fa-fw {

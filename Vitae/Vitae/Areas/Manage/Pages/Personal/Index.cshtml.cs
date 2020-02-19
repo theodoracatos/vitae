@@ -1,10 +1,8 @@
-﻿using Library.Constants;
-using Library.Resources;
+﻿using Library.Resources;
 using Library.ViewModels;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
@@ -15,7 +13,6 @@ using Persistency.Poco;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 using Vitae.Code;
@@ -25,11 +22,6 @@ namespace Vitae.Areas.Manage.Pages.Personal
     public class IndexModel : BasePageModel
     {
         private const string PAGE_PERSONAL = "_Personal";
-        private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly VitaeContext vitaeContext;
-        private readonly IRequestCultureFeature requestCulture;
-        private readonly Guid curriculumID;
-        private readonly ClaimsIdentity claimsIdentity;
 
         [BindProperty]
         public PersonVM Person { get; set; }
@@ -44,13 +36,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
         public string PhonePrefix { get; set; }
 
         public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
-        {
-            this.localizer = localizer;
-            this.vitaeContext = vitaeContext;
-            requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
-            claimsIdentity = httpContextAccessor.HttpContext.User.Identities.Single();
-            curriculumID = Guid.Parse(claimsIdentity.Claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value);
-        }
+            : base(localizer, vitaeContext, httpContextAccessor, userManager) { }
 
         #region SYNC
 
@@ -70,7 +56,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
                     Birthday_Year = curriculum.Person?.Birthday.Value.Year ?? DateTime.Now.Year - 1,
                     City = curriculum.Person?.City,
                     CountryCode = curriculum.Person?.Country.CountryCode,
-                    Email = curriculum.Person?.Email ?? claimsIdentity.Name,
+                    Email = curriculum.Person?.Email ?? identity.Name,
                     Firstname = curriculum.Person?.Firstname,
                     Lastname = curriculum.Person?.Lastname,
                     Gender = curriculum.Person?.Gender,
