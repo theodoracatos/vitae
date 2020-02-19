@@ -81,6 +81,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
             if (ModelState.IsValid)
             {
                 var curriculum = GetCurriculum();
+                curriculum.Person = curriculum.Person ?? new Person() { PersonCountries = new List<PersonCountry>() };
                 curriculum.Person.Birthday = new DateTime(Person.Birthday_Year, Person.Birthday_Month, Person.Birthday_Day);
                 curriculum.Person.City = Person.City;
                 curriculum.Person.Country = vitaeContext.Countries.Single(c => c.CountryCode == Person.CountryCode);
