@@ -2,6 +2,7 @@
 using Library.ViewModels;
 
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,11 +26,6 @@ namespace Vitae.Areas.Manage.Pages.Experience
     public class IndexModel : BasePageModel
     {
         private const string PAGE_EXPERIENCE = "_Experience";
-        private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly VitaeContext vitaeContext;
-        private readonly IRequestCultureFeature requestCulture;
-
-        private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.JobExperiences), Prompt = nameof(SharedResource.JobExperiences))]
         [BindProperty]
@@ -41,18 +37,14 @@ namespace Vitae.Areas.Manage.Pages.Experience
 
         public IEnumerable<MonthVM> Months { get; set; }
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor)
-        {
-            this.localizer = localizer;
-            this.vitaeContext = vitaeContext;
-            requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
-        }
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
+            : base(localizer, vitaeContext, httpContextAccessor, userManager) { }
 
         #region SYNC
 
         public IActionResult OnGet()
         {
-            if (id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
+            if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == curriculumID))
             {
                 return NotFound();
             }
@@ -184,7 +176,7 @@ namespace Vitae.Areas.Manage.Pages.Experience
             var curriculum = vitaeContext.Curriculums
                     .Include(c => c.Person)
                     .Include(c => c.Person.Experiences).ThenInclude(e => e.Country)
-                    .Single(c => c.Identifier == id);
+                    .Single(c => c.Identifier == curriculumID);
 
             return curriculum;
         }

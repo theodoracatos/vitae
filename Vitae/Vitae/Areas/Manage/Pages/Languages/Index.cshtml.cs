@@ -2,7 +2,7 @@
 using Library.ViewModels;
 
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
@@ -25,11 +25,6 @@ namespace Vitae.Areas.Manage.Pages.Languages
     public class IndexModel : BasePageModel
     {
         private const string PAGE_LANGUAGES = "_Languages";
-        private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly VitaeContext vitaeContext;
-        private readonly IRequestCultureFeature requestCulture;
-
-        private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Languages), Prompt = nameof(SharedResource.Languages))]
         [BindProperty]
@@ -39,17 +34,13 @@ namespace Vitae.Areas.Manage.Pages.Languages
 
         public int MaxLanguageSkills { get; } = 10;
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor)
-        {
-            this.localizer = localizer;
-            this.vitaeContext = vitaeContext;
-            requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
-        }
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
+            : base(localizer, vitaeContext, httpContextAccessor, userManager) { }
 
         #region SYNC
         public IActionResult OnGet()
         {
-            if (id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
+            if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == curriculumID))
             {
                 return NotFound();
             }
@@ -157,7 +148,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
             var curriculum = vitaeContext.Curriculums
                     .Include(c => c.Person)
                     .Include(c => c.Person.LanguageSkills).ThenInclude(ls => ls.Language)
-                    .Single(c => c.Identifier == id);
+                    .Single(c => c.Identifier == curriculumID);
 
             return curriculum;
         }

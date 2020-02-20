@@ -3,7 +3,7 @@
 
 @{
     var curriculumID = Guid.Parse(User.Claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value);
-    var emptyPerson = VitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == curriculumID).Person == null;
+    var hasPerson = VitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == curriculumID).Person != null;
 }
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
         <button class="btn btn-link order-1 navbar-toggler d-block" id="sidebarToggle" href="#">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/Manage">
             <img src="~/img/Logo.png" title="Vitae" />
         </a><!-- Navbar Search-->
         <!-- Navbar-->
@@ -52,46 +52,46 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-address-book"></i></div>
                             @SharedResource.PersonalDetails
                         </a>
-                        @if (!emptyPerson)
+                        @if (hasPerson)
                         {
-                        <a class="nav-link" href="/Manage/@(nameof(About))">
-                            <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
-                            @SharedResource.About
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Education))">
-                            <div class="sb-nav-link-icon"><i class="fas fa-university"></i></div>
-                            @SharedResource.Education
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Experience))">
-                            <div class="sb-nav-link-icon"><i class="fas fa-briefcase"></i></div>
-                            @SharedResource.Experience
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Languages))">
-                            <div class="sb-nav-link-icon"><i class="fas fa-globe-americas"></i></div>
-                            @SharedResource.Languages
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Interests))">
-                            <div class="sb-nav-link-icon"><i class="fas fa-volleyball-ball"></i></div>
-                            @SharedResource.Interests
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Awards))">
-                            <div class="sb-nav-link-icon"><i class="fas fa-trophy"></i></div>
-                            @SharedResource.Awards
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Sociallinks))">
-                            <div class="sb-nav-link-icon"><i class="fab fa-twitter"></i></div>
-                            @SharedResource.SocialLinks
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Skills))">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
-                            @SharedResource.Skills
-                        </a>
+                            <a class="nav-link" href="/Manage/@(nameof(About))">
+                                <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
+                                @SharedResource.About
+                            </a>
+                            <a class="nav-link" href="/Manage/@(nameof(Education))">
+                                <div class="sb-nav-link-icon"><i class="fas fa-university"></i></div>
+                                @SharedResource.Education
+                            </a>
+                            <a class="nav-link" href="/Manage/@(nameof(Experience))">
+                                <div class="sb-nav-link-icon"><i class="fas fa-briefcase"></i></div>
+                                @SharedResource.Experience
+                            </a>
+                            <a class="nav-link" href="/Manage/@(nameof(Languages))">
+                                <div class="sb-nav-link-icon"><i class="fas fa-globe-americas"></i></div>
+                                @SharedResource.Languages
+                            </a>
+                            <a class="nav-link" href="/Manage/@(nameof(Interests))">
+                                <div class="sb-nav-link-icon"><i class="fas fa-volleyball-ball"></i></div>
+                                @SharedResource.Interests
+                            </a>
+                            <a class="nav-link" href="/Manage/@(nameof(Awards))">
+                                <div class="sb-nav-link-icon"><i class="fas fa-trophy"></i></div>
+                                @SharedResource.Awards
+                            </a>
+                            <a class="nav-link" href="/Manage/@(nameof(Sociallinks))">
+                                <div class="sb-nav-link-icon"><i class="fab fa-twitter"></i></div>
+                                @SharedResource.SocialLinks
+                            </a>
+                            <a class="nav-link" href="/Manage/@(nameof(Skills))">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
+                                @SharedResource.Skills
+                            </a>
+                            <div class="sb-sidenav-menu-heading mt-2">@SharedResource.CurriculumVitae</div>
+                            <a class="nav-link" href=@($"/CV/{curriculumID}")>
+                                <div class="sb-nav-link-icon"><i class="fas fa-address-card"></i></div>
+                                @SharedResource.MyVitae
+                            </a>
                         }
-                        <div class="sb-sidenav-menu-heading mt-2">@SharedResource.CurriculumVitae</div>
-                        <a class="nav-link" href="/CV?id=a05c13a8-21fb-42c9-a5bc-98b7d94f464a">
-                            <div class="sb-nav-link-icon"><i class="fas fa-address-card"></i></div>
-                            @SharedResource.MyVitae
-                        </a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">

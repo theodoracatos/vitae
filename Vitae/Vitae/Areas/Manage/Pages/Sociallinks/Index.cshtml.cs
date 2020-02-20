@@ -3,6 +3,7 @@ using Library.Resources;
 using Library.ViewModels;
 
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,11 +27,6 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
     public class IndexModel : BasePageModel
     {
         private const string PAGE_SOCIALLINKS = "_Sociallinks";
-        private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly VitaeContext vitaeContext;
-        private readonly IRequestCultureFeature requestCulture;
-
-        private Guid id = Guid.Parse("a05c13a8-21fb-42c9-a5bc-98b7d94f464a"); // to be read from header
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.SocialLinks), Prompt = nameof(SharedResource.SocialLinks))]
         [BindProperty]
@@ -38,18 +34,14 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
 
         public int MaxSocialLinks { get; } = Enum.GetNames(typeof(SocialPlatform)).Length;
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor)
-        {
-            this.localizer = localizer;
-            this.vitaeContext = vitaeContext;
-            requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
-        }
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
+            : base(localizer, vitaeContext, httpContextAccessor, userManager) { }
 
         #region SYNC
 
         public IActionResult OnGet()
         {
-            if (id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
+            if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == curriculumID))
             {
                 return NotFound();
             }
@@ -159,7 +151,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
             var curriculum = vitaeContext.Curriculums
                     .Include(c => c.Person)
                     .Include(c => c.Person.SocialLinks)
-                    .Single(c => c.Identifier == id);
+                    .Single(c => c.Identifier == curriculumID);
 
             return curriculum;
         }
