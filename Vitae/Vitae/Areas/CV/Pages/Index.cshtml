@@ -73,14 +73,12 @@
                 </div>
                 <p class="lead mb-5">@Model.About.Slogan</p>
                 <div class="social-icons">
-                    @{
-                        foreach (var socialLink in Model.SocialLinks)
+                        @*@foreach (var socialLink in Model.SocialLinks)
                         {
                            <a href="@socialLink.Link" target="_blank">
                                <i class="@socialLink.SocialPlatform.Description()"></i>
                            </a>
-                        }
-                      }
+                        }*@
                 </div>
                 @*<img class="mt-2 rounded" src="@String.Format("data:image/png;base64,{0}", Model.QRTag)" />*@
             </div>
@@ -93,8 +91,7 @@
         <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
             <div class="w-100">
                 <h2 class="mb-5">Erfahrung</h2>
-                @{
-                    foreach (var experience in Model.Experiences)
+                    @foreach (var experience in Model.Experiences)
                     {
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                             <div class="resume-content">
@@ -107,8 +104,6 @@
                             </div>
                         </div>
                     }
-
-                }
             </div>
 
         </section>
@@ -118,9 +113,7 @@
         <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education">
             <div class="w-100">
                 <h2 class="mb-5">Ausbildung</h2>
-
-                @{
-                    foreach (var education in Model.Educations)
+                    @foreach (var education in Model.Educations)
                     {
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                             <div class="resume-content">
@@ -134,11 +127,9 @@
                             </div>
                         </div>
                     }
-                }
-
             </div>
         </section>
-
+          }
         <hr class="m-0">
 
         <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="languages">
@@ -202,7 +193,7 @@
                 </ul>
             </div>
         </section>
-                    }
+                  
     </div>
 
     <!-- Bootstrap core JavaScript -->
