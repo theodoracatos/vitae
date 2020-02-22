@@ -29,7 +29,7 @@
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">Clarence Taylor</span>
             <span class="d-none d-lg-block">
-                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="@Model.About.Photo" alt="">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="@(Model.About.Photo ?? (Model.Person.Gender.Value ? "/img/NoUserMale.png" : "/img/NoUserFemale.png"))" alt="@Model.Person.Firstname @Model.Person.Lastname">
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,6 +88,8 @@
 
         <hr class="m-0">
 
+        @if(DateTime.Now.Year == 1999)
+        { 
         <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
             <div class="w-100">
                 <h2 class="mb-5">Erfahrung</h2>
@@ -200,7 +202,7 @@
                 </ul>
             </div>
         </section>
-
+                    }
     </div>
 
     <!-- Bootstrap core JavaScript -->

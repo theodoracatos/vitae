@@ -1,4 +1,5 @@
-﻿using Library.Resources;
+﻿using Library.Repository;
+using Library.Resources;
 using Library.ViewModels;
 
 using Microsoft.AspNetCore.Http;
@@ -35,8 +36,8 @@ namespace Vitae.Areas.Manage.Pages.Personal
         public int MaxNationalities { get; } = 3;
         public string PhonePrefix { get; set; }
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
-            : base(localizer, vitaeContext, httpContextAccessor, userManager) { }
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+            : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
 
         #region SYNC
 
@@ -46,34 +47,9 @@ namespace Vitae.Areas.Manage.Pages.Personal
             {
                 return NotFound();
             }
-            else if (vitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == curriculumID).Person == null)
-            {
-                return BadRequest();
-            }
             else
             {
-                var curriculum = GetCurriculum();
-                Person = new PersonVM()
-                {
-                    Birthday_Day = curriculum.Person?.Birthday.Value.Day ?? 1,
-                    Birthday_Month = curriculum.Person?.Birthday.Value.Month ?? 1,
-                    Birthday_Year = curriculum.Person?.Birthday.Value.Year ?? DateTime.Now.Year - 1,
-                    City = curriculum.Person?.City,
-                    CountryCode = curriculum.Person?.Country.CountryCode,
-                    Email = curriculum.Person?.Email ?? identity.Name,
-                    Firstname = curriculum.Person?.Firstname,
-                    Lastname = curriculum.Person?.Lastname,
-                    Gender = curriculum.Person?.Gender,
-                    LanguageCode = curriculum.Person?.Language.LanguageCode,
-                    MobileNumber = curriculum.Person?.MobileNumber,
-                    Street = curriculum.Person?.Street,
-                    StreetNo = curriculum.Person?.StreetNo,
-                    ZipCode = curriculum.Person?.ZipCode,
-                    State = curriculum.Person?.State,
-                    Nationalities = curriculum.Person?.PersonCountries?.OrderBy(pc => pc.Order)
-                    .Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order } )
-                    .ToList() ?? new List<NationalityVM>() { new NationalityVM() { Order = 0 } }
-                };
+                Person = repository.GetPersonVM(curriculumID, identity.Name);
 
                 FillSelectionViewModel();
                 return Page();
@@ -84,7 +60,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
         {
             if (ModelState.IsValid)
             {
-                var curriculum = GetCurriculum();
+                var curriculum = repository.GetCurriculum(curriculumID);
                 curriculum.Person = curriculum.Person ?? new Person() { PersonCountries = new List<PersonCountry>() };
                 curriculum.Person.Birthday = new DateTime(Person.Birthday_Year, Person.Birthday_Month, Person.Birthday_Day);
                 curriculum.Person.City = Person.City;
@@ -190,18 +166,6 @@ namespace Vitae.Areas.Manage.Pages.Personal
         #endregion
 
         #region Helper
-
-        private Curriculum GetCurriculum()
-        {
-            var curriculum = vitaeContext.Curriculums
-                    .Include(c => c.Person)
-                    .Include(c => c.Person.PersonCountries).ThenInclude(pc => pc.Country)
-                    .Include(c => c.Person.Country)
-                    .Include(c => c.Person.Language)
-                    .Single(c => c.Identifier == curriculumID);
-
-            return curriculum;
-        }
 
         protected override void FillSelectionViewModel()
         {

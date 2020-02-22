@@ -1,4 +1,5 @@
 using Library.Attributes;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Builder;
@@ -48,6 +49,7 @@ namespace Vitae
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddClaimsPrincipalFactory<CurriculumClaimFactory>()
                 .AddErrorDescriber<CustomIdentityErrorDescriber>();
+            services.AddTransient<Repository, Repository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -132,7 +134,7 @@ namespace Vitae
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (!env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }

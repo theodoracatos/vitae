@@ -1,4 +1,5 @@
-﻿using Library.Resources;
+﻿using Library.Repository;
+using Library.Resources;
 using Library.ViewModels;
 
 using Microsoft.AspNetCore.Http;
@@ -36,8 +37,8 @@ namespace Vitae.Areas.Manage.Pages.Experience
 
         public IEnumerable<MonthVM> Months { get; set; }
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
-            : base(localizer, vitaeContext, httpContextAccessor, userManager) { }
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+            : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
 
         #region SYNC
 

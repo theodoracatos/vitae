@@ -1,3 +1,4 @@
+using Library.Repository;
 using Library.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,7 @@ namespace CVitae.Areas.CV.Pages
         #region Variables
 
         private readonly VitaeContext vitaeContext;
+        private readonly Repository repository;
 
         #endregion
 
@@ -37,9 +39,10 @@ namespace CVitae.Areas.CV.Pages
         public Guid Guid { get; set; }
         public string QRTag { get; set; }
 
-        public IndexModel(VitaeContext vitaeContext)
+        public IndexModel(VitaeContext vitaeContext, Repository repository)
         {
             this.vitaeContext = vitaeContext;
+            this.repository = repository;
         }
 
         public IActionResult OnGet(Guid id)
@@ -47,6 +50,10 @@ namespace CVitae.Areas.CV.Pages
             if(id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
             {
                 return NotFound();
+            }
+            else if (vitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == id).Person == null)
+            {
+                return BadRequest();
             }
             else
             {
@@ -61,88 +68,69 @@ namespace CVitae.Areas.CV.Pages
 
         private void FillValues(Guid id)
         {
-            var curriculum = vitaeContext.Curriculums
-                    .Include(c => c.Person)
-                    .Include(c => c.Person.About)
-                    .Include(c => c.Person.SocialLinks)
-                    .Include(c => c.Person.Experiences)
-                    .Include(c => c.Person.Educations)
-                    .Include(c => c.Person.LanguageSkills)
-                    .Single(c => c.Identifier == id);
+            Person = repository.GetPersonVM(id);
 
-            // Set values
-           Person.Firstname = curriculum.Person.Firstname;
-           Person.Lastname = curriculum.Person.Lastname;
-           Person.Street = curriculum.Person.Street;
-           Person.StreetNo = curriculum.Person.StreetNo;
-           Person.City = curriculum.Person.City;
-           Person.ZipCode = curriculum.Person.ZipCode;
-           Person.Email = curriculum.Person.Email;
-           Person.MobileNumber = curriculum.Person.MobileNumber;
-           About.Slogan = curriculum.Person.About.Slogan;
-           About.Photo = curriculum.Person.About.Photo;
+            //// Social links
+            //SocialLinks = new List<SocialLinkVM>();
+            //foreach (var socialLink in curriculum.Person.SocialLinks.OrderByDescending(s => s.Order))
+            //{
+            //    SocialLinks.Add(new SocialLinkVM()
+            //    { 
+            //        SocialPlatform = socialLink.SocialPlatform,
+            //        Link = socialLink.Link
+            //    });
+            //}
 
-            // Social links
-            SocialLinks = new List<SocialLinkVM>();
-            foreach (var socialLink in curriculum.Person.SocialLinks.OrderByDescending(s => s.Order))
-            {
-                SocialLinks.Add(new SocialLinkVM()
-                { 
-                    SocialPlatform = socialLink.SocialPlatform,
-                    Link = socialLink.Link
-                });
-            }
+            //// Experiences
+            //Experiences = new List<ExperienceVM>();
+            //foreach (var experience in curriculum.Person.Experiences.OrderByDescending(e => e.Start))
+            //{
+            //    Experiences.Add(new ExperienceVM()
+            //    {
+            //        JobTitle = experience.JobTitle,
+            //        CompanyName = experience.CompanyName,
+            //        Link = experience.Link,
+            //        City = experience.City,
+            //        Resumee = experience.Resumee,
+            //        //Start = experience.Start,
+            //        //End = experience.End
+            //    });
+            //}
 
-            // Experiences
-            Experiences = new List<ExperienceVM>();
-            foreach (var experience in curriculum.Person.Experiences.OrderByDescending(e => e.Start))
-            {
-                Experiences.Add(new ExperienceVM()
-                {
-                    JobTitle = experience.JobTitle,
-                    CompanyName = experience.CompanyName,
-                    Link = experience.Link,
-                    City = experience.City,
-                    Resumee = experience.Resumee,
-                    //Start = experience.Start,
-                    //End = experience.End
-                });
-            }
+            //// Education
+            //Educations = new List<EducationVM>();
+            //foreach (var education in curriculum.Person.Educations.OrderByDescending(e => e.Start))
+            //{
+            //    Educations.Add(new EducationVM()
+            //    {
+            //        SchoolName = education.SchoolName,
+            //        Link = education.Link,
+            //        Subject = education.Subject,
+            //        City = education.City,
+            //        Title = education.Title,
+            //        Resumee = education.Resumee,
+            //        Start_Month = education.Start.Month,
+            //        Start_Year = education.Start.Year,
+            //        End_Month = education.End.Value.Month,
+            //        End_Year = education.End.Value.Year,
+            //        Grade = education.Grade
+            //    });
+            //}
 
-            // Education
-            Educations = new List<EducationVM>();
-            foreach (var education in curriculum.Person.Educations.OrderByDescending(e => e.Start))
-            {
-                Educations.Add(new EducationVM()
-                {
-                    SchoolName = education.SchoolName,
-                    Link = education.Link,
-                    Subject = education.Subject,
-                    City = education.City,
-                    Title = education.Title,
-                    Resumee = education.Resumee,
-                    Start_Month = education.Start.Month,
-                    Start_Year = education.Start.Year,
-                    End_Month = education.End.Value.Month,
-                    End_Year = education.End.Value.Year,
-                    Grade = education.Grade
-                });
-            }
-
-            // Languages
-            LanguageSkills = new List<LanguageSkillVM>();
-            foreach (var languageSkill in curriculum.Person.LanguageSkills)
-            {
-                LanguageSkills.Add(new LanguageSkillVM()
-                {
-                    //Language = new LanguageVM()
-                    //{
-                    //    Name = languageSkill.Language.Name,
-                    //    LanguageCode = languageSkill.Language.LanguageCode
-                    //},
-                     Rate = languageSkill.Rate
-                });
-            }
+            //// Languages
+            //LanguageSkills = new List<LanguageSkillVM>();
+            //foreach (var languageSkill in curriculum.Person.LanguageSkills)
+            //{
+            //    LanguageSkills.Add(new LanguageSkillVM()
+            //    {
+            //        //Language = new LanguageVM()
+            //        //{
+            //        //    Name = languageSkill.Language.Name,
+            //        //    LanguageCode = languageSkill.Language.LanguageCode
+            //        //},
+            //         Rate = languageSkill.Rate
+            //    });
+            //}
         }
 
         private string CreateQRCode(Guid id)

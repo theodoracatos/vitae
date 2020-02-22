@@ -1,4 +1,5 @@
 ﻿using Library.Constants;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -25,19 +26,21 @@ namespace Vitae.Code
         protected readonly IRequestCultureFeature requestCulture;
         protected readonly Guid curriculumID;
         protected readonly ClaimsIdentity identity;
+        protected readonly Repository repository;
 
         [Obsolete]
         public BasePageModel() 
         { 
         }
 
-        public BasePageModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
+        public BasePageModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
         {
             this.localizer = localizer;
             this.vitaeContext = vitaeContext;
             this.requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
             this.identity = httpContextAccessor.HttpContext.User.Identities.Single();
             this.curriculumID = Guid.Parse(identity.Claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value);
+            this.repository = repository;
         }
 
         protected PartialViewResult GetPartialViewResult(string viewName, string modelName = "IndexModel")

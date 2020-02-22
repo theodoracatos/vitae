@@ -1,4 +1,5 @@
-﻿using Library.Resources;
+﻿using Library.Repository;
+using Library.Resources;
 using Library.ViewModels;
 
 using Microsoft.AspNetCore.Http;
@@ -34,8 +35,8 @@ namespace Vitae.Areas.Manage.Pages.Awards
 
         public int MaxAwards { get; } = 20;
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
-            : base(localizer, vitaeContext, httpContextAccessor, userManager) { }
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+            : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
 
         #region SYNC
 

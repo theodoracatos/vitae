@@ -123,6 +123,9 @@
   <data name="AccessDenied" xml:space="preserve">
     <value>Zugang verweigert</value>
   </data>
+  <data name="AccessDeniedMessage" xml:space="preserve">
+    <value>Bitte füllen Sie zuerst die persönlichen Angaben aus.</value>
+  </data>
   <data name="AccountLockedOut" xml:space="preserve">
     <value>Benutzerkonto gesperrt.</value>
   </data>
@@ -158,9 +161,6 @@
   </data>
   <data name="Browse" xml:space="preserve">
     <value>Durchsuchen</value>
-  </data>
-  <data name="c" xml:space="preserve">
-    <value>Bitte füllen Sie zuerst die persönlichen Angaben aus.</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>

@@ -1,4 +1,5 @@
 ﻿using Library.Enumerations;
+using Library.Repository;
 using Library.Resources;
 using Library.ViewModels;
 
@@ -34,8 +35,8 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
 
         public int MaxSocialLinks { get; } = Enum.GetNames(typeof(SocialPlatform)).Length;
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
-            : base(localizer, vitaeContext, httpContextAccessor, userManager) { }
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+            : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
 
         #region SYNC
 
