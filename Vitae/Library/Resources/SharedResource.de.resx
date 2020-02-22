@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>Weitere Angaben</value>
   </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Zugang verweigert</value>
+  </data>
   <data name="AccountLockedOut" xml:space="preserve">
     <value>Benutzerkonto gesperrt.</value>
   </data>
@@ -147,11 +150,17 @@
   <data name="Awards" xml:space="preserve">
     <value>Errungenschaften</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
   <data name="Birthday" xml:space="preserve">
     <value>Geburtstag</value>
   </data>
   <data name="Browse" xml:space="preserve">
     <value>Durchsuchen</value>
+  </data>
+  <data name="c" xml:space="preserve">
+    <value>Bitte füllen Sie zuerst die persönlichen Angaben aus.</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>
@@ -351,6 +360,15 @@
   <data name="Lastname" xml:space="preserve">
     <value>Nachname</value>
   </data>
+  <data name="LockedOut" xml:space="preserve">
+    <value>Ausgesperrt</value>
+  </data>
+  <data name="Lockout" xml:space="preserve">
+    <value>Aussperrung</value>
+  </data>
+  <data name="LockoutMessage" xml:space="preserve">
+    <value>Dieses Konto wurde gesperrt, bitte versuchen Sie es später noch einmal.</value>
+  </data>
   <data name="LoggedInAs" xml:space="preserve">
     <value>Eingeloggt als</value>
   </data>
@@ -458,6 +476,9 @@
   </data>
   <data name="PasswordRequiresUpper" xml:space="preserve">
     <value>Passwörter müssen mindestens ein Grossbuchstabenzeichen ('A'-'Z') haben.</value>
+  </data>
+  <data name="PasswordRules" xml:space="preserve">
+    <value>Bitte wählen Sie ein Passwort, welches aus Klein- und Grossbuchstaben, Zahlen und mindestens einem Sonderzeichen besteht. Es muss aus mindestens 6 Zeichen bestehen.</value>
   </data>
   <data name="PasswordTooShort" xml:space="preserve">
     <value>Passwörter müssen mindestens {0} Zeichen enthalten.</value>

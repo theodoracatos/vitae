@@ -45,6 +45,10 @@ namespace Vitae.Areas.Manage.Pages.Awards
             {
                 return NotFound();
             }
+            else if (vitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == curriculumID).Person == null)
+            {
+                return BadRequest();
+            }
             else
             {
                 var curriculum = GetCurriculum();

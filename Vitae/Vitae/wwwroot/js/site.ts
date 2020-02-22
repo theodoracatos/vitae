@@ -61,6 +61,16 @@ function loadingProcedure() {
     loadFilerUpload();
     initializeTooltips();
     initializeTagsinput();
+    loadDisabledLinkMessage();
+}
+
+function loadDisabledLinkMessage() {
+    $('a.nav-link.disabled').on('click', function () {
+        $.alert({
+            title: Resources.SharedResource.AccessDenied,
+            content: Resources.SharedResource.AccessDeniedMessage,
+        });
+    });
 }
 
 function resetFormValidator(formId) {

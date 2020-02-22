@@ -1,53 +1,32 @@
 ﻿@page  "{StatusCode?}"
 @model ErrorModel
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = "Error2";
 }
 
-<h1 class="text-danger mx-auto d-block">@Model.Code - @Model.Message</h1>
-
-@if (Model.ShowRequestId)
-{
-    <div class="container-fluid mt-5">
-        <div class="row">
-            <div class="col col-auto my-auto mx-auto">
-                <i class="fa fa-heart-broken fa-10x"></i>
-            </div>
-            <div class="col ml-2">
-                <table class="table table-borderless table-striped table-hover table-sm">
-                    <tbody>
-                        <tr>
-                            <td class="errorColumn">Request ID</td>
-                            <td><code>@Model.RequestId</code></td>
-                        </tr>
-                        <tr>
-                            <td>Call</td>
-                            <td><code>@Model.Method @Model.Origin</code></td>
-                        </tr>
-                        <tr>
-                            <td>Status Code</td>
-                            <td><code>@Model.Code</code></td>
-                        </tr>
-                        <tr>
-                            <td>Message</td>
-                            <td><code>@Model.Message</code></td>
-                        </tr>
-                        @if (Model.ShowException)
-                        {
-                            <tr>
-                                <td>Exception Type</td>
-                                <td><code>@Model.ExceptionType</code></td>
-                            </tr>
-                            <tr>
-                                <td>Exception Message</td>
-                                <td><code>@Model.ExceptionMessage</code></td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-6 mx-auto">
+            <div class="jumbotron">
+                <form method="post">
+                    <h4><i class="fa fa-heart-broken fa-fw"></i>@Model.Code - @Model.Message</h4>
+                    <hr />
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <p class="text-danger">
+                                @Model.Message
+                                <br />
+                                <code>@Model.Method @Model.Origin</code>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col mb-0 text-right">
+                            <a id="forgot-password" class="btn btn-outline-danger" href="javascript:history.back()">@SharedResource.Back</a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
-
-}
+</div>

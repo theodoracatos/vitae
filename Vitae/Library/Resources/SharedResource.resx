@@ -120,6 +120,12 @@
   <data name="About" xml:space="preserve">
     <value>Further details</value>
   </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Access denied</value>
+  </data>
+  <data name="AccessDeniedMessage" xml:space="preserve">
+    <value>Please fill out the Personal details first.</value>
+  </data>
   <data name="AccountLockedOut" xml:space="preserve">
     <value>User account locked out.</value>
   </data>
@@ -146,6 +152,9 @@
   </data>
   <data name="Awards" xml:space="preserve">
     <value>Awards</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Go back</value>
   </data>
   <data name="Birthday" xml:space="preserve">
     <value>Birthday</value>
@@ -351,6 +360,15 @@
   <data name="Lastname" xml:space="preserve">
     <value>Lastname</value>
   </data>
+  <data name="LockedOut" xml:space="preserve">
+    <value>Locked out</value>
+  </data>
+  <data name="Lockout" xml:space="preserve">
+    <value>Lockout</value>
+  </data>
+  <data name="LockoutMessage" xml:space="preserve">
+    <value>This account has been locked out, please try again later.</value>
+  </data>
   <data name="LoggedInAs" xml:space="preserve">
     <value>Logged in as</value>
   </data>
@@ -458,6 +476,9 @@
   </data>
   <data name="PasswordRequiresUpper" xml:space="preserve">
     <value>Passwords must have at least one uppercase ('A'-'Z').</value>
+  </data>
+  <data name="PasswordRules" xml:space="preserve">
+    <value>Please choose a password consisting of lower and upper case letters, numbers and at least one special character. It must consist of at least 6 characters.</value>
   </data>
   <data name="PasswordTooShort" xml:space="preserve">
     <value>Passwords must be at least {0} characters.</value>

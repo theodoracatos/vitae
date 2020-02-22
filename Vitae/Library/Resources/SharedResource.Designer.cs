@@ -70,6 +70,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access denied.
+        /// </summary>
+        public static string AccessDenied {
+            get {
+                return ResourceManager.GetString("AccessDenied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fill out the Personal details first..
+        /// </summary>
+        public static string AccessDeniedMessage {
+            get {
+                return ResourceManager.GetString("AccessDeniedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User account locked out..
         /// </summary>
         public static string AccountLockedOut {
@@ -147,6 +165,15 @@ namespace Library.Resources {
         public static string Awards {
             get {
                 return ResourceManager.GetString("Awards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
             }
         }
         
@@ -763,6 +790,33 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Locked out.
+        /// </summary>
+        public static string LockedOut {
+            get {
+                return ResourceManager.GetString("LockedOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lockout.
+        /// </summary>
+        public static string Lockout {
+            get {
+                return ResourceManager.GetString("Lockout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This account has been locked out, please try again later..
+        /// </summary>
+        public static string LockoutMessage {
+            get {
+                return ResourceManager.GetString("LockoutMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logged in as.
         /// </summary>
         public static string LoggedInAs {
@@ -1083,6 +1137,15 @@ namespace Library.Resources {
         public static string PasswordRequiresUpper {
             get {
                 return ResourceManager.GetString("PasswordRequiresUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose a password consisting of lower and upper case letters, numbers and at least one special character. It must consist of at least 6 characters..
+        /// </summary>
+        public static string PasswordRules {
+            get {
+                return ResourceManager.GetString("PasswordRules", resourceCulture);
             }
         }
         

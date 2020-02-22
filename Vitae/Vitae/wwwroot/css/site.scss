@@ -30,7 +30,7 @@ h1 {
 }
 
 .fa-fw {
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
 }
 
 #loading {
@@ -52,6 +52,20 @@ h1 svg {
 
 .errorColumn {
     width: 160px;
+}
+
+a.nav-link.disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+    color: #3e454b !important;
+}
+a.nav-link.disabled:hover {
+    color: #3e454b !important;
+}
+
+i.sideIcon {
+    height: 19px;
+    margin-right: 8px;
 }
 
 .bd-form {
