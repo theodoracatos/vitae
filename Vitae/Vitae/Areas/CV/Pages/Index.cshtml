@@ -38,7 +38,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">Über</a>
+                    <a class="nav-link js-scroll-trigger" href="#about">@SharedResource.About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#experience">Erfahrung</a>
@@ -73,12 +73,12 @@
                 </div>
                 <p class="lead mb-5">@Model.About.Slogan</p>
                 <div class="social-icons">
-                        @*@foreach (var socialLink in Model.SocialLinks)
-                        {
-                           <a href="@socialLink.Link" target="_blank">
-                               <i class="@socialLink.SocialPlatform.Description()"></i>
-                           </a>
-                        }*@
+                    @*@foreach (var socialLink in Model.SocialLinks)
+                    {
+                       <a href="@socialLink.Link" target="_blank">
+                           <i class="@socialLink.SocialPlatform.Description()"></i>
+                       </a>
+                    }*@
                 </div>
                 @*<img class="mt-2 rounded" src="@String.Format("data:image/png;base64,{0}", Model.QRTag)" />*@
             </div>
@@ -86,50 +86,47 @@
 
         <hr class="m-0">
 
-        @if(DateTime.Now.Year == 1999)
-        { 
         <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
             <div class="w-100">
                 <h2 class="mb-5">Erfahrung</h2>
-                    @foreach (var experience in Model.Experiences)
-                    {
-                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-                            <div class="resume-content">
-                                <h3 class="mb-0">@experience.JobTitle</h3>
-                                <div class="subheading mb-3"><a href="mailto:@(experience.CompanyName)">@experience.CompanyName</a>, @experience.City</div>
-                                <p>@experience.Resumee</p>
-                            </div>
-                            <div class="resume-date text-md-right">
-                                @*<span class="text-primary">@experience.Start.ToString("MMMM yyyy") - @(experience.End?.ToString("MMMM yyyy") ?? "jetzt")</span>*@
-                            </div>
+                @foreach (var experience in Model.Experiences)
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="resume-content">
+                            <h3 class="mb-0">@experience.JobTitle</h3>
+                            <div class="subheading mb-3"><a href="mailto:@(experience.CompanyName)">@experience.CompanyName</a>, @experience.City</div>
+                            <p>@experience.Resumee</p>
                         </div>
-                    }
+                        <div class="resume-date text-md-right">
+                            @*<span class="text-primary">@experience.Start.ToString("MMMM yyyy") - @(experience.End?.ToString("MMMM yyyy") ?? "jetzt")</span>*@
+                        </div>
+                    </div>
+                }
             </div>
-
         </section>
 
-        <hr class="m-0">
+            <hr class="m-0">
 
-        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education">
-            <div class="w-100">
-                <h2 class="mb-5">Ausbildung</h2>
+            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education">
+                <div class="w-100">
+                    <h2 class="mb-5">Ausbildung</h2>
                     @foreach (var education in Model.Educations)
                     {
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                             <div class="resume-content">
-                                 <h3 class="mb-0">@education.Title, @education.Subject</h3>
-                                 <div class="subheading mb-3"><a href="mailto:@(education.SchoolName)">@education.Link</a>, @education.City</div>
-                                 <p>Note: @education.Grade</p>
-                                 <p>@education.Resumee</p>
+                                <h3 class="mb-0">@education.Title, @education.Subject</h3>
+                                <div class="subheading mb-3"><a href="mailto:@(education.SchoolName)">@education.Link</a>, @education.City</div>
+                                <p>Note: @education.Grade</p>
+                                <p>@education.Resumee</p>
                             </div>
                             <div class="resume-date text-md-right">
                                 @*<span class="text-primary">@education.Start?.ToString("MMMM yyyy") - @(education.End?.ToString("MMMM yyyy") ?? "jetzt")</span>*@
                             </div>
                         </div>
                     }
-            </div>
-        </section>
-          }
+                </div>
+            </section>
+
         <hr class="m-0">
 
         <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="languages">
@@ -193,7 +190,7 @@
                 </ul>
             </div>
         </section>
-                  
+
     </div>
 
     <!-- Bootstrap core JavaScript -->
