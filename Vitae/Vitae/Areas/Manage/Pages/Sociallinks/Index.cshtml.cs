@@ -5,13 +5,11 @@ using Library.ViewModels;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 using Persistency.Data;
-using Persistency.Poco;
 
 using System;
 using System.Collections.Generic;
@@ -52,15 +50,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
             }
             else
             {
-                var curriculum = GetCurriculum();
-
-                SocialLinks = curriculum.Person.SocialLinks.OrderBy(ls => ls.Order)
-                    .Select(s => new SocialLinkVM()
-                    {
-                        Link = s.Link,
-                        Order = s.Order,
-                        SocialPlatform = s.SocialPlatform
-                    }).ToList();
+                SocialLinks = repository.GetSocialLinks(curriculumID);
 
                 FillSelectionViewModel();
                 return Page();
@@ -71,7 +61,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
         {
             if (ModelState.IsValid)
             {
-                var curriculum = GetCurriculum();
+                var curriculum = repository.GetCurriculum(curriculumID);
                 vitaeContext.RemoveRange(curriculum.Person.SocialLinks);
 
                 curriculum.Person.SocialLinks =
@@ -151,20 +141,8 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
 
         #region Helper
 
-        private Curriculum GetCurriculum()
-        {
-            var curriculum = vitaeContext.Curriculums
-                    .Include(c => c.Person)
-                    .Include(c => c.Person.SocialLinks)
-                    .Single(c => c.Identifier == curriculumID);
-
-            return curriculum;
-        }
-
         protected override void FillSelectionViewModel()
-        {
-
-        }
+        {}
 
         #endregion
     }

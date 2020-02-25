@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 using Persistency.Data;
-using Persistency.Poco;
 
 using System;
 using System.Collections.Generic;
@@ -54,25 +53,7 @@ namespace Vitae.Areas.Manage.Pages.Experience
             }
             else
             {
-                var curriculum = GetCurriculum();
-
-                Experiences = curriculum.Person.Experiences?.OrderBy(ex => ex.Order)
-                    .Select(e => new ExperienceVM()
-                    {
-                        City = e.City,
-                        Start_Month = e.Start.Month,
-                        Start_Year = e.Start.Year,
-                        End_Month = e.End.HasValue ? e.End.Value.Month : DateTime.Now.Month,
-                        End_Year = e.End.HasValue ? e.End.Value.Year : DateTime.Now.Year,
-                        UntilNow = !e.End.HasValue,
-                        Order = e.Order,
-                        Resumee = e.Resumee,
-                        Link = e.Link,
-                        CompanyName = e.CompanyName,
-                        JobTitle = e.JobTitle,
-                        CountryCode = e.Country.CountryCode
-                    })
-                    .ToList();
+                Experiences = repository.GetExperiences(curriculumID);
 
                 FillSelectionViewModel();
                 return Page();
@@ -83,7 +64,7 @@ namespace Vitae.Areas.Manage.Pages.Experience
         {
             if (ModelState.IsValid)
             {
-                var curriculum = GetCurriculum();
+                var curriculum = repository.GetCurriculum(curriculumID);
                 vitaeContext.RemoveRange(curriculum.Person.Experiences);
 
                 curriculum.Person.Experiences =
@@ -175,38 +156,10 @@ namespace Vitae.Areas.Manage.Pages.Experience
 
         #region Helper
 
-        private Curriculum GetCurriculum()
-        {
-            var curriculum = vitaeContext.Curriculums
-                    .Include(c => c.Person)
-                    .Include(c => c.Person.Experiences).ThenInclude(e => e.Country)
-                    .Single(c => c.Identifier == curriculumID);
-
-            return curriculum;
-        }
-
         protected override void FillSelectionViewModel()
         {
-            Months = vitaeContext.Months.Select(c => new MonthVM()
-            {
-                MonthCode = c.MonthCode,
-                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
-                requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
-                requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
-                requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
-                c.Name
-            }).OrderBy(c => c.MonthCode);
-
-            Countries = vitaeContext.Countries.Select(c => new CountryVM()
-            {
-                CountryCode = c.CountryCode,
-                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
-            requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
-            requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
-            requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
-            c.Name,
-                PhoneCode = c.PhoneCode
-            }).OrderBy(c => c.Name);
+            Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
+            Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
         }
         #endregion
     }

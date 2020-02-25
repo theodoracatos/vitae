@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 using Persistency.Data;
-using Persistency.Poco;
 
 using System;
 using System.Collections.Generic;
@@ -50,16 +49,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
             }
             else
             {
-                var curriculum = GetCurriculum();
-
-                Interests = curriculum.Person.Interests.OrderBy(ir => ir.Order)
-                    .Select(i => new InterestVM()
-                    {
-                        Description = i.Description,
-                        Link = i.Link,
-                        Name = i.Name,
-                        Order = i.Order
-                    }).ToList();
+                Interests = repository.GetInterests(curriculumID);
 
                 FillSelectionViewModel();
                 return Page();
@@ -69,7 +59,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
         {
             if (ModelState.IsValid)
             {
-                var curriculum = GetCurriculum();
+                var curriculum = repository.GetCurriculum(curriculumID);
                 vitaeContext.RemoveRange(curriculum.Person.Interests);
 
                 curriculum.Person.Interests =
@@ -142,20 +132,8 @@ namespace Vitae.Areas.Manage.Pages.Interests
 
         #region Helper
 
-        private Curriculum GetCurriculum()
-        {
-            var curriculum = vitaeContext.Curriculums
-                    .Include(c => c.Person)
-                    .Include(c => c.Person.Interests)
-                    .Single(c => c.Identifier == curriculumID);
-
-            return curriculum;
-        }
-
         protected override void FillSelectionViewModel()
-        {
-
-        }
+        {}
 
         #endregion
     }

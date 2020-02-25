@@ -46,18 +46,7 @@ namespace Vitae.Areas.Manage.Pages.About
             }
             else
             {
-                var curriculum = GetCurriculum();
-
-                About = new AboutVM()
-                {
-                    Photo = curriculum.Person.About?.Photo,
-                    Slogan = curriculum.Person.About?.Slogan,
-                    Vfile = new VfileVM()
-                    {
-                        FileName = curriculum.Person.About?.Vfile?.FileName,
-                        Identifier = curriculum.Person.About?.Vfile?.Identifier ?? Guid.Empty
-                    }
-                };
+                About = repository.GetAboutVM(curriculumID);
 
                 return Page();
             }
@@ -82,7 +71,7 @@ namespace Vitae.Areas.Manage.Pages.About
             // TODO: Check if id is from person x
             if (ModelState.IsValid)
             {
-                var curriculum = GetCurriculum();
+                var curriculum = repository.GetCurriculum(curriculumID);
                 curriculum.Person.About = curriculum.Person.About == null ? new Poco.About() : curriculum.Person.About;
                 curriculum.Person.About.Slogan = About.Slogan;
                 curriculum.Person.About.Photo = About.Photo;
@@ -135,17 +124,6 @@ namespace Vitae.Areas.Manage.Pages.About
         #endregion
 
         #region Helper
-        private Curriculum GetCurriculum()
-        {
-            var curriculum = vitaeContext.Curriculums
-                    .Include(c => c.Person)
-                    .Include(c => c.Person.About)
-                    .Include(c => c.Person.About.Vfile)
-                    .Single(c => c.Identifier == curriculumID);
-
-            return curriculum;
-        }
-
         protected override void FillSelectionViewModel() { }
         #endregion
     }

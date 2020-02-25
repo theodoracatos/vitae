@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\Vitae\\Repository\\Repository.csproj": {}
+    "C:\\Projects\\Various\\Vitae\\Repository\\Repository.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\Vitae\\Library\\Library.csproj": {
+    "C:\\Projects\\Various\\Vitae\\Library\\Library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Vitae\\Library\\Library.csproj",
+        "projectUniqueName": "C:\\Projects\\Various\\Vitae\\Library\\Library.csproj",
         "projectName": "Library",
-        "projectPath": "C:\\Projects\\Vitae\\Library\\Library.csproj",
-        "packagesPath": "C:\\Users\\theod\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Vitae\\Library\\obj\\",
+        "projectPath": "C:\\Projects\\Various\\Vitae\\Library\\Library.csproj",
+        "packagesPath": "C:\\Users\\ath\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\Various\\Vitae\\Library\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\theod\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ath\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Transfer\\Nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -66,17 +70,20 @@
         }
       }
     },
-    "C:\\Projects\\Vitae\\Persistency\\Persistency.csproj": {
+    "C:\\Projects\\Various\\Vitae\\Persistency\\Persistency.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Vitae\\Persistency\\Persistency.csproj",
+        "projectUniqueName": "C:\\Projects\\Various\\Vitae\\Persistency\\Persistency.csproj",
         "projectName": "Persistency",
-        "projectPath": "C:\\Projects\\Vitae\\Persistency\\Persistency.csproj",
-        "packagesPath": "C:\\Users\\theod\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Vitae\\Persistency\\obj\\",
+        "projectPath": "C:\\Projects\\Various\\Vitae\\Persistency\\Persistency.csproj",
+        "packagesPath": "C:\\Users\\ath\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\Various\\Vitae\\Persistency\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\theod\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ath\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -84,13 +91,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Transfer\\Nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Projects\\Vitae\\Library\\Library.csproj": {
-                "projectPath": "C:\\Projects\\Vitae\\Library\\Library.csproj"
+              "C:\\Projects\\Various\\Vitae\\Library\\Library.csproj": {
+                "projectPath": "C:\\Projects\\Various\\Vitae\\Library\\Library.csproj"
               }
             }
           }
@@ -167,17 +175,20 @@
         }
       }
     },
-    "C:\\Projects\\Vitae\\Repository\\Repository.csproj": {
+    "C:\\Projects\\Various\\Vitae\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Vitae\\Repository\\Repository.csproj",
+        "projectUniqueName": "C:\\Projects\\Various\\Vitae\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "C:\\Projects\\Vitae\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\theod\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Vitae\\Repository\\obj\\",
+        "projectPath": "C:\\Projects\\Various\\Vitae\\Repository\\Repository.csproj",
+        "packagesPath": "C:\\Users\\ath\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\Various\\Vitae\\Repository\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\theod\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ath\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -185,16 +196,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Transfer\\Nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Projects\\Vitae\\Library\\Library.csproj": {
-                "projectPath": "C:\\Projects\\Vitae\\Library\\Library.csproj"
+              "C:\\Projects\\Various\\Vitae\\Library\\Library.csproj": {
+                "projectPath": "C:\\Projects\\Various\\Vitae\\Library\\Library.csproj"
               },
-              "C:\\Projects\\Vitae\\Persistency\\Persistency.csproj": {
-                "projectPath": "C:\\Projects\\Vitae\\Persistency\\Persistency.csproj"
+              "C:\\Projects\\Various\\Vitae\\Persistency\\Persistency.csproj": {
+                "projectPath": "C:\\Projects\\Various\\Vitae\\Persistency\\Persistency.csproj"
               }
             }
           }

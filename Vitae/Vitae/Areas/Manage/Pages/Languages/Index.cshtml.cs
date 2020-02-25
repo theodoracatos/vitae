@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 using Persistency.Data;
-using Persistency.Poco;
 
 using System;
 using System.Collections.Generic;
@@ -53,13 +52,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
             {
                 var curriculum = GetCurriculum();
 
-                LanguageSkills = curriculum.Person.LanguageSkills.OrderBy(ls => ls.Order)
-                    .Select(l => new LanguageSkillVM()
-                    {
-                        LanguageCode = l.Language?.LanguageCode,
-                        Order = l.Order,
-                        Rate = l.Rate
-                    }).ToList();
+                LanguageSkills = 
                 
                 FillSelectionViewModel();
                 return Page();
@@ -148,27 +141,9 @@ namespace Vitae.Areas.Manage.Pages.Languages
 
         #region Helper
 
-        private Curriculum GetCurriculum()
-        {
-            var curriculum = vitaeContext.Curriculums
-                    .Include(c => c.Person)
-                    .Include(c => c.Person.LanguageSkills).ThenInclude(ls => ls.Language)
-                    .Single(c => c.Identifier == curriculumID);
-
-            return curriculum;
-        }
-
         protected override void FillSelectionViewModel()
         {
-            Languages = vitaeContext.Languages.Select(c => new LanguageVM()
-            {
-                LanguageCode = c.LanguageCode,
-                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
-                        requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
-                        requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
-                        requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
-                        c.Name
-            }).OrderBy(c => c.Name);
+            Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
         }
 
         #endregion

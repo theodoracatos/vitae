@@ -1,5 +1,7 @@
 ﻿using Library.ViewModels;
+
 using Microsoft.EntityFrameworkCore;
+
 using Persistency.Data;
 using Persistency.Poco;
 
@@ -22,12 +24,67 @@ namespace Library.Repository
         {
             var curriculum = vitaeContext.Curriculums
             .Include(c => c.Person)
-            .Include(c => c.Person.PersonCountries).ThenInclude(pc => pc.Country)
+            .Include(c => c.Person.About)
+            .Include(c => c.Person.About.Vfile)
+            .Include(c => c.Person.Awards)
             .Include(c => c.Person.Country)
+            .Include(c => c.Person.Educations).ThenInclude(e => e.Country)
+            .Include(c => c.Person.Experiences).ThenInclude(e => e.Country)
+            .Include(c => c.Person.Interests)
             .Include(c => c.Person.Language)
+            .Include(c => c.Person.LanguageSkills).ThenInclude(ls => ls.Language)
+            .Include(c => c.Person.PersonCountries).ThenInclude(pc => pc.Country)
+            .Include(c => c.Person.Skills)
+            .Include(c => c.Person.SocialLinks)
             .Single(c => c.Identifier == curriculumID);
 
             return curriculum;
+        }
+
+        public IEnumerable<MonthVM> GetMonths(string uiCulture)
+        {
+            var monthsVM = vitaeContext.Months.Select(c => new MonthVM()
+            {
+                MonthCode = c.MonthCode,
+                Name = uiCulture == "de" ? c.Name_de :
+                uiCulture == "fr" ? c.Name_fr :
+                uiCulture == "it" ? c.Name_it :
+                uiCulture == "es" ? c.Name_es :
+                c.Name
+            }).OrderBy(c => c.MonthCode);
+
+            return monthsVM;
+        }
+
+        public IEnumerable<CountryVM> GetCountries(string uiCulture)
+        {
+            var countriesVM = vitaeContext.Countries.Select(c => new CountryVM()
+            {
+                CountryCode = c.CountryCode,
+                Name = uiCulture == "de" ? c.Name_de :
+                uiCulture == "fr" ? c.Name_fr :
+                uiCulture == "it" ? c.Name_it :
+                uiCulture == "es" ? c.Name_es :
+                c.Name,
+                PhoneCode = c.PhoneCode
+            }).OrderBy(c => c.Name);
+
+            return countriesVM;
+        }
+
+        public IEnumerable<LanguageVM> GetLanguages(string uiCulture)
+        {
+            var languagesVM = vitaeContext.Languages.Select(c => new LanguageVM()
+            {
+                LanguageCode = c.LanguageCode,
+                Name = uiCulture == "de" ? c.Name_de :
+                       uiCulture == "fr" ? c.Name_fr :
+                       uiCulture == "it" ? c.Name_it :
+                       uiCulture == "es" ? c.Name_es :
+                        c.Name
+            }).OrderBy(c => c.Name);
+
+            return languagesVM;
         }
 
         public PersonVM GetPersonVM(Guid curriculumID, string email = null)
@@ -56,6 +113,148 @@ namespace Library.Repository
             };
 
             return personVM;
+        }
+
+        public AboutVM GetAboutVM(Guid curriculumID)
+        {
+            var curriculum = GetCurriculum(curriculumID);
+            var aboutVM = new AboutVM()
+            {
+                Photo = curriculum.Person.About?.Photo,
+                Slogan = curriculum.Person.About?.Slogan,
+                Vfile = new VfileVM()
+                {
+                    FileName = curriculum.Person.About?.Vfile?.FileName,
+                    Identifier = curriculum.Person.About?.Vfile?.Identifier ?? Guid.Empty
+                }
+            };
+
+            return aboutVM;
+        }
+
+        public IList<AwardVM> GetAwards(Guid curriculumID)
+        {
+            var curriculum = GetCurriculum(curriculumID);
+            var awardsVM = curriculum.Person.Awards.OrderBy(aw => aw.Order)
+                   .Select(a => new AwardVM()
+                   {
+                       AwardedFrom = a.AwardedFrom,
+                       Description = a.Description,
+                       Link = a.Link,
+                       Month = a.AwardedOn.Month,
+                       Year = a.AwardedOn.Year,
+                       Name = a.Name,
+                       Order = a.Order
+                   }).ToList();
+
+            return awardsVM;
+        }
+
+        public IList<EducationVM> GetEducations(Guid curriculumID)
+        {
+            var curriculum = GetCurriculum(curriculumID);
+            var educationsVM = curriculum.Person.Educations?.OrderBy(ed => ed.Order)
+                    .Select(e => new EducationVM()
+                    {
+                        City = e.City,
+                        Start_Month = e.Start.Month,
+                        Start_Year = e.Start.Year,
+                        End_Month = e.End.HasValue ? e.End.Value.Month : DateTime.Now.Month,
+                        End_Year = e.End.HasValue ? e.End.Value.Year : DateTime.Now.Year,
+                        UntilNow = !e.End.HasValue,
+                        Grade = e.Grade,
+                        Order = e.Order,
+                        Resumee = e.Resumee,
+                        Link = e.Link,
+                        SchoolName = e.SchoolName,
+                        Subject = e.Subject,
+                        Title = e.Title,
+                        CountryCode = e.Country.CountryCode
+                    })
+                    .ToList();
+
+            return educationsVM;
+        }
+
+        public IList<ExperienceVM> GetExperiences(Guid curriculumID)
+        {
+            var curriculum = GetCurriculum(curriculumID);
+            var experiencesVM = curriculum.Person.Experiences?.OrderBy(ex => ex.Order)
+                    .Select(e => new ExperienceVM()
+                    {
+                        City = e.City,
+                        Start_Month = e.Start.Month,
+                        Start_Year = e.Start.Year,
+                        End_Month = e.End.HasValue ? e.End.Value.Month : DateTime.Now.Month,
+                        End_Year = e.End.HasValue ? e.End.Value.Year : DateTime.Now.Year,
+                        UntilNow = !e.End.HasValue,
+                        Order = e.Order,
+                        Resumee = e.Resumee,
+                        Link = e.Link,
+                        CompanyName = e.CompanyName,
+                        JobTitle = e.JobTitle,
+                        CountryCode = e.Country.CountryCode
+                    })
+                    .ToList();
+
+            return experiencesVM;
+        }
+
+        public IList<InterestVM> GetInterests(Guid curriculumID)
+        {
+            var curriculum = GetCurriculum(curriculumID);
+            var interestsVM = curriculum.Person.Interests.OrderBy(ir => ir.Order)
+                    .Select(i => new InterestVM()
+                    {
+                        Description = i.Description,
+                        Link = i.Link,
+                        Name = i.Name,
+                        Order = i.Order
+                    }).ToList();
+
+            return interestsVM;
+        }
+
+        public IList<LanguageSkillVM> GetLanguageSkills(Guid curriculumID)
+        {
+            var curriculum = GetCurriculum(curriculumID);
+            var languageSkillsVM = curriculum.Person.LanguageSkills.OrderBy(ls => ls.Order)
+                    .Select(l => new LanguageSkillVM()
+                    {
+                        LanguageCode = l.Language?.LanguageCode,
+                        Order = l.Order,
+                        Rate = l.Rate
+                    }).ToList();
+
+            return languageSkillsVM;
+        }
+
+        public IList<SkillVM> GetSkills(Guid curriculumID)
+        {
+            var curriculum = GetCurriculum(curriculumID);
+            var skillsVM = curriculum.Person.Skills.OrderBy(ls => ls.Order)
+                    .Select(s => new SkillVM()
+                    {
+                        Category = s.Category,
+                        Order = s.Order,
+                        Skillset = s.Skillset
+                    }).ToList();
+
+            return skillsVM;
+        }
+
+        public IList<SocialLinkVM> GetSocialLinks(Guid curriculumID)
+        {
+            var curriculum = GetCurriculum(curriculumID);
+            var socialLinksVM = curriculum.Person.SocialLinks.OrderBy(ls => ls.Order)
+                    .Select(s => new SocialLinkVM()
+                    {
+                        Link = s.Link,
+                        Order = s.Order,
+                        SocialPlatform = s.SocialPlatform
+                    }).ToList();
+
+            return socialLinksVM;
         }
     }
 }

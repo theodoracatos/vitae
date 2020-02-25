@@ -5,7 +5,6 @@ using Library.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 using Persistency.Data;
@@ -169,47 +168,10 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
         protected override void FillSelectionViewModel()
         {
-            Countries = vitaeContext.Countries.Select(c => new CountryVM()
-            {
-                CountryCode = c.CountryCode,
-                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
-                        requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
-                        requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
-                        requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
-                        c.Name,
-                PhoneCode = c.PhoneCode
-            }).OrderBy(c => c.Name);
-
-            Languages = vitaeContext.Languages.Select(c => new LanguageVM()
-            {
-                LanguageCode = c.LanguageCode,
-                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
-                        requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
-                        requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
-                        requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
-                        c.Name
-            }).OrderBy(c => c.Name);
-
-            Nationalities = vitaeContext.Countries.Select(c => new CountryVM()
-            {
-                CountryCode = c.CountryCode,
-                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
-            requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
-            requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
-            requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
-            c.Name,
-                PhoneCode = c.PhoneCode
-            }).OrderBy(c => c.Name);
-
-            Months = vitaeContext.Months.Select(c => new MonthVM()
-            {
-                MonthCode = c.MonthCode,
-                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
-            requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
-            requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
-            requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
-            c.Name
-            }).OrderBy(c => c.MonthCode);
+            Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
+            Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
+            Nationalities = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
+            Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
 
             PhonePrefix = !string.IsNullOrEmpty(Person?.CountryCode) ? "+" + Countries.Where(c => c.CountryCode == Person.CountryCode).Select(c => c.PhoneCode).Single().ToString() : string.Empty;
 

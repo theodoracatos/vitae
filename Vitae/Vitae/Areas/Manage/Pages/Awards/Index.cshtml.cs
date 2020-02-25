@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 using Persistency.Data;
-using Persistency.Poco;
 
 using System;
 using System.Collections.Generic;
@@ -52,19 +51,7 @@ namespace Vitae.Areas.Manage.Pages.Awards
             }
             else
             {
-                var curriculum = GetCurriculum();
-
-                Awards = curriculum.Person.Awards.OrderBy(aw => aw.Order)
-                    .Select(a => new AwardVM()
-                    {
-                        AwardedFrom = a.AwardedFrom,
-                        Description = a.Description,
-                        Link = a.Link,
-                        Month = a.AwardedOn.Month,
-                        Year = a.AwardedOn.Year,
-                        Name = a.Name,
-                        Order = a.Order
-                    }).ToList();
+                Awards = repository.GetAwards(curriculumID);
 
                 FillSelectionViewModel();
                 return Page();
@@ -74,7 +61,7 @@ namespace Vitae.Areas.Manage.Pages.Awards
         {
             if (ModelState.IsValid)
             {
-                var curriculum = GetCurriculum();
+                var curriculum = repository.GetCurriculum(curriculumID);
                 vitaeContext.RemoveRange(curriculum.Person.Awards);
 
                 curriculum.Person.Awards =
@@ -149,27 +136,9 @@ namespace Vitae.Areas.Manage.Pages.Awards
 
         #region Helper
 
-        private Curriculum GetCurriculum()
-        {
-            var curriculum = vitaeContext.Curriculums
-                    .Include(c => c.Person)
-                    .Include(c => c.Person.Awards)
-                    .Single(c => c.Identifier == curriculumID);
-
-            return curriculum;
-        }
-
         protected override void FillSelectionViewModel()
         {
-            Months = vitaeContext.Months.Select(c => new MonthVM()
-            {
-                MonthCode = c.MonthCode,
-                Name = requestCulture.RequestCulture.UICulture.Name == "de" ? c.Name_de :
-                requestCulture.RequestCulture.UICulture.Name == "fr" ? c.Name_fr :
-                requestCulture.RequestCulture.UICulture.Name == "it" ? c.Name_it :
-                requestCulture.RequestCulture.UICulture.Name == "es" ? c.Name_es :
-                c.Name
-            }).OrderBy(c => c.MonthCode);
+            Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
         }
 
         #endregion

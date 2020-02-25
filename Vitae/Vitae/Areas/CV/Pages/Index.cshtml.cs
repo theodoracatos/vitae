@@ -30,10 +30,12 @@ namespace CVitae.Areas.CV.Pages
         public PersonVM Person { get; set; } = new PersonVM();
         public AboutVM About { get; set; } = new AboutVM();
 
-        public IList<SocialLinkVM> SocialLinks { get; set; } = new List<SocialLinkVM>();
-        public IList<ExperienceVM> Experiences { get; set; } = new List<ExperienceVM>();
         public IList<EducationVM> Educations { get; set; } = new List<EducationVM>();
+        public IList<ExperienceVM> Experiences { get; set; } = new List<ExperienceVM>();
+        public IList<InterestVM> Interests { get; set; } = new List<InterestVM>();
         public IList<LanguageSkillVM> LanguageSkills { get; set; } = new List<LanguageSkillVM>();
+        public IList<SkillVM> Skills { get; set; } = new List<SkillVM>();
+        public IList<SocialLinkVM> SocialLinks { get; set; } = new List<SocialLinkVM>();
 
         public Guid Guid { get; set; }
         public string QRTag { get; set; }
