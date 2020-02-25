@@ -3,14 +3,16 @@
 ################################################################################
 
 /Vitae/.vs/Vitae
-/Vitae/Library/bin/Debug/netcoreapp3.0
+/Vitae/Library/bin
 /Vitae/Library/obj
-/Vitae/Persistency/bin/Debug/netcoreapp3.0
+/Vitae/Persistency/bin
 /Vitae/Persistency/obj
-/Vitae/Vitae/bin/Debug/netcoreapp3.1
+/Vitae/Vitae/bin
 /Vitae/Vitae/obj
-/Vitae/Library/bin/Debug/netcoreapp3.1
-/Vitae/Persistency/bin/Debug/netcoreapp3.1
+/Vitae/Library/bin
+/Vitae/Library/obj
+/Vitae/Repository/obj
+/Vitae/Repository/bin
 /Vitae/Vitae/Vitae.csproj.user
 /.vs/VSWorkspaceState.json
 /.vs/slnx.sqlite
@@ -18,8 +20,6 @@
 /Vitae/Vitae/wwwroot/js/site.min.js
 /Vitae/Vitae/wwwroot/js/site.js.map
 /Vitae/Vitae/wwwroot/js/site.js
-/Vitae/Vitae/wwwroot/css/_colors.min.css
-/Vitae/Vitae/wwwroot/css/_colors.css
 /Vitae/Vitae/wwwroot/css/site.min.css
 /Vitae/Vitae/wwwroot/css/site.css
 /Vitae/Vitae/wwwroot/js/resume.min.js
