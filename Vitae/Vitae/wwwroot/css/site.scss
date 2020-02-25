@@ -5,7 +5,7 @@
 /*   QVS   */
 /***********/
 body, nav {
-    font-family: Lato-Regular, Arial, Helvetica, sans-serif;
+    font-family: Lato, Arial, Helvetica, sans-serif;
 }
 
 nav{
@@ -90,7 +90,8 @@ i.sideIcon {
 }
 
 .control-label {
-    font-family: Lato-Bold, Arial, Helvetica, sans-serif;
+    font-family: Lato, Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 /* Misc */
@@ -174,7 +175,7 @@ span.field-validation-error {
     padding-top: 7px !important;
     color: #6C757D !important;
     padding-bottom: 25px !important;
-    font-family: Lato-Regular, Arial, Helvetica, sans-serif !important;
+    font-family: Lato, Arial, Helvetica, sans-serif !important;
     border-color: rgb(108, 117, 125) !important;
 }
 .jFiler-input-button:focus {
@@ -188,7 +189,7 @@ span.field-validation-error {
     background-image: none !important;
     padding-top: 7px !important;
     color: #6C757D !important;
-    font-family: Lato-Regular, Arial, Helvetica, sans-serif !important;
+    font-family: Lato, Arial, Helvetica, sans-serif !important;
 }
 
 .jFiler-item:last-child {
