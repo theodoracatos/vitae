@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 
 using Persistency.Extensions;
-using Persistency.Poco;
+using Model.Poco;
 
 using System.Diagnostics;
 using System.IO;

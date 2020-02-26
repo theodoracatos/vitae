@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
 using Persistency.Data;
-using Persistency.Poco;
+using Model.Poco;
 
 using System;
 using System.Collections.Generic;

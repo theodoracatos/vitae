@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 using Persistency.Data;
-using Persistency.Poco;
+using Model.Poco;
 
 using System;
 using System.IO;
@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 using Vitae.Code;
 
-using Poco = Persistency.Poco;
+using Poco = Model.Poco;
 
 namespace Vitae.Areas.Manage.Pages.About
 {

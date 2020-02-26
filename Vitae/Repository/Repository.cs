@@ -3,7 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using Persistency.Data;
-using Persistency.Poco;
+using Model.Poco;
 
 using System;
 using System.Collections.Generic;

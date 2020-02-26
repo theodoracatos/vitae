@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Persistency.Data;
-using Persistency.Poco;
+using Model.Poco;
 
 namespace Vitae.Areas.Identity.Pages.Account
 {
