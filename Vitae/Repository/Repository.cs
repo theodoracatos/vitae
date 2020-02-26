@@ -20,6 +20,13 @@ namespace Library.Repository
             this.vitaeContext = vitaeContext;
         }
 
+        public void Log()
+        {
+            vitaeContext.Logs.Add(new Log()
+            {
+            });
+        }
+
         public Curriculum GetCurriculumByWeakIdentifier(string identifier)
         {
             Curriculum curriculum = null;

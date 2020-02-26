@@ -13,6 +13,8 @@
 /Vitae/Library/obj
 /Vitae/Repository/obj
 /Vitae/Repository/bin
+/Vitae/Model/obj
+/Vitae/Model/bin
 /Vitae/Vitae/Vitae.csproj.user
 /.vs/VSWorkspaceState.json
 /.vs/slnx.sqlite

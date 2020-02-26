@@ -17,6 +17,8 @@ namespace Persistency.Data
         public virtual DbSet<Month> Months { get; set; }
         public virtual DbSet<Vfile> Vfiles { get; set; }
 
+        public virtual DbSet<Log> Logs { get; set; }
+
         public VitaeContext(DbContextOptions<VitaeContext> options) : base(options)
         {
 
