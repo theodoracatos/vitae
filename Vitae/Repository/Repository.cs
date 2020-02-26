@@ -1,4 +1,4 @@
-﻿using Library.ViewModels;
+﻿using Model.ViewModels;
 
 using Microsoft.EntityFrameworkCore;
 

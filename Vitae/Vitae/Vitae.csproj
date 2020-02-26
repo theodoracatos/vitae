@@ -9,7 +9,6 @@
   <ItemGroup>
     <Content Remove="bundleconfig.json" />
     <Content Remove="compilerconfig.json" />
-    <Content Remove="wwwroot\js\jquery.unobtrusive-ajax.js" />
     <Content Remove="wwwroot\js\resume.ts" />
     <Content Remove="wwwroot\js\site.ts" />
   </ItemGroup>

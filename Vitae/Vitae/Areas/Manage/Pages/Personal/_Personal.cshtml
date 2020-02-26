@@ -71,7 +71,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label class="control-label" asp-for="@Model.Person.CountryCode"></label>
-                    <select asp-for="@Model.Person.CountryCode" class="form-control" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))" onchange="$('#btnChangeCountry').trigger('click');">
+                    <select asp-for="@Model.Person.CountryCode" class="form-control " asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))" onchange="$('#btnChangeCountry').trigger('click');">
                         <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                     </select>
                     <span asp-validation-for="@Model.Person.CountryCode" class="text-danger"></span>

@@ -1,6 +1,6 @@
 ﻿using Library.Repository;
 using Library.Resources;
-using Library.ViewModels;
+using Model.ViewModels;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
