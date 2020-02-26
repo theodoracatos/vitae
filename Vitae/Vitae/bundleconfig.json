@@ -16,11 +16,5 @@
     "inputFiles": [
       "wwwroot/css/resume.css"
     ]
-  },
-  {
-    "outputFileName": "wwwroot/js/jquery.unobtrusive-ajax.min.js",
-    "inputFiles": [
-      "wwwroot/js/jquery.unobtrusive-ajax.js"
-    ]
   }
 ]

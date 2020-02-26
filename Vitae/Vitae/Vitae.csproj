@@ -54,7 +54,6 @@
 
 
   <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\js\jquery.unobtrusive-ajax.js" />
     <TypeScriptCompile Include="wwwroot\js\site.ts" />
   </ItemGroup>
 
