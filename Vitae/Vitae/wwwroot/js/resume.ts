@@ -1,3 +1,14 @@
+declare var jQuery;
+declare var $;
+declare var Resources;
+
+import { BaseFunctions } from 'base';
+
+(function ($) {
+    BaseFunctions.startRating();
+})(jQuery);
+
+
 $(document).ready(function () {
     // Smooth scrolling using jQuery easing
     $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
@@ -20,5 +31,7 @@ $(document).ready(function () {
     $('body').scrollspy({
         target: '#sideNav'
     });
+
+    BaseFunctions.initializeTagsinput();
 });
 //# sourceMappingURL=resume.js.map

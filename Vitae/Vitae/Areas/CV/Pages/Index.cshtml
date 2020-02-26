@@ -3,20 +3,18 @@
 }
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>@ViewData["Title"] - CVitae</title>
-
-    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
+    <title>CV @Model.Person.Firstname @Model.Person.Lastname</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/favicon/favicon.ico" />
 
-    <!-- Custom fonts for this template -->
-    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-rating/bootstrap-rating.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap4-tagsinput/tagsinput.css" />
 
-    <!-- Custom styles for this template -->
-    <link href="~/css/resume.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css"  />
+    <link rel="stylesheet" href="~/css/resume.min.css">
 </head>
 
 <body id="page-top">
@@ -24,7 +22,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
 
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <span class="d-block d-lg-none">Clarence Taylor</span>
+            <span class="d-block d-lg-none">@Model.Person.Firstname @Model.Person.Lastname</span>
             <span class="d-none d-lg-block">
                 <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="@(Model.About.Photo ?? (Model.Person.Gender.Value ? "/img/NoUserMale.png" : "/img/NoUserFemale.png"))" alt="@Model.Person.Firstname @Model.Person.Lastname">
             </span>
@@ -243,12 +241,9 @@
     <!-- Bootstrap core JavaScript -->
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
     <script src="~/lib/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
+    <script src="~/lib/bootstrap-rating/bootstrap-rating.min.js"></script>
+    <script src="~/lib/bootstrap4-tagsinput/tagsinput.js"></script>
     <script src="~/js/resume.min.js"></script>
-
 </body>
 </html>
