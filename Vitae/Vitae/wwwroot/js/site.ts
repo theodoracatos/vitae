@@ -2,11 +2,11 @@
 declare var $;
 declare var Resources;
 
-import { BaseFunctions } from 'base';
+import { Base } from 'base';
 
 (function ($) {
     addJQueryValidators();
-    BaseFunctions.startRating();
+    Base.startRating();
 })(jQuery);
 
 function addJQueryValidators() {
@@ -50,7 +50,7 @@ function setupSbAdmin() {
 
 function ajaxCompleted() {
     loadingProcedure();
-    BaseFunctions.startRating();
+    Base.startRating();
     resetFormValidator('form');
 }
 
@@ -62,7 +62,7 @@ function loadingProcedure() {
     loadImageComponent();
     loadFilerUpload();
     initializeTooltips();
-    BaseFunctions.initializeTagsinput();
+    Base.initializeTagsinput();
     loadDisabledLinkMessage();
 }
 

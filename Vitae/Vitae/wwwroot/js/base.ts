@@ -2,7 +2,7 @@
 declare var $;
 declare var Resources;
 
-export module BaseFunctions {
+export module Base {
     export function startRating() {
         $(".rating").rating({
             filled: 'fas fa-star fa-2x',

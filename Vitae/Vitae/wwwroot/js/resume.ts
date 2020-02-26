@@ -2,10 +2,10 @@ declare var jQuery;
 declare var $;
 declare var Resources;
 
-import { BaseFunctions } from 'base';
+import { Base } from 'base';
 
 (function ($) {
-    BaseFunctions.startRating();
+    Base.startRating();
 })(jQuery);
 
 
@@ -32,6 +32,6 @@ $(document).ready(function () {
         target: '#sideNav'
     });
 
-    BaseFunctions.initializeTagsinput();
+    Base.initializeTagsinput();
 });
 //# sourceMappingURL=resume.js.map
