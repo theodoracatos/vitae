@@ -1,12 +1,12 @@
 using Library.Repository;
 using Library.Resources;
 using Library.ViewModels;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+
 using Persistency.Data;
 
 using QRCoder;
@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
+
 using Vitae.Code;
 
 namespace CVitae.Areas.CV.Pages
@@ -25,9 +25,10 @@ namespace CVitae.Areas.CV.Pages
     {
         public Guid CurriculumID { get { return curriculumID; } }
 
-        public PersonVM Person { get; set; } = new PersonVM();
-        public AboutVM About { get; set; } = new AboutVM();
+        public PersonVM Person { get; set; }
+        public AboutVM About { get; set; }
 
+        public IList<AwardVM> Awards { get; set; } = new List<AwardVM>();
         public IList<EducationVM> Educations { get; set; } = new List<EducationVM>();
         public IList<ExperienceVM> Experiences { get; set; } = new List<ExperienceVM>();
         public IList<InterestVM> Interests { get; set; } = new List<InterestVM>();
@@ -35,100 +36,39 @@ namespace CVitae.Areas.CV.Pages
         public IList<SkillVM> Skills { get; set; } = new List<SkillVM>();
         public IList<SocialLinkVM> SocialLinks { get; set; } = new List<SocialLinkVM>();
 
-        public Guid Guid { get; set; }
-        public string QRTag { get; set; }
+        public IEnumerable<LanguageVM> Languages { get; set; }
 
         public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
     : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
 
-        public IActionResult OnGet(Guid id)
+        public IActionResult OnGet(string id)
         {
-            if(id == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == id))
+            var curriculum = repository.GetCurriculumByWeakIdentifier(id);
+
+            if(curriculum == null)
             {
                 return NotFound();
             }
-            else if (vitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == id).Person == null)
+            else if(curriculum.Person == null)
             {
-                return BadRequest();
+                return BadRequest(); // CV not ready yet
             }
             else
             {
-                FillValues(id);
+                Person = repository.GetPerson(curriculum);
+                About = repository.GetAbout(curriculum);
+                Awards = repository.GetAwards(curriculum);
+                Educations = repository.GetEducations(curriculum);
+                Experiences = repository.GetExperiences(curriculum);
+                Interests = repository.GetInterests(curriculum);
+                LanguageSkills = repository.GetLanguageSkills(curriculum);
+                Skills = repository.GetSkills(curriculum);
+                SocialLinks = repository.GetSocialLinks(curriculum);
 
-                Guid = id;
-                QRTag = CreateQRCode(id);
-
+                FillSelectionViewModel();
                 return Page();
             }
         }
-
-        private void FillValues(Guid id)
-        {
-            //Person = repository.GetPersonVM(id);
-
-            //// Social links
-            //SocialLinks = new List<SocialLinkVM>();
-            //foreach (var socialLink in curriculum.Person.SocialLinks.OrderByDescending(s => s.Order))
-            //{
-            //    SocialLinks.Add(new SocialLinkVM()
-            //    { 
-            //        SocialPlatform = socialLink.SocialPlatform,
-            //        Link = socialLink.Link
-            //    });
-            //}
-
-            //// Experiences
-            //Experiences = new List<ExperienceVM>();
-            //foreach (var experience in curriculum.Person.Experiences.OrderByDescending(e => e.Start))
-            //{
-            //    Experiences.Add(new ExperienceVM()
-            //    {
-            //        JobTitle = experience.JobTitle,
-            //        CompanyName = experience.CompanyName,
-            //        Link = experience.Link,
-            //        City = experience.City,
-            //        Resumee = experience.Resumee,
-            //        //Start = experience.Start,
-            //        //End = experience.End
-            //    });
-            //}
-
-            //// Education
-            //Educations = new List<EducationVM>();
-            //foreach (var education in curriculum.Person.Educations.OrderByDescending(e => e.Start))
-            //{
-            //    Educations.Add(new EducationVM()
-            //    {
-            //        SchoolName = education.SchoolName,
-            //        Link = education.Link,
-            //        Subject = education.Subject,
-            //        City = education.City,
-            //        Title = education.Title,
-            //        Resumee = education.Resumee,
-            //        Start_Month = education.Start.Month,
-            //        Start_Year = education.Start.Year,
-            //        End_Month = education.End.Value.Month,
-            //        End_Year = education.End.Value.Year,
-            //        Grade = education.Grade
-            //    });
-            //}
-
-            //// Languages
-            //LanguageSkills = new List<LanguageSkillVM>();
-            //foreach (var languageSkill in curriculum.Person.LanguageSkills)
-            //{
-            //    LanguageSkills.Add(new LanguageSkillVM()
-            //    {
-            //        //Language = new LanguageVM()
-            //        //{
-            //        //    Name = languageSkill.Language.Name,
-            //        //    LanguageCode = languageSkill.Language.LanguageCode
-            //        //},
-            //         Rate = languageSkill.Rate
-            //    });
-            //}
-        }
-
         private string CreateQRCode(Guid id)
         {
             using (var qrGenerator = new QRCodeGenerator())
@@ -150,9 +90,9 @@ namespace CVitae.Areas.CV.Pages
             }
         }
 
-        protected override void FillSelectionViewModel()
+        protected override void FillSelectionViewModel() 
         {
-            throw new NotImplementedException();
+            Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
         }
     }
 }
