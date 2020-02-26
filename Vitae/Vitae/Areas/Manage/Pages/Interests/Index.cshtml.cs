@@ -49,7 +49,8 @@ namespace Vitae.Areas.Manage.Pages.Interests
             }
             else
             {
-                Interests = repository.GetInterests(curriculumID);
+                var curriculum = repository.GetCurriculum(curriculumID);
+                Interests = repository.GetInterests(curriculum);
 
                 FillSelectionViewModel();
                 return Page();

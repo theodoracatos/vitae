@@ -51,7 +51,8 @@ namespace Vitae.Areas.Manage.Pages.Awards
             }
             else
             {
-                Awards = repository.GetAwards(curriculumID);
+                var curriculum = repository.GetCurriculum(curriculumID);
+                Awards = repository.GetAwards(curriculum);
 
                 FillSelectionViewModel();
                 return Page();

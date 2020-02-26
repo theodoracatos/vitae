@@ -1,10 +1,12 @@
 using Library.Repository;
+using Library.Resources;
 using Library.ViewModels;
-
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Localization;
 using Persistency.Data;
 
 using QRCoder;
@@ -14,18 +16,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using Vitae.Code;
 
 namespace CVitae.Areas.CV.Pages
 {
     [Area("CV")]
-    public class IndexModel : PageModel
+    public class IndexModel : BasePageModel
     {
-        #region Variables
-
-        private readonly VitaeContext vitaeContext;
-        private readonly Repository repository;
-
-        #endregion
+        public Guid CurriculumID { get { return curriculumID; } }
 
         public PersonVM Person { get; set; } = new PersonVM();
         public AboutVM About { get; set; } = new AboutVM();
@@ -40,11 +38,8 @@ namespace CVitae.Areas.CV.Pages
         public Guid Guid { get; set; }
         public string QRTag { get; set; }
 
-        public IndexModel(VitaeContext vitaeContext, Repository repository)
-        {
-            this.vitaeContext = vitaeContext;
-            this.repository = repository;
-        }
+        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+    : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
 
         public IActionResult OnGet(Guid id)
         {
@@ -69,7 +64,7 @@ namespace CVitae.Areas.CV.Pages
 
         private void FillValues(Guid id)
         {
-            Person = repository.GetPersonVM(id);
+            //Person = repository.GetPersonVM(id);
 
             //// Social links
             //SocialLinks = new List<SocialLinkVM>();
@@ -153,6 +148,11 @@ namespace CVitae.Areas.CV.Pages
                 img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
                 return stream.ToArray();
             }
+        }
+
+        protected override void FillSelectionViewModel()
+        {
+            throw new NotImplementedException();
         }
     }
 }

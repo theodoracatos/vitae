@@ -46,7 +46,8 @@ namespace Vitae.Areas.Manage.Pages.About
             }
             else
             {
-                About = repository.GetAboutVM(curriculumID);
+                var curriculum = repository.GetCurriculum(curriculumID);
+                About = repository.GetAboutVM(curriculum);
 
                 return Page();
             }

@@ -87,9 +87,8 @@ namespace Library.Repository
             return languagesVM;
         }
 
-        public PersonVM GetPersonVM(Guid curriculumID, string email = null)
+        public PersonVM GetPersonVM(Curriculum curriculum, string email = null)
         {
-            var curriculum = GetCurriculum(curriculumID);
             var personVM = new PersonVM()
             {
                 Birthday_Day = curriculum.Person?.Birthday.Value.Day ?? 1,
@@ -115,9 +114,8 @@ namespace Library.Repository
             return personVM;
         }
 
-        public AboutVM GetAboutVM(Guid curriculumID)
+        public AboutVM GetAboutVM(Curriculum curriculum)
         {
-            var curriculum = GetCurriculum(curriculumID);
             var aboutVM = new AboutVM()
             {
                 Photo = curriculum.Person.About?.Photo,
@@ -132,9 +130,8 @@ namespace Library.Repository
             return aboutVM;
         }
 
-        public IList<AwardVM> GetAwards(Guid curriculumID)
+        public IList<AwardVM> GetAwards(Curriculum curriculum)
         {
-            var curriculum = GetCurriculum(curriculumID);
             var awardsVM = curriculum.Person.Awards.OrderBy(aw => aw.Order)
                    .Select(a => new AwardVM()
                    {
@@ -150,9 +147,8 @@ namespace Library.Repository
             return awardsVM;
         }
 
-        public IList<EducationVM> GetEducations(Guid curriculumID)
+        public IList<EducationVM> GetEducations(Curriculum curriculum)
         {
-            var curriculum = GetCurriculum(curriculumID);
             var educationsVM = curriculum.Person.Educations?.OrderBy(ed => ed.Order)
                     .Select(e => new EducationVM()
                     {
@@ -176,9 +172,8 @@ namespace Library.Repository
             return educationsVM;
         }
 
-        public IList<ExperienceVM> GetExperiences(Guid curriculumID)
+        public IList<ExperienceVM> GetExperiences(Curriculum curriculum)
         {
-            var curriculum = GetCurriculum(curriculumID);
             var experiencesVM = curriculum.Person.Experiences?.OrderBy(ex => ex.Order)
                     .Select(e => new ExperienceVM()
                     {
@@ -200,9 +195,8 @@ namespace Library.Repository
             return experiencesVM;
         }
 
-        public IList<InterestVM> GetInterests(Guid curriculumID)
+        public IList<InterestVM> GetInterests(Curriculum curriculum)
         {
-            var curriculum = GetCurriculum(curriculumID);
             var interestsVM = curriculum.Person.Interests.OrderBy(ir => ir.Order)
                     .Select(i => new InterestVM()
                     {
@@ -215,9 +209,8 @@ namespace Library.Repository
             return interestsVM;
         }
 
-        public IList<LanguageSkillVM> GetLanguageSkills(Guid curriculumID)
+        public IList<LanguageSkillVM> GetLanguageSkills(Curriculum curriculum)
         {
-            var curriculum = GetCurriculum(curriculumID);
             var languageSkillsVM = curriculum.Person.LanguageSkills.OrderBy(ls => ls.Order)
                     .Select(l => new LanguageSkillVM()
                     {
@@ -229,9 +222,8 @@ namespace Library.Repository
             return languageSkillsVM;
         }
 
-        public IList<SkillVM> GetSkills(Guid curriculumID)
+        public IList<SkillVM> GetSkills(Curriculum curriculum)
         {
-            var curriculum = GetCurriculum(curriculumID);
             var skillsVM = curriculum.Person.Skills.OrderBy(ls => ls.Order)
                     .Select(s => new SkillVM()
                     {
@@ -243,9 +235,8 @@ namespace Library.Repository
             return skillsVM;
         }
 
-        public IList<SocialLinkVM> GetSocialLinks(Guid curriculumID)
+        public IList<SocialLinkVM> GetSocialLinks(Curriculum curriculum)
         {
-            var curriculum = GetCurriculum(curriculumID);
             var socialLinksVM = curriculum.Person.SocialLinks.OrderBy(ls => ls.Order)
                     .Select(s => new SocialLinkVM()
                     {

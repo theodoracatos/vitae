@@ -50,7 +50,8 @@ namespace Vitae.Areas.Manage.Pages.Languages
             }
             else
             {
-                LanguageSkills = repository.GetLanguageSkills(curriculumID);
+                var curriculum = repository.GetCurriculum(curriculumID);
+                LanguageSkills = repository.GetLanguageSkills(curriculum);
                 
                 FillSelectionViewModel();
                 return Page();

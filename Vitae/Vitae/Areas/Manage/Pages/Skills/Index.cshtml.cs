@@ -49,7 +49,8 @@ namespace Vitae.Areas.Manage.Pages.Skills
             }
             else
             {
-                Skills = repository.GetSkills(curriculumID);
+                var curriculum = repository.GetCurriculum(curriculumID);
+                Skills = repository.GetSkills(curriculum);
 
                 FillSelectionViewModel();
                 return Page();

@@ -53,7 +53,8 @@ namespace Vitae.Areas.Manage.Pages.Experience
             }
             else
             {
-                Experiences = repository.GetExperiences(curriculumID);
+                var curriculum = repository.GetCurriculum(curriculumID);
+                Experiences = repository.GetExperiences(curriculum);
 
                 FillSelectionViewModel();
                 return Page();

@@ -53,7 +53,8 @@ namespace Vitae.Areas.Manage.Pages.Education
             }
             else
             {
-                Educations = repository.GetEducations(curriculumID);
+                var curriculum = repository.GetCurriculum(curriculumID);
+                Educations = repository.GetEducations(curriculum);
 
                 FillSelectionViewModel();
                 return Page();

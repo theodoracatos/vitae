@@ -50,7 +50,8 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
             }
             else
             {
-                SocialLinks = repository.GetSocialLinks(curriculumID);
+                var curriculum = repository.GetCurriculum(curriculumID);
+                SocialLinks = repository.GetSocialLinks(curriculum);
 
                 FillSelectionViewModel();
                 return Page();

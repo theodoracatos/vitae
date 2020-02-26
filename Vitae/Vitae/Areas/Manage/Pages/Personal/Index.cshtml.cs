@@ -48,7 +48,8 @@ namespace Vitae.Areas.Manage.Pages.Personal
             }
             else
             {
-                Person = repository.GetPersonVM(curriculumID, identity.Name);
+                var curriculum = repository.GetCurriculum(curriculumID);
+                Person = repository.GetPersonVM(curriculum, identity.Name);
 
                 FillSelectionViewModel();
                 return Page();
