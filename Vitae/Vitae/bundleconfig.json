@@ -1,5 +1,11 @@
 [
   {
+    "outputFileName": "wwwroot/js/base.min.js",
+    "inputFiles": [
+      "wwwroot/js/base.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
       "wwwroot/js/site.js"

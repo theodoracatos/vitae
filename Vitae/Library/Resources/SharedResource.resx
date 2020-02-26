@@ -438,6 +438,9 @@
   <data name="NonPropertyValueMustBeANumberAccessor" xml:space="preserve">
     <value>The field must be a number</value>
   </data>
+  <data name="NoResults" xml:space="preserve">
+    <value>No results for {0}</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>

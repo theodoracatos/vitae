@@ -45,6 +45,24 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Log",
+                columns: table => new
+                {
+                    LogID = table.Column<Guid>(nullable: false),
+                    LogLevel = table.Column<int>(nullable: false),
+                    IpAddress = table.Column<string>(nullable: true),
+                    UserAgent = table.Column<string>(nullable: true),
+                    UserLanguage = table.Column<string>(nullable: true),
+                    CurriculumID = table.Column<Guid>(nullable: false),
+                    Message = table.Column<string>(nullable: true),
+                    Timestamp = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Log", x => x.LogID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Month",
                 columns: table => new
                 {
@@ -501,6 +519,9 @@ namespace Persistency.Migrations
 
             migrationBuilder.DropTable(
                 name: "LanguageSkill");
+
+            migrationBuilder.DropTable(
+                name: "Log");
 
             migrationBuilder.DropTable(
                 name: "Month");

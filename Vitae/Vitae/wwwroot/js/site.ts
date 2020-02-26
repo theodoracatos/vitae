@@ -2,11 +2,10 @@
 declare var $;
 declare var Resources;
 
-import { Base } from 'base';
-
 (function ($) {
     addJQueryValidators();
-    Base.startRating();
+    startRating();
+    initSelectPicker();
 })(jQuery);
 
 function addJQueryValidators() {
@@ -50,8 +49,20 @@ function setupSbAdmin() {
 
 function ajaxCompleted() {
     loadingProcedure();
-    Base.startRating();
+    startRating();
     resetFormValidator('form');
+    initSelectPicker();
+}
+
+function initSelectPicker() {
+    $('.selectpicker').selectpicker(
+        {
+            liveSearch: true,
+            container: '.card-body',
+            maxOptions: 7,
+            noneResultsText: Resources.SharedResource.NoResults
+        }
+    );
 }
 
 function loadingProcedure() {
@@ -62,7 +73,7 @@ function loadingProcedure() {
     loadImageComponent();
     loadFilerUpload();
     initializeTooltips();
-    Base.initializeTagsinput();
+    initializeTagsinput();
     loadDisabledLinkMessage();
 }
 
@@ -85,7 +96,6 @@ function initializeTooltips() {
     /* Tooltips */
     $("body").tooltip({ selector: '[data-toggle=tooltip]', container: 'body' });
 }
-
 
 function setupDatepicker() {
     $('.datetimepicker').datepicker(
@@ -124,7 +134,7 @@ function configureConfirmationModal() {
                     keys: ['enter'],
                     text: Resources.SharedResource.Ok,
                     action: function () {
-                        if (formmethod == 'post') {
+                        if (formmethod === 'post') {
                             if (hasCancel) {
                                 $('form').data("validator").cancelSubmit = true;
                                 var validator = $("form").validate();

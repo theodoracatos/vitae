@@ -2,16 +2,15 @@
 declare var $;
 declare var Resources;
 
-export module Base {
-    export function startRating() {
+function startRating() {
         $(".rating").rating({
             filled: 'fas fa-star fa-2x',
-            empty: 'far fa-2x fa-star',
+            empty: 'far fa-2x fa-star', 
             stop: 4,
             extendSymbol: function (symbolNr) {
                 $(this).on('rating.rateclick', function (e, currentRate) {
-
-                })
+                     
+                }) 
 
                 $(this).tooltip({
                     container: 'body',
@@ -41,7 +40,7 @@ export module Base {
         });
     }
 
-    export function initializeTagsinput() {
+ function initializeTagsinput() {
         $('.tagsinput').tagsinput(
             {
                 trimValue: true,
@@ -49,4 +48,3 @@ export module Base {
             }
         );
     }
-}

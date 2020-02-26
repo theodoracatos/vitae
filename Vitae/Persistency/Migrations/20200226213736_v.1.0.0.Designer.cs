@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200216135328_v.1.0.0")]
+    [Migration("20200226213736_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace Persistency.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Persistency.Poco.About", b =>
+            modelBuilder.Entity("Model.Poco.About", b =>
                 {
                     b.Property<Guid>("AboutID")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace Persistency.Migrations
                     b.ToTable("About");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Award", b =>
+            modelBuilder.Entity("Model.Poco.Award", b =>
                 {
                     b.Property<Guid>("AwardID")
                         .ValueGeneratedOnAdd()
@@ -86,7 +86,7 @@ namespace Persistency.Migrations
                     b.ToTable("Award");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Country", b =>
+            modelBuilder.Entity("Model.Poco.Country", b =>
                 {
                     b.Property<Guid>("CountryID")
                         .ValueGeneratedOnAdd()
@@ -135,7 +135,7 @@ namespace Persistency.Migrations
                     b.ToTable("Country");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Curriculum", b =>
+            modelBuilder.Entity("Model.Poco.Curriculum", b =>
                 {
                     b.Property<Guid>("CurriculumID")
                         .ValueGeneratedOnAdd()
@@ -178,7 +178,7 @@ namespace Persistency.Migrations
                     b.ToTable("Curriculum");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Education", b =>
+            modelBuilder.Entity("Model.Poco.Education", b =>
                 {
                     b.Property<Guid>("EducationID")
                         .ValueGeneratedOnAdd()
@@ -239,7 +239,7 @@ namespace Persistency.Migrations
                     b.ToTable("Education");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Experience", b =>
+            modelBuilder.Entity("Model.Poco.Experience", b =>
                 {
                     b.Property<Guid>("ExperienceID")
                         .ValueGeneratedOnAdd()
@@ -292,7 +292,7 @@ namespace Persistency.Migrations
                     b.ToTable("Experience");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Interest", b =>
+            modelBuilder.Entity("Model.Poco.Interest", b =>
                 {
                     b.Property<Guid>("InterestID")
                         .ValueGeneratedOnAdd()
@@ -324,7 +324,7 @@ namespace Persistency.Migrations
                     b.ToTable("Interest");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Language", b =>
+            modelBuilder.Entity("Model.Poco.Language", b =>
                 {
                     b.Property<Guid>("LanguageID")
                         .ValueGeneratedOnAdd()
@@ -368,7 +368,7 @@ namespace Persistency.Migrations
                     b.ToTable("Language");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.LanguageSkill", b =>
+            modelBuilder.Entity("Model.Poco.LanguageSkill", b =>
                 {
                     b.Property<Guid>("LanguageSkillID")
                         .ValueGeneratedOnAdd()
@@ -395,7 +395,39 @@ namespace Persistency.Migrations
                     b.ToTable("LanguageSkill");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Month", b =>
+            modelBuilder.Entity("Model.Poco.Log", b =>
+                {
+                    b.Property<Guid>("LogID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CurriculumID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IpAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LogLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserAgent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserLanguage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LogID");
+
+                    b.ToTable("Log");
+                });
+
+            modelBuilder.Entity("Model.Poco.Month", b =>
                 {
                     b.Property<Guid>("MonthID")
                         .ValueGeneratedOnAdd()
@@ -429,7 +461,7 @@ namespace Persistency.Migrations
                     b.ToTable("Month");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Person", b =>
+            modelBuilder.Entity("Model.Poco.Person", b =>
                 {
                     b.Property<Guid>("PersonID")
                         .ValueGeneratedOnAdd()
@@ -501,7 +533,7 @@ namespace Persistency.Migrations
                     b.ToTable("Person");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.PersonCountry", b =>
+            modelBuilder.Entity("Model.Poco.PersonCountry", b =>
                 {
                     b.Property<Guid>("PersonID")
                         .HasColumnType("uniqueidentifier");
@@ -519,7 +551,7 @@ namespace Persistency.Migrations
                     b.ToTable("PersonCountry");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Skill", b =>
+            modelBuilder.Entity("Model.Poco.Skill", b =>
                 {
                     b.Property<Guid>("SkillID")
                         .ValueGeneratedOnAdd()
@@ -547,7 +579,7 @@ namespace Persistency.Migrations
                     b.ToTable("Skill");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.SocialLink", b =>
+            modelBuilder.Entity("Model.Poco.SocialLink", b =>
                 {
                     b.Property<Guid>("SocialLinkID")
                         .ValueGeneratedOnAdd()
@@ -574,7 +606,7 @@ namespace Persistency.Migrations
                     b.ToTable("SocialLink");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Vfile", b =>
+            modelBuilder.Entity("Model.Poco.Vfile", b =>
                 {
                     b.Property<Guid>("VfileID")
                         .ValueGeneratedOnAdd()
@@ -601,109 +633,109 @@ namespace Persistency.Migrations
                     b.ToTable("Vfile");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.About", b =>
+            modelBuilder.Entity("Model.Poco.About", b =>
                 {
-                    b.HasOne("Persistency.Poco.Vfile", "Vfile")
+                    b.HasOne("Model.Poco.Vfile", "Vfile")
                         .WithMany()
                         .HasForeignKey("VfileID");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Award", b =>
+            modelBuilder.Entity("Model.Poco.Award", b =>
                 {
-                    b.HasOne("Persistency.Poco.Person", null)
+                    b.HasOne("Model.Poco.Person", null)
                         .WithMany("Awards")
                         .HasForeignKey("PersonID");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Curriculum", b =>
+            modelBuilder.Entity("Model.Poco.Curriculum", b =>
                 {
-                    b.HasOne("Persistency.Poco.Person", "Person")
+                    b.HasOne("Model.Poco.Person", "Person")
                         .WithMany()
                         .HasForeignKey("PersonID");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Education", b =>
+            modelBuilder.Entity("Model.Poco.Education", b =>
                 {
-                    b.HasOne("Persistency.Poco.Country", "Country")
+                    b.HasOne("Model.Poco.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryID");
 
-                    b.HasOne("Persistency.Poco.Person", null)
+                    b.HasOne("Model.Poco.Person", null)
                         .WithMany("Educations")
                         .HasForeignKey("PersonID");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Experience", b =>
+            modelBuilder.Entity("Model.Poco.Experience", b =>
                 {
-                    b.HasOne("Persistency.Poco.Country", "Country")
+                    b.HasOne("Model.Poco.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryID");
 
-                    b.HasOne("Persistency.Poco.Person", null)
+                    b.HasOne("Model.Poco.Person", null)
                         .WithMany("Experiences")
                         .HasForeignKey("PersonID");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Interest", b =>
+            modelBuilder.Entity("Model.Poco.Interest", b =>
                 {
-                    b.HasOne("Persistency.Poco.Person", null)
+                    b.HasOne("Model.Poco.Person", null)
                         .WithMany("Interests")
                         .HasForeignKey("PersonID");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.LanguageSkill", b =>
+            modelBuilder.Entity("Model.Poco.LanguageSkill", b =>
                 {
-                    b.HasOne("Persistency.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Persistency.Poco.Person", null)
+                    b.HasOne("Model.Poco.Person", null)
                         .WithMany("LanguageSkills")
                         .HasForeignKey("PersonID");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Person", b =>
+            modelBuilder.Entity("Model.Poco.Person", b =>
                 {
-                    b.HasOne("Persistency.Poco.About", "About")
+                    b.HasOne("Model.Poco.About", "About")
                         .WithMany()
                         .HasForeignKey("AboutID");
 
-                    b.HasOne("Persistency.Poco.Country", "Country")
+                    b.HasOne("Model.Poco.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryID");
 
-                    b.HasOne("Persistency.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "Language")
                         .WithMany()
                         .HasForeignKey("LanguageID");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.PersonCountry", b =>
+            modelBuilder.Entity("Model.Poco.PersonCountry", b =>
                 {
-                    b.HasOne("Persistency.Poco.Country", "Country")
+                    b.HasOne("Model.Poco.Country", "Country")
                         .WithMany("PersonCountries")
                         .HasForeignKey("CountryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Persistency.Poco.Person", "Person")
+                    b.HasOne("Model.Poco.Person", "Person")
                         .WithMany("PersonCountries")
                         .HasForeignKey("PersonID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Persistency.Poco.Skill", b =>
+            modelBuilder.Entity("Model.Poco.Skill", b =>
                 {
-                    b.HasOne("Persistency.Poco.Person", null)
+                    b.HasOne("Model.Poco.Person", null)
                         .WithMany("Skills")
                         .HasForeignKey("PersonID");
                 });
 
-            modelBuilder.Entity("Persistency.Poco.SocialLink", b =>
+            modelBuilder.Entity("Model.Poco.SocialLink", b =>
                 {
-                    b.HasOne("Persistency.Poco.Person", null)
+                    b.HasOne("Model.Poco.Person", null)
                         .WithMany("SocialLinks")
                         .HasForeignKey("PersonID");
                 });

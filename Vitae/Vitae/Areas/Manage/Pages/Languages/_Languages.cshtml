@@ -20,7 +20,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.LanguageSkills[i].LanguageCode"></label>
-                        <select asp-for="@Model.LanguageSkills[i].LanguageCode" class="form-control" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Languages.Where(l => l.LanguageCode == Model.LanguageSkills[i].LanguageCode || !Model.LanguageSkills.Select(ls => ls.LanguageCode).Contains(l.LanguageCode)), "LanguageCode", "Name"))">
+                        <select asp-for="@Model.LanguageSkills[i].LanguageCode" class="form-control selectpicker" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Languages.Where(l => l.LanguageCode == Model.LanguageSkills[i].LanguageCode || !Model.LanguageSkills.Select(ls => ls.LanguageCode).Contains(l.LanguageCode)), "LanguageCode", "Name"))">
                             <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                         </select>
                         <span asp-validation-for="@Model.LanguageSkills[i].LanguageCode" class="text-danger"></span>
