@@ -2,8 +2,8 @@
 @inject VitaeContext VitaeContext
 
 @{
-    var curriculumID = Guid.Parse(User.Claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value);
-    var hasPerson = VitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == curriculumID).Person != null;
+    var identifier = Guid.Parse(User.Claims.Single(c => c.Type == Claims.CV_IDENTIFIER).Value);
+    var hasPerson = VitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == identifier).Person != null;
 }
 
 <!DOCTYPE html>
@@ -85,7 +85,7 @@
                             @SharedResource.Skills
                         </a>
                         <div class="sb-sidenav-menu-heading mt-2">@SharedResource.CurriculumVitae</div>
-                        <a class="nav-link mb-4 @(hasPerson ? null : "disabled")" href="@(hasPerson ? $"/CV/{curriculumID}" : "#")">
+                        <a class="nav-link mb-4 @(hasPerson ? null : "disabled")" href="@(hasPerson ? $"/CV/{identifier}" : "#")">
                             <i class="fas fa-address-card sideIcon"></i>
                             @SharedResource.MyVitae
                         </a>

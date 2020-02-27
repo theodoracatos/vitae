@@ -39,7 +39,7 @@ namespace Vitae.Code
             this.vitaeContext = vitaeContext;
             this.requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
             this.identity = httpContextAccessor.HttpContext.User.Identities.Single();
-            Guid.TryParse(identity.Claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value, out curriculumID);
+            Guid.TryParse(identity.Claims.Single(c => c.Type == Claims.CV_IDENTIFIER).Value, out curriculumID);
             this.repository = repository;
         }
 

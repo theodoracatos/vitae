@@ -1,6 +1,8 @@
 USE Vitae
 GO
 
+select * from Curriculum
+
 BEGIN TRY
     BEGIN TRANSACTION
 
@@ -36,6 +38,9 @@ VALUES (NEWID(), 4, 'https://github.com/theodoracatos/vitae', 4, (SELECT TOP 1 [
 INSERT INTO [SocialLink]
 VALUES (NEWID(), 5, 'https://www.xing.com/profile/Alexandros_Theodoracatos/cv', 5, (SELECT TOP 1 [PersonID] FROM [Person]))
 
+
+INSERT INTO [Experience]
+VALUES (NEWID(), 'Dozent', 'IFA Weiterbildungs AG', 'https://www.ifa.ch', 'Zürich', 'Teilzeit-Dozent auf Mandatsbasis', '2019-10-01', null, 1, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'CH'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Experience]
 VALUES (NEWID(), 'Senior Softwareingenieur', 'Quilvest (Switzerland) Ltd.', 'http://quilvest.com', 'Zürich', 'Architektur und Fullstack-Entwicklung elektronischer Businessprozesse, realisiert mit neuesten .NET Web-Technologien. Technischer Lead folgender eigenentwickelter Applikationssysteme: Intranet, eBanking, MBO-System, Client-OnBoard-Dokumentenerstellung. Projektleitung mit fachlicher Führung von 5 – 7 Mitarbeitern (länderübergreifend). Regelmässige Schulung und Coaching von Mitarbeitern (auf Deutsch und Englisch)', '2011-02-01', null, 1, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'CH'), (SELECT TOP 1 [PersonID] FROM [Person]))
@@ -75,21 +80,21 @@ INSERT INTO [LanguageSkill]
 VALUES(NEWID(), 2, 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Award]
-VALUES(NEWID(), 'ZHAW Alumni Award', '', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'www.zhaw.ch', '2011-01-01', 1,  (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'ZHAW Alumni Award', 'Bestnote im Studiengang MAS Wirtschaftsinformatik', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'www.zhaw.ch', '2012-01-01', 1,  (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Award]
-VALUES(NEWID(), 'ZHAW Alumni Award', '', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'www.zhaw.ch', '2011-01-01', 2,  (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'ZHAW Alumni Award', 'Beste Masterarbeit im Studiengang MAS Wirtschaftsinformatik', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'www.zhaw.ch', '2012-01-01', 2,  (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Interest]
-VALUES(NEWID(), 'Sports', 'I swim regularly and play badminton on a weekly basis', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Sport', 'Ich schwimme gerne und spiele regelmässig Tennis und Badminton', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Interest]
-VALUES(NEWID(), 'Travelling', 'I like to discover new countries and foreign cultures', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Reisen', 'Es fasziniert mich neue Länder und Kulturen zu entdecken', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Interest]
-VALUES(NEWID(), 'Children', 'My two children keep me busy', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Kinder', 'Meine beiden Kinder halten mich stets auf trab', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
-select * from Interest
+
 
 -------------------
 

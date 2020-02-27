@@ -2,6 +2,6 @@
 {
     public static class Claims
     {
-        public const string CURRICULUM_ID = "CurriculumID";
+        public const string CV_IDENTIFIER = "Identifier";
     }
 }

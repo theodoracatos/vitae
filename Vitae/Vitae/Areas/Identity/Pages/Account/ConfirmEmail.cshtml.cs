@@ -78,7 +78,7 @@ namespace Vitae.Areas.Identity.Pages.Account
 
                     // Role & Claims
                     await userManager.AddToRoleAsync(user, Roles.USER);
-                    var claim = new Claim(Claims.CURRICULUM_ID, vitaeContext.Curriculums.Single(c => c.Identifier == guid).Identifier.ToString());
+                    var claim = new Claim(Claims.CV_IDENTIFIER, vitaeContext.Curriculums.Single(c => c.Identifier == guid).Identifier.ToString());
                     await userManager.AddClaimAsync(user, claim);
 
                     await signInManager.SignInAsync(user, isPersistent: false);
