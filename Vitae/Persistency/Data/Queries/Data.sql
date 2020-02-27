@@ -67,6 +67,7 @@ VALUES (NEWID(), 'GIBB', 'https://gibb.ch', 'Bern', 'Fachausweis (FA)', 'Applika
 INSERT INTO [Education]
 VALUES (NEWID(), 'Kantonsschule SH', 'https://kanti.ch', 'Schaffhausen', 'Matura', 'Naturwissenschaften (Profil N)', 'Naturwissenschaftlich–mathematischeMatura mit Schwerpunkten in Chemie / Biologie', '4.5', '1998-08-01', '2002-07-01', 4, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'CH'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
+
 INSERT INTO [LanguageSkill] 
 VALUES(NEWID(), 4, 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
@@ -79,21 +80,26 @@ VALUES(NEWID(), 3, 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] 
 INSERT INTO [LanguageSkill] 
 VALUES(NEWID(), 2, 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
+
 INSERT INTO [Award]
 VALUES(NEWID(), 'ZHAW Alumni Award', 'Bestnote im Studiengang MAS Wirtschaftsinformatik', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'www.zhaw.ch', '2012-01-01', 1,  (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Award]
 VALUES(NEWID(), 'ZHAW Alumni Award', 'Beste Masterarbeit im Studiengang MAS Wirtschaftsinformatik', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'www.zhaw.ch', '2012-01-01', 2,  (SELECT TOP 1 [PersonID] FROM [Person]))
 
+
 INSERT INTO [Interest]
-VALUES(NEWID(), 'Sport', 'Ich schwimme gerne und spiele regelmässig Tennis und Badminton', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Sport', 'Meine Hobbys sind Schwimmen, Tennis und Badminton', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Interest]
 VALUES(NEWID(), 'Reisen', 'Es fasziniert mich neue Länder und Kulturen zu entdecken', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Interest]
-VALUES(NEWID(), 'Kinder', 'Meine beiden Kinder halten mich stets auf trab', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Kinder', 'Meine beiden Kinder halten mich stets auf Trab', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
+
+INSERT INTO [Skill]
+VALUES (NEWID(), 'Kinder', 'Meine beiden Kinder halten mich stets auf Trab', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 
 -------------------
