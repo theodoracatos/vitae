@@ -19,6 +19,7 @@ body {
 
 header {
     height: 60px;
+    padding-bottom: 3.5rem;
 }
 
 main {
@@ -28,4 +29,8 @@ main {
 footer {
     height: 60px;
     opacity: 0.9;
+}
+
+.jumbotron {
+    margin-top: 2rem !important;
 }
