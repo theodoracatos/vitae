@@ -49,6 +49,7 @@ namespace Library.Repository
             .Include(c => c.Person.About)
             .Include(c => c.Person.About.Vfile)
             .Include(c => c.Person.Awards)
+            .Include(c => c.Person.Children)
             .Include(c => c.Person.Country)
             .Include(c => c.Person.Educations).ThenInclude(e => e.Country)
             .Include(c => c.Person.Experiences).ThenInclude(e => e.Country)
@@ -129,6 +130,10 @@ namespace Library.Repository
                 ZipCode = curriculum.Person?.ZipCode,
                 State = curriculum.Person?.State,
                 PhonePrefix = GetPhonePrefix(curriculum.Person?.Country.CountryCode),
+                Children = curriculum.Person?.Children?.OrderBy(c => c.Order)
+                .Select(n => new ChildVM { Firstname = n.Firstname, Order = n.Order,
+                    Birthday_Year = n.Birthday.HasValue ? n.Birthday.Value.Year : DateTime.Now.Year - 1
+                }).ToList() ?? new List<ChildVM>(),
                 Nationalities = curriculum.Person?.PersonCountries?.OrderBy(pc => pc.Order)
                 .Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order })
                 .ToList() ?? new List<NationalityVM>() { new NationalityVM() { Order = 0 } }

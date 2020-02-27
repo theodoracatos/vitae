@@ -32,6 +32,8 @@ namespace Vitae.Areas.Manage.Pages.Personal
         public IEnumerable<CountryVM> Nationalities { get; set; }
         public IEnumerable<MonthVM> Months { get; set; }
 
+        public int MaxChildren { get; } = 10;
+
         public int MaxNationalities { get; } = 3;
 
         public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
@@ -127,7 +129,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
         {
             if (Person.Nationalities == null)
             {
-                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 0 } };
+                Person.Nationalities = new List<NationalityVM>() { };
             }
             else if (Person.Nationalities.Count > 1)
             {
@@ -139,16 +141,45 @@ namespace Vitae.Areas.Manage.Pages.Personal
             return GetPartialViewResult(PAGE_PERSONAL);
         }
 
+        public IActionResult OnPostAddChild()
+        {
+            if (Person.Children == null)
+            {
+                Person.Children = new List<ChildVM>() { new ChildVM() { Order = 0 } };
+            }
+            else if (Person.Children.Count < MaxChildren)
+            {
+                Person.Children.Add(new ChildVM() { Order = Person.Children.Count });
+            }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_PERSONAL);
+        }
+
+        public IActionResult OnPostRemoveChild()
+        {
+            if (Person.Children == null)
+            {
+                Person.Children = new List<ChildVM>() { };
+            }
+            else if (Person.Children.Count > 1)
+            {
+                Person.Children.RemoveAt(Person.Children.Count - 1);
+            }
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_PERSONAL);
+        }
+
         public IActionResult OnPostChangeBirthday()
         {
-            DateTime tempDate;
-            do
+            Person.Birthday_Day = CorrectBirthday(Person.Birthday_Year, Person.Birthday_Month, Person.Birthday_Day);
+           
+            foreach(var child in Person.Children)
             {
-                if (!DateTime.TryParse($"{Person.Birthday_Year}-{Person.Birthday_Month}-{Person.Birthday_Day}", out tempDate))
-                {
-                    --Person.Birthday_Day; // Decrement (wrong day)
-                }
-            } while (tempDate == DateTime.MinValue);
+                child.Birthday_Day = CorrectBirthday(child.Birthday_Year, child.Birthday_Month, child.Birthday_Day);
+            }
 
             FillSelectionViewModel();
 
@@ -165,6 +196,20 @@ namespace Vitae.Areas.Manage.Pages.Personal
         #endregion
 
         #region Helper
+
+        private int CorrectBirthday(int year, int month, int day)
+        {
+            DateTime tempDate;
+            do
+            {
+                if (!DateTime.TryParse($"{year}-{month}-{day}", out tempDate))
+                {
+                    --day; // Decrement (wrong day)
+                }
+            } while (tempDate == DateTime.MinValue);
+
+            return day;
+        }
 
         protected override void FillSelectionViewModel()
         {

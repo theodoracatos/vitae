@@ -48,6 +48,7 @@ namespace Model.Poco
         public virtual About About { get; set; }
         public virtual Language Language { get; set; }
 
+        public virtual ICollection<Child> Children { get; set; }
         public virtual ICollection<PersonCountry> PersonCountries { get; set; }
         public virtual ICollection<Education> Educations { get; set; }
         public virtual ICollection<Experience> Experiences { get; set; }

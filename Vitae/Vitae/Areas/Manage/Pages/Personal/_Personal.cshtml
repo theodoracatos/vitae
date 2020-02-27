@@ -94,6 +94,36 @@
             </div>
             <div class="form-row">
                 <div class="form-group col">
+                    <label class="control-label" asp-for="@Model.Person.Children"></label>
+                    <div>
+                        <button asp-page-handler="AddChild" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Person.Children?.Count <= Model.MaxChildren ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                        <button asp-page-handler="RemoveChild" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Person.Children?.Count <= 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+            </div>
+            @for (int i = 0; i < Model.Person.Children.Count; i++)
+            {
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Person.Children[i].Firstname"></label>
+                        <div class="form-group">
+                            <input class="form-control" type="text" asp-for="@Model.Person.Children[i].Firstname" />
+                            <span asp-validation-for="@Model.Person.Children[i].Firstname" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label" asp-for="@Model.Person.Birthday_Day"></label>
+                        <div class="d-flex">
+                            <select asp-for="@Model.Person.Children[i].Birthday_Day" class="form-control w-auto d-inline-flex mr-2" asp-items="@(new SelectList(Enumerable.Range(1, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
+                            <select asp-for="@Model.Person.Children[i].Birthday_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
+                            <select asp-for="@Model.Person.Children[i].Birthday_Year" class="form-control w-auto d-inline-flex" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
+                        </div>
+                        <input type="hidden" asp-for="@Model.Person.Children[i].Order" />
+                    </div>
+                </div>
+            }
+            <div class="form-row">
+                <div class="form-group col">
                     <label class="control-label" asp-for="@Model.Person.Nationalities"></label>
                     <div>
                         <button asp-page-handler="AddNationality" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Person.Nationalities?.Count <= Model.MaxNationalities ? null : "disabled")"><i class="fas fa-plus"></i></button>

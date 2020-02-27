@@ -268,6 +268,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Child.
+        /// </summary>
+        public static string Child {
+            get {
+                return ResourceManager.GetString("Child", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Children.
+        /// </summary>
+        public static string Children {
+            get {
+                return ResourceManager.GetString("Children", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Datei zum upload auswählen.
         /// </summary>
         public static string ChooseFile {

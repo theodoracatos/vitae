@@ -77,6 +77,9 @@ namespace Model.ViewModels
 
         public string PhonePrefix { get; set; }
 
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Children), Prompt = nameof(SharedResource.Children))]
+        public IList<ChildVM> Children { get; set; }
+
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Nationalities), Prompt = nameof(SharedResource.Nationalities))]
         public IList<NationalityVM> Nationalities { get; set; }
     }

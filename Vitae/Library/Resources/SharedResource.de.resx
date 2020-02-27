@@ -186,6 +186,12 @@
   <data name="CheckYourEmailConfirm" xml:space="preserve">
     <value> Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu bestätigen.</value>
   </data>
+  <data name="Child" xml:space="preserve">
+    <value>Kind</value>
+  </data>
+  <data name="Children" xml:space="preserve">
+    <value>Kinder</value>
+  </data>
   <data name="ChooseFile" xml:space="preserve">
     <value>Datei zum upload auswählen</value>
   </data>

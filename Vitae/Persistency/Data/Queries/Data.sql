@@ -62,29 +62,34 @@ VALUES (NEWID(), 'GIBB', 'https://gibb.ch', 'Bern', 'Fachausweis (FA)', 'Applika
 INSERT INTO [Education]
 VALUES (NEWID(), 'Kantonsschule SH', 'https://kanti.ch', 'Schaffhausen', 'Matura', 'Naturwissenschaften (Profil N)', 'Naturwissenschaftlich–mathematischeMatura mit Schwerpunkten in Chemie / Biologie', '4.5', '1998-08-01', '2002-07-01', 4, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'CH'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
-
 INSERT INTO [LanguageSkill] 
 VALUES(NEWID(), 4, 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [LanguageSkill] 
-VALUES(NEWID(), 3, 2, (SELECT [LanguageID] FROM [Language] ORDER BY [LanguageID] OFFSET 2 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 3, 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'en'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [LanguageSkill] 
-VALUES(NEWID(), 2, 3, (SELECT [LanguageID] FROM [Language] ORDER BY [LanguageID] OFFSET 3 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 3, 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'el'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [LanguageSkill] 
-VALUES(NEWID(), 1, 4, (SELECT [LanguageID] FROM [Language] ORDER BY [LanguageID] OFFSET 4 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 2, 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Award]
-VALUES(NEWID(), 'ZHAW Alumni Award', 'Best award ever from ZHAW', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'www.zhaw.ch', '2012-01-01', 1,  (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'ZHAW Alumni Award', '', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'www.zhaw.ch', '2011-01-01', 1,  (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Award]
-VALUES(NEWID(), 'ZHAW Alumni Award', 'Secend award from ZHAW', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'www.zhaw.ch', '2011-01-01', 2,  (SELECT TOP 1 [PersonID] FROM [Person]))
-
+VALUES(NEWID(), 'ZHAW Alumni Award', '', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'www.zhaw.ch', '2011-01-01', 2,  (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Interest]
-VALUES(NEWID(), 'Handball', 'Kadetten Schaffhausen', 'https://kadettensh.ch', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Sports', 'I swim regularly and play badminton on a weekly basis', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
+INSERT INTO [Interest]
+VALUES(NEWID(), 'Travelling', 'I like to discover new countries and foreign cultures', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Interest]
+VALUES(NEWID(), 'Children', 'My two children keep me busy', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+select * from Interest
 
 -------------------
 
