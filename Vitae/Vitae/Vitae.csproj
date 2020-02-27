@@ -59,10 +59,6 @@
 
 
   <ItemGroup>
-    <Content Update="Areas\Identity\Pages\Account\_ViewImports.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Update="wwwroot\css\fonts\lato\lato-v16-latin-700.eot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

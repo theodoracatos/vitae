@@ -14,7 +14,6 @@ namespace Model.ViewModels
         public string Firstname { get; set; }
 
         public int Birthday_Day { get; set; }
-
         public int Birthday_Month { get; set; }
         public int Birthday_Year { get; set; }
 
