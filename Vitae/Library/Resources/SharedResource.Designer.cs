@@ -61,7 +61,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
+        ///   Looks up a localized string similar to Über.
         /// </summary>
         public static string About {
             get {
@@ -70,7 +70,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Access denied.
+        ///   Looks up a localized string similar to Zugang verweigert.
         /// </summary>
         public static string AccessDenied {
             get {
@@ -79,7 +79,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please fill out the Personal details first..
+        ///   Looks up a localized string similar to Bitte füllen Sie zuerst die persönlichen Angaben aus..
         /// </summary>
         public static string AccessDeniedMessage {
             get {
@@ -88,7 +88,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User account locked out..
+        ///   Looks up a localized string similar to Benutzerkonto gesperrt..
         /// </summary>
         public static string AccountLockedOut {
             get {
@@ -97,7 +97,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add.
+        ///   Looks up a localized string similar to Hinzufügen.
         /// </summary>
         public static string Add {
             get {
@@ -106,16 +106,25 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Give a boost to your career.
+        ///   Looks up a localized string similar to Geben Sie Ihrer Karriere einen Boost.
         /// </summary>
-        public static string AdText1 {
+        public static string AdText1a {
             get {
-                return ResourceManager.GetString("AdText1", resourceCulture);
+                return ResourceManager.GetString("AdText1a", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Want to improve your curriculum vitae? No problem - with VITAE you present yourself in the best possible light. Create a free account now!.
+        ///   Looks up a localized string similar to Präsentieren Sie sich im besten Licht.
+        /// </summary>
+        public static string AdText1b {
+            get {
+                return ResourceManager.GetString("AdText1b", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie Ihren Lebenslauf verbessern? Kein Problem - mit VITAE präsentieren Sie sich im bestmöglichen Licht. Erstellen Sie jetzt ein kostenloses Konto!.
         /// </summary>
         public static string AdText2 {
             get {
@@ -124,7 +133,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to files are allowed to be uploaded.
+        ///   Looks up a localized string similar to Dateien sind zum Hochladen erlaubt.
         /// </summary>
         public static string AllowedFiles {
             get {
@@ -133,7 +142,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The value &apos;{0}&apos; is not valid for {y}.
+        ///   Looks up a localized string similar to Der Wert &apos;{0}&apos; ist nicht gültig für {y}.
         /// </summary>
         public static string AttemptedValueIsInvalidAccessor {
             get {
@@ -142,7 +151,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Awarded from.
+        ///   Looks up a localized string similar to Verliehen von.
         /// </summary>
         public static string AwardedFrom {
             get {
@@ -151,7 +160,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Awarded on.
+        ///   Looks up a localized string similar to Verliehen im.
         /// </summary>
         public static string AwardedOn {
             get {
@@ -160,7 +169,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Awards.
+        ///   Looks up a localized string similar to Errungenschaften.
         /// </summary>
         public static string Awards {
             get {
@@ -169,7 +178,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Go back.
+        ///   Looks up a localized string similar to Zurück.
         /// </summary>
         public static string Back {
             get {
@@ -178,7 +187,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Birthday.
+        ///   Looks up a localized string similar to Geburtstag.
         /// </summary>
         public static string Birthday {
             get {
@@ -187,7 +196,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Browse.
+        ///   Looks up a localized string similar to Durchsuchen.
         /// </summary>
         public static string Browse {
             get {
@@ -196,7 +205,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to Abbrechen.
         /// </summary>
         public static string Cancel {
             get {
@@ -205,7 +214,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category.
+        ///   Looks up a localized string similar to Kategorie.
         /// </summary>
         public static string Category {
             get {
@@ -214,7 +223,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change.
+        ///   Looks up a localized string similar to Ändern.
         /// </summary>
         public static string Change {
             get {
@@ -223,7 +232,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change email.
+        ///   Looks up a localized string similar to Email ändern.
         /// </summary>
         public static string ChangeEmail {
             get {
@@ -232,7 +241,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change password.
+        ///   Looks up a localized string similar to Passwort ändern.
         /// </summary>
         public static string ChangePassword {
             get {
@@ -241,7 +250,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please check your email to reset your password..
+        ///   Looks up a localized string similar to Bitte überprüfen Sie Ihre E-Mail, um Ihr Passwort zurückzusetzen..
         /// </summary>
         public static string CheckYourEmail {
             get {
@@ -250,7 +259,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please check your email to confirm your account..
+        ///   Looks up a localized string similar to  Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu bestätigen..
         /// </summary>
         public static string CheckYourEmailConfirm {
             get {
@@ -259,7 +268,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose a file to upload.
+        ///   Looks up a localized string similar to Datei zum upload auswählen.
         /// </summary>
         public static string ChooseFile {
             get {
@@ -268,7 +277,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to file has been chosen.
+        ///   Looks up a localized string similar to Datei wurde ausgewählt.
         /// </summary>
         public static string ChosenFile {
             get {
@@ -277,7 +286,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City.
+        ///   Looks up a localized string similar to Stadt.
         /// </summary>
         public static string City {
             get {
@@ -286,7 +295,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to clicking here.
+        ///   Looks up a localized string similar to hier klicken.
         /// </summary>
         public static string ClickingHere {
             get {
@@ -295,7 +304,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company name.
+        ///   Looks up a localized string similar to Firmenname.
         /// </summary>
         public static string CompanyName {
             get {
@@ -304,7 +313,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password and confirmation password do not match..
+        ///   Looks up a localized string similar to Die Passwörter stimmen nicht überein.
         /// </summary>
         public static string CompareFailed {
             get {
@@ -313,7 +322,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Optimistic concurrency failure, object has been modified..
+        ///   Looks up a localized string similar to Objekt wurde in der Zwischenzeit geändert..
         /// </summary>
         public static string ConcurrencyFailure {
             get {
@@ -322,7 +331,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Confirm.
+        ///   Looks up a localized string similar to Bestätigung.
         /// </summary>
         public static string Confirm {
             get {
@@ -331,7 +340,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Confirmation link to change email sent. Please check your email..
+        ///   Looks up a localized string similar to Bestätigungslink zur E-Mail-Änderung wurde versandt..
         /// </summary>
         public static string ConfirmationEmailSent {
             get {
@@ -340,7 +349,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Confirm email.
+        ///   Looks up a localized string similar to E-Mail bestätigen.
         /// </summary>
         public static string ConfirmEmail {
             get {
@@ -349,7 +358,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Confirm your email.
+        ///   Looks up a localized string similar to Bestätigen Sie Ihr E-Mail.
         /// </summary>
         public static string ConfirmEmail1 {
             get {
@@ -358,7 +367,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank you for confirming your email..
+        ///   Looks up a localized string similar to Vielen Dank für die Bestätigung Ihrer E-Mail..
         /// </summary>
         public static string ConfirmEmailThankYou {
             get {
@@ -367,7 +376,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Confirm password.
+        ///   Looks up a localized string similar to Passwort bestätigen.
         /// </summary>
         public static string ConfirmPassword {
             get {
@@ -385,7 +394,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Country.
+        ///   Looks up a localized string similar to Land.
         /// </summary>
         public static string CountryName {
             get {
@@ -394,7 +403,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create a new account..
+        ///   Looks up a localized string similar to Ein neues Konto eröffnen..
         /// </summary>
         public static string CreateAccount {
             get {
@@ -403,7 +412,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current password.
+        ///   Looks up a localized string similar to Aktuelles Passwort.
         /// </summary>
         public static string CurrentPassword {
             get {
@@ -421,7 +430,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CV.
+        ///   Looks up a localized string similar to Lebenslauf.
         /// </summary>
         public static string CV {
             get {
@@ -439,7 +448,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An unknown failure has occurred..
+        ///   Looks up a localized string similar to Ein unbekannter Fehler ist aufgetreten..
         /// </summary>
         public static string DefaultError {
             get {
@@ -448,7 +457,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description.
+        ///   Looks up a localized string similar to Beschreibung.
         /// </summary>
         public static string Description {
             get {
@@ -457,7 +466,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drop a file to upload.
+        ///   Looks up a localized string similar to Legen Sie eine Datei zum Hochladen ab.
         /// </summary>
         public static string DropFile {
             get {
@@ -466,7 +475,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email &apos;{0}&apos; is already taken..
+        ///   Looks up a localized string similar to E-Mail &apos;{0}&apos; ist bereits vergeben..
         /// </summary>
         public static string DuplicateEmail {
             get {
@@ -475,7 +484,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Role name &apos;{0}&apos; is already taken..
+        ///   Looks up a localized string similar to Der Rollenname &apos;{0}&apos; ist bereits vergeben..
         /// </summary>
         public static string DuplicateRoleName {
             get {
@@ -484,7 +493,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User Name &apos;{0}&apos; is already taken..
+        ///   Looks up a localized string similar to Der Benutzername &apos;{0}&apos; ist bereits vergeben..
         /// </summary>
         public static string DuplicateUserName {
             get {
@@ -493,7 +502,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Education.
+        ///   Looks up a localized string similar to Ausbildung.
         /// </summary>
         public static string Education {
             get {
@@ -502,7 +511,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Educations.
+        ///   Looks up a localized string similar to Ausbildungen.
         /// </summary>
         public static string Educations {
             get {
@@ -520,7 +529,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your email has been already confirmed..
+        ///   Looks up a localized string similar to Ihre E-Mail wurde bereits bestätigt..
         /// </summary>
         public static string EmailAlreadyConfirmed {
             get {
@@ -529,7 +538,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The E-Mail has been sent.
+        ///   Looks up a localized string similar to E-Mail wurde verschickt.
         /// </summary>
         public static string EmailSent {
             get {
@@ -538,7 +547,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your email is unchanged..
+        ///   Looks up a localized string similar to Ihre E-Mail wurde nicht verändert..
         /// </summary>
         public static string EmailUnchanged {
             get {
@@ -547,7 +556,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End.
+        ///   Looks up a localized string similar to Ende.
         /// </summary>
         public static string End {
             get {
@@ -556,7 +565,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error confirming your email..
+        ///   Looks up a localized string similar to Fehler bei der Bestätigung Ihrer E-Mail..
         /// </summary>
         public static string ErrorConfirmEmail {
             get {
@@ -574,7 +583,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Experience.
+        ///   Looks up a localized string similar to Erfahrung.
         /// </summary>
         public static string Experience {
             get {
@@ -583,7 +592,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Files you&apos;ve choosed are too large.
+        ///   Looks up a localized string similar to Die Dateien sind zu gross.
         /// </summary>
         public static string FilesTooLarge {
             get {
@@ -592,7 +601,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to is too large - max filesize is.
+        ///   Looks up a localized string similar to ist zu gross - die maximale Grösse beträgt.
         /// </summary>
         public static string FileTooLarge {
             get {
@@ -601,7 +610,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Firstname.
+        ///   Looks up a localized string similar to Vorname.
         /// </summary>
         public static string Firstname {
             get {
@@ -610,7 +619,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are not allowed to upload folders.
+        ///   Looks up a localized string similar to Ordner dürfen nicht hochgeladen werden .
         /// </summary>
         public static string FolderUpload {
             get {
@@ -619,7 +628,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Function.
+        ///   Looks up a localized string similar to Funktion.
         /// </summary>
         public static string Function {
             get {
@@ -628,7 +637,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gender.
+        ///   Looks up a localized string similar to Geschlecht.
         /// </summary>
         public static string Gender {
             get {
@@ -637,7 +646,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grade.
+        ///   Looks up a localized string similar to Note.
         /// </summary>
         public static string Grade {
             get {
@@ -646,7 +655,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Homepage.
+        ///   Looks up a localized string similar to Startseite.
         /// </summary>
         public static string Homepage {
             get {
@@ -655,7 +664,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Interests.
+        ///   Looks up a localized string similar to Interessen.
         /// </summary>
         public static string Interests {
             get {
@@ -664,7 +673,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email &apos;{0}&apos; is invalid..
+        ///   Looks up a localized string similar to E-Mail &apos;{0}&apos; ist ungültig..
         /// </summary>
         public static string InvalidEmail {
             get {
@@ -673,7 +682,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid login attempt..
+        ///   Looks up a localized string similar to Ungültiger Anmeldeversuch..
         /// </summary>
         public static string InvalidLoginAttempt {
             get {
@@ -682,7 +691,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Role name &apos;{0}&apos; is invalid..
+        ///   Looks up a localized string similar to Der Rollenname &apos;{0}&apos; ist ungültig..
         /// </summary>
         public static string InvalidRoleName {
             get {
@@ -691,7 +700,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid token..
+        ///   Looks up a localized string similar to Ungültiges Token..
         /// </summary>
         public static string InvalidToken {
             get {
@@ -700,7 +709,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User name &apos;{0}&apos; is invalid, can only contain letters or digits..
+        ///   Looks up a localized string similar to Benutzername &apos;{0}&apos; ist ungültig (kann nur Buchstaben oder Ziffern enthalten)..
         /// </summary>
         public static string InvalidUserName {
             get {
@@ -709,7 +718,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job experiences.
+        ///   Looks up a localized string similar to Job-Erfahrungen.
         /// </summary>
         public static string JobExperiences {
             get {
@@ -718,7 +727,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job title.
+        ///   Looks up a localized string similar to Jobtitel.
         /// </summary>
         public static string JobTitle {
             get {
@@ -727,7 +736,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Basic knowledge.
+        ///   Looks up a localized string similar to Grundkenntnisse.
         /// </summary>
         public static string KnowledgeBasic {
             get {
@@ -736,7 +745,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Business fluent.
+        ///   Looks up a localized string similar to Verhandlungssicher.
         /// </summary>
         public static string KnowledgeBusinessFluent {
             get {
@@ -745,7 +754,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fluently.
+        ///   Looks up a localized string similar to Fliessend.
         /// </summary>
         public static string KnowledgeFluent {
             get {
@@ -754,7 +763,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Native language.
+        ///   Looks up a localized string similar to Muttersprache.
         /// </summary>
         public static string KnowledgeNative {
             get {
@@ -763,7 +772,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language.
+        ///   Looks up a localized string similar to Sprache.
         /// </summary>
         public static string Language {
             get {
@@ -772,7 +781,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Languages.
+        ///   Looks up a localized string similar to Sprachen.
         /// </summary>
         public static string Languages {
             get {
@@ -781,7 +790,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lastname.
+        ///   Looks up a localized string similar to Nachname.
         /// </summary>
         public static string Lastname {
             get {
@@ -790,7 +799,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Locked out.
+        ///   Looks up a localized string similar to Ausgesperrt.
         /// </summary>
         public static string LockedOut {
             get {
@@ -799,7 +808,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lockout.
+        ///   Looks up a localized string similar to Aussperrung.
         /// </summary>
         public static string Lockout {
             get {
@@ -808,7 +817,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This account has been locked out, please try again later..
+        ///   Looks up a localized string similar to Dieses Konto wurde gesperrt, bitte versuchen Sie es später noch einmal..
         /// </summary>
         public static string LockoutMessage {
             get {
@@ -817,7 +826,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logged in as.
+        ///   Looks up a localized string similar to Eingeloggt als.
         /// </summary>
         public static string LoggedInAs {
             get {
@@ -826,7 +835,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logged out.
+        ///   Looks up a localized string similar to Abgemeldet.
         /// </summary>
         public static string Loggedout {
             get {
@@ -835,7 +844,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have successfully logged out of the application..
+        ///   Looks up a localized string similar to Sie haben sich erfolgreich abgemeldet..
         /// </summary>
         public static string LoggedoutMessage {
             get {
@@ -844,7 +853,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A user with this login already exists..
+        ///   Looks up a localized string similar to Ein Benutzer mit diesem Login existiert bereits..
         /// </summary>
         public static string LoginAlreadyAssociated {
             get {
@@ -853,7 +862,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use a local account to log in..
+        ///   Looks up a localized string similar to Melden Sie sich mit Ihrem Konto an..
         /// </summary>
         public static string LoginTitle {
             get {
@@ -862,7 +871,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logout.
+        ///   Looks up a localized string similar to Abmelden.
         /// </summary>
         public static string Logout {
             get {
@@ -871,7 +880,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage.
+        ///   Looks up a localized string similar to Ändern.
         /// </summary>
         public static string Manage {
             get {
@@ -880,7 +889,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A value for the &apos;{0}&apos; property was not provided.
+        ///   Looks up a localized string similar to Ein Wert für das &apos;{0}&apos; Feld wurde nicht angegben.
         /// </summary>
         public static string MissingBindRequiredValueAccessor {
             get {
@@ -889,7 +898,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A value is required.
+        ///   Looks up a localized string similar to Ein Wert wird benötigt.
         /// </summary>
         public static string MissingKeyOrValueAccessor {
             get {
@@ -898,7 +907,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A non-empty request body is required.
+        ///   Looks up a localized string similar to Ein nicht leerer request body wird benötigt.
         /// </summary>
         public static string MissingRequestBodyRequiredValueAccessor {
             get {
@@ -907,7 +916,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile number.
+        ///   Looks up a localized string similar to Mobiltelefon.
         /// </summary>
         public static string MobileNumber {
             get {
@@ -916,7 +925,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mr.
+        ///   Looks up a localized string similar to Herr.
         /// </summary>
         public static string Mr {
             get {
@@ -925,7 +934,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ms.
+        ///   Looks up a localized string similar to Frau.
         /// </summary>
         public static string Ms {
             get {
@@ -934,7 +943,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My Vitae.
+        ///   Looks up a localized string similar to Mein Vitae.
         /// </summary>
         public static string MyVitae {
             get {
@@ -952,7 +961,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nationalities.
+        ///   Looks up a localized string similar to Nationalitäten.
         /// </summary>
         public static string Nationalities {
             get {
@@ -961,7 +970,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nationality.
+        ///   Looks up a localized string similar to Nationalität.
         /// </summary>
         public static string Nationality {
             get {
@@ -970,7 +979,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New email.
+        ///   Looks up a localized string similar to Neue E-Mail.
         /// </summary>
         public static string NewEmail {
             get {
@@ -979,7 +988,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New password.
+        ///   Looks up a localized string similar to Neues Passwort.
         /// </summary>
         public static string NewPassword {
             get {
@@ -988,7 +997,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No.
+        ///   Looks up a localized string similar to Nein.
         /// </summary>
         public static string No {
             get {
@@ -997,7 +1006,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The value &apos;{0}&apos; is not valid.
+        ///   Looks up a localized string similar to Der Wert &apos;{0}&apos; ist nicht gültig.
         /// </summary>
         public static string NonPropertyAttemptedValueIsInvalidAccessor {
             get {
@@ -1006,7 +1015,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The supplied value is invalid.
+        ///   Looks up a localized string similar to Der gelieferte Wert ist ungültig.
         /// </summary>
         public static string NonPropertyUnknownValueIsInvalidAccessor {
             get {
@@ -1015,7 +1024,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The field must be a number.
+        ///   Looks up a localized string similar to Das Feld muss eine Nummer sein.
         /// </summary>
         public static string NonPropertyValueMustBeANumberAccessor {
             get {
@@ -1024,7 +1033,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No results for {0}.
+        ///   Looks up a localized string similar to Keine Suchergebnisse für {0}.
         /// </summary>
         public static string NoResults {
             get {
@@ -1042,7 +1051,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only.
+        ///   Looks up a localized string similar to Nur.
         /// </summary>
         public static string Only {
             get {
@@ -1051,7 +1060,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only PDF files are allowed to be uploaded.
+        ///   Looks up a localized string similar to Nur PDF-Dateien können hochgeladen werden.
         /// </summary>
         public static string OnlyPdf {
             get {
@@ -1060,7 +1069,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Overview.
+        ///   Looks up a localized string similar to Übersicht.
         /// </summary>
         public static string Overview {
             get {
@@ -1069,7 +1078,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password.
+        ///   Looks up a localized string similar to Passwort.
         /// </summary>
         public static string Password {
             get {
@@ -1078,7 +1087,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your password has been changed..
+        ///   Looks up a localized string similar to Das Passwort wurde geändert..
         /// </summary>
         public static string PasswordChanged {
             get {
@@ -1087,7 +1096,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {0} must be at least {2} and at max {1} characters long..
+        ///   Looks up a localized string similar to Das {0} muss mindestens {2} und höchstens {1} Zeichen lang sein..
         /// </summary>
         public static string PasswordErrorLength {
             get {
@@ -1096,7 +1105,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forgot your password?.
+        ///   Looks up a localized string similar to Passwort vergessen?.
         /// </summary>
         public static string PasswordForgot {
             get {
@@ -1105,7 +1114,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect password..
+        ///   Looks up a localized string similar to Falsches Kennwort..
         /// </summary>
         public static string PasswordMismatch {
             get {
@@ -1114,7 +1123,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwords must have at least one digit (&apos;0&apos;-&apos;9&apos;)..
+        ///   Looks up a localized string similar to Passwörter müssen mindestens eine Ziffer (&apos;0&apos;-&apos;9&apos;) haben..
         /// </summary>
         public static string PasswordRequiresDigit {
             get {
@@ -1123,7 +1132,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwords must have at least one lowercase (&apos;a&apos;-&apos;z&apos;)..
+        ///   Looks up a localized string similar to Passwörter müssen mindestens ein Kleinbuchstabe (&apos;a&apos;-&apos;z&apos;) haben..
         /// </summary>
         public static string PasswordRequiresLower {
             get {
@@ -1132,7 +1141,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwords must have at least one non alphanumeric character..
+        ///   Looks up a localized string similar to Passwörter müssen mindestens ein nicht alphanumerisches Zeichen enthalten..
         /// </summary>
         public static string PasswordRequiresNonAlphanumeric {
             get {
@@ -1141,7 +1150,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwords must have at least one uppercase (&apos;A&apos;-&apos;Z&apos;)..
+        ///   Looks up a localized string similar to Passwörter müssen mindestens ein Grossbuchstabenzeichen (&apos;A&apos;-&apos;Z&apos;) haben..
         /// </summary>
         public static string PasswordRequiresUpper {
             get {
@@ -1150,7 +1159,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please choose a password consisting of lower and upper case letters, numbers and at least one special character. It must consist of at least 6 characters..
+        ///   Looks up a localized string similar to Bitte wählen Sie ein Passwort, welches aus Klein- und Grossbuchstaben, Zahlen und mindestens einem Sonderzeichen besteht. Es muss aus mindestens 6 Zeichen bestehen..
         /// </summary>
         public static string PasswordRules {
             get {
@@ -1159,7 +1168,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwords must be at least {0} characters..
+        ///   Looks up a localized string similar to Passwörter müssen mindestens {0} Zeichen enthalten..
         /// </summary>
         public static string PasswordTooShort {
             get {
@@ -1168,7 +1177,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Personal data.
+        ///   Looks up a localized string similar to Personalien.
         /// </summary>
         public static string PersonalData {
             get {
@@ -1177,7 +1186,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Personal details.
+        ///   Looks up a localized string similar to Persönliche Angaben.
         /// </summary>
         public static string PersonalDetails {
             get {
@@ -1186,7 +1195,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Personalies.
+        ///   Looks up a localized string similar to Personalien.
         /// </summary>
         public static string Personalies {
             get {
@@ -1195,7 +1204,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Photo.
+        ///   Looks up a localized string similar to Foto.
         /// </summary>
         public static string Photo {
             get {
@@ -1204,7 +1213,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please check your email..
+        ///   Looks up a localized string similar to Bitte überprüfen Sie Ihre E-Mail..
         /// </summary>
         public static string PleaseCheckEmail {
             get {
@@ -1213,7 +1222,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please confirm your email account by.
+        ///   Looks up a localized string similar to Bitte bestätigen Sie ihr Benutzerkonto in dem Sie.
         /// </summary>
         public static string PleaseClickHereToConfirm {
             get {
@@ -1222,7 +1231,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please confirm.
+        ///   Looks up a localized string similar to Bitte bestätigen.
         /// </summary>
         public static string PleaseConfirm {
             get {
@@ -1231,7 +1240,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please upload files up to.
+        ///   Looks up a localized string similar to Bitte beachten Sie die Dateigrösse von.
         /// </summary>
         public static string PleaseUpload {
             get {
@@ -1240,7 +1249,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter a proper value.
+        ///   Looks up a localized string similar to Bitte einen gültigen Wert eingeben.
         /// </summary>
         public static string ProperValue {
             get {
@@ -1249,7 +1258,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Knowledge.
+        ///   Looks up a localized string similar to Kenntniss.
         /// </summary>
         public static string Rate {
             get {
@@ -1258,7 +1267,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create an account.
+        ///   Looks up a localized string similar to Registrieren.
         /// </summary>
         public static string Register {
             get {
@@ -1267,7 +1276,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Register a new user.
+        ///   Looks up a localized string similar to Einen neuen Benutzer registrieren.
         /// </summary>
         public static string RegisterANewUser {
             get {
@@ -1276,7 +1285,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Register confirmation.
+        ///   Looks up a localized string similar to Registrierungsbestätigung.
         /// </summary>
         public static string RegisterConfirmation {
             get {
@@ -1285,7 +1294,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remember me?.
+        ///   Looks up a localized string similar to Eingeloggt bleiben.
         /// </summary>
         public static string RememberMe {
             get {
@@ -1294,7 +1303,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove.
+        ///   Looks up a localized string similar to Entfernen.
         /// </summary>
         public static string Remove {
             get {
@@ -1303,7 +1312,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to remove this file.
+        ///   Looks up a localized string similar to Möchten Sie diese Datei wirklich entfernen.
         /// </summary>
         public static string RemoveFileConfirmation {
             get {
@@ -1312,7 +1321,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove this picture.
+        ///   Looks up a localized string similar to Dieses Bild entfernen.
         /// </summary>
         public static string RemovePicture {
             get {
@@ -1321,7 +1330,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Request.
+        ///   Looks up a localized string similar to Anfordern.
         /// </summary>
         public static string Request {
             get {
@@ -1330,7 +1339,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please add a value.
+        ///   Looks up a localized string similar to Bitte einen Wert angeben.
         /// </summary>
         public static string Required {
             get {
@@ -1339,7 +1348,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select a value.
+        ///   Looks up a localized string similar to Bitte einen Wert auswählen.
         /// </summary>
         public static string RequiredSelection {
             get {
@@ -1348,7 +1357,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset.
+        ///   Looks up a localized string similar to Zurücksetzen.
         /// </summary>
         public static string Reset {
             get {
@@ -1357,7 +1366,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset password.
+        ///   Looks up a localized string similar to Passwort zurücksetzen.
         /// </summary>
         public static string ResetPassword {
             get {
@@ -1366,7 +1375,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please reset your password by.
+        ///   Looks up a localized string similar to Bitte setzen Sie ihr Passwort zurück in dem Sie.
         /// </summary>
         public static string ResetPasswordBy {
             get {
@@ -1375,7 +1384,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset password confirmation.
+        ///   Looks up a localized string similar to Passwort erfolgreich zurückgesetzt.
         /// </summary>
         public static string ResetPasswordConfirmation {
             get {
@@ -1384,7 +1393,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your password has been reset. Please.
+        ///   Looks up a localized string similar to Ihr Passwort wurde zurückgesetzt. Bitte.
         /// </summary>
         public static string ResetPasswordText1 {
             get {
@@ -1393,7 +1402,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to click here to log in..
+        ///   Looks up a localized string similar to klicken Sie hier um sich anzumelden..
         /// </summary>
         public static string ResetPasswordText2 {
             get {
@@ -1402,7 +1411,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset your password.
+        ///   Looks up a localized string similar to Setzen Sie ihr Passwort zurück.
         /// </summary>
         public static string ResetYourPassword {
             get {
@@ -1411,7 +1420,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Summary.
+        ///   Looks up a localized string similar to Beschreibung.
         /// </summary>
         public static string Resumee {
             get {
@@ -1420,7 +1429,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save.
+        ///   Looks up a localized string similar to Speichern.
         /// </summary>
         public static string Save {
             get {
@@ -1429,7 +1438,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Educational institution.
+        ///   Looks up a localized string similar to Ausbildungsstätte.
         /// </summary>
         public static string SchoolName {
             get {
@@ -1438,7 +1447,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select.
+        ///   Looks up a localized string similar to Auswählen.
         /// </summary>
         public static string Select {
             get {
@@ -1447,7 +1456,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send verification email.
+        ///   Looks up a localized string similar to Sende E-Mail-Verifikation.
         /// </summary>
         public static string SendVerificationEmail {
             get {
@@ -1456,7 +1465,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign in.
+        ///   Looks up a localized string similar to Einloggen.
         /// </summary>
         public static string SignIn {
             get {
@@ -1474,7 +1483,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skillset.
+        ///   Looks up a localized string similar to Kernkompetenzen.
         /// </summary>
         public static string Skillset {
             get {
@@ -1492,7 +1501,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Social links.
+        ///   Looks up a localized string similar to Soziale Verbindungen.
         /// </summary>
         public static string SocialLinks {
             get {
@@ -1501,7 +1510,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Social platform.
+        ///   Looks up a localized string similar to Soziale Plattform.
         /// </summary>
         public static string SocialPlatform {
             get {
@@ -1519,7 +1528,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to State.
+        ///   Looks up a localized string similar to Kanton / Bundesland.
         /// </summary>
         public static string State {
             get {
@@ -1528,7 +1537,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Street.
+        ///   Looks up a localized string similar to Strasse.
         /// </summary>
         public static string Street {
             get {
@@ -1537,7 +1546,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number.
+        ///   Looks up a localized string similar to Nr..
         /// </summary>
         public static string StreetNo {
             get {
@@ -1546,7 +1555,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subject of education.
+        ///   Looks up a localized string similar to Thema der Ausbildung.
         /// </summary>
         public static string Subject {
             get {
@@ -1555,7 +1564,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A code must be supplied for password reset..
+        ///   Looks up a localized string similar to Für das Zurücksetzen des Passworts muss ein Code angegeben werden..
         /// </summary>
         public static string SupplyCode {
             get {
@@ -1564,7 +1573,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logout.
+        ///   Looks up a localized string similar to Abmeldung.
         /// </summary>
         public static string TheLogout {
             get {
@@ -1573,7 +1582,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title of education.
+        ///   Looks up a localized string similar to Titel der Ausbildung.
         /// </summary>
         public static string Title {
             get {
@@ -1582,7 +1591,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to load user with email.
+        ///   Looks up a localized string similar to Benutzer mit folgender E-Mail Adresse konnte nicht geladen werden:.
         /// </summary>
         public static string UnableToLoadUser {
             get {
@@ -1591,7 +1600,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to load user with ID .
+        ///   Looks up a localized string similar to Benutzer mit folgender ID konnte nicht geladen werden:.
         /// </summary>
         public static string UnableToLoadUserID {
             get {
@@ -1600,7 +1609,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The supplied value is invalid for {0}.
+        ///   Looks up a localized string similar to Der gelieferte Wert ist ungültig für {0}.
         /// </summary>
         public static string UnknownValueIsInvalidAccessor {
             get {
@@ -1609,7 +1618,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Until now.
+        ///   Looks up a localized string similar to Bis jetzt.
         /// </summary>
         public static string UntilNow {
             get {
@@ -1627,7 +1636,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User already has a password set..
+        ///   Looks up a localized string similar to Der Benutzer hat bereits ein Passwort gesetzt..
         /// </summary>
         public static string UserAlreadyHasPassword {
             get {
@@ -1636,7 +1645,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User already in role &apos;{0}&apos;..
+        ///   Looks up a localized string similar to Der Benutzer ist bereits in der Rolle &apos;{0}&apos;..
         /// </summary>
         public static string UserAlreadyInRole {
             get {
@@ -1645,7 +1654,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User created a new account with password..
+        ///   Looks up a localized string similar to Ein neues Benutzerkonto wurde erstellt.
         /// </summary>
         public static string UserCreatedWithPassword {
             get {
@@ -1654,7 +1663,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lockout is not enabled for this user..
+        ///   Looks up a localized string similar to Die Sperre ist für diesen Benutzer nicht aktiviert..
         /// </summary>
         public static string UserLockoutNotEnabled {
             get {
@@ -1663,7 +1672,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User logged in..
+        ///   Looks up a localized string similar to Angemeldeter Benutzer..
         /// </summary>
         public static string UserLoggedIn {
             get {
@@ -1672,7 +1681,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User is not in role &apos;{0}&apos;..
+        ///   Looks up a localized string similar to Der Benutzer ist nicht in der Rolle &apos;{0}&apos;..
         /// </summary>
         public static string UserNotInRole {
             get {
@@ -1681,7 +1690,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The value &apos;{0}&apos; is invalid.
+        ///   Looks up a localized string similar to Der Wert &apos;{0}&apos; ist ungültig.
         /// </summary>
         public static string ValueIsInvalidAccessor {
             get {
@@ -1690,7 +1699,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The field {0} must be a number.
+        ///   Looks up a localized string similar to Das Feld {0} muss eine Nummer sein.
         /// </summary>
         public static string ValueMustBeANumberAccessor {
             get {
@@ -1699,7 +1708,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The value &apos;{0}&apos; is invalid.
+        ///   Looks up a localized string similar to Der Wert &apos;{0}&apos; ist ungültig.
         /// </summary>
         public static string ValueMustNotBeNullAccessor {
             get {
@@ -1708,7 +1717,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verification email sent..
+        ///   Looks up a localized string similar to Verifikations-E-Mail wurde verschickt..
         /// </summary>
         public static string VerificationEmailSent {
             get {
@@ -1717,7 +1726,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Warning.
+        ///   Looks up a localized string similar to Warnung.
         /// </summary>
         public static string Warning {
             get {
@@ -1726,7 +1735,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to VITAE.
+        ///   Looks up a localized string similar to Willkommen bei VITAE.
         /// </summary>
         public static string WelcomeToVitae {
             get {
@@ -1735,7 +1744,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yes.
+        ///   Looks up a localized string similar to Ja.
         /// </summary>
         public static string Yes {
             get {
@@ -1744,7 +1753,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ZIP-Code.
+        ///   Looks up a localized string similar to PLZ.
         /// </summary>
         public static string ZipCode {
             get {

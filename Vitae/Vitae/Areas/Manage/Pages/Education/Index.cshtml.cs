@@ -93,12 +93,7 @@ namespace Vitae.Areas.Manage.Pages.Education
         #endregion
 
         #region AJAX
-        public IActionResult OnPostChangeCountry()
-        {
-            FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
-        }
         public IActionResult OnPostChangeUntilNow(int order)
         { 
             FillSelectionViewModel();

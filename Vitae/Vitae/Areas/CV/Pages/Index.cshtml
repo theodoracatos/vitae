@@ -91,7 +91,7 @@
                     <span class="text-primary">@Model.Person.Lastname</span>
                 </h1>
                 <div class="subheading mb-5">
-                    @Model.Person.Street @Model.Person.StreetNo &middot; @Model.Person.ZipCode @Model.Person.City &middot; <a href="tel:@(Model.Person.MobileNumber)">@Model.Person.MobileNumber</a> &middot;
+                    @Model.Person.Street @Model.Person.StreetNo &middot; @Model.Person.ZipCode @Model.Person.City &middot; <a href="tel:@Model.Person.PhonePrefix @Model.Person.MobileNumber">@Model.Person.PhonePrefix @Model.Person.MobileNumber</a> &middot;
                     <a href="mailto:@(Model.Person.Email)">@Model.Person.Email</a>
                 </div>
                 <p class="lead mb-5">@Model.About?.Slogan</p>

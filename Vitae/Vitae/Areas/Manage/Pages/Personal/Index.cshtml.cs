@@ -33,7 +33,6 @@ namespace Vitae.Areas.Manage.Pages.Personal
         public IEnumerable<MonthVM> Months { get; set; }
 
         public int MaxNationalities { get; } = 3;
-        public string PhonePrefix { get; set; }
 
         public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
             : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
@@ -173,8 +172,6 @@ namespace Vitae.Areas.Manage.Pages.Personal
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             Nationalities = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
-
-            PhonePrefix = !string.IsNullOrEmpty(Person?.CountryCode) ? "+" + Countries.Where(c => c.CountryCode == Person.CountryCode).Select(c => c.PhoneCode).Single().ToString() : string.Empty;
 
             if (Person.Nationalities == null || Person.Nationalities.Count == 0)
             {

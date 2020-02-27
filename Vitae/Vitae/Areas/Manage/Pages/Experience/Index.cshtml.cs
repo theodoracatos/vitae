@@ -91,12 +91,7 @@ namespace Vitae.Areas.Manage.Pages.Experience
         #endregion
 
         #region AJAX
-        public IActionResult OnPostChangeCountry()
-        {
-            FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EXPERIENCE);
-        }
         public IActionResult OnPostChangeUntilNow(int order)
         {
             FillSelectionViewModel();

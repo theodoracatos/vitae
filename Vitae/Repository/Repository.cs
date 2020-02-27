@@ -20,6 +20,8 @@ namespace Library.Repository
             this.vitaeContext = vitaeContext;
         }
 
+        #region API
+
         public void Log()
         {
             vitaeContext.Logs.Add(new Log()
@@ -30,7 +32,7 @@ namespace Library.Repository
         public Curriculum GetCurriculumByWeakIdentifier(string identifier)
         {
             Curriculum curriculum = null;
-            var curriculumID = vitaeContext.Curriculums.SingleOrDefault(c => c.Identifier.ToString().ToLower() == identifier.ToLower() || c.FriendlyId == identifier)?.CurriculumID;
+            var curriculumID = vitaeContext.Curriculums.SingleOrDefault(c => c.Identifier.ToString().ToLower() == identifier.ToLower() || c.FriendlyId == identifier)?.Identifier;
 
             if (curriculumID.HasValue)
             {
@@ -126,6 +128,7 @@ namespace Library.Repository
                 StreetNo = curriculum.Person?.StreetNo,
                 ZipCode = curriculum.Person?.ZipCode,
                 State = curriculum.Person?.State,
+                PhonePrefix = GetPhonePrefix(curriculum.Person?.Country.CountryCode),
                 Nationalities = curriculum.Person?.PersonCountries?.OrderBy(pc => pc.Order)
                 .Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order })
                 .ToList() ?? new List<NationalityVM>() { new NationalityVM() { Order = 0 } }
@@ -267,5 +270,16 @@ namespace Library.Repository
 
             return socialLinksVM;
         }
+        #endregion
+
+
+        #region Helper
+
+        private string GetPhonePrefix(string countryCode)
+        {
+            return !string.IsNullOrEmpty(countryCode) ? "+" + vitaeContext.Countries.Where(c => c.CountryCode == countryCode).Select(c => c.PhoneCode).Single().ToString() : string.Empty;
+        }
+
+        #endregion
     }
 }

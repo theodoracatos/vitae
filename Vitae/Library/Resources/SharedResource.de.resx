@@ -132,8 +132,11 @@
   <data name="Add" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
-  <data name="AdText1" xml:space="preserve">
+  <data name="AdText1a" xml:space="preserve">
     <value>Geben Sie Ihrer Karriere einen Boost</value>
+  </data>
+  <data name="AdText1b" xml:space="preserve">
+    <value>Präsentieren Sie sich im besten Licht</value>
   </data>
   <data name="AdText2" xml:space="preserve">
     <value>Möchten Sie Ihren Lebenslauf verbessern? Kein Problem - mit VITAE präsentieren Sie sich im bestmöglichen Licht. Erstellen Sie jetzt ein kostenloses Konto!</value>
@@ -382,7 +385,7 @@
     <value>Ein Benutzer mit diesem Login existiert bereits.</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
-    <value>Melden Sie sich mit einem Konto an.</value>
+    <value>Melden Sie sich mit Ihrem Konto an.</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Abmelden</value>

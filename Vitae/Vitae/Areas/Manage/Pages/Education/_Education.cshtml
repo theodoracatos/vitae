@@ -33,7 +33,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label class="control-label" asp-for="@Model.Educations[i].CountryCode"></label>
-                        <select asp-for="@Model.Educations[i].CountryCode" class="form-control selectpicker" onchange="$('#btnChangeCountry').trigger('click');" asp-items="@(new SelectList(@Model.Countries.Where(c => c.CountryCode == Model.Educations[i].CountryCode || !Model.Educations.Select(e => e.CountryCode).Contains(c.CountryCode)), "CountryCode", "Name"))">
+                        <select asp-for="@Model.Educations[i].CountryCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
                             <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                         </select>
                         <span asp-validation-for="@Model.Educations[i].CountryCode" class="text-danger"></span>

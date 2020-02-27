@@ -31,37 +31,40 @@ INSERT INTO [SocialLink]
 VALUES (NEWID(), 3, 'https://www.linkedin.com/in/theodoracatos', 3, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [SocialLink]
-VALUES (NEWID(), 4, 'https://www.xing.com/profile/Alexandros_Theodoracatos/cv', 4, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 4, 'https://github.com/theodoracatos/vitae', 4, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [SocialLink]
+VALUES (NEWID(), 5, 'https://www.xing.com/profile/Alexandros_Theodoracatos/cv', 5, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 
 INSERT INTO [Experience]
-VALUES (NEWID(), 'Senior Softwareingenieur', 'Quilvest (Switzerland) Ltd.', 'http://quilvest.com', 'Zürich', 'Architektur und Fullstack-Entwicklung elektronischer Businessprozesse, realisiert mit neuesten .NET Web-Technologien. Technischer Lead folgender eigenentwickelter Applikationssysteme: Intranet, eBanking, MBO-System, Client-OnBoard-Dokumentenerstellung. Projektleitung mit fachlicher Führung von 5 – 7 Mitarbeitern (länderübergreifend). Regelmässige Schulung und Coaching von Mitarbeitern (auf Deutsch und Englisch)', '2011-02-01', null, 1, (SELECT [CountryID] FROM [Country] ORDER BY [CountryID] OFFSET 1 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Senior Softwareingenieur', 'Quilvest (Switzerland) Ltd.', 'http://quilvest.com', 'Zürich', 'Architektur und Fullstack-Entwicklung elektronischer Businessprozesse, realisiert mit neuesten .NET Web-Technologien. Technischer Lead folgender eigenentwickelter Applikationssysteme: Intranet, eBanking, MBO-System, Client-OnBoard-Dokumentenerstellung. Projektleitung mit fachlicher Führung von 5 – 7 Mitarbeitern (länderübergreifend). Regelmässige Schulung und Coaching von Mitarbeitern (auf Deutsch und Englisch)', '2011-02-01', null, 1, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'CH'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Experience]
-VALUES (NEWID(), 'Software Ingenieur', 'Ruf Telematik AG', 'http://ruf.ch', 'Schlieren', 'Architektur, Spezifikation, Design, Implementation, Test und Dokumentation von Softwarekomponenten und Multimediaapplikationen. Projektarbeit: Anforderungsspezifikation, Umsetzung, Engineering, Test und Projektleitung mit direktem Kundenkontakt', '2008-11-01', '2011-01-31', 2, (SELECT [CountryID] FROM [Country] ORDER BY [CountryID] OFFSET 2 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Software Ingenieur', 'Ruf Telematik AG', 'http://ruf.ch', 'Schlieren', 'Architektur, Spezifikation, Design, Implementation, Test und Dokumentation von Softwarekomponenten und Multimediaapplikationen. Projektarbeit: Anforderungsspezifikation, Umsetzung, Engineering, Test und Projektleitung mit direktem Kundenkontakt', '2008-11-01', '2011-01-31', 2, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'CH'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Experience]
-VALUES (NEWID(), 'Freelancer', 'Ruf Telematik AG', 'http://ruf.ch', 'Schlieren', 'Entwicklung von Tools und Diagnoseprogrammen für Embedded-Geräte', '2005-09-01', '2008-10-01', 3, (SELECT [CountryID] FROM [Country] ORDER BY [CountryID] OFFSET 3 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Freelancer', 'Ruf Telematik AG', 'http://ruf.ch', 'Schlieren', 'Entwicklung von Tools und Diagnoseprogrammen für Embedded-Geräte', '2005-09-01', '2008-10-01', 3, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'CH'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Experience]
-VALUES (NEWID(), 'Trainee', 'ABB Schweiz AG', 'http://abb.ch', 'Zürich', 'Entwicklung von Systemtools für elektrische Schaltanlagen (IEC 61850). Entwicklung von diversen Multimediaapplikationen für Firmenpräsentationen (Demos)', '2003-08-01', '2005-08-01', 4, (SELECT [CountryID] FROM [Country] ORDER BY [CountryID] OFFSET 4 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Trainee', 'ABB Schweiz AG', 'http://abb.ch', 'Zürich', 'Entwicklung von Systemtools für elektrische Schaltanlagen (IEC 61850). Entwicklung von diversen Multimediaapplikationen für Firmenpräsentationen (Demos)', '2003-08-01', '2005-08-01', 4, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'CH'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 
 INSERT INTO [Education]
-VALUES (NEWID(), 'ZHAW School of Engineering', 'https://zhaw.ch', 'Winterthur', 'Master of Advances Studies (MAS)', 'Wirtschaftsinformatik',  'Berufsbegleitendes Nachdiplomstudium mit Schwerpunkten in: Betriebswirtschaft, Software Engineering, Projektmanagement und Coaching', '5.4', '2010-02-01', '2011-11-01', 1, (SELECT [CountryID] FROM [Country] ORDER BY [CountryID] OFFSET 1 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'ZHAW School of Engineering', 'https://zhaw.ch', 'Winterthur', 'Master of Advances Studies (MAS)', 'Wirtschaftsinformatik',  'Berufsbegleitendes Nachdiplomstudium mit Schwerpunkten in: Betriebswirtschaft, Software Engineering, Projektmanagement und Coaching', '5.4', '2010-02-01', '2011-11-01', 1, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'CH'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Education]
-VALUES (NEWID(), 'ZHAW School of Engineering', 'https://zhaw.ch', 'Winterthur', 'Diplomstudium (Dipl. Ing. FH)', 'Informationstechnologie', 'Vollzeit Diplomstudium mit Schwerpunkten in: Software Architekturen / Modellierung und Softwareentwicklung', '5.3', '2005-09-01', '2008-10-01', 2, (SELECT [CountryID] FROM [Country] ORDER BY [CountryID] OFFSET 2 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'ZHAW School of Engineering', 'https://zhaw.ch', 'Winterthur', 'Diplomstudium (Dipl. Ing. FH)', 'Informationstechnologie', 'Vollzeit Diplomstudium mit Schwerpunkten in: Software Architekturen / Modellierung und Softwareentwicklung', '5.3', '2005-09-01', '2008-10-01', 2, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'CH'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Education]
-VALUES (NEWID(), 'GIBB', 'https://gibb.ch', 'Bern', 'Fachausweis (FA)', 'Applikationsentwicklung', 'Die Lehre zum Applikationsentwickler für Maturanden (way-up.ch) bot eine zweijährige Praxiserfahrung in verschiedenen Firmen und ebnete den Weg zur Fachhochschule', '5.5', '2003-08-01', '2005-08-01', 3, (SELECT [CountryID] FROM [Country] ORDER BY [CountryID] OFFSET 3 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'GIBB', 'https://gibb.ch', 'Bern', 'Fachausweis (FA)', 'Applikationsentwicklung', 'Die Lehre zum Applikationsentwickler für Maturanden (way-up.ch) bot eine zweijährige Praxiserfahrung in verschiedenen Firmen und ebnete den Weg zur Fachhochschule', '5.5', '2003-08-01', '2005-08-01', 3, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'CH'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Education]
-VALUES (NEWID(), 'Kantonsschule SH', 'https://kanti.ch', 'Schaffhausen', 'Matura', 'Naturwissenschaften (Profil N)', 'Naturwissenschaftlich–mathematischeMatura mit Schwerpunkten in Chemie / Biologie', '4.5', '1998-08-01', '2002-07-01', 4, (SELECT [CountryID] FROM [Country] ORDER BY [CountryID] OFFSET 4 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Kantonsschule SH', 'https://kanti.ch', 'Schaffhausen', 'Matura', 'Naturwissenschaften (Profil N)', 'Naturwissenschaftlich–mathematischeMatura mit Schwerpunkten in Chemie / Biologie', '4.5', '1998-08-01', '2002-07-01', 4, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'CH'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 
 INSERT INTO [LanguageSkill] 
-VALUES(NEWID(), 4, 1, (SELECT [LanguageID] FROM [Language] ORDER BY [LanguageID] OFFSET 1 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 4, 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [LanguageSkill] 
 VALUES(NEWID(), 3, 2, (SELECT [LanguageID] FROM [Language] ORDER BY [LanguageID] OFFSET 2 ROWS FETCH FIRST 1 ROW ONLY), (SELECT TOP 1 [PersonID] FROM [Person]))
