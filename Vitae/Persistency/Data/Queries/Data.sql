@@ -104,7 +104,13 @@ VALUES(NEWID(), 'Kinder', 'Meine beiden Kinder halten mich stets auf Trab', null
 
 
 INSERT INTO [Skill]
-VALUES (NEWID(), 'Kinder', 'Meine beiden Kinder halten mich stets auf Trab', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Programmiersprachen', 'C#, Java, TypeScript, VBScript, T-SQL, PL/SQL', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Skill]
+VALUES (NEWID(), 'Frontend-Technologien', 'ASP.NET Core, Sass', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Skill]
+VALUES (NEWID(), 'Backend-Technologien', 'Entity Framework 6, Entity Framework Core, ADO.Net', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 
 -------------------
