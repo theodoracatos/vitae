@@ -1,21 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Library.Constants;
+using Library.Resources;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.WebUtilities;
+
+using Model.Poco;
+
+using Persistency.Data;
+
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Library.Constants;
-using Library.Enumerations;
-using Library.Resources;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
-using Persistency.Data;
-using Model.Poco;
-using Microsoft.AspNetCore.Localization;
 
 namespace Vitae.Areas.Identity.Pages.Account
 {

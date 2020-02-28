@@ -37,7 +37,7 @@ namespace Model.ViewModels
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Resumee), Prompt = nameof(SharedResource.Resumee))]
         [MaxLength(1000, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
-        public string Resumee { get; set; }
+        public string Description { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Grade), Prompt = nameof(SharedResource.Grade))]
         [Range(0, float.MaxValue, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]

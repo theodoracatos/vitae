@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
-    public class Education
+    public class LanguageCourse
     {
         [Key]
-        public Guid EducationID { get; set; }
+        public Guid LanguageCourseID { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -21,19 +21,6 @@ namespace Model.Poco
         [Required]
         [MaxLength(100)]
         public string City { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string Title { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string Subject { get; set; }
-
-        [MaxLength(1000)]
-        public string Description { get; set; }
-
-        public float? Grade { get; set; }
 
         public DateTime Start { get; set; }
 

@@ -115,9 +115,9 @@ namespace Library.Repository
         {
             var personVM = new PersonalDetailVM()
             {
-                Birthday_Day = curriculum.Person.PersonalDetail?.Birthday.Value.Day ?? 1,
-                Birthday_Month = curriculum.Person.PersonalDetail?.Birthday.Value.Month ?? 1,
-                Birthday_Year = curriculum.Person.PersonalDetail?.Birthday.Value.Year ?? DateTime.Now.Year - 1,
+                Birthday_Day = curriculum.Person.PersonalDetail?.Birthday.Day ?? 1,
+                Birthday_Month = curriculum.Person.PersonalDetail?.Birthday.Month ?? 1,
+                Birthday_Year = curriculum.Person.PersonalDetail?.Birthday.Year ?? DateTime.Now.Year - 1,
                 City = curriculum.Person.PersonalDetail?.City,
                 CountryCode = curriculum.Person.PersonalDetail?.Country.CountryCode,
                 Email = curriculum.Person.PersonalDetail?.Email ?? email,
@@ -189,7 +189,7 @@ namespace Library.Repository
                         UntilNow = !e.End.HasValue,
                         Grade = e.Grade,
                         Order = e.Order,
-                        Resumee = e.Resumee,
+                        Description = e.Description,
                         Link = e.Link,
                         SchoolName = e.SchoolName,
                         Subject = e.Subject,
@@ -213,7 +213,7 @@ namespace Library.Repository
                         End_Year = e.End.HasValue ? e.End.Value.Year : DateTime.Now.Year,
                         UntilNow = !e.End.HasValue,
                         Order = e.Order,
-                        Resumee = e.Resumee,
+                        Description = e.Description,
                         Link = e.Link,
                         CompanyName = e.CompanyName,
                         JobTitle = e.JobTitle,

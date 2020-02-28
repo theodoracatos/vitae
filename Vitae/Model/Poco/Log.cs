@@ -1,7 +1,8 @@
-﻿using Library.Enumerations;
+﻿using Model.Enumerations;
 using Microsoft.Extensions.Logging;
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
@@ -11,14 +12,22 @@ namespace Model.Poco
 
         public LogLevel LogLevel { get; set; }
 
-        public LogState LogState { get; set; }
+        [MaxLength(100)]
+        public string Area { get; set; }
 
+        [MaxLength(255)]
+        public string Page { get; set; }
+
+        [MaxLength(50)]
         public string IpAddress { get; set; }
 
+        [MaxLength(50)]
         public string UserAgent { get; set; }
 
+        [MaxLength(2)]
         public string UserLanguage { get; set; }
 
+        [MaxLength(1000)]
         public string Message { get; set; }
 
         public DateTime Timestamp { get; set; }

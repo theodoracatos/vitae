@@ -1,5 +1,7 @@
-﻿using Library.Enumerations;
-using Library.Resources;
+﻿using Library.Resources;
+
+using Model.Enumerations;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels

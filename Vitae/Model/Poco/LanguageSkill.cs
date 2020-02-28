@@ -10,9 +10,9 @@ namespace Model.Poco
 
         public float Rate { get; set; }
 
-        public int Order { get; set; }
-
         [Required]
         public virtual Language Language { get; set; }
+
+        public int Order { get; set; }
     }
 }

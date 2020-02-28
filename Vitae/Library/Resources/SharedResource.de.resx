@@ -210,6 +210,9 @@
   <data name="CompareFailed" xml:space="preserve">
     <value>Die Passwörter stimmen nicht überein</value>
   </data>
+  <data name="Concubinage" xml:space="preserve">
+    <value>Konkubinat</value>
+  </data>
   <data name="ConcurrencyFailure" xml:space="preserve">
     <value>Objekt wurde in der Zwischenzeit geändert.</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>Beschreibung</value>
+  </data>
+  <data name="Divorced" xml:space="preserve">
+    <value>Geschieden</value>
   </data>
   <data name="DropFile" xml:space="preserve">
     <value>Legen Sie eine Datei zum Hochladen ab</value>
@@ -399,6 +405,9 @@
   <data name="Manage" xml:space="preserve">
     <value>Ändern</value>
   </data>
+  <data name="Married" xml:space="preserve">
+    <value>Verheiratet</value>
+  </data>
   <data name="MissingBindRequiredValueAccessor" xml:space="preserve">
     <value>Ein Wert für das '{0}' Feld wurde nicht angegben</value>
   </data>
@@ -437,6 +446,9 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>Nein</value>
+  </data>
+  <data name="NoInformation" xml:space="preserve">
+    <value>Keine Information</value>
   </data>
   <data name="NonPropertyAttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>Der Wert '{0}' ist nicht gültig</value>
@@ -594,6 +606,9 @@
   <data name="SignIn" xml:space="preserve">
     <value>Einloggen</value>
   </data>
+  <data name="Single" xml:space="preserve">
+    <value>Single</value>
+  </data>
   <data name="Skills" xml:space="preserve">
     <value>Skills</value>
   </data>
@@ -683,6 +698,9 @@
   </data>
   <data name="WelcomeToVitae" xml:space="preserve">
     <value>Willkommen bei VITAE</value>
+  </data>
+  <data name="Widowed" xml:space="preserve">
+    <value>Verwitwet</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>

@@ -76,7 +76,7 @@ namespace Vitae.Areas.Manage.Pages.Education
                         End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, DateTime.DaysInMonth(e.End_Year.Value, e.End_Month.Value)),
                         Grade = e.Grade,
                         Order = e.Order,
-                        Resumee = e.Resumee,
+                        Description = e.Description,
                         Link = e.Link,
                         SchoolName = e.SchoolName,
                         Subject = e.Subject,

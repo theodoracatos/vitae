@@ -20,18 +20,19 @@ namespace Model.Poco
         public string Link { get; set; }
 
         [Required]
+        public virtual Country Country { get; set; }
+
+        [Required]
         [MaxLength(100)]
         public string City { get; set; }
 
-        [MaxLength(4000)]
-        public string Resumee { get; set; }
+        [MaxLength(1000)]
+        public string Description { get; set; }
 
         public DateTime Start { get; set; }
 
         public DateTime? End { get; set; }
 
         public int Order { get; set; }
-
-        public virtual Country Country { get; set; }
     }
 }

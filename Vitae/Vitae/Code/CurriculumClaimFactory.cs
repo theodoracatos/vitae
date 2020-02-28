@@ -1,10 +1,6 @@
-﻿using Library.Constants;
-using Library.Enumerations;
-
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 

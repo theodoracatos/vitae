@@ -10,7 +10,7 @@ namespace Model.Poco
         public Guid AboutID { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(MAX)")]
+        [Column(TypeName = "varchar(max)")]
         public string Photo { get; set; }
 
         [MaxLength(4000)]

@@ -118,73 +118,73 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>Über</value>
+    <value>About</value>
   </data>
   <data name="AccessDenied" xml:space="preserve">
-    <value>Zugang verweigert</value>
+    <value>Access denied</value>
   </data>
   <data name="AccessDeniedMessage" xml:space="preserve">
-    <value>Bitte füllen Sie zuerst die persönlichen Angaben aus.</value>
+    <value>Please fill out the Personal details first.</value>
   </data>
   <data name="AccountLockedOut" xml:space="preserve">
-    <value>Benutzerkonto gesperrt.</value>
+    <value>User account locked out.</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>Hinzufügen</value>
+    <value>Add</value>
   </data>
   <data name="AdText1a" xml:space="preserve">
-    <value>Geben Sie Ihrer Karriere einen Boost</value>
+    <value>Give a boost to your career</value>
   </data>
   <data name="AdText1b" xml:space="preserve">
-    <value>Präsentieren Sie sich im besten Licht</value>
+    <value>Present yourself in the best light</value>
   </data>
   <data name="AdText2" xml:space="preserve">
-    <value>Möchten Sie Ihren Lebenslauf verbessern? Kein Problem - mit VITAE präsentieren Sie sich im bestmöglichen Licht. Erstellen Sie jetzt ein kostenloses Konto!</value>
+    <value>Want to improve your curriculum vitae? No problem - with VITAE you present yourself in the best possible light. Create a free account now!</value>
   </data>
   <data name="AllowedFiles" xml:space="preserve">
-    <value>Dateien sind zum Hochladen erlaubt</value>
+    <value>files are allowed to be uploaded</value>
   </data>
   <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
-    <value>Der Wert '{0}' ist nicht gültig für {y}</value>
+    <value>The value '{0}' is not valid for {y}</value>
   </data>
   <data name="AwardedFrom" xml:space="preserve">
-    <value>Verliehen von</value>
+    <value>Awarded from</value>
   </data>
   <data name="AwardedOn" xml:space="preserve">
-    <value>Verliehen im</value>
+    <value>Awarded on</value>
   </data>
   <data name="Awards" xml:space="preserve">
-    <value>Errungenschaften</value>
+    <value>Awards</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Zurück</value>
+    <value>Go back</value>
   </data>
   <data name="Birthday" xml:space="preserve">
-    <value>Geburtstag</value>
+    <value>Birthday</value>
   </data>
   <data name="Browse" xml:space="preserve">
-    <value>Durchsuchen</value>
+    <value>Browse</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Abbrechen</value>
+    <value>Cancel</value>
   </data>
   <data name="Category" xml:space="preserve">
-    <value>Kategorie</value>
+    <value>Category</value>
   </data>
   <data name="Change" xml:space="preserve">
-    <value>Ändern</value>
+    <value>Change</value>
   </data>
   <data name="ChangeEmail" xml:space="preserve">
-    <value>Email ändern</value>
+    <value>Change email</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
-    <value>Passwort ändern</value>
+    <value>Change password</value>
   </data>
   <data name="CheckYourEmail" xml:space="preserve">
-    <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Passwort zurückzusetzen.</value>
+    <value>Please check your email to reset your password.</value>
   </data>
   <data name="CheckYourEmailConfirm" xml:space="preserve">
-    <value> Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu bestätigen.</value>
+    <value>Please check your email to confirm your account.</value>
   </data>
   <data name="Child" xml:space="preserve">
     <value>Child</value>
@@ -193,501 +193,519 @@
     <value>Children</value>
   </data>
   <data name="ChooseFile" xml:space="preserve">
-    <value>Datei zum upload auswählen</value>
+    <value>Choose a file to upload</value>
   </data>
   <data name="ChosenFile" xml:space="preserve">
-    <value>Datei wurde ausgewählt</value>
+    <value>file has been chosen</value>
   </data>
   <data name="City" xml:space="preserve">
-    <value>Stadt</value>
+    <value>City</value>
   </data>
   <data name="ClickingHere" xml:space="preserve">
-    <value>hier klicken</value>
+    <value>clicking here</value>
   </data>
   <data name="CompanyName" xml:space="preserve">
-    <value>Firmenname</value>
+    <value>Company name</value>
   </data>
   <data name="CompareFailed" xml:space="preserve">
-    <value>Die Passwörter stimmen nicht überein</value>
+    <value>The password and confirmation password do not match.</value>
+  </data>
+  <data name="Concubinage" xml:space="preserve">
+    <value>Concubinage</value>
   </data>
   <data name="ConcurrencyFailure" xml:space="preserve">
-    <value>Objekt wurde in der Zwischenzeit geändert.</value>
+    <value>Optimistic concurrency failure, object has been modified.</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>Bestätigung</value>
+    <value>Confirm</value>
   </data>
   <data name="ConfirmationEmailSent" xml:space="preserve">
-    <value>Bestätigungslink zur E-Mail-Änderung wurde versandt.</value>
+    <value>Confirmation link to change email sent. Please check your email.</value>
   </data>
   <data name="ConfirmEmail" xml:space="preserve">
-    <value>E-Mail bestätigen</value>
+    <value>Confirm email</value>
   </data>
   <data name="ConfirmEmail1" xml:space="preserve">
-    <value>Bestätigen Sie Ihr E-Mail</value>
+    <value>Confirm your email</value>
   </data>
   <data name="ConfirmEmailThankYou" xml:space="preserve">
-    <value>Vielen Dank für die Bestätigung Ihrer E-Mail.</value>
+    <value>Thank you for confirming your email.</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
-    <value>Passwort bestätigen</value>
+    <value>Confirm password</value>
   </data>
   <data name="CountryCode" xml:space="preserve">
     <value>Code</value>
   </data>
   <data name="CountryName" xml:space="preserve">
-    <value>Land</value>
+    <value>Country</value>
   </data>
   <data name="CreateAccount" xml:space="preserve">
-    <value>Ein neues Konto eröffnen.</value>
+    <value>Create a new account.</value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">
-    <value>Aktuelles Passwort</value>
+    <value>Current password</value>
   </data>
   <data name="CurriculumVitae" xml:space="preserve">
     <value>Curriculum Vitae</value>
   </data>
   <data name="CV" xml:space="preserve">
-    <value>Lebenslauf</value>
+    <value>CV</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
   <data name="DefaultError" xml:space="preserve">
-    <value>Ein unbekannter Fehler ist aufgetreten.</value>
+    <value>An unknown failure has occurred.</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Beschreibung</value>
+    <value>Description</value>
+  </data>
+  <data name="Divorced" xml:space="preserve">
+    <value>Divorced</value>
   </data>
   <data name="DropFile" xml:space="preserve">
-    <value>Legen Sie eine Datei zum Hochladen ab</value>
+    <value>Drop a file to upload</value>
   </data>
   <data name="DuplicateEmail" xml:space="preserve">
-    <value>E-Mail '{0}' ist bereits vergeben.</value>
+    <value>Email '{0}' is already taken.</value>
   </data>
   <data name="DuplicateRoleName" xml:space="preserve">
-    <value>Der Rollenname '{0}' ist bereits vergeben.</value>
+    <value>Role name '{0}' is already taken.</value>
   </data>
   <data name="DuplicateUserName" xml:space="preserve">
-    <value>Der Benutzername '{0}' ist bereits vergeben.</value>
+    <value>User Name '{0}' is already taken.</value>
   </data>
   <data name="Education" xml:space="preserve">
-    <value>Ausbildung</value>
+    <value>Education</value>
   </data>
   <data name="Educations" xml:space="preserve">
-    <value>Ausbildungen</value>
+    <value>Educations</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="EmailAlreadyConfirmed" xml:space="preserve">
-    <value>Ihre E-Mail wurde bereits bestätigt.</value>
+    <value>Your email has been already confirmed.</value>
   </data>
   <data name="EmailSent" xml:space="preserve">
-    <value>E-Mail wurde verschickt</value>
+    <value>The E-Mail has been sent</value>
   </data>
   <data name="EmailUnchanged" xml:space="preserve">
-    <value>Ihre E-Mail wurde nicht verändert.</value>
+    <value>Your email is unchanged.</value>
   </data>
   <data name="End" xml:space="preserve">
-    <value>Ende</value>
+    <value>End</value>
   </data>
   <data name="ErrorConfirmEmail" xml:space="preserve">
-    <value>Fehler bei der Bestätigung Ihrer E-Mail.</value>
+    <value>Error confirming your email.</value>
   </data>
   <data name="Etc" xml:space="preserve">
     <value>…</value>
   </data>
   <data name="Experience" xml:space="preserve">
-    <value>Erfahrung</value>
+    <value>Experience</value>
   </data>
   <data name="FilesTooLarge" xml:space="preserve">
-    <value>Die Dateien sind zu gross</value>
+    <value>Files you've choosed are too large</value>
   </data>
   <data name="FileTooLarge" xml:space="preserve">
-    <value>ist zu gross - die maximale Grösse beträgt</value>
+    <value>is too large - max filesize is</value>
   </data>
   <data name="Firstname" xml:space="preserve">
-    <value>Vorname</value>
+    <value>Firstname</value>
   </data>
   <data name="FolderUpload" xml:space="preserve">
-    <value>Ordner dürfen nicht hochgeladen werden </value>
+    <value>You are not allowed to upload folders</value>
   </data>
   <data name="Function" xml:space="preserve">
-    <value>Funktion</value>
+    <value>Function</value>
   </data>
   <data name="Gender" xml:space="preserve">
-    <value>Geschlecht</value>
+    <value>Gender</value>
   </data>
   <data name="Grade" xml:space="preserve">
-    <value>Note</value>
+    <value>Grade</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Startseite</value>
+    <value>Homepage</value>
   </data>
   <data name="Interests" xml:space="preserve">
-    <value>Interessen</value>
+    <value>Interests</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
-    <value>E-Mail '{0}' ist ungültig.</value>
+    <value>Email '{0}' is invalid.</value>
   </data>
   <data name="InvalidLoginAttempt" xml:space="preserve">
-    <value>Ungültiger Anmeldeversuch.</value>
+    <value>Invalid login attempt.</value>
   </data>
   <data name="InvalidRoleName" xml:space="preserve">
-    <value>Der Rollenname '{0}' ist ungültig.</value>
+    <value>Role name '{0}' is invalid.</value>
   </data>
   <data name="InvalidToken" xml:space="preserve">
-    <value>Ungültiges Token.</value>
+    <value>Invalid token.</value>
   </data>
   <data name="InvalidUserName" xml:space="preserve">
-    <value>Benutzername '{0}' ist ungültig (kann nur Buchstaben oder Ziffern enthalten).</value>
+    <value>User name '{0}' is invalid, can only contain letters or digits.</value>
   </data>
   <data name="JobExperiences" xml:space="preserve">
-    <value>Job-Erfahrungen</value>
+    <value>Job experiences</value>
   </data>
   <data name="JobTitle" xml:space="preserve">
-    <value>Jobtitel</value>
+    <value>Job title</value>
   </data>
   <data name="KnowledgeBasic" xml:space="preserve">
-    <value>Grundkenntnisse</value>
+    <value>Basic knowledge</value>
   </data>
   <data name="KnowledgeBusinessFluent" xml:space="preserve">
-    <value>Verhandlungssicher</value>
+    <value>Business fluent</value>
   </data>
   <data name="KnowledgeFluent" xml:space="preserve">
-    <value>Fliessend</value>
+    <value>Fluently</value>
   </data>
   <data name="KnowledgeNative" xml:space="preserve">
-    <value>Muttersprache</value>
+    <value>Native language</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Sprache</value>
+    <value>Language</value>
   </data>
   <data name="Languages" xml:space="preserve">
-    <value>Sprachen</value>
+    <value>Languages</value>
   </data>
   <data name="Lastname" xml:space="preserve">
-    <value>Nachname</value>
+    <value>Lastname</value>
   </data>
   <data name="LockedOut" xml:space="preserve">
-    <value>Ausgesperrt</value>
+    <value>Locked out</value>
   </data>
   <data name="Lockout" xml:space="preserve">
-    <value>Aussperrung</value>
+    <value>Lockout</value>
   </data>
   <data name="LockoutMessage" xml:space="preserve">
-    <value>Dieses Konto wurde gesperrt, bitte versuchen Sie es später noch einmal.</value>
+    <value>This account has been locked out, please try again later.</value>
   </data>
   <data name="LoggedInAs" xml:space="preserve">
-    <value>Eingeloggt als</value>
+    <value>Logged in as</value>
   </data>
   <data name="Loggedout" xml:space="preserve">
-    <value>Abgemeldet</value>
+    <value>Logged out</value>
   </data>
   <data name="LoggedoutMessage" xml:space="preserve">
-    <value>Sie haben sich erfolgreich abgemeldet.</value>
+    <value>You have successfully logged out of the application.</value>
   </data>
   <data name="LoginAlreadyAssociated" xml:space="preserve">
-    <value>Ein Benutzer mit diesem Login existiert bereits.</value>
+    <value>A user with this login already exists.</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
-    <value>Melden Sie sich mit Ihrem Konto an.</value>
+    <value>Use your local account to log in.</value>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value>Abmelden</value>
+    <value>Logout</value>
   </data>
   <data name="Manage" xml:space="preserve">
-    <value>Ändern</value>
+    <value>Manage</value>
+  </data>
+  <data name="Married" xml:space="preserve">
+    <value>Married</value>
   </data>
   <data name="MissingBindRequiredValueAccessor" xml:space="preserve">
-    <value>Ein Wert für das '{0}' Feld wurde nicht angegben</value>
+    <value>A value for the '{0}' property was not provided</value>
   </data>
   <data name="MissingKeyOrValueAccessor" xml:space="preserve">
-    <value>Ein Wert wird benötigt</value>
+    <value>A value is required</value>
   </data>
   <data name="MissingRequestBodyRequiredValueAccessor" xml:space="preserve">
-    <value>Ein nicht leerer request body wird benötigt</value>
+    <value>A non-empty request body is required</value>
   </data>
   <data name="MobileNumber" xml:space="preserve">
-    <value>Mobiltelefon</value>
+    <value>Mobile number</value>
   </data>
   <data name="Mr" xml:space="preserve">
-    <value>Herr</value>
+    <value>Mr</value>
   </data>
   <data name="Ms" xml:space="preserve">
-    <value>Frau</value>
+    <value>Ms</value>
   </data>
   <data name="MyVitae" xml:space="preserve">
-    <value>Mein Vitae</value>
+    <value>My Vitae</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="Nationalities" xml:space="preserve">
-    <value>Nationalitäten</value>
+    <value>Nationalities</value>
   </data>
   <data name="Nationality" xml:space="preserve">
-    <value>Nationalität</value>
+    <value>Nationality</value>
   </data>
   <data name="NewEmail" xml:space="preserve">
-    <value>Neue E-Mail</value>
+    <value>New email</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
-    <value>Neues Passwort</value>
+    <value>New password</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>Nein</value>
+    <value>No</value>
+  </data>
+  <data name="NoInformation" xml:space="preserve">
+    <value>No information</value>
   </data>
   <data name="NonPropertyAttemptedValueIsInvalidAccessor" xml:space="preserve">
-    <value>Der Wert '{0}' ist nicht gültig</value>
+    <value>The value '{0}' is not valid</value>
   </data>
   <data name="NonPropertyUnknownValueIsInvalidAccessor" xml:space="preserve">
-    <value>Der gelieferte Wert ist ungültig</value>
+    <value>The supplied value is invalid</value>
   </data>
   <data name="NonPropertyValueMustBeANumberAccessor" xml:space="preserve">
-    <value>Das Feld muss eine Nummer sein</value>
+    <value>The field must be a number</value>
   </data>
   <data name="NoResults" xml:space="preserve">
-    <value>Keine Suchergebnisse für {0}</value>
+    <value>No results for {0}</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
   <data name="Only" xml:space="preserve">
-    <value>Nur</value>
+    <value>Only</value>
   </data>
   <data name="OnlyPdf" xml:space="preserve">
-    <value>Nur PDF-Dateien können hochgeladen werden</value>
+    <value>Only PDF files are allowed to be uploaded</value>
   </data>
   <data name="Overview" xml:space="preserve">
-    <value>Übersicht</value>
+    <value>Overview</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Passwort</value>
+    <value>Password</value>
   </data>
   <data name="PasswordChanged" xml:space="preserve">
-    <value>Das Passwort wurde geändert.</value>
+    <value>Your password has been changed.</value>
   </data>
   <data name="PasswordErrorLength" xml:space="preserve">
-    <value>Das {0} muss mindestens {2} und höchstens {1} Zeichen lang sein.</value>
+    <value>The {0} must be at least {2} and at max {1} characters long.</value>
   </data>
   <data name="PasswordForgot" xml:space="preserve">
-    <value>Passwort vergessen?</value>
+    <value>Forgot your password?</value>
   </data>
   <data name="PasswordMismatch" xml:space="preserve">
-    <value>Falsches Kennwort.</value>
+    <value>Incorrect password.</value>
   </data>
   <data name="PasswordRequiresDigit" xml:space="preserve">
-    <value>Passwörter müssen mindestens eine Ziffer ('0'-'9') haben.</value>
+    <value>Passwords must have at least one digit ('0'-'9').</value>
   </data>
   <data name="PasswordRequiresLower" xml:space="preserve">
-    <value>Passwörter müssen mindestens ein Kleinbuchstabe ('a'-'z') haben.</value>
+    <value>Passwords must have at least one lowercase ('a'-'z').</value>
   </data>
   <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
-    <value>Passwörter müssen mindestens ein nicht alphanumerisches Zeichen enthalten.</value>
+    <value>Passwords must have at least one non alphanumeric character.</value>
   </data>
   <data name="PasswordRequiresUpper" xml:space="preserve">
-    <value>Passwörter müssen mindestens ein Grossbuchstabenzeichen ('A'-'Z') haben.</value>
+    <value>Passwords must have at least one uppercase ('A'-'Z').</value>
   </data>
   <data name="PasswordRules" xml:space="preserve">
-    <value>Bitte wählen Sie ein Passwort, welches aus Klein- und Grossbuchstaben, Zahlen und mindestens einem Sonderzeichen besteht. Es muss aus mindestens 6 Zeichen bestehen.</value>
+    <value>Please choose a password consisting of lower and upper case letters, numbers and at least one special character. It must consist of at least 6 characters.</value>
   </data>
   <data name="PasswordTooShort" xml:space="preserve">
-    <value>Passwörter müssen mindestens {0} Zeichen enthalten.</value>
+    <value>Passwords must be at least {0} characters.</value>
   </data>
   <data name="PersonalData" xml:space="preserve">
-    <value>Personalien</value>
+    <value>Personal data</value>
   </data>
   <data name="PersonalDetails" xml:space="preserve">
-    <value>Persönliche Angaben</value>
+    <value>Personal details</value>
   </data>
   <data name="Personalies" xml:space="preserve">
-    <value>Personalien</value>
+    <value>Personalies</value>
   </data>
   <data name="Photo" xml:space="preserve">
-    <value>Foto</value>
+    <value>Photo</value>
   </data>
   <data name="PleaseCheckEmail" xml:space="preserve">
-    <value>Bitte überprüfen Sie Ihre E-Mail.</value>
+    <value>Please check your email.</value>
   </data>
   <data name="PleaseClickHereToConfirm" xml:space="preserve">
-    <value>Bitte bestätigen Sie ihr Benutzerkonto in dem Sie</value>
+    <value>Please confirm your email account by</value>
   </data>
   <data name="PleaseConfirm" xml:space="preserve">
-    <value>Bitte bestätigen</value>
+    <value>Please confirm</value>
   </data>
   <data name="PleaseUpload" xml:space="preserve">
-    <value>Bitte beachten Sie die Dateigrösse von</value>
+    <value>Please upload files up to</value>
   </data>
   <data name="ProperValue" xml:space="preserve">
-    <value>Bitte einen gültigen Wert eingeben</value>
+    <value>Please enter a proper value</value>
   </data>
   <data name="Rate" xml:space="preserve">
-    <value>Kenntniss</value>
+    <value>Knowledge</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Registrieren</value>
+    <value>Create an account</value>
   </data>
   <data name="RegisterANewUser" xml:space="preserve">
-    <value>Einen neuen Benutzer registrieren</value>
+    <value>Register a new user</value>
   </data>
   <data name="RegisterConfirmation" xml:space="preserve">
-    <value>Registrierungsbestätigung</value>
+    <value>Register confirmation</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
-    <value>Eingeloggt bleiben</value>
+    <value>Remember me?</value>
   </data>
   <data name="Remove" xml:space="preserve">
-    <value>Entfernen</value>
+    <value>Remove</value>
   </data>
   <data name="RemoveFileConfirmation" xml:space="preserve">
-    <value>Möchten Sie diese Datei wirklich entfernen</value>
+    <value>Are you sure you want to remove this file</value>
   </data>
   <data name="RemovePicture" xml:space="preserve">
-    <value>Dieses Bild entfernen</value>
+    <value>Remove this picture</value>
   </data>
   <data name="Request" xml:space="preserve">
-    <value>Anfordern</value>
+    <value>Request</value>
   </data>
   <data name="Required" xml:space="preserve">
-    <value>Bitte einen Wert angeben</value>
+    <value>Please add a value</value>
   </data>
   <data name="RequiredSelection" xml:space="preserve">
-    <value>Bitte einen Wert auswählen</value>
+    <value>Please select a value</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Zurücksetzen</value>
+    <value>Reset</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
-    <value>Passwort zurücksetzen</value>
+    <value>Reset password</value>
   </data>
   <data name="ResetPasswordBy" xml:space="preserve">
-    <value>Bitte setzen Sie ihr Passwort zurück in dem Sie</value>
+    <value>Please reset your password by</value>
   </data>
   <data name="ResetPasswordConfirmation" xml:space="preserve">
-    <value>Passwort erfolgreich zurückgesetzt</value>
+    <value>Reset password confirmation</value>
   </data>
   <data name="ResetPasswordText1" xml:space="preserve">
-    <value>Ihr Passwort wurde zurückgesetzt. Bitte</value>
+    <value>Your password has been reset. Please</value>
   </data>
   <data name="ResetPasswordText2" xml:space="preserve">
-    <value>klicken Sie hier um sich anzumelden.</value>
+    <value>click here to log in.</value>
   </data>
   <data name="ResetYourPassword" xml:space="preserve">
-    <value>Setzen Sie ihr Passwort zurück</value>
+    <value>Reset your password</value>
   </data>
   <data name="Resumee" xml:space="preserve">
-    <value>Beschreibung</value>
+    <value>Summary</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Speichern</value>
+    <value>Save</value>
   </data>
   <data name="SchoolName" xml:space="preserve">
-    <value>Ausbildungsstätte</value>
+    <value>Educational institution</value>
   </data>
   <data name="Select" xml:space="preserve">
-    <value>Auswählen</value>
+    <value>Select</value>
   </data>
   <data name="SendVerificationEmail" xml:space="preserve">
-    <value>Sende E-Mail-Verifikation</value>
+    <value>Send verification email</value>
   </data>
   <data name="SignIn" xml:space="preserve">
-    <value>Einloggen</value>
+    <value>Sign in</value>
+  </data>
+  <data name="Single" xml:space="preserve">
+    <value>Single</value>
   </data>
   <data name="Skills" xml:space="preserve">
     <value>Skills</value>
   </data>
   <data name="Skillset" xml:space="preserve">
-    <value>Kernkompetenzen</value>
+    <value>Skillset</value>
   </data>
   <data name="Slogan" xml:space="preserve">
     <value>Slogan</value>
   </data>
   <data name="SocialLinks" xml:space="preserve">
-    <value>Soziale Verbindungen</value>
+    <value>Social links</value>
   </data>
   <data name="SocialPlatform" xml:space="preserve">
-    <value>Soziale Plattform</value>
+    <value>Social platform</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>
   <data name="State" xml:space="preserve">
-    <value>Kanton / Bundesland</value>
+    <value>State</value>
   </data>
   <data name="Street" xml:space="preserve">
-    <value>Strasse</value>
+    <value>Street</value>
   </data>
   <data name="StreetNo" xml:space="preserve">
-    <value>Nr.</value>
+    <value>Number</value>
   </data>
   <data name="Subject" xml:space="preserve">
-    <value>Thema der Ausbildung</value>
+    <value>Subject of education</value>
   </data>
   <data name="SupplyCode" xml:space="preserve">
-    <value>Für das Zurücksetzen des Passworts muss ein Code angegeben werden.</value>
+    <value>A code must be supplied for password reset.</value>
   </data>
   <data name="TheLogout" xml:space="preserve">
-    <value>Abmeldung</value>
+    <value>Logout</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Titel der Ausbildung</value>
+    <value>Title of education</value>
   </data>
   <data name="UnableToLoadUser" xml:space="preserve">
-    <value>Benutzer mit folgender E-Mail Adresse konnte nicht geladen werden:</value>
+    <value>Unable to load user with email</value>
   </data>
   <data name="UnableToLoadUserID" xml:space="preserve">
-    <value>Benutzer mit folgender ID konnte nicht geladen werden:</value>
+    <value>Unable to load user with ID </value>
   </data>
   <data name="UnknownValueIsInvalidAccessor" xml:space="preserve">
-    <value>Der gelieferte Wert ist ungültig für {0}</value>
+    <value>The supplied value is invalid for {0}</value>
   </data>
   <data name="UntilNow" xml:space="preserve">
-    <value>Bis jetzt</value>
+    <value>Until now</value>
   </data>
   <data name="URL" xml:space="preserve">
     <value>Link</value>
   </data>
   <data name="UserAlreadyHasPassword" xml:space="preserve">
-    <value>Der Benutzer hat bereits ein Passwort gesetzt.</value>
+    <value>User already has a password set.</value>
   </data>
   <data name="UserAlreadyInRole" xml:space="preserve">
-    <value>Der Benutzer ist bereits in der Rolle '{0}'.</value>
+    <value>User already in role '{0}'.</value>
   </data>
   <data name="UserCreatedWithPassword" xml:space="preserve">
-    <value>Ein neues Benutzerkonto wurde erstellt</value>
+    <value>User created a new account with password.</value>
   </data>
   <data name="UserLockoutNotEnabled" xml:space="preserve">
-    <value>Die Sperre ist für diesen Benutzer nicht aktiviert.</value>
+    <value>Lockout is not enabled for this user.</value>
   </data>
   <data name="UserLoggedIn" xml:space="preserve">
-    <value>Angemeldeter Benutzer.</value>
+    <value>User logged in.</value>
   </data>
   <data name="UserNotInRole" xml:space="preserve">
-    <value>Der Benutzer ist nicht in der Rolle '{0}'.</value>
+    <value>User is not in role '{0}'.</value>
   </data>
   <data name="ValueIsInvalidAccessor" xml:space="preserve">
-    <value>Der Wert '{0}' ist ungültig</value>
+    <value>The value '{0}' is invalid</value>
   </data>
   <data name="ValueMustBeANumberAccessor" xml:space="preserve">
-    <value>Das Feld {0} muss eine Nummer sein</value>
+    <value>The field {0} must be a number</value>
   </data>
   <data name="ValueMustNotBeNullAccessor" xml:space="preserve">
-    <value>Der Wert '{0}' ist ungültig</value>
+    <value>The value '{0}' is invalid</value>
   </data>
   <data name="VerificationEmailSent" xml:space="preserve">
-    <value>Verifikations-E-Mail wurde verschickt.</value>
+    <value>Verification email sent.</value>
   </data>
   <data name="Warning" xml:space="preserve">
-    <value>Warnung</value>
+    <value>Warning</value>
   </data>
   <data name="WelcomeToVitae" xml:space="preserve">
-    <value>Willkommen bei VITAE</value>
+    <value>Welcome to VITAE</value>
+  </data>
+  <data name="Widowed" xml:space="preserve">
+    <value>Widowed</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Ja</value>
+    <value>Yes</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
-    <value>PLZ</value>
+    <value>ZIP-Code</value>
   </data>
 </root>

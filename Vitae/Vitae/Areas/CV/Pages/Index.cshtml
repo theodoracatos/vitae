@@ -118,7 +118,7 @@
                             <div class="resume-content">
                                 <h3 class="mb-0">@experience.JobTitle</h3>
                                 <div class="subheading mb-3"><a href="mailto:@(experience.CompanyName)">@experience.CompanyName</a>, @experience.City</div>
-                                <p>@experience.Resumee</p>
+                                <p>@experience.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
                                 <span class="text-primary">@(new DateTime(experience.Start_Year, experience.Start_Month, 1).ToString("MMMM yyyy")) - @(experience.End_Year.HasValue ? new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1).ToString("MMMM yyyy") : SharedResource.UntilNow)</span>
@@ -142,7 +142,7 @@
                                 <h3 class="mb-0">@education.Title, @education.Subject</h3>
                                 <div class="subheading mb-3"><a href="mailto:@(education.SchoolName)">@education.Link</a>, @education.City</div>
                                 <p>@SharedResource.Grade: @education.Grade</p>
-                                <p>@education.Resumee</p>
+                                <p>@education.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
                                 <span class="text-primary">@(new DateTime(education.Start_Year, education.Start_Month, 1).ToString("MMMM yyyy")) - @(education.End_Year.HasValue ? new DateTime(education.End_Year.Value, education.End_Month.Value, 1).ToString("MMMM yyyy") : SharedResource.UntilNow)</span>

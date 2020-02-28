@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Library.Enumerations
+namespace Model.Enumerations
 {
     public enum SocialPlatform
     {

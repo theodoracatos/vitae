@@ -75,7 +75,7 @@ namespace Vitae.Areas.Manage.Pages.Experience
                         Start = new DateTime(e.Start_Year, e.Start_Month, 1),
                         End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, DateTime.DaysInMonth(e.End_Year.Value, e.End_Month.Value)),
                         Order = e.Order,
-                        Resumee = e.Resumee,
+                        Description = e.Description,
                         Link = e.Link,
                         CompanyName = e.CompanyName,
                         JobTitle = e.JobTitle,
