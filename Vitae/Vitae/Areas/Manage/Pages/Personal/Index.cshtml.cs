@@ -24,7 +24,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
         private const string PAGE_PERSONAL = "_Personal";
 
         [BindProperty]
-        public PersonVM Person { get; set; }
+        public PersonalDetailVM PersonalDetail { get; set; }
 
         public IEnumerable<CountryVM> Countries { get; set; }
         public IEnumerable<LanguageVM> Languages { get; set; }
@@ -50,7 +50,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
             else
             {
                 var curriculum = repository.GetCurriculum(curriculumID);
-                Person = repository.GetPerson(curriculum, identity.Name);
+                PersonalDetail = repository.GetPersonalDetail(curriculum, identity.Name);
 
                 FillSelectionViewModel();
                 return Page();
@@ -62,34 +62,34 @@ namespace Vitae.Areas.Manage.Pages.Personal
             if (ModelState.IsValid)
             {
                 var curriculum = repository.GetCurriculum(curriculumID);
-                curriculum.Person = curriculum.Person ?? new Person() { PersonCountries = new List<PersonCountry>() };
-                curriculum.Person.Birthday = new DateTime(Person.Birthday_Year, Person.Birthday_Month, Person.Birthday_Day);
-                curriculum.Person.City = Person.City;
-                curriculum.Person.Country = vitaeContext.Countries.Single(c => c.CountryCode == Person.CountryCode);
-                curriculum.Person.Email = Person.Email;
-                curriculum.Person.Firstname = Person.Firstname;
-                curriculum.Person.Lastname = Person.Lastname;
-                curriculum.Person.Gender = Person.Gender.Value;
-                curriculum.Person.Language = vitaeContext.Languages.Single(l => l.LanguageCode == Person.LanguageCode);
-                curriculum.Person.MobileNumber = Person.MobileNumber;
-                curriculum.Person.Street = Person.Street;
-                curriculum.Person.StreetNo = Person.StreetNo;
-                curriculum.Person.ZipCode = Person.ZipCode;
-                curriculum.Person.State = Person.State;
+                curriculum.Person.PersonalDetail = curriculum.Person.PersonalDetail ?? new PersonalDetail() { PersonCountries = new List<PersonCountry>() };
+                curriculum.Person.PersonalDetail.Birthday = new DateTime(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
+                curriculum.Person.PersonalDetail.City = PersonalDetail.City;
+                curriculum.Person.PersonalDetail.Country = vitaeContext.Countries.Single(c => c.CountryCode == PersonalDetail.CountryCode);
+                curriculum.Person.PersonalDetail.Email = PersonalDetail.Email;
+                curriculum.Person.PersonalDetail.Firstname = PersonalDetail.Firstname;
+                curriculum.Person.PersonalDetail.Lastname = PersonalDetail.Lastname;
+                curriculum.Person.PersonalDetail.Gender = PersonalDetail.Gender.Value;
+                curriculum.Person.PersonalDetail.Language = vitaeContext.Languages.Single(l => l.LanguageCode == PersonalDetail.LanguageCode);
+                curriculum.Person.PersonalDetail.MobileNumber = PersonalDetail.MobileNumber;
+                curriculum.Person.PersonalDetail.Street = PersonalDetail.Street;
+                curriculum.Person.PersonalDetail.StreetNo = PersonalDetail.StreetNo;
+                curriculum.Person.PersonalDetail.ZipCode = PersonalDetail.ZipCode;
+                curriculum.Person.PersonalDetail.State = PersonalDetail.State;
 
                 // Nationality
-                curriculum.Person.PersonCountries.Clear();
-                foreach (var nationality in Person.Nationalities)
+                curriculum.Person.PersonalDetail.PersonCountries.Clear();
+                foreach (var nationality in PersonalDetail.Nationalities)
                 {
                     var personCountry = new PersonCountry()
                     {
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == nationality.CountryCode),
                         CountryID = vitaeContext.Countries.Single(c => c.CountryCode == nationality.CountryCode).CountryID,
-                        Person = curriculum.Person,
-                        PersonID = curriculum.Person.PersonID,
-                        Order = Person.Nationalities.IndexOf(nationality)
+                        PersonalDetail = curriculum.Person.PersonalDetail,
+                        PersonalDetailID = curriculum.Person.PersonalDetail.PersonalDetailID,
+                        Order = PersonalDetail.Nationalities.IndexOf(nationality)
                     };
-                    curriculum.Person.PersonCountries.Add(personCountry);
+                    curriculum.Person.PersonalDetail.PersonCountries.Add(personCountry);
                 }
 
                 await vitaeContext.SaveChangesAsync();
@@ -112,13 +112,13 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
         public IActionResult OnPostAddNationality()
         {
-            if (Person.Nationalities == null)
+            if (PersonalDetail.Nationalities == null)
             {
-                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 0 } };
+                PersonalDetail.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 0 } };
             }
-            else if (Person.Nationalities.Count < MaxNationalities)
+            else if (PersonalDetail.Nationalities.Count < MaxNationalities)
             {
-                Person.Nationalities.Add(new NationalityVM() { Order = Person.Nationalities.Count });
+                PersonalDetail.Nationalities.Add(new NationalityVM() { Order = PersonalDetail.Nationalities.Count });
             }
             FillSelectionViewModel();
 
@@ -127,13 +127,13 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
         public IActionResult OnPostRemoveNationality()
         {
-            if (Person.Nationalities == null)
+            if (PersonalDetail.Nationalities == null)
             {
-                Person.Nationalities = new List<NationalityVM>() { };
+                PersonalDetail.Nationalities = new List<NationalityVM>() { };
             }
-            else if (Person.Nationalities.Count > 1)
+            else if (PersonalDetail.Nationalities.Count > 1)
             {
-                Person.Nationalities.RemoveAt(Person.Nationalities.Count - 1);
+                PersonalDetail.Nationalities.RemoveAt(PersonalDetail.Nationalities.Count - 1);
             }
 
             FillSelectionViewModel();
@@ -143,13 +143,13 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
         public IActionResult OnPostAddChild()
         {
-            if (Person.Children == null)
+            if (PersonalDetail.Children == null)
             {
-                Person.Children = new List<ChildVM>() { new ChildVM() { Order = 0 } };
+                PersonalDetail.Children = new List<ChildVM>() { new ChildVM() { Order = 0 } };
             }
-            else if (Person.Children.Count < MaxChildren)
+            else if (PersonalDetail.Children.Count < MaxChildren)
             {
-                Person.Children.Add(new ChildVM() { Order = Person.Children.Count });
+                PersonalDetail.Children.Add(new ChildVM() { Order = PersonalDetail.Children.Count });
             }
             FillSelectionViewModel();
 
@@ -158,13 +158,13 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
         public IActionResult OnPostRemoveChild()
         {
-            if (Person.Children == null)
+            if (PersonalDetail.Children == null)
             {
-                Person.Children = new List<ChildVM>() { };
+                PersonalDetail.Children = new List<ChildVM>() { };
             }
-            else if (Person.Children.Count > 1)
+            else if (PersonalDetail.Children.Count > 1)
             {
-                Person.Children.RemoveAt(Person.Children.Count - 1);
+                PersonalDetail.Children.RemoveAt(PersonalDetail.Children.Count - 1);
             }
 
             FillSelectionViewModel();
@@ -174,9 +174,9 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
         public IActionResult OnPostChangeBirthday()
         {
-            Person.Birthday_Day = CorrectBirthday(Person.Birthday_Year, Person.Birthday_Month, Person.Birthday_Day);
+            PersonalDetail.Birthday_Day = CorrectBirthday(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
            
-            foreach(var child in Person.Children)
+            foreach(var child in PersonalDetail.Children)
             {
                 child.Birthday_Day = CorrectBirthday(child.Birthday_Year, child.Birthday_Month, child.Birthday_Day);
             }
@@ -218,9 +218,9 @@ namespace Vitae.Areas.Manage.Pages.Personal
             Nationalities = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
 
-            if (Person.Nationalities == null || Person.Nationalities.Count == 0)
+            if (PersonalDetail.Nationalities == null || PersonalDetail.Nationalities.Count == 0)
             {
-                Person.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 0 } };
+                PersonalDetail.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 0 } };
             }
         }
         #endregion

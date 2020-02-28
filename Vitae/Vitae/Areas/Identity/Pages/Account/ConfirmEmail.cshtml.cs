@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Persistency.Data;
 using Model.Poco;
+using Microsoft.AspNetCore.Localization;
 
 namespace Vitae.Areas.Identity.Pages.Account
 {
@@ -24,12 +25,14 @@ namespace Vitae.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> userManager;
         private readonly VitaeContext vitaeContext;
         private readonly SignInManager<IdentityUser> signInManager;
+        protected readonly IRequestCultureFeature requestCulture;
 
-        public ConfirmEmailModel(UserManager<IdentityUser> userManager, VitaeContext vitaeContext, SignInManager<IdentityUser> signInManager)
+        public ConfirmEmailModel(UserManager<IdentityUser> userManager, VitaeContext vitaeContext, SignInManager<IdentityUser> signInManager, IHttpContextAccessor httpContextAccessor)
         {
             this.userManager = userManager;
             this.vitaeContext = vitaeContext;
             this.signInManager = signInManager;
+            this.requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
         }
 
         [TempData]
@@ -70,7 +73,8 @@ namespace Vitae.Areas.Identity.Pages.Account
                             UserID = Guid.Parse(user.Id),
                             CreatedOn = DateTime.Now,
                             FriendlyId = (DateTime.Now.Ticks - new DateTime(2020, 1, 1).Ticks).ToString("x"),
-                            LastUpdated = DateTime.Now
+                            LastUpdated = DateTime.Now,
+                            Person = new Person() { Language = requestCulture.RequestCulture.UICulture.Name }
                         }
                     );
 

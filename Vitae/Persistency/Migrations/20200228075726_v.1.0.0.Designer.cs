@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200227124406_v.1.0.0")]
+    [Migration("20200228075726_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -103,12 +103,12 @@ namespace Persistency.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("PersonID")
+                    b.Property<Guid?>("PersonalDetailID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ChildID");
 
-                    b.HasIndex("PersonID");
+                    b.HasIndex("PersonalDetailID");
 
                     b.ToTable("Child");
                 });
@@ -428,13 +428,16 @@ namespace Persistency.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CurriculumID")
+                    b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IpAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LogLevel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LogState")
                         .HasColumnType("int");
 
                     b.Property<string>("Message")
@@ -450,6 +453,10 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LogID");
+
+                    b.HasIndex("CurriculumID");
+
+                    b.HasIndex("LogState");
 
                     b.ToTable("Log");
                 });
@@ -495,6 +502,45 @@ namespace Persistency.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("AboutID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Language")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("PersonalDetailID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PersonID");
+
+                    b.HasIndex("AboutID");
+
+                    b.HasIndex("PersonalDetailID");
+
+                    b.ToTable("Person");
+                });
+
+            modelBuilder.Entity("Model.Poco.PersonCountry", b =>
+                {
+                    b.Property<Guid>("PersonalDetailID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CountryID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.HasKey("PersonalDetailID", "CountryID");
+
+                    b.HasIndex("CountryID");
+
+                    b.ToTable("PersonCountry");
+                });
+
+            modelBuilder.Entity("Model.Poco.PersonalDetail", b =>
+                {
+                    b.Property<Guid>("PersonalDetailID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Birthday")
@@ -549,33 +595,13 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.HasKey("PersonID");
-
-                    b.HasIndex("AboutID");
+                    b.HasKey("PersonalDetailID");
 
                     b.HasIndex("CountryID");
 
                     b.HasIndex("LanguageID");
 
-                    b.ToTable("Person");
-                });
-
-            modelBuilder.Entity("Model.Poco.PersonCountry", b =>
-                {
-                    b.Property<Guid>("PersonID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CountryID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
-
-                    b.HasKey("PersonID", "CountryID");
-
-                    b.HasIndex("CountryID");
-
-                    b.ToTable("PersonCountry");
+                    b.ToTable("PersonalDetail");
                 });
 
             modelBuilder.Entity("Model.Poco.Skill", b =>
@@ -676,9 +702,9 @@ namespace Persistency.Migrations
 
             modelBuilder.Entity("Model.Poco.Child", b =>
                 {
-                    b.HasOne("Model.Poco.Person", null)
+                    b.HasOne("Model.Poco.PersonalDetail", null)
                         .WithMany("Children")
-                        .HasForeignKey("PersonID");
+                        .HasForeignKey("PersonalDetailID");
                 });
 
             modelBuilder.Entity("Model.Poco.Curriculum", b =>
@@ -730,19 +756,22 @@ namespace Persistency.Migrations
                         .HasForeignKey("PersonID");
                 });
 
+            modelBuilder.Entity("Model.Poco.Log", b =>
+                {
+                    b.HasOne("Model.Poco.Curriculum", "Curriculum")
+                        .WithMany()
+                        .HasForeignKey("CurriculumID");
+                });
+
             modelBuilder.Entity("Model.Poco.Person", b =>
                 {
                     b.HasOne("Model.Poco.About", "About")
                         .WithMany()
                         .HasForeignKey("AboutID");
 
-                    b.HasOne("Model.Poco.Country", "Country")
+                    b.HasOne("Model.Poco.PersonalDetail", "PersonalDetail")
                         .WithMany()
-                        .HasForeignKey("CountryID");
-
-                    b.HasOne("Model.Poco.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("PersonalDetailID");
                 });
 
             modelBuilder.Entity("Model.Poco.PersonCountry", b =>
@@ -753,11 +782,22 @@ namespace Persistency.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Poco.Person", "Person")
+                    b.HasOne("Model.Poco.PersonalDetail", "PersonalDetail")
                         .WithMany("PersonCountries")
-                        .HasForeignKey("PersonID")
+                        .HasForeignKey("PersonalDetailID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Model.Poco.PersonalDetail", b =>
+                {
+                    b.HasOne("Model.Poco.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryID");
+
+                    b.HasOne("Model.Poco.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageID");
                 });
 
             modelBuilder.Entity("Model.Poco.Skill", b =>

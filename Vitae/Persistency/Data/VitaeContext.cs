@@ -37,11 +37,11 @@ namespace Persistency.Data
 
             /* N-M */
             modelBuilder.Entity<PersonCountry>()
-                .HasKey(pc => new { pc.PersonID, pc.CountryID});
+                .HasKey(pc => new { pc.PersonalDetailID, pc.CountryID});
             modelBuilder.Entity<PersonCountry>()
-                .HasOne(pc => pc.Person)
+                .HasOne(pc => pc.PersonalDetail)
                 .WithMany(p => p.PersonCountries)
-                .HasForeignKey(pc => pc.PersonID);
+                .HasForeignKey(pc => pc.PersonalDetailID);
             modelBuilder.Entity<PersonCountry>()
                 .HasOne(pc => pc.Country)
                 .WithMany(c => c.PersonCountries)

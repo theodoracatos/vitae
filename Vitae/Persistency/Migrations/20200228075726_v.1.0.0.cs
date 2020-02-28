@@ -45,24 +45,6 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Log",
-                columns: table => new
-                {
-                    LogID = table.Column<Guid>(nullable: false),
-                    LogLevel = table.Column<int>(nullable: false),
-                    IpAddress = table.Column<string>(nullable: true),
-                    UserAgent = table.Column<string>(nullable: true),
-                    UserLanguage = table.Column<string>(nullable: true),
-                    CurriculumID = table.Column<Guid>(nullable: false),
-                    Message = table.Column<string>(nullable: true),
-                    Timestamp = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Log", x => x.LogID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Month",
                 columns: table => new
                 {
@@ -95,6 +77,42 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PersonalDetail",
+                columns: table => new
+                {
+                    PersonalDetailID = table.Column<Guid>(nullable: false),
+                    Firstname = table.Column<string>(maxLength: 100, nullable: false),
+                    Lastname = table.Column<string>(maxLength: 100, nullable: false),
+                    Birthday = table.Column<DateTime>(nullable: true),
+                    Gender = table.Column<bool>(nullable: false),
+                    Street = table.Column<string>(maxLength: 100, nullable: true),
+                    StreetNo = table.Column<string>(maxLength: 10, nullable: true),
+                    ZipCode = table.Column<string>(maxLength: 10, nullable: true),
+                    City = table.Column<string>(maxLength: 100, nullable: true),
+                    State = table.Column<string>(maxLength: 100, nullable: true),
+                    Email = table.Column<string>(maxLength: 100, nullable: false),
+                    MobileNumber = table.Column<string>(maxLength: 16, nullable: false),
+                    CountryID = table.Column<Guid>(nullable: true),
+                    LanguageID = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonalDetail", x => x.PersonalDetailID);
+                    table.ForeignKey(
+                        name: "FK_PersonalDetail_Country_CountryID",
+                        column: x => x.CountryID,
+                        principalTable: "Country",
+                        principalColumn: "CountryID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PersonalDetail_Language_LanguageID",
+                        column: x => x.LanguageID,
+                        principalTable: "Language",
+                        principalColumn: "LanguageID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "About",
                 columns: table => new
                 {
@@ -115,24 +133,59 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Child",
+                columns: table => new
+                {
+                    ChildID = table.Column<Guid>(nullable: false),
+                    Firstname = table.Column<string>(maxLength: 100, nullable: false),
+                    Birthday = table.Column<DateTime>(nullable: true),
+                    Order = table.Column<int>(nullable: false),
+                    PersonalDetailID = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Child", x => x.ChildID);
+                    table.ForeignKey(
+                        name: "FK_Child_PersonalDetail_PersonalDetailID",
+                        column: x => x.PersonalDetailID,
+                        principalTable: "PersonalDetail",
+                        principalColumn: "PersonalDetailID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PersonCountry",
+                columns: table => new
+                {
+                    PersonalDetailID = table.Column<Guid>(nullable: false),
+                    CountryID = table.Column<Guid>(nullable: false),
+                    Order = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonCountry", x => new { x.PersonalDetailID, x.CountryID });
+                    table.ForeignKey(
+                        name: "FK_PersonCountry_Country_CountryID",
+                        column: x => x.CountryID,
+                        principalTable: "Country",
+                        principalColumn: "CountryID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PersonCountry_PersonalDetail_PersonalDetailID",
+                        column: x => x.PersonalDetailID,
+                        principalTable: "PersonalDetail",
+                        principalColumn: "PersonalDetailID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Person",
                 columns: table => new
                 {
                     PersonID = table.Column<Guid>(nullable: false),
-                    Firstname = table.Column<string>(maxLength: 100, nullable: false),
-                    Lastname = table.Column<string>(maxLength: 100, nullable: false),
-                    Birthday = table.Column<DateTime>(nullable: true),
-                    Gender = table.Column<bool>(nullable: false),
-                    Street = table.Column<string>(maxLength: 100, nullable: true),
-                    StreetNo = table.Column<string>(maxLength: 10, nullable: true),
-                    ZipCode = table.Column<string>(maxLength: 10, nullable: true),
-                    City = table.Column<string>(maxLength: 100, nullable: true),
-                    State = table.Column<string>(maxLength: 100, nullable: true),
-                    Email = table.Column<string>(maxLength: 100, nullable: false),
-                    MobileNumber = table.Column<string>(maxLength: 16, nullable: false),
-                    CountryID = table.Column<Guid>(nullable: true),
-                    AboutID = table.Column<Guid>(nullable: true),
-                    LanguageID = table.Column<Guid>(nullable: true)
+                    Language = table.Column<string>(nullable: true),
+                    PersonalDetailID = table.Column<Guid>(nullable: true),
+                    AboutID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -144,16 +197,10 @@ namespace Persistency.Migrations
                         principalColumn: "AboutID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Person_Country_CountryID",
-                        column: x => x.CountryID,
-                        principalTable: "Country",
-                        principalColumn: "CountryID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Person_Language_LanguageID",
-                        column: x => x.LanguageID,
-                        principalTable: "Language",
-                        principalColumn: "LanguageID",
+                        name: "FK_Person_PersonalDetail_PersonalDetailID",
+                        column: x => x.PersonalDetailID,
+                        principalTable: "PersonalDetail",
+                        principalColumn: "PersonalDetailID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -175,27 +222,6 @@ namespace Persistency.Migrations
                     table.PrimaryKey("PK_Award", x => x.AwardID);
                     table.ForeignKey(
                         name: "FK_Award_Person_PersonID",
-                        column: x => x.PersonID,
-                        principalTable: "Person",
-                        principalColumn: "PersonID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Child",
-                columns: table => new
-                {
-                    ChildID = table.Column<Guid>(nullable: false),
-                    Firstname = table.Column<string>(maxLength: 100, nullable: false),
-                    Birthday = table.Column<DateTime>(nullable: true),
-                    Order = table.Column<int>(nullable: false),
-                    PersonID = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Child", x => x.ChildID);
-                    table.ForeignKey(
-                        name: "FK_Child_Person_PersonID",
                         column: x => x.PersonID,
                         principalTable: "Person",
                         principalColumn: "PersonID",
@@ -345,31 +371,6 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PersonCountry",
-                columns: table => new
-                {
-                    PersonID = table.Column<Guid>(nullable: false),
-                    CountryID = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PersonCountry", x => new { x.PersonID, x.CountryID });
-                    table.ForeignKey(
-                        name: "FK_PersonCountry_Country_CountryID",
-                        column: x => x.CountryID,
-                        principalTable: "Country",
-                        principalColumn: "CountryID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PersonCountry_Person_PersonID",
-                        column: x => x.PersonID,
-                        principalTable: "Person",
-                        principalColumn: "PersonID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Skill",
                 columns: table => new
                 {
@@ -411,6 +412,31 @@ namespace Persistency.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Log",
+                columns: table => new
+                {
+                    LogID = table.Column<Guid>(nullable: false),
+                    LogLevel = table.Column<int>(nullable: false),
+                    LogState = table.Column<int>(nullable: false),
+                    IpAddress = table.Column<string>(nullable: true),
+                    UserAgent = table.Column<string>(nullable: true),
+                    UserLanguage = table.Column<string>(nullable: true),
+                    Message = table.Column<string>(nullable: true),
+                    Timestamp = table.Column<DateTime>(nullable: false),
+                    CurriculumID = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Log", x => x.LogID);
+                    table.ForeignKey(
+                        name: "FK_Log_Curriculum_CurriculumID",
+                        column: x => x.CurriculumID,
+                        principalTable: "Curriculum",
+                        principalColumn: "CurriculumID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_About_VfileID",
                 table: "About",
@@ -422,9 +448,9 @@ namespace Persistency.Migrations
                 column: "PersonID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Child_PersonID",
+                name: "IX_Child_PersonalDetailID",
                 table: "Child",
-                column: "PersonID");
+                column: "PersonalDetailID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Country_CountryCode",
@@ -490,18 +516,33 @@ namespace Persistency.Migrations
                 column: "PersonID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Log_CurriculumID",
+                table: "Log",
+                column: "CurriculumID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Log_LogState",
+                table: "Log",
+                column: "LogState");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Person_AboutID",
                 table: "Person",
                 column: "AboutID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Person_CountryID",
+                name: "IX_Person_PersonalDetailID",
                 table: "Person",
+                column: "PersonalDetailID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PersonalDetail_CountryID",
+                table: "PersonalDetail",
                 column: "CountryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Person_LanguageID",
-                table: "Person",
+                name: "IX_PersonalDetail_LanguageID",
+                table: "PersonalDetail",
                 column: "LanguageID");
 
             migrationBuilder.CreateIndex(
@@ -535,9 +576,6 @@ namespace Persistency.Migrations
                 name: "Child");
 
             migrationBuilder.DropTable(
-                name: "Curriculum");
-
-            migrationBuilder.DropTable(
                 name: "Education");
 
             migrationBuilder.DropTable(
@@ -565,19 +603,25 @@ namespace Persistency.Migrations
                 name: "SocialLink");
 
             migrationBuilder.DropTable(
+                name: "Curriculum");
+
+            migrationBuilder.DropTable(
                 name: "Person");
 
             migrationBuilder.DropTable(
                 name: "About");
 
             migrationBuilder.DropTable(
+                name: "PersonalDetail");
+
+            migrationBuilder.DropTable(
+                name: "Vfile");
+
+            migrationBuilder.DropTable(
                 name: "Country");
 
             migrationBuilder.DropTable(
                 name: "Language");
-
-            migrationBuilder.DropTable(
-                name: "Vfile");
         }
     }
 }

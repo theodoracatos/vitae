@@ -1,10 +1,4 @@
 ﻿@inject UserManager<IdentityUser> UserManager
-@inject VitaeContext VitaeContext
-
-@{
-    var identifier = Guid.Parse(User.Claims.Single(c => c.Type == Claims.CV_IDENTIFIER).Value);
-    var hasPerson = VitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == identifier).Person != null;
-}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,40 +46,40 @@
                             <i class="fas fa-address-book sideIcon"></i>
                             @SharedResource.PersonalDetails
                         </a>
-                        <a class="nav-link @(hasPerson ? null : "disabled")" href="@(hasPerson ? $"/Manage/{nameof(About)}" : "#")">
+                        <a class="nav-link" href="/Manage/@(nameof(About))">
                             <i class="fas fa-image sideIcon"></i>
                             @SharedResource.About
                         </a>
-                        <a class="nav-link @(hasPerson ? null : "disabled")" href="@(hasPerson ? $"/Manage/{nameof(Experience)}" : "#")">
+                        <a class="nav-link" href="/Manage/@(nameof(Experience))">
                             <i class="fas fa-briefcase sideIcon"></i>
                             @SharedResource.Experience
                         </a>
-                        <a class="nav-link @(hasPerson ? null : "disabled")" href="@(hasPerson ? $"/Manage/{nameof(Education)}" : "#")">
+                        <a class="nav-link" href="/Manage/@(nameof(Education))">
                             <i class="fas fa-university sideIcon"></i>
                             @SharedResource.Education
                         </a>
-                        <a class="nav-link @(hasPerson ? null : "disabled")" href="@(hasPerson ? $"/Manage/{nameof(Languages)}" : "#")">
+                        <a class="nav-link" href="/Manage/@(nameof(Languages))">
                             <i class="fas fa-globe-americas sideIcon"></i>
                             @SharedResource.Languages
                         </a>
-                        <a class="nav-link @(hasPerson ? null : "disabled")" href="@(hasPerson ? $"/Manage/{nameof(Interests)}" : "#")">
+                        <a class="nav-link" href="/Manage/@(nameof(Interests))">
                             <i class="fas fa-volleyball-ball sideIcon"></i>
                             @SharedResource.Interests
                         </a>
-                        <a class="nav-link @(hasPerson ? null : "disabled")" href="@(hasPerson ? $"/Manage/{nameof(Awards)}" : "#")">
+                        <a class="nav-link" href="/Manage/@(nameof(Awards))">
                             <i class="fas fa-trophy sideIcon"></i>
                             @SharedResource.Awards
                         </a>
-                        <a class="nav-link @(hasPerson ? null : "disabled")" href="@(hasPerson ? $"/Manage/{nameof(Sociallinks)}" : "#")">
+                        <a class="nav-link" href="/Manage/@(nameof(Sociallinks))">
                             <i class="fab fa-twitter sideIcon"></i>
                             @SharedResource.SocialLinks
                         </a>
-                        <a class="nav-link @(hasPerson ? null : "disabled")" href="@(hasPerson ? $"/Manage/{nameof(Skills)}" : "#")">
+                        <a class="nav-link" href="/Manage/@(nameof(Skills))">
                             <i class="fas fa-tools sideIcon"></i>
                             @SharedResource.Skills
                         </a>
                         <div class="sb-sidenav-menu-heading mt-2">@SharedResource.CurriculumVitae</div>
-                        <a class="nav-link mb-4 @(hasPerson ? null : "disabled")" href="@(hasPerson ? $"/CV/{identifier}" : "#")">
+                        <a class="nav-link mb-4" href="/CV/@(nameof(Skills))">
                             <i class="fas fa-address-card sideIcon"></i>
                             @SharedResource.MyVitae
                         </a>

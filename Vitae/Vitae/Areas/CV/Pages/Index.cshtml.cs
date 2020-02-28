@@ -25,7 +25,7 @@ namespace CVitae.Areas.CV.Pages
     {
         public Guid CurriculumID { get { return curriculumID; } }
 
-        public PersonVM Person { get; set; }
+        public PersonalDetailVM PersonalDetail { get; set; }
         public AboutVM About { get; set; }
 
         public IList<AwardVM> Awards { get; set; } = new List<AwardVM>();
@@ -55,7 +55,7 @@ namespace CVitae.Areas.CV.Pages
             }
             else
             {
-                Person = repository.GetPerson(curriculum);
+                PersonalDetail = repository.GetPersonalDetail(curriculum);
                 About = repository.GetAbout(curriculum);
                 Awards = repository.GetAwards(curriculum);
                 Educations = repository.GetEducations(curriculum);

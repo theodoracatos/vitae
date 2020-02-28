@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>CV @Model.Person.Firstname @Model.Person.Lastname</title>
+    <title>CV @Model.PersonalDetail.Firstname @Model.PersonalDetail.Lastname</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/favicon/favicon.ico" />
 
     <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
@@ -29,9 +29,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
 
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <span class="d-block d-lg-none">@Model.Person.Firstname @Model.Person.Lastname</span>
+            <span class="d-block d-lg-none">@Model.PersonalDetail.Firstname @Model.PersonalDetail.Lastname</span>
             <span class="d-none d-lg-block">
-                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="@(Model.About.Photo ?? (Model.Person.Gender.Value ? "/img/NoUserMale.png" : "/img/NoUserFemale.png"))" alt="@Model.Person.Firstname @Model.Person.Lastname">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="@(Model.About.Photo ?? (Model.PersonalDetail.Gender.Value ? "/img/NoUserMale.png" : "/img/NoUserFemale.png"))" alt="@Model.PersonalDetail.Firstname @Model.PersonalDetail.Lastname">
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,12 +87,12 @@
         <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
             <div class="w-100">
                 <h1 class="mb-0">
-                    @Model.Person.Firstname
-                    <span class="text-primary">@Model.Person.Lastname</span>
+                    @Model.PersonalDetail.Firstname
+                    <span class="text-primary">@Model.PersonalDetail.Lastname</span>
                 </h1>
                 <div class="subheading mb-5">
-                    @Model.Person.Street @Model.Person.StreetNo &middot; @Model.Person.ZipCode @Model.Person.City &middot; <a href="tel:@Model.Person.PhonePrefix @Model.Person.MobileNumber">@Model.Person.PhonePrefix @Model.Person.MobileNumber</a> &middot;
-                    <a href="mailto:@(Model.Person.Email)">@Model.Person.Email</a>
+                    @Model.PersonalDetail.Street @Model.PersonalDetail.StreetNo &middot; @Model.PersonalDetail.ZipCode @Model.PersonalDetail.City &middot; <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber</a> &middot;
+                    <a href="mailto:@(Model.PersonalDetail.Email)">@Model.PersonalDetail.Email</a>
                 </div>
                 <p class="lead mb-5">@Model.About?.Slogan</p>
                 <div class="social-icons">

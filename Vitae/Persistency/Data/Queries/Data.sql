@@ -16,8 +16,13 @@ END
 INSERT INTO [About]
 VALUES(NEWID(), '','"Great things in business are never done by one person. They’re done by a team of people." Steve Jobs',  null)
 
+select * from PersonalDetail
+
+INSERT INTO [PersonalDetail]
+VALUES (NEWID(), 'Alexandros', 'Theodoracatos', '1983-06-23', 1, 'Zwischenbächen', 143, 8048, 'Zürich', 'Zürich', 'theodoracatos@gmail.com', '787044438',  (SELECT TOP 1 [CountryID] FROM [Country]), (SELECT TOP 1 [LanguageID] FROM [Language]))
+
 INSERT INTO [Person]
-VALUES (NEWID(), 'Alexandros', 'Theodoracatos', '1983-06-23', 1, 'Zwischenbächen', 143, 8048, 'Zürich', 'Zürich', 'theodoracatos@gmail.com', '787044438',  (SELECT TOP 1 [CountryID] FROM [Country]), (SELECT TOP 1 [AboutID] FROM [About]),  (SELECT TOP 1 [LanguageID] FROM [Language]))
+VALUES (NEWID(), 'de', (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT [AboutID] FROM [About]))
 
 INSERT INTO [Curriculum]
 VALUES (NEWID(), 'a05c13a8-21fb-42c9-a5bc-98b7d94f464a', 'a05c13a8-21fb-42c9-a5bc-98b7d94f464a', 'a05c13a8', 'theodoracatos', null, GETDATE(), GETDATE(), (SELECT TOP 1 [PersonID] FROM [Person]))

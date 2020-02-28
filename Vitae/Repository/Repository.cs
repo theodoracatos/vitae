@@ -46,17 +46,18 @@ namespace Library.Repository
         {
             var curriculum = vitaeContext.Curriculums
             .Include(c => c.Person)
+            .Include(c => c.Person.PersonalDetail)
+            .Include(c => c.Person.PersonalDetail.Children)
+            .Include(c => c.Person.PersonalDetail.Country)
+            .Include(c => c.Person.PersonalDetail.PersonCountries).ThenInclude(pc => pc.Country)
             .Include(c => c.Person.About)
             .Include(c => c.Person.About.Vfile)
             .Include(c => c.Person.Awards)
-            .Include(c => c.Person.Children)
-            .Include(c => c.Person.Country)
             .Include(c => c.Person.Educations).ThenInclude(e => e.Country)
             .Include(c => c.Person.Experiences).ThenInclude(e => e.Country)
             .Include(c => c.Person.Interests)
             .Include(c => c.Person.Language)
             .Include(c => c.Person.LanguageSkills).ThenInclude(ls => ls.Language)
-            .Include(c => c.Person.PersonCountries).ThenInclude(pc => pc.Country)
             .Include(c => c.Person.Skills)
             .Include(c => c.Person.SocialLinks)
             .Single(c => c.Identifier == curriculumID);
@@ -110,31 +111,31 @@ namespace Library.Repository
             return languagesVM;
         }
 
-        public PersonVM GetPerson(Curriculum curriculum, string email = null)
+        public PersonalDetailVM GetPersonalDetail(Curriculum curriculum, string email = null)
         {
-            var personVM = new PersonVM()
+            var personVM = new PersonalDetailVM()
             {
-                Birthday_Day = curriculum.Person?.Birthday.Value.Day ?? 1,
-                Birthday_Month = curriculum.Person?.Birthday.Value.Month ?? 1,
-                Birthday_Year = curriculum.Person?.Birthday.Value.Year ?? DateTime.Now.Year - 1,
-                City = curriculum.Person?.City,
-                CountryCode = curriculum.Person?.Country.CountryCode,
-                Email = curriculum.Person?.Email ?? email,
-                Firstname = curriculum.Person?.Firstname,
-                Lastname = curriculum.Person?.Lastname,
-                Gender = curriculum.Person?.Gender,
-                LanguageCode = curriculum.Person?.Language.LanguageCode,
-                MobileNumber = curriculum.Person?.MobileNumber,
-                Street = curriculum.Person?.Street,
-                StreetNo = curriculum.Person?.StreetNo,
-                ZipCode = curriculum.Person?.ZipCode,
-                State = curriculum.Person?.State,
-                PhonePrefix = GetPhonePrefix(curriculum.Person?.Country.CountryCode),
-                Children = curriculum.Person?.Children?.OrderBy(c => c.Order)
+                Birthday_Day = curriculum.Person.PersonalDetail?.Birthday.Value.Day ?? 1,
+                Birthday_Month = curriculum.Person.PersonalDetail?.Birthday.Value.Month ?? 1,
+                Birthday_Year = curriculum.Person.PersonalDetail?.Birthday.Value.Year ?? DateTime.Now.Year - 1,
+                City = curriculum.Person.PersonalDetail?.City,
+                CountryCode = curriculum.Person.PersonalDetail?.Country.CountryCode,
+                Email = curriculum.Person.PersonalDetail?.Email ?? email,
+                Firstname = curriculum.Person.PersonalDetail?.Firstname,
+                Lastname = curriculum.Person.PersonalDetail?.Lastname,
+                Gender = curriculum.Person.PersonalDetail?.Gender,
+                LanguageCode = curriculum.Person.PersonalDetail?.Language.LanguageCode,
+                MobileNumber = curriculum.Person.PersonalDetail?.MobileNumber,
+                Street = curriculum.Person.PersonalDetail?.Street,
+                StreetNo = curriculum.Person.PersonalDetail?.StreetNo,
+                ZipCode = curriculum.Person.PersonalDetail?.ZipCode,
+                State = curriculum.Person.PersonalDetail?.State,
+                PhonePrefix = GetPhonePrefix(curriculum.Person.PersonalDetail?.Country.CountryCode),
+                Children = curriculum.Person.PersonalDetail?.Children?.OrderBy(c => c.Order)
                 .Select(n => new ChildVM { Firstname = n.Firstname, Order = n.Order,
                     Birthday_Year = n.Birthday.HasValue ? n.Birthday.Value.Year : DateTime.Now.Year - 1
                 }).ToList() ?? new List<ChildVM>(),
-                Nationalities = curriculum.Person?.PersonCountries?.OrderBy(pc => pc.Order)
+                Nationalities = curriculum.Person.PersonalDetail?.PersonCountries?.OrderBy(pc => pc.Order)
                 .Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order })
                 .ToList() ?? new List<NationalityVM>() { new NationalityVM() { Order = 0 } }
             };
