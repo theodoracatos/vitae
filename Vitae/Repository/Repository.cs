@@ -1,9 +1,9 @@
-﻿using Model.ViewModels;
+﻿using Microsoft.EntityFrameworkCore;
 
-using Microsoft.EntityFrameworkCore;
+using Model.Poco;
+using Model.ViewModels;
 
 using Persistency.Data;
-using Model.Poco;
 
 using System;
 using System.Collections.Generic;
@@ -52,14 +52,15 @@ namespace Library.Repository
             .Include(c => c.Person.PersonalDetail.PersonCountries).ThenInclude(pc => pc.Country)
             .Include(c => c.Person.About)
             .Include(c => c.Person.About.Vfile)
+            .Include(c => c.Person.Abroads).ThenInclude(a => a.Country)
             .Include(c => c.Person.Awards)
             .Include(c => c.Person.Educations).ThenInclude(e => e.Country)
             .Include(c => c.Person.Experiences).ThenInclude(e => e.Country)
             .Include(c => c.Person.Interests)
-            .Include(c => c.Person.Language)
             .Include(c => c.Person.LanguageSkills).ThenInclude(ls => ls.Language)
             .Include(c => c.Person.Skills)
             .Include(c => c.Person.SocialLinks)
+            .Include(c => c.Person.References).ThenInclude(r => r.Country)
             .Single(c => c.Identifier == curriculumID);
 
             return curriculum;
@@ -133,7 +134,7 @@ namespace Library.Repository
                 PhonePrefix = GetPhonePrefix(curriculum.Person.PersonalDetail?.Country.CountryCode),
                 Children = curriculum.Person.PersonalDetail?.Children?.OrderBy(c => c.Order)
                 .Select(n => new ChildVM { Firstname = n.Firstname, Order = n.Order,
-                    Birthday_Year = n.Birthday.HasValue ? n.Birthday.Value.Year : DateTime.Now.Year - 1
+                    Birthday_Year = n.Birthday.Year, Birthday_Month = n.Birthday.Month
                 }).ToList() ?? new List<ChildVM>(),
                 Nationalities = curriculum.Person.PersonalDetail?.PersonCountries?.OrderBy(pc => pc.Order)
                 .Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order })
@@ -276,12 +277,45 @@ namespace Library.Repository
 
             return socialLinksVM;
         }
-        #endregion
 
+        public IList<ReferenceVM> GetReferences(Curriculum curriculum)
+        {
+            var referencesVM = curriculum.Person.References?.OrderBy(re => re.Order)
+                .Select(r => new ReferenceVM()
+                {
+                    CompanyName = r.CompanyName,
+                    CountryCode = r.Country.CountryCode,
+                    Description = r.Description,
+                    Email = r.Email,
+                    Firstname = r.Firstname,
+                    Lastname = r.Lastname,
+                    Order = r.Order,
+                    PhoneNumber = r.PhoneNumber
+                }).ToList();
 
-        #region Helper
+            return referencesVM;
+        }
 
-        private string GetPhonePrefix(string countryCode)
+        public IList<AbroadVM> GetAbroads(Curriculum curriculum)
+        {
+            var abroadsVM = curriculum.Person.Abroads?.OrderBy(ab => ab.Order)
+                .Select(a => new AbroadVM()
+                {
+                    City = a.City,
+                    CountryCode = a.Country.CountryCode,
+                    Description = a.Description,
+                    Start_Month = a.Start.Month,
+                    Start_Year = a.Start.Year,
+                    End_Month = a.End.HasValue ? a.End.Value.Month : DateTime.Now.Month,
+                    End_Year = a.End.HasValue ? a.End.Value.Year : DateTime.Now.Year,
+                    UntilNow = !a.End.HasValue,
+                    Order = a.Order
+                }).ToList();
+
+            return abroadsVM;
+        }
+
+        public string GetPhonePrefix(string countryCode)
         {
             return !string.IsNullOrEmpty(countryCode) ? "+" + vitaeContext.Countries.Where(c => c.CountryCode == countryCode).Select(c => c.PhoneCode).Single().ToString() : string.Empty;
         }

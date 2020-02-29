@@ -304,6 +304,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bürgerort.
+        /// </summary>
+        public static string Citizenship {
+            get {
+                return ResourceManager.GetString("Citizenship", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
         public static string City {
@@ -628,6 +637,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expires on.
+        /// </summary>
+        public static string ExpiresOn {
+            get {
+                return ResourceManager.GetString("ExpiresOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Files you&apos;ve choosed are too large.
         /// </summary>
         public static string FilesTooLarge {
@@ -750,6 +768,15 @@ namespace Library.Resources {
         public static string InvalidUserName {
             get {
                 return ResourceManager.GetString("InvalidUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Issued on.
+        /// </summary>
+        public static string IssuedOn {
+            get {
+                return ResourceManager.GetString("IssuedOn", resourceCulture);
             }
         }
         
@@ -921,6 +948,15 @@ namespace Library.Resources {
         public static string Manage {
             get {
                 return ResourceManager.GetString("Manage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marital status.
+        /// </summary>
+        public static string MaritalStatus {
+            get {
+                return ResourceManager.GetString("MaritalStatus", resourceCulture);
             }
         }
         
@@ -1254,6 +1290,15 @@ namespace Library.Resources {
         public static string Personalies {
             get {
                 return ResourceManager.GetString("Personalies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number.
+        /// </summary>
+        public static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
             }
         }
         

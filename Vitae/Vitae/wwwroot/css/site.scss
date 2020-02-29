@@ -94,11 +94,17 @@ i.sideIcon {
 }
 
 /* Misc */
-.input-validation-error {
-    border-color: $qvs-error-color;
-    background-color: rgba(255,0,0,0.02);
+button.dropdown-toggle {
+    background-color: #ffffff !important;
+    border-color: rgb(206, 212, 218);
+    cursor: default !important;
 }
 
+
+.input-validation-error, .input-validation-error + button.dropdown-toggle {
+    border-color: $qvs-error-color !important;
+    background-color: rgba(255,0,0,0.02) !important;
+}
 
 .validation-summary-errors ul {
     list-style: none;
@@ -193,9 +199,4 @@ span.field-validation-error {
 
 .jFiler-item:last-child {
     margin-bottom: 0;
-}
-
-button.dropdown-toggle {
-    background-color: #ffffff !important;
-    border-color: rgb(206, 212, 218);
 }

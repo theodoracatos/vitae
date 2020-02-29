@@ -12,7 +12,7 @@ namespace Model.Poco
         [MaxLength(100)]
         public string Firstname { get; set; }
 
-        public DateTime? Birthday { get; set; }
+        public DateTime Birthday { get; set; }
 
         public int Order { get; set; }
     }

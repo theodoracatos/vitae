@@ -9,12 +9,12 @@ namespace Model.Poco
         [Key]
         public Guid AboutID { get; set; }
 
+        [MaxLength(4000)]
+        public string Slogan { get; set; }
+
         [Required]
         [Column(TypeName = "varchar(max)")]
         public string Photo { get; set; }
-
-        [MaxLength(4000)]
-        public string Slogan { get; set; }
 
         public virtual Vfile Vfile { get; set; }
     }

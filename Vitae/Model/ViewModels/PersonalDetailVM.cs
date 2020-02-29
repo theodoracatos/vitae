@@ -1,7 +1,7 @@
 ﻿using Library.Resources;
 
 using Microsoft.AspNetCore.Mvc;
-
+using Model.Enumerations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,10 +9,6 @@ namespace Model.ViewModels
 {
     public class PersonalDetailVM
     {
-        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Gender), Prompt = nameof(SharedResource.Gender))]
-        public bool? Gender { get; set; }
-
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Firstname), Prompt = nameof(SharedResource.Firstname))]
         [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
@@ -28,6 +24,10 @@ namespace Model.ViewModels
 
         public int Birthday_Month { get; set; }
         public int Birthday_Year { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Gender), Prompt = nameof(SharedResource.Gender))]
+        public bool? Gender { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Street), Prompt = nameof(SharedResource.Street))]
@@ -74,6 +74,15 @@ namespace Model.ViewModels
         [RegularExpression(@"^[1-9][0-9 ]{5,15}", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [MaxLength(16, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string MobileNumber { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Citizenship), Prompt = nameof(SharedResource.Citizenship))]
+        [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        public string Citizenship { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.MaritalStatus), Prompt = nameof(SharedResource.MaritalStatus))]
+        public MaritalStatus MaritalStatus { get; set; }
 
         public string PhonePrefix { get; set; }
 

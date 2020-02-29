@@ -52,20 +52,27 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-4">
                     <label class="control-label" asp-for="@Model.PersonalDetail.ZipCode"></label>
                     <input class="form-control" type="text" asp-for="@Model.PersonalDetail.ZipCode" />
                     <span asp-validation-for="@Model.PersonalDetail.ZipCode" class="text-danger"></span>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-8">
                     <label class="control-label" asp-for="@Model.PersonalDetail.City"></label>
                     <input class="form-control" type="text" asp-for="@Model.PersonalDetail.City" />
                     <span asp-validation-for="@Model.PersonalDetail.City" class="text-danger"></span>
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="form-group col-md-4">
                     <label class="control-label" asp-for="@Model.PersonalDetail.State"></label>
                     <input class="form-control" type="text" asp-for="@Model.PersonalDetail.State" />
                     <span asp-validation-for="@Model.PersonalDetail.State" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-8">
+                    <label class="control-label" asp-for="@Model.PersonalDetail.Citizenship"></label>
+                    <input class="form-control" type="text" asp-for="@Model.PersonalDetail.Citizenship" />
+                    <span asp-validation-for="@Model.PersonalDetail.Citizenship" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-row">
@@ -93,15 +100,54 @@
                 </div>
             </div>
             <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label class="control-label" asp-for="@Model.PersonalDetail.MobileNumber"></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@Model.PersonalDetail.PhonePrefix</span>
+                        </div>
+                        <input class="form-control" type="text" asp-for="@Model.PersonalDetail.MobileNumber" />
+                    </div>
+                    <span asp-validation-for="@Model.PersonalDetail.MobileNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-8">
+                    <label class="control-label" asp-for="@Model.PersonalDetail.Email"></label>
+                    <input class="form-control" type="text" asp-for="@Model.PersonalDetail.Email" />
+                    <span asp-validation-for="@Model.PersonalDetail.Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
                 <div class="form-group col">
-                    <label class="control-label" asp-for="@Model.PersonalDetail.Children"></label>
+                    <label class="control-label" asp-for="@Model.PersonalDetail.Nationalities"></label>
                     <div>
-                        <button asp-page-handler="AddChild" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.PersonalDetail.Children?.Count <= Model.MaxChildren ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveChild" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.PersonalDetail.Children?.Count <= 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                        <button asp-page-handler="AddNationality" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.PersonalDetail.Nationalities?.Count < Model.MaxNationalities ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                        <button asp-page-handler="RemoveNationality" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.PersonalDetail.Nationalities?.Count <= 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
                     </div>
                 </div>
             </div>
-            @for (int i = 0; i < Model.PersonalDetail.Children.Count; i++)
+            @for (int i = 0; i < Model.PersonalDetail.Nationalities.Count; i++)
+            {
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.PersonalDetail.Nationalities[i].CountryCode"></label>
+                        <select asp-for="@Model.PersonalDetail.Nationalities[i].CountryCode" class="form-control selectpicker" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Nationalities.Where(n => n.CountryCode == Model.PersonalDetail.Nationalities[i].CountryCode || !Model.PersonalDetail.Nationalities.Select(na => na.CountryCode).Contains(n.CountryCode)), "CountryCode", "Name"))">
+                            <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
+                        </select>
+                        <span asp-validation-for="@Model.PersonalDetail.Nationalities[i].CountryCode" class="text-danger"></span>
+                        <input type="hidden" asp-for="@Model.PersonalDetail.Nationalities[i].Order" />
+                    </div>
+                </div>
+            }
+            <div class="form-row">
+                <div class="form-group col">
+                    <label class="control-label" asp-for="@Model.PersonalDetail.Children"></label>
+                    <div>
+                        <button asp-page-handler="AddChild" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@((Model.PersonalDetail.Children?.Count ?? 0) < Model.MaxChildren ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                        <button asp-page-handler="RemoveChild" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@((Model.PersonalDetail.Children?.Count ?? 0) < 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+            </div>
+            @for (int i = 0; i < Model.PersonalDetail.Children?.Count; i++)
             {
                 <div class="form-row">
                     <div class="form-group col-md-8">
@@ -122,45 +168,6 @@
                     </div>
                 </div>
             }
-            <div class="form-row">
-                <div class="form-group col">
-                    <label class="control-label" asp-for="@Model.PersonalDetail.Nationalities"></label>
-                    <div>
-                        <button asp-page-handler="AddNationality" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.PersonalDetail.Nationalities?.Count <= Model.MaxNationalities ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveNationality" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.PersonalDetail.Nationalities?.Count <= 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
-                    </div>
-                </div>
-            </div>
-            @for (int i = 0; i < Model.PersonalDetail.Nationalities.Count; i++)
-            {
-                <div class="form-row">
-                    <div class="form-group col">
-                        <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.PersonalDetail.Nationalities[i].CountryCode"></label>
-                        <select asp-for="@Model.PersonalDetail.Nationalities[i].CountryCode" class="form-control selectpicker" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Nationalities.Where(n => n.CountryCode == Model.PersonalDetail.Nationalities[i].CountryCode || !Model.PersonalDetail.Nationalities.Select(na => na.CountryCode).Contains(n.CountryCode)), "CountryCode", "Name"))">
-                            <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
-                        </select>
-                        <span asp-validation-for="@Model.PersonalDetail.Nationalities[i].CountryCode" class="text-danger"></span>
-                        <input type="hidden" asp-for="@Model.PersonalDetail.Nationalities[i].Order" />
-                    </div>
-                </div>
-            }
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label class="control-label" asp-for="@Model.PersonalDetail.MobileNumber"></label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">@Model.PersonalDetail.PhonePrefix</span>
-                        </div>
-                        <input class="form-control" type="text" asp-for="@Model.PersonalDetail.MobileNumber" />
-                    </div>
-                    <span asp-validation-for="@Model.PersonalDetail.MobileNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-8">
-                    <label class="control-label" asp-for="@Model.PersonalDetail.Email"></label>
-                    <input class="form-control" type="text" asp-for="@Model.PersonalDetail.Email" />
-                    <span asp-validation-for="@Model.PersonalDetail.Email" class="text-danger"></span>
-                </div>
-            </div>
         </div>
         <div class="card-footer">
             <div class="form-row">

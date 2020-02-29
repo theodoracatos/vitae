@@ -67,6 +67,10 @@ $(document).ready(function () {
                     break;
             }
         });
+
+        // Remove data
+        $('form').removeData(data_click);
+        $('form').removeData(data_target);
     }
 
     function asyncRequest(element, options) {
@@ -182,11 +186,6 @@ $(document).ready(function () {
         $(form).attr('data-ajax', 'true');
         form.data(data_click, name ? [{ name: name, value: evt.currentTarget.value }] : []);
         form.data(data_target, target);
-
-        setTimeout(function () {
-            form.removeData(data_click);
-            form.removeData(data_target);
-        }, 0);
     });
     //end new code
 

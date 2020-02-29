@@ -198,6 +198,9 @@
   <data name="ChosenFile" xml:space="preserve">
     <value>file has been chosen</value>
   </data>
+  <data name="Citizenship" xml:space="preserve">
+    <value>Bürgerort</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
@@ -306,6 +309,9 @@
   <data name="Experience" xml:space="preserve">
     <value>Experience</value>
   </data>
+  <data name="ExpiresOn" xml:space="preserve">
+    <value>Expires on</value>
+  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Files you've choosed are too large</value>
   </data>
@@ -347,6 +353,9 @@
   </data>
   <data name="InvalidUserName" xml:space="preserve">
     <value>User name '{0}' is invalid, can only contain letters or digits.</value>
+  </data>
+  <data name="IssuedOn" xml:space="preserve">
+    <value>Issued on</value>
   </data>
   <data name="JobExperiences" xml:space="preserve">
     <value>Job experiences</value>
@@ -404,6 +413,9 @@
   </data>
   <data name="Manage" xml:space="preserve">
     <value>Manage</value>
+  </data>
+  <data name="MaritalStatus" xml:space="preserve">
+    <value>Marital status</value>
   </data>
   <data name="Married" xml:space="preserve">
     <value>Married</value>
@@ -515,6 +527,9 @@
   </data>
   <data name="Personalies" xml:space="preserve">
     <value>Personalies</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone number</value>
   </data>
   <data name="Photo" xml:space="preserve">
     <value>Photo</value>

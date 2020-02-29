@@ -162,7 +162,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
             {
                 PersonalDetail.Children = new List<ChildVM>() { };
             }
-            else if (PersonalDetail.Children.Count > 1)
+            else if (PersonalDetail.Children.Count > 0)
             {
                 PersonalDetail.Children.RemoveAt(PersonalDetail.Children.Count - 1);
             }
@@ -217,11 +217,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             Nationalities = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
-
-            if (PersonalDetail.Nationalities == null || PersonalDetail.Nationalities.Count == 0)
-            {
-                PersonalDetail.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 0 } };
-            }
+            PersonalDetail.PhonePrefix = repository.GetPhonePrefix(PersonalDetail.CountryCode);
         }
         #endregion
     }

@@ -3,7 +3,7 @@ using Library.Resources;
 
 namespace Model.Enumerations
 {
-    public enum MartialStatus
+    public enum MaritalStatus
     {
         [LocalizedDescription(nameof(SharedResource.NoInformation), typeof(SharedResource))]
         NoInformation,

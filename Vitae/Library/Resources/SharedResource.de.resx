@@ -198,6 +198,9 @@
   <data name="ChosenFile" xml:space="preserve">
     <value>Datei wurde ausgewählt</value>
   </data>
+  <data name="Citizenship" xml:space="preserve">
+    <value>Bürgerort</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>Stadt</value>
   </data>
@@ -306,6 +309,9 @@
   <data name="Experience" xml:space="preserve">
     <value>Erfahrung</value>
   </data>
+  <data name="ExpiresOn" xml:space="preserve">
+    <value>Verfällt am</value>
+  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Die Dateien sind zu gross</value>
   </data>
@@ -347,6 +353,9 @@
   </data>
   <data name="InvalidUserName" xml:space="preserve">
     <value>Benutzername '{0}' ist ungültig (kann nur Buchstaben oder Ziffern enthalten).</value>
+  </data>
+  <data name="IssuedOn" xml:space="preserve">
+    <value>Ausgestellt am</value>
   </data>
   <data name="JobExperiences" xml:space="preserve">
     <value>Job-Erfahrungen</value>
@@ -404,6 +413,9 @@
   </data>
   <data name="Manage" xml:space="preserve">
     <value>Ändern</value>
+  </data>
+  <data name="MaritalStatus" xml:space="preserve">
+    <value>Zivilstand</value>
   </data>
   <data name="Married" xml:space="preserve">
     <value>Verheiratet</value>
@@ -515,6 +527,9 @@
   </data>
   <data name="Personalies" xml:space="preserve">
     <value>Personalien</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Telefonnummer</value>
   </data>
   <data name="Photo" xml:space="preserve">
     <value>Foto</value>

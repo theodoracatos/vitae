@@ -30,14 +30,14 @@ namespace Model.Poco
         [MaxLength(10)]
         public string StreetNo { get; set; }
 
-        [MaxLength(10)]
-        public string ZipCode { get; set; }
+        [MaxLength(100)]
+        public string State { get; set; }
 
         [MaxLength(100)]
         public string City { get; set; }
 
-        [MaxLength(100)]
-        public string State { get; set; }
+        [MaxLength(10)]
+        public string ZipCode { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -52,7 +52,7 @@ namespace Model.Poco
         public string Citizenship { get; set; }
 
         [Required]
-        public MartialStatus MartialStatus { get; set; }
+        public MaritalStatus MaritalStatus { get; set; }
 
         public virtual Country Country { get; set; }
         public virtual Language Language { get; set; }

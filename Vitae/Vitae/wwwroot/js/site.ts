@@ -63,6 +63,7 @@ function initSelectPicker() {
             noneResultsText: Resources.SharedResource.NoResults
         }
     );
+    $('.dropdown-toggle').attr('title', '');
 }
 
 function loadingProcedure() {
