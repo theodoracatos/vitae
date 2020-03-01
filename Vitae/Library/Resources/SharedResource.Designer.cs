@@ -70,6 +70,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abroad stay.
+        /// </summary>
+        public static string Abroad {
+            get {
+                return ResourceManager.GetString("Abroad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access denied.
         /// </summary>
         public static string AccessDenied {
@@ -606,6 +615,15 @@ namespace Library.Resources {
         public static string End {
             get {
                 return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please press Enter to insert a new Skill.
+        /// </summary>
+        public static string EnterSkill {
+            get {
+                return ResourceManager.GetString("EnterSkill", resourceCulture);
             }
         }
         
@@ -1362,6 +1380,15 @@ namespace Library.Resources {
         public static string Rate {
             get {
                 return ResourceManager.GetString("Rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to References.
+        /// </summary>
+        public static string Reference {
+            get {
+                return ResourceManager.GetString("Reference", resourceCulture);
             }
         }
         

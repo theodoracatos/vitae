@@ -20,7 +20,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.SocialLinks[i].SocialPlatform"></label>
-                           <select asp-for="@Model.SocialLinks[i].SocialPlatform" class="form-control" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(Html.GetEnumSelectList<SocialPlatform>().Where(s => int.Parse(s.Value) == (int)Model.SocialLinks[i].SocialPlatform || !Model.SocialLinks.Select(sl => (int)sl.SocialPlatform).ToList().Contains(int.Parse(s.Value))), "Value", "Text"))">
+                           <select asp-for="@Model.SocialLinks[i].SocialPlatform" class="form-control" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(Html.GetEnumSelectList<SocialPlatform>().OrderBy(sp => sp.Text).Where(s => int.Parse(s.Value) == (int)Model.SocialLinks[i].SocialPlatform || !Model.SocialLinks.Select(sl => (int)sl.SocialPlatform).ToList().Contains(int.Parse(s.Value))), "Value", "Text"))">
                                <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                            </select>
                         <span asp-validation-for="@Model.SocialLinks[i].SocialPlatform" class="text-danger"></span>

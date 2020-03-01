@@ -1,3 +1,5 @@
-Add VM to Model
+Bugfix - and save -> Validation of IList items (??)
+
 Do Logging
-...
+Do Dashboard
+Test!

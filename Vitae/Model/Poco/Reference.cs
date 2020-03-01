@@ -15,8 +15,13 @@ namespace Model.Poco
         [MaxLength(100)]
         public string Lastname { get; set; }
 
+        public bool Gender { get; set; }
+
         [MaxLength(100)]
         public string CompanyName { get; set; }
+
+        [MaxLength(255)]
+        public string Link { get; set; }
 
         [MaxLength(1000)]
         public string Description { get; set; }

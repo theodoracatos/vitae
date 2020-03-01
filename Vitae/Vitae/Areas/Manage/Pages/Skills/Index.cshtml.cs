@@ -82,11 +82,7 @@ namespace Vitae.Areas.Manage.Pages.Skills
         #region AJAX
         public IActionResult OnPostAddSkill()
         {
-            if (Skills.Count == 0)
-            {
-                Skills.Add(new SkillVM() { Order = 1 });
-            }
-            else if (Skills.Count < MaxSkills)
+            if (Skills.Count < MaxSkills)
             {
                 Skills.Add(new SkillVM() { Order = Skills.Count });
             }

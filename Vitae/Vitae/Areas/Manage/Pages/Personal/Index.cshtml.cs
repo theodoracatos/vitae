@@ -76,6 +76,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
                 curriculum.Person.PersonalDetail.StreetNo = PersonalDetail.StreetNo;
                 curriculum.Person.PersonalDetail.ZipCode = PersonalDetail.ZipCode;
                 curriculum.Person.PersonalDetail.State = PersonalDetail.State;
+                curriculum.Person.PersonalDetail.Citizenship = PersonalDetail.Citizenship;
 
                 // Nationality
                 curriculum.Person.PersonalDetail.PersonCountries.Clear();
@@ -112,11 +113,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
         public IActionResult OnPostAddNationality()
         {
-            if (PersonalDetail.Nationalities == null)
-            {
-                PersonalDetail.Nationalities = new List<NationalityVM>() { new NationalityVM() { Order = 0 } };
-            }
-            else if (PersonalDetail.Nationalities.Count < MaxNationalities)
+            if (PersonalDetail.Nationalities.Count < MaxNationalities)
             {
                 PersonalDetail.Nationalities.Add(new NationalityVM() { Order = PersonalDetail.Nationalities.Count });
             }
@@ -127,11 +124,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
         public IActionResult OnPostRemoveNationality()
         {
-            if (PersonalDetail.Nationalities == null)
-            {
-                PersonalDetail.Nationalities = new List<NationalityVM>() { };
-            }
-            else if (PersonalDetail.Nationalities.Count > 1)
+            if (PersonalDetail.Nationalities.Count > 1)
             {
                 PersonalDetail.Nationalities.RemoveAt(PersonalDetail.Nationalities.Count - 1);
             }
@@ -145,9 +138,9 @@ namespace Vitae.Areas.Manage.Pages.Personal
         {
             if (PersonalDetail.Children == null)
             {
-                PersonalDetail.Children = new List<ChildVM>() { new ChildVM() { Order = 0 } };
+                PersonalDetail.Children = new List<ChildVM>();
             }
-            else if (PersonalDetail.Children.Count < MaxChildren)
+            if (PersonalDetail.Children.Count < MaxChildren)
             {
                 PersonalDetail.Children.Add(new ChildVM() { Order = PersonalDetail.Children.Count });
             }
@@ -158,11 +151,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
         public IActionResult OnPostRemoveChild()
         {
-            if (PersonalDetail.Children == null)
-            {
-                PersonalDetail.Children = new List<ChildVM>() { };
-            }
-            else if (PersonalDetail.Children.Count > 0)
+            if (PersonalDetail.Children.Count > 0)
             {
                 PersonalDetail.Children.RemoveAt(PersonalDetail.Children.Count - 1);
             }

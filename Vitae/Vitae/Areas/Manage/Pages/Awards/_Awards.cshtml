@@ -18,16 +18,11 @@
             @for (int i = 0; i < Model.Awards.Count; i++)
             {
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Awards[i].Name"></label>
                         <input class="form-control" type="text" asp-for="@Model.Awards[i].Name" />
                         <span asp-validation-for="@Model.Awards[i].Name" class="text-danger"></span>
                         <input type="hidden" asp-for="@Model.Awards[i].Order" />
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label" asp-for="@Model.Awards[i].Link"></label>
-                        <input class="form-control" type="text" asp-for="@Model.Awards[i].Link" />
-                        <span asp-validation-for="@Model.Awards[i].Link" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-row">
@@ -35,6 +30,18 @@
                         <label class="control-label" asp-for="@Model.Awards[i].Description"></label>
                         <textarea rows="3" asp-for="@Model.Awards[i].Description" class="form-control"></textarea>
                         <span asp-validation-for="@Model.Awards[i].Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Awards[i].AwardedFrom"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Awards[i].AwardedFrom" />
+                        <span asp-validation-for="@Model.Awards[i].AwardedFrom" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Awards[i].Link"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Awards[i].Link" />
+                        <span asp-validation-for="@Model.Awards[i].Link" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-row">

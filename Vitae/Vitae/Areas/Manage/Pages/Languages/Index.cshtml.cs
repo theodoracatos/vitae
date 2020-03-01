@@ -90,11 +90,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
 
         public IActionResult OnPostAddLanguageSkill()
         {
-            if (LanguageSkills.Count == 0)
-            {
-                LanguageSkills.Add(new LanguageSkillVM() { Order = 1 });
-            }
-            else if (LanguageSkills.Count < MaxLanguageSkills)
+            if (LanguageSkills.Count < MaxLanguageSkills)
             {
                 LanguageSkills.Add(new LanguageSkillVM() { Order = LanguageSkills.Count });
             }

@@ -83,11 +83,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
         #region AJAX
         public IActionResult OnPostAddInterest()
         {
-            if (Interests.Count == 0)
-            {
-                Interests.Add(new InterestVM() { Order = 1 });
-            }
-            else if (Interests.Count < MaxInterests)
+            if (Interests.Count < MaxInterests)
             {
                 Interests.Add(new InterestVM() { Order = Interests.Count });
             }

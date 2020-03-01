@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="Abroad" xml:space="preserve">
+    <value>Abroad stay</value>
+  </data>
   <data name="AccessDenied" xml:space="preserve">
     <value>Access denied</value>
   </data>
@@ -299,6 +302,9 @@
   </data>
   <data name="End" xml:space="preserve">
     <value>End</value>
+  </data>
+  <data name="EnterSkill" xml:space="preserve">
+    <value>Please press Enter to insert a new Skill</value>
   </data>
   <data name="ErrorConfirmEmail" xml:space="preserve">
     <value>Error confirming your email.</value>
@@ -551,6 +557,9 @@
   </data>
   <data name="Rate" xml:space="preserve">
     <value>Knowledge</value>
+  </data>
+  <data name="Reference" xml:space="preserve">
+    <value>References</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Create an account</value>

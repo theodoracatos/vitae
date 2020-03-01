@@ -49,6 +49,7 @@ namespace Library.Repository
             .Include(c => c.Person.PersonalDetail)
             .Include(c => c.Person.PersonalDetail.Children)
             .Include(c => c.Person.PersonalDetail.Country)
+            .Include(c => c.Person.PersonalDetail.Language)
             .Include(c => c.Person.PersonalDetail.PersonCountries).ThenInclude(pc => pc.Country)
             .Include(c => c.Person.About)
             .Include(c => c.Person.About.Vfile)
@@ -118,9 +119,10 @@ namespace Library.Repository
             {
                 Birthday_Day = curriculum.Person.PersonalDetail?.Birthday.Day ?? 1,
                 Birthday_Month = curriculum.Person.PersonalDetail?.Birthday.Month ?? 1,
-                Birthday_Year = curriculum.Person.PersonalDetail?.Birthday.Year ?? DateTime.Now.Year - 1,
+                Birthday_Year = curriculum.Person.PersonalDetail?.Birthday.Year ?? DateTime.Now.Year,
                 City = curriculum.Person.PersonalDetail?.City,
                 CountryCode = curriculum.Person.PersonalDetail?.Country.CountryCode,
+                Citizenship = curriculum.Person.PersonalDetail?.Citizenship,
                 Email = curriculum.Person.PersonalDetail?.Email ?? email,
                 Firstname = curriculum.Person.PersonalDetail?.Firstname,
                 Lastname = curriculum.Person.PersonalDetail?.Lastname,
@@ -133,8 +135,12 @@ namespace Library.Repository
                 State = curriculum.Person.PersonalDetail?.State,
                 PhonePrefix = GetPhonePrefix(curriculum.Person.PersonalDetail?.Country.CountryCode),
                 Children = curriculum.Person.PersonalDetail?.Children?.OrderBy(c => c.Order)
-                .Select(n => new ChildVM { Firstname = n.Firstname, Order = n.Order,
-                    Birthday_Year = n.Birthday.Year, Birthday_Month = n.Birthday.Month
+                .Select(n => new ChildVM
+                {
+                    Firstname = n.Firstname,
+                    Order = n.Order,
+                    Birthday_Year = n.Birthday.Year,
+                    Birthday_Month = n.Birthday.Month
                 }).ToList() ?? new List<ChildVM>(),
                 Nationalities = curriculum.Person.PersonalDetail?.PersonCountries?.OrderBy(pc => pc.Order)
                 .Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order })
@@ -289,7 +295,9 @@ namespace Library.Repository
                     Email = r.Email,
                     Firstname = r.Firstname,
                     Lastname = r.Lastname,
+                    Gender = r.Gender,
                     Order = r.Order,
+                    Link = r.Link,
                     PhoneNumber = r.PhoneNumber
                 }).ToList();
 

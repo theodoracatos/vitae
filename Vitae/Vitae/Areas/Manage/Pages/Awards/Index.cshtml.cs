@@ -87,11 +87,7 @@ namespace Vitae.Areas.Manage.Pages.Awards
         #region AJAX
         public IActionResult OnPostAddAward()
         {
-            if (Awards.Count == 0)
-            {
-                Awards.Add(new AwardVM() { Order = 1 });
-            }
-            else if (Awards.Count < MaxAwards)
+            if (Awards.Count < MaxAwards)
             {
                 Awards.Add(new AwardVM() { Order = Awards.Count });
             }

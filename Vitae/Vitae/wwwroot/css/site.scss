@@ -100,10 +100,13 @@ button.dropdown-toggle {
     cursor: default !important;
 }
 
-
-.input-validation-error, .input-validation-error + button.dropdown-toggle {
+.input-validation-error, .input-validation-error + button.dropdown-toggle, .radioGroup {
     border-color: $qvs-error-color !important;
     background-color: rgba(255,0,0,0.02) !important;
+}
+
+button[disabled="disabled"]{
+    cursor: not-allowed;
 }
 
 .validation-summary-errors ul {
@@ -114,10 +117,14 @@ button.dropdown-toggle {
 
 span.field-validation-error {
     font-size: 0.8em;
-    margin-left: 0.2em;
     -webkit-box-decoration-break: clone;
     -o-box-decoration-break: clone;
     box-decoration-break: clone;
+}
+
+.input-group-prepend * {
+    background-color: #ffffff !important;
+    width: 75px !important;
 }
 
 .input-group > .input-group-prepend {

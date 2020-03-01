@@ -94,6 +94,7 @@ namespace Vitae.Areas.Manage.Pages.Experience
 
         public IActionResult OnPostChangeUntilNow(int order)
         {
+            Experiences[order].UntilNow = !Experiences[order].UntilNow; 
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EXPERIENCE);
@@ -101,13 +102,16 @@ namespace Vitae.Areas.Manage.Pages.Experience
 
         public IActionResult OnPostAddExperience()
         {
-            if (Experiences.Count == 0)
+            if (Experiences.Count < MaxExperiences)
             {
-                Experiences.Add(new ExperienceVM() { Order = 1 });
-            }
-            else if (Experiences.Count < MaxExperiences)
-            {
-                Experiences.Add(new ExperienceVM() { Order = Experiences.Count });
+                Experiences.Add(new ExperienceVM() 
+                {
+                    Order = Experiences.Count, 
+                    Start_Month = DateTime.Now.Month, 
+                    Start_Year = DateTime.Now.Year, 
+                    End_Month = DateTime.Now.Month, 
+                    End_Year = DateTime.Now.Year 
+                });
             }
             FillSelectionViewModel();
 
@@ -118,6 +122,7 @@ namespace Vitae.Areas.Manage.Pages.Experience
         {
             if (Experiences.Count > 0)
             {
+                ModelState.Remove("Experiences[0].UntilNow");
                 Experiences.RemoveAt(Experiences.Count - 1);
             }
 

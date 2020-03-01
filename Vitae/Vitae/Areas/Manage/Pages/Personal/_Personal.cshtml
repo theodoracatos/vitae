@@ -10,19 +10,20 @@
                 <div class="col">
                     <label class="control-label" asp-for="@Model.PersonalDetail.Gender"></label>
                     <div class="form-group">
-
-                        <div class="pretty p-default p-round p-thick">
-                            <input type="radio" asp-for="@Model.PersonalDetail.Gender" value="true" checked="@(Model.PersonalDetail?.Gender ?? false ? "checked" : null)" />
-                            <div class="state p-primary-o">
-                                <label>@SharedResource.Mr</label>
+              
+                            <div class="pretty p-default p-round p-thick">
+                                <input type="radio" asp-for="@Model.PersonalDetail.Gender" value="true" checked="@(Model.PersonalDetail?.Gender ?? false ? "checked" : null)" />
+                                <div class="state p-primary-o">
+                                    <label>@SharedResource.Mr</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="pretty p-default p-round p-thick">
-                            <input type="radio" id="gender2" asp-for="@Model.PersonalDetail.Gender" value="false" checked="@(Model.PersonalDetail?.Gender ?? true ? null : "checked")" />
-                            <div class="state p-primary-o">
-                                <label>@SharedResource.Ms</label>
+                            <div class="pretty p-default p-round p-thick">
+                                <input type="radio" id="gender2" asp-for="@Model.PersonalDetail.Gender" value="false" checked="@(Model.PersonalDetail?.Gender ?? true ? null : "checked")" />
+                                <div class="state p-primary-o">
+                                    <label>@SharedResource.Ms</label>
+                                </div>
                             </div>
-                        </div>
+                    
                         <span asp-validation-for="@Model.PersonalDetail.Gender" class="text-danger d-block"></span>
                     </div>
                 </div>
@@ -95,7 +96,7 @@
                     <div class="d-flex">
                         <select asp-for="@Model.PersonalDetail.Birthday_Day" class="form-control w-auto d-inline-flex mr-2" asp-items="@(new SelectList(Enumerable.Range(1, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
                         <select asp-for="@Model.PersonalDetail.Birthday_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
-                        <select asp-for="@Model.PersonalDetail.Birthday_Year" class="form-control w-auto d-inline-flex" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
+                        <select asp-for="@Model.PersonalDetail.Birthday_Year" class="form-control w-auto d-inline-flex" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 1).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
                     </div>
                 </div>
             </div>
@@ -162,7 +163,7 @@
                         <div class="d-flex">
                             <select asp-for="@Model.PersonalDetail.Children[i].Birthday_Day" class="form-control w-auto d-inline-flex mr-2" asp-items="@(new SelectList(Enumerable.Range(1, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
                             <select asp-for="@Model.PersonalDetail.Children[i].Birthday_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
-                            <select asp-for="@Model.PersonalDetail.Children[i].Birthday_Year" class="form-control w-auto d-inline-flex" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
+                            <select asp-for="@Model.PersonalDetail.Children[i].Birthday_Year" class="form-control w-auto d-inline-flex" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 1).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeBirthday').trigger('click');"></select>
                         </div>
                         <input type="hidden" asp-for="@Model.PersonalDetail.Children[i].Order" />
                     </div>

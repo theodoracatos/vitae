@@ -93,11 +93,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
 
         public IActionResult OnPostAddSocialLink()
         {
-            if (SocialLinks.Count == 0)
-            {
-                SocialLinks.Add(new SocialLinkVM() { Order = 1 });
-            }
-            else if (SocialLinks.Count < MaxSocialLinks)
+            if (SocialLinks.Count < MaxSocialLinks)
             {
                 SocialLinks.Add(new SocialLinkVM() { Order = SocialLinks.Count });
             }

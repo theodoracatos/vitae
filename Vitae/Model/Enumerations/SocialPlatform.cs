@@ -13,6 +13,14 @@ namespace Model.Enumerations
         [Description("fab fa-github")]
         Github,
         [Description("fab fa-xing")]
-        Xing
+        Xing,
+        [Description("fab fa-instagram")]
+        Instagram,
+        [Description("fab fa-stack-overflow")]
+        StackOverflow,
+        [Description("fab fa-youtube")]
+        Youtube,
+        [Description("fab fa-tumblr-square")]
+        Tumblr
     }
 }

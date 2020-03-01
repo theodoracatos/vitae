@@ -1,0 +1,101 @@
+﻿@model Vitae.Areas.Manage.Pages.Abroad.IndexModel
+
+<div id="panel">
+    <div class="card">
+        <div class="card-header font-weight-bold">
+            <h1><i class="fas fa-plane fa-fw"></i>@SharedResource.Abroad</h1>
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label class="control-label" asp-for="@Model.Abroads"></label>
+                    <div>
+                        <button asp-page-handler="AddAbroad" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Abroads?.Count < Model.MaxAbroads ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                        <button asp-page-handler="RemoveAbroad" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Abroads?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+            </div>
+            @for (int i = 0; i < Model.Abroads.Count; i++)
+            {
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Abroads[i].CountryCode"></label>
+                        <select asp-for="@Model.Abroads[i].CountryCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
+                            <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
+                        </select>
+                        <span asp-validation-for="@Model.Abroads[i].CountryCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Abroads[i].City"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Abroads[i].City" />
+                        <span asp-validation-for="@Model.Abroads[i].City" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.Abroads[i].Description"></label>
+                        <textarea rows="3" asp-for="@Model.Abroads[i].Description" class="form-control"></textarea>
+                        <span asp-validation-for="@Model.Abroads[i].Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Abroads[i].Start_Month"></label>
+                        <div class="d-flex">
+                            <select asp-for="@Model.Abroads[i].Start_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                            <select asp-for="@Model.Abroads[i].Start_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Abroads[i].End_Month"></label>
+                        <div class="d-flex">
+                            <div class="form-control w-auto flex-fill">
+                                <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
+                                    <input asp-for="@Model.Abroads[i].UntilNow" type="checkbox" data-ajax="true" data-ajax-update="#panel" />
+                                    <div class="state">
+                                        <label asp-for="@Model.Abroads[i].UntilNow"></label>
+                                    </div>
+                                </div>
+                                <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeUntilNow" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+                            </div>
+                            @if (!@Model.Abroads[i].UntilNow)
+                            {
+                                <select asp-for="@Model.Abroads[i].End_Month" class="form-control flex-fill ml-2 mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                                <select asp-for="@Model.Abroads[i].End_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                            }
+                            else
+                            {
+                                <input asp-for="@Model.Abroads[i].End_Month" type="hidden" />
+                                <input asp-for="@Model.Abroads[i].End_Year" type="hidden" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col mt-1">
+                        <div class="text-right">
+                            <button asp-page-handler="UpAbroad" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(i > 0 ? null : "disabled")"><i class="fas fa-arrow-up"></i></button>
+                            <button asp-page-handler="DownAbroad" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(i == Model.Abroads.Count - 1 ? "disabled": null)"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                    </div>
+                </div>
+                @if (i < Model.Abroads.Count - 1)
+                {
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <hr />
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="card-footer">
+            <div class="form-row">
+                <div class="form-group col mb-0 text-right">
+                    <button id="btnChangeCountry" asp-page-handler="ChangeCountry" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+                    <button type="submit" class="btn btn-outline-success float-right">@SharedResource.Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

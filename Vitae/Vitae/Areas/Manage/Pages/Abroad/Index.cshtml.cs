@@ -1,12 +1,13 @@
 ﻿using Library.Repository;
 using Library.Resources;
-using Model.ViewModels;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+
+using Model.ViewModels;
 
 using Persistency.Data;
 
@@ -20,19 +21,19 @@ using Vitae.Code;
 
 using Poco = Model.Poco;
 
-namespace Vitae.Areas.Manage.Pages.Education
+namespace Vitae.Areas.Manage.Pages.Abroad
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_EDUCATION = "_Education";
+        private const string PAGE_ABROAD = "_Abroad";
 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Educations), Prompt = nameof(SharedResource.Educations))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Abroad), Prompt = nameof(SharedResource.Abroad))]
         [BindProperty]
-        public IList<EducationVM> Educations { get; set; }
+        public IList<AbroadVM> Abroads { get; set; }
 
         public IEnumerable<CountryVM> Countries { get; set; }
 
-        public int MaxEducations { get; } = 20;
+        public int MaxAbroads { get; } = 10;
 
         public IEnumerable<MonthVM> Months { get; set; }
 
@@ -54,7 +55,7 @@ namespace Vitae.Areas.Manage.Pages.Education
             else
             {
                 var curriculum = repository.GetCurriculum(curriculumID);
-                Educations = repository.GetEducations(curriculum);
+                Abroads = repository.GetAbroads(curriculum);
 
                 FillSelectionViewModel();
                 return Page();
@@ -66,21 +67,16 @@ namespace Vitae.Areas.Manage.Pages.Education
             if (ModelState.IsValid)
             {
                 var curriculum = repository.GetCurriculum(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Educations);
+                vitaeContext.RemoveRange(curriculum.Person.Abroads);
 
-                curriculum.Person.Educations =
-                    Educations.Select(e => new Poco.Education()
-                    {
+                curriculum.Person.Abroads =
+                    Abroads.Select(e => new Poco.Abroad()
+                    { 
                         City = e.City,
                         Start = new DateTime(e.Start_Year, e.Start_Month, 1),
                         End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, DateTime.DaysInMonth(e.End_Year.Value, e.End_Month.Value)),
-                        Grade = e.Grade,
                         Order = e.Order,
                         Description = e.Description,
-                        Link = e.Link,
-                        SchoolName = e.SchoolName,
-                        Subject = e.Subject,
-                        Title = e.Title,
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode)
                     }).ToList();
 
@@ -98,15 +94,16 @@ namespace Vitae.Areas.Manage.Pages.Education
         { 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_ABROAD);
         }
 
-        public IActionResult OnPostAddEducation()
+        public IActionResult OnPostAddAbroad()
         {
-            if (Educations.Count < MaxEducations)
+            if (Abroads.Count < MaxAbroads)
             {
-                Educations.Add(new EducationVM() {
-                    Order = Educations.Count,
+                Abroads.Add(new AbroadVM() 
+                {
+                    Order = Abroads.Count,
                     Start_Month = DateTime.Now.Month,
                     Start_Year = DateTime.Now.Year,
                     End_Month = DateTime.Now.Month,
@@ -115,41 +112,41 @@ namespace Vitae.Areas.Manage.Pages.Education
             }
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_ABROAD);
         }
 
-        public IActionResult OnPostRemoveEducation()
+        public IActionResult OnPostRemoveAbroad()
         {
-            if (Educations.Count > 0)
+            if (Abroads.Count > 0)
             {
-                Educations.RemoveAt(Educations.Count - 1);
+                Abroads.RemoveAt(Abroads.Count - 1);
             }
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_ABROAD);
         }
 
-        public IActionResult OnPostUpEducation(int order)
+        public IActionResult OnPostUpAbroad(int order)
         {
-            var education = Educations[order];
-            Educations[order] = Educations[order - 1];
-            Educations[order - 1] = education;
+            var abroad = Abroads[order];
+            Abroads[order] = Abroads[order - 1];
+            Abroads[order - 1] = abroad;
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_ABROAD);
         }
 
-        public IActionResult OnPostDownEducation(int order)
+        public IActionResult OnPostDownAbroad(int order)
         {
-            var education = Educations[order];
-            Educations[order] = Educations[order + 1];
-            Educations[order + 1] = education;
+            var abroad = Abroads[order];
+            Abroads[order] = Abroads[order + 1];
+            Abroads[order + 1] = abroad;
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_ABROAD);
         }
 
         #endregion

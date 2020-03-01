@@ -1,0 +1,104 @@
+﻿@model Vitae.Areas.Manage.Pages.Reference.IndexModel
+
+    <div id="panel">
+        <div class="card">
+            <div class="card-header font-weight-bold">
+                <h1><i class="fas fas fa-comment fa-fw"></i>@SharedResource.Reference</h1>
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.References"></label>
+                        <div>
+                            <button asp-page-handler="AddReferences" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.References?.Count < Model.MaxReferences ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                            <button asp-page-handler="RemoveReference" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.References?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                @for (int i = 0; i < Model.References.Count; i++)
+                {
+                    <div class="form-row">
+                        <div class="col">
+                            <label class="control-label" asp-for="@Model.References[i].Gender"></label>
+                            <div class="form-group">
+
+                                <div class="pretty p-default p-round p-thick">
+                                    <input type="radio" asp-for="@Model.References[i].Gender" value="true" checked="@(Model.References[i]?.Gender ?? false ? "checked" : null)" />
+                                    <div class="state p-primary-o">
+                                        <label>@SharedResource.Mr</label>
+                                    </div>
+                                </div>
+                                <div class="pretty p-default p-round p-thick">
+                                    <input type="radio" id="gender2" asp-for="@Model.References[i].Gender" value="false" checked="@(Model.References[i]?.Gender ?? true ? null : "checked")" />
+                                    <div class="state p-primary-o">
+                                        <label>@SharedResource.Ms</label>
+                                    </div>
+                                </div>
+                                <span asp-validation-for="@Model.References[i].Gender" class="text-danger d-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label class="control-label" asp-for="@Model.References[i].Firstname"></label>
+                            <input class="form-control" type="text" asp-for="@Model.References[i].Firstname" />
+                            <span asp-validation-for="@Model.References[i].Firstname" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-7">
+                            <label class="control-label" asp-for="@Model.References[i].Lastname"></label>
+                            <input class="form-control" type="text" asp-for="@Model.References[i].Lastname" />
+                            <span asp-validation-for="@Model.References[i].Lastname" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.References[i].CompanyName"></label>
+                            <input class="form-control" type="text" asp-for="@Model.References[i].CompanyName" />
+                            <span asp-validation-for="@Model.References[i].CompanyName" class="text-danger"></span>
+                            <input type="hidden" asp-for="@Model.References[i].Order" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label" asp-for="@Model.References[i].Link"></label>
+                            <input class="form-control" type="text" asp-for="@Model.References[i].Link" />
+                            <span asp-validation-for="@Model.References[i].Link" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label class="control-label" asp-for="@Model.References[i].Description"></label>
+                            <textarea rows="3" asp-for="@Model.References[i].Description" class="form-control"></textarea>
+                            <span asp-validation-for="@Model.References[i].Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label class="control-label" asp-for="@Model.References[i].CountryCode"></label>
+                            <select asp-for="@Model.References[i].CountryCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
+                                <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
+                            </select>
+                            <span asp-validation-for="@Model.References[i].CountryCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label class="control-label" asp-for="@Model.References[i].PhoneNumber"></label>
+                            <input class="form-control" type="text" asp-for="@Model.References[i].PhoneNumber" />
+                            <span asp-validation-for="@Model.References[i].PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="control-label" asp-for="@Model.References[i].Email"></label>
+                            <input class="form-control" type="text" asp-for="@Model.References[i].Email" />
+                            <span asp-validation-for="@Model.References[i].Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                }
+            </div>
+                    <div class="card-footer">
+                        <div class="form-row">
+                            <div class="form-group col mb-0 text-right">
+                                <button type="submit" class="btn btn-outline-success float-right">@SharedResource.Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
