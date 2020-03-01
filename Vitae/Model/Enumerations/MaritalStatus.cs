@@ -13,9 +13,11 @@ namespace Model.Enumerations
         Married,
         [LocalizedDescription(nameof(SharedResource.Concubinage), typeof(SharedResource))]
         Concubinage,
-        [LocalizedDescription(nameof(SharedResource.Awards), typeof(SharedResource))]
+        [LocalizedDescription(nameof(SharedResource.Divorced), typeof(SharedResource))]
         Divorced,
-        [LocalizedDescription(nameof(SharedResource.Awards), typeof(SharedResource))]
+        [LocalizedDescription(nameof(SharedResource.Widowed), typeof(SharedResource))]
         Widowed,
+        [LocalizedDescription(nameof(SharedResource.VariousMaritalStatus), typeof(SharedResource))]
+        VariousMartialStatus,
     }
 }

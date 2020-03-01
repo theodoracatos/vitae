@@ -16,6 +16,7 @@ namespace Model.Poco
         public virtual About About { get; set; }
         public virtual ICollection<Abroad> Abroads { get; set; }
         public virtual ICollection<Award> Awards { get; set; }
+        public virtual ICollection<Certificate> Certificates { get; set; }
         public virtual ICollection<Education> Educations { get; set; }
         public virtual ICollection<Experience> Experiences { get; set; }
         public virtual ICollection<Interest> Interests { get; set; }

@@ -55,6 +55,7 @@ namespace Library.Repository
             .Include(c => c.Person.About.Vfile)
             .Include(c => c.Person.Abroads).ThenInclude(a => a.Country)
             .Include(c => c.Person.Awards)
+            .Include(c => c.Person.Certificates)
             .Include(c => c.Person.Educations).ThenInclude(e => e.Country)
             .Include(c => c.Person.Experiences).ThenInclude(e => e.Country)
             .Include(c => c.Person.Interests)
@@ -181,6 +182,25 @@ namespace Library.Repository
                    }).ToList();
 
             return awardsVM;
+        }
+
+        public IList<CertificateVM> GetCertificates(Curriculum curriculum)
+        {
+            var certificatesVM = curriculum.Person.Certificates?.OrderBy(ce => ce.Order)
+               .Select(c => new CertificateVM()
+               {
+                   Description = c.Description,
+                   Start_Month = c.IssuedOn.Month,
+                   Start_Year = c.IssuedOn.Year,
+                   End_Month = c.ExpiresOn.HasValue ? c.ExpiresOn.Value.Month : DateTime.Now.Month,
+                   End_Year = c.ExpiresOn.HasValue ? c.ExpiresOn.Value.Year : DateTime.Now.Year,
+                   Link = c.Link,
+                   Name = c.Name,
+                   NeverExpires = !c.ExpiresOn.HasValue,
+                   Order = c.Order
+               }).ToList();
+
+            return certificatesVM;
         }
 
         public IList<EducationVM> GetEducations(Curriculum curriculum)

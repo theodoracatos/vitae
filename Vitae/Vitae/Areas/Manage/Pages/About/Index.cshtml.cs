@@ -76,6 +76,7 @@ namespace Vitae.Areas.Manage.Pages.About
                 curriculum.Person.About = curriculum.Person.About == null ? new Poco.About() : curriculum.Person.About;
                 curriculum.Person.About.Slogan = About.Slogan;
                 curriculum.Person.About.Photo = About.Photo;
+                curriculum.LastUpdated = DateTime.Now;
 
                 if (About.Vfile?.Content != null)
                 {

@@ -72,6 +72,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
                 curriculum.Person.PersonalDetail.Gender = PersonalDetail.Gender.Value;
                 curriculum.Person.PersonalDetail.Language = vitaeContext.Languages.Single(l => l.LanguageCode == PersonalDetail.LanguageCode);
                 curriculum.Person.PersonalDetail.MobileNumber = PersonalDetail.MobileNumber;
+                curriculum.Person.PersonalDetail.MaritalStatus = PersonalDetail.MaritalStatus;
                 curriculum.Person.PersonalDetail.Street = PersonalDetail.Street;
                 curriculum.Person.PersonalDetail.StreetNo = PersonalDetail.StreetNo;
                 curriculum.Person.PersonalDetail.ZipCode = PersonalDetail.ZipCode;
@@ -92,6 +93,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
                     };
                     curriculum.Person.PersonalDetail.PersonCountries.Add(personCountry);
                 }
+                curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
             }

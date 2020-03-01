@@ -77,6 +77,7 @@ namespace Vitae.Areas.Manage.Pages.Reference
                         Link = r.Link,
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == r.CountryCode)
                     }).ToList();
+                curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
             }

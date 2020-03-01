@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200229221955_v.1.0.0")]
+    [Migration("20200301210259_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,6 +123,45 @@ namespace Persistency.Migrations
                     b.HasIndex("PersonID");
 
                     b.ToTable("Award");
+                });
+
+            modelBuilder.Entity("Model.Poco.Certificate", b =>
+                {
+                    b.Property<Guid>("CertificateID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
+
+                    b.Property<DateTime?>("ExpiresOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("IssuedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("PersonID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CertificateID");
+
+                    b.HasIndex("PersonID");
+
+                    b.ToTable("Certificate");
                 });
 
             modelBuilder.Entity("Model.Poco.Child", b =>
@@ -823,6 +862,13 @@ namespace Persistency.Migrations
                 {
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("Awards")
+                        .HasForeignKey("PersonID");
+                });
+
+            modelBuilder.Entity("Model.Poco.Certificate", b =>
+                {
+                    b.HasOne("Model.Poco.Person", null)
+                        .WithMany("Certificates")
                         .HasForeignKey("PersonID");
                 });
 

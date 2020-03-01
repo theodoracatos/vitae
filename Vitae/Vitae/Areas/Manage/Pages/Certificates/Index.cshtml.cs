@@ -20,19 +20,17 @@ using Vitae.Code;
 
 using Poco = Model.Poco;
 
-namespace Vitae.Areas.Manage.Pages.Education
+namespace Vitae.Areas.Manage.Pages.Certificates
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_EDUCATION = "_Education";
+        private const string PAGE_CERTIFICATES = "_Certificates";
 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Educations), Prompt = nameof(SharedResource.Educations))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Certificates), Prompt = nameof(SharedResource.Certificates))]
         [BindProperty]
-        public IList<EducationVM> Educations { get; set; }
+        public IList<CertificateVM> Certificates { get; set; }
 
-        public IEnumerable<CountryVM> Countries { get; set; }
-
-        public int MaxEducations { get; } = 20;
+        public int MaxCertificates { get; } = 20;
 
         public IEnumerable<MonthVM> Months { get; set; }
 
@@ -54,7 +52,7 @@ namespace Vitae.Areas.Manage.Pages.Education
             else
             {
                 var curriculum = repository.GetCurriculum(curriculumID);
-                Educations = repository.GetEducations(curriculum);
+                Certificates = repository.GetCertificates(curriculum);
 
                 FillSelectionViewModel();
                 return Page();
@@ -66,22 +64,17 @@ namespace Vitae.Areas.Manage.Pages.Education
             if (ModelState.IsValid)
             {
                 var curriculum = repository.GetCurriculum(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Educations);
+                vitaeContext.RemoveRange(curriculum.Person.Certificates);
 
-                curriculum.Person.Educations =
-                    Educations.Select(e => new Poco.Education()
+                curriculum.Person.Certificates =
+                    Certificates.Select(c => new Poco.Certificate()
                     {
-                        City = e.City,
-                        Start = new DateTime(e.Start_Year, e.Start_Month, 1),
-                        End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, DateTime.DaysInMonth(e.End_Year.Value, e.End_Month.Value)),
-                        Grade = e.Grade,
-                        Order = e.Order,
-                        Description = e.Description,
-                        Link = e.Link,
-                        SchoolName = e.SchoolName,
-                        Subject = e.Subject,
-                        Title = e.Title,
-                        Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode)
+                        IssuedOn = new DateTime(c.Start_Year, c.Start_Month, 1),
+                        ExpiresOn = c.NeverExpires ? null : (DateTime?)new DateTime(c.End_Year.Value, c.End_Month.Value, DateTime.DaysInMonth(c.End_Year.Value, c.End_Month.Value)),
+                        Order = c.Order,
+                        Description = c.Description,
+                        Link = c.Link,
+                        Name = c.Name
                     }).ToList();
                 curriculum.LastUpdated = DateTime.Now;
 
@@ -95,20 +88,20 @@ namespace Vitae.Areas.Manage.Pages.Education
 
         #region AJAX
 
-        public IActionResult OnPostChangeUntilNow(int order)
+        public IActionResult OnPostChangeNeverExpires(int order)
         {
-            Educations[order].UntilNow = !Educations[order].UntilNow;
+            Certificates[order].NeverExpires = !Certificates[order].NeverExpires;
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_CERTIFICATES);
         }
 
-        public IActionResult OnPostAddEducation()
+        public IActionResult OnPostAddCertificate()
         {
-            if (Educations.Count < MaxEducations)
+            if (Certificates.Count < MaxCertificates)
             {
-                Educations.Add(new EducationVM() {
-                    Order = Educations.Count,
+                Certificates.Add(new CertificateVM() {
+                    Order = Certificates.Count,
                     Start_Month = DateTime.Now.Month,
                     Start_Year = DateTime.Now.Year,
                     End_Month = DateTime.Now.Month,
@@ -117,41 +110,41 @@ namespace Vitae.Areas.Manage.Pages.Education
             }
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_CERTIFICATES);
         }
 
-        public IActionResult OnPostRemoveEducation()
+        public IActionResult OnPostRemoveCertificate()
         {
-            if (Educations.Count > 0)
+            if (Certificates.Count > 0)
             {
-                Educations.RemoveAt(Educations.Count - 1);
+                Certificates.RemoveAt(Certificates.Count - 1);
             }
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_CERTIFICATES);
         }
 
-        public IActionResult OnPostUpEducation(int order)
+        public IActionResult OnPostUpCertificate(int order)
         {
-            var education = Educations[order];
-            Educations[order] = Educations[order - 1];
-            Educations[order - 1] = education;
+            var certificate = Certificates[order];
+            Certificates[order] = Certificates[order - 1];
+            Certificates[order - 1] = certificate;
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_CERTIFICATES);
         }
 
-        public IActionResult OnPostDownEducation(int order)
+        public IActionResult OnPostDownCertificate(int order)
         {
-            var education = Educations[order];
-            Educations[order] = Educations[order + 1];
-            Educations[order + 1] = education;
+            var certificate = Certificates[order];
+            Certificates[order] = Certificates[order + 1];
+            Certificates[order + 1] = certificate;
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_CERTIFICATES);
         }
 
         #endregion
@@ -161,7 +154,6 @@ namespace Vitae.Areas.Manage.Pages.Education
         protected override void FillSelectionViewModel()
         {
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
-            Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
         }
         #endregion
     }

@@ -73,6 +73,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
                         SocialPlatform = s.SocialPlatform,
                         Link = s.Link
                     }).ToList();
+                curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
             }

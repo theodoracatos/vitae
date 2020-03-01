@@ -79,6 +79,7 @@ namespace Vitae.Areas.Manage.Pages.Abroad
                         Description = e.Description,
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode)
                     }).ToList();
+                curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
             }

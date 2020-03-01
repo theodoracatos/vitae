@@ -71,6 +71,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
                         Rate = l.Rate,
                         Language = vitaeContext.Languages.Single(la => la.LanguageCode == l.LanguageCode)
                     }).ToList();
+                curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
             }

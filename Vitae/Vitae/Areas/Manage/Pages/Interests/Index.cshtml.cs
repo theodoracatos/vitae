@@ -71,6 +71,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
                         Name = i.Name,
                         Order = i.Order
                     }).ToList();
+                curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
             }

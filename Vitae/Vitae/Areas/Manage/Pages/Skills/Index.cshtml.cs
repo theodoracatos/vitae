@@ -70,6 +70,7 @@ namespace Vitae.Areas.Manage.Pages.Skills
                         Order = s.Order,
                         Skillset = s.Skillset
                     }).ToList();
+                curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
             }

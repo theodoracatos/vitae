@@ -81,6 +81,7 @@ namespace Vitae.Areas.Manage.Pages.Experience
                         JobTitle = e.JobTitle,
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode)
                     }).ToList();
+                curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
             }

@@ -232,6 +232,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Certificate.
+        /// </summary>
+        public static string Certificate {
+            get {
+                return ResourceManager.GetString("Certificate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Certificates.
+        /// </summary>
+        public static string Certificates {
+            get {
+                return ResourceManager.GetString("Certificates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change.
         /// </summary>
         public static string Change {
@@ -1078,6 +1096,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Never expires.
+        /// </summary>
+        public static string NeverExpires {
+            get {
+                return ResourceManager.GetString("NeverExpires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New email.
         /// </summary>
         public static string NewEmail {
@@ -1848,6 +1875,15 @@ namespace Library.Resources {
         public static string ValueMustNotBeNullAccessor {
             get {
                 return ResourceManager.GetString("ValueMustNotBeNullAccessor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Various.
+        /// </summary>
+        public static string VariousMaritalStatus {
+            get {
+                return ResourceManager.GetString("VariousMaritalStatus", resourceCulture);
             }
         }
         

@@ -22,7 +22,6 @@
                         <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Interests[i].Name"></label>
                         <input class="form-control" type="text" asp-for="@Model.Interests[i].Name" />
                         <span asp-validation-for="@Model.Interests[i].Name" class="text-danger"></span>
-                        <input type="hidden" asp-for="@Model.Interests[i].Order" />
                     </div>
                     <div class="form-group col-md-6">
                         <label class="control-label" asp-for="@Model.Interests[i].Link"></label>
@@ -35,6 +34,7 @@
                         <label class="control-label" asp-for="@Model.Interests[i].Description"></label>
                         <textarea rows="3" asp-for="@Model.Interests[i].Description" class="form-control"></textarea>
                         <span asp-validation-for="@Model.Interests[i].Description" class="text-danger"></span>
+                        <input type="hidden" asp-for="@Model.Interests[i].Order" />
                     </div>
                 </div>
                 <div class="form-row">

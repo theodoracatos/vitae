@@ -174,6 +174,12 @@
   <data name="Category" xml:space="preserve">
     <value>Kategorie</value>
   </data>
+  <data name="Certificate" xml:space="preserve">
+    <value>Zertifikat</value>
+  </data>
+  <data name="Certificates" xml:space="preserve">
+    <value>Zertifikate</value>
+  </data>
   <data name="Change" xml:space="preserve">
     <value>Ändern</value>
   </data>
@@ -456,6 +462,9 @@
   <data name="Nationality" xml:space="preserve">
     <value>Nationalität</value>
   </data>
+  <data name="NeverExpires" xml:space="preserve">
+    <value>Unbegrenzt gültig</value>
+  </data>
   <data name="NewEmail" xml:space="preserve">
     <value>Neue E-Mail</value>
   </data>
@@ -713,6 +722,9 @@
   </data>
   <data name="ValueMustNotBeNullAccessor" xml:space="preserve">
     <value>Der Wert '{0}' ist ungültig</value>
+  </data>
+  <data name="VariousMaritalStatus" xml:space="preserve">
+    <value>Sonst. Zivilstand</value>
   </data>
   <data name="VerificationEmailSent" xml:space="preserve">
     <value>Verifikations-E-Mail wurde verschickt.</value>

@@ -261,6 +261,30 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Certificate",
+                columns: table => new
+                {
+                    CertificateID = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    Description = table.Column<string>(maxLength: 1000, nullable: false),
+                    Link = table.Column<string>(maxLength: 255, nullable: true),
+                    IssuedOn = table.Column<DateTime>(nullable: false),
+                    ExpiresOn = table.Column<DateTime>(nullable: true),
+                    Order = table.Column<int>(nullable: false),
+                    PersonID = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Certificate", x => x.CertificateID);
+                    table.ForeignKey(
+                        name: "FK_Certificate_Person_PersonID",
+                        column: x => x.PersonID,
+                        principalTable: "Person",
+                        principalColumn: "PersonID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Curriculum",
                 columns: table => new
                 {
@@ -525,6 +549,11 @@ namespace Persistency.Migrations
                 column: "PersonID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Certificate_PersonID",
+                table: "Certificate",
+                column: "PersonID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Child_PersonalDetailID",
                 table: "Child",
                 column: "PersonalDetailID");
@@ -656,6 +685,9 @@ namespace Persistency.Migrations
 
             migrationBuilder.DropTable(
                 name: "Award");
+
+            migrationBuilder.DropTable(
+                name: "Certificate");
 
             migrationBuilder.DropTable(
                 name: "Child");
