@@ -108,11 +108,7 @@ namespace Vitae.Areas.Manage.Pages.Reference
 
         public IActionResult OnPostRemoveReference()
         {
-            if (References == null)
-            {
-                References = new List<ReferenceVM>() { };
-            }
-            else if (References.Count > 1)
+            if (References.Count > 0)
             {
                 References.RemoveAt(References.Count - 1);
             }
@@ -133,7 +129,7 @@ namespace Vitae.Areas.Manage.Pages.Reference
             return GetPartialViewResult(PAGE_REFERENCE);
         }
 
-        public IActionResult OnPostDownAbroad(int order)
+        public IActionResult OnPostDownReference(int order)
         {
             var reference = References[order];
             References[order] = References[order + 1];
@@ -151,6 +147,10 @@ namespace Vitae.Areas.Manage.Pages.Reference
         protected override void FillSelectionViewModel()
         {
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
+            foreach(var reference in References)
+            {
+                reference.PhonePrefix = repository.GetPhonePrefix(reference.CountryCode);
+            }
         }
         #endregion
     }

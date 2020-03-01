@@ -91,7 +91,8 @@ namespace Vitae.Areas.Manage.Pages.Abroad
         #region AJAX
 
         public IActionResult OnPostChangeUntilNow(int order)
-        { 
+        {
+            Abroads[order].UntilNow = !Abroads[order].UntilNow;
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_ABROAD);

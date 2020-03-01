@@ -71,18 +71,12 @@
                         <div class="d-flex">
                             <div class="form-control w-auto flex-fill">
                                 <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
-                                    <input name="Experiences[@i].UntilNow" @(Model.Experiences[i].UntilNow ? "checked" : "") value="@(Model.Experiences[i].UntilNow ? "true" : "false")"  type="checkbox" data-ajax="true" data-ajax-update="#panel" />
-                                    <input name="Experiences[@i].UntilNow" type="hidden" value="@(Model.Experiences[i].UntilNow ? "true" : "false")" />
-                                    @*<input asp-for="@Model.Experiences[i].UntilNow" type="checkbox" data-ajax="true" data-ajax-update="#panel" />*@
-
-                                    @*<input name="Experiences[@i].UntilNow" type="checkbox" checked="@(Model.Experiences[i].UntilNow ? "checked" : "")" data-ajax-update="#panel" data-ajax="true">
-                                    <input name="Experiences[@i].UntilNow" type="hidden" value="@Model.Experiences[i].UntilNow" />*@
-                                    @*@Html.CheckBoxFor(m => m.Experiences[i].UntilNow)*@
+                                    <input name="Experiences[@i].@nameof(ExperienceVM.UntilNow)" @(Model.Experiences[i].UntilNow ? "checked" : "") value="@(Model.Experiences[i].UntilNow ? "true" : "false")"  type="checkbox" data-ajax="true" data-ajax-update="#panel" />
+                                    <input name="Experiences[@i].@nameof(ExperienceVM.UntilNow)" type="hidden" value="@(Model.Experiences[i].UntilNow ? "true" : "false")" />
                                     <div class="state">
                                         <label asp-for="@Model.Experiences[i].UntilNow"></label>
                                     </div>
                                 </div>
-                                
                                 <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeUntilNow" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                             </div>
                             @if (!@Model.Experiences[i].UntilNow)

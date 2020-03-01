@@ -94,7 +94,7 @@ namespace Vitae.Areas.Manage.Pages.Experience
 
         public IActionResult OnPostChangeUntilNow(int order)
         {
-            Experiences[order].UntilNow = !Experiences[order].UntilNow; 
+            Experiences[order].UntilNow = !Experiences[order].UntilNow;
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EXPERIENCE);
@@ -122,7 +122,6 @@ namespace Vitae.Areas.Manage.Pages.Experience
         {
             if (Experiences.Count > 0)
             {
-                ModelState.Remove("Experiences[0].UntilNow");
                 Experiences.RemoveAt(Experiences.Count - 1);
             }
 
