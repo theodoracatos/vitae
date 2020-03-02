@@ -81,8 +81,7 @@
                         <div class="d-flex">
                             <div class="form-control w-auto flex-fill">
                                 <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
-                                    <input name="Educations[@i].@nameof(EducationVM.UntilNow)" @(Model.Educations[i].UntilNow ? "checked" : "") value="@(Model.Educations[i].UntilNow ? "true" : "false")" type="checkbox" data-ajax="true" data-ajax-update="#panel" />
-                                    <input name="Educations[@i].@nameof(EducationVM.UntilNow)" type="hidden" value="@(Model.Educations[i].UntilNow ? "true" : "false")" />
+                                    <input type="checkbox" name="Educations[@i].@nameof(EducationVM.UntilNow)" value="true" checked="@(Model.Educations[i].UntilNow ? "checked" : null)" />
                                     <div class="state">
                                         <label asp-for="@Model.Educations[i].UntilNow"></label>
                                     </div>

@@ -463,7 +463,7 @@
     <value>Nationalität</value>
   </data>
   <data name="NeverExpires" xml:space="preserve">
-    <value>Unbegrenzt gültig</value>
+    <value>Nie</value>
   </data>
   <data name="NewEmail" xml:space="preserve">
     <value>Neue E-Mail</value>

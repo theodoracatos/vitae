@@ -463,7 +463,7 @@
     <value>Nationality</value>
   </data>
   <data name="NeverExpires" xml:space="preserve">
-    <value>Never expires</value>
+    <value>Never</value>
   </data>
   <data name="NewEmail" xml:space="preserve">
     <value>New email</value>

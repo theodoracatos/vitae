@@ -1,20 +1,15 @@
 USE Vitae
 GO
 
-DECLARE @CurriculumID uniqueidentifier ='9ec07a13-f3d2-4394-a7a7-87e7393b4ac6';
+DECLARE @CurriculumID uniqueidentifier ='4eb60de2-17e3-4281-b42d-26648d3aecbd';
 
 BEGIN TRY
     BEGIN TRANSACTION
 
--- Roles
-IF NOT EXISTS(SELECT 1 FROM [dbo].[AspNetRoles])
-BEGIN
-    INSERT INTO [dbo].[AspNetRoles]([Id], [Name], [NormalizedName]) VALUES (NEWID(), 'Admin', 'ADMIN')
-    INSERT INTO [dbo].[AspNetRoles]([Id], [Name], [NormalizedName]) VALUES (NEWID(), 'User', 'USER')
-END
-
 INSERT INTO [About]
-VALUES(NEWID(), '','"Wer hohe Türme bauen will, muss lange beim Fundament verweilen." Aristoteles',  null)
+VALUES(NEWID(), '"Wer hohe Türme bauen will, muss lange beim Fundament verweilen." Aristoteles',  null, null)
+
+select * from PersonalDetail
 
 INSERT INTO [PersonalDetail]
 VALUES (NEWID(), 'Alexandros', 'Theodoracatos', '1983-06-23', 1, 'Zwischenbächen', 143, 8048, 'Zürich', 'Zürich', 'theodoracatos@gmail.com', '787044438', 'Zürich ZH, Eschenbach SG', 2, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), (SELECT TOP 1 [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'))
@@ -31,11 +26,11 @@ VALUES(NEWID(), 'Marilena', '2014-08-14', 0, (SELECT TOP 1 [PersonalDetailID] FR
 INSERT INTO [Child]
 VALUES(NEWID(), 'Aris', '2017-08-13', 0, (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]))
 
-INSERT INTO [Person]
-VALUES (NEWID(), 'de', (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT TOP 1 [AboutID] FROM [About]))
+--INSERT INTO [Person]
+--VALUES (NEWID(), 'de', (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT TOP 1 [AboutID] FROM [About]))
 
-INSERT INTO [Curriculum]
-VALUES (@CurriculumID, 'a05c13a8-21fb-42c9-a5bc-98b7d94f464a', 'a05c13a8-21fb-42c9-a5bc-98b7d94f464a', 'a05c13a8', 'theodoracatos', null, GETDATE(), GETDATE(), (SELECT TOP 1 [PersonID] FROM [Person]))
+--INSERT INTO [Curriculum]
+--VALUES (NEWID(), @CurriculumID, 'a05c13a8-21fb-42c9-a5bc-98b7d94f464a', 'a05c13a8', 'theodoracatos', null, GETDATE(), GETDATE(), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [SocialLink]
 VALUES (NEWID(), 1, 'https://www.facebook.com/theodoracatos', 1, (SELECT TOP 1 [PersonID] FROM [Person]))

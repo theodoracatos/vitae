@@ -97,7 +97,6 @@ namespace Vitae.Areas.Manage.Pages.Education
 
         public IActionResult OnPostChangeUntilNow(int order)
         {
-            Educations[order].UntilNow = !Educations[order].UntilNow;
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EDUCATION);

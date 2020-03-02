@@ -1096,7 +1096,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Never expires.
+        ///   Looks up a localized string similar to Never.
         /// </summary>
         public static string NeverExpires {
             get {

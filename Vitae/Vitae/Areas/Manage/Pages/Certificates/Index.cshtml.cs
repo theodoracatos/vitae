@@ -90,7 +90,6 @@ namespace Vitae.Areas.Manage.Pages.Certificates
 
         public IActionResult OnPostChangeNeverExpires(int order)
         {
-            Certificates[order].NeverExpires = !Certificates[order].NeverExpires;
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_CERTIFICATES);

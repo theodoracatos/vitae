@@ -95,7 +95,6 @@ namespace Vitae.Areas.Manage.Pages.Experience
 
         public IActionResult OnPostChangeUntilNow(int order)
         {
-            Experiences[order].UntilNow = !Experiences[order].UntilNow;
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EXPERIENCE);

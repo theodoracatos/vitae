@@ -50,8 +50,7 @@
                         <div class="d-flex">
                             <div class="form-control w-auto flex-fill">
                                 <div class="pretty p-switch p-slim" onchange="$('#btnCheckNeverExpires'+@i).trigger('click');">
-                                    <input name="Certificates[@i].@nameof(CertificateVM.NeverExpires)" @(Model.Certificates[i].NeverExpires ? "checked" : "") value="@(Model.Certificates[i].NeverExpires ? "true" : "false")" type="checkbox" data-ajax="true" data-ajax-update="#panel" />
-                                    <input name="Certificates[@i].@nameof(CertificateVM.NeverExpires)" type="hidden" value="@(Model.Certificates[i].NeverExpires ? "true" : "false")" />
+                                    <input type="checkbox" name="Certificates[@i].@nameof(CertificateVM.NeverExpires)" value="true" checked="@(Model.Certificates[i].NeverExpires ? "checked" : null)" />
                                     <div class="state">
                                         <label asp-for="@Model.Certificates[i].NeverExpires"></label>
                                     </div>

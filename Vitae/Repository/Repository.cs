@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using Model.Enumerations;
 using Model.Poco;
 using Model.ViewModels;
 
@@ -135,13 +136,15 @@ namespace Library.Repository
                 ZipCode = curriculum.Person.PersonalDetail?.ZipCode,
                 State = curriculum.Person.PersonalDetail?.State,
                 PhonePrefix = GetPhonePrefix(curriculum.Person.PersonalDetail?.Country.CountryCode),
+                MaritalStatus = curriculum.Person.PersonalDetail?.MaritalStatus ?? MaritalStatus.NoInformation,
                 Children = curriculum.Person.PersonalDetail?.Children?.OrderBy(c => c.Order)
                 .Select(n => new ChildVM
                 {
                     Firstname = n.Firstname,
                     Order = n.Order,
                     Birthday_Year = n.Birthday.Year,
-                    Birthday_Month = n.Birthday.Month
+                    Birthday_Month = n.Birthday.Month,
+                    Birthday_Day = n.Birthday.Day
                 }).ToList() ?? new List<ChildVM>(),
                 Nationalities = curriculum.Person.PersonalDetail?.PersonCountries?.OrderBy(pc => pc.Order)
                 .Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order })

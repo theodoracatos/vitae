@@ -28,7 +28,7 @@ namespace Persistency.Data
             modelBuilder.RemovePluralizingTableNameConvention();
 
             /* Index, unique */
-            modelBuilder.Entity<Curriculum>().HasIndex(c => c.Identifier);
+            modelBuilder.Entity<Curriculum>().HasIndex(c => c.Identifier).IsUnique();
             modelBuilder.Entity<Curriculum>().HasIndex(c => c.FriendlyId);
             modelBuilder.Entity<Country>().HasIndex(c => c.CountryCode).IsUnique();
             modelBuilder.Entity<Language>().HasIndex(c => c.LanguageCode).IsUnique();
