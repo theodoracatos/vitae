@@ -9,6 +9,7 @@ using Persistency.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Library.Repository
 {
@@ -30,43 +31,46 @@ namespace Library.Repository
             });
         }
 
-        public Curriculum GetCurriculumByWeakIdentifier(string identifier)
+        public async Task<Curriculum> GetCurriculumByWeakIdentifierAsync(string identifier)
         {
             Curriculum curriculum = null;
             var curriculumID = vitaeContext.Curriculums.SingleOrDefault(c => c.Identifier.ToString().ToLower() == identifier.ToLower() || c.FriendlyId == identifier)?.Identifier;
 
             if (curriculumID.HasValue)
             {
-                curriculum = GetCurriculum(curriculumID.Value);
+                curriculum = await GetCurriculumAsync(curriculumID.Value);
             }
 
             return curriculum;
         }
 
-        public Curriculum GetCurriculum(Guid curriculumID)
+        public async Task<Curriculum> GetCurriculumAsync(Guid curriculumID)
         {
-            var curriculum = vitaeContext.Curriculums
-            .Include(c => c.Person)
-            .Include(c => c.Person.PersonalDetail)
-            .Include(c => c.Person.PersonalDetail.Children)
-            .Include(c => c.Person.PersonalDetail.Country)
-            .Include(c => c.Person.PersonalDetail.Language)
-            .Include(c => c.Person.PersonalDetail.PersonCountries).ThenInclude(pc => pc.Country)
-            .Include(c => c.Person.About)
-            .Include(c => c.Person.About.Vfile)
-            .Include(c => c.Person.Abroads).ThenInclude(a => a.Country)
-            .Include(c => c.Person.Awards)
-            .Include(c => c.Person.Certificates)
-            .Include(c => c.Person.Educations).ThenInclude(e => e.Country)
-            .Include(c => c.Person.Experiences).ThenInclude(e => e.Country)
-            .Include(c => c.Person.Interests)
-            .Include(c => c.Person.LanguageSkills).ThenInclude(ls => ls.Language)
-            .Include(c => c.Person.Skills)
-            .Include(c => c.Person.SocialLinks)
-            .Include(c => c.Person.References).ThenInclude(r => r.Country)
-            .Single(c => c.Identifier == curriculumID);
+            var curriculumQuery = vitaeContext.Curriculums
+               .Where(c => c.Identifier == curriculumID).Take(1);
 
-            return curriculum;
+            await curriculumQuery.Include(c => c.Person).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.PersonalDetail).LoadAsync();
+            await curriculumQuery.Include(c => c.Person).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.PersonalDetail).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.PersonalDetail.Children).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.PersonalDetail.Country).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.PersonalDetail.Language).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.PersonalDetail.PersonCountries).ThenInclude(pc => pc.Country).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.About).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.About.Vfile).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.Abroads).ThenInclude(a => a.Country).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.Awards).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.Certificates).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.Educations).ThenInclude(e => e.Country).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.Experiences).ThenInclude(e => e.Country).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.Interests).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.LanguageSkills).ThenInclude(ls => ls.Language).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.Skills).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.SocialLinks).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.References).ThenInclude(r => r.Country).LoadAsync();
+
+            return curriculumQuery.Single();
         }
 
         public IEnumerable<MonthVM> GetMonths(string uiCulture)
@@ -199,6 +203,7 @@ namespace Library.Repository
                    End_Year = c.ExpiresOn.HasValue ? c.ExpiresOn.Value.Year : DateTime.Now.Year,
                    Link = c.Link,
                    Name = c.Name,
+                   Issuer = c.Issuer,
                    NeverExpires = !c.ExpiresOn.HasValue,
                    Order = c.Order
                }).ToList();

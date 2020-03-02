@@ -41,7 +41,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
         #region SYNC
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == curriculumID))
             {
@@ -49,7 +49,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
             }
             else
             {
-                var curriculum = repository.GetCurriculum(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 PersonalDetail = repository.GetPersonalDetail(curriculum, identity.Name);
 
                 FillSelectionViewModel();
@@ -61,7 +61,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
         {
             if (ModelState.IsValid)
             {
-                var curriculum = repository.GetCurriculum(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 curriculum.Person.PersonalDetail = curriculum.Person.PersonalDetail ?? new PersonalDetail() { PersonCountries = new List<PersonCountry>() };
                 curriculum.Person.PersonalDetail.Birthday = new DateTime(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
                 curriculum.Person.PersonalDetail.City = PersonalDetail.City;

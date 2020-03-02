@@ -369,6 +369,9 @@
   <data name="IssuedOn" xml:space="preserve">
     <value>Issued on</value>
   </data>
+  <data name="Issuer" xml:space="preserve">
+    <value>Issuer</value>
+  </data>
   <data name="JobExperiences" xml:space="preserve">
     <value>Job experiences</value>
   </data>

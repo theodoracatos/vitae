@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -36,6 +37,24 @@ namespace Library.Helper
             bodyText.Replace("${YEAR}", DateTime.Now.Year.ToString());
 
             return bodyText.ToString();
+        }
+
+        public static bool IsPdf(Stream stream)
+        {
+            var pdfString = "%PDF-";
+            var pdfBytes = Encoding.ASCII.GetBytes(pdfString);
+            var len = pdfBytes.Length;
+            var buf = new byte[len];
+            var remaining = len;
+            var pos = 0;
+            while (remaining > 0)
+            {
+                var amtRead = stream.Read(buf, pos, remaining);
+                if (amtRead == 0) return false;
+                remaining -= amtRead;
+                pos += amtRead;
+            }
+            return pdfBytes.SequenceEqual(buf);
         }
     }
 }

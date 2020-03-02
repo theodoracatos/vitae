@@ -40,7 +40,7 @@ namespace Vitae.Areas.Manage.Pages.Reference
 
         #region SYNC
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == curriculumID))
             {
@@ -48,7 +48,7 @@ namespace Vitae.Areas.Manage.Pages.Reference
             }
             else
             {
-                var curriculum = repository.GetCurriculum(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 References = repository.GetReferences(curriculum);
 
                 FillSelectionViewModel();
@@ -60,7 +60,7 @@ namespace Vitae.Areas.Manage.Pages.Reference
         {
             if (ModelState.IsValid)
             {
-                var curriculum = repository.GetCurriculum(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 vitaeContext.RemoveRange(curriculum.Person.References);
 
                 curriculum.Person.References =

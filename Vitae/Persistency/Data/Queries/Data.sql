@@ -26,11 +26,11 @@ VALUES(NEWID(), 'Marilena', '2014-08-14', 0, (SELECT TOP 1 [PersonalDetailID] FR
 INSERT INTO [Child]
 VALUES(NEWID(), 'Aris', '2017-08-13', 0, (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]))
 
---INSERT INTO [Person]
---VALUES (NEWID(), 'de', (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT TOP 1 [AboutID] FROM [About]))
+INSERT INTO [Person]
+VALUES (NEWID(), 'de', (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT TOP 1 [AboutID] FROM [About]))
 
---INSERT INTO [Curriculum]
---VALUES (NEWID(), @CurriculumID, 'a05c13a8-21fb-42c9-a5bc-98b7d94f464a', 'a05c13a8', 'theodoracatos', null, GETDATE(), GETDATE(), (SELECT TOP 1 [PersonID] FROM [Person]))
+INSERT INTO [Curriculum]
+VALUES (NEWID(), @CurriculumID, @CurriculumID, 'alexis', 'theodoracatos', null, GETDATE(), GETDATE(), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [SocialLink]
 VALUES (NEWID(), 1, 'https://www.facebook.com/theodoracatos', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
@@ -132,37 +132,16 @@ INSERT INTO [Abroad]
 VALUES (NEWID(), (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'sg'), 'Singapore', 'Auslandaufenthalt in Singapur', '2015-01-01', '2018-01-01', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Reference]
-VALUES (NEWID(), 'Wolfgang', 'Schmidt', 1, 'ABB (Schweiz) AG', 'https://abb.ch', 'Früherer Vorgesetzter bei der Ruf Telematik AG', 'wolfgang.schmidt@abb.ch', '78 704 44 38', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Wolfgang', 'Schmidt', 1, 'ABB (Schweiz) AG', 'https://abb.ch', 'Ehemaliger Vorgesetzter bei der Ruf Telematik AG', 'wolfgang.schmidt@abb.ch', '78 704 44 38', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
-select * from certificate
+INSERT INTO [Certificate]
+VALUES (NEWID(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, (SELECT TOP 1 [PersonID] FROM [Person]))
 
--------------------
+INSERT INTO [Certificate]
+VALUES (NEWID(), 'Professional Scrum Master I (PSM I)', 'Microsoft Specialist: Programming in C#', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, (SELECT TOP 1 [PersonID] FROM [Person]))
 
---select * from [Person]
---select * from [About]
---select * from [Vfile]
---select * from [Curriculum]
---select * from [SocialLink]
---select * from [Experience]
---select * from [Education]
---select * from [Language]
---select * from [LanguageSkill]
-
---delete [About]
---DBCC CHECKIDENT ('[About]', RESEED, 0);
---GO
-
---delete [Person]
---DBCC CHECKIDENT ('[Person]', RESEED, 0);
---GO
-
---delete [Curriculum]
---DBCC CHECKIDENT ('[Curriculum]', RESEED, 0);
---GO
-
---delete [SocialLink]
---DBCC CHECKIDENT ('[Curriculum]', RESEED, 0);
---GO
+INSERT INTO [Certificate]
+VALUES (NEWID(), 'SVEB Kursleiter Stufe 1', 'Lernveranstaltungen mit Erwachsenen durchführen / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin/', '2019-05-16', null, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 --------------------------------
 

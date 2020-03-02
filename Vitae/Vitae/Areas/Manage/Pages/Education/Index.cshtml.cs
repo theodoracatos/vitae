@@ -41,19 +41,15 @@ namespace Vitae.Areas.Manage.Pages.Education
 
         #region SYNC
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == curriculumID))
             {
                 return NotFound();
             }
-            else if (vitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == curriculumID).Person == null)
-            {
-                return BadRequest();
-            }
             else
             {
-                var curriculum = repository.GetCurriculum(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 Educations = repository.GetEducations(curriculum);
 
                 FillSelectionViewModel();
@@ -65,7 +61,7 @@ namespace Vitae.Areas.Manage.Pages.Education
         {
             if (ModelState.IsValid)
             {
-                var curriculum = repository.GetCurriculum(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 vitaeContext.RemoveRange(curriculum.Person.Educations);
 
                 curriculum.Person.Educations =

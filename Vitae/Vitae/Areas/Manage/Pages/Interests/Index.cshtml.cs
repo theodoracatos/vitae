@@ -37,19 +37,15 @@ namespace Vitae.Areas.Manage.Pages.Interests
 
         #region SYNC
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == curriculumID))
             {
                 return NotFound();
             }
-            else if (vitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == curriculumID).Person == null)
-            {
-                return BadRequest();
-            }
             else
             {
-                var curriculum = repository.GetCurriculum(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 Interests = repository.GetInterests(curriculum);
 
                 FillSelectionViewModel();
@@ -60,7 +56,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
         {
             if (ModelState.IsValid)
             {
-                var curriculum = repository.GetCurriculum(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 vitaeContext.RemoveRange(curriculum.Person.Interests);
 
                 curriculum.Person.Interests =

@@ -39,19 +39,15 @@ namespace Vitae.Areas.Manage.Pages.Certificates
 
         #region SYNC
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == curriculumID))
             {
                 return NotFound();
             }
-            else if (vitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == curriculumID).Person == null)
-            {
-                return BadRequest();
-            }
             else
             {
-                var curriculum = repository.GetCurriculum(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 Certificates = repository.GetCertificates(curriculum);
 
                 FillSelectionViewModel();
@@ -63,7 +59,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
         {
             if (ModelState.IsValid)
             {
-                var curriculum = repository.GetCurriculum(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 vitaeContext.RemoveRange(curriculum.Person.Certificates);
 
                 curriculum.Person.Certificates =
@@ -72,6 +68,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
                         IssuedOn = new DateTime(c.Start_Year, c.Start_Month, 1),
                         ExpiresOn = c.NeverExpires ? null : (DateTime?)new DateTime(c.End_Year.Value, c.End_Month.Value, DateTime.DaysInMonth(c.End_Year.Value, c.End_Month.Value)),
                         Order = c.Order,
+                        Issuer = c.Issuer,
                         Description = c.Description,
                         Link = c.Link,
                         Name = c.Name

@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using Vitae.Code;
 
 using Poco = Model.Poco;
+using Library.Helper;
 
 namespace Vitae.Areas.Manage.Pages.About
 {
@@ -34,19 +35,15 @@ namespace Vitae.Areas.Manage.Pages.About
 
         #region SYNC
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == curriculumID))
             {
                 return NotFound();
             }
-            else if (vitaeContext.Curriculums.Include(c => c.Person).Single(c => c.Identifier == curriculumID).Person == null)
-            {
-                return BadRequest();
-            }
             else
             {
-                var curriculum = repository.GetCurriculum(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 About = repository.GetAbout(curriculum);
 
                 return Page();
@@ -69,10 +66,9 @@ namespace Vitae.Areas.Manage.Pages.About
 
         public async Task<IActionResult> OnPostAsync()
         {
-            // TODO: Check if id is from person x
             if (ModelState.IsValid)
             {
-                var curriculum = repository.GetCurriculum(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 curriculum.Person.About = curriculum.Person.About == null ? new Poco.About() : curriculum.Person.About;
                 curriculum.Person.About.Slogan = About.Slogan;
                 curriculum.Person.About.Photo = About.Photo;
@@ -82,20 +78,23 @@ namespace Vitae.Areas.Manage.Pages.About
                 {
                     using (var stream = About.Vfile.Content.OpenReadStream())
                     {
-                        using (var reader = new BinaryReader(stream))
+                        if (CodeHelper.IsPdf(stream))
                         {
-                            var identifier = Guid.NewGuid();
-                            byte[] bytes = reader.ReadBytes((int)About.Vfile.Content.Length);
-                            curriculum.Person.About.Vfile = new Vfile()
+                            using (var reader = new BinaryReader(stream))
                             {
-                                Content = bytes,
-                                FileName = About.Vfile.Content.FileName,
-                                Identifier = identifier,
-                                MimeType = "application/pdf"
-                            };
-                            // Update VM
-                            About.Vfile.Identifier = identifier;
-                            About.Vfile.FileName = About.Vfile.Content.FileName;
+                                var identifier = Guid.NewGuid();
+                                byte[] bytes = reader.ReadBytes((int)About.Vfile.Content.Length);
+                                curriculum.Person.About.Vfile = new Vfile()
+                                {
+                                    Content = bytes,
+                                    FileName = About.Vfile.Content.FileName,
+                                    Identifier = identifier,
+                                    MimeType = "application/pdf"
+                                };
+                                // Update VM
+                                About.Vfile.Identifier = identifier;
+                                About.Vfile.FileName = About.Vfile.Content.FileName;
+                            }
                         }
                     }
                 }

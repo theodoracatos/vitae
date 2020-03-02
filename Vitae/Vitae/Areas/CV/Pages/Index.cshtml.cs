@@ -17,6 +17,7 @@ using System.Drawing;
 using System.IO;
 
 using Vitae.Code;
+using System.Threading.Tasks;
 
 namespace CVitae.Areas.CV.Pages
 {
@@ -41,9 +42,9 @@ namespace CVitae.Areas.CV.Pages
         public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
     : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
 
-        public IActionResult OnGet(string id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
-            var curriculum = repository.GetCurriculumByWeakIdentifier(id);
+            var curriculum = await repository.GetCurriculumByWeakIdentifierAsync(id);
 
             if(curriculum == null)
             {

@@ -2,7 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Vitae/.vs/Vitae
+/.vs
+/Vitae/.vs
 /Vitae/Library/bin
 /Vitae/Library/obj
 /Vitae/Persistency/bin
@@ -16,9 +17,6 @@
 /Vitae/Model/obj
 /Vitae/Model/bin
 /Vitae/Vitae/Vitae.csproj.user
-/.vs/VSWorkspaceState.json
-/.vs/slnx.sqlite
-/.vs/ProjectSettings.json
 /Vitae/Vitae/wwwroot/js/site.min.js
 /Vitae/Vitae/wwwroot/js/site.js.map
 /Vitae/Vitae/wwwroot/js/site.js
@@ -39,3 +37,4 @@
 /Vitae/Vitae/wwwroot/css/account.min.css
 /Vitae/Vitae/wwwroot/css/account.css
 /Vitae/Vitae/wwwroot/js/jquery.unobtrusive-ajax.min.js
+
