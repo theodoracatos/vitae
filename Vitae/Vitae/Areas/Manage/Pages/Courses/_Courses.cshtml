@@ -1,23 +1,23 @@
-﻿@model Vitae.Areas.Manage.Pages.Education.IndexModel
+﻿@model Vitae.Areas.Manage.Pages.Courses.IndexModel
 
 <div id="panel">
     <div class="card">
         <div class="card-header font-weight-bold">
-            <h1><i class="fas fa-university fa-fw"></i>@SharedResource.Education</h1>
+            <h1><i class="fas fa-university fa-fw"></i>@SharedResource.Course</h1>
         </div>
         <div class="card-body">
             <div class="form-row">
                 <div class="form-group col">
-                    <label class="control-label" asp-for="@Model.Educations"></label>
+                    <label class="control-label" asp-for="@Model.Courses"></label>
                     <div>
-                        <button asp-page-handler="AddEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Educations?.Count < Model.MaxEducations ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Educations?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                        <button asp-page-handler="AddCourse" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Courses?.Count < Model.MaxCourses ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                        <button asp-page-handler="RemoveCourse" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Courses?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
                     </div>
                 </div>
             </div>
-            @for (int i = 0; i < Model.Educations.Count; i++)
+            @for (int i = 0; i < Model.Courses.Count; i++)
             {
-                <div class="form-row">
+                @*<div class="form-row">
                     <div class="form-group col-md-6">
                         <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Educations[i].SchoolName"></label>
                         <input class="form-control" type="text" asp-for="@Model.Educations[i].SchoolName" />
@@ -116,7 +116,7 @@
                             <hr />
                         </div>
                     </div>
-                }
+                }*@
             }
         </div>
         <div class="card-footer">

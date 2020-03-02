@@ -21,7 +21,7 @@ using Vitae.Code;
 
 using Poco = Model.Poco;
 
-namespace Vitae.Areas.Manage.Pages.Reference
+namespace Vitae.Areas.Manage.Pages.References
 {
     public class IndexModel : BasePageModel
     {

@@ -1,4 +1,4 @@
-Bugfix - and save -> Validation of IList items (??)
+Finish Courses Html
 
 Do Logging
 Do Dashboard

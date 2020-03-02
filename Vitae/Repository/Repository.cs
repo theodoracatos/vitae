@@ -211,6 +211,31 @@ namespace Library.Repository
             return certificatesVM;
         }
 
+        public IList<CourseVM> GetCourses(Curriculum curriculum)
+        {
+            var coursesVM = curriculum.Person.Courses?.OrderBy(co => co.Order)
+               .Select(c => new CourseVM()
+               {
+                   Description = c.Description,
+                   Start_Day = c.Start.Day,
+                   Start_Month = c.Start.Month,
+                   Start_Year = c.Start.Year,
+                   End_Day = c.End.HasValue ? c.End.Value.Day : DateTime.Now.Day,
+                   End_Month = c.End.HasValue ? c.End.Value.Month : DateTime.Now.Month,
+                   End_Year = c.End.HasValue ? c.End.Value.Year : DateTime.Now.Year,
+                   Level = c.Level,
+                   Link = c.Link,
+                   City = c.City,
+                   Title = c.Title,
+                   CountryCode = c.Country.CountryCode,
+                   SchoolName = c.SchoolName,
+                   UntilNow = !c.End.HasValue,
+                   Order = c.Order
+               }).ToList();
+
+            return coursesVM;
+        }
+
         public IList<EducationVM> GetEducations(Curriculum curriculum)
         {
             var educationsVM = curriculum.Person.Educations?.OrderBy(ed => ed.Order)

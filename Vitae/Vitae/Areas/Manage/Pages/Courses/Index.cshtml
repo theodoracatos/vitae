@@ -1,0 +1,10 @@
+﻿@page
+@model Vitae.Areas.Manage.Pages.Courses.IndexModel
+
+@{
+    ViewData["Title"] = @SharedResource.Courses;
+}
+
+<form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
+    <partial name="_Courses" model="Model" />
+</form>

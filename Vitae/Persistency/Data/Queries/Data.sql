@@ -135,6 +135,9 @@ INSERT INTO [Reference]
 VALUES (NEWID(), 'Wolfgang', 'Schmidt', 1, 'ABB (Schweiz) AG', 'https://abb.ch', 'Ehemaliger Vorgesetzter bei der Ruf Telematik AG', 'wolfgang.schmidt@abb.ch', '78 704 44 38', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Certificate]
+VALUES (NEWID(), 'Cambridge English Level 2 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org/', '2014-03-01', null, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Certificate]
 VALUES (NEWID(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Certificate]

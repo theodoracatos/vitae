@@ -252,6 +252,12 @@
   <data name="CountryName" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="Course" xml:space="preserve">
+    <value>Course</value>
+  </data>
+  <data name="Courses" xml:space="preserve">
+    <value>Courses</value>
+  </data>
   <data name="CreateAccount" xml:space="preserve">
     <value>Create a new account.</value>
   </data>
@@ -398,6 +404,9 @@
   </data>
   <data name="Lastname" xml:space="preserve">
     <value>Lastname</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
   </data>
   <data name="LockedOut" xml:space="preserve">
     <value>Locked out</value>
@@ -571,6 +580,9 @@
     <value>Knowledge</value>
   </data>
   <data name="Reference" xml:space="preserve">
+    <value>References</value>
+  </data>
+  <data name="References" xml:space="preserve">
     <value>References</value>
   </data>
   <data name="Register" xml:space="preserve">

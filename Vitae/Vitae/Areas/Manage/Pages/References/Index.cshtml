@@ -1,0 +1,10 @@
+﻿@page
+@model Vitae.Areas.Manage.Pages.References.IndexModel
+
+@{
+    ViewData["Title"] = @SharedResource.References;
+}
+
+<form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
+    <partial name="_References" model="Model" />
+</form>

@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Model.Poco
 {
-    public class LanguageCourse
+    public class Course
     {
         [Key]
-        public Guid LanguageCourseID { get; set; }
+        public Guid CourseID { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -16,11 +18,20 @@ namespace Model.Poco
         public string Link { get; set; }
 
         [Required]
+        [MaxLength(100)]
+        public string Title { get; set; }
+
+        [MaxLength(1000)]
+        public string Description { get; set; }
+
+        [Required]
         public virtual Country Country { get; set; }
 
         [Required]
         [MaxLength(100)]
         public string City { get; set; }
+
+        public string Level { get; set; }
 
         public DateTime Start { get; set; }
 
