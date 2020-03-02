@@ -25,7 +25,7 @@ namespace Vitae.Areas.Manage.Pages.References
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_REFERENCE = "_Reference";
+        private const string PAGE_REFERENCES = "_References";
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Reference), Prompt = nameof(SharedResource.Reference))]
         [BindProperty]
@@ -93,7 +93,7 @@ namespace Vitae.Areas.Manage.Pages.References
         {
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_REFERENCE);
+            return GetPartialViewResult(PAGE_REFERENCES);
         }
 
         public IActionResult OnPostAddReference()
@@ -104,7 +104,7 @@ namespace Vitae.Areas.Manage.Pages.References
             }
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_REFERENCE);
+            return GetPartialViewResult(PAGE_REFERENCES);
         }
 
         public IActionResult OnPostRemoveReference()
@@ -116,7 +116,7 @@ namespace Vitae.Areas.Manage.Pages.References
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_REFERENCE);
+            return GetPartialViewResult(PAGE_REFERENCES);
         }
 
         public IActionResult OnPostUpReference(int order)
@@ -127,7 +127,7 @@ namespace Vitae.Areas.Manage.Pages.References
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_REFERENCE);
+            return GetPartialViewResult(PAGE_REFERENCES);
         }
 
         public IActionResult OnPostDownReference(int order)
@@ -138,7 +138,7 @@ namespace Vitae.Areas.Manage.Pages.References
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_REFERENCE);
+            return GetPartialViewResult(PAGE_REFERENCES);
         }
 
         #endregion

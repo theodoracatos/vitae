@@ -327,6 +327,9 @@
   <data name="Experience" xml:space="preserve">
     <value>Experience</value>
   </data>
+  <data name="Experiences" xml:space="preserve">
+    <value>Experiences</value>
+  </data>
   <data name="ExpiresOn" xml:space="preserve">
     <value>Expires on</value>
   </data>
@@ -656,6 +659,9 @@
   </data>
   <data name="Single" xml:space="preserve">
     <value>Single</value>
+  </data>
+  <data name="SingleDay" xml:space="preserve">
+    <value>SingleDay</value>
   </data>
   <data name="Skills" xml:space="preserve">
     <value>Skills</value>

@@ -267,6 +267,7 @@ namespace Persistency.Migrations
                     CertificateID = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: false),
+                    Issuer = table.Column<string>(maxLength: 100, nullable: false),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
                     IssuedOn = table.Column<DateTime>(nullable: false),
                     ExpiresOn = table.Column<DateTime>(nullable: true),
@@ -278,6 +279,40 @@ namespace Persistency.Migrations
                     table.PrimaryKey("PK_Certificate", x => x.CertificateID);
                     table.ForeignKey(
                         name: "FK_Certificate_Person_PersonID",
+                        column: x => x.PersonID,
+                        principalTable: "Person",
+                        principalColumn: "PersonID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Course",
+                columns: table => new
+                {
+                    CourseID = table.Column<Guid>(nullable: false),
+                    SchoolName = table.Column<string>(maxLength: 100, nullable: false),
+                    Link = table.Column<string>(maxLength: 255, nullable: true),
+                    Title = table.Column<string>(maxLength: 100, nullable: false),
+                    Description = table.Column<string>(maxLength: 1000, nullable: true),
+                    CountryID = table.Column<Guid>(nullable: false),
+                    City = table.Column<string>(maxLength: 100, nullable: false),
+                    Level = table.Column<string>(nullable: true),
+                    Start = table.Column<DateTime>(nullable: false),
+                    End = table.Column<DateTime>(nullable: true),
+                    Order = table.Column<int>(nullable: false),
+                    PersonID = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Course", x => x.CourseID);
+                    table.ForeignKey(
+                        name: "FK_Course_Country_CountryID",
+                        column: x => x.CountryID,
+                        principalTable: "Country",
+                        principalColumn: "CountryID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Course_Person_PersonID",
                         column: x => x.PersonID,
                         principalTable: "Person",
                         principalColumn: "PersonID",
@@ -566,6 +601,16 @@ namespace Persistency.Migrations
                 filter: "[CountryCode] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Course_CountryID",
+                table: "Course",
+                column: "CountryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Course_PersonID",
+                table: "Course",
+                column: "PersonID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Curriculum_FriendlyId",
                 table: "Curriculum",
                 column: "FriendlyId");
@@ -573,7 +618,8 @@ namespace Persistency.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Curriculum_Identifier",
                 table: "Curriculum",
-                column: "Identifier");
+                column: "Identifier",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Curriculum_PersonID",
@@ -691,6 +737,9 @@ namespace Persistency.Migrations
 
             migrationBuilder.DropTable(
                 name: "Child");
+
+            migrationBuilder.DropTable(
+                name: "Course");
 
             migrationBuilder.DropTable(
                 name: "Education");

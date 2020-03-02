@@ -165,11 +165,11 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
         public IActionResult OnPostChangeBirthday()
         {
-            PersonalDetail.Birthday_Day = CorrectBirthday(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
+            PersonalDetail.Birthday_Day = CorrectDate(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
            
             foreach(var child in PersonalDetail.Children)
             {
-                child.Birthday_Day = CorrectBirthday(child.Birthday_Year, child.Birthday_Month, child.Birthday_Day);
+                child.Birthday_Day = CorrectDate(child.Birthday_Year, child.Birthday_Month, child.Birthday_Day);
             }
 
             FillSelectionViewModel();
@@ -187,20 +187,6 @@ namespace Vitae.Areas.Manage.Pages.Personal
         #endregion
 
         #region Helper
-
-        private int CorrectBirthday(int year, int month, int day)
-        {
-            DateTime tempDate;
-            do
-            {
-                if (!DateTime.TryParse($"{year}-{month}-{day}", out tempDate))
-                {
-                    --day; // Decrement (wrong day)
-                }
-            } while (tempDate == DateTime.MinValue);
-
-            return day;
-        }
 
         protected override void FillSelectionViewModel()
         {

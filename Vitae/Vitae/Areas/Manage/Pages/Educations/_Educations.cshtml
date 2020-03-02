@@ -1,9 +1,9 @@
-﻿@model Vitae.Areas.Manage.Pages.Education.IndexModel
+﻿@model Vitae.Areas.Manage.Pages.Educations.IndexModel
 
 <div id="panel">
     <div class="card">
         <div class="card-header font-weight-bold">
-            <h1><i class="fas fa-university fa-fw"></i>@SharedResource.Education</h1>
+            <h1><i class="fas fa-graduation-cap fa-fw"></i>@SharedResource.Educations</h1>
         </div>
         <div class="card-body">
             <div class="form-row">
@@ -22,7 +22,6 @@
                         <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Educations[i].SchoolName"></label>
                         <input class="form-control" type="text" asp-for="@Model.Educations[i].SchoolName" />
                         <span asp-validation-for="@Model.Educations[i].SchoolName" class="text-danger"></span>
-                        <input type="hidden" asp-for="@Model.Educations[i].Order" />
                     </div>
                     <div class="form-group col-md-6">
                         <label class="control-label" asp-for="@Model.Educations[i].Link"></label>
@@ -81,17 +80,20 @@
                         <div class="d-flex">
                             <div class="form-control w-auto flex-fill">
                                 <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
-                                    <input type="checkbox" name="Educations[@i].@nameof(EducationVM.UntilNow)" value="true" checked="@(Model.Educations[i].UntilNow ? "checked" : null)" />
+                                    <input type="checkbox" name="@(nameof(Educations))[@i].@nameof(EducationVM.UntilNow)" value="true" checked="@(Model.Educations[i].UntilNow ? "checked" : null)" />
                                     <div class="state">
                                         <label asp-for="@Model.Educations[i].UntilNow"></label>
+                                        <input type="hidden" asp-for="@Model.Educations[i].Order" />
                                     </div>
                                 </div>
                                 <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeUntilNow" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                             </div>
                             @if (!@Model.Educations[i].UntilNow)
                             {
+
                                 <select asp-for="@Model.Educations[i].End_Month" class="form-control flex-fill ml-2 mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
                                 <select asp-for="@Model.Educations[i].End_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+
                             }
                             else
                             {

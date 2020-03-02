@@ -1,5 +1,4 @@
 ﻿using Library.Resources;
-
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels
@@ -51,8 +50,8 @@ namespace Model.ViewModels
 
         public int? End_Year { get; set; }
 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.UntilNow), Prompt = nameof(SharedResource.UntilNow))]
-        public bool UntilNow { get; set; }
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.SingleDay), Prompt = nameof(SharedResource.SingleDay))]
+        public bool SingleDay { get; set; }
 
         public int Order { get; set; }
     }

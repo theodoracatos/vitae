@@ -3,7 +3,7 @@
 <div id="panel">
     <div class="card">
         <div class="card-header font-weight-bold">
-            <h1><i class="fas fa-certificate fa-fw"></i>@SharedResource.Certificate</h1>
+            <h1><i class="fas fa-certificate fa-fw"></i>@SharedResource.Certificates</h1>
         </div>
         <div class="card-body">
             <div class="form-row">
@@ -55,7 +55,7 @@
                         <div class="d-flex">
                             <div class="form-control w-auto flex-fill">
                                 <div class="pretty p-switch p-slim" onchange="$('#btnCheckNeverExpires'+@i).trigger('click');">
-                                    <input type="checkbox" name="Certificates[@i].@nameof(CertificateVM.NeverExpires)" value="true" checked="@(Model.Certificates[i].NeverExpires ? "checked" : null)" />
+                                    <input type="checkbox" name="@(nameof(Certificates))[@i].@nameof(CertificateVM.NeverExpires)" value="true" checked="@(Model.Certificates[i].NeverExpires ? "checked" : null)" />
                                     <div class="state">
                                         <label asp-for="@Model.Certificates[i].NeverExpires"></label>
                                     </div>

@@ -28,11 +28,6 @@ namespace Vitae.Code
         protected readonly ClaimsIdentity identity;
         protected readonly Repository repository;
 
-        [Obsolete]
-        public BasePageModel() 
-        { 
-        }
-
         public BasePageModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
         {
             this.localizer = localizer;
@@ -56,6 +51,20 @@ namespace Vitae.Code
             };
 
             return result;
+        }
+
+        protected int CorrectDate(int year, int month, int day)
+        {
+            DateTime tempDate;
+            do
+            {
+                if (!DateTime.TryParse($"{year}-{month}-{day}", out tempDate))
+                {
+                    --day; // Decrement (wrong day)
+                }
+            } while (tempDate == DateTime.MinValue);
+
+            return day;
         }
 
         protected abstract void FillSelectionViewModel();

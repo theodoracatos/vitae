@@ -691,6 +691,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Experiences.
+        /// </summary>
+        public static string Experiences {
+            get {
+                return ResourceManager.GetString("Experiences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expires on.
         /// </summary>
         public static string ExpiresOn {
@@ -1677,6 +1686,15 @@ namespace Library.Resources {
         public static string Single {
             get {
                 return ResourceManager.GetString("Single", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SingleDay.
+        /// </summary>
+        public static string SingleDay {
+            get {
+                return ResourceManager.GetString("SingleDay", resourceCulture);
             }
         }
         

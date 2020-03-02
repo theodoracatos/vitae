@@ -70,7 +70,7 @@ namespace Vitae.Areas.Manage.Pages.Abroad
                     { 
                         City = e.City,
                         Start = new DateTime(e.Start_Year, e.Start_Month, 1),
-                        End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, DateTime.DaysInMonth(e.End_Year.Value, e.End_Month.Value)),
+                        End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, 1),
                         Order = e.Order,
                         Description = e.Description,
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode)

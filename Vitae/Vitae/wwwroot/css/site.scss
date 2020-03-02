@@ -16,8 +16,17 @@ h1 {
     margin-bottom: 0.5em;
 }
 
+hr {
+    margin-bottom: 2em;
+    border-color: #cfcfcf;
+}
+
 .bg-dark {
     background-color: #202020 !important
+}
+
+.bg-snowwhite {
+    background-color: #f8f8f8;
 }
 
 #panel .card {
@@ -66,7 +75,7 @@ a.nav-link.disabled:hover {
 i.sideIcon {
     margin-top: 3px;
     height: 18px;
-    margin-right: 10px;
+    width: 26px;
 }
 
 .bd-form {

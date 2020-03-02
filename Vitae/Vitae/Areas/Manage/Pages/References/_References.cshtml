@@ -96,6 +96,14 @@
                         <span asp-validation-for="@Model.References[i].PhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
+                @if (i < Model.References.Count - 1)
+                {
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <hr />
+                        </div>
+                    </div>
+                }
             }
         </div>
         <div class="card-footer">

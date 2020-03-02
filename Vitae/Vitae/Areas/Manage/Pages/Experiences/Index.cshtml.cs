@@ -20,19 +20,19 @@ using Vitae.Code;
 
 using Poco = Model.Poco;
 
-namespace Vitae.Areas.Manage.Pages.Education
+namespace Vitae.Areas.Manage.Pages.Experiences
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_EDUCATION = "_Education";
+        private const string PAGE_EXPERIENCES = "_Experiences";
 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Educations), Prompt = nameof(SharedResource.Educations))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.JobExperiences), Prompt = nameof(SharedResource.JobExperiences))]
         [BindProperty]
-        public IList<EducationVM> Educations { get; set; }
+        public IList<ExperienceVM> Experiences { get; set; }
 
         public IEnumerable<CountryVM> Countries { get; set; }
 
-        public int MaxEducations { get; } = 20;
+        public int MaxExperiences { get; } = 20;
 
         public IEnumerable<MonthVM> Months { get; set; }
 
@@ -50,7 +50,7 @@ namespace Vitae.Areas.Manage.Pages.Education
             else
             {
                 var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                Educations = repository.GetEducations(curriculum);
+                Experiences = repository.GetExperiences(curriculum);
 
                 FillSelectionViewModel();
                 return Page();
@@ -62,21 +62,19 @@ namespace Vitae.Areas.Manage.Pages.Education
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Educations);
+                vitaeContext.RemoveRange(curriculum.Person.Experiences);
 
-                curriculum.Person.Educations =
-                    Educations.Select(e => new Poco.Education()
+                curriculum.Person.Experiences =
+                    Experiences.Select(e => new Poco.Experience()
                     {
                         City = e.City,
                         Start = new DateTime(e.Start_Year, e.Start_Month, 1),
-                        End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, DateTime.DaysInMonth(e.End_Year.Value, e.End_Month.Value)),
-                        Grade = e.Grade,
+                        End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, 1),
                         Order = e.Order,
                         Description = e.Description,
                         Link = e.Link,
-                        SchoolName = e.SchoolName,
-                        Subject = e.Subject,
-                        Title = e.Title,
+                        CompanyName = e.CompanyName,
+                        JobTitle = e.JobTitle,
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode)
                     }).ToList();
                 curriculum.LastUpdated = DateTime.Now;
@@ -95,58 +93,59 @@ namespace Vitae.Areas.Manage.Pages.Education
         {
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_EXPERIENCES);
         }
 
-        public IActionResult OnPostAddEducation()
+        public IActionResult OnPostAddExperience()
         {
-            if (Educations.Count < MaxEducations)
+            if (Experiences.Count < MaxExperiences)
             {
-                Educations.Add(new EducationVM() {
-                    Order = Educations.Count,
-                    Start_Month = DateTime.Now.Month,
-                    Start_Year = DateTime.Now.Year,
-                    End_Month = DateTime.Now.Month,
-                    End_Year = DateTime.Now.Year
+                Experiences.Add(new ExperienceVM() 
+                {
+                    Order = Experiences.Count, 
+                    Start_Month = DateTime.Now.Month, 
+                    Start_Year = DateTime.Now.Year, 
+                    End_Month = DateTime.Now.Month, 
+                    End_Year = DateTime.Now.Year 
                 });
             }
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_EXPERIENCES);
         }
 
-        public IActionResult OnPostRemoveEducation()
+        public IActionResult OnPostRemoveExperience()
         {
-            if (Educations.Count > 0)
+            if (Experiences.Count > 0)
             {
-                Educations.RemoveAt(Educations.Count - 1);
+                Experiences.RemoveAt(Experiences.Count - 1);
             }
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_EXPERIENCES);
         }
 
-        public IActionResult OnPostUpEducation(int order)
+        public IActionResult OnPostUpExperience(int order)
         {
-            var education = Educations[order];
-            Educations[order] = Educations[order - 1];
-            Educations[order - 1] = education;
+            var experience = Experiences[order];
+            Experiences[order] = Experiences[order - 1];
+            Experiences[order - 1] = experience;
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_EXPERIENCES);
         }
 
-        public IActionResult OnPostDownEducation(int order)
+        public IActionResult OnPostDownExperience(int order)
         {
-            var education = Educations[order];
-            Educations[order] = Educations[order + 1];
-            Educations[order + 1] = education;
+            var experience = Experiences[order];
+            Experiences[order] = Experiences[order + 1];
+            Experiences[order + 1] = experience;
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EDUCATION);
+            return GetPartialViewResult(PAGE_EXPERIENCES);
         }
 
         #endregion

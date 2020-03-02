@@ -69,13 +69,13 @@ namespace Vitae.Areas.Manage.Pages.Courses
                     {
                         City = e.City,
                         Start = new DateTime(e.Start_Year, e.Start_Month, 1),
-                        End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, DateTime.DaysInMonth(e.End_Year.Value, e.End_Month.Value)),
+                        End = e.SingleDay ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, e.Start_Day),
                         Order = e.Order,
                         Description = e.Description,
                         Link = e.Link,
                         SchoolName = e.SchoolName,
-                         Level = e.Level,
-                          Title = e.Title,
+                        Level = e.Level,
+                        Title = e.Title,
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode)
                     }).ToList();
                 curriculum.LastUpdated = DateTime.Now;
@@ -90,7 +90,7 @@ namespace Vitae.Areas.Manage.Pages.Courses
 
         #region AJAX
 
-        public IActionResult OnPostChangeUntilNow(int order)
+        public IActionResult OnPostChangeSingleDay(int order)
         {
             FillSelectionViewModel();
 
@@ -139,11 +139,24 @@ namespace Vitae.Areas.Manage.Pages.Courses
             return GetPartialViewResult(PAGE_COURSES);
         }
 
-        public IActionResult OnPostDownEducation(int order)
+        public IActionResult OnPostDownCourse(int order)
         {
             var course = Courses[order];
             Courses[order] = Courses[order + 1];
             Courses[order + 1] = course;
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_COURSES);
+        }
+
+        public IActionResult OnPostChangeDate(int order)
+        {
+            Courses[order].Start_Day = CorrectDate(Courses[order].Start_Year, Courses[order].Start_Month, Courses[order].Start_Day);
+            if (!Courses[order].SingleDay)
+            {
+                Courses[order].End_Day = CorrectDate(Courses[order].End_Year.Value, Courses[order].End_Month.Value, Courses[order].End_Day.Value);
+            }
 
             FillSelectionViewModel();
 

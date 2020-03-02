@@ -1,12 +1,12 @@
 ﻿using Library.Repository;
 using Library.Resources;
-using Model.ViewModels;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+
+using Model.ViewModels;
 
 using Persistency.Data;
 
@@ -20,19 +20,19 @@ using Vitae.Code;
 
 using Poco = Model.Poco;
 
-namespace Vitae.Areas.Manage.Pages.Experience
+namespace Vitae.Areas.Manage.Pages.Educations
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_EXPERIENCE = "_Experience";
+        private const string PAGE_EDUCATIONS = "_Educations";
 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.JobExperiences), Prompt = nameof(SharedResource.JobExperiences))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Educations), Prompt = nameof(SharedResource.Educations))]
         [BindProperty]
-        public IList<ExperienceVM> Experiences { get; set; }
+        public IList<EducationVM> Educations { get; set; }
 
         public IEnumerable<CountryVM> Countries { get; set; }
 
-        public int MaxExperiences { get; } = 20;
+        public int MaxEducations { get; } = 20;
 
         public IEnumerable<MonthVM> Months { get; set; }
 
@@ -50,7 +50,7 @@ namespace Vitae.Areas.Manage.Pages.Experience
             else
             {
                 var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                Experiences = repository.GetExperiences(curriculum);
+                Educations = repository.GetEducations(curriculum);
 
                 FillSelectionViewModel();
                 return Page();
@@ -62,19 +62,21 @@ namespace Vitae.Areas.Manage.Pages.Experience
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Experiences);
+                vitaeContext.RemoveRange(curriculum.Person.Educations);
 
-                curriculum.Person.Experiences =
-                    Experiences.Select(e => new Poco.Experience()
+                curriculum.Person.Educations =
+                    Educations.Select(e => new Poco.Education()
                     {
                         City = e.City,
                         Start = new DateTime(e.Start_Year, e.Start_Month, 1),
-                        End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, DateTime.DaysInMonth(e.End_Year.Value, e.End_Month.Value)),
+                        End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, 1),
+                        Grade = e.Grade,
                         Order = e.Order,
                         Description = e.Description,
                         Link = e.Link,
-                        CompanyName = e.CompanyName,
-                        JobTitle = e.JobTitle,
+                        SchoolName = e.SchoolName,
+                        Subject = e.Subject,
+                        Title = e.Title,
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode)
                     }).ToList();
                 curriculum.LastUpdated = DateTime.Now;
@@ -93,59 +95,58 @@ namespace Vitae.Areas.Manage.Pages.Experience
         {
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EXPERIENCE);
+            return GetPartialViewResult(PAGE_EDUCATIONS);
         }
 
-        public IActionResult OnPostAddExperience()
+        public IActionResult OnPostAddEducation()
         {
-            if (Experiences.Count < MaxExperiences)
+            if (Educations.Count < MaxEducations)
             {
-                Experiences.Add(new ExperienceVM() 
-                {
-                    Order = Experiences.Count, 
-                    Start_Month = DateTime.Now.Month, 
-                    Start_Year = DateTime.Now.Year, 
-                    End_Month = DateTime.Now.Month, 
-                    End_Year = DateTime.Now.Year 
+                Educations.Add(new EducationVM() {
+                    Order = Educations.Count,
+                    Start_Month = DateTime.Now.Month,
+                    Start_Year = DateTime.Now.Year,
+                    End_Month = DateTime.Now.Month,
+                    End_Year = DateTime.Now.Year
                 });
             }
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EXPERIENCE);
+            return GetPartialViewResult(PAGE_EDUCATIONS);
         }
 
-        public IActionResult OnPostRemoveExperience()
+        public IActionResult OnPostRemoveEducation()
         {
-            if (Experiences.Count > 0)
+            if (Educations.Count > 0)
             {
-                Experiences.RemoveAt(Experiences.Count - 1);
+                Educations.RemoveAt(Educations.Count - 1);
             }
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EXPERIENCE);
+            return GetPartialViewResult(PAGE_EDUCATIONS);
         }
 
-        public IActionResult OnPostUpExperience(int order)
+        public IActionResult OnPostUpEducation(int order)
         {
-            var experience = Experiences[order];
-            Experiences[order] = Experiences[order - 1];
-            Experiences[order - 1] = experience;
+            var education = Educations[order];
+            Educations[order] = Educations[order - 1];
+            Educations[order - 1] = education;
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EXPERIENCE);
+            return GetPartialViewResult(PAGE_EDUCATIONS);
         }
 
-        public IActionResult OnPostDownExperience(int order)
+        public IActionResult OnPostDownEducation(int order)
         {
-            var experience = Experiences[order];
-            Experiences[order] = Experiences[order + 1];
-            Experiences[order + 1] = experience;
+            var education = Educations[order];
+            Educations[order] = Educations[order + 1];
+            Educations[order + 1] = education;
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EXPERIENCE);
+            return GetPartialViewResult(PAGE_EDUCATIONS);
         }
 
         #endregion

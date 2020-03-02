@@ -61,6 +61,7 @@ namespace Library.Repository
             await curriculumQuery.Include(c => c.Person.About.Vfile).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Abroads).ThenInclude(a => a.Country).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Awards).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.Courses).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Certificates).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Educations).ThenInclude(e => e.Country).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Experiences).ThenInclude(e => e.Country).LoadAsync();
@@ -229,7 +230,7 @@ namespace Library.Repository
                    Title = c.Title,
                    CountryCode = c.Country.CountryCode,
                    SchoolName = c.SchoolName,
-                   UntilNow = !c.End.HasValue,
+                   SingleDay = !c.End.HasValue,
                    Order = c.Order
                }).ToList();
 

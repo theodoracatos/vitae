@@ -66,7 +66,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
                     Certificates.Select(c => new Poco.Certificate()
                     {
                         IssuedOn = new DateTime(c.Start_Year, c.Start_Month, 1),
-                        ExpiresOn = c.NeverExpires ? null : (DateTime?)new DateTime(c.End_Year.Value, c.End_Month.Value, DateTime.DaysInMonth(c.End_Year.Value, c.End_Month.Value)),
+                        ExpiresOn = c.NeverExpires ? null : (DateTime?)new DateTime(c.End_Year.Value, c.End_Month.Value, 1),
                         Order = c.Order,
                         Issuer = c.Issuer,
                         Description = c.Description,

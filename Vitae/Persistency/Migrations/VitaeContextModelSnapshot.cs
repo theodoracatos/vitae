@@ -140,6 +140,11 @@ namespace Persistency.Migrations
                     b.Property<DateTime>("IssuedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Issuer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
@@ -238,6 +243,62 @@ namespace Persistency.Migrations
                     b.ToTable("Country");
                 });
 
+            modelBuilder.Entity("Model.Poco.Course", b =>
+                {
+                    b.Property<Guid>("CourseID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<Guid>("CountryID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
+
+                    b.Property<DateTime?>("End")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Level")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("PersonID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("SchoolName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("CourseID");
+
+                    b.HasIndex("CountryID");
+
+                    b.HasIndex("PersonID");
+
+                    b.ToTable("Course");
+                });
+
             modelBuilder.Entity("Model.Poco.Curriculum", b =>
                 {
                     b.Property<Guid>("CurriculumID")
@@ -274,7 +335,8 @@ namespace Persistency.Migrations
 
                     b.HasIndex("FriendlyId");
 
-                    b.HasIndex("Identifier");
+                    b.HasIndex("Identifier")
+                        .IsUnique();
 
                     b.HasIndex("PersonID");
 
@@ -875,6 +937,19 @@ namespace Persistency.Migrations
                     b.HasOne("Model.Poco.PersonalDetail", null)
                         .WithMany("Children")
                         .HasForeignKey("PersonalDetailID");
+                });
+
+            modelBuilder.Entity("Model.Poco.Course", b =>
+                {
+                    b.HasOne("Model.Poco.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.Poco.Person", null)
+                        .WithMany("Courses")
+                        .HasForeignKey("PersonID");
                 });
 
             modelBuilder.Entity("Model.Poco.Curriculum", b =>

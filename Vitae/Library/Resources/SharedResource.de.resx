@@ -252,6 +252,12 @@
   <data name="CountryName" xml:space="preserve">
     <value>Land</value>
   </data>
+  <data name="Course" xml:space="preserve">
+    <value>Kurs</value>
+  </data>
+  <data name="Courses" xml:space="preserve">
+    <value>Kurse</value>
+  </data>
   <data name="CreateAccount" xml:space="preserve">
     <value>Ein neues Konto eröffnen.</value>
   </data>
@@ -320,6 +326,9 @@
   </data>
   <data name="Experience" xml:space="preserve">
     <value>Erfahrung</value>
+  </data>
+  <data name="Experiences" xml:space="preserve">
+    <value>Erfahrungen</value>
   </data>
   <data name="ExpiresOn" xml:space="preserve">
     <value>Verfällt am</value>
@@ -650,6 +659,9 @@
   </data>
   <data name="Single" xml:space="preserve">
     <value>Single</value>
+  </data>
+  <data name="SingleDay" xml:space="preserve">
+    <value>Einzeltag</value>
   </data>
   <data name="Skills" xml:space="preserve">
     <value>Skills</value>
