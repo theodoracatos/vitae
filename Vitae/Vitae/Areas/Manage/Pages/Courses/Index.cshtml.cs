@@ -74,7 +74,6 @@ namespace Vitae.Areas.Manage.Pages.Courses
                         Description = e.Description,
                         Link = e.Link,
                         SchoolName = e.SchoolName,
-                        Level = e.Level,
                         Title = e.Title,
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode)
                     }).ToList();

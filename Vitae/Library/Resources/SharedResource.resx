@@ -123,6 +123,9 @@
   <data name="Abroad" xml:space="preserve">
     <value>Abroad stay</value>
   </data>
+  <data name="AcademicTitle" xml:space="preserve">
+    <value>Academic title</value>
+  </data>
   <data name="AccessDenied" xml:space="preserve">
     <value>Access denied</value>
   </data>

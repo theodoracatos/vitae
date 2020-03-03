@@ -9,6 +9,9 @@ namespace Model.Poco
         [Key]
         public Guid AboutID { get; set; }
 
+        [MaxLength(100)]
+        public string AcademicTitle { get; set; }
+
         [MaxLength(4000)]
         public string Slogan { get; set; }
 

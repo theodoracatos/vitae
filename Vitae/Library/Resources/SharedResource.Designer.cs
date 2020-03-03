@@ -79,6 +79,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Academic title.
+        /// </summary>
+        public static string AcademicTitle {
+            get {
+                return ResourceManager.GetString("AcademicTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access denied.
         /// </summary>
         public static string AccessDenied {

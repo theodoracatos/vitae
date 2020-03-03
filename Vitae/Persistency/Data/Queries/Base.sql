@@ -12,6 +12,8 @@ BEGIN
 END
 
 -- Country
+IF NOT EXISTS(SELECT 1 FROM [dbo].[Country])
+BEGIN
 INSERT INTO [Country] ([CountryID], [CountryCode], [Name_de], [Name_fr], [Name_it], [Name_es], [Name], [Iso3], [NumCode], [PhoneCode]) VALUES (NEWID(), 'AF', 'Afghanistan', 'Afghanistan', 'Afghanistan', 'Afganistán', 'Afghanistan', 'AFG', 4, 93)
 INSERT INTO [Country] ([CountryID], [CountryCode], [Name_de], [Name_fr], [Name_it], [Name_es], [Name], [Iso3], [NumCode], [PhoneCode]) VALUES (NEWID(), 'AL', 'Albanien', 'Albanie', 'Albania', 'Albania', 'Albania', 'ALB', 8, 355)
 INSERT INTO [Country] ([CountryID], [CountryCode], [Name_de], [Name_fr], [Name_it], [Name_es], [Name], [Iso3], [NumCode], [PhoneCode]) VALUES (NEWID(), 'DZ', 'Algerien', 'Algérie', 'Algeria', 'Argelia', 'Algeria', 'DZA', 12, 213)
@@ -264,8 +266,12 @@ INSERT INTO [Country] ([CountryID], [CountryCode], [Name_de], [Name_fr], [Name_i
 INSERT INTO [Country] ([CountryID], [CountryCode], [Name_de], [Name_fr], [Name_it], [Name_es], [Name], [Iso3], [NumCode], [PhoneCode]) VALUES (NEWID(), 'MF', 'Sankt Martin', 'Saint Martin', 'San Martino', 'San Martín', 'Saint Martin', 'MAF', 663, 590)
 INSERT INTO [Country] ([CountryID], [CountryCode], [Name_de], [Name_fr], [Name_it], [Name_es], [Name], [Iso3], [NumCode], [PhoneCode]) VALUES (NEWID(), 'SX', 'Sint Maarten', 'Sint Maarten', 'Sint Maarten', 'San Martín', 'Sint Maarten', 'SXM', 534, 1)
 INSERT INTO [Country] ([CountryID], [CountryCode], [Name_de], [Name_fr], [Name_it], [Name_es], [Name], [Iso3], [NumCode], [PhoneCode]) VALUES (NEWID(), 'SS', 'Südsudan', 'Sud-Soudan', 'Sud Sudan', 'Sudán del Sur', 'South Sudan', 'SSD', 728, 211)
+END
 
 -- Language
+
+IF NOT EXISTS(SELECT 1 FROM [dbo].[Language])
+BEGIN
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'ab', 'Abkhazian', 'Abchasisch', 'Abkhazie', 'Abkhazia', 'Abjasia')
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'aa', 'Afar', 'Afar', 'Afar', 'Afar', 'Afar')
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'af', 'Afrikaans', 'Afrikaans', 'Afrikaans', 'Afrikaans', 'Afrikáans')
@@ -402,7 +408,10 @@ INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_f
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'ji', 'Yiddish', 'Jiddisch', 'Yiddish', 'Yiddish', 'Yiddish')
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'yo', 'Yoruba', 'Yoruba', 'Yoruba', 'Yoruba', 'Yoruba')
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'zu', 'Zulu', 'Zulu', 'Zulu', 'Zulu', 'Zulú')
+END
 
+IF NOT EXISTS(SELECT 1 FROM [dbo].[Month])
+BEGIN
 INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 1, 'January', 'Januar', 'Janvier', 'Gennaio', 'Enero');
 INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 2, 'February', 'Februar', 'Février', 'Febbraio', 'Febrero');
 INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 3, 'March', 'März', 'Mars', 'Marzo', 'March');
@@ -415,12 +424,12 @@ INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name
 INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 10, 'October', 'Oktober', 'Octobre', 'Ottobre', 'Octubre');
 INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 11, 'November', 'November', 'Novembre', 'Novembre', 'Noviembre');
 INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 12, 'December', 'Dezember', 'Décembre', 'Dicembre', 'Diciembre');
-
+END
 
 COMMIT TRANSACTION -- Transaction Success!
 END TRY
 BEGIN CATCH
     IF @@TRANCOUNT > 0
-        RAISERROR (50001,1,1)
+        SELECT ERROR_LINE() AS ErrorLine, ERROR_MESSAGE() AS ErrorMessage
         ROLLBACK TRAN --RollBack in case of Error
 END CATCH

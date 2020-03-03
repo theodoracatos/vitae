@@ -30,15 +30,10 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col">
                         <label class="control-label" asp-for="@Model.Courses[i].Title"></label>
                         <input class="form-control" type="text" asp-for="@Model.Courses[i].Title" />
                         <span asp-validation-for="@Model.Courses[i].Title" class="text-danger"></span>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label" asp-for="@Model.Courses[i].Level"></label>
-                        <input class="form-control" type="text" asp-for="@Model.Courses[i].Level" />
-                        <span asp-validation-for="@Model.Courses[i].Level" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-row">

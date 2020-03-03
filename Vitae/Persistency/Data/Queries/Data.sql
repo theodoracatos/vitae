@@ -1,15 +1,13 @@
 USE Vitae
 GO
 
-DECLARE @CurriculumID uniqueidentifier ='8B6D6CBD-999E-4EA2-BBAC-CC50BE4C4C14';
-
 BEGIN TRY
     BEGIN TRANSACTION
 
-INSERT INTO [About]
-VALUES(NEWID(), '"Wer hohe Türme bauen will, muss lange beim Fundament verweilen." Aristoteles',  '', null)
+DECLARE @CurriculumID uniqueidentifier = (SELECT [cur].[Identifier] FROM [Curriculum] [cur] INNER JOIN [AspNetUsers] [usr] ON [usr].[Id] = [cur].[UserID] WHERE [usr].[Email] = 'theodoracatos@gmail.com')
 
-select * from PersonalDetail
+INSERT INTO [About]
+VALUES(NEWID(), 'Dipl.-Ing. FH | MAS ZFH', '"Wer hohe Türme bauen will, muss lange beim Fundament verweilen." Aristoteles',  '', null)
 
 INSERT INTO [PersonalDetail]
 VALUES (NEWID(), 'Alexandros', 'Theodoracatos', '1983-06-23', 1, 'Zwischenbächen', 143, 8048, 'Zürich', 'Zürich', 'theodoracatos@gmail.com', '787044438', 'Zürich ZH, Eschenbach SG', 2, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), (SELECT TOP 1 [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'))
@@ -79,7 +77,7 @@ INSERT INTO [Education]
 VALUES (NEWID(), 'GIBB', 'https://gibb.ch', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Bern', 'Fachausweis (FA)', 'Applikationsentwicklung', 'Die Lehre zum Applikationsentwickler für Maturanden (way-up.ch) bot eine zweijährige Praxiserfahrung in verschiedenen Firmen und ebnete den Weg zur Fachhochschule', '5.5', '2003-08-01', '2005-08-01', 3, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Education]
-VALUES (NEWID(), 'Kantonsschule SH', 'https://kanti.ch', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schaffhausen', 'Matura', 'Naturwissenschaften (Profil N)', 'Naturwissenschaftlich–mathematischeMatura mit Schwerpunkten in Chemie / Biologie', '4.5', '1998-08-01', '2002-07-01', 4, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Kantonsschule SH', 'https://kanti.ch', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schaffhausen', 'Matura', 'Naturwissenschaften (Profil N)', 'Naturwissenschaftlich–mathematische Matura mit Schwerpunkten in Chemie / Biologie', '4.5', '1998-08-01', '2002-07-01', 4, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [LanguageSkill] 
 VALUES(NEWID(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), 1, (SELECT TOP 1 [PersonID] FROM [Person]))
@@ -151,26 +149,28 @@ INSERT INTO [Certificate]
 VALUES (NEWID(), 'SVEB Kursleiter Stufe 1', 'Lernveranstaltungen mit Erwachsenen durchführen / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, 3, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Course]
-VALUES(NEWID(), 'SchoolName', 'Link', 'Title', 'Description', 'CountryID', 'City', 'Level', 'Start', 'End', 'Order', (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'ETH Zürich', 'https://ethz.ch', 'XSLT - Einführung mit Übungen', 'Herkunft und Anwendungsgebiet from XSLT', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2004-09-20', '2004-09-21', 0, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Course]
-VALUES(NEWID(), 'ETH Zürich', 'https://ethz.ch', 'XSLT - Einführung mit Übungen', 'Herkunft und Anwendungsgebiet from XSLT', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Einsteiger', '2004-09-20', '2004-09-21', 0, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Neues in .NET 4.5 und Visual Studio 2013', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2014-11-03', '2014-11-04', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Course]
-VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Neues in .NET 4.5 und Visual Studio 2013', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Einsteiger', '2014-11-03', '2014-11-04', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Entwicklung von Webapplikationen mit MVC 5', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2015-11-12', '2015-11-13', 2, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Course]
-VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Entwicklung von Webapplikationen mit MVC 5', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Fortgeschritten', '2015-11-12', '2015-11-13', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Datenzugriff in .NET mit dem Entity Framework und ADO.NET', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2016-02-24', '2016-02-26', 3, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Course]
-VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Datenzugriff in .NET mit Entity Framework und ADO.NET', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Fortgeschritten', '2016-02-24', '2016-02-26', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Application Lifecycle Management Basis', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2017-10-31', null, 4, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Course]
-VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Datenzugriff in .NET mit dem Entity Framework und ADO.NET', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Fortgeschritten', '2016-02-24', '2016-02-26', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Sichere Websites entwickeln', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-01-17', null, 5, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Course]
-VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Application Lifecycle Management Basis', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Einsteiger', '2017-10-31', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Entwicklung von Webapplikationen mit ASP.NET Core 3.0', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', 6, (SELECT TOP 1 [PersonID] FROM [Person]))
 
+INSERT INTO [Course]
+VALUES(NEWID(), 'IFA Weiterbildung AG', 'https://www.ifa.ch', 'Einsatz digitaler Medien im Unterricht', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', 7, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 
 --------------------------------
@@ -179,6 +179,6 @@ COMMIT TRANSACTION -- Transaction Success!
 END TRY
 BEGIN CATCH
     IF @@TRANCOUNT > 0
-		SELECT ERROR_MESSAGE() AS ErrorMessage
+		SELECT ERROR_LINE() AS ErrorLine, ERROR_MESSAGE() AS ErrorMessage
         ROLLBACK TRAN --RollBack in case of Error
 END CATCH

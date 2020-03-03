@@ -31,8 +31,6 @@ namespace Model.Poco
         [MaxLength(100)]
         public string City { get; set; }
 
-        public string Level { get; set; }
-
         public DateTime Start { get; set; }
 
         public DateTime? End { get; set; }

@@ -163,6 +163,7 @@ namespace Library.Repository
         {
             var aboutVM = new AboutVM()
             {
+                AcademicTitle = curriculum.Person.About?.AcademicTitle,
                 Photo = curriculum.Person.About?.Photo,
                 Slogan = curriculum.Person.About?.Slogan,
                 Vfile = new VfileVM()
@@ -224,7 +225,6 @@ namespace Library.Repository
                    End_Day = c.End.HasValue ? c.End.Value.Day : DateTime.Now.Day,
                    End_Month = c.End.HasValue ? c.End.Value.Month : DateTime.Now.Month,
                    End_Year = c.End.HasValue ? c.End.Value.Year : DateTime.Now.Year,
-                   Level = c.Level,
                    Link = c.Link,
                    City = c.City,
                    Title = c.Title,

@@ -119,6 +119,7 @@ namespace Persistency.Migrations
                 columns: table => new
                 {
                     AboutID = table.Column<Guid>(nullable: false),
+                    AcademicTitle = table.Column<string>(maxLength: 100, nullable: true),
                     Slogan = table.Column<string>(maxLength: 4000, nullable: true),
                     Photo = table.Column<string>(type: "varchar(max)", nullable: false),
                     VfileID = table.Column<Guid>(nullable: true)
@@ -296,7 +297,6 @@ namespace Persistency.Migrations
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
                     CountryID = table.Column<Guid>(nullable: false),
                     City = table.Column<string>(maxLength: 100, nullable: false),
-                    Level = table.Column<string>(nullable: true),
                     Start = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: true),
                     Order = table.Column<int>(nullable: false),

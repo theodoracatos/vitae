@@ -25,6 +25,10 @@ namespace Persistency.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("AcademicTitle")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
                     b.Property<string>("Photo")
                         .IsRequired()
                         .HasColumnType("varchar(max)");
@@ -263,9 +267,6 @@ namespace Persistency.Migrations
 
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Level")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(255)")

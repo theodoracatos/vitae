@@ -24,10 +24,6 @@ namespace Model.ViewModels
         [MaxLength(1000, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string Description { get; set; }
 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Level), Prompt = nameof(SharedResource.Level))]
-        [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
-        public string Level { get; set; }
-
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CountryName), Prompt = nameof(SharedResource.CountryName))]
         public string CountryCode { get; set; }
