@@ -1,13 +1,13 @@
 USE Vitae
 GO
 
-DECLARE @CurriculumID uniqueidentifier ='4eb60de2-17e3-4281-b42d-26648d3aecbd';
+DECLARE @CurriculumID uniqueidentifier ='8B6D6CBD-999E-4EA2-BBAC-CC50BE4C4C14';
 
 BEGIN TRY
     BEGIN TRANSACTION
 
 INSERT INTO [About]
-VALUES(NEWID(), '"Wer hohe Türme bauen will, muss lange beim Fundament verweilen." Aristoteles',  null, null)
+VALUES(NEWID(), '"Wer hohe Türme bauen will, muss lange beim Fundament verweilen." Aristoteles',  '', null)
 
 select * from PersonalDetail
 
@@ -26,11 +26,15 @@ VALUES(NEWID(), 'Marilena', '2014-08-14', 0, (SELECT TOP 1 [PersonalDetailID] FR
 INSERT INTO [Child]
 VALUES(NEWID(), 'Aris', '2017-08-13', 0, (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]))
 
-INSERT INTO [Person]
-VALUES (NEWID(), 'de', (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT TOP 1 [AboutID] FROM [About]))
+UPDATE [Person]
+SET [PersonalDetailID] = (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]),
+[AboutID] = (SELECT TOP 1 [AboutID] FROM [About])
 
-INSERT INTO [Curriculum]
-VALUES (NEWID(), @CurriculumID, @CurriculumID, 'alexis', 'theodoracatos', null, GETDATE(), GETDATE(), (SELECT TOP 1 [PersonID] FROM [Person]))
+--INSERT INTO [Person]
+--VALUES (NEWID(), 'de', (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT TOP 1 [AboutID] FROM [About]))
+
+--INSERT INTO [Curriculum]
+--VALUES (NEWID(), @CurriculumID, @CurriculumID, 'alexis', 'theodoracatos', null, GETDATE(), GETDATE(), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [SocialLink]
 VALUES (NEWID(), 1, 'https://www.facebook.com/theodoracatos', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
@@ -135,24 +139,46 @@ INSERT INTO [Reference]
 VALUES (NEWID(), 'Wolfgang', 'Schmidt', 1, 'ABB (Schweiz) AG', 'https://abb.ch', 'Ehemaliger Vorgesetzter bei der Ruf Telematik AG', 'wolfgang.schmidt@abb.ch', '78 704 44 38', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Certificate]
-VALUES (NEWID(), 'Cambridge English Level 2 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org/', '2014-03-01', null, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Cambridge English Level 2 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, 0, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Certificate]
-VALUES (NEWID(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Certificate]
-VALUES (NEWID(), 'Professional Scrum Master I (PSM I)', 'Microsoft Specialist: Programming in C#', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Professional Scrum Master I (PSM I)', 'Microsoft Specialist: Programming in C#', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, 2, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Certificate]
-VALUES (NEWID(), 'SVEB Kursleiter Stufe 1', 'Lernveranstaltungen mit Erwachsenen durchführen / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin/', '2019-05-16', null, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'SVEB Kursleiter Stufe 1', 'Lernveranstaltungen mit Erwachsenen durchführen / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, 3, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Course]
+VALUES(NEWID(), 'SchoolName', 'Link', 'Title', 'Description', 'CountryID', 'City', 'Level', 'Start', 'End', 'Order', (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Course]
+VALUES(NEWID(), 'ETH Zürich', 'https://ethz.ch', 'XSLT - Einführung mit Übungen', 'Herkunft und Anwendungsgebiet from XSLT', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Einsteiger', '2004-09-20', '2004-09-21', 0, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Course]
+VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Neues in .NET 4.5 und Visual Studio 2013', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Einsteiger', '2014-11-03', '2014-11-04', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Course]
+VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Entwicklung von Webapplikationen mit MVC 5', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Fortgeschritten', '2015-11-12', '2015-11-13', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Course]
+VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Datenzugriff in .NET mit Entity Framework und ADO.NET', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Fortgeschritten', '2016-02-24', '2016-02-26', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Course]
+VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Datenzugriff in .NET mit dem Entity Framework und ADO.NET', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Fortgeschritten', '2016-02-24', '2016-02-26', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+INSERT INTO [Course]
+VALUES(NEWID(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Application Lifecycle Management Basis', null, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Einsteiger', '2017-10-31', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+
+
 
 --------------------------------
-
 
 COMMIT TRANSACTION -- Transaction Success!
 END TRY
 BEGIN CATCH
     IF @@TRANCOUNT > 0
-        RAISERROR (50001,1,1)
+		SELECT ERROR_MESSAGE() AS ErrorMessage
         ROLLBACK TRAN --RollBack in case of Error
 END CATCH
