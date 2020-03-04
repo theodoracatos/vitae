@@ -36,12 +36,12 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading mt-2">@SharedResource.Overview</div>
+                        <div class="sb-sidenav-menu-heading">@SharedResource.Overview</div>
                         <a class="nav-link" href="/Manage">
                             <i class="fas fa-chart-line sideIcon"></i>
                             @SharedResource.Dashboard
                         </a>
-                        <div class="sb-sidenav-menu-heading mt-2">@SharedResource.PersonalData</div>
+                        <div class="sb-sidenav-menu-heading">@SharedResource.PersonalData</div>
                         <a class="nav-link" href="/Manage/@(nameof(Personalities))">
                             <i class="fas fa-address-book sideIcon"></i>
                             @SharedResource.PersonalDetails
@@ -94,7 +94,7 @@
                             <i class="fas fas fa-comment sideIcon"></i>
                             @SharedResource.References
                         </a>
-                        <div class="sb-sidenav-menu-heading mt-2">@SharedResource.CurriculumVitae</div>
+                        <div class="sb-sidenav-menu-heading">@SharedResource.CurriculumVitae</div>
                         <a class="nav-link mb-4" href="/CV/@(nameof(Skills))">
                             <i class="fas fa-address-card sideIcon"></i>
                             @SharedResource.MyVitae
@@ -111,7 +111,7 @@
             </nav>
         </div>
         <div id="layoutSidenav_content">
-            <main class="m-3">
+            <main class="mt-2 ml-3 mr-3">
                 <div class="container-fluid">
                     @RenderBody()
                 </div>

@@ -8,6 +8,12 @@ declare var Resources;
     initSelectPicker();
 })(jQuery);
 
+$(document).ready(function () {
+    setupNicescroll();
+    loadingProcedure();
+    setupSbAdmin();
+});
+
 function addJQueryValidators() {
     $.validator.addMethod('agelimit', function (value, element, params) {
         var date = new Date();
@@ -24,10 +30,13 @@ function addJQueryValidators() {
     });
 }
 
-$(document).ready(function () {
-    loadingProcedure();
-    setupSbAdmin();
-});
+function setupNicescroll() {
+    $("body, .sb-sidenav-menu").niceScroll();
+}
+
+function resizeNicescroll() {
+    $("body, .sb-sidenav-menu").getNiceScroll().resize();
+}
 
 function setupSbAdmin() {
     // Add active state to sidbar nav links
@@ -48,6 +57,7 @@ function setupSbAdmin() {
 }
 
 function ajaxCompleted() {
+    resizeNicescroll();
     loadingProcedure();
     startRating();
     resetFormValidator('form');
