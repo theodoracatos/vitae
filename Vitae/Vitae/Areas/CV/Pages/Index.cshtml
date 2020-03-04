@@ -185,10 +185,10 @@
                     @foreach (var interest in Model.Interests)
                     {
                         <p>
-                            @interest.Name
+                            @interest.InterestName
                             @if (!string.IsNullOrEmpty(interest.Link))
                             {
-                                <a class="ml-1" href="@interest.Link" alt="@interest.Name"><i class="fas fa-external-link-alt"></i></a>
+                                <a class="ml-1" href="@interest.Link" alt="@interest.InterestName"><i class="fas fa-external-link-alt"></i></a>
                             }
                         </p>
                         <p class="mb-0">@interest.Description</p>

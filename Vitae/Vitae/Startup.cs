@@ -43,10 +43,10 @@ namespace Vitae
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<VitaeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<IdentityContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<IdentityContext>()
                 .AddClaimsPrincipalFactory<CurriculumClaimFactory>()
                 .AddErrorDescriber<CustomIdentityErrorDescriber>();
             services.AddTransient<Repository, Repository>();

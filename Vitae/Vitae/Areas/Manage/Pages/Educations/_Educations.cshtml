@@ -10,123 +10,118 @@
                 <div class="form-group col">
                     <label class="control-label" asp-for="@Model.Educations"></label>
                     <div>
-                        <button asp-page-handler="AddEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Educations?.Count < Model.MaxEducations ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Educations?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                        <button asp-page-handler="AddEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel" disabled="@(Model.Educations?.Count < Model.MaxEducations ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                        <button asp-page-handler="RemoveEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel" disabled="@(Model.Educations?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
                     </div>
                 </div>
             </div>
-            @for (int i = 0; i < Model.Educations.Count; i++)
-            {
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Educations[i].SchoolName"></label>
-                        <input class="form-control" type="text" asp-for="@Model.Educations[i].SchoolName" />
-                        <span asp-validation-for="@Model.Educations[i].SchoolName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label" asp-for="@Model.Educations[i].Link"></label>
-                        <input class="form-control" type="text" asp-for="@Model.Educations[i].Link" />
-                        <span asp-validation-for="@Model.Educations[i].Link" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label class="control-label" asp-for="@Model.Educations[i].CountryCode"></label>
-                        <select asp-for="@Model.Educations[i].CountryCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
-                            <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
-                        </select>
-                        <span asp-validation-for="@Model.Educations[i].CountryCode" class="text-danger"></span>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label" asp-for="@Model.Educations[i].City"></label>
-                        <input class="form-control" type="text" asp-for="@Model.Educations[i].City" />
-                        <span asp-validation-for="@Model.Educations[i].City" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-5">
-                        <label class="control-label" asp-for="@Model.Educations[i].Title"></label>
-                        <input class="form-control" type="text" asp-for="@Model.Educations[i].Title" />
-                        <span asp-validation-for="@Model.Educations[i].Title" class="text-danger"></span>
-                    </div>
-                    <div class="form-group col-md-5">
-                        <label class="control-label" asp-for="@Model.Educations[i].Subject"></label>
-                        <input class="form-control" type="text" asp-for="@Model.Educations[i].Subject" />
-                        <span asp-validation-for="@Model.Educations[i].Subject" class="text-danger"></span>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label class="control-label" asp-for="@Model.Educations[i].Grade"></label>
-                        <input class="form-control" type="text" asp-for="@Model.Educations[i].Grade" />
-                        <span asp-validation-for="@Model.Educations[i].Grade" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col">
-                        <label class="control-label" asp-for="@Model.Educations[i].Description"></label>
-                        <textarea rows="3" asp-for="@Model.Educations[i].Description" class="form-control"></textarea>
-                        <span asp-validation-for="@Model.Educations[i].Description" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label class="control-label" asp-for="@Model.Educations[i].Start_Month"></label>
-                        <div class="d-flex">
-                            <select asp-for="@Model.Educations[i].Start_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
-                            <select asp-for="@Model.Educations[i].Start_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label" asp-for="@Model.Educations[i].End_Month"></label>
-                        <div class="d-flex">
-                            <div class="form-control w-auto flex-fill">
-                                <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
-                                    <input type="checkbox" name="@(nameof(Educations))[@i].@nameof(EducationVM.UntilNow)" value="true" checked="@(Model.Educations[i].UntilNow ? "checked" : null)" />
-                                    <div class="state">
-                                        <label asp-for="@Model.Educations[i].UntilNow"></label>
-                                        <input type="hidden" asp-for="@Model.Educations[i].Order" />
-                                    </div>
-                                </div>
-                                <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeUntilNow" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
-                            </div>
-                            @if (!@Model.Educations[i].UntilNow)
-                            {
-
-                                <select asp-for="@Model.Educations[i].End_Month" class="form-control flex-fill ml-2 mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
-                                <select asp-for="@Model.Educations[i].End_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
-
-                            }
-                            else
-                            {
-                                <input asp-for="@Model.Educations[i].End_Month" type="hidden" />
-                                <input asp-for="@Model.Educations[i].End_Year" type="hidden" />
-                            }
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col mt-1">
-                        <div class="text-right">
-                            <button asp-page-handler="UpEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(i > 0 ? null : "disabled")"><i class="fas fa-arrow-up"></i></button>
-                            <button asp-page-handler="DownEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(i == Model.Educations.Count - 1 ? "disabled": null)"><i class="fas fa-arrow-down"></i></button>
-                        </div>
-                    </div>
-                </div>
-                @if (i < Model.Educations.Count - 1)
+            <div class="@(Model.Educations.Count > 0 ? "grouping" : "")">
+                @for (int i = 0; i < Model.Educations.Count; i++)
                 {
                     <div class="form-row">
-                        <div class="form-group col">
-                            <hr />
+                        <div class="form-group col-md-6">
+                            <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Educations[i].SchoolName"></label>
+                            <input class="form-control" type="text" asp-for="@Model.Educations[i].SchoolName" />
+                            <span asp-validation-for="@Model.Educations[i].SchoolName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label" asp-for="@Model.Educations[i].Link"></label>
+                            <input class="form-control" type="text" asp-for="@Model.Educations[i].Link" />
+                            <span asp-validation-for="@Model.Educations[i].Link" class="text-danger"></span>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label" asp-for="@Model.Educations[i].CountryCode"></label>
+                            <select asp-for="@Model.Educations[i].CountryCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
+                                <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
+                            </select>
+                            <span asp-validation-for="@Model.Educations[i].CountryCode" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label" asp-for="@Model.Educations[i].City"></label>
+                            <input class="form-control" type="text" asp-for="@Model.Educations[i].City" />
+                            <span asp-validation-for="@Model.Educations[i].City" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label class="control-label" asp-for="@Model.Educations[i].Title"></label>
+                            <input class="form-control" type="text" asp-for="@Model.Educations[i].Title" />
+                            <span asp-validation-for="@Model.Educations[i].Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label class="control-label" asp-for="@Model.Educations[i].Subject"></label>
+                            <input class="form-control" type="text" asp-for="@Model.Educations[i].Subject" />
+                            <span asp-validation-for="@Model.Educations[i].Subject" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class="control-label" asp-for="@Model.Educations[i].Grade"></label>
+                            <input class="form-control" type="text" asp-for="@Model.Educations[i].Grade" />
+                            <span asp-validation-for="@Model.Educations[i].Grade" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label class="control-label" asp-for="@Model.Educations[i].Description"></label>
+                            <textarea rows="3" asp-for="@Model.Educations[i].Description" class="form-control"></textarea>
+                            <span asp-validation-for="@Model.Educations[i].Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label" asp-for="@Model.Educations[i].Start_Month"></label>
+                            <div class="d-flex">
+                                <select asp-for="@Model.Educations[i].Start_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                                <select asp-for="@Model.Educations[i].Start_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label" asp-for="@Model.Educations[i].End_Month"></label>
+                            <div class="d-flex">
+                                <div class="form-control w-auto flex-fill">
+                                    <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
+                                        <input type="checkbox" name="@(nameof(Educations))[@i].@nameof(EducationVM.UntilNow)" value="true" checked="@(Model.Educations[i].UntilNow ? "checked" : null)" />
+                                        <div class="state">
+                                            <label asp-for="@Model.Educations[i].UntilNow"></label>
+                                            <input type="hidden" asp-for="@Model.Educations[i].Order" />
+                                        </div>
+                                    </div>
+                                    <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeUntilNow" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+                                </div>
+                                @if (!@Model.Educations[i].UntilNow)
+                                {
+
+                                    <select asp-for="@Model.Educations[i].End_Month" class="form-control flex-fill ml-2 mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                                    <select asp-for="@Model.Educations[i].End_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+
+                                }
+                                else
+                                {
+                                    <input asp-for="@Model.Educations[i].End_Month" type="hidden" />
+                                    <input asp-for="@Model.Educations[i].End_Year" type="hidden" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col mt-1">
+                            <div class="text-right">
+                                <button asp-page-handler="UpEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
+                                <button asp-page-handler="DownEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel @(i == Model.Educations.Count - 1 ? "d-none": null)"><i class="fas fa-arrow-down"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    @if (i < Model.Educations.Count - 1) {<hr />}
                 }
-            }
-        </div>
-        <div class="card-footer">
-            <div class="form-row">
-                <div class="form-group col mb-0 text-right">
-                    <button type="submit" class="btn btn-outline-success float-right">@SharedResource.Save</button>
+            </div>
+            </div>
+            <div class="card-footer">
+                <div class="form-row">
+                    <div class="form-group col mb-0 text-right">
+                        <button type="submit" class="btn btn-success float-right">@SharedResource.Save</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>

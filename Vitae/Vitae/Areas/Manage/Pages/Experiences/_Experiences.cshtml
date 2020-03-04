@@ -10,12 +10,12 @@
                 <div class="form-group col">
                     <label class="control-label" asp-for="@Model.Experiences"></label>
                     <div>
-                        <button asp-page-handler="AddExperience" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(Model.Experiences?.Count < Model.MaxExperiences ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveExperience" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(Model.Experiences?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                        <button asp-page-handler="AddExperience" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel" disabled="@(Model.Experiences?.Count < Model.MaxExperiences ? null : "disabled")"><i class="fas fa-plus"></i></button>
+                        <button asp-page-handler="RemoveExperience" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel" disabled="@(Model.Experiences?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
                     </div>
                 </div>
             </div>
-            <div class="@(Model.Experiences.Count > 0 ? "pl-3 pr-3 pt-2 border rounded bg-snowwhite" : "")">
+            <div class="@(Model.Experiences.Count > 0 ? "grouping" : "")">
                 @for (int i = 0; i < Model.Experiences.Count; i++)
                 {
                     <div class="form-row">
@@ -95,22 +95,19 @@
                     <div class="form-row">
                         <div class="form-group col mt-1">
                             <div class="text-right">
-                                <button asp-page-handler="UpExperience" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-success cancel" disabled="@(i > 0 ? null : "disabled")"><i class="fas fa-arrow-up"></i></button>
-                                <button asp-page-handler="DownExperience" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-danger cancel" disabled="@(i == Model.Experiences.Count - 1 ? "disabled": null)"><i class="fas fa-arrow-down"></i></button>
+                                <button asp-page-handler="UpExperience" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
+                                <button asp-page-handler="DownExperience" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel @(i == Model.Experiences.Count - 1 ? "d-none": null)"><i class="fas fa-arrow-down"></i></button>
                             </div>
                         </div>
                     </div>
-                    @if (i < Model.Experiences.Count - 1)
-                    {
-                         <hr />
-                    }
+                    @if (i < Model.Experiences.Count - 1){ <hr /> }
                 }
             </div>
             </div>
             <div class="card-footer">
                 <div class="form-row">
                     <div class="form-group col mb-0 text-right">
-                        <button type="submit" class="btn btn-outline-success float-right">@SharedResource.Save</button>
+                        <button type="submit" class="btn btn-success float-right">@SharedResource.Save</button>
                     </div>
                 </div>
             </div>

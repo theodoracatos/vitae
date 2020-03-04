@@ -79,6 +79,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abroad stays.
+        /// </summary>
+        public static string Abroads {
+            get {
+                return ResourceManager.GetString("Abroads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Academic title.
         /// </summary>
         public static string AcademicTitle {
@@ -786,6 +795,15 @@ namespace Library.Resources {
         public static string Homepage {
             get {
                 return ResourceManager.GetString("Homepage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interest.
+        /// </summary>
+        public static string Interest {
+            get {
+                return ResourceManager.GetString("Interest", resourceCulture);
             }
         }
         

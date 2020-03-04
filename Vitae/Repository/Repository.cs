@@ -292,7 +292,7 @@ namespace Library.Repository
                     {
                         Description = i.Description,
                         Link = i.Link,
-                        Name = i.Name,
+                        InterestName = i.InterestName,
                         Order = i.Order
                     }).ToList();
 

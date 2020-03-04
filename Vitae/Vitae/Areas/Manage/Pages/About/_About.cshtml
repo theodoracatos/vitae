@@ -6,71 +6,74 @@
             <h1><i class="fas fa-image mr-3"></i>@SharedResource.About</h1>
         </div>
         <div class="card-body">
-            <div class="form-row">
-                <div class="form-group col">
-                    <label class="control-label" asp-for="@Model.About.AcademicTitle"></label>
-                    <input class="form-control" type="text" asp-for="@Model.About.AcademicTitle" />
-                    <span asp-validation-for="@Model.About.AcademicTitle" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col">
-                    <label class="control-label" asp-for="@Model.About.Slogan"></label>
-                    <textarea rows="3" asp-for="@Model.About.Slogan" class="form-control"></textarea>
-                    <span asp-validation-for="@Model.About.Slogan" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col">
-                    <label class="control-label" asp-for="@Model.About.Photo"></label>
-                    <div id="divSelector" class="form-group bd-form-group @(string.IsNullOrEmpty(@Model.About.Photo) ? null : "d-none")">
-                        <button class="btn btn-outline-secondary" type="button" onclick="$('#imgInput').trigger('click')">@SharedResource.Browse...</button>
-                        <div>
-                            <span asp-validation-for="@Model.About.Photo" class="text-danger"></span>
-                        </div>
+            <div class="grouping">
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.About.AcademicTitle"></label>
+                        <input class="form-control" type="text" asp-for="@Model.About.AcademicTitle" />
+                        <span asp-validation-for="@Model.About.AcademicTitle" class="text-danger"></span>
                     </div>
-                    <div id="divPreview" class="form-group bd-form-group @(string.IsNullOrEmpty(@Model.About.Photo) ? "d-none" : "d-flex")">
-                        <div class="cropContainer">
-                            <div class="input-group">
-                                <img id="imgPreview" class="imgPreview" src="@Model.About.Photo" />
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.About.Slogan"></label>
+                        <textarea rows="3" asp-for="@Model.About.Slogan" class="form-control"></textarea>
+                        <span asp-validation-for="@Model.About.Slogan" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.About.Photo"></label>
+                        <div id="divSelector" class="form-group bd-form-group @(string.IsNullOrEmpty(@Model.About.Photo) ? null : "d-none")">
+                            <button class="btn btn-secondary" type="button" onclick="$('#imgInput').trigger('click')">@SharedResource.Browse...</button>
+                            <div>
+                                <span asp-validation-for="@Model.About.Photo" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="d-inline-block align-top">
-                            <button id="btnRemoveImage" type="button" class="btn btn-outline-danger d-block flex-fill ml-2">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col">
-                    <label class="control-label" asp-for="@Model.About.Vfile.Content"></label>
-                    <div class="bd-form-group">
-                        <input id="uploadedFile" type="file" asp-for="@Model.About.Vfile.Content" class="@(Model.About.Vfile?.FileName == null ? "filer" : "d-none")" />
-                        <div class="uploadedFile @(Model.About.Vfile?.FileName == null ? "d-none" : null)">
-                            <a class="btn btn-outline-secondary" asp-page-handler="OpenFile" asp-route-identifier="@Model.About.Vfile?.Identifier" title="@Model.About.Vfile?.FileName">
-                                <i class="far fa-file-pdf fa-1x"></i>
-                                @Model.About.Vfile?.FileName
-                            </a>
-                            <div class="ml-1 d-inline">
-                                <button asp-page-handler="RemoveFile" data-ajax="true" data-ajax-update="#panel" class="btn btn-outline-danger cancel"><i class="far fa-trash-alt"></i></button>
+                        <div id="divPreview" class="form-group bd-form-group @(string.IsNullOrEmpty(@Model.About.Photo) ? "d-none" : "d-flex")">
+                            <div class="cropContainer">
+                                <div class="input-group">
+                                    <img id="imgPreview" class="imgPreview" src="@Model.About.Photo" />
+                                </div>
+                            </div>
+                            <div class="d-inline-block align-top">
+                                <button id="btnRemoveImage" type="button" class="btn btn-outline-danger d-block flex-fill ml-2">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.About.Vfile.Content"></label>
+                        <div class="bd-form-group">
+                            <input id="uploadedFile" type="file" asp-for="@Model.About.Vfile.Content" class="@(Model.About.Vfile?.FileName == null ? "filer" : "d-none")" />
+                            <div class="uploadedFile @(Model.About.Vfile?.FileName == null ? "d-none" : null)">
+                                <a class="btn btn-secondary" asp-page-handler="OpenFile" asp-route-identifier="@Model.About.Vfile?.Identifier" title="@Model.About.Vfile?.FileName">
+                                    <i class="far fa-file-pdf fa-1x"></i>
+                                    @Model.About.Vfile?.FileName
+                                </a>
+                                <div class="ml-1 d-inline">
+                                    <button asp-page-handler="RemoveFile" data-ajax="true" data-ajax-update="#panel" class="btn btn-danger cancel"><i class="far fa-trash-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="card-footer">
-            <div class="form-row">
-                <div class="form-group col mb-0 text-right">
-                    <input type="hidden" asp-for="@Model.About.Vfile.FileName" />
-                    <input type="hidden" asp-for="@Model.About.Vfile.Identifier" />
-                    <input type="text" asp-for="@Model.About.Photo" class="imgPhoto invisible" />
-                    <input id="imgInput" type="file" class="invisible" accept="image/jpeg, image/png" style="height:0; width: 0" />
-                    <button type="submit" class="btn btn-outline-success float-right">@SharedResource.Save</button>
+            </div>
+            <div class="card-footer">
+                <div class="form-row">
+                    <div class="form-group col mb-0 text-right">
+                        <input type="hidden" asp-for="@Model.About.Vfile.FileName" />
+                        <input type="hidden" asp-for="@Model.About.Vfile.Identifier" />
+                        <input type="text" asp-for="@Model.About.Photo" class="imgPhoto invisible" />
+                        <input id="imgInput" type="file" class="invisible" accept="image/jpeg, image/png" style="height:0; width: 0" />
+                        <button type="submit" class="btn btn-success float-right">@SharedResource.Save</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>

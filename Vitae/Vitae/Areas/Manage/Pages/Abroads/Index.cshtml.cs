@@ -20,13 +20,13 @@ using Vitae.Code;
 
 using Poco = Model.Poco;
 
-namespace Vitae.Areas.Manage.Pages.Abroad
+namespace Vitae.Areas.Manage.Pages.Abroads
 {
     public class IndexModel : BasePageModel
     {
         private const string PAGE_ABROAD = "_Abroad";
 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Abroad), Prompt = nameof(SharedResource.Abroad))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Abroads), Prompt = nameof(SharedResource.Abroads))]
         [BindProperty]
         public IList<AbroadVM> Abroads { get; set; }
 

@@ -17,8 +17,8 @@ h1 {
 }
 
 hr {
-    margin-bottom: 2em;
-    border-color: #cfcfcf;
+    margin-bottom: 1.5em;
+    border-color: #c0c3c8
 }
 
 .bg-dark {
@@ -51,6 +51,14 @@ hr {
 
 h1 svg {
     /*color: $qvs-gold-color;*/
+}
+
+.grouping {
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    background-color: #f8f8f8;
 }
 
 .tooltip-inner {
@@ -194,23 +202,26 @@ span.field-validation-error {
 
 .jFiler-input-button {
     background-image: none !important;
+    background-color: #6c757d !important;
     padding-top: 7px !important;
-    color: #6C757D !important;
+    color: #ffffff !important;
     padding-bottom: 25px !important;
     font-family: Lato, Arial, Helvetica, sans-serif !important;
     border-color: rgb(108, 117, 125) !important;
 }
+
 .jFiler-input-button:focus {
     box-shadow: none !important;
 }
 .jFiler-input-button:hover {
-    background-color: #6C757D !important;
+    background-color: #5a6268 !important;
+    border-color: #545b62 !important;
     color: #fff !important;
 }
 .jFiler-input-caption {
     background-image: none !important;
     padding-top: 7px !important;
-    color: #6C757D !important;
+    color: #495057 !important;
     font-family: Lato, Arial, Helvetica, sans-serif !important;
 }
 

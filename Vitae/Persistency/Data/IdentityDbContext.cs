@@ -8,9 +8,9 @@ using System.IO;
 
 namespace Persistency.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class IdentityContext : IdentityDbContext<IdentityUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public IdentityContext(DbContextOptions<IdentityContext> options)
             : base(options)
         {
         }

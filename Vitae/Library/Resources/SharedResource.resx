@@ -123,6 +123,9 @@
   <data name="Abroad" xml:space="preserve">
     <value>Abroad stay</value>
   </data>
+  <data name="Abroads" xml:space="preserve">
+    <value>Abroad stays</value>
+  </data>
   <data name="AcademicTitle" xml:space="preserve">
     <value>Academic title</value>
   </data>
@@ -359,6 +362,9 @@
   </data>
   <data name="Homepage" xml:space="preserve">
     <value>Homepage</value>
+  </data>
+  <data name="Interest" xml:space="preserve">
+    <value>Interest</value>
   </data>
   <data name="Interests" xml:space="preserve">
     <value>Interests</value>

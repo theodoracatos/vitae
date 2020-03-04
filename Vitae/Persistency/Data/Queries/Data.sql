@@ -10,7 +10,7 @@ INSERT INTO [About]
 VALUES(NEWID(), 'Dipl.-Ing. FH | MAS ZFH', '"Wer hohe Türme bauen will, muss lange beim Fundament verweilen." Aristoteles',  '', null)
 
 INSERT INTO [PersonalDetail]
-VALUES (NEWID(), 'Alexandros', 'Theodoracatos', '1983-06-23', 1, 'Zwischenbächen', 143, 8048, 'Zürich', 'Zürich', 'theodoracatos@gmail.com', '787044438', 'Zürich ZH, Eschenbach SG', 2, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), (SELECT TOP 1 [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'))
+VALUES (NEWID(), 'Alexandros', 'Theodoracatos', '1983-06-23', 1, 'Zwischenbächen', 143, 'Zürich', 'Zürich', '8048', 'theodoracatos@gmail.com', '787044438', 'Zürich ZH, Eschenbach SG', 2, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), (SELECT TOP 1 [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'))
 
 INSERT INTO [PersonCountry]
 VALUES ((SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 0)

@@ -64,7 +64,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
                     {
                         Description = i.Description,
                         Link = i.Link,
-                        Name = i.Name,
+                        InterestName = i.InterestName,
                         Order = i.Order
                     }).ToList();
                 curriculum.LastUpdated = DateTime.Now;

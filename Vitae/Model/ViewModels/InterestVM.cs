@@ -6,10 +6,10 @@ namespace Model.ViewModels
 {
     public class InterestVM
     {
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Name), Prompt = nameof(SharedResource.Name))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Interest), Prompt = nameof(SharedResource.Interest))]
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
-        public string Name { get; set; }
+        public string InterestName { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Description), Prompt = nameof(SharedResource.Description))]
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
