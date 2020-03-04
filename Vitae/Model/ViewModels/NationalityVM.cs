@@ -1,7 +1,5 @@
 ﻿using Library.Resources;
 
-using Microsoft.AspNetCore.Mvc;
-
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels

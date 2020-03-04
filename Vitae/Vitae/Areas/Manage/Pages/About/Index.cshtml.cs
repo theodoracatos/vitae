@@ -1,15 +1,16 @@
-﻿using Library.Repository;
+﻿using Library.Helper;
+using Library.Repository;
 using Library.Resources;
-using Model.ViewModels;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
-using Persistency.Data;
 using Model.Poco;
+using Model.ViewModels;
+
+using Persistency.Data;
 
 using System;
 using System.IO;
@@ -19,7 +20,6 @@ using System.Threading.Tasks;
 using Vitae.Code;
 
 using Poco = Model.Poco;
-using Library.Helper;
 
 namespace Vitae.Areas.Manage.Pages.About
 {

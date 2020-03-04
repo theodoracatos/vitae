@@ -1,12 +1,13 @@
 ﻿using Library.Constants;
 using Library.Helper;
+
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 
 using SendGrid;
 using SendGrid.Helpers.Mail;
+
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 

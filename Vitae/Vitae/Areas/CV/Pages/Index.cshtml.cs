@@ -1,11 +1,12 @@
 using Library.Repository;
 using Library.Resources;
-using Model.ViewModels;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+
+using Model.ViewModels;
 
 using Persistency.Data;
 
@@ -15,9 +16,9 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 
 using Vitae.Code;
-using System.Threading.Tasks;
 
 namespace CVitae.Areas.CV.Pages
 {

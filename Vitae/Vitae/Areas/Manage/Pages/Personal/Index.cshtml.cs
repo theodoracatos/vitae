@@ -1,14 +1,15 @@
 ﻿using Library.Repository;
 using Library.Resources;
-using Model.ViewModels;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
-using Persistency.Data;
 using Model.Poco;
+using Model.ViewModels;
+
+using Persistency.Data;
 
 using System;
 using System.Collections.Generic;
