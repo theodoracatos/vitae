@@ -18,11 +18,11 @@ using System.Threading.Tasks;
 
 using Vitae.Code;
 
-namespace Vitae.Areas.Manage.Pages.Personal
+namespace Vitae.Areas.Manage.Pages.Personalities
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_PERSONAL = "_Personal";
+        public const string PAGE_PERSONALITIES = "_Personalities";
 
         [BindProperty]
         public PersonalDetailVM PersonalDetail { get; set; }
@@ -111,7 +111,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
         {
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_PERSONAL);
+            return GetPartialViewResult(PAGE_PERSONALITIES);
         }
 
         public IActionResult OnPostAddNationality()
@@ -122,7 +122,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
             }
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_PERSONAL);
+            return GetPartialViewResult(PAGE_PERSONALITIES);
         }
 
         public IActionResult OnPostRemoveNationality()
@@ -134,7 +134,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_PERSONAL);
+            return GetPartialViewResult(PAGE_PERSONALITIES);
         }
 
         public IActionResult OnPostAddChild()
@@ -149,7 +149,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
             }
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_PERSONAL);
+            return GetPartialViewResult(PAGE_PERSONALITIES);
         }
 
         public IActionResult OnPostRemoveChild()
@@ -161,7 +161,7 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_PERSONAL);
+            return GetPartialViewResult(PAGE_PERSONALITIES);
         }
 
         public IActionResult OnPostChangeBirthday()
@@ -175,14 +175,14 @@ namespace Vitae.Areas.Manage.Pages.Personal
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_PERSONAL);
+            return GetPartialViewResult(PAGE_PERSONALITIES);
         }
 
         public IActionResult OnPostChangeCountry()
         {
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_PERSONAL);
+            return GetPartialViewResult(PAGE_PERSONALITIES);
         }
 
         #endregion

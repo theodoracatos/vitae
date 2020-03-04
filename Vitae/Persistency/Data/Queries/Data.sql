@@ -4,7 +4,7 @@ GO
 BEGIN TRY
     BEGIN TRANSACTION
 
-DECLARE @CurriculumID uniqueidentifier = (SELECT [cur].[Identifier] FROM [Curriculum] [cur] INNER JOIN [AspNetUsers] [usr] ON [usr].[Id] = [cur].[UserID] WHERE [usr].[Email] = 'theodoracatos@gmail.com')
+DECLARE @CurriculumID uniqueidentifier = (SELECT [cla].[ClaimValue] FROM [AspNetUsers] [usr] INNER JOIN [AspNetUserClaims] [cla] ON [cla].[UserId] = [usr].[Id] WHERE [usr].[Email] = 'theodoracatos@gmail.com')
 
 INSERT INTO [About]
 VALUES(NEWID(), 'Dipl.-Ing. FH | MAS ZFH', '"Wer hohe Türme bauen will, muss lange beim Fundament verweilen." Aristoteles',  '', null)
@@ -24,15 +24,21 @@ VALUES(NEWID(), 'Marilena', '2014-08-14', 0, (SELECT TOP 1 [PersonalDetailID] FR
 INSERT INTO [Child]
 VALUES(NEWID(), 'Aris', '2017-08-13', 0, (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]))
 
+IF NOT EXISTS(SELECT 1 FROM [Person])
+BEGIN
+    INSERT INTO [Person]
+    VALUES (NEWID(), 'de', (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT TOP 1 [AboutID] FROM [About]))
+
+    INSERT INTO [Curriculum]
+    VALUES (NEWID(), @CurriculumID, @CurriculumID, 'alexis', 'theodoracatos', null, GETDATE(), GETDATE(), (SELECT TOP 1 [PersonID] FROM [Person]))
+END
+ELSE
+BEGIN
 UPDATE [Person]
 SET [PersonalDetailID] = (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]),
 [AboutID] = (SELECT TOP 1 [AboutID] FROM [About])
+END
 
---INSERT INTO [Person]
---VALUES (NEWID(), 'de', (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT TOP 1 [AboutID] FROM [About]))
-
---INSERT INTO [Curriculum]
---VALUES (NEWID(), @CurriculumID, @CurriculumID, 'alexis', 'theodoracatos', null, GETDATE(), GETDATE(), (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [SocialLink]
 VALUES (NEWID(), 1, 'https://www.facebook.com/theodoracatos', 1, (SELECT TOP 1 [PersonID] FROM [Person]))

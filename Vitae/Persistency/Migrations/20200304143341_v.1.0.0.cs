@@ -417,7 +417,7 @@ namespace Persistency.Migrations
                 columns: table => new
                 {
                     InterestID = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    InterestName = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
                     Order = table.Column<int>(nullable: false),

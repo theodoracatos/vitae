@@ -24,7 +24,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_LANGUAGES = "_Languages";
+        public const string PAGE_LANGUAGES = "_Languages";
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Languages), Prompt = nameof(SharedResource.Languages))]
         [BindProperty]

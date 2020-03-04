@@ -108,7 +108,7 @@
                         <div class="form-group col mt-1">
                             <div class="text-right">
                                 <button asp-page-handler="UpEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
-                                <button asp-page-handler="DownEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel @(i == Model.Educations.Count - 1 ? "d-none": null)"><i class="fas fa-arrow-down"></i></button>
+                                <button asp-page-handler="DownEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel @(i == Model.Educations.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
                             </div>
                         </div>
                     </div>

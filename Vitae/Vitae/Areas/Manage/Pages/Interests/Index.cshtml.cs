@@ -24,7 +24,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_INTERESTS = "_Interests";
+        public const string PAGE_INTERESTS = "_Interests";
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Interests), Prompt = nameof(SharedResource.Interests))]
         [BindProperty]

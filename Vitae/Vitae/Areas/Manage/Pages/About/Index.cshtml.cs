@@ -25,7 +25,7 @@ namespace Vitae.Areas.Manage.Pages.About
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_ABOUT = "_About";
+        public const string PAGE_ABOUT = "_About";
 
         [BindProperty]
         public AboutVM About { get; set; }

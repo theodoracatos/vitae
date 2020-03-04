@@ -24,7 +24,7 @@ namespace Vitae.Areas.Manage.Pages.References
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_REFERENCES = "_References";
+        public const string PAGE_REFERENCES = "_References";
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Reference), Prompt = nameof(SharedResource.Reference))]
         [BindProperty]

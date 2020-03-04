@@ -24,7 +24,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_ABROAD = "_Abroad";
+        public const string PAGE_ABROADS = "_Abroads";
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Abroads), Prompt = nameof(SharedResource.Abroads))]
         [BindProperty]
@@ -90,7 +90,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
         {
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_ABROAD);
+            return GetPartialViewResult(PAGE_ABROADS);
         }
 
         public IActionResult OnPostAddAbroad()
@@ -108,7 +108,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
             }
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_ABROAD);
+            return GetPartialViewResult(PAGE_ABROADS);
         }
 
         public IActionResult OnPostRemoveAbroad()
@@ -120,7 +120,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_ABROAD);
+            return GetPartialViewResult(PAGE_ABROADS);
         }
 
         public IActionResult OnPostUpAbroad(int order)
@@ -131,7 +131,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_ABROAD);
+            return GetPartialViewResult(PAGE_ABROADS);
         }
 
         public IActionResult OnPostDownAbroad(int order)
@@ -142,7 +142,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_ABROAD);
+            return GetPartialViewResult(PAGE_ABROADS);
         }
 
         #endregion

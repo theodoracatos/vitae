@@ -24,7 +24,7 @@ namespace Vitae.Areas.Manage.Pages.Skills
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_SKILLS = "_Skills";
+        public const string PAGE_SKILLS = "_Skills";
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Skills), Prompt = nameof(SharedResource.Skills))]
         [BindProperty]

@@ -24,7 +24,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_CERTIFICATES = "_Certificates";
+        public const string PAGE_CERTIFICATES = "_Certificates";
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Certificates), Prompt = nameof(SharedResource.Certificates))]
         [BindProperty]

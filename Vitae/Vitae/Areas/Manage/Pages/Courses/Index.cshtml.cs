@@ -24,7 +24,7 @@ namespace Vitae.Areas.Manage.Pages.Courses
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_COURSES = "_Courses";
+        public const string PAGE_COURSES = "_Courses";
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Courses), Prompt = nameof(SharedResource.Courses))]
         [BindProperty]

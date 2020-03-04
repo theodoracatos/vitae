@@ -24,7 +24,7 @@ namespace Vitae.Areas.Manage.Pages.Experiences
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_EXPERIENCES = "_Experiences";
+        public const string PAGE_EXPERIENCES = "_Experiences";
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.JobExperiences), Prompt = nameof(SharedResource.JobExperiences))]
         [BindProperty]

@@ -25,7 +25,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_SOCIALLINKS = "_Sociallinks";
+        public const string PAGE_SOCIALLINKS = "_Sociallinks";
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.SocialLinks), Prompt = nameof(SharedResource.SocialLinks))]
         [BindProperty]

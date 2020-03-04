@@ -24,7 +24,7 @@ namespace Vitae.Areas.Manage.Pages.Educations
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_EDUCATIONS = "_Educations";
+        public const string PAGE_EDUCATIONS = "_Educations";
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Educations), Prompt = nameof(SharedResource.Educations))]
         [BindProperty]

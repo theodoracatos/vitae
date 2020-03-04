@@ -24,7 +24,7 @@ namespace Vitae.Areas.Manage.Pages.Awards
 {
     public class IndexModel : BasePageModel
     {
-        private const string PAGE_AWARDS = "_Awards";
+        public const string PAGE_AWARDS = "_Awards";
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Awards), Prompt = nameof(SharedResource.Awards))]
         [BindProperty]
