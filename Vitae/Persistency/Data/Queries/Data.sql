@@ -116,7 +116,7 @@ INSERT INTO [Interest]
 VALUES(NEWID(), 'Kinder', 'Meine beiden Kinder halten mich stets auf Trab', null, 4, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Skill]
-VALUES (NEWID(), 'Programmiersprachen', 'C#, Java, TypeScript / JavaScript, VB', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Programmiersprachen', 'C#, Java, Visual Basic, TypeScript / JavaScript, VB', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Skill]
 VALUES (NEWID(), 'Frameworks', '.NET Framework, .NET Core, Entity Framework, Entity Framework Core, ADO.Net, WinForms', 2, (SELECT TOP 1 [PersonID] FROM [Person]))

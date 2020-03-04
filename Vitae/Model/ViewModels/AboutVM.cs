@@ -6,7 +6,6 @@ namespace Model.ViewModels
 {
     public class AboutVM
     {
-        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.AcademicTitle), Prompt = nameof(SharedResource.AcademicTitle))]
         [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string AcademicTitle { get; set; }
