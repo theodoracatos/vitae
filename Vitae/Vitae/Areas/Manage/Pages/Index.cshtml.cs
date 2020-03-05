@@ -1,32 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Model.ViewModels.Reports;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 
 namespace Vitae.Areas.Manage.Pages
 {
-    public class ChartData
-    {
-        public int[] Data_Axis_X { get; set; }
-        public int[] Data_Axis_Y { get; set; }
-    }
-
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        public ReportVM Report { get; set; }
 
-        public ChartData ChartData { get; set; }
-
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel()
         {
-            _logger = logger;
         }
 
         public void OnGet()
         {
-            ChartData = new ChartData()
+            Report = new ReportVM()
             {
-                Data_Axis_X = new int[] { 1997, 2003, 2005, 2009, 2014, 2018, 2019 },
-                Data_Axis_Y = new int[] { 1, 3, 5, 3, 1, 18, 9 }
+                Logs = new List<LogVM>()
+                 {
+                    new LogVM(){ Hits = 10, LogDate = new DateTime(2020,2,1) },
+                    new LogVM(){ Hits = 3, LogDate = new DateTime(2020,2,3) },
+                    new LogVM(){ Hits = 5, LogDate = new DateTime(2020,2,4) },
+                    new LogVM(){ Hits = 21, LogDate = new DateTime(2020,2,19) },
+                    new LogVM(){ Hits = 2, LogDate = new DateTime(2020,3,1) },
+                    new LogVM(){ Hits = 4, LogDate = new DateTime(2020,3,4) }
+                 }
             };
         }
     }

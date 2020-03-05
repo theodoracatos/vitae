@@ -3,61 +3,94 @@
 @{
     ViewData["Title"] = SharedResource.Homepage;
 }
+@{
+    // https://www.c-sharpcorner.com/article/creating-charts-with-asp-net-core/
+    var XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Logs.Select(x => x.LogDate).ToList());
+    var YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Logs.Select(y => y.Hits).ToList());
+}
 
-<h1>@SharedResource.Dashboard</h1>
-
-<div>
-    <canvas id="myChart" width="400" height="400"></canvas>
+<div class="box-body">
+    <div class="chart-container">
+        <canvas id="chartHits" class="w-100"></canvas>
+    </div>
 </div>
 
 @section Scripts {
 
-<script>
-$(document).ready(function () {
-var ctx = document.getElementById('myChart').getContext('2d');
-    var model = @Html.Raw(Json.Serialize(Model.ChartData));
+    <script type="text/javascript">
+        $(function () {  
 
-    //If Model is a List<>, model is an array, you need to loop it to get data
-    var xAxis = [];
-    var yAxis = [];
+            alert();
+            var ctx = document.getElementById('chartHits').getContext('2d');
 
-    alert( @Html.Raw(Json.Serialize(@Model.ChartData)));
-    $.each(model.Data_Axis_X, function (index, item) {
-        xAxis.push(item.toString());
-    });
-    $.each(model.Data_Axis_Y, function (index, item) {
-        yAxis.push(item.toString());
-    }).promise().done(function () { 
-     var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: xAxis,
-            datasets: [{
-                label: '# of Votes',
-                data: yAxis,
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-    });
-});
-
-</script>
+          var data = {  
+                labels: @Html.Raw(XLabels),  
+                datasets: [{  
+                    label: "Departments Chart",  
+                    backgroundColor: [  
+                        'rgba(255, 99, 132, 0.2)',  
+                        'rgba(54, 162, 235, 0.2)',  
+                        'rgba(255, 206, 86, 0.2)',  
+                        'rgba(75, 192, 192, 0.2)',  
+                        'rgba(153, 102, 255, 0.2)',  
+                        'rgba(255, 159, 64, 0.2)',  
+                        'rgba(255, 0, 0)',  
+                        'rgba(0, 255, 0)',  
+                        'rgba(0, 0, 255)',  
+                        'rgba(192, 192, 192)',  
+                        'rgba(255, 255, 0)',  
+                        'rgba(255, 0, 255)'  
+                    ],  
+                    borderColor: [  
+                        'rgba(255,99,132,1)',  
+                        'rgba(54, 162, 235, 1)',  
+                        'rgba(255, 206, 86, 1)',  
+                        'rgba(75, 192, 192, 1)',  
+                        'rgba(153, 102, 255, 1)',  
+                        'rgba(255, 159, 64, 1)',  
+                        'rgba(255, 0, 0)',  
+                        'rgba(0, 255, 0)',  
+                        'rgba(0, 0, 255)',  
+                        'rgba(192, 192, 192)',  
+                        'rgba(255, 255, 0)',  
+                        'rgba(255, 0, 255)'  
+                    ],  
+                    borderWidth: 1,  
+                    data: @Html.Raw(YValues)  
+    }]  
+            };  
+  
+var options = {  
+                maintainAspectRatio: false,  
+                scales: {  
+                    yAxes: [{  
+                        ticks: {  
+                            min: 0,  
+                            beginAtZero: true  
+                        },  
+                        gridLines: {  
+                            display: true,  
+                            color: "rgba(255,99,164,0.2)"  
+                        }  
+}],  
+                    xAxes: [{  
+                        ticks: {  
+                            min: 0,  
+                            beginAtZero: true  
+                        },  
+                        gridLines: {  
+                            display: false  
+                        }  
+                    }]  
+                }  
+            };  
+  
+       var myChart = new  Chart(ctx, {  
+                options: options,  
+                data: data,  
+                type:'bar'  
+  
+            });  
+        });  
+</script>  
 }
