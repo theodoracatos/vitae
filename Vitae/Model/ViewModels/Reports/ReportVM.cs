@@ -6,6 +6,7 @@ namespace Model.ViewModels.Reports
 {
     public class ReportVM
     {
-        public IList<LogVM> Logs { get; set; }
+        public IList<LogVM> Hits { get; set; }
+        public IList<LogVM> Logins { get; set; }
     }
 }

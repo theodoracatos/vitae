@@ -111,6 +111,20 @@ i.sideIcon {
     font-weight: bold;
 }
 
+/* Scrollbar */
+body::-webkit-scrollbar, .sb-sidenav-menu::-webkit-scrollbar {
+    width: 0.75em;
+}
+
+body::-webkit-scrollbar-track, .sb-sidenav-menu::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb, .sb-sidenav-menu::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
+
 /* Misc */
 button.dropdown-toggle {
     background-color: #ffffff !important;

@@ -1,18 +1,76 @@
 ﻿declare var jQuery;
 declare var $;
 declare var Resources;
+declare var Chart;
 
-(function ($) {
+$(document).ready(function () {
     addJQueryValidators();
     startRating();
     initSelectPicker();
-})(jQuery);
 
-$(document).ready(function () {
-    setupNicescroll();
     loadingProcedure();
     setupSbAdmin();
 });
+
+function ajaxCompleted() {
+    loadingProcedure();
+    startRating();
+    resetFormValidator('form');
+    initSelectPicker();
+}
+
+function drawChart(chartId, label, xLabels, yValues, color) {
+    var canvas: any = document.getElementById(chartId);
+    var ctx = canvas.getContext("2d");
+    var bgColor = color == 'gold' ? 'rgba(183, 158, 103, 1)' : 'rgba(100, 162, 152, 1)';
+    var borderColor = color == 'gold' ? 'rgba(183, 158, 103, 0.2)' : 'rgba(100, 162, 152, 0.2)';
+
+    var data = {
+        labels: xLabels,
+        datasets: [{
+        label: label,
+        fill: true,
+        backgroundColor: [
+            bgColor
+        ],
+        borderColor: [
+            borderColor
+        ],
+        borderWidth: 1,
+            data: yValues
+         }]};
+
+    var options = {
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    beginAtZero: true
+                },
+                gridLines: {
+                    display: true,
+                    color: "rgba(255,99,164,0.2)"
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    min: 0,
+                    beginAtZero: true
+                },
+                gridLines: {
+                    display: false
+                }
+            }]
+        }
+    };
+
+    new Chart(ctx, {
+        options: options,
+        data: data,
+        type: 'line',
+    });  
+}
 
 function addJQueryValidators() {
     $.validator.addMethod('agelimit', function (value, element, params) {
@@ -28,14 +86,6 @@ function addJQueryValidators() {
         options.rules['agelimit'] = [element, parseInt(options.params['year'])];
         options.messages['agelimit'] = options.message;
     });
-}
-
-function setupNicescroll() {
-    $("body, .sb-sidenav-menu").niceScroll();
-}
-
-function resizeNicescroll() {
-    $("body, .sb-sidenav-menu").getNiceScroll().resize();
 }
 
 function setupSbAdmin() {
@@ -54,14 +104,6 @@ function setupSbAdmin() {
     });
 
     $('#dataTable').DataTable();
-}
-
-function ajaxCompleted() {
-    resizeNicescroll();
-    loadingProcedure();
-    startRating();
-    resetFormValidator('form');
-    initSelectPicker();
 }
 
 function initSelectPicker() {

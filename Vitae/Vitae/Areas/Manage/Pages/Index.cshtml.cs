@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+
 using Model.ViewModels.Reports;
-using Newtonsoft.Json;
+
 using System;
 using System.Collections.Generic;
 
@@ -18,18 +17,25 @@ namespace Vitae.Areas.Manage.Pages
 
         public void OnGet()
         {
-            Report = new ReportVM()
+            var datapoints = new Dictionary<DateTime, int>()
             {
-                Logs = new List<LogVM>()
-                 {
-                    new LogVM(){ Hits = 10, LogDate = new DateTime(2020,2,1) },
-                    new LogVM(){ Hits = 3, LogDate = new DateTime(2020,2,3) },
-                    new LogVM(){ Hits = 5, LogDate = new DateTime(2020,2,4) },
-                    new LogVM(){ Hits = 21, LogDate = new DateTime(2020,2,19) },
-                    new LogVM(){ Hits = 2, LogDate = new DateTime(2020,3,1) },
-                    new LogVM(){ Hits = 4, LogDate = new DateTime(2020,3,4) }
-                 }
+                { new DateTime(2020,2,8), 1 },
+                { new DateTime(2020,2,9), 4 },
+                { new DateTime(2020,2,11), 7 },
+                { new DateTime(2020,2,16), 3 },
+                { new DateTime(2020,2,22), 3 },
+                { new DateTime(2020,3,3), 9 },
+                { new DateTime(2020,3,6), 12 },
             };
+
+            Report = new ReportVM() { Hits = new List<LogVM>(), Logins = new List<LogVM>() };
+
+            for(DateTime currentDate = DateTime.Now.Date.AddDays(-29); currentDate <= DateTime.Now.Date; currentDate = currentDate.AddDays(1))
+            {
+                Report.Hits.Add(new LogVM() { LogDate = currentDate, Hits = datapoints.ContainsKey(currentDate) ? datapoints[currentDate] : 0 });
+                Report.Logins.Add(new LogVM() { LogDate = currentDate, Hits = datapoints.ContainsKey(currentDate) ? datapoints[currentDate] + currentDate.Day : 0 });
+
+            }
         }
     }
 }
