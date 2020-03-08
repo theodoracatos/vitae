@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-
+using Model.Enumerations;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -12,7 +12,7 @@ namespace Model.Poco
         public LogLevel LogLevel { get; set; }
 
         [MaxLength(100)]
-        public string Area { get; set; }
+        public LogArea Area { get; set; }
 
         [MaxLength(255)]
         public string Page { get; set; }

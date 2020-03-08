@@ -513,6 +513,12 @@
   <data name="NoResults" xml:space="preserve">
     <value>Keine Suchergebnisse für {0}</value>
   </data>
+  <data name="NrOfCVHits" xml:space="preserve">
+    <value>CV-Zugriffe (letzte 30 Tage)</value>
+  </data>
+  <data name="NrOfLogins" xml:space="preserve">
+    <value>Logins (letzte 30 Tage)</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
@@ -564,9 +570,6 @@
   <data name="PersonalDetails" xml:space="preserve">
     <value>Persönliche Angaben</value>
   </data>
-  <data name="Personalies" xml:space="preserve">
-    <value>Personalien</value>
-  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Telefonnummer</value>
   </data>
@@ -584,6 +587,9 @@
   </data>
   <data name="PleaseUpload" xml:space="preserve">
     <value>Bitte beachten Sie die Dateigrösse von</value>
+  </data>
+  <data name="ProfileOverview" xml:space="preserve">
+    <value>Profilübersicht</value>
   </data>
   <data name="ProperValue" xml:space="preserve">
     <value>Bitte einen gültigen Wert eingeben</value>
@@ -701,6 +707,9 @@
   </data>
   <data name="Subject" xml:space="preserve">
     <value>Thema der Ausbildung</value>
+  </data>
+  <data name="SumOfCVHits" xml:space="preserve">
+    <value>Summer aller CV-Aufrufe</value>
   </data>
   <data name="SupplyCode" xml:space="preserve">
     <value>Für das Zurücksetzen des Passworts muss ein Code angegeben werden.</value>

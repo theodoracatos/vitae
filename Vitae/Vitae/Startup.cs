@@ -97,7 +97,7 @@ namespace Vitae
             var builder = services.AddRazorPages()
                 .AddRazorPagesOptions(options =>
                 {
-                    //options.Conventions.AuthorizeAreaFolder("Manage", "/"); // TODO!!
+                    options.Conventions.AuthorizeAreaFolder("Manage", "/");
                     options.Conventions.AddAreaPageRoute("CV", "/CV/index", "id");
                 });
 

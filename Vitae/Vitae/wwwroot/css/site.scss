@@ -125,6 +125,18 @@ body::-webkit-scrollbar-thumb, .sb-sidenav-menu::-webkit-scrollbar-thumb {
     outline: 1px solid slategrey;
 }
 
+.chart{
+    height: 400px !important;
+}
+
+.pl-2-5 {
+    padding-left: 0.75em;
+}
+
+.pr-2-5 {
+    padding-right: 0.75em;
+}
+
 /* Misc */
 button.dropdown-toggle {
     background-color: #ffffff !important;

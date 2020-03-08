@@ -513,6 +513,12 @@
   <data name="NoResults" xml:space="preserve">
     <value>No results for {0}</value>
   </data>
+  <data name="NrOfCVHits" xml:space="preserve">
+    <value>CV hits (last 30 days)</value>
+  </data>
+  <data name="NrOfLogins" xml:space="preserve">
+    <value>Logins (last 30 days)</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
@@ -564,9 +570,6 @@
   <data name="PersonalDetails" xml:space="preserve">
     <value>Personal details</value>
   </data>
-  <data name="Personalies" xml:space="preserve">
-    <value>Personalies</value>
-  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone number</value>
   </data>
@@ -584,6 +587,9 @@
   </data>
   <data name="PleaseUpload" xml:space="preserve">
     <value>Please upload files up to</value>
+  </data>
+  <data name="ProfileOverview" xml:space="preserve">
+    <value>Profile overview</value>
   </data>
   <data name="ProperValue" xml:space="preserve">
     <value>Please enter a proper value</value>
@@ -701,6 +707,9 @@
   </data>
   <data name="Subject" xml:space="preserve">
     <value>Subject of education</value>
+  </data>
+  <data name="SumOfCVHits" xml:space="preserve">
+    <value>Sum of CV calls</value>
   </data>
   <data name="SupplyCode" xml:space="preserve">
     <value>A code must be supplied for password reset.</value>

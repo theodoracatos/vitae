@@ -1249,6 +1249,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CV hits (last 30 days).
+        /// </summary>
+        public static string NrOfCVHits {
+            get {
+                return ResourceManager.GetString("NrOfCVHits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logins (last 30 days).
+        /// </summary>
+        public static string NrOfLogins {
+            get {
+                return ResourceManager.GetString("NrOfLogins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         public static string Ok {
@@ -1402,15 +1420,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Personalies.
-        /// </summary>
-        public static string Personalies {
-            get {
-                return ResourceManager.GetString("Personalies", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Phone number.
         /// </summary>
         public static string PhoneNumber {
@@ -1461,6 +1470,15 @@ namespace Library.Resources {
         public static string PleaseUpload {
             get {
                 return ResourceManager.GetString("PleaseUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile overview.
+        /// </summary>
+        public static string ProfileOverview {
+            get {
+                return ResourceManager.GetString("ProfileOverview", resourceCulture);
             }
         }
         
@@ -1812,6 +1830,15 @@ namespace Library.Resources {
         public static string Subject {
             get {
                 return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sum of CV calls.
+        /// </summary>
+        public static string SumOfCVHits {
+            get {
+                return ResourceManager.GetString("SumOfCVHits", resourceCulture);
             }
         }
         

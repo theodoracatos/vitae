@@ -3,6 +3,8 @@ declare var $;
 declare var Resources;
 declare var Chart;
 
+const gridColor = 'rgba(255,99,164,0.2)';
+
 $(document).ready(function () {
     addJQueryValidators();
     startRating();
@@ -19,16 +21,53 @@ function ajaxCompleted() {
     initSelectPicker();
 }
 
-function drawChart(chartId, label, xLabels, yValues, color) {
+function drawRadar(chartId, title, labels, dataset, color) {
     var canvas: any = document.getElementById(chartId);
     var ctx = canvas.getContext("2d");
-    var bgColor = color == 'gold' ? 'rgba(183, 158, 103, 1)' : 'rgba(100, 162, 152, 1)';
-    var borderColor = color == 'gold' ? 'rgba(183, 158, 103, 0.2)' : 'rgba(100, 162, 152, 0.2)';
+    var bgColor = getColor(color, true);
+
+    var data = {
+        labels: labels,
+        datasets: [{
+            backgroundColor: [
+                bgColor
+            ],
+            data: dataset
+        }]
+    };
+
+    var options = {
+        legend: {
+            position: 'top',
+            display: false
+        },
+        title: {
+            display: true,
+            text: title
+        },
+        scale: {
+            ticks: {
+                beginAtZero: true
+            }
+        }
+    };
+
+    new Chart(ctx, {
+        options: options,
+        data: data,
+        type: 'radar',
+    }); 
+}
+
+function drawChart(chartId, title, xLabels, yValues, color) {
+    var canvas: any = document.getElementById(chartId);
+    var ctx = canvas.getContext("2d");
+    var bgColor = getColor(color, true);
+    var borderColor = getColor(color, false);
 
     var data = {
         labels: xLabels,
         datasets: [{
-        label: label,
         fill: true,
         backgroundColor: [
             bgColor
@@ -42,6 +81,13 @@ function drawChart(chartId, label, xLabels, yValues, color) {
 
     var options = {
         maintainAspectRatio: false,
+        legend: {
+            display: false
+        },
+        title: {
+            display: true,
+            text: title
+        },
         scales: {
             yAxes: [{
                 ticks: {
@@ -50,7 +96,7 @@ function drawChart(chartId, label, xLabels, yValues, color) {
                 },
                 gridLines: {
                     display: true,
-                    color: "rgba(255,99,164,0.2)"
+                    color: gridColor
                 }
             }],
             xAxes: [{
@@ -70,6 +116,15 @@ function drawChart(chartId, label, xLabels, yValues, color) {
         data: data,
         type: 'line',
     });  
+}
+
+function getColor(color, isBgColor) {
+    if (isBgColor) {
+        return color == 'gold' ? 'rgba(183, 158, 103, 1)' : 'red' ? 'rgba(239, 110, 126, 1)' : '';
+    }
+    else {
+        color == 'gold' ? 'rgba(183, 158, 103, 0.2)' : 'red' ? 'rgba(239, 110, 126, 0.2)' : '';
+    }
 }
 
 function addJQueryValidators() {

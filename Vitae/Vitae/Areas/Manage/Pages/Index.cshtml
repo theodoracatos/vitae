@@ -4,42 +4,56 @@
     ViewData["Title"] = SharedResource.Homepage;
 }
 @{
-    var xLabelsHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Hits.Select(x => x.LogDate.ToString("dd.MM")).ToList());
-    var yValuesHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Hits.Select(y => y.Hits).ToList());
+    var xLabelsHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.LastHits.Select(x => x.LogDate.ToString("dd.MM")).ToList());
+    var yValuesHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.LastHits.Select(y => y.Hits).ToList());
 
-    var xLabelsLogins = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Hits.Select(x => x.LogDate.ToString("dd.MM")).ToList());
-    var yValuesLogins = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Hits.Select(y => y.Hits).ToList());
+    var xLabelsLogins = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Logins.Select(x => x.LogDate.ToString("dd.MM")).ToList());
+    var yValuesLogins = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Logins.Select(y => y.Hits).ToList());
+
+    var xLabelsSumHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.SumHits.Select(x => x.LogDate.ToString("dd.MM")).ToList());
+    var yValuesSumHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.SumHits.Select(y => y.Hits).ToList());
+
+    var valuesRadar = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Points.Select(p => p.Point).ToList());
 }
 
     <div class="card p-4">
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6 mb-4 pr-2-5">
                 <div class="grouping mb-0">
                     <div class="box-body">
                         <div class="chart-container">
-                            <canvas id="chartHits" class="w-100"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div><div class="col-6">
-                <div class="grouping mb-0">
-                    <div class="box-body">
-                        <div class="chart-container">
-                            <canvas id="chartLogins" class="w-100"></canvas>
+                            <canvas id="chartHits" class="w-100 chart"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <div class="col-md-6 mb-4 pl-2-5">
+                <div class="grouping mb-0">
+                    <div class="box-body">
+                        <div class="chart-container">
+                            <canvas id="chartLogins" class="w-100 chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="grouping mb-0">
+                    <canvas id="chartMaxHits" class="w-100 chart"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 
-@section Scripts {
+        @section Scripts {
 
-    <script type="text/javascript">
-        $(function () {  
-            drawChart('chartHits', '# of CV hits', @Html.Raw(xLabelsHits), @Html.Raw(yValuesHits), 'gold');
-            drawChart('chartLogins', '# of logins', @Html.Raw(xLabelsLogins), @Html.Raw(yValuesLogins), 'green');
-        });  
-</script>  
-}
+            <script type="text/javascript">
+        $(function () {
+            drawChart('chartHits', Resources.SharedResource.NrOfCVHits, @Html.Raw(xLabelsHits), @Html.Raw(yValuesHits), 'gold');
+            drawChart('chartLogins', Resources.SharedResource.NrOfLogins, @Html.Raw(xLabelsLogins), @Html.Raw(yValuesLogins), 'gold');
+            drawChart('chartMaxHits', Resources.SharedResource.SumOfCVHits, @Html.Raw(xLabelsSumHits), @Html.Raw(yValuesSumHits), 'red');
+            //drawRadar('chartCompleteness', Resources.SharedResource.ProfileOverview, [Resources.SharedResource.About, Resources.SharedResource.Awards, Resources.SharedResource.Certificates, Resources.SharedResource.Courses, Resources.SharedResource.Educations, Resources.SharedResource.Experiences, Resources.SharedResource.Interests, Resources.SharedResource.Languages, Resources.SharedResource.PersonalDetails, Resources.SharedResource.References, Resources.SharedResource.Skills, Resources.SharedResource.SocialLinks], @Html.Raw(valuesRadar), 'red');
+        });
+            </script>
+        }
