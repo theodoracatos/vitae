@@ -382,7 +382,7 @@ namespace Library.Repository
 
         public IList<LogVM> GetLastHits(Guid curriculumID, int? days = null)
         {
-            var lastLogins = vitaeContext.Logs
+            var lastHits = vitaeContext.Logs
                 .Where(l => l.Curriculum.Identifier == curriculumID && l.Area == LogArea.Access)
                 .Where(l => !days.HasValue || l.Timestamp > DateTime.Now.Date.AddDays(-days.Value))
                 .GroupBy(l => l.Timestamp.Date)
@@ -392,18 +392,18 @@ namespace Library.Repository
                     LogDate = l.Key
                 }).ToList();
 
-            return lastLogins;
+            return lastHits;
         }
 
         public IList<LogVM> GetAllHits(Guid curriculumID)
         {
-            var lastLogins = GetLastHits(curriculumID);
+            var lastHits = GetLastHits(curriculumID);
             var allLogins = new List<LogVM>();
             var currentHits = 0;
-            foreach(var login in lastLogins)
+            foreach(var hit in lastHits)
             {
-                currentHits += login.Hits;
-                allLogins.Add(new LogVM() { Hits = currentHits, LogDate = login.LogDate });
+                currentHits += hit.Hits;
+                allLogins.Add(new LogVM() { Hits = currentHits, LogDate = hit.LogDate });
             }
 
             return allLogins;
@@ -411,9 +411,19 @@ namespace Library.Repository
 
         public IList<LogVM> GetLastLogins(Guid curriculumID, int? days = null)
         {
-            return null; // TODO
+            var lastHits = vitaeContext.Logs
+                .Where(l => l.Curriculum.Identifier == curriculumID && l.Area == LogArea.Login)
+                .Where(l => !days.HasValue || l.Timestamp > DateTime.Now.Date.AddDays(-days.Value))
+                .GroupBy(l => l.Timestamp.Date)
+                .Select(l => new LogVM()
+                {
+                    Hits = l.Count(),
+                    LogDate = l.Key
+                }).ToList();
+
+            return lastHits;
         }
 
-            #endregion
+        #endregion
      }
 }
