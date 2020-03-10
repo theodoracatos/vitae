@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+
 using Model.Enumerations;
 using Model.Poco;
 using Model.ViewModels;
 using Model.ViewModels.Reports;
+
 using Persistency.Data;
 
 using System;
@@ -24,7 +26,7 @@ namespace Library.Repository
 
         #region API
 
-        public void Log(Guid curriculumID, LogArea logArea, LogLevel logLevel, string page, string userAgent, string userLanguage, string ipAddress, string message)
+        public void Log(Guid curriculumID, LogArea logArea, LogLevel logLevel, string page, string userAgent, string userLanguage, string ipAddress, string message = null)
         {
             vitaeContext.Logs.Add(new Log()
             {
@@ -40,6 +42,24 @@ namespace Library.Repository
             });
 
             vitaeContext.SaveChanges();
+        }
+
+        public async Task<Guid> AddCurriculumAsync(Guid userid, string language)
+        {
+            var curriculum = new Curriculum()
+            {
+                ShortIdentifier = (DateTime.Now.Ticks - new DateTime(2020, 1, 1).Ticks).ToString("x"),
+                UserID = userid,
+                CreatedOn = DateTime.Now,
+                FriendlyId = (DateTime.Now.Ticks - new DateTime(2020, 1, 1).Ticks).ToString("x"),
+                LastUpdated = DateTime.Now,
+                Person = new Person() { Language = language }
+            };
+            vitaeContext.Curriculums.Add(curriculum);
+
+            await vitaeContext.SaveChangesAsync();
+
+            return curriculum.CurriculumID;
         }
 
         public async Task<Curriculum> GetCurriculumByWeakIdentifierAsync(string identifier)
@@ -391,7 +411,7 @@ namespace Library.Repository
             return !string.IsNullOrEmpty(countryCode) ? "+" + vitaeContext.Countries.Where(c => c.CountryCode == countryCode).Select(c => c.PhoneCode).Single().ToString() : string.Empty;
         }
 
-        public IList<LogVM> GetLastHits(Guid curriculumID, int? days = null)
+        public IList<LogVM> GetHits(Guid curriculumID, int? days = null)
         {
             var lastHits = vitaeContext.Logs
                 .Where(l => l.CurriculumID == curriculumID && l.LogArea == LogArea.Access)
@@ -408,7 +428,7 @@ namespace Library.Repository
 
         public IList<LogVM> GetAllHits(Guid curriculumID)
         {
-            var lastHits = GetLastHits(curriculumID);
+            var lastHits = GetHits(curriculumID);
             var allLogins = new List<LogVM>();
             var currentHits = 0;
             foreach(var hit in lastHits)
@@ -420,7 +440,7 @@ namespace Library.Repository
             return allLogins;
         }
 
-        public IList<LogVM> GetLastLogins(Guid curriculumID, int? days = null)
+        public IList<LogVM> GetLogins(Guid curriculumID, int? days = null)
         {
             var lastHits = vitaeContext.Logs
                 .Where(l => l.CurriculumID == curriculumID && l.LogArea == LogArea.Login)

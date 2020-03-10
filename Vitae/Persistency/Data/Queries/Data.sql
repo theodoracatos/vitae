@@ -5,6 +5,7 @@ BEGIN TRY
     BEGIN TRANSACTION
 
 DECLARE @CurriculumID uniqueidentifier = (SELECT [cla].[ClaimValue] FROM [AspNetUsers] [usr] INNER JOIN [AspNetUserClaims] [cla] ON [cla].[UserId] = [usr].[Id] WHERE [usr].[Email] = 'theodoracatos@gmail.com')
+DECLARE @UserID uniqueidentifier = (SELECT [cla].[UserId] FROM [AspNetUsers] [usr] INNER JOIN [AspNetUserClaims] [cla] ON [cla].[UserId] = [usr].[Id] WHERE [usr].[Email] = 'theodoracatos@gmail.com')
 
 INSERT INTO [About]
 VALUES(NEWID(), 'Dipl.-Ing. FH | MAS ZFH', '"Wer hohe Türme bauen will, muss lange beim Fundament verweilen." Aristoteles',  '', null)
@@ -30,7 +31,7 @@ BEGIN
     VALUES (NEWID(), 'de', (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT TOP 1 [AboutID] FROM [About]))
 
     INSERT INTO [Curriculum]
-    VALUES (NEWID(), @CurriculumID, @CurriculumID, 'alexis', 'theodoracatos', null, GETDATE(), GETDATE(), (SELECT TOP 1 [PersonID] FROM [Person]))
+    VALUES (@CurriculumID, @UserID, 'alexis', 'theodoracatos', null, GETDATE(), GETDATE(), (SELECT TOP 1 [PersonID] FROM [Person]))
 END
 ELSE
 BEGIN
@@ -38,7 +39,6 @@ UPDATE [Person]
 SET [PersonalDetailID] = (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]),
 [AboutID] = (SELECT TOP 1 [AboutID] FROM [About])
 END
-
 
 INSERT INTO [SocialLink]
 VALUES (NEWID(), 1, 'https://www.facebook.com/theodoracatos', 1, (SELECT TOP 1 [PersonID] FROM [Person]))

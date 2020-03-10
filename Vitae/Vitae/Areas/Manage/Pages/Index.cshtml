@@ -12,8 +12,6 @@
 
     var xLabelsSumHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.SumHits.Select(x => x.LogDate.ToString("dd.MM")).ToList());
     var yValuesSumHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.SumHits.Select(y => y.Hits).ToList());
-
-    var valuesRadar = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Points.Select(p => p.Point).ToList());
 }
 
     <div class="card p-4">
@@ -53,7 +51,6 @@
             drawChart('chartHits', Resources.SharedResource.NrOfCVHits, @Html.Raw(xLabelsHits), @Html.Raw(yValuesHits), 'gold');
             drawChart('chartLogins', Resources.SharedResource.NrOfLogins, @Html.Raw(xLabelsLogins), @Html.Raw(yValuesLogins), 'gold');
             drawChart('chartMaxHits', Resources.SharedResource.SumOfCVHits, @Html.Raw(xLabelsSumHits), @Html.Raw(yValuesSumHits), 'red');
-            //drawRadar('chartCompleteness', Resources.SharedResource.ProfileOverview, [Resources.SharedResource.About, Resources.SharedResource.Awards, Resources.SharedResource.Certificates, Resources.SharedResource.Courses, Resources.SharedResource.Educations, Resources.SharedResource.Experiences, Resources.SharedResource.Interests, Resources.SharedResource.Languages, Resources.SharedResource.PersonalDetails, Resources.SharedResource.References, Resources.SharedResource.Skills, Resources.SharedResource.SocialLinks], @Html.Raw(valuesRadar), 'red');
         });
             </script>
         }

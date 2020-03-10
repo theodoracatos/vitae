@@ -22,7 +22,7 @@ namespace Model.Poco
         [MaxLength(50)]
         public string IpAddress { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(1000)]
         public string UserAgent { get; set; }
 
         [MaxLength(2)]

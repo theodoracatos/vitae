@@ -1,4 +1,5 @@
 ﻿using Library.Constants;
+using Library.Helper;
 using Library.Repository;
 using Library.Resources;
 
@@ -27,6 +28,7 @@ namespace Vitae.Code
         protected readonly Guid curriculumID;
         protected readonly ClaimsIdentity identity;
         protected readonly Repository repository;
+        protected readonly HttpContext httpContext;
 
         public BasePageModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
         {
@@ -34,8 +36,9 @@ namespace Vitae.Code
             this.vitaeContext = vitaeContext;
             this.requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
             this.identity = httpContextAccessor.HttpContext.User.Identities.Single();
-            Guid.TryParse(identity.Claims.Single(c => c.Type == Claims.CV_IDENTIFIER).Value, out curriculumID);
+            this.curriculumID = CodeHelper.GetCurriculumID(httpContextAccessor.HttpContext);
             this.repository = repository;
+            this.httpContext = httpContextAccessor.HttpContext;
         }
 
         protected PartialViewResult GetPartialViewResult(string viewName, string modelName = "IndexModel")

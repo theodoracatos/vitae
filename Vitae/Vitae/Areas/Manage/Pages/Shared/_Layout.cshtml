@@ -1,5 +1,9 @@
 ﻿@inject UserManager<IdentityUser> UserManager
 
+@{ 
+    var curriculumID = Guid.Parse(User.Claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value);
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +99,7 @@
                             @SharedResource.References
                         </a>
                         <div class="sb-sidenav-menu-heading">@SharedResource.CurriculumVitae</div>
-                        <a class="nav-link mb-4" href="/CV/@(nameof(Skills))">
+                        <a class="nav-link mb-4" href="/CV/@curriculumID">
                             <i class="fas fa-address-card sideIcon"></i>
                             @SharedResource.MyVitae
                         </a>

@@ -1,4 +1,6 @@
 ﻿using Library.Constants;
+using Library.Helper;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Authorization;
@@ -8,13 +10,11 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Logging;
 
-using Model.Poco;
-
-using Persistency.Data;
+using Model.Enumerations;
 
 using System;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,16 +25,18 @@ namespace Vitae.Areas.Identity.Pages.Account
     public class ConfirmEmailModel : PageModel
     {
         private readonly UserManager<IdentityUser> userManager;
-        private readonly VitaeContext vitaeContext;
+        private readonly Repository repository;
         private readonly SignInManager<IdentityUser> signInManager;
-        protected readonly IRequestCultureFeature requestCulture;
+        private readonly IRequestCultureFeature requestCulture;
+        private readonly HttpContext httpContext;
 
-        public ConfirmEmailModel(UserManager<IdentityUser> userManager, VitaeContext vitaeContext, SignInManager<IdentityUser> signInManager, IHttpContextAccessor httpContextAccessor)
+        public ConfirmEmailModel(UserManager<IdentityUser> userManager, Repository repository, SignInManager<IdentityUser> signInManager, IHttpContextAccessor httpContextAccessor)
         {
             this.userManager = userManager;
-            this.vitaeContext = vitaeContext;
+            this.repository = repository;
             this.signInManager = signInManager;
-            this.requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
+            requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
+            httpContext = httpContextAccessor.HttpContext;
         }
 
         [TempData]
@@ -66,21 +68,12 @@ namespace Vitae.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     // CV
-                    var curriculum = new Curriculum()
-                    {
-                        ShortIdentifier = (DateTime.Now.Ticks - new DateTime(2020, 1, 1).Ticks).ToString("x"),
-                        UserID = Guid.Parse(user.Id),
-                        CreatedOn = DateTime.Now,
-                        FriendlyId = (DateTime.Now.Ticks - new DateTime(2020, 1, 1).Ticks).ToString("x"),
-                        LastUpdated = DateTime.Now,
-                        Person = new Person() { Language = requestCulture.RequestCulture.UICulture.Name }
-                    };
-                    vitaeContext.Curriculums.Add(curriculum);
-                    await vitaeContext.SaveChangesAsync();
+                    var curriculumID = await repository.AddCurriculumAsync(Guid.Parse(user.Id), requestCulture.RequestCulture.UICulture.Name);
+                    repository.Log(curriculumID, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
 
                     // Role & Claims
                     await userManager.AddToRoleAsync(user, Roles.USER);
-                    var claim = new Claim(Claims.CV_IDENTIFIER, curriculum.CurriculumID.ToString());
+                    var claim = new Claim(Claims.CURRICULUM_ID, curriculumID.ToString());
                     await userManager.AddClaimAsync(user, claim);
 
                     await signInManager.SignInAsync(user, isPersistent: false);

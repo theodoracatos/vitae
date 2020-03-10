@@ -67,7 +67,7 @@ namespace CVitae.Areas.CV.Pages
 
                 FillSelectionViewModel();
 
-             //   repository.Log(curriculumID, LogArea.Access, LogLevel.Information, Helper.)
+                repository.Log(curriculumID, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
 
                 return Page();
             }

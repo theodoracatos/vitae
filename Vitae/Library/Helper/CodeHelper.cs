@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Library.Constants;
+
+using Microsoft.AspNetCore.Http;
+
 using System;
 using System.IO;
 using System.Linq;
@@ -10,6 +13,8 @@ namespace Library.Helper
 {
     public static class CodeHelper
     {
+        private const string MAIL_TEMPLATE = "Mail.html";
+
         public static string AssemblyDirectory
         {
             get
@@ -21,12 +26,26 @@ namespace Library.Helper
             }
         }
 
-        public static string CalledUri(HttpContext httpContext)
+        public static Guid GetCurriculumID(HttpContext httpContext)
+        {
+            Guid curriculumID = new Guid();
+            var identity = httpContext.User.Identities.Single();
+            Guid.TryParse(identity.Claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value, out curriculumID);
+
+            return curriculumID;
+        }
+
+        public static string GetCalledUri(HttpContext httpContext)
         {
             return $"{httpContext.Request.Scheme}://{httpContext.Request.Host}{httpContext.Request.Path}{httpContext.Request.QueryString}";
         }
 
-        public async static Task<string> GetMailBodyTextAsync(string title, string body, string mailtemplate = "Mail.html")
+        public static string GetUserAgent(HttpContext httpContext)
+        {
+            return httpContext.Request.Headers["User-Agent"].FirstOrDefault();
+        }
+
+        public async static Task<string> GetMailBodyTextAsync(string title, string body, string mailtemplate = MAIL_TEMPLATE)
         {
             StringBuilder bodyText;
 

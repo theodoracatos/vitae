@@ -1,11 +1,17 @@
-﻿using Library.Resources;
+﻿using Library.Helper;
+using Library.Repository;
+using Library.Resources;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+
+using Model.Enumerations;
 
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,14 +26,19 @@ namespace Vitae.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly Repository repository;
+        private readonly IRequestCultureFeature requestCulture;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            Repository repository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            this.repository = repository;
+            requestCulture = _signInManager.Context.Features.Get<IRequestCultureFeature>();
         }
 
         [BindProperty]
@@ -87,6 +98,9 @@ namespace Vitae.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(SharedResource.UserLoggedIn);
+                    var curriculumID = CodeHelper.GetCurriculumID(_signInManager.Context);
+                    repository.Log(curriculumID, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(_signInManager.Context), CodeHelper.GetUserAgent(_signInManager.Context), requestCulture.RequestCulture.UICulture.Name, _signInManager.Context.Connection.RemoteIpAddress.ToString());
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
