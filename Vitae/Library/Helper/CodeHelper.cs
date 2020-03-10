@@ -42,7 +42,7 @@ namespace Library.Helper
 
         public static string GetUserAgent(HttpContext httpContext)
         {
-            return httpContext.Request.Headers["User-Agent"].FirstOrDefault();
+            return httpContext.Request.Headers.ContainsKey("User-Agent") ? httpContext.Request.Headers["User-Agent"].First() : string.Empty;
         }
 
         public async static Task<string> GetMailBodyTextAsync(string title, string body, string mailtemplate = MAIL_TEMPLATE)
