@@ -66,25 +66,21 @@ namespace Vitae.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     // CV
-                    var guid = Guid.NewGuid();
-                    vitaeContext.Curriculums.Add(
-                        new Curriculum()
-                        {
-                            Identifier = guid,
-                            ShortIdentifier = Convert.ToBase64String(guid.ToByteArray()),
-                            UserID = Guid.Parse(user.Id),
-                            CreatedOn = DateTime.Now,
-                            FriendlyId = (DateTime.Now.Ticks - new DateTime(2020, 1, 1).Ticks).ToString("x"),
-                            LastUpdated = DateTime.Now,
-                            Person = new Person() { Language = requestCulture.RequestCulture.UICulture.Name }
-                        }
-                    );
-
+                    var curriculum = new Curriculum()
+                    {
+                        ShortIdentifier = (DateTime.Now.Ticks - new DateTime(2020, 1, 1).Ticks).ToString("x"),
+                        UserID = Guid.Parse(user.Id),
+                        CreatedOn = DateTime.Now,
+                        FriendlyId = (DateTime.Now.Ticks - new DateTime(2020, 1, 1).Ticks).ToString("x"),
+                        LastUpdated = DateTime.Now,
+                        Person = new Person() { Language = requestCulture.RequestCulture.UICulture.Name }
+                    };
+                    vitaeContext.Curriculums.Add(curriculum);
                     await vitaeContext.SaveChangesAsync();
 
                     // Role & Claims
                     await userManager.AddToRoleAsync(user, Roles.USER);
-                    var claim = new Claim(Claims.CV_IDENTIFIER, vitaeContext.Curriculums.Single(c => c.Identifier == guid).Identifier.ToString());
+                    var claim = new Claim(Claims.CV_IDENTIFIER, curriculum.CurriculumID.ToString());
                     await userManager.AddClaimAsync(user, claim);
 
                     await signInManager.SignInAsync(user, isPersistent: false);

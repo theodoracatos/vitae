@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -18,6 +19,11 @@ namespace Library.Helper
                 string path = Uri.UnescapeDataString(uri.Path);
                 return Path.GetDirectoryName(path);
             }
+        }
+
+        public static string CalledUri(HttpContext httpContext)
+        {
+            return $"{httpContext.Request.Scheme}://{httpContext.Request.Host}{httpContext.Request.Path}{httpContext.Request.QueryString}";
         }
 
         public async static Task<string> GetMailBodyTextAsync(string title, string body, string mailtemplate = "Mail.html")

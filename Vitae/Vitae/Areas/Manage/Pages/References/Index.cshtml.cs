@@ -41,7 +41,7 @@ namespace Vitae.Areas.Manage.Pages.References
 
         public async Task<IActionResult> OnGetAsync()
         {
-            if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.Identifier == curriculumID))
+            if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.CurriculumID == curriculumID))
             {
                 return NotFound();
             }

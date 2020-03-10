@@ -9,10 +9,12 @@ namespace Model.Poco
     {
         public Guid LogID { get; set; }
 
+        public Guid CurriculumID { get; set; }
+
         public LogLevel LogLevel { get; set; }
 
         [MaxLength(100)]
-        public LogArea Area { get; set; }
+        public LogArea LogArea { get; set; }
 
         [MaxLength(255)]
         public string Page { get; set; }
@@ -31,6 +33,5 @@ namespace Model.Poco
 
         public DateTime Timestamp { get; set; }
 
-        public Curriculum Curriculum { get; set; }
     }
 }

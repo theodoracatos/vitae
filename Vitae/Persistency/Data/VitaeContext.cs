@@ -28,11 +28,11 @@ namespace Persistency.Data
             modelBuilder.RemovePluralizingTableNameConvention();
 
             /* Index, unique */
-            modelBuilder.Entity<Curriculum>().HasIndex(c => c.Identifier).IsUnique();
             modelBuilder.Entity<Curriculum>().HasIndex(c => c.FriendlyId);
             modelBuilder.Entity<Country>().HasIndex(c => c.CountryCode).IsUnique();
             modelBuilder.Entity<Language>().HasIndex(c => c.LanguageCode).IsUnique();
             modelBuilder.Entity<Vfile>().HasIndex(c => c.Identifier).IsUnique();
+            modelBuilder.Entity<Log>().HasIndex(c => c.CurriculumID);
 
             /* N-M */
             modelBuilder.Entity<PersonCountry>()

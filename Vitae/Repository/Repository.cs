@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Logging;
 using Model.Enumerations;
 using Model.Poco;
 using Model.ViewModels;
@@ -24,17 +24,28 @@ namespace Library.Repository
 
         #region API
 
-        public void Log()
+        public void Log(Guid curriculumID, LogArea logArea, LogLevel logLevel, string page, string userAgent, string userLanguage, string ipAddress, string message)
         {
             vitaeContext.Logs.Add(new Log()
             {
+                CurriculumID = curriculumID,
+                LogArea = logArea,
+                IpAddress = ipAddress,
+                LogLevel = logLevel,
+                Page = page,
+                UserAgent = userAgent,
+                UserLanguage = userLanguage,
+                Message = message,
+                Timestamp = DateTime.Now,
             });
+
+            vitaeContext.SaveChanges();
         }
 
         public async Task<Curriculum> GetCurriculumByWeakIdentifierAsync(string identifier)
         {
             Curriculum curriculum = null;
-            var curriculumID = vitaeContext.Curriculums.SingleOrDefault(c => c.Identifier.ToString().ToLower() == identifier.ToLower() || c.FriendlyId == identifier)?.Identifier;
+            var curriculumID = vitaeContext.Curriculums.SingleOrDefault(c => c.CurriculumID.ToString().ToLower() == identifier.ToLower() || c.FriendlyId == identifier)?.CurriculumID;
 
             if (curriculumID.HasValue)
             {
@@ -47,7 +58,7 @@ namespace Library.Repository
             public async Task<Curriculum> GetCurriculumAsync(Guid curriculumID)
         {
             var curriculumQuery = vitaeContext.Curriculums
-               .Where(c => c.Identifier == curriculumID).Take(1);
+               .Where(c => c.CurriculumID == curriculumID).Take(1);
 
             await curriculumQuery.Include(c => c.Person).LoadAsync();
             await curriculumQuery.Include(c => c.Person.PersonalDetail).LoadAsync();
@@ -383,7 +394,7 @@ namespace Library.Repository
         public IList<LogVM> GetLastHits(Guid curriculumID, int? days = null)
         {
             var lastHits = vitaeContext.Logs
-                .Where(l => l.Curriculum.Identifier == curriculumID && l.Area == LogArea.Access)
+                .Where(l => l.CurriculumID == curriculumID && l.LogArea == LogArea.Access)
                 .Where(l => !days.HasValue || l.Timestamp > DateTime.Now.Date.AddDays(-days.Value))
                 .GroupBy(l => l.Timestamp.Date)
                 .Select(l => new LogVM()
@@ -412,7 +423,7 @@ namespace Library.Repository
         public IList<LogVM> GetLastLogins(Guid curriculumID, int? days = null)
         {
             var lastHits = vitaeContext.Logs
-                .Where(l => l.Curriculum.Identifier == curriculumID && l.Area == LogArea.Login)
+                .Where(l => l.CurriculumID == curriculumID && l.LogArea == LogArea.Login)
                 .Where(l => !days.HasValue || l.Timestamp > DateTime.Now.Date.AddDays(-days.Value))
                 .GroupBy(l => l.Timestamp.Date)
                 .Select(l => new LogVM()

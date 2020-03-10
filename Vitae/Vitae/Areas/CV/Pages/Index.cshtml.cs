@@ -1,11 +1,13 @@
 using Library.Repository;
 using Library.Resources;
+using Library.Helper;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-
+using Microsoft.Extensions.Logging;
+using Model.Enumerations;
 using Model.ViewModels;
 
 using Persistency.Data;
@@ -51,10 +53,6 @@ namespace CVitae.Areas.CV.Pages
             {
                 return NotFound();
             }
-            else if(curriculum.Person == null)
-            {
-                return BadRequest(); // CV not ready yet
-            }
             else
             {
                 PersonalDetail = repository.GetPersonalDetail(curriculum);
@@ -68,6 +66,9 @@ namespace CVitae.Areas.CV.Pages
                 SocialLinks = repository.GetSocialLinks(curriculum);
 
                 FillSelectionViewModel();
+
+             //   repository.Log(curriculumID, LogArea.Access, LogLevel.Information, Helper.)
+
                 return Page();
             }
         }

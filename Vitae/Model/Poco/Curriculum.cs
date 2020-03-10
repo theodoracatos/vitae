@@ -10,8 +10,6 @@ namespace Model.Poco
 
         public Guid UserID { get; set; }
 
-        public Guid Identifier { get; set; }
-
         public string ShortIdentifier { get; set; }
 
         [MaxLength(100)]
