@@ -25,7 +25,5 @@ namespace Model.Poco
         public virtual ICollection<SocialLink> SocialLinks { get; set; }
         public virtual ICollection<Skill> Skills { get; set; }
         public virtual ICollection<Reference> References { get; set; }
-
-        public virtual ICollection<Log> Logs { get; set; }
     }
 }

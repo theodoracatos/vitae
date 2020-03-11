@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+
 using Model.Enumerations;
+
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -32,6 +34,5 @@ namespace Model.Poco
         public string Message { get; set; }
 
         public DateTime Timestamp { get; set; }
-
     }
 }

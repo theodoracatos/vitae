@@ -1,4 +1,5 @@
-﻿using Library.Helper;
+﻿using Library.Constants;
+using Library.Helper;
 using Library.Repository;
 using Library.Resources;
 
@@ -12,7 +13,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 using Model.Enumerations;
-
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -97,8 +98,10 @@ namespace Vitae.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.FindByNameAsync(Input.Email);
+                    var claims = await _userManager.GetClaimsAsync(user);
+                    var curriculumID = Guid.Parse(claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value);
                     _logger.LogInformation(SharedResource.UserLoggedIn);
-                    var curriculumID = CodeHelper.GetCurriculumID(_signInManager.Context);
                     repository.Log(curriculumID, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(_signInManager.Context), CodeHelper.GetUserAgent(_signInManager.Context), requestCulture.RequestCulture.UICulture.Name, _signInManager.Context.Connection.RemoteIpAddress.ToString());
 
                     return LocalRedirect(returnUrl);

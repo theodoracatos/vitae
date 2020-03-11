@@ -47,7 +47,8 @@ function drawRadar(chartId, title, labels, dataset, color) {
         },
         scale: {
             ticks: {
-                beginAtZero: true
+                beginAtZero: true,
+                stepSize: 1
             }
         }
     };
@@ -92,7 +93,8 @@ function drawChart(chartId, title, xLabels, yValues, color) {
             yAxes: [{
                 ticks: {
                     min: 0,
-                    beginAtZero: true
+                    beginAtZero: true,
+                    stepSize: 1
                 },
                 gridLines: {
                     display: true,
