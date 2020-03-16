@@ -35,6 +35,26 @@
             </li>
         </ul>
     </nav>
+
+    @{ 
+       var menuEntries = new List<Tuple<string, string, string>>()
+       {
+          new Tuple<string, string,string>(nameof(Personalities), "fa-address-book", SharedResource.PersonalDetails),
+          new Tuple<string, string,string>(nameof(About), "fa-image", SharedResource.About),
+          new Tuple<string, string,string>(nameof(Experiences), "fa-briefcase", SharedResource.Experiences),
+          new Tuple<string, string,string>(nameof(Educations), "fa-graduation-cap", SharedResource.Educations),
+          new Tuple<string, string,string>(nameof(Courses), "fa-university", SharedResource.Courses),
+          new Tuple<string, string,string>(nameof(Abroads), "fa-plane", SharedResource.Abroads),
+          new Tuple<string, string,string>(nameof(Languages), "fa-globe-americas", SharedResource.Languages),
+          new Tuple<string, string,string>(nameof(Interests), "fa-volleyball-ball", SharedResource.Interests),
+          new Tuple<string, string,string>(nameof(Awards), "fa-trophy", SharedResource.Awards),
+          new Tuple<string, string,string>(nameof(Sociallinks), "fa-thumbs-up", SharedResource.SocialLinks),
+          new Tuple<string, string,string>(nameof(Skills), "fa-tools", SharedResource.Skills),
+          new Tuple<string, string,string>(nameof(Certificates), "fa-certificate", SharedResource.Certificates),
+          new Tuple<string, string,string>(nameof(References), "fa-comment", SharedResource.References),
+       };
+     }
+
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -46,58 +66,14 @@
                             @SharedResource.Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">@SharedResource.PersonalData</div>
-                        <a class="nav-link" href="/Manage/@(nameof(Personalities))">
-                            <i class="fas fa-address-book sideIcon"></i>
-                            @SharedResource.PersonalDetails
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(About))">
-                            <i class="fas fa-image sideIcon"></i>
-                            @SharedResource.About
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Experiences))">
-                            <i class="fas fa-briefcase sideIcon"></i>
-                            @SharedResource.Experiences
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Educations))">
-                            <i class="fas fa-graduation-cap sideIcon"></i>
-                            @SharedResource.Educations
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Courses))">
-                            <i class="fas fa-university sideIcon"></i>
-                            @SharedResource.Courses
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Abroads))">
-                            <i class="fas fa-plane sideIcon"></i>
-                            @SharedResource.Abroads
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Languages))">
-                            <i class="fas fa-globe-americas sideIcon"></i>
-                            @SharedResource.Languages
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Interests))">
-                            <i class="fas fa-volleyball-ball sideIcon"></i>
-                            @SharedResource.Interests
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Awards))">
-                            <i class="fas fa-trophy sideIcon"></i>
-                            @SharedResource.Awards
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Sociallinks))">
-                            <i class="fab fa-twitter sideIcon"></i>
-                            @SharedResource.SocialLinks
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Skills))">
-                            <i class="fas fa-tools sideIcon"></i>
-                            @SharedResource.Skills
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(Certificates))">
-                            <i class="fas fa-certificate sideIcon"></i>
-                            @SharedResource.Certificates
-                        </a>
-                        <a class="nav-link" href="/Manage/@(nameof(References))">
-                            <i class="fas fas fa-comment sideIcon"></i>
-                            @SharedResource.References
-                        </a>
+                        @foreach (var menuEntry in menuEntries)
+                        {
+                            <a class="nav-link" href="/Manage/@menuEntry.Item1">
+                                <i class="fas sideIcon @menuEntry.Item2"></i>
+                                @menuEntry.Item3
+                            </a>
+                        }
+
                         <div class="sb-sidenav-menu-heading">@SharedResource.CurriculumVitae</div>
                         <a class="nav-link mb-4" href="/CV/@curriculumID">
                             <i class="fas fa-address-card sideIcon"></i>

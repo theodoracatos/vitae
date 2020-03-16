@@ -3,8 +3,6 @@ declare var $;
 declare var Resources;
 declare var Chart;
 
-const gridColor = 'rgba(255,99,164,0.2)';
-
 $(document).ready(function () {
     addJQueryValidators();
     startRating();
@@ -69,7 +67,7 @@ function drawChart(chartId, title, xLabels, yValues, color) {
     var data = {
         labels: xLabels,
         datasets: [{
-        fill: true,
+        fill: false,
         backgroundColor: [
             bgColor
         ],
@@ -98,7 +96,8 @@ function drawChart(chartId, title, xLabels, yValues, color) {
                 },
                 gridLines: {
                     display: true,
-                    color: gridColor
+                    lineWidth: 1,
+                    //color: 'rgba(208, 187, 149, 0.75)'
                 }
             }],
             xAxes: [{
@@ -107,7 +106,8 @@ function drawChart(chartId, title, xLabels, yValues, color) {
                     beginAtZero: true
                 },
                 gridLines: {
-                    display: false
+                    display: false,
+                    //color: 'rgba(208, 187, 149, 0.15)'
                 }
             }]
         }

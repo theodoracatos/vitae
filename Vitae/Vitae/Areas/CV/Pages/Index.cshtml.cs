@@ -35,10 +35,14 @@ namespace CVitae.Areas.CV.Pages
         public IList<AwardVM> Awards { get; set; } = new List<AwardVM>();
         public IList<EducationVM> Educations { get; set; } = new List<EducationVM>();
         public IList<ExperienceVM> Experiences { get; set; } = new List<ExperienceVM>();
+        public IList<CourseVM> Courses { get; set; } = new List<CourseVM>();
+        public IList<AbroadVM> Abroads { get; set; } = new List<AbroadVM>();
         public IList<InterestVM> Interests { get; set; } = new List<InterestVM>();
         public IList<LanguageSkillVM> LanguageSkills { get; set; } = new List<LanguageSkillVM>();
         public IList<SkillVM> Skills { get; set; } = new List<SkillVM>();
         public IList<SocialLinkVM> SocialLinks { get; set; } = new List<SocialLinkVM>();
+        public IList<CertificateVM> Certificates { get; set; } = new List<CertificateVM>();
+        public IList<ReferenceVM> References { get; set; } = new List<ReferenceVM>();
 
         public IEnumerable<LanguageVM> Languages { get; set; }
 

@@ -12,24 +12,28 @@
     <title>CV @Model.PersonalDetail.Firstname @Model.PersonalDetail.Lastname</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/favicon/favicon.ico" />
 
-    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap-rating/bootstrap-rating.min.css" />
-    <link rel="stylesheet" href="~/lib/bootstrap4-tagsinput/tagsinput.css" />
-
-    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
-
-    <environment include="Development">
-        <link rel="stylesheet" href="~/css/resume.css" asp-append-version="true" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="~/css/resume.min.css">
-    </environment>
+    <partial name="_Styles" />
 </head>
 
+@{
+    var menuEntries = new List<Tuple<bool, string, string>>()
+     {
+      new Tuple<bool, string, string>(Model.About != null, nameof(About).ToLower(), SharedResource.About),
+      new Tuple<bool, string, string>(Model.Experiences.Count > 0, nameof(Experience).ToLower(), SharedResource.Experiences),
+      new Tuple<bool, string, string>(Model.Educations.Count > 0, nameof(Education).ToLower(), SharedResource.Educations),
+      new Tuple<bool, string, string>(Model.Courses.Count > 0, nameof(Course).ToLower(), SharedResource.Courses),
+      new Tuple<bool, string, string>(Model.Abroads.Count > 0, nameof(Abroad).ToLower(), SharedResource.Abroads),
+      new Tuple<bool, string, string>(Model.LanguageSkills.Count > 0, nameof(Language).ToLower(), SharedResource.Languages),
+      new Tuple<bool, string, string>(Model.Interests.Count > 0, nameof(Interest).ToLower(), SharedResource.Interests),
+      new Tuple<bool, string, string>(Model.Awards.Count > 0, nameof(Award).ToLower(), SharedResource.Awards),
+      new Tuple<bool, string, string>(Model.Skills.Count > 0, nameof(Skill).ToLower(), SharedResource.Skills),
+      new Tuple<bool, string, string>(Model.Certificates.Count > 0, nameof(Certificate).ToLower(), SharedResource.Certificates),
+      new Tuple<bool, string, string>(Model.References.Count > 0, nameof(Reference).ToLower(), SharedResource.References),
+    };
+}
+
 <body id="page-top">
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">@Model.PersonalDetail.Firstname @Model.PersonalDetail.Lastname</span>
             <span class="d-none d-lg-block">
@@ -41,52 +45,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">@SharedResource.About</a>
-                </li>
-                @if (Model.Experiences.Count > 0)
+                @foreach (var menuEntry in menuEntries)
                 {
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#experience">@SharedResource.Experience</a>
-                    </li>
-                }
-                @if (Model.Educations.Count > 0)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#education">@SharedResource.Educations</a>
-                    </li>
-                }
-                @if (Model.LanguageSkills.Count > 0)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#languages">@SharedResource.Languages</a>
-                    </li>
-                }
-                @if (Model.Interests.Count > 0)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#interests">@SharedResource.Interests</a>
-                    </li>
-                }
-                @if (Model.Awards.Count > 0)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#awards">@SharedResource.Awards</a>
-                    </li>
-                }
-                @if (Model.Skills.Count > 0)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#skills">@SharedResource.Skills</a>
-                    </li>
+                    if (menuEntry.Item1)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="#@menuEntry.Item2">@menuEntry.Item3</a>
+                        </li>
+                    }
                 }
             </ul>
         </div>
     </nav>
 
     <div class="container-fluid p-0">
-
-        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(About).ToLower()">
             <div class="w-100">
                 <h1 class="mb-0">
                     @Model.PersonalDetail.Firstname
@@ -111,7 +84,7 @@
 
         @if (Model.Experiences.Count > 0)
         {
-            <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+            <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="@nameof(Experience).ToLower()">
                 <div class="w-100">
                     <h2 class="mb-5">@SharedResource.Experience</h2>
                     @foreach (var experience in Model.Experiences)
@@ -134,7 +107,7 @@
 
         @if (Model.Educations.Count > 0)
         {
-            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education">
+            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Education).ToLower()">
                 <div class="w-100">
                     <h2 class="mb-5">@SharedResource.Educations</h2>
                     @foreach (var education in Model.Educations)
@@ -158,7 +131,7 @@
 
         @if (Model.LanguageSkills.Count > 0)
         {
-            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="languages">
+            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Language).ToLower()">
                 <div class="w-100">
                     <h2 class="mb-5">@SharedResource.Languages</h2>
                     @foreach (var languageSkill in Model.LanguageSkills)
@@ -179,7 +152,7 @@
 
         @if (Model.Interests.Count > 0)
         {
-            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="interests">
+            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Interest).ToLower()">
                 <div class="w-100">
                     <h2 class="mb-5">@SharedResource.Interests</h2>
                     @foreach (var interest in Model.Interests)
@@ -200,7 +173,7 @@
 
         @if (Model.Awards.Count > 0)
         {
-            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
+            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Award).ToLower()">
                 <div class="w-100">
                     <h2 class="mb-5">@SharedResource.Awards</h2>
                     @foreach (var award in Model.Awards)
@@ -228,7 +201,7 @@
 
         @if (Model.Skills.Count > 0)
         {
-            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
+            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Skill).ToLower()">
                 <div class="w-100">
                     <h2 class="mb-5">@SharedResource.Skills</h2>
                     @foreach (var skill in Model.Skills)
@@ -247,20 +220,6 @@
 
     </div>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/lib/jquery-easing/jquery.easing.min.js"></script>
-    <script src="~/lib/bootstrap-rating/bootstrap-rating.min.js"></script>
-    <script src="~/lib/bootstrap4-tagsinput/tagsinput.js"></script>
-
-    <environment include="Development">
-        <script src="~/js/base.js" asp-append-version="true"></script>
-        <script src="~/js/resume.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="~/js/base.min.js"></script>
-        <script src="~/js/resume.min.js"></script>
-    </environment>
+    <partial name="_Scripts" />
 </body>
 </html>
