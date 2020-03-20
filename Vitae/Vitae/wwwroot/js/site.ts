@@ -62,18 +62,15 @@ function drawChart(chartId, title, xLabels, yValues, color) {
     var canvas: any = document.getElementById(chartId);
     var ctx = canvas.getContext("2d");
     var bgColor = getColor(color, true);
-    var borderColor = getColor(color, false);
-
     var data = {
         labels: xLabels,
         datasets: [{
-        fill: false,
+        fill: true,
+        lineTension: 0.1,
         backgroundColor: [
             bgColor
         ],
-        borderColor: [
-            borderColor
-        ],
+      // borderColor: bgColor,
         borderWidth: 1,
             data: yValues
          }]};
@@ -106,7 +103,7 @@ function drawChart(chartId, title, xLabels, yValues, color) {
                     beginAtZero: true
                 },
                 gridLines: {
-                    display: false,
+                    display: true,
                     //color: 'rgba(208, 187, 149, 0.15)'
                 }
             }]
@@ -122,10 +119,10 @@ function drawChart(chartId, title, xLabels, yValues, color) {
 
 function getColor(color, isBgColor) {
     if (isBgColor) {
-        return color == 'gold' ? 'rgba(183, 158, 103, 1)' : 'red' ? 'rgba(239, 110, 126, 1)' : '';
+        return color == 'gold' ? 'rgba(183, 158, 103, 0.33)' : 'red' ? 'rgba(239, 110, 126, 0.33)' : '';
     }
     else {
-        color == 'gold' ? 'rgba(183, 158, 103, 0.2)' : 'red' ? 'rgba(239, 110, 126, 0.2)' : '';
+        color == 'gold' ? 'rgba(183, 158, 103, 1)' : 'red' ? 'rgba(239, 110, 126, 1)' : '';
     }
 }
 

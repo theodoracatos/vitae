@@ -1,16 +1,17 @@
 .bg-primary {
-  background-color: $primary !important;
+    background-color: $sidenav-color !important;
 }
 
 .text-primary {
-  color: $primary !important;
+    color: $qvs-gold-color !important;
 }
 
 a {
-  color: $primary;
-  &:hover,
-  &:focus,
-  &:active {
-    color: darken($primary, 15%);
-  }
+    color: $qvs-gold-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: darken($qvs-gold-color, 15%);
+    }
 }

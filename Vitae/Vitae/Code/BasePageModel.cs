@@ -30,6 +30,8 @@ namespace Vitae.Code
         protected readonly Repository repository;
         protected readonly HttpContext httpContext;
 
+        public bool IsLoggedIn { get { return this.curriculumID != Guid.Empty; } }
+
         public BasePageModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
         {
             this.localizer = localizer;

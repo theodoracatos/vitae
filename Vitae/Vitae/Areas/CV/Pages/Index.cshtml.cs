@@ -61,18 +61,24 @@ namespace CVitae.Areas.CV.Pages
             {
                 PersonalDetail = repository.GetPersonalDetail(curriculum);
                 About = repository.GetAbout(curriculum);
-                Awards = repository.GetAwards(curriculum);
+                SocialLinks = repository.GetSocialLinks(curriculum);
                 Educations = repository.GetEducations(curriculum);
                 Experiences = repository.GetExperiences(curriculum);
-                Interests = repository.GetInterests(curriculum);
+                Courses = repository.GetCourses(curriculum);
+                Abroads = repository.GetAbroads(curriculum);
                 LanguageSkills = repository.GetLanguageSkills(curriculum);
+                Interests = repository.GetInterests(curriculum);
+                Awards = repository.GetAwards(curriculum);
                 Skills = repository.GetSkills(curriculum);
-                SocialLinks = repository.GetSocialLinks(curriculum);
+                Certificates = repository.GetCertificates(curriculum);
+                References = repository.GetReferences(curriculum);
 
                 FillSelectionViewModel();
 
-                repository.Log(curriculumID, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
-
+                if (base.curriculumID == Guid.Empty)
+                {
+                    repository.Log(curriculum.CurriculumID, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
+                }
                 return Page();
             }
         }
@@ -103,3 +109,4 @@ namespace CVitae.Areas.CV.Pages
         }
     }
 }
+ 

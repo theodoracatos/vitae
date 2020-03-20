@@ -30,7 +30,10 @@ namespace Library.Helper
         {
             Guid curriculumID = new Guid();
             var identity = httpContext.User.Identities.Single();
-            Guid.TryParse(identity.Claims.SingleOrDefault(c => c.Type == Claims.CURRICULUM_ID).Value, out curriculumID);
+            if(identity.Claims.Count() > 0)
+            {
+                Guid.TryParse(identity.Claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value, out curriculumID);
+            }
 
             return curriculumID;
         }

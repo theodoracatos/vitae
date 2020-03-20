@@ -50,7 +50,7 @@ INSERT INTO [SocialLink]
 VALUES (NEWID(), 3, 'https://www.linkedin.com/in/theodoracatos', 3, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [SocialLink]
-VALUES (NEWID(), 4, 'https://github.com/theodoracatos/vitae', 4, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 4, 'https://github.com/theodoracatos', 4, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [SocialLink]
 VALUES (NEWID(), 5, 'https://www.xing.com/profile/Alexandros_Theodoracatos/cv', 5, (SELECT TOP 1 [PersonID] FROM [Person]))

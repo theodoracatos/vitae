@@ -2,12 +2,9 @@ declare var jQuery;
 declare var $;
 declare var Resources;
 
-(function ($) {
-    startRating();
-})(jQuery);
-
-
 $(document).ready(function () {
+    startRating();
+
     // Smooth scrolling using jQuery easing
     $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
         if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
@@ -16,7 +13,7 @@ $(document).ready(function () {
             if (target.length) {
                 $('html, body').animate({
                     scrollTop: (target.offset().top)
-                }, 1000, "easeInOutExpo");
+                }, 1250, "easeInOutExpo");
                 return false;
             }
         }

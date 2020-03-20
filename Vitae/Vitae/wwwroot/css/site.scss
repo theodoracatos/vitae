@@ -3,6 +3,7 @@
 /***********/
 /*   QVS   */
 /***********/
+
 body, nav {
     font-family: Lato, Arial, Helvetica, sans-serif;
 }
@@ -113,20 +114,6 @@ i.sideIcon {
 .control-label {
     font-family: Lato, Arial, Helvetica, sans-serif;
     font-weight: bold;
-}
-
-/* Scrollbar */
-body::-webkit-scrollbar, .sb-sidenav-menu::-webkit-scrollbar {
-    width: 0.75em;
-}
-
-body::-webkit-scrollbar-track, .sb-sidenav-menu::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-body::-webkit-scrollbar-thumb, .sb-sidenav-menu::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid slategrey;
 }
 
 .chart{

@@ -33,7 +33,13 @@
 }
 
 <body id="page-top">
+
+    <!-- #region Menu -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+
+        <a class="js-scroll-trigger" href="#page-top">
+            <img src="~/img/Logo.png" class="mt-2" title="Vitae" />
+        </a>
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">@Model.PersonalDetail.Firstname @Model.PersonalDetail.Lastname</span>
             <span class="d-none d-lg-block">
@@ -56,9 +62,18 @@
                 }
             </ul>
         </div>
+
+        @if (Model.IsLoggedIn)
+        {
+            <a class="btn btn-dark mb-2" href="/Manage"><i class="fas fa-angle-left fa-fw"></i> @SharedResource.Back</a>
+        }
     </nav>
 
+    <!-- #endregion -->
+
     <div class="container-fluid p-0">
+
+        <!-- #region About -->
         <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(About).ToLower()">
             <div class="w-100">
                 <h1 class="mb-0">
@@ -81,54 +96,73 @@
             </div>
         </section>
         <hr class="m-0">
+        <!-- #endregion -->
+        <!-- #region Experiences -->
 
         @if (Model.Experiences.Count > 0)
         {
             <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="@nameof(Experience).ToLower()">
                 <div class="w-100">
-                    <h2 class="mb-5">@SharedResource.Experience</h2>
+                    <h2 class="mb-5"><i class="fas fa-briefcase mr-3"></i>@SharedResource.Experience</h2>
                     @foreach (var experience in Model.Experiences)
                     {
-                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
                             <div class="resume-content">
                                 <h3 class="mb-0">@experience.JobTitle</h3>
-                                <div class="subheading mb-3"><a href="mailto:@(experience.CompanyName)">@experience.CompanyName</a>, @experience.City</div>
+                                <div class="subheading mb-3"><a href="@experience.Link" target="_blank">@experience.CompanyName</a>, @experience.City</div>
                                 <p>@experience.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
-                                <span class="text-primary">@(new DateTime(experience.Start_Year, experience.Start_Month, 1).ToString("MMMM yyyy")) - @(experience.End_Year.HasValue ? new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1).ToString("MMMM yyyy") : SharedResource.UntilNow)</span>
+                                <span class="text-primary">@(new DateTime(experience.Start_Year, experience.Start_Month, 1).ToString("MMMM yyyy")) - @(experience.UntilNow ? SharedResource.UntilNow : new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1).ToString("MMMM yyyy"))</span>
                             </div>
                         </div>
+                        <hr class="mb-5">
                     }
                 </div>
             </section>
             <hr class="m-0">
         }
 
+        <!-- #endregion -->
+        <!-- #region Educations -->
         @if (Model.Educations.Count > 0)
         {
             <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Education).ToLower()">
                 <div class="w-100">
-                    <h2 class="mb-5">@SharedResource.Educations</h2>
+                    <h2 class="mb-5"><i class="fas fa-graduation-cap mr-3"></i>@SharedResource.Educations</h2>
                     @foreach (var education in Model.Educations)
                     {
-                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
                             <div class="resume-content">
                                 <h3 class="mb-0">@education.Title, @education.Subject</h3>
-                                <div class="subheading mb-3"><a href="mailto:@(education.SchoolName)">@education.Link</a>, @education.City</div>
+                                <div class="subheading mb-3"><a href="@education.Link" target="_blank">@education.Link</a>, @education.City</div>
                                 <p>@SharedResource.Grade: @education.Grade</p>
                                 <p>@education.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
-                                <span class="text-primary">@(new DateTime(education.Start_Year, education.Start_Month, 1).ToString("MMMM yyyy")) - @(education.End_Year.HasValue ? new DateTime(education.End_Year.Value, education.End_Month.Value, 1).ToString("MMMM yyyy") : SharedResource.UntilNow)</span>
+                                <span class="text-primary">@(new DateTime(education.Start_Year, education.Start_Month, 1).ToString("MMMM yyyy")) - @(education.UntilNow ? SharedResource.UntilNow : new DateTime(education.End_Year.Value, education.End_Month.Value, 1).ToString("MMMM yyyy"))</span>
                             </div>
                         </div>
+                        <hr class="mb-5">
                     }
                 </div>
             </section>
             <hr class="m-0">
         }
+        <!-- #endregion -->
+        <!-- #region Courses -->
+        @if (Model.Courses.Count > 0)
+        {
+            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Course).ToLower()">
+                <div class="w-100">
+                    <h2 class="mb-5">@SharedResource.Courses</h2>
 
+                </div>
+            </section>
+            <hr class="m-0">
+        }
+        <!-- #endregion -->
+        <!-- #region Languages -->
         @if (Model.LanguageSkills.Count > 0)
         {
             <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Language).ToLower()">
@@ -149,7 +183,8 @@
             </section>
             <hr class="m-0">
         }
-
+        <!-- #endregion -->
+        <!-- #region Interests -->
         @if (Model.Interests.Count > 0)
         {
             <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Interest).ToLower()">
@@ -170,7 +205,8 @@
             </section>
             <hr class="m-0">
         }
-
+        <!-- #endregion -->
+        <!-- #region Awards -->
         @if (Model.Awards.Count > 0)
         {
             <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Award).ToLower()">
@@ -198,7 +234,8 @@
             </section>
             <hr class="m-0">
         }
-
+        <!-- #endregion -->
+        <!-- #region Skills -->
         @if (Model.Skills.Count > 0)
         {
             <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Skill).ToLower()">
@@ -215,8 +252,8 @@
                     }
                 </div>
             </section>
-            <hr class="m-0">
         }
+        <!-- #endregion -->
 
     </div>
 
