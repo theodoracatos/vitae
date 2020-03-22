@@ -68,6 +68,10 @@
     {
       "library": "bootstrap-select@1.13.12",
       "destination": "wwwroot/lib/bootstrap-select/"
+    },
+    {
+      "library": "flag-icon-css@3.4.6",
+      "destination": "wwwroot/lib/flag-icon-css/"
     }
   ]
 }

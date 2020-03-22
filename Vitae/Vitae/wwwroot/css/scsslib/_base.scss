@@ -72,3 +72,39 @@ body::-webkit-scrollbar-thumb, .sb-sidenav-menu::-webkit-scrollbar-thumb {
     max-width: 200px;
     word-break: break-word;
 }
+
+.speech-bubble {
+    position: relative;
+    background: #ffffff;
+    border-radius: .4em;
+    padding: 2em;
+    width: 300px;
+    box-shadow: 0 2px 18px 1px rgba(49,53,72,.1);
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 41px solid transparent;
+    border-bottom-color: #ffffff;
+    border-top: 0;
+    border-left: 0;
+    margin-left: -20.5px;
+    margin-top: -25px;
+}
+
+.greyimage {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.h1-title {
+    font-size: calc(35px + 20 * ((100vw - 320px) / 680));
+}

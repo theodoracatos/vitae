@@ -94,8 +94,19 @@ namespace Vitae.Areas.Manage.Pages.Personalities
                     };
                     curriculum.Person.PersonalDetail.PersonCountries.Add(personCountry);
                 }
-                curriculum.LastUpdated = DateTime.Now;
 
+                // Children
+                vitaeContext.RemoveRange(curriculum.Person.PersonalDetail.Children);
+
+                curriculum.Person.PersonalDetail.Children =
+                    PersonalDetail.Children?.Select(c => new Child()
+                    {
+                        Firstname = c.Firstname,
+                        Birthday = new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day),
+                        Order = c.Order
+                    }).ToList();
+
+                curriculum.LastUpdated = DateTime.Now;
                 await vitaeContext.SaveChangesAsync();
             }
 
