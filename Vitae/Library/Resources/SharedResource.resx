@@ -351,6 +351,9 @@
   <data name="FolderUpload" xml:space="preserve">
     <value>You are not allowed to upload folders</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
   <data name="Function" xml:space="preserve">
     <value>Function</value>
   </data>
@@ -776,6 +779,9 @@
   </data>
   <data name="Widowed" xml:space="preserve">
     <value>Widowed</value>
+  </data>
+  <data name="YearsOld" xml:space="preserve">
+    <value>years old</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>

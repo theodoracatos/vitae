@@ -763,6 +763,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From.
+        /// </summary>
+        public static string From {
+            get {
+                return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Function.
         /// </summary>
         public static string Function {
@@ -2037,6 +2046,15 @@ namespace Library.Resources {
         public static string Widowed {
             get {
                 return ResourceManager.GetString("Widowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to years old.
+        /// </summary>
+        public static string YearsOld {
+            get {
+                return ResourceManager.GetString("YearsOld", resourceCulture);
             }
         }
         

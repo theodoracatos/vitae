@@ -57,3 +57,18 @@ body::-webkit-scrollbar-thumb, .sb-sidenav-menu::-webkit-scrollbar-thumb {
 .bootstrap-tagsinput span[data-role="remove"]:after {
     background-color: transparent !important;
 }
+
+.bg-gold{
+    background-color: $qvs-gold-color;
+    color: #ffffff;
+}
+
+.bg-gold:hover {
+    background-color: $qvs-darkgold-color;
+    color: #ffffff;
+}
+
+.cvbutton {
+    max-width: 200px;
+    word-break: break-word;
+}

@@ -2,6 +2,16 @@
 declare var $;
 declare var Resources;
 
+$(document).ready(function () {
+    startTooltips();
+    startRating();
+    initializeTagsinput();
+});
+
+function startTooltips() {
+    $('[data-toggle="tooltip"]').tooltip();
+}
+
 function startRating() {
         $(".rating").rating({
             filled: 'fas fa-star fa-2x',

@@ -26,6 +26,20 @@ namespace Library.Helper
             }
         }
 
+        public static byte[] ReadFully(Stream input)
+        {
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
+        }
+
         public static Guid GetCurriculumID(HttpContext httpContext)
         {
             Guid curriculumID = new Guid();
@@ -78,7 +92,21 @@ namespace Library.Helper
                 remaining -= amtRead;
                 pos += amtRead;
             }
+            stream.Position = 0;
             return pdfBytes.SequenceEqual(buf);
+        }
+
+        public static int GetAge(DateTime birthday)
+        {
+            var thisYearsBirthday = new DateTime(DateTime.Now.Year, birthday.Month, birthday.Day);
+            var age = DateTime.Now.Year - birthday.Year;
+
+            if(thisYearsBirthday >= DateTime.Now.Date)
+            {
+                --age;
+            }
+
+            return age;
         }
     }
 }

@@ -119,7 +119,7 @@ function drawChart(chartId, title, xLabels, yValues, color) {
 
 function getColor(color, isBgColor) {
     if (isBgColor) {
-        return color == 'gold' ? 'rgba(183, 158, 103, 0.33)' : 'red' ? 'rgba(239, 110, 126, 0.33)' : '';
+        return color == 'gold' ? 'rgba(183, 158, 103, 0.5)' : 'red' ? 'rgba(239, 110, 126, 0.5)' : '';
     }
     else {
         color == 'gold' ? 'rgba(183, 158, 103, 1)' : 'red' ? 'rgba(239, 110, 126, 1)' : '';

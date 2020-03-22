@@ -21,6 +21,7 @@ using System.IO;
 using System.Threading.Tasks;
 
 using Vitae.Code;
+using System.Linq;
 
 namespace CVitae.Areas.CV.Pages
 {
@@ -82,6 +83,23 @@ namespace CVitae.Areas.CV.Pages
                 return Page();
             }
         }
+
+        public IActionResult OnGetOpenFile(Guid identifier)
+        {
+            if (vitaeContext.Vfiles.Any(v => v.Identifier == identifier))
+            {
+                var vfile = vitaeContext.Vfiles.Single(v => v.Identifier == identifier);
+
+                return File(vfile.Content, vfile.MimeType, vfile.FileName);
+            }
+            else
+            {
+                throw new FileNotFoundException(identifier.ToString());
+            }
+        }
+
+        #region Helper
+
         private string CreateQRCode(Guid id)
         {
             using (var qrGenerator = new QRCodeGenerator())
@@ -107,6 +125,8 @@ namespace CVitae.Areas.CV.Pages
         {
             Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
         }
+
+        #endregion
     }
 }
  

@@ -80,19 +80,31 @@
                     @Model.PersonalDetail.Firstname
                     <span class="text-primary">@Model.PersonalDetail.Lastname</span>
                 </h1>
-                <div class="subheading mb-5">
-                    @Model.PersonalDetail.Street @Model.PersonalDetail.StreetNo &middot; @Model.PersonalDetail.ZipCode @Model.PersonalDetail.City &middot; <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber</a> &middot;
+                <div class="subheading mb-4">
+                    @Model.PersonalDetail.Street @Model.PersonalDetail.StreetNo &middot; @Model.PersonalDetail.ZipCode @Model.PersonalDetail.City / @Model.PersonalDetail.State &middot; <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber</a> &middot;
                     <a href="mailto:@(Model.PersonalDetail.Email)">@Model.PersonalDetail.Email</a>
+                    <br />
+                    @(CodeHelper.GetAge(new DateTime(Model.PersonalDetail.Birthday_Year, Model.PersonalDetail.Birthday_Month, Model.PersonalDetail.Birthday_Day))) @SharedResource.YearsOld &middot;
+                    @SharedResource.From @Model.PersonalDetail.Citizenship &middot; @Model.PersonalDetail.MaritalStatus.Description() &middot;
+                    @(Model.PersonalDetail.Children.Count > 0 ? $"{Model.PersonalDetail.Children.Count} {SharedResource.Children} ({Model.PersonalDetail.Children.Select(c => $"{c.Firstname}, {CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day))} {SharedResource.YearsOld}").Aggregate((i, j) => i + " & " + j) })" : string.Empty)
                 </div>
                 <p class="lead mb-5">@Model.About?.Slogan</p>
                 <div class="social-icons">
+                    @if (Model.About.Vfile?.FileName != null)
+                    {
+                        <a data-toggle="tooltip" asp-page-handler="OpenFile" asp-route-identifier="@Model.About.Vfile?.Identifier" title="@Model.About.Vfile?.FileName">
+                            <i class="far fa-file-pdf"></i>
+                        </a>
+                    }
                     @foreach (var socialLink in Model.SocialLinks)
                     {
-                        <a href="@socialLink.Link" target="_blank">
+                        <a data-toggle="tooltip" href="@socialLink.Link" target="_blank" title="@socialLink.SocialPlatform">
                             <i class="@socialLink.SocialPlatform.Description()"></i>
                         </a>
                     }
                 </div>
+
+
             </div>
         </section>
         <hr class="m-0">
