@@ -108,6 +108,7 @@ namespace Vitae.Areas.Manage.Pages.Experiences
                     End_Month = DateTime.Now.Month, 
                     End_Year = DateTime.Now.Year 
                 });
+                Experiences = CheckOrdering(Experiences);
             }
             FillSelectionViewModel();
 
@@ -142,6 +143,20 @@ namespace Vitae.Areas.Manage.Pages.Experiences
             var experience = Experiences[order];
             Experiences[order] = Experiences[order + 1];
             Experiences[order + 1] = experience;
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_EXPERIENCES);
+        }
+
+        public IActionResult OnPostDeleteExperience(int order)
+        {
+            Experiences.Remove(Experiences.Single(e => e.Order == order));
+
+            for(int i = 0; i < Experiences.Count; i++)
+            {
+                Experiences[i].Order = i;
+            }
 
             FillSelectionViewModel();
 

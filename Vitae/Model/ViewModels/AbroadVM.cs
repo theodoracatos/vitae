@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels
 {
-    public class AbroadVM
+    public class AbroadVM : BaseVM
     {
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CountryName), Prompt = nameof(SharedResource.CountryName))]
@@ -31,7 +31,5 @@ namespace Model.ViewModels
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.UntilNow), Prompt = nameof(SharedResource.UntilNow))]
         public bool UntilNow { get; set; }
-
-        public int Order { get; set; }
     }
 }

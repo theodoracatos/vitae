@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels
 {
-    public class ReferenceVM
+    public class ReferenceVM : BaseVM
     {
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Firstname), Prompt = nameof(SharedResource.Firstname))]
@@ -50,7 +50,5 @@ namespace Model.ViewModels
         public string CountryCode { get; set; }
 
         public string PhonePrefix { get; set; }
-
-        public int Order { get; set; }
     }
 }

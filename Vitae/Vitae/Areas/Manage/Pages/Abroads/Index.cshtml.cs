@@ -105,6 +105,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
                     End_Month = DateTime.Now.Month,
                     End_Year = DateTime.Now.Year
                 });
+                Abroads = CheckOrdering(Abroads);
             }
             FillSelectionViewModel();
 
@@ -139,6 +140,20 @@ namespace Vitae.Areas.Manage.Pages.Abroads
             var abroad = Abroads[order];
             Abroads[order] = Abroads[order + 1];
             Abroads[order + 1] = abroad;
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_ABROADS);
+        }
+
+        public IActionResult OnPostDeleteAbroad(int order)
+        {
+            Abroads.Remove(Abroads.Single(e => e.Order == order));
+
+            for (int i = 0; i < Abroads.Count; i++)
+            {
+                Abroads[i].Order = i;
+            }
 
             FillSelectionViewModel();
 

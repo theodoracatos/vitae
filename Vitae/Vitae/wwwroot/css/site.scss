@@ -36,6 +36,13 @@ hr {
 }
 #panel .card .card-header {
     background-color: #E8E8E8;
+    box-shadow: 0 2px 18px 1px rgba(49,53,72,.1);
+}
+
+.card-header-small {
+    background-color: #f8f8f8 !important;
+    box-shadow: none !important;
+    font-weight: bold;
 }
 
 .fa-fw {
@@ -56,10 +63,13 @@ h1 svg {
 
 .grouping {
     padding: 1em;
-    margin-bottom: 1em;
     border-radius: 5px;
     border: 1px solid #dee2e6;
     background-color: #f8f8f8;
+}
+
+.grouping:not(:last-child) {
+    margin-bottom: 1em;
 }
 
 .tooltip-inner {

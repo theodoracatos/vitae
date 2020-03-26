@@ -78,6 +78,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
         #endregion
 
         #region AJAX
+
         public IActionResult OnPostSelectChange()
         {
             FillSelectionViewModel();
@@ -91,6 +92,8 @@ namespace Vitae.Areas.Manage.Pages.Languages
             {
                 LanguageSkills.Add(new LanguageSkillVM() { Order = LanguageSkills.Count });
             }
+            LanguageSkills = CheckOrdering(LanguageSkills);
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_LANGUAGES);
@@ -129,6 +132,21 @@ namespace Vitae.Areas.Manage.Pages.Languages
 
             return GetPartialViewResult(PAGE_LANGUAGES);
         }
+
+        public IActionResult OnPostDeleteLanguageSkill(int order)
+        {
+            LanguageSkills.Remove(LanguageSkills.Single(e => e.Order == order));
+
+            for (int i = 0; i < LanguageSkills.Count; i++)
+            {
+                LanguageSkills[i].Order = i;
+            }
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_LANGUAGES);
+        }
+
         #endregion
 
         #region Helper

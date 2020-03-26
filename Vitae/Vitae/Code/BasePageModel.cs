@@ -1,5 +1,4 @@
-﻿using Library.Constants;
-using Library.Helper;
+﻿using Library.Helper;
 using Library.Repository;
 using Library.Resources;
 
@@ -12,9 +11,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Localization;
 
+using Model.ViewModels;
+
 using Persistency.Data;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 
@@ -31,6 +33,9 @@ namespace Vitae.Code
         protected readonly HttpContext httpContext;
 
         public bool IsLoggedIn { get { return this.curriculumID != Guid.Empty; } }
+
+        [BindProperty]
+        public bool AddToTop { get; set; }
 
         public BasePageModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
         {
@@ -70,6 +75,32 @@ namespace Vitae.Code
             } while (tempDate == DateTime.MinValue);
 
             return day;
+        }
+
+        protected IList<T> CheckOrdering<T>(IList<T> items) where T : BaseVM
+        {
+            var copyList = new T[items.Count];
+            if (AddToTop && items.Count > 0)
+            {
+                for (int i = 0; i < items.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        copyList[0] = items[items.Count - 1]; // last item to first
+                    }
+                    else
+                    {
+                        copyList[i] = items[i - 1];
+                    }
+                    copyList[i].Order = i;
+                }
+            }
+            else
+            {
+                copyList = items.ToArray();
+            }
+
+            return copyList.ToList();
         }
 
         protected abstract void FillSelectionViewModel();

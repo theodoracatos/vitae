@@ -87,6 +87,7 @@ namespace Vitae.Areas.Manage.Pages.Educations
             FillSelectionViewModel();
             return Page();
         }
+
         #endregion
 
         #region AJAX
@@ -109,6 +110,7 @@ namespace Vitae.Areas.Manage.Pages.Educations
                     End_Month = DateTime.Now.Month,
                     End_Year = DateTime.Now.Year
                 });
+                Educations = CheckOrdering(Educations);
             }
             FillSelectionViewModel();
 
@@ -143,6 +145,20 @@ namespace Vitae.Areas.Manage.Pages.Educations
             var education = Educations[order];
             Educations[order] = Educations[order + 1];
             Educations[order + 1] = education;
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_EDUCATIONS);
+        }
+
+        public IActionResult OnPostDeleteEducation(int order)
+        {
+            Educations.Remove(Educations.Single(e => e.Order == order));
+
+            for (int i = 0; i < Educations.Count; i++)
+            {
+                Educations[i].Order = i;
+            }
 
             FillSelectionViewModel();
 

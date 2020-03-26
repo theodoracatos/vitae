@@ -46,6 +46,7 @@ namespace CVitae.Areas.CV.Pages
         public IList<ReferenceVM> References { get; set; } = new List<ReferenceVM>();
 
         public IEnumerable<LanguageVM> Languages { get; set; }
+        public IEnumerable<CountryVM> Countries { get; set; }
 
         public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
     : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
@@ -124,6 +125,7 @@ namespace CVitae.Areas.CV.Pages
         protected override void FillSelectionViewModel() 
         {
             Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
+            Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
         }
 
         #endregion

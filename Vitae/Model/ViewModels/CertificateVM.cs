@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels
 {
-    public class CertificateVM
+    public class CertificateVM : BaseVM
     {
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Name), Prompt = nameof(SharedResource.Name))]
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
@@ -38,7 +38,5 @@ namespace Model.ViewModels
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.NeverExpires), Prompt = nameof(SharedResource.NeverExpires))]
         public bool NeverExpires { get; set; }
-
-        public int Order { get; set; }
     }
 }

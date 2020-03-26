@@ -141,6 +141,9 @@
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="AddToTop" xml:space="preserve">
+    <value>Add to top</value>
+  </data>
   <data name="AdText1a" xml:space="preserve">
     <value>Give a boost to your career</value>
   </data>
@@ -278,6 +281,12 @@
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Days</value>
   </data>
   <data name="DefaultError" xml:space="preserve">
     <value>An unknown failure has occurred.</value>

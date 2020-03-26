@@ -13,7 +13,7 @@ function startTooltips() {
 }
 
 function startRating() {
-        $(".rating").rating({
+        $(".ratingstar").rating({
             filled: 'fas fa-star fa-2x',
             empty: 'far fa-2x fa-star', 
             stop: 4,
@@ -57,4 +57,4 @@ function startRating() {
                 maxChars: 50
             }
         );
-    }
+    } 

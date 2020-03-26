@@ -78,11 +78,11 @@
                     @Model.PersonalDetail.Firstname
                     <span class="text-primary">@Model.PersonalDetail.Lastname</span>
                 </h1>
-                <div class="subheading mb-5">
+                <div class="subheading mb-4 pb-2">
                     @{
                         foreach (var nationality in Model.PersonalDetail.Nationalities)
                         {
-                            <span class="rounded greyimage flag-icon flag-icon-@(nationality.CountryCode.ToLower())"></span>
+                            <span data-toggle="tooltip" class="rounded greyimage flag-icon flag-icon-@(nationality.CountryCode.ToLower())" title="@($"{SharedResource.Nationality} {Model.PersonalDetail.Nationalities.IndexOf(nationality) + 1}: {Model.Countries.Single(c => c.CountryCode == nationality.CountryCode).Name}")"></span>
                         }
                         @Html.Raw("&middot;")
                     }
@@ -130,11 +130,11 @@
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
                             <div class="resume-content">
                                 <h3 class="mb-0">@experience.JobTitle</h3>
-                                <div class="subheading mb-3"><a href="@experience.Link" target="_blank">@experience.CompanyName</a>, @experience.City</div>
+                                <div class="subheading mb-3"><a href="@experience.Link" target="_blank">@experience.CompanyName</a>, @experience.City (@experience.CountryCode)</div>
                                 <p>@experience.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
-                                <span class="text-primary">@(new DateTime(experience.Start_Year, experience.Start_Month, 1).ToString("MMMM yyyy")) - @(experience.UntilNow ? SharedResource.UntilNow : new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1).ToString("MMMM yyyy"))</span>
+                                <span class="text-primary">@(new DateTime(experience.Start_Year, experience.Start_Month, 1).ToShortDateCultureString()) - @(experience.UntilNow ? SharedResource.UntilNow : new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1).ToShortDateCultureString())</span>
                             </div>
                         </div>
                         <hr class="mb-5">
@@ -156,12 +156,12 @@
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
                             <div class="resume-content">
                                 <h3 class="mb-0">@education.Title, @education.Subject</h3>
-                                <div class="subheading mb-3"><a href="@education.Link" target="_blank">@education.Link</a>, @education.City</div>
+                                <div class="subheading mb-3"><a href="@education.Link" target="_blank">@education.SchoolName</a>, @education.City (@education.CountryCode)</div>
                                 <p>@SharedResource.Grade: @education.Grade</p>
                                 <p>@education.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
-                                <span class="text-primary">@(new DateTime(education.Start_Year, education.Start_Month, 1).ToString("MMMM yyyy")) - @(education.UntilNow ? SharedResource.UntilNow : new DateTime(education.End_Year.Value, education.End_Month.Value, 1).ToString("MMMM yyyy"))</span>
+                                <span class="text-primary">@(new DateTime(education.Start_Year, education.Start_Month, 1).ToShortDateCultureString()) - @(education.UntilNow ? SharedResource.UntilNow : new DateTime(education.End_Year.Value, education.End_Month.Value, 1).ToShortDateCultureString())</span>
                             </div>
                         </div>
                         <hr class="mb-5">
@@ -176,8 +176,25 @@
         {
             <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Course).ToLower()">
                 <div class="w-100">
-                    <h2 class="mb-5">@SharedResource.Courses</h2>
-
+                    <h2 class="mb-5"><i class="fas fa-university mr-3"></i>@SharedResource.Courses</h2>
+                    @foreach (var course in Model.Courses)
+                    {
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                    <div class="resume-content">
+                        <h3 class="mb-0">@course.Title</h3>
+                        <div class="subheading mb-3"><a href="@course.Link" target="_blank">@course.SchoolName</a>, @course.City (@course.CountryCode)</div>
+                        <p>@course.Description</p>
+                    </div>
+                    <div class="resume-date text-md-right">
+                        @{
+                            var startDate = new DateTime(course.Start_Year, course.Start_Month, course.Start_Day);
+                            var endDate = course.SingleDay ? startDate : new DateTime(course.End_Year.Value, course.End_Month.Value, course.End_Day.Value);
+                         }
+                        <span class="text-primary">@(startDate.ToShortDateCultureString()) (@(course.SingleDay ? $"1 {SharedResource.Day}" : $"{(endDate - startDate).TotalDays + 1} {SharedResource.Days}"))</span>
+                    </div>
+                </div>
+                    <hr class="mb-5">
+                    }
                 </div>
             </section>
             <hr class="m-0">
@@ -247,7 +264,7 @@
                                 <p class="mb-0">@award.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
-                                <span class="text-primary">@(new DateTime(award.Year, award.Month, 1).ToString("MMMM yyyy"))</span>
+                                <span class="text-primary">@(new DateTime(award.Year, award.Month, 1).ToShortDateCultureString())</span>
                             </div>
                         </div>
                     }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels
 {
-    public class ChildVM
+    public class ChildVM : BaseVM
     {
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Firstname), Prompt = nameof(SharedResource.Firstname))]
@@ -14,7 +14,5 @@ namespace Model.ViewModels
         public int Birthday_Day { get; set; }
         public int Birthday_Month { get; set; }
         public int Birthday_Year { get; set; }
-
-        public int Order { get; set; }
     }
 }

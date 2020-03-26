@@ -141,6 +141,9 @@
   <data name="Add" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
+  <data name="AddToTop" xml:space="preserve">
+    <value>Nach oben erweitern</value>
+  </data>
   <data name="AdText1a" xml:space="preserve">
     <value>Geben Sie Ihrer Karriere einen Boost</value>
   </data>
@@ -278,6 +281,12 @@
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Tag</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Tage</value>
   </data>
   <data name="DefaultError" xml:space="preserve">
     <value>Ein unbekannter Fehler ist aufgetreten.</value>

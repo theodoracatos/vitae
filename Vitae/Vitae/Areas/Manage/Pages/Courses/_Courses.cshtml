@@ -10,106 +10,123 @@
                 <div class="form-group col">
                     <label class="control-label" asp-for="@Model.Courses"></label>
                     <div>
-                        <button asp-page-handler="AddCourse" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel" disabled="@(Model.Courses?.Count < Model.MaxCourses ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveCourse" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel" disabled="@(Model.Courses?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                        <button asp-page-handler="AddCourse" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold" disabled="@(Model.Courses?.Count < Model.MaxCourses ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                        <div class="pretty p-switch p-slim ml-1">
+                            <input type="checkbox" name="@nameof(Model.AddToTop)" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
+                            <div class="state">
+                                <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="@(Model.Courses.Count > 0 ? "grouping" : "")">
                 @for (int i = 0; i < Model.Courses.Count; i++)
                 {
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Courses[i].SchoolName"></label>
-                            <input class="form-control" type="text" asp-for="@Model.Courses[i].SchoolName" />
-                            <span asp-validation-for="@Model.Courses[i].SchoolName" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="control-label" asp-for="@Model.Courses[i].Link"></label>
-                            <input class="form-control" type="text" asp-for="@Model.Courses[i].Link" />
-                            <span asp-validation-for="@Model.Courses[i].Link" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <label class="control-label" asp-for="@Model.Courses[i].Title"></label>
-                            <input class="form-control" type="text" asp-for="@Model.Courses[i].Title" />
-                            <span asp-validation-for="@Model.Courses[i].Title" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <label class="control-label" asp-for="@Model.Courses[i].Description"></label>
-                            <textarea rows="3" asp-for="@Model.Courses[i].Description" class="form-control"></textarea>
-                            <span asp-validation-for="@Model.Courses[i].Description" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label class="control-label" asp-for="@Model.Courses[i].CountryCode"></label>
-                            <select asp-for="@Model.Courses[i].CountryCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
-                                <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
-                            </select>
-                            <span asp-validation-for="@Model.Courses[i].CountryCode" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="control-label" asp-for="@Model.Courses[i].City"></label>
-                            <input class="form-control" type="text" asp-for="@Model.Courses[i].City" />
-                            <span asp-validation-for="@Model.Courses[i].City" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label class="control-label" asp-for="@Model.Courses[i].Start_Day"></label>
-                            <div class="d-flex">
-                                <select asp-for="@Model.Courses[i].Start_Day" class="form-control w-auto d-inline-flex mr-2" asp-items="@(new SelectList(Enumerable.Range(1, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeDate').trigger('click');"></select>
-                                <select asp-for="@Model.Courses[i].Start_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
-                                <select asp-for="@Model.Courses[i].Start_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                    <div class="card @(i < Model.Courses.Count - 1 ? "mb-4" : "mb-2")">
+                        <div class="card-header card-header-small">
+                            <div class="float-left">
+                                @(i + 1). @SharedResource.Course
                             </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="control-label" asp-for="@Model.Courses[i].End_Day"></label>
-                            <div class="d-flex">
-                                <div class="form-control w-auto flex-fill mr-2">
-                                    <div class="pretty p-switch p-slim" onchange="$('#btnCheckSingleDay'+@i).trigger('click');">
-                                        <input type="checkbox" name="@(nameof(Courses))[@i].@nameof(CourseVM.SingleDay)" value="true" checked="@(Model.Courses[i].SingleDay ? "checked" : null)" />
-                                        <div class="state">
-                                            <label asp-for="@Model.Courses[i].SingleDay"></label>
-                                            <input type="hidden" asp-for="@Model.Courses[i].Order" />
-                                        </div>
-                                    </div>
-                                    <button id="btnCheckSingleDay@(i)" asp-page-handler="ChangeSingleDay" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
-                                </div>
-                                @if (!@Model.Courses[i].SingleDay)
-                                {
-                                    <select asp-for="@Model.Courses[i].End_Day" class="form-control w-auto d-inline-flex mr-2" asp-items="@(new SelectList(Enumerable.Range(1, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeDate@(i)').trigger('click');"></select>
-                                    <select asp-for="@Model.Courses[i].End_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate@(i)').trigger('click');"></select>
-                                    <select asp-for="@Model.Courses[i].End_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeDate@(i)').trigger('click');"></select>
-
-                                    <button id="btnChangeDate@(i)" asp-page-handler="ChangeDate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
-                                }
-                                else
-                                {
-                                    <input asp-for="@Model.Courses[i].End_Day" type="hidden" />
-                                    <input asp-for="@Model.Courses[i].End_Month" type="hidden" />
-                                    <input asp-for="@Model.Courses[i].End_Year" type="hidden" />
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col mt-1">
-                            <div class="text-right">
+                            <div class="float-right">
                                 <button asp-page-handler="UpCourse" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
-                                <button asp-page-handler="DownCourse" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel @(i == Model.Courses.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
+                                <button asp-page-handler="DownCourse" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-secondary cancel @(i == Model.Courses.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
+                                <button asp-page-handler="DeleteCourse" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel" disabled="@(Model.Courses?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body pb-0">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" asp-for="@Model.Courses[i].SchoolName"></label>
+                                    <input class="form-control" type="text" asp-for="@Model.Courses[i].SchoolName" />
+                                    <span asp-validation-for="@Model.Courses[i].SchoolName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" asp-for="@Model.Courses[i].Link"></label>
+                                    <input class="form-control" type="text" asp-for="@Model.Courses[i].Link" />
+                                    <span asp-validation-for="@Model.Courses[i].Link" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label class="control-label" asp-for="@Model.Courses[i].Title"></label>
+                                    <input class="form-control" type="text" asp-for="@Model.Courses[i].Title" />
+                                    <span asp-validation-for="@Model.Courses[i].Title" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label class="control-label" asp-for="@Model.Courses[i].Description"></label>
+                                    <textarea rows="3" asp-for="@Model.Courses[i].Description" class="form-control"></textarea>
+                                    <span asp-validation-for="@Model.Courses[i].Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" asp-for="@Model.Courses[i].CountryCode"></label>
+                                    <select asp-for="@Model.Courses[i].CountryCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
+                                        <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
+                                    </select>
+                                    <span asp-validation-for="@Model.Courses[i].CountryCode" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" asp-for="@Model.Courses[i].City"></label>
+                                    <input class="form-control" type="text" asp-for="@Model.Courses[i].City" />
+                                    <span asp-validation-for="@Model.Courses[i].City" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" asp-for="@Model.Courses[i].Start_Day"></label>
+                                    <div class="d-flex">
+                                        <select asp-for="@Model.Courses[i].Start_Day" class="form-control w-auto d-inline-flex mr-2" asp-items="@(new SelectList(Enumerable.Range(1, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                                        <select asp-for="@Model.Courses[i].Start_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                                        <select asp-for="@Model.Courses[i].Start_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" asp-for="@Model.Courses[i].End_Day"></label>
+                                    <div class="d-flex">
+                                        <div class="form-control w-auto flex-fill mr-2">
+                                            <div class="pretty p-switch p-slim" onchange="$('#btnCheckSingleDay'+@i).trigger('click');">
+                                                <input type="checkbox" name="@(nameof(Courses))[@i].@nameof(CourseVM.SingleDay)" value="true" checked="@(Model.Courses[i].SingleDay ? "checked" : null)" />
+                                                <div class="state">
+                                                    <label asp-for="@Model.Courses[i].SingleDay"></label>
+                                                    <input type="hidden" asp-for="@Model.Courses[i].Order" />
+                                                </div>
+                                            </div>
+                                            <button id="btnCheckSingleDay@(i)" asp-page-handler="ChangeSingleDay" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+                                        </div>
+                                        @if (!@Model.Courses[i].SingleDay)
+                                        {
+                                            <select asp-for="@Model.Courses[i].End_Day" class="form-control w-auto d-inline-flex mr-2" asp-items="@(new SelectList(Enumerable.Range(1, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeDate@(i)').trigger('click');"></select>
+                                            <select asp-for="@Model.Courses[i].End_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate@(i)').trigger('click');"></select>
+                                            <select asp-for="@Model.Courses[i].End_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeDate@(i)').trigger('click');"></select>
+
+                                            <button id="btnChangeDate@(i)" asp-page-handler="ChangeDate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+                                        }
+                                        else
+                                        {
+                                            <input asp-for="@Model.Courses[i].End_Day" type="hidden" />
+                                            <input asp-for="@Model.Courses[i].End_Month" type="hidden" />
+                                            <input asp-for="@Model.Courses[i].End_Year" type="hidden" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col mt-1">
+                                    <div class="text-right">
+                                        <button asp-page-handler="UpCourse" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
+                                        <button asp-page-handler="DownCourse" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel @(i == Model.Courses.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     @if (i < Model.Courses.Count - 1)
                     {<hr />}
-                }
-            </div>
-            </div>
+                    }
+        </div>
             <div class="card-footer">
                 <div class="form-row">
                     <div class="form-group col mb-0 text-right">

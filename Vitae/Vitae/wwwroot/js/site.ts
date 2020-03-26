@@ -5,9 +5,6 @@ declare var Chart;
 
 $(document).ready(function () {
     addJQueryValidators();
-    startRating();
-    initSelectPicker();
-
     loadingProcedure();
     setupSbAdmin();
 });
@@ -16,7 +13,6 @@ function ajaxCompleted() {
     loadingProcedure();
     startRating();
     resetFormValidator('form');
-    initSelectPicker();
 }
 
 function drawRadar(chartId, title, labels, dataset, color) {
