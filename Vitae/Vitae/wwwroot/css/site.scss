@@ -210,6 +210,16 @@ span.field-validation-error {
     border-radius: 4px;
 }
 /* Filer */
+@media screen and (max-width: 768px) {
+    .jFiler-input{
+        width: 135px !important;
+    }
+
+    .jFiler-input-caption {
+        display: none !important;
+    }
+}
+
 .jFiler-input {
     margin-bottom: 0 !important;
     height: 40px !important;

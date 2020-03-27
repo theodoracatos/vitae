@@ -78,7 +78,8 @@ body::-webkit-scrollbar-thumb, .sb-sidenav-menu::-webkit-scrollbar-thumb {
     background: #ffffff;
     border-radius: .4em;
     padding: 1.25em;
-    width: 400px;
+    width: auto;
+    max-width: 400px;
     box-shadow: 0 2px 18px 1px rgba(49,53,72,.1);
 }
 

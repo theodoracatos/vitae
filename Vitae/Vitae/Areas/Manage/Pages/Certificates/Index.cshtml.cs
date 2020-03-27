@@ -103,6 +103,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
                     End_Month = DateTime.Now.Month,
                     End_Year = DateTime.Now.Year
                 });
+                Certificates = CheckOrdering(Certificates);
             }
             FillSelectionViewModel();
 
@@ -111,10 +112,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
 
         public IActionResult OnPostRemoveCertificate()
         {
-            if (Certificates.Count > 0)
-            {
-                Certificates.RemoveAt(Certificates.Count - 1);
-            }
+            Remove(Certificates);
 
             FillSelectionViewModel();
 
@@ -123,9 +121,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
 
         public IActionResult OnPostUpCertificate(int order)
         {
-            var certificate = Certificates[order];
-            Certificates[order] = Certificates[order - 1];
-            Certificates[order - 1] = certificate;
+            Up(Certificates, order);
 
             FillSelectionViewModel();
 
@@ -134,9 +130,16 @@ namespace Vitae.Areas.Manage.Pages.Certificates
 
         public IActionResult OnPostDownCertificate(int order)
         {
-            var certificate = Certificates[order];
-            Certificates[order] = Certificates[order + 1];
-            Certificates[order + 1] = certificate;
+            Down(Certificates, order);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_CERTIFICATES);
+        }
+
+        public IActionResult OnPostDeleteCertificate(int order)
+        {
+            Delete(Certificates, order);
 
             FillSelectionViewModel();
 

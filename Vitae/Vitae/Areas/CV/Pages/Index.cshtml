@@ -58,13 +58,14 @@
                         </li>
                     }
                 }
+                @if (Model.IsLoggedIn)
+                {
+                <li>
+                <a class="btn btn-dark mt-2" href="/Manage"><i class="fas fa-angle-left fa-fw"></i> @SharedResource.Back</a>
+                </li>
+                }
             </ul>
         </div>
-
-        @if (Model.IsLoggedIn)
-        {
-            <a class="btn btn-dark mb-2" href="/Manage"><i class="fas fa-angle-left fa-fw"></i> @SharedResource.Back</a>
-        }
     </nav>
 
     <!-- #endregion -->
@@ -101,13 +102,13 @@
                 <div class="social-icons">
                     @if (Model.About.Vfile?.FileName != null)
                     {
-                        <a class="mt-2" data-toggle="tooltip" asp-page-handler="OpenFile" asp-route-identifier="@Model.About.Vfile?.Identifier" title="@Model.About.Vfile?.FileName">
+                        <a class="mt-2 mb-1" data-toggle="tooltip" asp-page-handler="OpenFile" asp-route-identifier="@Model.About.Vfile?.Identifier" title="@Model.About.Vfile?.FileName">
                             <i class="far fa-file-pdf"></i>
                         </a>
                     }
                     @foreach (var socialLink in Model.SocialLinks)
                     {
-                        <a class="mt-2" data-toggle="tooltip" href="@socialLink.Link" target="_blank" title="@socialLink.SocialPlatform">
+                        <a class="mt-2 mb-1" data-toggle="tooltip" href="@socialLink.Link" target="_blank" title="@socialLink.SocialPlatform">
                             <i class="@socialLink.SocialPlatform.Description()"></i>
                         </a>
                     }

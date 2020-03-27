@@ -88,6 +88,7 @@ namespace Vitae.Areas.Manage.Pages.References
         #endregion
 
         #region AJAX
+
         public IActionResult OnPostSelectChange()
         {
             FillSelectionViewModel();
@@ -100,6 +101,7 @@ namespace Vitae.Areas.Manage.Pages.References
             if (References.Count < MaxReferences)
             {
                 References.Add(new ReferenceVM() { Order = References.Count });
+                References = CheckOrdering(References);
             }
             FillSelectionViewModel();
 
@@ -108,10 +110,7 @@ namespace Vitae.Areas.Manage.Pages.References
 
         public IActionResult OnPostRemoveReference()
         {
-            if (References.Count > 0)
-            {
-                References.RemoveAt(References.Count - 1);
-            }
+            Remove(References);
 
             FillSelectionViewModel();
 
@@ -120,9 +119,7 @@ namespace Vitae.Areas.Manage.Pages.References
 
         public IActionResult OnPostUpReference(int order)
         {
-            var reference = References[order];
-            References[order] = References[order - 1];
-            References[order - 1] = reference;
+            Up(References, order);
 
             FillSelectionViewModel();
 
@@ -131,9 +128,16 @@ namespace Vitae.Areas.Manage.Pages.References
 
         public IActionResult OnPostDownReference(int order)
         {
-            var reference = References[order];
-            References[order] = References[order + 1];
-            References[order + 1] = reference;
+            Down(References, order);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_REFERENCES);
+        }
+
+        public IActionResult OnPostDeleteReference(int order)
+        {
+            Delete(References, order);
 
             FillSelectionViewModel();
 

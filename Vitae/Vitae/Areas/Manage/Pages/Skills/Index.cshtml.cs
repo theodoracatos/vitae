@@ -77,11 +77,13 @@ namespace Vitae.Areas.Manage.Pages.Skills
         #endregion
 
         #region AJAX
+
         public IActionResult OnPostAddSkill()
         {
             if (Skills.Count < MaxSkills)
             {
                 Skills.Add(new SkillVM() { Order = Skills.Count });
+                Skills = CheckOrdering(Skills);
             }
             FillSelectionViewModel();
 
@@ -90,10 +92,7 @@ namespace Vitae.Areas.Manage.Pages.Skills
 
         public IActionResult OnPostRemoveSkill()
         {
-            if (Skills.Count > 0)
-            {
-                Skills.RemoveAt(Skills.Count - 1);
-            }
+            Remove(Skills);
 
             FillSelectionViewModel();
 
@@ -102,9 +101,7 @@ namespace Vitae.Areas.Manage.Pages.Skills
 
         public IActionResult OnPostUpSkill(int order)
         {
-            var skill = Skills[order];
-            Skills[order] = Skills[order - 1];
-            Skills[order - 1] = skill;
+            Up(Skills, order);
 
             FillSelectionViewModel();
 
@@ -113,14 +110,22 @@ namespace Vitae.Areas.Manage.Pages.Skills
 
         public IActionResult OnPostDownSkill(int order)
         {
-            var skill = Skills[order];
-            Skills[order] = Skills[order + 1];
-            Skills[order + 1] = skill;
+            Down(Skills, order);
 
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_SKILLS);
         }
+
+        public IActionResult OnPostDeleteSkill(int order)
+        {
+            Delete(Skills, order);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_SKILLS);
+        }
+
         #endregion
 
         #region Helper

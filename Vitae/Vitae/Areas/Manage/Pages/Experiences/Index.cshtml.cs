@@ -117,10 +117,7 @@ namespace Vitae.Areas.Manage.Pages.Experiences
 
         public IActionResult OnPostRemoveExperience()
         {
-            if (Experiences.Count > 0)
-            {
-                Experiences.RemoveAt(Experiences.Count - 1);
-            }
+            Remove(Experiences);
 
             FillSelectionViewModel();
 
@@ -129,9 +126,7 @@ namespace Vitae.Areas.Manage.Pages.Experiences
 
         public IActionResult OnPostUpExperience(int order)
         {
-            var experience = Experiences[order];
-            Experiences[order] = Experiences[order - 1];
-            Experiences[order - 1] = experience;
+            Up(Experiences, order);
 
             FillSelectionViewModel();
 
@@ -140,9 +135,7 @@ namespace Vitae.Areas.Manage.Pages.Experiences
 
         public IActionResult OnPostDownExperience(int order)
         {
-            var experience = Experiences[order];
-            Experiences[order] = Experiences[order + 1];
-            Experiences[order + 1] = experience;
+            Down(Experiences, order);
 
             FillSelectionViewModel();
 
@@ -151,12 +144,7 @@ namespace Vitae.Areas.Manage.Pages.Experiences
 
         public IActionResult OnPostDeleteExperience(int order)
         {
-            Experiences.Remove(Experiences.Single(e => e.Order == order));
-
-            for(int i = 0; i < Experiences.Count; i++)
-            {
-                Experiences[i].Order = i;
-            }
+            Delete(Experiences, order);
 
             FillSelectionViewModel();
 

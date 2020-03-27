@@ -11,7 +11,7 @@
                     <label class="control-label" asp-for="@Model.Educations"></label>
                     <div>
                         <button asp-page-handler="AddEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold" disabled="@(Model.Educations?.Count < Model.MaxEducations ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
-                        <div class="pretty p-switch p-slim ml-1">
+                        <div class="pretty p-switch p-slim m-2 mt-3">
                             <input type="checkbox" name="@nameof(Model.AddToTop)" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
                             <div class="state">
                                 <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
@@ -29,8 +29,8 @@
                         </div>
                         <div class="float-right">
                             <button asp-page-handler="UpEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
-                            <button asp-page-handler="DownEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-secondary cancel @(i == Model.Educations.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
-                            <button asp-page-handler="DeleteEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel" disabled="@(Model.Educations?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
+                            <button asp-page-handler="DownEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-secondary cancel ml-1 @(i == Model.Educations.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
+                            <button asp-page-handler="DeleteEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.Educations?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
                     <div class="card-body pb-0">
@@ -117,14 +117,6 @@
                                         <input asp-for="@Model.Educations[i].End_Month" type="hidden" />
                                         <input asp-for="@Model.Educations[i].End_Year" type="hidden" />
                                     }
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col mt-1">
-                                <div class="text-right">
-                                    <button asp-page-handler="UpEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
-                                    <button asp-page-handler="DownEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel @(i == Model.Educations.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
                                 </div>
                             </div>
                         </div>

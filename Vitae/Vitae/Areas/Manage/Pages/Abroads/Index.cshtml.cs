@@ -114,10 +114,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
 
         public IActionResult OnPostRemoveAbroad()
         {
-            if (Abroads.Count > 0)
-            {
-                Abroads.RemoveAt(Abroads.Count - 1);
-            }
+            Remove(Abroads);
 
             FillSelectionViewModel();
 
@@ -126,9 +123,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
 
         public IActionResult OnPostUpAbroad(int order)
         {
-            var abroad = Abroads[order];
-            Abroads[order] = Abroads[order - 1];
-            Abroads[order - 1] = abroad;
+            Up(Abroads, order);
 
             FillSelectionViewModel();
 
@@ -137,9 +132,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
 
         public IActionResult OnPostDownAbroad(int order)
         {
-            var abroad = Abroads[order];
-            Abroads[order] = Abroads[order + 1];
-            Abroads[order + 1] = abroad;
+            Down(Abroads, order);
 
             FillSelectionViewModel();
 
@@ -148,12 +141,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
 
         public IActionResult OnPostDeleteAbroad(int order)
         {
-            Abroads.Remove(Abroads.Single(e => e.Order == order));
-
-            for (int i = 0; i < Abroads.Count; i++)
-            {
-                Abroads[i].Order = i;
-            }
+            Delete(Abroads, order);
 
             FillSelectionViewModel();
 

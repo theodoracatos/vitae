@@ -119,10 +119,7 @@ namespace Vitae.Areas.Manage.Pages.Educations
 
         public IActionResult OnPostRemoveEducation()
         {
-            if (Educations.Count > 0)
-            {
-                Educations.RemoveAt(Educations.Count - 1);
-            }
+            Remove(Educations);
 
             FillSelectionViewModel();
 
@@ -131,9 +128,7 @@ namespace Vitae.Areas.Manage.Pages.Educations
 
         public IActionResult OnPostUpEducation(int order)
         {
-            var education = Educations[order];
-            Educations[order] = Educations[order - 1];
-            Educations[order - 1] = education;
+            Up(Educations, order);
 
             FillSelectionViewModel();
 
@@ -142,9 +137,7 @@ namespace Vitae.Areas.Manage.Pages.Educations
 
         public IActionResult OnPostDownEducation(int order)
         {
-            var education = Educations[order];
-            Educations[order] = Educations[order + 1];
-            Educations[order + 1] = education;
+            Down(Educations, order);
 
             FillSelectionViewModel();
 
@@ -153,12 +146,7 @@ namespace Vitae.Areas.Manage.Pages.Educations
 
         public IActionResult OnPostDeleteEducation(int order)
         {
-            Educations.Remove(Educations.Single(e => e.Order == order));
-
-            for (int i = 0; i < Educations.Count; i++)
-            {
-                Educations[i].Order = i;
-            }
+            Delete(Educations, order);
 
             FillSelectionViewModel();
 

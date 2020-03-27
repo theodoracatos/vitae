@@ -118,10 +118,7 @@ namespace Vitae.Areas.Manage.Pages.Courses
 
         public IActionResult OnPostRemoveCourse()
         {
-            if (Courses.Count > 0)
-            {
-                Courses.RemoveAt(Courses.Count - 1);
-            }
+            Remove(Courses);
 
             FillSelectionViewModel();
 
@@ -130,9 +127,7 @@ namespace Vitae.Areas.Manage.Pages.Courses
 
         public IActionResult OnPostUpCourse(int order)
         {
-            var course = Courses[order];
-            Courses[order] = Courses[order - 1];
-            Courses[order - 1] = course;
+            Up(Courses, order);
 
             FillSelectionViewModel();
 
@@ -141,9 +136,16 @@ namespace Vitae.Areas.Manage.Pages.Courses
 
         public IActionResult OnPostDownCourse(int order)
         {
-            var course = Courses[order];
-            Courses[order] = Courses[order + 1];
-            Courses[order + 1] = course;
+            Down(Courses, order);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_COURSES);
+        }
+
+        public IActionResult OnPostDeleteCourse(int order)
+        {
+            Delete(Courses, order);
 
             FillSelectionViewModel();
 
@@ -156,20 +158,6 @@ namespace Vitae.Areas.Manage.Pages.Courses
             if (!Courses[order].SingleDay)
             {
                 Courses[order].End_Day = CorrectDate(Courses[order].End_Year.Value, Courses[order].End_Month.Value, Courses[order].End_Day.Value);
-            }
-
-            FillSelectionViewModel();
-
-            return GetPartialViewResult(PAGE_COURSES);
-        }
-
-        public IActionResult OnPostDeleteCourse(int order)
-        {
-            Courses.Remove(Courses.Single(e => e.Order == order));
-
-            for (int i = 0; i < Courses.Count; i++)
-            {
-                Courses[i].Order = i;
             }
 
             FillSelectionViewModel();

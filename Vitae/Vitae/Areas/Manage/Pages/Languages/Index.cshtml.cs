@@ -91,8 +91,8 @@ namespace Vitae.Areas.Manage.Pages.Languages
             if (LanguageSkills.Count < MaxLanguageSkills)
             {
                 LanguageSkills.Add(new LanguageSkillVM() { Order = LanguageSkills.Count });
+                LanguageSkills = CheckOrdering(LanguageSkills);
             }
-            LanguageSkills = CheckOrdering(LanguageSkills);
 
             FillSelectionViewModel();
 
@@ -101,10 +101,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
 
         public IActionResult OnPostRemoveLanguageSkill()
         {
-            if (LanguageSkills.Count > 0)
-            {
-                LanguageSkills.RemoveAt(LanguageSkills.Count - 1);
-            }
+            Remove(LanguageSkills);
 
             FillSelectionViewModel();
 
@@ -113,9 +110,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
 
         public IActionResult OnPostUpLanguageSkill(int order)
         {
-            var languageSkill = LanguageSkills[order];
-            LanguageSkills[order] = LanguageSkills[order - 1];
-            LanguageSkills[order - 1] = languageSkill;
+            Up(LanguageSkills, order);
 
             FillSelectionViewModel();
 
@@ -124,9 +119,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
 
         public IActionResult OnPostDownLanguageSkill(int order)
         {
-            var languageSkill = LanguageSkills[order];
-            LanguageSkills[order] = LanguageSkills[order + 1];
-            LanguageSkills[order + 1] = languageSkill;
+            Down(LanguageSkills, order);
 
             FillSelectionViewModel();
 
@@ -135,12 +128,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
 
         public IActionResult OnPostDeleteLanguageSkill(int order)
         {
-            LanguageSkills.Remove(LanguageSkills.Single(e => e.Order == order));
-
-            for (int i = 0; i < LanguageSkills.Count; i++)
-            {
-                LanguageSkills[i].Order = i;
-            }
+            Delete(LanguageSkills, order);
 
             FillSelectionViewModel();
 

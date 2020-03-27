@@ -10,106 +10,115 @@
                 <div class="form-group col">
                     <label class="control-label" asp-for="@Model.References"></label>
                     <div>
-                        <button asp-page-handler="AddReference" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel" disabled="@(Model.References?.Count < Model.MaxReferences ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveReference" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel" disabled="@(Model.References?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                        <button asp-page-handler="AddReference" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold" disabled="@(Model.References?.Count < Model.MaxReferences ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                        <div class="pretty p-switch p-slim m-2 mt-3">
+                            <input type="checkbox" name="@nameof(Model.AddToTop)" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
+                            <div class="state">
+                                <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="@(Model.References.Count > 0 ? "grouping" : "")">
-                @for (int i = 0; i < Model.References.Count; i++)
-                {
-                    <div class="form-row">
-                        <div class="col">
-                            <label class="control-label" asp-for="@Model.References[i].Gender"></label>
-                            <div class="form-group">
+            @for (int i = 0; i < Model.References.Count; i++)
+            {
+        <div class="card @(i < Model.References.Count - 1 ? "mb-4" : "mb-2")">
+            <div class="card-header card-header-small">
+                <div class="float-left">
+                    @(i + 1). @SharedResource.Reference
+                </div>
+                <div class="float-right">
+                    <button asp-page-handler="UpReference" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
+                    <button asp-page-handler="DownReference" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-secondary cancel ml-1 @(i == Model.References.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
+                    <button asp-page-handler="DeleteReference" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.References?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
+                </div>
+            </div>
+            <div class="card-body pb-0">
+                <div class="form-row">
+                    <div class="col">
+                        <label class="control-label" asp-for="@Model.References[i].Gender"></label>
+                        <div class="form-group">
 
-                                <div class="pretty p-default p-round p-thick">
-                                    <input type="radio" asp-for="@Model.References[i].Gender" value="true" checked="@(Model.References[i]?.Gender ?? false ? "checked" : null)" />
-                                    <div class="state p-primary-o">
-                                        <label>@SharedResource.Mr</label>
-                                    </div>
+                            <div class="pretty p-default p-round p-thick">
+                                <input type="radio" asp-for="@Model.References[i].Gender" value="true" checked="@(Model.References[i]?.Gender ?? false ? "checked" : null)" />
+                                <div class="state p-primary-o">
+                                    <label>@SharedResource.Mr</label>
                                 </div>
-                                <div class="pretty p-default p-round p-thick">
-                                    <input type="radio" id="gender2" asp-for="@Model.References[i].Gender" value="false" checked="@(Model.References[i]?.Gender ?? true ? null : "checked")" />
-                                    <div class="state p-primary-o">
-                                        <label>@SharedResource.Ms</label>
-                                    </div>
+                            </div>
+                            <div class="pretty p-default p-round p-thick">
+                                <input type="radio" id="gender2" asp-for="@Model.References[i].Gender" value="false" checked="@(Model.References[i]?.Gender ?? true ? null : "checked")" />
+                                <div class="state p-primary-o">
+                                    <label>@SharedResource.Ms</label>
                                 </div>
-                                <span asp-validation-for="@Model.References[i].Gender" class="text-danger d-block"></span>
                             </div>
+                            <span asp-validation-for="@Model.References[i].Gender" class="text-danger d-block"></span>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-5">
-                            <label class="control-label" asp-for="@Model.References[i].Firstname"></label>
-                            <input class="form-control" type="text" asp-for="@Model.References[i].Firstname" />
-                            <span asp-validation-for="@Model.References[i].Firstname" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-7">
-                            <label class="control-label" asp-for="@Model.References[i].Lastname"></label>
-                            <input class="form-control" type="text" asp-for="@Model.References[i].Lastname" />
-                            <span asp-validation-for="@Model.References[i].Lastname" class="text-danger"></span>
-                        </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label class="control-label" asp-for="@Model.References[i].Firstname"></label>
+                        <input class="form-control" type="text" asp-for="@Model.References[i].Firstname" />
+                        <span asp-validation-for="@Model.References[i].Firstname" class="text-danger"></span>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.References[i].CompanyName"></label>
-                            <input class="form-control" type="text" asp-for="@Model.References[i].CompanyName" />
-                            <span asp-validation-for="@Model.References[i].CompanyName" class="text-danger"></span>
-                            <input type="hidden" asp-for="@Model.References[i].Order" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="control-label" asp-for="@Model.References[i].Link"></label>
-                            <input class="form-control" type="text" asp-for="@Model.References[i].Link" />
-                            <span asp-validation-for="@Model.References[i].Link" class="text-danger"></span>
-                        </div>
+                    <div class="form-group col-md-7">
+                        <label class="control-label" asp-for="@Model.References[i].Lastname"></label>
+                        <input class="form-control" type="text" asp-for="@Model.References[i].Lastname" />
+                        <span asp-validation-for="@Model.References[i].Lastname" class="text-danger"></span>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <label class="control-label" asp-for="@Model.References[i].Description"></label>
-                            <textarea rows="3" asp-for="@Model.References[i].Description" class="form-control"></textarea>
-                            <span asp-validation-for="@Model.References[i].Description" class="text-danger"></span>
-                        </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.References[i].CompanyName"></label>
+                        <input class="form-control" type="text" asp-for="@Model.References[i].CompanyName" />
+                        <span asp-validation-for="@Model.References[i].CompanyName" class="text-danger"></span>
+                        <input type="hidden" asp-for="@Model.References[i].Order" />
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <label class="control-label" asp-for="@Model.References[i].Email"></label>
-                            <input class="form-control" type="text" asp-for="@Model.References[i].Email" />
-                            <span asp-validation-for="@Model.References[i].Email" class="text-danger"></span>
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.References[i].Link"></label>
+                        <input class="form-control" type="text" asp-for="@Model.References[i].Link" />
+                        <span asp-validation-for="@Model.References[i].Link" class="text-danger"></span>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label class="control-label" asp-for="@Model.References[i].CountryCode"></label>
-                            <select asp-for="@Model.References[i].CountryCode" class="form-control selectpicker" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
-                                <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
-                            </select>
-                            <span asp-validation-for="@Model.References[i].CountryCode" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-8">
-                            <label class="control-label" asp-for="@Model.References[i].PhoneNumber"></label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">@Model.References[i].PhonePrefix</span>
-                                </div>
-                                <input class="form-control" type="text" asp-for="@Model.References[i].PhoneNumber" />
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.References[i].Description"></label>
+                        <textarea rows="3" asp-for="@Model.References[i].Description" class="form-control"></textarea>
+                        <span asp-validation-for="@Model.References[i].Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.References[i].Email"></label>
+                        <input class="form-control" type="text" asp-for="@Model.References[i].Email" />
+                        <span asp-validation-for="@Model.References[i].Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label" asp-for="@Model.References[i].CountryCode"></label>
+                        <select asp-for="@Model.References[i].CountryCode" class="form-control selectpicker" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
+                            <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
+                        </select>
+                        <span asp-validation-for="@Model.References[i].CountryCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label class="control-label" asp-for="@Model.References[i].PhoneNumber"></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">@Model.References[i].PhonePrefix</span>
                             </div>
-                            <span asp-validation-for="@Model.References[i].PhoneNumber" class="text-danger"></span>
+                            <input class="form-control" type="text" asp-for="@Model.References[i].PhoneNumber" />
                         </div>
+                        <span asp-validation-for="@Model.References[i].PhoneNumber" class="text-danger"></span>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col mt-1">
-                            <div class="text-right">
-                                <button asp-page-handler="UpReference" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
-                                <button asp-page-handler="DownReference" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel @(i == Model.References.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    @if (i < Model.References.Count - 1)
-                    {<hr />}
-                }
+                </div>
+              </div>
             </div>
-            </div>
+            @if (i < Model.References.Count - 1)
+            {<hr />}
+            }
+        </div>
             <div class="card-footer">
                 <div class="form-row">
                     <div class="form-group col mb-0 text-right">

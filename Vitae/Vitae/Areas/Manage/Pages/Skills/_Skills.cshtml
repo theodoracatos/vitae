@@ -10,39 +10,49 @@
                 <div class="form-group col">
                     <label class="control-label" asp-for="@Model.Skills"></label>
                     <div>
-                        <button asp-page-handler="AddSkill" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel" disabled="@(Model.Skills?.Count < Model.MaxSkills ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveSkill" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel" disabled="@(Model.Skills?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="@(Model.Skills.Count > 0 ? "grouping" : "")">
-                @for (int i = 0; i < Model.Skills.Count; i++)
-                {
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Skills[i].Category"></label>
-                            <input class="form-control" type="text" asp-for="@Model.Skills[i].Category" />
-                            <span asp-validation-for="@Model.Skills[i].Category" class="text-danger"></span>
-                            <input type="hidden" asp-for="@Model.Skills[i].Order" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="control-label" asp-for="@Model.Skills[i].Skillset"></label>
-                            <input class="form-control tagsinput" data-role="tagsinput" type="text" asp-for="@Model.Skills[i].Skillset" />
-                            <small class="d-block">@SharedResource.EnterSkill</small>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col mt-1">
-                            <div class="text-right">
-                                <button asp-page-handler="UpSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
-                                <button asp-page-handler="DownSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel @(i == Model.Skills.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
+                        <button asp-page-handler="AddSkill" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold" disabled="@(Model.Skills?.Count < Model.MaxSkills ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                        <div class="pretty p-switch p-slim m-2 mt-3">
+                            <input type="checkbox" name="@nameof(Model.AddToTop)" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
+                            <div class="state">
+                                <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
                             </div>
                         </div>
                     </div>
-                    @if (i < Model.Skills.Count - 1){ <hr /> }
-                }
+                </div>
             </div>
+            @for (int i = 0; i < Model.Skills.Count; i++)
+            {
+        <div class="card @(i < Model.Skills.Count - 1 ? "mb-4" : "mb-2")">
+            <div class="card-header card-header-small">
+                <div class="float-left">
+                    @(i + 1). @SharedResource.Skill
+                </div>
+                <div class="float-right">
+                    <button asp-page-handler="UpSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
+                    <button asp-page-handler="DownSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-secondary cancel ml-1 @(i == Model.Skills.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
+                    <button asp-page-handler="DeleteSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.Skills?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
+                </div>
             </div>
+            <div class="card-body pb-0">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Skills[i].Category"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Skills[i].Category" />
+                        <span asp-validation-for="@Model.Skills[i].Category" class="text-danger"></span>
+                        <input type="hidden" asp-for="@Model.Skills[i].Order" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Skills[i].Skillset"></label>
+                        <input class="form-control tagsinput" data-role="tagsinput" type="text" asp-for="@Model.Skills[i].Skillset" />
+                        <small class="d-block">@SharedResource.EnterSkill</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+            @if (i < Model.Skills.Count - 1)
+            {<hr />}
+            }
+        </div>
             <div class="card-footer">
                 <div class="form-row">
                     <div class="form-group col mb-0 text-right">

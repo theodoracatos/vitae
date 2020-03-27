@@ -83,6 +83,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
             if (Interests.Count < MaxInterests)
             {
                 Interests.Add(new InterestVM() { Order = Interests.Count });
+                Interests = CheckOrdering(Interests);
             }
             FillSelectionViewModel();
 
@@ -91,10 +92,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
 
         public IActionResult OnPostRemoveInterest()
         {
-            if (Interests.Count > 0)
-            {
-                Interests.RemoveAt(Interests.Count - 1);
-            }
+            Remove(Interests);
 
             FillSelectionViewModel();
 
@@ -103,9 +101,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
 
         public IActionResult OnPostUpInterest(int order)
         {
-            var interest = Interests[order];
-            Interests[order] = Interests[order - 1];
-            Interests[order - 1] = interest;
+            Up(Interests, order);
 
             FillSelectionViewModel();
 
@@ -114,14 +110,22 @@ namespace Vitae.Areas.Manage.Pages.Interests
 
         public IActionResult OnPostDownInterest(int order)
         {
-            var interest = Interests[order];
-            Interests[order] = Interests[order + 1];
-            Interests[order + 1] = interest;
+            Down(Interests, order);
 
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_INTERESTS);
         }
+
+        public IActionResult OnPostDeleteInterest(int order)
+        {
+            Delete(Interests, order);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_INTERESTS);
+        }
+
         #endregion
 
         #region Helper

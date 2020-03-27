@@ -99,8 +99,44 @@ namespace Vitae.Code
             {
                 copyList = items.ToArray();
             }
-
+            
             return copyList.ToList();
+        }
+
+        protected void Delete<T>(IList<T> items, int order) where T : BaseVM
+        {
+            items.Remove(items.Single(e => e.Order == order));
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                items[i].Order = i;
+            }
+        }
+
+        protected void Remove<T>(IList<T> items) where T : BaseVM
+        {
+            if (items.Count > 0)
+            {
+                items.RemoveAt(items.Count - 1);
+            }
+        }
+
+        protected void Up<T>(IList<T> items, int order) where T : BaseVM
+        {
+            var oldItem = items[order];
+            oldItem.Order = order - 1;
+            items[order] = items[order - 1];
+            items[order].Order = order;
+            items[order - 1] = oldItem;
+        }
+
+        protected void Down<T>(IList<T> items, int order) where T : BaseVM
+        {
+            var oldItem = items[order];
+            oldItem.Order = order + 1;
+            items[order] = items[order + 1];
+            items[order].Order = order;
+            items[order + 1] = oldItem;
         }
 
         protected abstract void FillSelectionViewModel();

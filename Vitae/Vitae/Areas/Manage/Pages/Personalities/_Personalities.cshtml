@@ -6,7 +6,7 @@
             <h1><i class="fas fa-address-book mr-3"></i>@SharedResource.PersonalDetails</h1>
         </div>
         <div class="card-body">
-            <div class="grouping">
+            <div class="grouping pb-0">
                 <div class="form-row">
                     <div class="col">
                         <label class="control-label" asp-for="@Model.PersonalDetail.Gender"></label>
@@ -129,15 +129,15 @@
                         <label class="control-label" asp-for="@Model.PersonalDetail.Nationalities"></label>
                         <div>
                             <button asp-page-handler="AddNationality" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel" disabled="@(Model.PersonalDetail.Nationalities?.Count < Model.MaxNationalities ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                            <button asp-page-handler="RemoveNationality" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel" disabled="@(Model.PersonalDetail.Nationalities?.Count <= 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                            <button asp-page-handler="RemoveNationality" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.PersonalDetail.Nationalities?.Count <= 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <div class="grouping">
+                <div class="grouping pb-0">
                     @for (int i = 0; i < Model.PersonalDetail.Nationalities.Count; i++)
                     {
-                        <div class="form-row">
+                        <div class="form-row  pb-0">
                             <div class="form-group col">
                                 <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.PersonalDetail.Nationalities[i].CountryCode"></label>
                                 <select asp-for="@Model.PersonalDetail.Nationalities[i].CountryCode" class="form-control selectpicker" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Nationalities.Where(n => n.CountryCode == Model.PersonalDetail.Nationalities[i].CountryCode || !Model.PersonalDetail.Nationalities.Select(na => na.CountryCode).Contains(n.CountryCode)), "CountryCode", "Name"))">
@@ -155,11 +155,11 @@
                         <label class="control-label" asp-for="@Model.PersonalDetail.Children"></label>
                         <div>
                             <button asp-page-handler="AddChild" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel" disabled="@((Model.PersonalDetail.Children?.Count ?? 0) < Model.MaxChildren ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                            <button asp-page-handler="RemoveChild" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel" disabled="@((Model.PersonalDetail.Children?.Count ?? 0) < 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                            <button asp-page-handler="RemoveChild" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@((Model.PersonalDetail.Children?.Count ?? 0) < 1 ? "disabled": null)"><i class="fas fa-minus"></i></button>
                         </div>
                     </div>
                 </div>
-                <div class="@(Model.PersonalDetail.Children?.Count > 0 ? "grouping" : "")">
+                <div class="@(Model.PersonalDetail.Children?.Count > 0 ? "grouping pb-0" : "")">
                     @for (int i = 0; i < Model.PersonalDetail.Children?.Count; i++)
                     {
                         <div class="form-row">

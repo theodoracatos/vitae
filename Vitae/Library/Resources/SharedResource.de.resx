@@ -142,7 +142,7 @@
     <value>Hinzufügen</value>
   </data>
   <data name="AddToTop" xml:space="preserve">
-    <value>Nach oben erweitern</value>
+    <value>Oben erweitern</value>
   </data>
   <data name="AdText1a" xml:space="preserve">
     <value>Geben Sie Ihrer Karriere einen Boost</value>
@@ -158,6 +158,9 @@
   </data>
   <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>Der Wert '{0}' ist nicht gültig für {y}</value>
+  </data>
+  <data name="Award" xml:space="preserve">
+    <value>Errungenschaft</value>
   </data>
   <data name="AwardedFrom" xml:space="preserve">
     <value>Verliehen von</value>
@@ -331,7 +334,7 @@
     <value>Ende</value>
   </data>
   <data name="EnterSkill" xml:space="preserve">
-    <value>Bitte drücken Sie die Enter-Taste um einen neuen Skill einzufügen</value>
+    <value>Bitte drücken Sie die Enter-Taste um einen neue Kompetenz einzufügen</value>
   </data>
   <data name="ErrorConfirmEmail" xml:space="preserve">
     <value>Fehler bei der Bestätigung Ihrer E-Mail.</value>
@@ -610,7 +613,7 @@
     <value>Kenntniss</value>
   </data>
   <data name="Reference" xml:space="preserve">
-    <value>Referenzen</value>
+    <value>Referenz</value>
   </data>
   <data name="References" xml:space="preserve">
     <value>Referenzen</value>
@@ -690,14 +693,20 @@
   <data name="SingleDay" xml:space="preserve">
     <value>Einzeltag</value>
   </data>
+  <data name="Skill" xml:space="preserve">
+    <value>Kompetenz</value>
+  </data>
   <data name="Skills" xml:space="preserve">
-    <value>Skills</value>
+    <value>Kompetenzen</value>
   </data>
   <data name="Skillset" xml:space="preserve">
     <value>Kernkompetenzen</value>
   </data>
   <data name="Slogan" xml:space="preserve">
     <value>Slogan</value>
+  </data>
+  <data name="SocialLink" xml:space="preserve">
+    <value>Soziale Verbindung</value>
   </data>
   <data name="SocialLinks" xml:space="preserve">
     <value>Soziale Verbindungen</value>

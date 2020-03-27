@@ -10,53 +10,56 @@
                 <div class="form-group col">
                     <label class="control-label" asp-for="@Model.Interests"></label>
                     <div>
-                        <button asp-page-handler="AddInterest" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel" disabled="@(Model.Interests?.Count < Model.MaxInterests ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveInterest" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel" disabled="@(Model.Interests?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                        <button asp-page-handler="AddInterest" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold" disabled="@(Model.Interests?.Count < Model.MaxInterests ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                        <div class="pretty p-switch p-slim m-2 mt-3">
+                            <input type="checkbox" name="@nameof(Model.AddToTop)" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
+                            <div class="state">
+                                <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="@(Model.Interests.Count > 0 ? "grouping" : "")">
-                @for (int i = 0; i < Model.Interests.Count; i++)
-                {
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Interests[i].InterestName"></label>
-                            <input class="form-control" type="text" asp-for="@Model.Interests[i].InterestName" />
-                            <span asp-validation-for="@Model.Interests[i].InterestName" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="control-label" asp-for="@Model.Interests[i].Link"></label>
-                            <input class="form-control" type="text" asp-for="@Model.Interests[i].Link" />
-                            <span asp-validation-for="@Model.Interests[i].Link" class="text-danger"></span>
-                        </div>
+            @for (int i = 0; i < Model.Interests.Count; i++)
+            {
+        <div class="card @(i < Model.Interests.Count - 1 ? "mb-4" : "mb-2")">
+            <div class="card-header card-header-small">
+                <div class="float-left">
+                    @(i + 1). @SharedResource.Interest
+                </div>
+                <div class="float-right">
+                    <button asp-page-handler="UpInterest" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
+                    <button asp-page-handler="DownInterest" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-secondary cancel ml-1 @(i == Model.Interests.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
+                    <button asp-page-handler="DeleteInterest" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.Interests?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
+                </div>
+            </div>
+            <div class="card-body pb-0">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Interests[i].InterestName"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Interests[i].InterestName" />
+                        <span asp-validation-for="@Model.Interests[i].InterestName" class="text-danger"></span>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <label class="control-label" asp-for="@Model.Interests[i].Description"></label>
-                            <textarea rows="3" asp-for="@Model.Interests[i].Description" class="form-control"></textarea>
-                            <span asp-validation-for="@Model.Interests[i].Description" class="text-danger"></span>
-                            <input type="hidden" asp-for="@Model.Interests[i].Order" />
-                        </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Interests[i].Link"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Interests[i].Link" />
+                        <span asp-validation-for="@Model.Interests[i].Link" class="text-danger"></span>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col mt-1">
-                            <div class="text-right">
-                                <button asp-page-handler="UpInterest" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
-                                <button asp-page-handler="DownInterest" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel @(i == Model.Interests.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
-                            </div>
-                        </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.Interests[i].Description"></label>
+                        <textarea rows="3" asp-for="@Model.Interests[i].Description" class="form-control"></textarea>
+                        <span asp-validation-for="@Model.Interests[i].Description" class="text-danger"></span>
+                        <input type="hidden" asp-for="@Model.Interests[i].Order" />
                     </div>
-                    @if (i < Model.Interests.Count - 1)
-                    {
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <hr />
-                            </div>
-                        </div>
-                    }
-                }
+                </div>
             </div>
             </div>
+                @if (i < Model.Interests.Count - 1)
+                {<hr />}
+            }
+        </div>
             <div class="card-footer">
                 <div class="form-row">
                     <div class="form-group col mb-0 text-right">

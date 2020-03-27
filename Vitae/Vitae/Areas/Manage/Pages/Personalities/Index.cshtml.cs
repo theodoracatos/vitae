@@ -138,10 +138,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
 
         public IActionResult OnPostRemoveNationality()
         {
-            if (PersonalDetail.Nationalities.Count > 1)
-            {
-                PersonalDetail.Nationalities.RemoveAt(PersonalDetail.Nationalities.Count - 1);
-            }
+            Remove(PersonalDetail.Nationalities);
 
             FillSelectionViewModel();
 
@@ -165,10 +162,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
 
         public IActionResult OnPostRemoveChild()
         {
-            if (PersonalDetail.Children.Count > 0)
-            {
-                PersonalDetail.Children.RemoveAt(PersonalDetail.Children.Count - 1);
-            }
+            Remove(PersonalDetail.Children);
 
             FillSelectionViewModel();
 

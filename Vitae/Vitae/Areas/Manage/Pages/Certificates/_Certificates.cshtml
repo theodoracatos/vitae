@@ -10,85 +10,94 @@
                 <div class="form-group col">
                     <label class="control-label" asp-for="@Model.Certificates"></label>
                     <div>
-                        <button asp-page-handler="AddCertificate" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel" disabled="@(Model.Certificates?.Count < Model.MaxCertificates ? null : "disabled")"><i class="fas fa-plus"></i></button>
-                        <button asp-page-handler="RemoveCertificate" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel" disabled="@(Model.Certificates?.Count <= 0 ? "disabled": null)"><i class="fas fa-minus"></i></button>
+                        <button asp-page-handler="AddCertificate" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold" disabled="@(Model.Certificates?.Count < Model.MaxCertificates ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                        <div class="pretty p-switch p-slim m-2 mt-3">
+                            <input type="checkbox" name="@nameof(Model.AddToTop)" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
+                            <div class="state">
+                                <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="@(Model.Certificates.Count > 0 ? "grouping" : "")">
-                @for (int i = 0; i < Model.Certificates.Count; i++)
-                {
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Certificates[i].Name"></label>
-                            <input class="form-control" type="text" asp-for="@Model.Certificates[i].Name" />
-                            <span asp-validation-for="@Model.Certificates[i].Name" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label class="control-label" asp-for="@Model.Certificates[i].Issuer"></label>
-                            <input class="form-control" type="text" asp-for="@Model.Certificates[i].Issuer" />
-                            <span asp-validation-for="@Model.Certificates[i].Issuer" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label class="control-label" asp-for="@Model.Certificates[i].Link"></label>
-                            <input class="form-control" type="text" asp-for="@Model.Certificates[i].Link" />
-                            <span asp-validation-for="@Model.Certificates[i].Link" class="text-danger"></span>
+            @for (int i = 0; i < Model.Certificates.Count; i++)
+            {
+        <div class="card @(i < Model.Certificates.Count - 1 ? "mb-4" : "mb-2")">
+            <div class="card-header card-header-small">
+                <div class="float-left">
+                    @(i + 1). @SharedResource.Certificate
+                </div>
+                <div class="float-right">
+                    <button asp-page-handler="UpCertificate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
+                    <button asp-page-handler="DownCertificate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-secondary cancel ml-1 @(i == Model.Certificates.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
+                    <button asp-page-handler="DeleteCertificate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.Certificates?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
+                </div>
+            </div>
+            <div class="card-body pb-0">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label class="control-label" asp-for="@Model.Certificates[i].Name"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Certificates[i].Name" />
+                        <span asp-validation-for="@Model.Certificates[i].Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label" asp-for="@Model.Certificates[i].Issuer"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Certificates[i].Issuer" />
+                        <span asp-validation-for="@Model.Certificates[i].Issuer" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label class="control-label" asp-for="@Model.Certificates[i].Link"></label>
+                        <input class="form-control" type="text" asp-for="@Model.Certificates[i].Link" />
+                        <span asp-validation-for="@Model.Certificates[i].Link" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label" asp-for="@Model.Certificates[i].Description"></label>
+                        <textarea rows="3" asp-for="@Model.Certificates[i].Description" class="form-control"></textarea>
+                        <span asp-validation-for="@Model.Certificates[i].Description" class="text-danger"></span>
+                        <input type="hidden" asp-for="@Model.Certificates[i].Order" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Certificates[i].Start_Month"></label>
+                        <div class="d-flex">
+                            <select asp-for="@Model.Certificates[i].Start_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                            <select asp-for="@Model.Certificates[i].Start_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 1).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <label class="control-label" asp-for="@Model.Certificates[i].Description"></label>
-                            <textarea rows="3" asp-for="@Model.Certificates[i].Description" class="form-control"></textarea>
-                            <span asp-validation-for="@Model.Certificates[i].Description" class="text-danger"></span>
-                            <input type="hidden" asp-for="@Model.Certificates[i].Order" />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label class="control-label" asp-for="@Model.Certificates[i].Start_Month"></label>
-                            <div class="d-flex">
-                                <select asp-for="@Model.Certificates[i].Start_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
-                                <select asp-for="@Model.Certificates[i].Start_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 1).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="control-label" asp-for="@Model.Certificates[i].End_Month"></label>
-                            <div class="d-flex">
-                                <div class="form-control w-auto flex-fill">
-                                    <div class="pretty p-switch p-slim" onchange="$('#btnCheckNeverExpires'+@i).trigger('click');">
-                                        <input type="checkbox" name="@(nameof(Certificates))[@i].@nameof(CertificateVM.NeverExpires)" value="true" checked="@(Model.Certificates[i].NeverExpires ? "checked" : null)" />
-                                        <div class="state">
-                                            <label asp-for="@Model.Certificates[i].NeverExpires"></label>
-                                        </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.Certificates[i].End_Month"></label>
+                        <div class="d-flex">
+                            <div class="form-control w-auto flex-fill">
+                                <div class="pretty p-switch p-slim" onchange="$('#btnCheckNeverExpires'+@i).trigger('click');">
+                                    <input type="checkbox" name="@(nameof(Certificates))[@i].@nameof(CertificateVM.NeverExpires)" value="true" checked="@(Model.Certificates[i].NeverExpires ? "checked" : null)" />
+                                    <div class="state">
+                                        <label asp-for="@Model.Certificates[i].NeverExpires"></label>
                                     </div>
-                                    <button id="btnCheckNeverExpires@(i)" asp-page-handler="ChangeNeverExpires" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                                 </div>
-                                @if (!@Model.Certificates[i].NeverExpires)
-                                {
-                                    <select asp-for="@Model.Certificates[i].End_Month" class="form-control flex-fill ml-2 mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
-                                    <select asp-for="@Model.Certificates[i].End_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 11).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
-                                }
-                                else
-                                {
-                                    <input asp-for="@Model.Certificates[i].End_Month" type="hidden" />
-                                    <input asp-for="@Model.Certificates[i].End_Year" type="hidden" />
-                                }
+                                <button id="btnCheckNeverExpires@(i)" asp-page-handler="ChangeNeverExpires" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                             </div>
+                            @if (!@Model.Certificates[i].NeverExpires)
+                            {
+                                <select asp-for="@Model.Certificates[i].End_Month" class="form-control flex-fill ml-2 mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                                <select asp-for="@Model.Certificates[i].End_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 11).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                            }
+                            else
+                            {
+                                <input asp-for="@Model.Certificates[i].End_Month" type="hidden" />
+                                <input asp-for="@Model.Certificates[i].End_Year" type="hidden" />
+                            }
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col mt-1">
-                            <div class="text-right">
-                                <button asp-page-handler="UpCertificate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
-                                <button asp-page-handler="DownCertificate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel @(i == Model.Certificates.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    @if (i < Model.Certificates.Count - 1)
-                    {<hr />}
-                }
+                </div>
             </div>
             </div>
+            @if (i < Model.Certificates.Count - 1)
+            {<hr />}
+            }
+        </div>
             <div class="card-footer">
                 <div class="form-row">
                     <div class="form-group col mb-0 text-right">

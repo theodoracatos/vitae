@@ -87,6 +87,7 @@ namespace Vitae.Areas.Manage.Pages.Awards
             if (Awards.Count < MaxAwards)
             {
                 Awards.Add(new AwardVM() { Order = Awards.Count });
+                Awards = CheckOrdering(Awards);
             }
             FillSelectionViewModel();
 
@@ -95,10 +96,7 @@ namespace Vitae.Areas.Manage.Pages.Awards
 
         public IActionResult OnPostRemoveAward()
         {
-            if (Awards.Count > 0)
-            {
-                Awards.RemoveAt(Awards.Count - 1);
-            }
+            Remove(Awards);
 
             FillSelectionViewModel();
 
@@ -107,9 +105,7 @@ namespace Vitae.Areas.Manage.Pages.Awards
 
         public IActionResult OnPostUpAward(int order)
         {
-            var award = Awards[order];
-            Awards[order] = Awards[order - 1];
-            Awards[order - 1] = award;
+            Up(Awards, order);
 
             FillSelectionViewModel();
 
@@ -118,14 +114,22 @@ namespace Vitae.Areas.Manage.Pages.Awards
 
         public IActionResult OnPostDownAward(int order)
         {
-            var award = Awards[order];
-            Awards[order] = Awards[order + 1];
-            Awards[order + 1] = award;
+            Down(Awards, order);
 
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_AWARDS);
         }
+
+        public IActionResult OnPostDeleteAward(int order)
+        {
+            Delete(Awards, order);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_AWARDS);
+        }
+
         #endregion
 
         #region Helper

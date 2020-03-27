@@ -159,6 +159,9 @@
   <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>The value '{0}' is not valid for {y}</value>
   </data>
+  <data name="Award" xml:space="preserve">
+    <value>Award</value>
+  </data>
   <data name="AwardedFrom" xml:space="preserve">
     <value>Awarded from</value>
   </data>
@@ -690,6 +693,9 @@
   <data name="SingleDay" xml:space="preserve">
     <value>SingleDay</value>
   </data>
+  <data name="Skill" xml:space="preserve">
+    <value>Skill</value>
+  </data>
   <data name="Skills" xml:space="preserve">
     <value>Skills</value>
   </data>
@@ -698,6 +704,9 @@
   </data>
   <data name="Slogan" xml:space="preserve">
     <value>Slogan</value>
+  </data>
+  <data name="SocialLink" xml:space="preserve">
+    <value>Social link</value>
   </data>
   <data name="SocialLinks" xml:space="preserve">
     <value>Social links</value>

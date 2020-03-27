@@ -92,6 +92,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
             if (SocialLinks.Count < MaxSocialLinks)
             {
                 SocialLinks.Add(new SocialLinkVM() { Order = SocialLinks.Count });
+                SocialLinks = CheckOrdering(SocialLinks);
             }
             FillSelectionViewModel();
 
@@ -100,10 +101,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
 
         public IActionResult OnPostRemoveSocialLink()
         {
-            if (SocialLinks.Count > 0)
-            {
-                SocialLinks.RemoveAt(SocialLinks.Count - 1);
-            }
+            Remove(SocialLinks);
 
             FillSelectionViewModel();
 
@@ -112,9 +110,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
 
         public IActionResult OnPostUpSocialLink(int order)
         {
-            var socialLink = SocialLinks[order];
-            SocialLinks[order] = SocialLinks[order - 1];
-            SocialLinks[order - 1] = socialLink;
+            Up(SocialLinks, order);
 
             FillSelectionViewModel();
 
@@ -123,14 +119,22 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
 
         public IActionResult OnPostDownSocialLink(int order)
         {
-            var socialLink = SocialLinks[order];
-            SocialLinks[order] = SocialLinks[order + 1];
-            SocialLinks[order + 1] = socialLink;
+            Down(SocialLinks, order);
 
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_SOCIALLINKS);
         }
+
+        public IActionResult OnPostDeleteSocialLink(int order)
+        {
+            Delete(SocialLinks, order);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_SOCIALLINKS);
+        }
+
         #endregion
 
         #region Helper
