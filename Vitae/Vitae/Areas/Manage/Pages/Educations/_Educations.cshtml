@@ -10,11 +10,13 @@
                 <div class="form-group col">
                     <label class="control-label" asp-for="@Model.Educations"></label>
                     <div>
-                        <button asp-page-handler="AddEducation" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold" disabled="@(Model.Educations?.Count < Model.MaxEducations ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
-                        <div class="pretty p-switch p-slim m-2 mt-3">
-                            <input type="checkbox" name="@nameof(Model.AddToTop)" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
-                            <div class="state">
-                                <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
+                        <button asp-page-handler="AddEducation" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold" disabled="@(Model.Educations?.Count < Model.MaxEducations ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                        <div class="form-control d-sm-block d-md-inline mt-2">
+                            <div class="pretty p-switch p-slim">
+                                <input type="checkbox" name="@nameof(Model.AddToTop)" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
+                                <div class="state">
+                                    <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,7 +101,7 @@
                                         <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
                                             <input type="checkbox" name="@(nameof(Educations))[@i].@nameof(EducationVM.UntilNow)" value="true" checked="@(Model.Educations[i].UntilNow ? "checked" : null)" />
                                             <div class="state">
-                                                <label asp-for="@Model.Educations[i].UntilNow"></label>
+                                                <label class="d-none d-sm-block" asp-for="@Model.Educations[i].UntilNow"></label><label class="d-sm-none"></label>
                                                 <input type="hidden" asp-for="@Model.Educations[i].Order" />
                                             </div>
                                         </div>
@@ -107,7 +109,7 @@
                                     </div>
                                     @if (!@Model.Educations[i].UntilNow)
                                     {
-
+                                
                                         <select asp-for="@Model.Educations[i].End_Month" class="form-control flex-fill ml-2 mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
                                         <select asp-for="@Model.Educations[i].End_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
 
