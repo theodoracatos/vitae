@@ -144,13 +144,16 @@
   <data name="AddToTop" xml:space="preserve">
     <value>Add to top</value>
   </data>
-  <data name="AdText1a" xml:space="preserve">
+  <data name="AdTextA0" xml:space="preserve">
     <value>Give a boost to your career</value>
   </data>
-  <data name="AdText1b" xml:space="preserve">
+  <data name="AdTextA1" xml:space="preserve">
     <value>Present yourself in the best light</value>
   </data>
-  <data name="AdText2" xml:space="preserve">
+  <data name="AdTextA2" xml:space="preserve">
+    <value>Show off your skills</value>
+  </data>
+  <data name="AdTextB0" xml:space="preserve">
     <value>Want to improve your curriculum vitae? No problem - with VITAE you present yourself in the best possible light. Create a free account now!</value>
   </data>
   <data name="AllowedFiles" xml:space="preserve">

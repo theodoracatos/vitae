@@ -144,13 +144,16 @@
   <data name="AddToTop" xml:space="preserve">
     <value>Nach oben erweitern</value>
   </data>
-  <data name="AdText1a" xml:space="preserve">
+  <data name="AdTextA0" xml:space="preserve">
     <value>Geben Sie Ihrer Karriere einen Boost</value>
   </data>
-  <data name="AdText1b" xml:space="preserve">
+  <data name="AdTextA1" xml:space="preserve">
     <value>Präsentieren Sie sich im besten Licht</value>
   </data>
-  <data name="AdText2" xml:space="preserve">
+  <data name="AdTextA2" xml:space="preserve">
+    <value>Zeigen Sie Ihr Können</value>
+  </data>
+  <data name="AdTextB0" xml:space="preserve">
     <value>Möchten Sie Ihren Lebenslauf verbessern? Kein Problem - mit VITAE präsentieren Sie sich im bestmöglichen Licht. Erstellen Sie jetzt ein kostenloses Konto!</value>
   </data>
   <data name="AllowedFiles" xml:space="preserve">

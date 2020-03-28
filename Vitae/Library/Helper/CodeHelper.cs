@@ -3,7 +3,6 @@
 using Microsoft.AspNetCore.Http;
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -108,6 +107,24 @@ namespace Library.Helper
             }
 
             return age;
+        }
+
+        public static object GetPropValue(object src, string propName)
+        {
+            return src.GetType().GetProperty(propName).GetValue(src, null);
+        }
+
+        public static object GetStaticPropValue(Type type, string propName)
+        {
+            object propertyValue = null;
+
+            foreach (var property in type.GetProperties().Cast<PropertyInfo>().Where(p => p.Name == propName))
+            {
+                propertyValue = property.GetValue(null, null);
+                break;
+            }
+
+            return propertyValue;
         }
     }
 }

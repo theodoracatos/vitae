@@ -144,27 +144,36 @@ namespace Library.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Give a boost to your career.
         /// </summary>
-        public static string AdText1a {
+        public static string AdTextA0 {
             get {
-                return ResourceManager.GetString("AdText1a", resourceCulture);
+                return ResourceManager.GetString("AdTextA0", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Present yourself in the best light.
         /// </summary>
-        public static string AdText1b {
+        public static string AdTextA1 {
             get {
-                return ResourceManager.GetString("AdText1b", resourceCulture);
+                return ResourceManager.GetString("AdTextA1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show off your skills.
+        /// </summary>
+        public static string AdTextA2 {
+            get {
+                return ResourceManager.GetString("AdTextA2", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Want to improve your curriculum vitae? No problem - with VITAE you present yourself in the best possible light. Create a free account now!.
         /// </summary>
-        public static string AdText2 {
+        public static string AdTextB0 {
             get {
-                return ResourceManager.GetString("AdText2", resourceCulture);
+                return ResourceManager.GetString("AdTextB0", resourceCulture);
             }
         }
         
