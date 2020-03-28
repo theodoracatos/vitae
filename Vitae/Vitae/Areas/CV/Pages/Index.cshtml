@@ -41,7 +41,7 @@
         </a>
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-none d-lg-block">
-                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="@(string.IsNullOrEmpty(Model.About.Photo) ? (Model.PersonalDetail.Gender.Value ? "/img/NoUserMale.png" : "/img/NoUserFemale.png") : Model.About.Photo)" alt="@Model.PersonalDetail.Firstname @Model.PersonalDetail.Lastname">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="@(string.IsNullOrEmpty(Model.About?.Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : Model.About?.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,13 +75,16 @@
         <!-- #region About -->
         <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(About).ToLower()">
             <div class="w-100">
-                <h1 class="h1-title mb-2">
+                @if(Model.PersonalDetail.Gender != null)
+                { 
+                <h1 class="h1-title1 mb-0">
                     @Model.PersonalDetail.Firstname
                     <span class="text-primary">@Model.PersonalDetail.Lastname</span>
                 </h1>
+                <h2 class="subheadingBig mt-0">@Model.About.AcademicTitle</h2>
                 <div class="subheading mb-4 pb-2">
                     @{
-                        foreach (var nationality in Model.PersonalDetail.Nationalities)
+                        foreach (var nationality in Model.PersonalDetail.Nationalities.Where(n => n.CountryCode != null))
                         {
                             <span data-toggle="tooltip" class="rounded greyimage flag-icon flag-icon-@(nationality.CountryCode.ToLower())" title="@($"{SharedResource.Nationality} {Model.PersonalDetail.Nationalities.IndexOf(nationality) + 1}: {Model.Countries.Single(c => c.CountryCode == nationality.CountryCode).Name}")"></span>
                         }
@@ -89,16 +92,19 @@
                     }
                     @(CodeHelper.GetAge(new DateTime(Model.PersonalDetail.Birthday_Year, Model.PersonalDetail.Birthday_Month, Model.PersonalDetail.Birthday_Day))) @SharedResource.YearsOld &middot;
                     @SharedResource.From @Model.PersonalDetail.Citizenship @(Model.PersonalDetail.MaritalStatus != MaritalStatus.NoInformation ? "· " + Model.PersonalDetail.MaritalStatus.Description() : string.Empty)
-                    @(Model.PersonalDetail.Children.Count > 0 ? $" · {Model.PersonalDetail.Children.Count} {(Model.PersonalDetail.Children.Count > 1 ? SharedResource.Children : SharedResource.Child)} ({Model.PersonalDetail.Children.Select(c => $"{c.Firstname}, {CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day))} {SharedResource.YearsOld}").Aggregate((i, j) => i + " & " + j) })" : string.Empty)
+                    @(Model.PersonalDetail.Children.Count > 0 ? $" · {Model.PersonalDetail.Children.Count} {(Model.PersonalDetail.Children.Count > 1 ? SharedResource.Children : SharedResource.Child)} ({Model.PersonalDetail.Children.Select(c => $"{c.Firstname}, {CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day))} {(CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day)) == 1 ? SharedResource.YearOld : SharedResource.YearsOld)}").Aggregate((i, j) => i + " & " + j) })" : string.Empty)
                     <br />
                     @Model.PersonalDetail.Street @Model.PersonalDetail.StreetNo &middot; @Model.PersonalDetail.ZipCode @Model.PersonalDetail.City / @Model.PersonalDetail.State &middot; <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber</a> &middot;
                     <a href="mailto:@(Model.PersonalDetail.Email)">@Model.PersonalDetail.Email</a>
                 </div>
-                <p class="lead">
-                    <div class="speech-bubble mb-4">
-                        <div class="font-italic">@Model.About?.Slogan</div>
-                    </div>
-                </p>
+                        if (Model.About.Slogan != null)
+                        {
+                        <p class="lead">
+                            <div class="speech-bubble mb-4">
+                                <div class="font-italic">@Model.About.Slogan</div>
+                            </div>
+                        </p>
+                        }
                 <div class="social-icons">
                     @if (Model.About.Vfile?.FileName != null)
                     {
@@ -113,8 +119,7 @@
                         </a>
                     }
                 </div>
-
-
+                }
             </div>
         </section>
         <hr class="m-0">

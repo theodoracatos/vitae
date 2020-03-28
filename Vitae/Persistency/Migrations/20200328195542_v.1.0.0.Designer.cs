@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200311210935_v.1.0.0")]
+    [Migration("20200328195542_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -582,8 +582,8 @@ namespace Persistency.Migrations
                         .HasMaxLength(1000);
 
                     b.Property<string>("Page")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("nvarchar(2000)")
+                        .HasMaxLength(2000);
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");

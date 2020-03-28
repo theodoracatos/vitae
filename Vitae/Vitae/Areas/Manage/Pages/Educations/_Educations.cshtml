@@ -12,7 +12,7 @@
                     <div>
                         <button asp-page-handler="AddEducation" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold mr-2" disabled="@(Model.Educations?.Count < Model.MaxEducations ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
                         <div class="form-control d-sm-block d-md-inline mt-2">
-                            <div class="pretty p-switch p-slim">
+                            <div class="pretty p-switch p-slim mr-0 mr-0">
                                 <input type="checkbox" name="@nameof(Model.AddToTop)" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
                                 <div class="state">
                                     <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
@@ -98,7 +98,7 @@
                                 <label class="control-label" asp-for="@Model.Educations[i].End_Month"></label>
                                 <div class="d-flex">
                                     <div class="form-control w-auto flex-fill">
-                                        <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
+                                        <div class="pretty p-switch p-slim mr-0" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
                                             <input type="checkbox" name="@(nameof(Educations))[@i].@nameof(EducationVM.UntilNow)" value="true" checked="@(Model.Educations[i].UntilNow ? "checked" : null)" />
                                             <div class="state">
                                                 <label class="d-none d-sm-block" asp-for="@Model.Educations[i].UntilNow"></label><label class="d-sm-none"></label>

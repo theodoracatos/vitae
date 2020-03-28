@@ -580,8 +580,8 @@ namespace Persistency.Migrations
                         .HasMaxLength(1000);
 
                     b.Property<string>("Page")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("nvarchar(2000)")
+                        .HasMaxLength(2000);
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");

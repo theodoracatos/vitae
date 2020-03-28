@@ -72,6 +72,10 @@
     {
       "library": "flag-icon-css@3.4.6",
       "destination": "wwwroot/lib/flag-icon-css/"
+    },
+    {
+      "library": "jquery.dirtyforms@2.0.0",
+      "destination": "wwwroot/lib/jquery.dirtyforms/"
     }
   ]
 }

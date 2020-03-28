@@ -52,7 +52,7 @@ namespace Persistency.Migrations
                     CurriculumID = table.Column<Guid>(nullable: false),
                     LogLevel = table.Column<int>(nullable: false),
                     LogArea = table.Column<int>(maxLength: 100, nullable: false),
-                    Page = table.Column<string>(maxLength: 255, nullable: true),
+                    Page = table.Column<string>(maxLength: 2000, nullable: true),
                     IpAddress = table.Column<string>(maxLength: 50, nullable: true),
                     UserAgent = table.Column<string>(maxLength: 1000, nullable: true),
                     UserLanguage = table.Column<string>(maxLength: 2, nullable: true),

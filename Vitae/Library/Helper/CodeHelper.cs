@@ -101,12 +101,12 @@ namespace Library.Helper
             var thisYearsBirthday = new DateTime(DateTime.Now.Year, birthday.Month, birthday.Day);
             var age = DateTime.Now.Year - birthday.Year;
 
-            if(thisYearsBirthday >= DateTime.Now.Date)
+            if(thisYearsBirthday.Date > DateTime.Now.Date)
             {
                 --age;
             }
 
-            return age;
+            return Math.Max(0, age);
         }
 
         public static object GetPropValue(object src, string propName)

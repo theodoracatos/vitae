@@ -18,7 +18,7 @@ namespace Model.Poco
         [MaxLength(100)]
         public LogArea LogArea { get; set; }
 
-        [MaxLength(255)]
+        [MaxLength(2000)]
         public string Page { get; set; }
 
         [MaxLength(50)]

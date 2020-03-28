@@ -12,7 +12,7 @@
                     <div>
                         <button asp-page-handler="AddCourse" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold mr-2" disabled="@(Model.Courses?.Count < Model.MaxCourses ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
                         <div class="form-control d-sm-block d-md-inline mt-2">
-                            <div class="pretty p-switch p-slim">
+                            <div class="pretty p-switch p-slim mr-0">
                                 <input type="checkbox" name="@nameof(Model.AddToTop)" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
                                 <div class="state">
                                     <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
@@ -89,7 +89,7 @@
                                     <label class="control-label" asp-for="@Model.Courses[i].End_Day"></label>
                                     <div class="d-flex">
                                         <div class="form-control w-auto flex-fill mr-2">
-                                            <div class="pretty p-switch p-slim" onchange="$('#btnCheckSingleDay'+@i).trigger('click');">
+                                            <div class="pretty p-switch p-slim mr-0" onchange="$('#btnCheckSingleDay'+@i).trigger('click');">
                                                 <input type="checkbox" name="@(nameof(Courses))[@i].@nameof(CourseVM.SingleDay)" value="true" checked="@(Model.Courses[i].SingleDay ? "checked" : null)" />
                                                 <div class="state">
                                                     <label asp-for="@Model.Courses[i].SingleDay"></label>

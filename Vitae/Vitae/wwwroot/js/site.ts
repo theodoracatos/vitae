@@ -7,12 +7,14 @@ $(document).ready(function () {
     addJQueryValidators();
     loadingProcedure();
     setupSbAdmin();
+    $('form').dirtyForms();
 });
 
 function ajaxCompleted() {
     loadingProcedure();
     startRating();
     resetFormValidator('form');
+    $('form').dirtyForms();
 }
 
 function drawRadar(chartId, title, labels, dataset, color) {

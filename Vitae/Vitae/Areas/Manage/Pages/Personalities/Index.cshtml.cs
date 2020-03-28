@@ -96,16 +96,17 @@ namespace Vitae.Areas.Manage.Pages.Personalities
                 }
 
                 // Children
-                vitaeContext.RemoveRange(curriculum.Person.PersonalDetail.Children);
-
-                curriculum.Person.PersonalDetail.Children =
-                    PersonalDetail.Children?.Select(c => new Child()
-                    {
-                        Firstname = c.Firstname,
-                        Birthday = new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day),
-                        Order = c.Order
-                    }).ToList();
-
+                if (PersonalDetail.Children != null)
+                {
+                    vitaeContext.RemoveRange(curriculum.Person.PersonalDetail.Children);
+                    curriculum.Person.PersonalDetail.Children =
+                        PersonalDetail.Children?.Select(c => new Child()
+                        {
+                            Firstname = c.Firstname,
+                            Birthday = new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day),
+                            Order = c.Order
+                        }).ToList();
+                }
                 curriculum.LastUpdated = DateTime.Now;
                 await vitaeContext.SaveChangesAsync();
             }
@@ -172,10 +173,13 @@ namespace Vitae.Areas.Manage.Pages.Personalities
         public IActionResult OnPostChangeBirthday()
         {
             PersonalDetail.Birthday_Day = CorrectDate(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
-           
-            foreach(var child in PersonalDetail.Children)
+
+            if (PersonalDetail.Children != null)
             {
-                child.Birthday_Day = CorrectDate(child.Birthday_Year, child.Birthday_Month, child.Birthday_Day);
+                foreach (var child in PersonalDetail.Children)
+                {
+                    child.Birthday_Day = CorrectDate(child.Birthday_Year, child.Birthday_Month, child.Birthday_Day);
+                }
             }
 
             FillSelectionViewModel();

@@ -753,6 +753,9 @@
   <data name="UnknownValueIsInvalidAccessor" xml:space="preserve">
     <value>The supplied value is invalid for {0}</value>
   </data>
+  <data name="UnsafedChanges" xml:space="preserve">
+    <value>You have unsaved changes. Do you want to continue?</value>
+  </data>
   <data name="UntilNow" xml:space="preserve">
     <value>Until now</value>
   </data>
@@ -800,6 +803,9 @@
   </data>
   <data name="Widowed" xml:space="preserve">
     <value>Widowed</value>
+  </data>
+  <data name="YearOld" xml:space="preserve">
+    <value>Year old</value>
   </data>
   <data name="YearsOld" xml:space="preserve">
     <value>years old</value>

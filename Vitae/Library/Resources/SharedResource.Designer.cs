@@ -1969,6 +1969,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have unsaved changes. Do you want to continue?.
+        /// </summary>
+        public static string UnsafedChanges {
+            get {
+                return ResourceManager.GetString("UnsafedChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Until now.
         /// </summary>
         public static string UntilNow {
@@ -2109,6 +2118,15 @@ namespace Library.Resources {
         public static string Widowed {
             get {
                 return ResourceManager.GetString("Widowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year old.
+        /// </summary>
+        public static string YearOld {
+            get {
+                return ResourceManager.GetString("YearOld", resourceCulture);
             }
         }
         
