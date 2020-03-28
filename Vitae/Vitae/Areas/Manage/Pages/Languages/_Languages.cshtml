@@ -10,7 +10,7 @@
                 <div class="form-group col">
                     <label class="control-label" asp-for="@Model.LanguageSkills"></label>
                     <div>
-                        <button asp-page-handler="AddLanguageSkill" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold" disabled="@(Model.LanguageSkills?.Count < Model.MaxLanguageSkills ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                        <button asp-page-handler="AddLanguageSkill" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold mr-2" disabled="@(Model.LanguageSkills?.Count < Model.MaxLanguageSkills ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
                         <div class="form-control d-sm-block d-md-inline mt-2">
                             <div class="pretty p-switch p-slim">
                                 <input type="checkbox" name="@nameof(Model.AddToTop)" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
