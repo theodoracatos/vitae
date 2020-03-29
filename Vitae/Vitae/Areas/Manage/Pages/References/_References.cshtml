@@ -29,6 +29,7 @@
                 <div class="float-left">
                     <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark">
                         @(i + 1). @SharedResource.Reference
+                        <input type="hidden" asp-for="@Model.References[i].Collapsed" />
                     </a>
                 </div>
                 <div class="float-right">
@@ -38,7 +39,7 @@
                     <button asp-page-handler="DeleteReference" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.References?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
                 </div>
             </div>
-            <div class="card-body collapse show pb-0" id="collapse-@i">
+            <div class="card-body collapse pb-0 @(Model.References[i].Collapsed ? null : "show")" id="collapse-@i">
                 <div class="form-row">
                     <div class="col">
                         <label class="control-label" asp-for="@Model.References[i].Gender"></label>
@@ -118,8 +119,8 @@
                         <span asp-validation-for="@Model.References[i].PhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
-              </div>
             </div>
+        </div>
             @if (i < Model.References.Count - 1)
             {<hr />}
             }

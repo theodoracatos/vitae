@@ -29,6 +29,7 @@
                 <div class="float-left">
                     <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark">
                         @(i + 1). @SharedResource.Certificate
+                        <input type="hidden" asp-for="@Model.Certificates[i].Collapsed" />
                     </a>
                 </div>
                 <div class="float-right">
@@ -38,7 +39,7 @@
                     <button asp-page-handler="DeleteCertificate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.Certificates?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
                 </div>
             </div>
-            <div class="card-body collapse show pb-0" id="collapse-@i">
+            <div class="card-body collapse pb-0 @(Model.Certificates[i].Collapsed ? null : "show")" id="collapse-@i">
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label class="control-label" asp-for="@Model.Certificates[i].Name"></label>

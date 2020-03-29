@@ -216,6 +216,13 @@ function loadingProcedure() {
     initializeTooltips();
     initializeTagsinput();
     loadDisabledLinkMessage();
+    assignCollapser();
+}
+
+function assignCollapser() {
+    $('a[data-toggle="collapse"]').click(function () {
+        $(this).find('input[type="hidden"]').val($(this).find('input[type="hidden"]').val().toLowerCase() === "true" ? "false" : "true");
+    });
 }
 
 function loadDisabledLinkMessage() {

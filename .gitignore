@@ -6,20 +6,24 @@
 /Vitae/.vs
 /Vitae/Library/bin
 /Vitae/Library/obj
+
 /Vitae/Persistency/bin
 /Vitae/Persistency/obj
+
 /Vitae/Vitae/bin
 /Vitae/Vitae/obj
-/Vitae/Library/bin
-/Vitae/Library/obj
+
 /Vitae/Repository/obj
 /Vitae/Repository/bin
+
 /Vitae/Model/obj
 /Vitae/Model/bin
+
 /Vitae/UnitTests/obj
 /Vitae/UnitTests/bin
 
 /Vitae/Vitae/Vitae.csproj.user
+
 /Vitae/Vitae/wwwroot/js/site.min.js
 /Vitae/Vitae/wwwroot/js/site.js.map
 /Vitae/Vitae/wwwroot/js/site.js
