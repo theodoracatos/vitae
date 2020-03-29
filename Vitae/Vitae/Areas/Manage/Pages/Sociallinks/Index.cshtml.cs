@@ -1,4 +1,5 @@
-﻿using Library.Repository;
+﻿using Library.Extensions;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -130,6 +131,20 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
         {
             Delete(SocialLinks, order);
 
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_SOCIALLINKS);
+        }
+
+        public IActionResult OnPostCopySocialLink(int order)
+        {
+            if (SocialLinks.Count < MaxSocialLinks)
+            {
+                var copy = SocialLinks[order].DeepClone();
+                copy.Order = SocialLinks.Count;
+                SocialLinks.Add(copy);
+                SocialLinks = CheckOrdering(SocialLinks);
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_SOCIALLINKS);

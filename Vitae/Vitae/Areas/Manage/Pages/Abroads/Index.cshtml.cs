@@ -1,4 +1,5 @@
-﻿using Library.Repository;
+﻿using Library.Extensions;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -143,6 +144,20 @@ namespace Vitae.Areas.Manage.Pages.Abroads
         {
             Delete(Abroads, order);
 
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_ABROADS);
+        }
+
+        public IActionResult OnPostCopyAbroad(int order)
+        {
+            if (Abroads.Count < MaxAbroads)
+            {
+                var copy = Abroads[order].DeepClone();
+                copy.Order = Abroads.Count;
+                Abroads.Add(copy);
+                Abroads = CheckOrdering(Abroads);
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_ABROADS);

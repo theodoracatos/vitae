@@ -1,4 +1,5 @@
-﻿using Library.Repository;
+﻿using Library.Extensions;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -130,6 +131,21 @@ namespace Vitae.Areas.Manage.Pages.Languages
         {
             Delete(LanguageSkills, order);
 
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_LANGUAGES);
+        }
+
+        public IActionResult OnPostCopyLanguageSkill(int order)
+        {
+            if (LanguageSkills.Count < MaxLanguageSkills)
+            {
+                var copy = LanguageSkills[order].DeepClone();
+                copy.Order = LanguageSkills.Count;
+                LanguageSkills.Add(copy);
+                copy.LanguageCode = string.Empty;
+                LanguageSkills = CheckOrdering(LanguageSkills);
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_LANGUAGES);

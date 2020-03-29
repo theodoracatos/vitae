@@ -1,4 +1,5 @@
-﻿using Library.Repository;
+﻿using Library.Extensions;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -139,6 +140,20 @@ namespace Vitae.Areas.Manage.Pages.References
         {
             Delete(References, order);
 
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_REFERENCES);
+        }
+
+        public IActionResult OnPostCopyReference(int order)
+        {
+            if (References.Count < MaxReferences)
+            {
+                var copy = References[order].DeepClone();
+                copy.Order = References.Count;
+                References.Add(copy);
+                References = CheckOrdering(References);
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_REFERENCES);

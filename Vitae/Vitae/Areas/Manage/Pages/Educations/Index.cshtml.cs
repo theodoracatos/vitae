@@ -1,4 +1,5 @@
-﻿using Library.Repository;
+﻿using Library.Extensions;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -148,6 +149,20 @@ namespace Vitae.Areas.Manage.Pages.Educations
         {
             Delete(Educations, order);
 
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_EDUCATIONS);
+        }
+
+        public IActionResult OnPostCopyEducation(int order)
+        {
+            if (Educations.Count < MaxEducations)
+            {
+                var copy = Educations[order].DeepClone();
+                copy.Order = Educations.Count;
+                Educations.Add(copy);
+                Educations = CheckOrdering(Educations);
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EDUCATIONS);

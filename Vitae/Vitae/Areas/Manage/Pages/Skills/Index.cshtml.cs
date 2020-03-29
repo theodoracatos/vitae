@@ -1,4 +1,5 @@
-﻿using Library.Repository;
+﻿using Library.Extensions;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -121,6 +122,20 @@ namespace Vitae.Areas.Manage.Pages.Skills
         {
             Delete(Skills, order);
 
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_SKILLS);
+        }
+
+        public IActionResult OnPostCopySkill(int order)
+        {
+            if (Skills.Count < MaxSkills)
+            {
+                var copy = Skills[order].DeepClone();
+                copy.Order = Skills.Count;
+                Skills.Add(copy);
+                Skills = CheckOrdering(Skills);
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_SKILLS);

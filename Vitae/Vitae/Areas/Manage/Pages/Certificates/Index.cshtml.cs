@@ -1,4 +1,5 @@
-﻿using Library.Repository;
+﻿using Library.Extensions;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -141,6 +142,20 @@ namespace Vitae.Areas.Manage.Pages.Certificates
         {
             Delete(Certificates, order);
 
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_CERTIFICATES);
+        }
+
+        public IActionResult OnPostCopyCertificate(int order)
+        {
+            if (Certificates.Count < MaxCertificates)
+            {
+                var copy = Certificates[order].DeepClone();
+                copy.Order = Certificates.Count;
+                Certificates.Add(copy);
+                Certificates = CheckOrdering(Certificates);
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_CERTIFICATES);

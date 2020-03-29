@@ -32,6 +32,7 @@
                 <div class="float-right">
                     <button asp-page-handler="UpSocialLink" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
                     <button asp-page-handler="DownSocialLink" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1 @(i == Model.SocialLinks.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
+                    <button asp-page-handler="CopySocialLink" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1" disabled="@(Model.SocialLinks.Count < Model.MaxSocialLinks ? null: "disabled")"><i class="fas fa-copy"></i></button>
                     <button asp-page-handler="DeleteSocialLink" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.SocialLinks?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
                 </div>
             </div>

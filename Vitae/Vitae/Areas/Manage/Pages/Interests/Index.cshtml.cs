@@ -1,4 +1,5 @@
-﻿using Library.Repository;
+﻿using Library.Extensions;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -121,6 +122,20 @@ namespace Vitae.Areas.Manage.Pages.Interests
         {
             Delete(Interests, order);
 
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_INTERESTS);
+        }
+
+        public IActionResult OnPostCopyInterest(int order)
+        {
+            if (Interests.Count < MaxInterests)
+            {
+                var copy = Interests[order].DeepClone();
+                copy.Order = Interests.Count;
+                Interests.Add(copy);
+                Interests = CheckOrdering(Interests);
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_INTERESTS);

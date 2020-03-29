@@ -157,6 +157,7 @@ namespace Vitae.Areas.Manage.Pages.Experiences
             if (Experiences.Count < MaxExperiences)
             {
                 var copy = Experiences[order].DeepClone();
+                copy.Order = Experiences.Count;
                 Experiences.Add(copy);
                 Experiences = CheckOrdering(Experiences);
             }

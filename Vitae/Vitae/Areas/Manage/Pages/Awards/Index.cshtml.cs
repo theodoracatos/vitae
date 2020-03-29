@@ -1,4 +1,5 @@
-﻿using Library.Repository;
+﻿using Library.Extensions;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -125,6 +126,20 @@ namespace Vitae.Areas.Manage.Pages.Awards
         {
             Delete(Awards, order);
 
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_AWARDS);
+        }
+
+        public IActionResult OnPostCopyAward(int order)
+        {
+            if (Awards.Count < MaxAwards)
+            {
+                var copy = Awards[order].DeepClone();
+                copy.Order = Awards.Count;
+                Awards.Add(copy);
+                Awards = CheckOrdering(Awards);
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_AWARDS);
