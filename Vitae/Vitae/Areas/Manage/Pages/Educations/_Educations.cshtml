@@ -27,7 +27,9 @@
                 <div class="card @(i < Model.Educations.Count - 1 ? "mb-4" : "mb-2")">
                     <div class="card-header card-header-small">
                         <div class="float-left">
-                            @(i + 1). @SharedResource.Education
+                            <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark">
+                                @(i + 1). @SharedResource.Education
+                            </a>
                         </div>
                         <div class="float-right">
                             <button asp-page-handler="UpEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
@@ -36,7 +38,7 @@
                             <button asp-page-handler="DeleteEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.Educations?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
-                    <div class="card-body pb-0">
+                    <div class="card-body collapse show pb-0" id="collapse-@i">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Educations[i].SchoolName"></label>
@@ -110,7 +112,7 @@
                                     </div>
                                     @if (!@Model.Educations[i].UntilNow)
                                     {
-                                
+
                                         <select asp-for="@Model.Educations[i].End_Month" class="form-control flex-fill ml-2 mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
                                         <select asp-for="@Model.Educations[i].End_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
 
@@ -129,12 +131,12 @@
                 {<hr />}
             }
         </div>
-            <div class="card-footer">
-                <div class="form-row">
-                    <div class="form-group col mb-0 text-right">
-                        <button type="submit" class="btn btn-success float-right" disabled="disabled">@SharedResource.Save</button>
-                    </div>
+        <div class="card-footer">
+            <div class="form-row">
+                <div class="form-group col mb-0 text-right">
+                    <button type="submit" class="btn btn-success float-right" disabled="disabled">@SharedResource.Save</button>
                 </div>
             </div>
         </div>
+    </div>
 </div>

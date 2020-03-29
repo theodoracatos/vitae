@@ -106,6 +106,10 @@ body::-webkit-scrollbar-thumb, .sb-sidenav-menu::-webkit-scrollbar-thumb {
     filter: grayscale(100%);
 }
 
-.h1-title {
+.headingTitle {
     font-size: calc(35px + 20 * ((100vw - 320px) / 680));
+}
+
+span.flag-icon {
+    line-height: 0.8em;
 }
