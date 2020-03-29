@@ -1,0 +1,21 @@
+﻿@model KeyValuePair<DateTime, DateTime?>
+
+<span class="text-primary">
+    @(Model.Key.ToShortDateCultureString()) - @(!Model.Value.HasValue ? SharedResource.UntilNow : Model.Value.Value.ToShortDateCultureString())
+</span>
+@{
+    var dateDifference = new DateDifference(Model.Key, new DateTime(Model.Value.HasValue ? Model.Value.Value.Year : DateTime.Now.Year, Model.Value.HasValue ? Model.Value.Value.Month : DateTime.Now.Month, 1));
+    var text = new StringBuilder();
+    if (dateDifference.Years > 0)
+    {
+        text.Append($"{dateDifference.Years} {(dateDifference.Years == 1 ? SharedResource.Year : SharedResource.Years)}");
+    }
+    if (dateDifference.Months > 0)
+    {
+        if (text.Length > 0) { text.Append(", "); }
+        text.Append($"{dateDifference.Months} {(dateDifference.Months == 1 ? SharedResource.Month : SharedResource.Months)}");
+    }
+    <span class="text-primary d-block">
+        @text.ToString()
+    </span>
+}

@@ -1,9 +1,11 @@
 ﻿using Library.Resources;
 
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels
 {
+    [Serializable]
     public class AboutVM : BaseVM
     {
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.AcademicTitle), Prompt = nameof(SharedResource.AcademicTitle))]

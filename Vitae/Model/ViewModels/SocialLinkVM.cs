@@ -2,10 +2,12 @@
 
 using Model.Enumerations;
 
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels
 {
+    [Serializable]
     public class SocialLinkVM : BaseVM
     {
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.SocialPlatform), Prompt = nameof(SharedResource.SocialPlatform))]

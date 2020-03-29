@@ -7,14 +7,50 @@ $(document).ready(function () {
     addJQueryValidators();
     loadingProcedure();
     setupSbAdmin();
-    $('form').dirtyForms();
+    setupDirtyForms(false);
 });
 
 function ajaxCompleted() {
     loadingProcedure();
     startRating();
     resetFormValidator('form');
-    $('form').dirtyForms();
+    setupDirtyForms(true);
+}
+
+function setupDirtyForms(asyncCall) {
+    if (asyncCall) {
+        setDirty();
+    }
+    else {
+        $('form').dirtyForms({
+            helpers:
+                [
+                    {
+                        isDirty: function ($node, index) {
+                            if ($node.is('form')) {
+                                return $node.hasClass('mydirty');
+                            }
+                        }
+                    }
+                ]
+        });
+    }
+    $('form').on('dirty.dirtyforms clean.dirtyforms', function (ev) {  
+        var $submitResetButtons = $('form').find('[type="submit"]');
+
+        if (ev.type === 'dirty') {
+            $submitResetButtons.removeAttr('disabled');
+        }
+        else {
+            $submitResetButtons.addAttr('disabled');
+        }
+    });
+}
+
+function setDirty() {
+    var $submitResetButtons = $('form').find('[type="submit"]');
+    $('form').addClass('mydirty');
+    $submitResetButtons.removeAttr('disabled');
 }
 
 function drawRadar(chartId, title, labels, dataset, color) {
@@ -336,6 +372,8 @@ function loadImageComponent() {
         $("#imgPreview").attr('src', '');
         $(".imgPhoto").val('');
         $("#imgFormFileName").val('');
+
+        setDirty();
     });
 }
 
@@ -362,9 +400,13 @@ function loadFilerUpload() {
             extensions: ['application/pdf'],
             onSelect: function () {
                 $('.uploadedFile').hide();
+
+                setDirty();
             },
             onRemove: function () {
                 $('.uploadedFile').show();
+
+                setDirty();
             },
             captions: {
                 button: Resources.SharedResource.Browse + "...",

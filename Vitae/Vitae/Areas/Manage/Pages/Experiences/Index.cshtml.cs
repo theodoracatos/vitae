@@ -1,4 +1,5 @@
-﻿using Library.Repository;
+﻿using Library.Extensions;
+using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -146,6 +147,19 @@ namespace Vitae.Areas.Manage.Pages.Experiences
         {
             Delete(Experiences, order);
 
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_EXPERIENCES);
+        }
+
+        public IActionResult OnPostCopyExperience(int order)
+        {
+            if (Experiences.Count < MaxExperiences)
+            {
+                var copy = Experiences[order].DeepClone();
+                Experiences.Add(copy);
+                Experiences = CheckOrdering(Experiences);
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EXPERIENCES);

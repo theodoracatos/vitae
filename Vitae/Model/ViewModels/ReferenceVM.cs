@@ -1,9 +1,11 @@
 ﻿using Library.Resources;
 
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels
 {
+    [Serializable]
     public class ReferenceVM : BaseVM
     {
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]

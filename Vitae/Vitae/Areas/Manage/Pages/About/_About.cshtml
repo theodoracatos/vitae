@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="d-inline-block align-top">
-                                <button id="btnRemoveImage" type="button" class="btn btn-outline-danger d-block flex-fill ml-2">
+                                <button id="btnRemoveImage" type="button" class="btn btn-danger d-block flex-fill ml-2">
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </div>
@@ -70,7 +70,7 @@
                         <input type="hidden" asp-for="@Model.About.Vfile.Identifier" />
                         <input type="text" asp-for="@Model.About.Photo" class="imgPhoto invisible" />
                         <input id="imgInput" type="file" class="invisible" accept="image/jpeg, image/png" style="height:0; width: 0" />
-                        <button type="submit" class="btn btn-success float-right">@SharedResource.Save</button>
+                        <button type="submit" class="btn btn-success float-right" disabled="disabled">@SharedResource.Save</button>
                     </div>
                 </div>
             </div>

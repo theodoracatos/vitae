@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
+    <value>Erweiterte Angaben</value>
+  </data>
+  <data name="AboutInfo" xml:space="preserve">
     <value>Über</value>
   </data>
   <data name="Abroad" xml:space="preserve">
@@ -486,6 +489,12 @@
   <data name="MobileNumber" xml:space="preserve">
     <value>Mobiltelefon</value>
   </data>
+  <data name="Month" xml:space="preserve">
+    <value>Monat</value>
+  </data>
+  <data name="Months" xml:space="preserve">
+    <value>Monate</value>
+  </data>
   <data name="Mr" xml:space="preserve">
     <value>Herr</value>
   </data>
@@ -804,8 +813,14 @@
   <data name="Widowed" xml:space="preserve">
     <value>Verwitwet</value>
   </data>
+  <data name="Year" xml:space="preserve">
+    <value>Jahr</value>
+  </data>
   <data name="YearOld" xml:space="preserve">
     <value>Jahr alt</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>Jahre</value>
   </data>
   <data name="YearsOld" xml:space="preserve">
     <value>Jahre alt</value>

@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels
 {
+    [Serializable]
     public class VfileVM : BaseVM
     {
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CV), Prompt = nameof(SharedResource.CV))]

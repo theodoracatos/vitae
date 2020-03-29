@@ -30,8 +30,8 @@
                     @(i + 1). @SharedResource.Language
                 </div>
                 <div class="float-right">
-                    <button asp-page-handler="UpLanguageSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
-                    <button asp-page-handler="DownLanguageSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-secondary cancel ml-1 @(i == Model.LanguageSkills.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
+                    <button asp-page-handler="UpLanguageSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
+                    <button asp-page-handler="DownLanguageSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1 @(i == Model.LanguageSkills.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
                     <button asp-page-handler="DeleteLanguageSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.LanguageSkills?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                     <div class="form-row">
                         <div class="form-group col mb-0 text-right">
                             <button id="btnSelectChange" asp-page-handler="SelectChange" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
-                            <button type="submit" class="btn btn-success float-right">@SharedResource.Save</button>
+                            <button type="submit" class="btn btn-success float-right" disabled="disabled">@SharedResource.Save</button>
                         </div>
                     </div>
                 </div>

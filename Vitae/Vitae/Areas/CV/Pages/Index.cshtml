@@ -18,7 +18,7 @@
 @{
     var menuEntries = new List<Tuple<bool, string, string>>()
      {
-      new Tuple<bool, string, string>(Model.About != null, nameof(About).ToLower(), SharedResource.About),
+      new Tuple<bool, string, string>(Model.About != null, nameof(About).ToLower(), SharedResource.AboutInfo),
       new Tuple<bool, string, string>(Model.Experiences.Count > 0, nameof(Experience).ToLower(), SharedResource.Experiences),
       new Tuple<bool, string, string>(Model.Educations.Count > 0, nameof(Education).ToLower(), SharedResource.Educations),
       new Tuple<bool, string, string>(Model.Courses.Count > 0, nameof(Course).ToLower(), SharedResource.Courses),
@@ -86,7 +86,7 @@
                     @{
                         foreach (var nationality in Model.PersonalDetail.Nationalities.Where(n => n.CountryCode != null))
                         {
-                            <span data-toggle="tooltip" class="rounded greyimage flag-icon flag-icon-@(nationality.CountryCode.ToLower())" title="@($"{SharedResource.Nationality} {Model.PersonalDetail.Nationalities.IndexOf(nationality) + 1}: {Model.Countries.Single(c => c.CountryCode == nationality.CountryCode).Name}")"></span>
+                            <span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(nationality.CountryCode.ToLower())" title="@($"{SharedResource.Nationality} {Model.PersonalDetail.Nationalities.IndexOf(nationality) + 1}: {Model.Countries.Single(c => c.CountryCode == nationality.CountryCode).Name}")"></span>
                         }
                         @Html.Raw("&middot;")
                     }
@@ -136,13 +136,15 @@
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
                             <div class="resume-content">
                                 <h3 class="mb-0">@experience.JobTitle</h3>
-                                <div class="subheading mb-3"><a href="@experience.Link" target="_blank">@experience.CompanyName</a>, @experience.City (@experience.CountryCode)</div>
+                                <div class="subheading mb-3">
+                                    <a href="@experience.Link" target="_blank">@experience.CompanyName</a> &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(experience.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == experience.CountryCode).Name)"></span> @experience.City
+                                </div>
                                 <p>@experience.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
-                                <span class="text-primary">@(new DateTime(experience.Start_Year, experience.Start_Month, 1).ToShortDateCultureString()) - @(experience.UntilNow ? SharedResource.UntilNow : new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1).ToShortDateCultureString())</span>
+                                <partial name="_DateDifference" model="new KeyValuePair<DateTime, DateTime?>(new DateTime(experience.Start_Year, experience.Start_Month, 1), experience.UntilNow ? (DateTime?)null : new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1))" />
                             </div>
-                        </div>
+                           </div>
                         <hr class="mb-5">
                     }
                 </div>
@@ -162,12 +164,14 @@
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
                             <div class="resume-content">
                                 <h3 class="mb-0">@education.Title, @education.Subject</h3>
-                                <div class="subheading mb-3"><a href="@education.Link" target="_blank">@education.SchoolName</a>, @education.City (@education.CountryCode)</div>
+                                <div class="subheading mb-3"><a href="@education.Link" target="_blank">@education.SchoolName</a> &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(education.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == education.CountryCode).Name)"></span> @education.City</div>
                                 <p>@SharedResource.Grade: @education.Grade</p>
                                 <p>@education.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
-                                <span class="text-primary">@(new DateTime(education.Start_Year, education.Start_Month, 1).ToShortDateCultureString()) - @(education.UntilNow ? SharedResource.UntilNow : new DateTime(education.End_Year.Value, education.End_Month.Value, 1).ToShortDateCultureString())</span>
+                                <div class="resume-date text-md-right">
+                                    <partial name="_DateDifference" model="new KeyValuePair<DateTime, DateTime?>(new DateTime(education.Start_Year, education.Start_Month, 1), education.UntilNow ? (DateTime?)null : new DateTime(education.End_Year.Value, education.End_Month.Value, 1))" />
+                                </div>
                             </div>
                         </div>
                         <hr class="mb-5">
