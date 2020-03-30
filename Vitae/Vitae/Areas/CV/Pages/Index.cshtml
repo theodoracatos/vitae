@@ -75,50 +75,50 @@
         <!-- #region About -->
         <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(About).ToLower()">
             <div class="w-100">
-                @if(Model.PersonalDetail.Gender != null)
-                { 
-                <h1 class="headingTitle mb-0">
-                    @Model.PersonalDetail.Firstname
-                    <span class="text-primary">@Model.PersonalDetail.Lastname</span>
-                </h1>
-                <h2 class="subheadingBig mt-0">@Model.About.AcademicTitle</h2>
-                <div class="subheading mb-4 pb-2">
-                    @{
-                        foreach (var nationality in Model.PersonalDetail.Nationalities.Where(n => n.CountryCode != null))
-                        {
-                            <span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(nationality.CountryCode.ToLower())" title="@($"{SharedResource.Nationality} {Model.PersonalDetail.Nationalities.IndexOf(nationality) + 1}: {Model.Countries.Single(c => c.CountryCode == nationality.CountryCode).Name}")"></span>
+                @if (Model.PersonalDetail.Gender != null)
+                {
+                    <h1 class="headingTitle mb-0">
+                        @Model.PersonalDetail.Firstname
+                        <span class="text-primary">@Model.PersonalDetail.Lastname</span>
+                    </h1>
+                    <h2 class="subheadingBig mt-0">@Model.About.AcademicTitle</h2>
+                    <div class="subheading mb-4 pb-2">
+                        @{
+                            foreach (var nationality in Model.PersonalDetail.Nationalities.Where(n => n.CountryCode != null))
+                            {
+                                <span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(nationality.CountryCode.ToLower())" title="@($"{SharedResource.Nationality} {Model.PersonalDetail.Nationalities.IndexOf(nationality) + 1}: {Model.Countries.Single(c => c.CountryCode == nationality.CountryCode).Name}")"></span>
+                            }
+                            @Html.Raw("&middot;")
                         }
-                        @Html.Raw("&middot;")
-                    }
-                    @(CodeHelper.GetAge(new DateTime(Model.PersonalDetail.Birthday_Year, Model.PersonalDetail.Birthday_Month, Model.PersonalDetail.Birthday_Day))) @SharedResource.YearsOld &middot;
-                    @SharedResource.From @Model.PersonalDetail.Citizenship @(Model.PersonalDetail.MaritalStatus != MaritalStatus.NoInformation ? "· " + Model.PersonalDetail.MaritalStatus.Description() : string.Empty)
-                    @(Model.PersonalDetail.Children.Count > 0 ? $" · {Model.PersonalDetail.Children.Count} {(Model.PersonalDetail.Children.Count > 1 ? SharedResource.Children : SharedResource.Child)} ({Model.PersonalDetail.Children.Select(c => $"{c.Firstname}, {CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day))} {(CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day)) == 1 ? SharedResource.YearOld : SharedResource.YearsOld)}").Aggregate((i, j) => i + " & " + j) })" : string.Empty)
-                    <br />
-                    @Model.PersonalDetail.Street @Model.PersonalDetail.StreetNo &middot; @Model.PersonalDetail.ZipCode @Model.PersonalDetail.City / @Model.PersonalDetail.State &middot; <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber</a> &middot;
-                    <a href="mailto:@(Model.PersonalDetail.Email)">@Model.PersonalDetail.Email</a>
-                </div>
-                        if (Model.About.Slogan != null)
-                        {
+                        @(CodeHelper.GetAge(new DateTime(Model.PersonalDetail.Birthday_Year, Model.PersonalDetail.Birthday_Month, Model.PersonalDetail.Birthday_Day))) @SharedResource.YearsOld &middot;
+                        @SharedResource.From @Model.PersonalDetail.Citizenship @(Model.PersonalDetail.MaritalStatus != MaritalStatus.NoInformation ? "· " + Model.PersonalDetail.MaritalStatus.Description() : string.Empty)
+                        @(Model.PersonalDetail.Children.Count > 0 ? $" · {Model.PersonalDetail.Children.Count} {(Model.PersonalDetail.Children.Count > 1 ? SharedResource.Children : SharedResource.Child)} ({Model.PersonalDetail.Children.Select(c => $"{c.Firstname}, {CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day))} {(CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day)) == 1 ? SharedResource.YearOld : SharedResource.YearsOld)}").Aggregate((i, j) => i + " & " + j) })" : string.Empty)
+                        <br />
+                        @Model.PersonalDetail.Street @Model.PersonalDetail.StreetNo &middot; @Model.PersonalDetail.ZipCode @Model.PersonalDetail.City / @Model.PersonalDetail.State &middot; <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber</a> &middot;
+                        <a href="mailto:@(Model.PersonalDetail.Email)">@Model.PersonalDetail.Email</a>
+                    </div>
+                    if (Model.About.Slogan != null)
+                    {
                         <p class="lead">
                             <div class="speech-bubble mb-4">
                                 <div class="font-italic">@Model.About.Slogan</div>
                             </div>
                         </p>
+                    }
+                    <div class="social-icons">
+                        @if (Model.About.Vfile?.FileName != null)
+                        {
+                            <a class="mt-2 mb-1" data-toggle="tooltip" asp-page-handler="OpenFile" asp-route-identifier="@Model.About.Vfile?.Identifier" title="@Model.About.Vfile?.FileName">
+                                <i class="far fa-file-pdf"></i>
+                            </a>
                         }
-                <div class="social-icons">
-                    @if (Model.About.Vfile?.FileName != null)
-                    {
-                        <a class="mt-2 mb-1" data-toggle="tooltip" asp-page-handler="OpenFile" asp-route-identifier="@Model.About.Vfile?.Identifier" title="@Model.About.Vfile?.FileName">
-                            <i class="far fa-file-pdf"></i>
-                        </a>
-                    }
-                    @foreach (var socialLink in Model.SocialLinks)
-                    {
-                        <a class="mt-2 mb-1" data-toggle="tooltip" href="@socialLink.Link" target="_blank" title="@socialLink.SocialPlatform">
-                            <i class="@socialLink.SocialPlatform.Description()"></i>
-                        </a>
-                    }
-                </div>
+                        @foreach (var socialLink in Model.SocialLinks)
+                        {
+                            <a class="mt-2 mb-1" data-toggle="tooltip" href="@socialLink.Link" target="_blank" title="@socialLink.SocialPlatform">
+                                <i class="@socialLink.SocialPlatform.Description()"></i>
+                            </a>
+                        }
+                    </div>
                 }
             </div>
         </section>
@@ -144,7 +144,7 @@
                             <div class="resume-date text-md-right">
                                 <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(experience.Start_Year, experience.Start_Month, 1), experience.UntilNow ? (DateTime?)null : new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1), false)" />
                             </div>
-                           </div>
+                        </div>
                         <hr class="mb-5">
                     }
                 </div>
@@ -186,22 +186,51 @@
         {
             <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Course).ToLower()">
                 <div class="w-100">
-                    <h2 class="mb-5"><i class="fas fa-university mr-3"></i>@SharedResource.Courses</h2>
+                    <h2 class="mb-5"><i class="fas fa-book-reader mr-3"></i>@SharedResource.Courses</h2>
                     @foreach (var course in Model.Courses)
                     {
-                <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
-                    <div class="resume-content">
-                        <h3 class="mb-0">@course.Title</h3>
-                        <div class="subheading mb-3"><a href="@course.Link" target="_blank">@course.SchoolName</a> &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(course.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == course.CountryCode).Name)"></span> @course.City</div>
-                        <p>@course.Description</p>
-                    </div>
-                    <div class="resume-date text-md-right">
-                        <div class="resume-date text-md-right">
-                            <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(course.Start_Year, course.Start_Month, course.Start_Day), course.SingleDay ? new DateTime(course.Start_Year, course.Start_Month, course.Start_Day) : new DateTime(course.End_Year.Value, course.End_Month.Value, course.End_Day.Value), true)" />
+                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                            <div class="resume-content">
+                                <h3 class="mb-0">@course.Title</h3>
+                                <div class="subheading mb-3"><a href="@course.Link" target="_blank">@course.SchoolName</a> &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(course.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == course.CountryCode).Name)"></span> @course.City</div>
+                                <p>@course.Description</p>
+                            </div>
+                            <div class="resume-date text-md-right">
+                                <div class="resume-date text-md-right">
+                                    <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(course.Start_Year, course.Start_Month, course.Start_Day), course.SingleDay ? new DateTime(course.Start_Year, course.Start_Month, course.Start_Day) : new DateTime(course.End_Year.Value, course.End_Month.Value, course.End_Day.Value), true)" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <hr class="mb-5">
+                    }
                 </div>
-                    <hr class="mb-5">
+            </section>
+            <hr class="m-0">
+        }
+        <!-- #endregion -->
+        <!-- #region Abroads -->
+        @if (Model.Abroads.Count > 0)
+        {
+            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Abroad).ToLower()">
+                <div class="w-100">
+                    <h2 class="mb-5"><i class="fas fa-plane mr-3"></i>@SharedResource.Abroads</h2>
+                    @foreach (var abroad in Model.Abroads)
+                    {
+                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                            <div class="resume-content">
+                                <h3 class="mb-0">@(Model.Countries.Single(c => c.CountryCode == abroad.CountryCode).Name)</h3>
+                                <div class="subheading mb-3">
+                                    <span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(abroad.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == abroad.CountryCode).Name)"></span> @abroad.City
+                                </div>
+                                    <p class="mt-3">@abroad.Description</p>
+                                </div>
+                            <div class="resume-date text-md-right">
+                                <div class="resume-date text-md-right">
+                                    <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(abroad.Start_Year, abroad.Start_Month, 1), abroad.UntilNow ? new DateTime(abroad.Start_Year, abroad.Start_Month, 1) : new DateTime(abroad.End_Year.Value, abroad.End_Month.Value, 1), false)" />
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mb-5">
                     }
                 </div>
             </section>
@@ -218,10 +247,10 @@
                     {
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                             <div class="resume-content">
-                                <p>@Model.Languages.Single(l => l.LanguageCode == languageSkill.LanguageCode).Name</p>
-                            </div>
-                            <div class="resume-date text-md-right">
-                                <input name="@languageSkill.Rate" type="hidden" class="rating invisible" value="@(languageSkill.Rate)" readonly />
+                                <h3>
+                                    @Model.Languages.Single(l => l.LanguageCode == languageSkill.LanguageCode).Name
+                                </h3>
+                                <input name="@languageSkill.Rate" type="hidden" class="ratingstar invisible" value="@(languageSkill.Rate)" readonly />
                             </div>
                         </div>
                     }
@@ -235,7 +264,7 @@
         {
             <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Interest).ToLower()">
                 <div class="w-100">
-                    <h2 class="mb-5">@SharedResource.Interests</h2>
+                    <h2 class="mb-5"><i class="fas fa-volleyball-ball fa-fw"></i>@SharedResource.Interests</h2>
                     @foreach (var interest in Model.Interests)
                     {
                         <p>

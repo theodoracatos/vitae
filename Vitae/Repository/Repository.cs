@@ -320,6 +320,7 @@ namespace Library.Repository
                     .Select(i => new InterestVM()
                     {
                         Description = i.Description,
+                        Association = i.Association,
                         Link = i.Link,
                         InterestName = i.InterestName,
                         Order = i.Order

@@ -196,6 +196,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Association.
+        /// </summary>
+        public static string Association {
+            get {
+                return ResourceManager.GetString("Association", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The value &apos;{0}&apos; is not valid for {y}.
         /// </summary>
         public static string AttemptedValueIsInvalidAccessor {

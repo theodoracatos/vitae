@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col">
+                    <div class="form-group col mb-0">
                         <label class="control-label" asp-for="@Model.About.Vfile.Content"></label>
                         <div class="bd-form-group">
                             <input id="uploadedFile" type="file" asp-for="@Model.About.Vfile.Content" class="@(Model.About.Vfile?.FileName == null ? "filer" : "d-none")" />
@@ -70,7 +70,7 @@
                         <input type="hidden" asp-for="@Model.About.Vfile.Identifier" />
                         <input type="text" asp-for="@Model.About.Photo" class="imgPhoto invisible" />
                         <input id="imgInput" type="file" class="invisible" accept="image/jpeg, image/png" style="height:0; width: 0" />
-                        <button type="submit" class="btn btn-success float-right" disabled="disabled">@SharedResource.Save</button>
+                        <button type="submit" class="btn btn-primary float-right" disabled="disabled"><i class="fas fa-save fa-fw"></i>@SharedResource.Save</button>
                     </div>
                 </div>
             </div>

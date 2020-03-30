@@ -64,6 +64,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
                     Interests.Select(i => new Poco.Interest()
                     {
                         Description = i.Description,
+                        Association = i.Association,
                         Link = i.Link,
                         InterestName = i.InterestName,
                         Order = i.Order

@@ -12,6 +12,9 @@ namespace Model.Poco
         [MaxLength(100)]
         public string InterestName { get; set; }
 
+        [MaxLength(100)]
+        public string Association { get; set; }
+
         [MaxLength(1000)]
         public string Description { get; set; }
 

@@ -162,6 +162,9 @@
   <data name="AllowedFiles" xml:space="preserve">
     <value>Dateien sind zum Hochladen erlaubt</value>
   </data>
+  <data name="Association" xml:space="preserve">
+    <value>Verein / Club</value>
+  </data>
   <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>Der Wert '{0}' ist nicht gültig für {y}</value>
   </data>

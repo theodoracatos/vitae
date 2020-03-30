@@ -162,6 +162,9 @@
   <data name="AllowedFiles" xml:space="preserve">
     <value>files are allowed to be uploaded</value>
   </data>
+  <data name="Association" xml:space="preserve">
+    <value>Association</value>
+  </data>
   <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>The value '{0}' is not valid for {y}</value>
   </data>
