@@ -76,7 +76,7 @@ namespace Library.Repository
         }
 
             public async Task<Curriculum> GetCurriculumAsync(Guid curriculumID)
-        {
+            {
             var curriculumQuery = vitaeContext.Curriculums
                .Where(c => c.CurriculumID == curriculumID).Take(1);
 
@@ -90,7 +90,7 @@ namespace Library.Repository
             await curriculumQuery.Include(c => c.Person.About.Vfile).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Abroads).ThenInclude(a => a.Country).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Awards).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Courses).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.Courses).ThenInclude(c => c.Country).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Certificates).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Educations).ThenInclude(e => e.Country).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Experiences).ThenInclude(e => e.Country).LoadAsync();

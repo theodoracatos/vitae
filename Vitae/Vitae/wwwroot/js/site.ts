@@ -2,6 +2,7 @@
 declare var $;
 declare var Resources;
 declare var Chart;
+declare var autosize;
 
 $(document).ready(function () {
     addJQueryValidators();
@@ -208,6 +209,7 @@ function initSelectPicker() {
 
 function loadingProcedure() {
     setupDatepicker();
+    setupAutosize();
     configureConfirmationModal();
     setRequiredLabel();
     loadCropper();
@@ -217,6 +219,10 @@ function loadingProcedure() {
     initializeTagsinput();
     loadDisabledLinkMessage();
     assignCollapser();
+}
+
+function setupAutosize() {
+    autosize($('textarea'));
 }
 
 function assignCollapser() {

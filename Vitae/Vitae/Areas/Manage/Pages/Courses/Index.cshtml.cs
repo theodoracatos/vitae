@@ -63,7 +63,7 @@ namespace Vitae.Areas.Manage.Pages.Courses
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Educations);
+                vitaeContext.RemoveRange(curriculum.Person.Courses);
 
                 curriculum.Person.Courses =
                     Courses.Select(e => new Poco.Course()

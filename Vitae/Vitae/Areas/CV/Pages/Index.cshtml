@@ -142,7 +142,7 @@
                                 <p>@experience.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
-                                <partial name="_DateDifference" model="new KeyValuePair<DateTime, DateTime?>(new DateTime(experience.Start_Year, experience.Start_Month, 1), experience.UntilNow ? (DateTime?)null : new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1))" />
+                                <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(experience.Start_Year, experience.Start_Month, 1), experience.UntilNow ? (DateTime?)null : new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1), false)" />
                             </div>
                            </div>
                         <hr class="mb-5">
@@ -170,7 +170,7 @@
                             </div>
                             <div class="resume-date text-md-right">
                                 <div class="resume-date text-md-right">
-                                    <partial name="_DateDifference" model="new KeyValuePair<DateTime, DateTime?>(new DateTime(education.Start_Year, education.Start_Month, 1), education.UntilNow ? (DateTime?)null : new DateTime(education.End_Year.Value, education.End_Month.Value, 1))" />
+                                    <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(education.Start_Year, education.Start_Month, 1), education.UntilNow ? (DateTime?)null : new DateTime(education.End_Year.Value, education.End_Month.Value, 1), false)" />
                                 </div>
                             </div>
                         </div>
@@ -192,15 +192,13 @@
                 <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
                     <div class="resume-content">
                         <h3 class="mb-0">@course.Title</h3>
-                        <div class="subheading mb-3"><a href="@course.Link" target="_blank">@course.SchoolName</a>, @course.City (@course.CountryCode)</div>
+                        <div class="subheading mb-3"><a href="@course.Link" target="_blank">@course.SchoolName</a> &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(course.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == course.CountryCode).Name)"></span> @course.City</div>
                         <p>@course.Description</p>
                     </div>
                     <div class="resume-date text-md-right">
-                        @{
-                            var startDate = new DateTime(course.Start_Year, course.Start_Month, course.Start_Day);
-                            var endDate = course.SingleDay ? startDate : new DateTime(course.End_Year.Value, course.End_Month.Value, course.End_Day.Value);
-                         }
-                        <span class="text-primary">@(startDate.ToShortDateCultureString()) (@(course.SingleDay ? $"1 {SharedResource.Day}" : $"{(endDate - startDate).TotalDays + 1} {SharedResource.Days}"))</span>
+                        <div class="resume-date text-md-right">
+                            <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(course.Start_Year, course.Start_Month, course.Start_Day), course.SingleDay ? new DateTime(course.Start_Year, course.Start_Month, course.Start_Day) : new DateTime(course.End_Year.Value, course.End_Month.Value, course.End_Day.Value), true)" />
+                        </div>
                     </div>
                 </div>
                     <hr class="mb-5">

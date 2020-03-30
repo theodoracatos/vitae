@@ -76,6 +76,10 @@
     {
       "library": "jquery.dirtyforms@2.0.0",
       "destination": "wwwroot/lib/jquery.dirtyforms/"
+    },
+    {
+      "library": "autosize.js@4.0.2",
+      "destination": "wwwroot/lib/autosize.js/"
     }
   ]
 }
