@@ -51,6 +51,9 @@ namespace Model.ViewModels
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CountryName), Prompt = nameof(SharedResource.CountryName))]
         public string CountryCode { get; set; }
 
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.HideReference), Prompt = nameof(SharedResource.HideReference))]
+        public bool Hide { get; set; }
+
         public string PhonePrefix { get; set; }
     }
 }

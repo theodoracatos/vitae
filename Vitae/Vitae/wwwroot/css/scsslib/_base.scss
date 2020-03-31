@@ -42,6 +42,30 @@ body::-webkit-scrollbar-thumb, .sb-sidenav-menu::-webkit-scrollbar-thumb {
     min-height: 38px;
 }
 
+.tagsreadonly .bootstrap-tagsinput {
+    border: none;
+    box-shadow: none;
+    background-color: #f0f3f8;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.tagsreadonly .badge.badge-info {
+    margin-left: 0px !important;
+    margin-right: 0.75em;
+    background-color: $qvs-gold-color;
+    border-color: $qvs-gold-color;
+    padding: 4px;
+}
+
+.tagsreadonly .bootstrap-tagsinput input {
+    display: none;
+}
+
+.tagsreadonly .bootstrap-tagsinput span [data-role="remove"] {
+    display: none !important;
+}
+
 .badge.badge-info {
     margin-left: 0.75em;
     font-weight: 400;
@@ -113,10 +137,18 @@ body::-webkit-scrollbar-thumb, .sb-sidenav-menu::-webkit-scrollbar-thumb {
     filter: grayscale(100%);*/
 }
 
+h1.headingTitle{
+    line-height: 1em;
+}
+
 .headingTitle {
     font-size: calc(35px + 20 * ((100vw - 320px) / 680));
 }
 
 span.flag-icon {
     line-height: 0.8em;
+}
+
+.greyborder {
+    border: 0.5rem solid rgba(0, 0, 0, 0.2) !important;
 }

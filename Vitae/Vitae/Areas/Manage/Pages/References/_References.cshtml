@@ -3,7 +3,7 @@
 <div id="panel">
     <div class="card">
         <div class="card-header font-weight-bold">
-            <h1><i class="fas fas fa-comment fa-fw"></i>@SharedResource.Reference</h1>
+            <h1><i class="fas fa-user-tie fa-fw"></i>@SharedResource.References</h1>
         </div>
         <div class="card-body">
             <div class="form-row">
@@ -62,12 +62,12 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-6">
                         <label class="control-label" asp-for="@Model.References[i].Firstname"></label>
                         <input class="form-control" type="text" asp-for="@Model.References[i].Firstname" />
                         <span asp-validation-for="@Model.References[i].Firstname" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-7">
+                    <div class="form-group col-md-6">
                         <label class="control-label" asp-for="@Model.References[i].Lastname"></label>
                         <input class="form-control" type="text" asp-for="@Model.References[i].Lastname" />
                         <span asp-validation-for="@Model.References[i].Lastname" class="text-danger"></span>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.References[i].CompanyName"></label>
+                       <label class="control-label" asp-for="@Model.References[i].CompanyName"></label>
                         <input class="form-control" type="text" asp-for="@Model.References[i].CompanyName" />
                         <span asp-validation-for="@Model.References[i].CompanyName" class="text-danger"></span>
                         <input type="hidden" asp-for="@Model.References[i].Order" />
@@ -94,21 +94,21 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col">
-                        <label class="control-label" asp-for="@Model.References[i].Email"></label>
-                        <input class="form-control" type="text" asp-for="@Model.References[i].Email" />
-                        <span asp-validation-for="@Model.References[i].Email" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <label class="control-label" asp-for="@Model.References[i].CountryCode"></label>
                         <select asp-for="@Model.References[i].CountryCode" class="form-control selectpicker" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
                             <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                         </select>
                         <span asp-validation-for="@Model.References[i].CountryCode" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.References[i].Email"></label>
+                        <input class="form-control" type="text" asp-for="@Model.References[i].Email" />
+                        <span asp-validation-for="@Model.References[i].Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
                         <label class="control-label" asp-for="@Model.References[i].PhoneNumber"></label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -118,8 +118,21 @@
                         </div>
                         <span asp-validation-for="@Model.References[i].PhoneNumber" class="text-danger"></span>
                     </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label" asp-for="@Model.References[i].Hide"></label>
+                        <div class="input-group">
+                            <div class="form-control d-sm-block d-md-inline">
+                                <div class="pretty p-switch p-slim mr-0">
+                                    <input type="checkbox" name="@(nameof(References))[@i].@nameof(ReferenceVM.Hide)" value="true" checked="@(Model.References[i].Hide ? "checked" : null)" />
+                                    <div class="state">
+                                        <label asp-for="@Model.References[i].Hide"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
-            </div>
         </div>
             @if (i < Model.References.Count - 1)
             {<hr />}

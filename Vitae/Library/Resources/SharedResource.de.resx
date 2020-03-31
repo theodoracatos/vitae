@@ -384,6 +384,12 @@
   <data name="Grade" xml:space="preserve">
     <value>Note</value>
   </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Verstecken</value>
+  </data>
+  <data name="HideReference" xml:space="preserve">
+    <value>Referenz verstecken</value>
+  </data>
   <data name="Homepage" xml:space="preserve">
     <value>Startseite</value>
   </data>

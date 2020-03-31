@@ -36,6 +36,8 @@ namespace Model.Poco
 
         public virtual Country Country { get; set; }
 
+        public bool Hide { get; set; }
+
         public int Order { get; set; }
     }
 }
