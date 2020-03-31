@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 using Vitae.Code;
 using System.Linq;
 
-namespace CVitae.Areas.CV.Pages
+namespace Vitae.Areas.CV.Pages
 {
     [Area("CV")]
     public class IndexModel : BasePageModel

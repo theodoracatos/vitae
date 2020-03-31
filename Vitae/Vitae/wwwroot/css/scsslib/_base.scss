@@ -30,6 +30,13 @@ body::-webkit-scrollbar-thumb, .sb-sidenav-menu::-webkit-scrollbar-thumb {
 .rating-symbol-foreground {
     color: $qvs-gold-color;
 }
+
+/* Tooltip */
+.tooltip > .tooltip-inner {
+    color: #fff !important;
+    background-color: #212529 !important;
+}
+
 /* Tagsinput */
 .bootstrap-tagsinput {
     min-height: 38px;

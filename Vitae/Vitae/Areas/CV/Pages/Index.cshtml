@@ -1,5 +1,5 @@
 ﻿@page "{id}"
-@model CVitae.Areas.CV.Pages.IndexModel
+@model Vitae.Areas.CV.Pages.IndexModel
 @{
 }
 <!DOCTYPE html>
@@ -165,7 +165,10 @@
                             <div class="resume-content">
                                 <h3 class="mb-0">@education.Title, @education.Subject</h3>
                                 <div class="subheading mb-3"><a href="@education.Link" target="_blank">@education.SchoolName</a> &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(education.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == education.CountryCode).Name)"></span> @education.City</div>
+                                @if (education.Grade.HasValue)
+                                {
                                 <p>@SharedResource.Grade: @education.Grade</p>
+                                }
                                 <p>@education.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
@@ -242,7 +245,7 @@
         {
             <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Language).ToLower()">
                 <div class="w-100">
-                    <h2 class="mb-5">@SharedResource.Languages</h2>
+                    <h2 class="mb-5"><i class="fas fa-globe-americas mr-3"></i>@SharedResource.Languages</h2>
                     @foreach (var languageSkill in Model.LanguageSkills)
                     {
                         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
@@ -250,9 +253,22 @@
                                 <h3>
                                     @Model.Languages.Single(l => l.LanguageCode == languageSkill.LanguageCode).Name
                                 </h3>
-                                <input name="@languageSkill.Rate" type="hidden" class="ratingstar invisible" value="@(languageSkill.Rate)" readonly />
+                                <div class="subheading mb-0">
+                                    @{
+                                        switch(languageSkill.Rate)
+                                        {
+                                            case 1: { @SharedResource.KnowledgeBasic; break; }
+                                            case 2: { @SharedResource.KnowledgeBusinessFluent; break; }
+                                            case 3: { @SharedResource.KnowledgeFluent; break; }
+                                            case 4: { @SharedResource.KnowledgeNative; break; }
+                                        }
+
+                                    }
+                                    
+                                </div>
+                                <input name="@languageSkill.Rate" type="hidden" class="ratingstar" value="@(languageSkill.Rate)" readonly />
+                                </div>
                             </div>
-                        </div>
                     }
                 </div>
             </section>
@@ -267,14 +283,24 @@
                     <h2 class="mb-5"><i class="fas fa-volleyball-ball fa-fw"></i>@SharedResource.Interests</h2>
                     @foreach (var interest in Model.Interests)
                     {
-                        <p>
-                            @interest.InterestName
-                            @if (!string.IsNullOrEmpty(interest.Link))
-                            {
-                                <a class="ml-1" href="@interest.Link" alt="@interest.InterestName"><i class="fas fa-external-link-alt"></i></a>
-                            }
-                        </p>
-                        <p class="mb-0">@interest.Description</p>
+                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                            <div class="resume-content">
+                                <h3 class="mb-0">@interest.InterestName</h3>
+                                <div class="subheading"><a href="@interest.Link" target="_blank">@interest.Association</a></div>
+                                <p class="mb-0 mt-3">@interest.Description</p>
+                            </div>
+                        </div>
+
+
+                                @*
+                    <p>
+                        @interest.InterestName
+                        @if (!string.IsNullOrEmpty(interest.Link))
+                        {
+                            <a class="ml-1" href="@interest.Link" alt="@interest.InterestName"><i class="fas fa-external-link-alt"></i></a>
+                        }
+                    </p>
+                    <p class="mb-0">@interest.Description</p>*@
                     }
                 </div>
             </section>

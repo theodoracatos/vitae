@@ -9,7 +9,8 @@ $(document).ready(function () {
 });
 
 function startTooltips() {
-    $('[data-toggle="tooltip"]').tooltip();
+    /* Tooltips */
+    $("body").tooltip({ selector: '[data-toggle=tooltip]', container: 'body' });
 }
 
 function startRating() {
@@ -31,7 +32,7 @@ function startRating() {
                         var isReadonly = $(ratingNode).attr("readonly") != null;
                         var finalRate = $(ratingNode).val();
                         symbolNr = isReadonly ? Math.round(finalRate) : symbolNr;
-
+                        
                         switch (symbolNr) {
                             case 1: { text = Resources.SharedResource.KnowledgeBasic; break; }
                             case 2: { text = Resources.SharedResource.KnowledgeBusinessFluent; break; }
