@@ -17,7 +17,7 @@
 
 @{
     var menuEntries = new List<Tuple<bool, string, string>>()
-     {
+{
       new Tuple<bool, string, string>(Model.About != null, nameof(About).ToLower(), SharedResource.AboutInfo),
       new Tuple<bool, string, string>(Model.Experiences.Count > 0, nameof(Experience).ToLower(), SharedResource.Experiences),
       new Tuple<bool, string, string>(Model.Educations.Count > 0, nameof(Education).ToLower(), SharedResource.Educations),
@@ -61,7 +61,7 @@
                 @if (Model.IsLoggedIn)
                 {
                     <li>
-                        <a class="btn btn-dark mt-2" href="/Manage"><i class="fas fa-angle-left fa-fw"></i> @SharedResource.Back</a>
+                        <a class="btn btn-secondary mt-3" href="/Manage"><i class="fas fa-angle-left fa-fw"></i> @SharedResource.Back</a>
                     </li>
                 }
             </ul>
@@ -152,7 +152,7 @@
                                 <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(experience.Start_Year, experience.Start_Month, 1), experience.UntilNow ? (DateTime?)null : new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1), false)" />
                             </div>
                         </div>
-                        <hr class="mb-5">
+                        <hr class="mb-4 pb-2">
                     }
                 </div>
             </section>
@@ -184,7 +184,7 @@
                                 </div>
                             </div>
                         </div>
-                        <hr class="mb-5">
+                        <hr class="mb-4 pb-2">
                     }
                 </div>
             </section>
@@ -211,7 +211,7 @@
                                 </div>
                             </div>
                         </div>
-                        <hr class="mb-5">
+                        <hr class="mb-4 pb-2">
                     }
                 </div>
             </section>
@@ -240,7 +240,7 @@
                                 </div>
                             </div>
                         </div>
-                        <hr class="mb-5">
+                        <hr class="mb-4 pb-2">
                     }
                 </div>
             </section>
@@ -255,35 +255,35 @@
                     <h2 class="mb-5"><i class="fas fa-globe-americas mr-3"></i>@SharedResource.Languages</h2>
                     @foreach (var languageSkill in Model.LanguageSkills)
                     {
-                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-3 pb-3">
                             <div class="resume-content">
-                                <h3>
+                                <h3 class=" mb-0">
                                     @Model.Languages.Single(l => l.LanguageCode == languageSkill.LanguageCode).Name
                                 </h3>
-                                <div class="subheading mb-0">
-                                    @{
-                                        switch (languageSkill.Rate)
-                                        {
-                                            case 1:
-                                                { @SharedResource.KnowledgeBasic; break;
+                                    <div class="subheading mb-0">
+                                        @{
+                                            switch (languageSkill.Rate)
+                                            {
+                                                case 1:
+                                                    { @SharedResource.KnowledgeBasic; break;
+                                                }
+                                            case 2:
+                                                { @SharedResource.KnowledgeBusinessFluent; break;
                                             }
-                                        case 2:
-                                            { @SharedResource.KnowledgeBusinessFluent; break;
+                                        case 3:
+                                            { @SharedResource.KnowledgeFluent; break;
                                         }
-                                    case 3:
-                                        { @SharedResource.KnowledgeFluent; break;
+                                    case 4:
+                                        { @SharedResource.KnowledgeNative; break;
                                     }
-                                case 4:
-                                    { @SharedResource.KnowledgeNative; break;
-                                }
-                        }
+                                            }
+                                        }
 
-                                    }
-
-                                </div>
-                                <input name="@languageSkill.Rate" type="hidden" class="ratingstar" value="@(languageSkill.Rate)" readonly />
+                                    </div>
+                                    <input name="@languageSkill.Rate" type="hidden" class="ratingstar" value="@(languageSkill.Rate)" readonly />
                             </div>
                         </div>
+                        <hr class="mb-4 pb-2">
                     }
                 </div>
             </section>
@@ -293,21 +293,22 @@
         <!-- #region Interests -->
         @if (Model.Interests.Count > 0)
         {
-            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Interest).ToLower()">
-                <div class="w-100">
-                    <h2 class="mb-5"><i class="fas fa-volleyball-ball mr-3"></i>@SharedResource.Interests</h2>
-                    @foreach (var interest in Model.Interests)
-                    {
-                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
-                            <div class="resume-content">
-                                <h3 class="mb-0">@interest.InterestName</h3>
-                                <div class="subheading"><a href="@interest.Link" target="_blank">@interest.Association</a></div>
-                                <p class="mb-0 mt-3">@interest.Description</p>
-                            </div>
-                        </div>
-                    }
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Interest).ToLower()">
+        <div class="w-100">
+            <h2 class="mb-5"><i class="fas fa-volleyball-ball mr-3"></i>@SharedResource.Interests</h2>
+            @foreach (var interest in Model.Interests)
+            {
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                    <div class="resume-content">
+                        <h3 class="mb-0">@interest.InterestName</h3>
+                        <div class="subheading"><a href="@interest.Link" target="_blank">@interest.Association</a></div>
+                        <p class="mt-3">@interest.Description</p>
+                    </div>
                 </div>
-            </section>
+                <hr class="mb-4 pb-2">
+            }
+        </div>
+        </section>
             <hr class="m-0">
         }
         <!-- #endregion -->
@@ -323,12 +324,13 @@
                             <div class="resume-content">
                                 <h3 class="mb-0">@award.Name</h3>
                                 <div class="subheading"><a href="@award.Link" target="_blank">@award.AwardedFrom</a></div>
-                                <p class="mb-0 mt-3">@award.Description</p>
+                                <p class="mt-3">@award.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
                                 <span class="text-primary">@(new DateTime(award.Year, award.Month, 1).ToShortDateCultureString())</span>
                             </div>
                         </div>
+                        <hr class="mb-4 pb-2">
                     }
                 </div>
             </section>
@@ -351,9 +353,11 @@
                                 </p>
                             </div>
                         </div>
+                        <hr class="mb-4 pb-2">
                     }
                 </div>
             </section>
+            <hr class="m-0">
         }
         <!-- #endregion -->
         <!-- #region Certificates -->
@@ -368,19 +372,21 @@
                             <div class="resume-content">
                                 <h3 class="mb-0">@certificate.Name</h3>
                                 <div class="subheading"><a href="@certificate.Link" target="_blank">@certificate.Issuer</a></div>
-                                <p class="mb-0 mt-3">@certificate.Description</p>
+                                <p class="mt-3">@certificate.Description</p>
                             </div>
                             <div class="resume-date text-md-right">
-                                <span class="text-primary">@(new DateTime(certificate.Start_Year, certificate.Start_Month, 1).ToShortDateCultureString())
-                                  @{
-                                      if(!certificate.NeverExpires)
-                                      {
-                                          @($"- {new DateTime(certificate.End_Year.Value, certificate.End_Month.Value, 1).ToShortDateCultureString()}")
-                                      }
-                                  }                                
+                                <span class="text-primary">
+                                    @(new DateTime(certificate.Start_Year, certificate.Start_Month, 1).ToShortDateCultureString())
+                                    @{
+                                        if (!certificate.NeverExpires)
+                                        {
+                                            @($"- {new DateTime(certificate.End_Year.Value, certificate.End_Month.Value, 1).ToShortDateCultureString()}")
+                                        }
+                                    }
                                 </span>
                             </div>
                         </div>
+                        <hr class="mb-4 pb-2">
                     }
                 </div>
             </section>
@@ -388,12 +394,37 @@
         }
         <!-- #endregion -->
         <!-- #region References -->
-        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Reference).ToLower()">
-            <div class="w-100">
-                <h2 class="mb-5"><i class="fas fa-user-tie mr-3"></i>@SharedResource.Reference</h2>
-
-            </div>
+        @if (Model.Certificates.Count > 0)
+        {
+            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Reference).ToLower()">
+                <div class="w-100">
+                    <h2 class="mb-5"><i class="fas fa-user-tie mr-3"></i>@SharedResource.References</h2>
+                    @foreach (var reference in Model.References.Where(r => !r.Hide))
+                    {
+                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                            <div class="resume-content">
+                                <h3 class="mb-0">@(reference.Gender.Value ? SharedResource.Mr : SharedResource.Ms) @reference.Firstname @reference.Lastname</h3>
+                                <div class="subheading">
+                                    @if (!string.IsNullOrEmpty(reference.Email))
+                                    {
+                                        <a href="mailto:@(reference.Email)">@reference.Email</a> @Html.Raw("&middot;")
+                                    }
+                                    <span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(reference.CountryCode.ToLower())"></span> <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber</a>
+                                </div>
+                                <div class="subheading"><a href="@reference.Link" target="_blank">@reference.CompanyName</a></div>
+                                <p class="mt-3">@reference.Description</p>
+                            </div>
+                        </div>
+                        <hr class="mb-4 pb-2">
+                    }
+                    @if (Model.References.Count > 0 && Model.References.All(r => r.Hide))
+                    {
+                        <div class="subheading">@SharedResource.OnRequest</div>
+                    }
+                </div>
             </section>
+            <hr class="m-0">
+        }
         <!-- #endregion -->
     </div>
 

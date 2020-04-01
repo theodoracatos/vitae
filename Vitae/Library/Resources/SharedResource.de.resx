@@ -564,6 +564,9 @@
   <data name="OnlyPdf" xml:space="preserve">
     <value>Nur PDF-Dateien können hochgeladen werden</value>
   </data>
+  <data name="OnRequest" xml:space="preserve">
+    <value>Auf Anfrage</value>
+  </data>
   <data name="Overview" xml:space="preserve">
     <value>Übersicht</value>
   </data>

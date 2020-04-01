@@ -26,7 +26,6 @@ namespace Model.Poco
         [MaxLength(1000)]
         public string Description { get; set; }
 
-        [Required]
         [MaxLength(100)]
         public string Email { get; set; }
 

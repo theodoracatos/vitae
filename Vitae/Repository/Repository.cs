@@ -382,6 +382,7 @@ namespace Library.Repository
                     Gender = r.Gender,
                     Order = r.Order,
                     Link = r.Link,
+                    Hide = r.Hide,
                     PhoneNumber = r.PhoneNumber
                 }).ToList();
 

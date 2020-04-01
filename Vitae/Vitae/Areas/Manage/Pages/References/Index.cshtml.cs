@@ -75,6 +75,7 @@ namespace Vitae.Areas.Manage.Pages.References
                         Description = r.Description,
                         Gender = r.Gender.Value,
                         Link = r.Link,
+                        Hide = r.Hide,
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == r.CountryCode)
                     }).ToList();
                 curriculum.LastUpdated = DateTime.Now;
