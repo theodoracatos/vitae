@@ -83,7 +83,11 @@ namespace Vitae.Areas.Manage.Pages.Skills
         {
             if (Skills.Count < MaxSkills)
             {
-                Skills.Add(new SkillVM() { Order = Skills.Count });
+                Skills.Add(new SkillVM() 
+                { 
+                    Order = Skills.Count,
+                    Collapsed = base.Collapsed
+                });
                 Skills = CheckOrdering(Skills);
             }
             FillSelectionViewModel();
@@ -136,6 +140,15 @@ namespace Vitae.Areas.Manage.Pages.Skills
                 Skills.Add(copy);
                 Skills = CheckOrdering(Skills);
             }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_SKILLS);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(Skills);
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_SKILLS);

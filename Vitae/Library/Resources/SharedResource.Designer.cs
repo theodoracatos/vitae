@@ -421,6 +421,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collapse items.
+        /// </summary>
+        public static string Collapse {
+            get {
+                return ResourceManager.GetString("Collapse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company name.
         /// </summary>
         public static string CompanyName {
@@ -1141,6 +1150,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ID.
+        /// </summary>
+        public static string LongIdentifier {
+            get {
+                return ResourceManager.GetString("LongIdentifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage.
         /// </summary>
         public static string Manage {
@@ -1830,6 +1848,24 @@ namespace Library.Resources {
         public static string SendVerificationEmail {
             get {
                 return ResourceManager.GetString("SendVerificationEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Short ID.
+        /// </summary>
+        public static string ShortIdentifier {
+            get {
+                return ResourceManager.GetString("ShortIdentifier", resourceCulture);
             }
         }
         

@@ -91,7 +91,11 @@ namespace Vitae.Areas.Manage.Pages.Languages
         {
             if (LanguageSkills.Count < MaxLanguageSkills)
             {
-                LanguageSkills.Add(new LanguageSkillVM() { Order = LanguageSkills.Count });
+                LanguageSkills.Add(new LanguageSkillVM() 
+                { 
+                    Order = LanguageSkills.Count,
+                    Collapsed = base.Collapsed
+                });
                 LanguageSkills = CheckOrdering(LanguageSkills);
             }
 
@@ -146,6 +150,15 @@ namespace Vitae.Areas.Manage.Pages.Languages
                 copy.LanguageCode = string.Empty;
                 LanguageSkills = CheckOrdering(LanguageSkills);
             }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_LANGUAGES);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(LanguageSkills);
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_LANGUAGES);

@@ -92,7 +92,11 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
         {
             if (SocialLinks.Count < MaxSocialLinks)
             {
-                SocialLinks.Add(new SocialLinkVM() { Order = SocialLinks.Count });
+                SocialLinks.Add(new SocialLinkVM() 
+                { 
+                    Order = SocialLinks.Count,
+                    Collapsed = base.Collapsed
+                });
                 SocialLinks = CheckOrdering(SocialLinks);
             }
             FillSelectionViewModel();
@@ -145,6 +149,15 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
                 SocialLinks.Add(copy);
                 SocialLinks = CheckOrdering(SocialLinks);
             }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_SOCIALLINKS);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(SocialLinks);
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_SOCIALLINKS);

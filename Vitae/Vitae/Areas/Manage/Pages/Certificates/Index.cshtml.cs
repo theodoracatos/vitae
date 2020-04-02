@@ -102,7 +102,8 @@ namespace Vitae.Areas.Manage.Pages.Certificates
                     Start_Month = DateTime.Now.Month,
                     Start_Year = DateTime.Now.Year,
                     End_Month = DateTime.Now.Month,
-                    End_Year = DateTime.Now.Year
+                    End_Year = DateTime.Now.Year,
+                    Collapsed = base.Collapsed
                 });
                 Certificates = CheckOrdering(Certificates);
             }
@@ -156,6 +157,15 @@ namespace Vitae.Areas.Manage.Pages.Certificates
                 Certificates.Add(copy);
                 Certificates = CheckOrdering(Certificates);
             }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_CERTIFICATES);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(Certificates);
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_CERTIFICATES);

@@ -108,7 +108,8 @@ namespace Vitae.Areas.Manage.Pages.Courses
                     Start_Year = DateTime.Now.Year,
                     End_Day = DateTime.Now.Day,
                     End_Month = DateTime.Now.Month,
-                    End_Year = DateTime.Now.Year
+                    End_Year = DateTime.Now.Year,
+                    Collapsed = base.Collapsed
                 });
                 Courses = CheckOrdering(Courses);
             }
@@ -174,6 +175,15 @@ namespace Vitae.Areas.Manage.Pages.Courses
             {
                 Courses[order].End_Day = CorrectDate(Courses[order].End_Year.Value, Courses[order].End_Month.Value, Courses[order].End_Day.Value);
             }
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_COURSES);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(Courses);
 
             FillSelectionViewModel();
 

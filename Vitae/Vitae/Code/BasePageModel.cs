@@ -37,6 +37,9 @@ namespace Vitae.Code
         [BindProperty]
         public bool AddToTop { get; set; }
 
+        [BindProperty]
+        public bool Collapsed { get; set; }
+
         public BasePageModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
         {
             this.localizer = localizer;
@@ -137,6 +140,14 @@ namespace Vitae.Code
             items[order] = items[order + 1];
             items[order].Order = order;
             items[order + 1] = oldItem;
+        }
+
+        protected void Collapse<T>(IList<T> items) where T : BaseVM 
+        {
+            foreach (var item in items)
+            {
+                item.Collapsed = Collapsed;
+            }
         }
 
         protected abstract void FillSelectionViewModel();

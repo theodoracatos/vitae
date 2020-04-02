@@ -11,11 +11,19 @@
                     <label class="control-label" asp-for="@Model.Awards"></label>
                     <div>
                         <button asp-page-handler="AddAward" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold mr-2" disabled="@(Model.Awards?.Count < Model.MaxAwards ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
-                        <div class="form-control d-sm-block d-md-inline mt-2">
+                        <div class="form-control d-sm-block d-md-inline mt-2 mr-2">
                             <div class="pretty p-switch p-slim mr-0">
-                                <input type="checkbox" name="@nameof(Model.AddToTop)" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
+                                <input type="checkbox" name="@nameof(Model.AddToTop)" class="cancel" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
                                 <div class="state">
                                     <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-control d-sm-block d-md-inline mt-2">
+                            <div class="pretty p-switch p-slim mr-0 mr-0">
+                                <input type="checkbox" name="@nameof(Model.Collapsed)" class="cancel" value="true" onclick="$('#btnCollapse').click()" checked="@(Model.Collapsed ? "checked" : null)" />
+                                <div class="state">
+                                    <label asp-for="@Model.Collapsed">@SharedResource.Collapse</label>
                                 </div>
                             </div>
                         </div>
@@ -83,6 +91,7 @@
             <div class="card-footer">
                 <div class="form-row">
                     <div class="form-group col mb-0 text-right">
+                        <button id="btnCollapse" asp-page-handler="Collapse" data-ajax="true" data-ajax-update="#panel" class="d-none"></button>
                         <button type="submit" class="btn btn-primary float-right" disabled="disabled"><i class="fas fa-save fa-fw"></i>@SharedResource.Save</button>
                     </div>
                 </div>

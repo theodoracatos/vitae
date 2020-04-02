@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-
+using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
@@ -87,7 +87,11 @@ namespace Vitae.Areas.Manage.Pages.Awards
         {
             if (Awards.Count < MaxAwards)
             {
-                Awards.Add(new AwardVM() { Order = Awards.Count });
+                Awards.Add(new AwardVM() 
+                { 
+                    Order = Awards.Count,
+                    Collapsed = base.Collapsed
+                });
                 Awards = CheckOrdering(Awards);
             }
             FillSelectionViewModel();
@@ -140,6 +144,15 @@ namespace Vitae.Areas.Manage.Pages.Awards
                 Awards.Add(copy);
                 Awards = CheckOrdering(Awards);
             }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_AWARDS);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(Awards);
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_AWARDS);

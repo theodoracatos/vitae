@@ -10,8 +10,8 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200331215341_v.1.0.5")]
-    partial class v105
+    [Migration("20200401170736_v.1.0.0")]
+    partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -774,7 +774,6 @@ namespace Persistency.Migrations
                         .HasMaxLength(1000);
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 

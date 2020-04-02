@@ -62,10 +62,10 @@ INSERT INTO [Experience]
 VALUES (NEWID(), 'Dozent', 'IFA Weiterbildungs AG', 'https://www.ifa.ch', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Teilzeit-Dozent auf Mandatsbasis', '2019-10-01', null, 0, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Experience]
-VALUES (NEWID(), 'Senior Softwareingenieur', 'Quilvest (Switzerland) Ltd.', 'http://quilvest.com', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Architektur und Fullstack-Entwicklung elektronischer Businessprozesse, realisiert mit neuesten .NET Web-Technologien. Technischer Lead folgender eigenentwickelter Applikationssysteme: Intranet, eBanking, MBO-System, Client-OnBoard-Dokumentenerstellung. Projektleitung mit fachlicher Führung von 5 – 7 Mitarbeitern (länderübergreifend). Regelmässige Schulung und Coaching von Mitarbeitern (auf Deutsch und Englisch)', '2011-02-01', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Senior Softwareingenieur', 'Quilvest (Switzerland) Ltd.', 'http://quilvest.com', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Architektur und Fullstack-Entwicklung elektronischer Businessprozesse, realisiert mit neuesten .NET Web-Technologien. Technischer Lead folgender eigenentwickelter Applikationssysteme: Intranet, eBanking, MBO-System, Client-OnBoard-Dokumentenerstellung. Projektleitung mit fachlicher Führung von 5 – 7 Mitarbeitern (länderübergreifend). Regelmässige Schulung und Coaching von Mitarbeitern (auf Deutsch und Englisch)', '2012-02-01', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Experience]
-VALUES (NEWID(), 'Software Ingenieur', 'Ruf Telematik AG', 'http://ruf.ch', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Architektur, Spezifikation, Design, Implementation, Test und Dokumentation von Softwarekomponenten und Multimediaapplikationen. Projektarbeit: Anforderungsspezifikation, Umsetzung, Engineering, Test und Projektleitung mit direktem Kundenkontakt', '2008-11-01', '2011-01-31', 2, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Software Ingenieur', 'Ruf Telematik AG', 'http://ruf.ch', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Architektur, Spezifikation, Design, Implementation, Test und Dokumentation von Softwarekomponenten und Multimediaapplikationen. Projektarbeit: Anforderungsspezifikation, Umsetzung, Engineering, Test und Projektleitung mit direktem Kundenkontakt', '2008-11-01', '2012-01-31', 2, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Experience]
 VALUES (NEWID(), 'Freelancer', 'Ruf Telematik AG', 'http://ruf.ch', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Entwicklung von Tools und Diagnoseprogrammen für Embedded-Geräte', '2005-09-01', '2008-10-01', 3, (SELECT TOP 1 [PersonID] FROM [Person]))
@@ -104,16 +104,16 @@ INSERT INTO [Award]
 VALUES(NEWID(), 'ZHAW Alumni Award', 'Beste Masterarbeit im Studiengang MAS Wirtschaftsinformatik', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'https://www.zhaw.ch', '2012-01-01', 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Interest]
-VALUES(NEWID(), 'Sport', 'Schwimmen, Tennis und Badminton', null, 0, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Sport', null, 'Schwimmen, Tennis und Badminton', null, 0, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Interest]
-VALUES(NEWID(), 'Kochen', 'Beim Kochen kann ich abschalten und stets Neues ausprobieren', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Kochen', null, 'Beim Kochen kann ich abschalten und stets Neues ausprobieren', null, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Interest]
-VALUES(NEWID(), 'Reisen', 'Reisen, neue Länder und Kulturen haben mich seit jeher fasziniert', null, 2, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Reisen', null, 'Reisen, neue Länder und Kulturen haben mich seit jeher fasziniert', null, 2, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Interest]
-VALUES(NEWID(), 'Kinder', 'Meine beiden Kinder halten mich stets auf Trab', null, 3, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES(NEWID(), 'Kinder', null, 'Meine beiden Kinder halten mich stets auf Trab', null, 3, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Skill]
 VALUES (NEWID(), 'Programmiersprachen', 'C#, Java, Visual Basic, TypeScript / JavaScript, VB', 0, (SELECT TOP 1 [PersonID] FROM [Person]))
@@ -140,7 +140,7 @@ INSERT INTO [Abroad]
 VALUES (NEWID(), (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'sg'), 'Singapore', 'Auslandaufenthalt in Singapur', '2015-01-01', '2018-01-01', 0, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Reference]
-VALUES (NEWID(), 'Wolfgang', 'Schmidt', 1, 'ABB (Schweiz) AG', 'https://abb.ch', 'Ehemaliger Vorgesetzter bei der Ruf Telematik AG', 'wolfgang.schmidt@abb.ch', '78 704 44 38', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 0, (SELECT TOP 1 [PersonID] FROM [Person]))
+VALUES (NEWID(), 'Wolfgang', 'Schmidt', 1, 'ABB (Schweiz) AG', 'https://abb.ch', 'Ehemaliger Vorgesetzter bei der Ruf Telematik AG', 'wolfgang.schmidt@abb.ch', '78 704 44 38', (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 0, 1, (SELECT TOP 1 [PersonID] FROM [Person]))
 
 INSERT INTO [Certificate]
 VALUES (NEWID(), 'Cambridge English Level 2 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, 0, (SELECT TOP 1 [PersonID] FROM [Person]))

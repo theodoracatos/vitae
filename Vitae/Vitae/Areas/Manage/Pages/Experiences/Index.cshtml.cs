@@ -107,7 +107,8 @@ namespace Vitae.Areas.Manage.Pages.Experiences
                     Start_Month = DateTime.Now.Month, 
                     Start_Year = DateTime.Now.Year, 
                     End_Month = DateTime.Now.Month, 
-                    End_Year = DateTime.Now.Year 
+                    End_Year = DateTime.Now.Year,
+                    Collapsed = base.Collapsed
                 });
                 Experiences = CheckOrdering(Experiences);
             }
@@ -161,6 +162,15 @@ namespace Vitae.Areas.Manage.Pages.Experiences
                 Experiences.Add(copy);
                 Experiences = CheckOrdering(Experiences);
             }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_EXPERIENCES);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(Experiences);
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EXPERIENCES);

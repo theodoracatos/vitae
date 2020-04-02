@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="robots" content="noindex">
 
-    <title>CV @Model.PersonalDetail.Firstname @Model.PersonalDetail.Lastname</title>
+    <title>Vitae @Model.PersonalDetail.Firstname @Model.PersonalDetail.Lastname</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/favicon/favicon.ico" />
 
     <partial name="_Styles" />
@@ -260,27 +260,27 @@
                                 <h3 class=" mb-0">
                                     @Model.Languages.Single(l => l.LanguageCode == languageSkill.LanguageCode).Name
                                 </h3>
-                                    <div class="subheading mb-0">
-                                        @{
-                                            switch (languageSkill.Rate)
-                                            {
-                                                case 1:
-                                                    { @SharedResource.KnowledgeBasic; break;
-                                                }
-                                            case 2:
-                                                { @SharedResource.KnowledgeBusinessFluent; break;
+                                <div class="subheading mb-0">
+                                    @{
+                                        switch (languageSkill.Rate)
+                                        {
+                                            case 1:
+                                                { @SharedResource.KnowledgeBasic; break;
                                             }
-                                        case 3:
-                                            { @SharedResource.KnowledgeFluent; break;
+                                        case 2:
+                                            { @SharedResource.KnowledgeBusinessFluent; break;
                                         }
-                                    case 4:
-                                        { @SharedResource.KnowledgeNative; break;
+                                    case 3:
+                                        { @SharedResource.KnowledgeFluent; break;
                                     }
-                                            }
-                                        }
+                                case 4:
+                                    { @SharedResource.KnowledgeNative; break;
+                                }
+                        }
+                                    }
 
-                                    </div>
-                                    <input name="@languageSkill.Rate" type="hidden" class="ratingstar" value="@(languageSkill.Rate)" readonly />
+                                </div>
+                                <input name="@languageSkill.Rate" type="hidden" class="ratingstar" value="@(languageSkill.Rate)" readonly />
                             </div>
                         </div>
                         <hr class="mb-4 pb-2">
@@ -293,22 +293,22 @@
         <!-- #region Interests -->
         @if (Model.Interests.Count > 0)
         {
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Interest).ToLower()">
-        <div class="w-100">
-            <h2 class="mb-5"><i class="fas fa-volleyball-ball mr-3"></i>@SharedResource.Interests</h2>
-            @foreach (var interest in Model.Interests)
-            {
-                <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
-                    <div class="resume-content">
-                        <h3 class="mb-0">@interest.InterestName</h3>
-                        <div class="subheading"><a href="@interest.Link" target="_blank">@interest.Association</a></div>
-                        <p class="mt-3">@interest.Description</p>
-                    </div>
+            <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Interest).ToLower()">
+                <div class="w-100">
+                    <h2 class="mb-5"><i class="fas fa-volleyball-ball mr-3"></i>@SharedResource.Interests</h2>
+                    @foreach (var interest in Model.Interests)
+                    {
+                        <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                            <div class="resume-content">
+                                <h3 class="mb-0">@interest.InterestName</h3>
+                                <div class="subheading"><a href="@interest.Link" target="_blank">@interest.Association</a></div>
+                                <p class="mt-3">@interest.Description</p>
+                            </div>
+                        </div>
+                        <hr class="mb-4 pb-2">
+                    }
                 </div>
-                <hr class="mb-4 pb-2">
-            }
-        </div>
-        </section>
+            </section>
             <hr class="m-0">
         }
         <!-- #endregion -->

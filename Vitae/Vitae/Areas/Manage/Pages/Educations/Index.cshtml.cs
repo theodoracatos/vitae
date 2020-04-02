@@ -109,7 +109,8 @@ namespace Vitae.Areas.Manage.Pages.Educations
                     Start_Month = DateTime.Now.Month,
                     Start_Year = DateTime.Now.Year,
                     End_Month = DateTime.Now.Month,
-                    End_Year = DateTime.Now.Year
+                    End_Year = DateTime.Now.Year,
+                    Collapsed = base.Collapsed
                 });
                 Educations = CheckOrdering(Educations);
             }
@@ -163,6 +164,15 @@ namespace Vitae.Areas.Manage.Pages.Educations
                 Educations.Add(copy);
                 Educations = CheckOrdering(Educations);
             }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_EDUCATIONS);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(Educations);
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EDUCATIONS);

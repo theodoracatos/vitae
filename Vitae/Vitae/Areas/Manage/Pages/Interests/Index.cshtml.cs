@@ -84,7 +84,11 @@ namespace Vitae.Areas.Manage.Pages.Interests
         {
             if (Interests.Count < MaxInterests)
             {
-                Interests.Add(new InterestVM() { Order = Interests.Count });
+                Interests.Add(new InterestVM()
+                { 
+                    Order = Interests.Count,
+                    Collapsed = base.Collapsed
+                });
                 Interests = CheckOrdering(Interests);
             }
             FillSelectionViewModel();
@@ -137,6 +141,15 @@ namespace Vitae.Areas.Manage.Pages.Interests
                 Interests.Add(copy);
                 Interests = CheckOrdering(Interests);
             }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_INTERESTS);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(Interests);
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_INTERESTS);

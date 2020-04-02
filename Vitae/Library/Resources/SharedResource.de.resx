@@ -237,6 +237,9 @@
   <data name="ClickingHere" xml:space="preserve">
     <value>hier klicken</value>
   </data>
+  <data name="Collapse" xml:space="preserve">
+    <value>Elemente zuklappen</value>
+  </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Firmenname</value>
   </data>
@@ -477,6 +480,9 @@
   <data name="Logout" xml:space="preserve">
     <value>Abmelden</value>
   </data>
+  <data name="LongIdentifier" xml:space="preserve">
+    <value>ID</value>
+  </data>
   <data name="Manage" xml:space="preserve">
     <value>Ändern</value>
   </data>
@@ -707,6 +713,12 @@
   </data>
   <data name="SendVerificationEmail" xml:space="preserve">
     <value>Sende E-Mail-Verifikation</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="ShortIdentifier" xml:space="preserve">
+    <value>Kurze ID</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Einloggen</value>

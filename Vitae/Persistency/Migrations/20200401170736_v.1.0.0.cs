@@ -263,7 +263,7 @@ namespace Persistency.Migrations
                 {
                     AwardID = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
-                    Description = table.Column<string>(maxLength: 1000, nullable: false),
+                    Description = table.Column<string>(maxLength: 1000, nullable: true),
                     AwardedFrom = table.Column<string>(maxLength: 100, nullable: false),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
                     AwardedOn = table.Column<DateTime>(nullable: false),
@@ -287,7 +287,7 @@ namespace Persistency.Migrations
                 {
                     CertificateID = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
-                    Description = table.Column<string>(maxLength: 1000, nullable: false),
+                    Description = table.Column<string>(maxLength: 1000, nullable: true),
                     Issuer = table.Column<string>(maxLength: 100, nullable: false),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
                     IssuedOn = table.Column<DateTime>(nullable: false),
@@ -437,6 +437,7 @@ namespace Persistency.Migrations
                 {
                     InterestID = table.Column<Guid>(nullable: false),
                     InterestName = table.Column<string>(maxLength: 100, nullable: false),
+                    Association = table.Column<string>(maxLength: 100, nullable: true),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
                     Order = table.Column<int>(nullable: false),
@@ -491,9 +492,10 @@ namespace Persistency.Migrations
                     CompanyName = table.Column<string>(maxLength: 100, nullable: true),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
-                    Email = table.Column<string>(maxLength: 100, nullable: false),
+                    Email = table.Column<string>(maxLength: 100, nullable: true),
                     PhoneNumber = table.Column<string>(maxLength: 16, nullable: false),
                     CountryID = table.Column<Guid>(nullable: true),
+                    Hide = table.Column<bool>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     PersonID = table.Column<Guid>(nullable: true)
                 },

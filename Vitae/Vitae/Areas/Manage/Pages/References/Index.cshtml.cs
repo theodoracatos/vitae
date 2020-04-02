@@ -102,7 +102,11 @@ namespace Vitae.Areas.Manage.Pages.References
         {
             if (References.Count < MaxReferences)
             {
-                References.Add(new ReferenceVM() { Order = References.Count });
+                References.Add(new ReferenceVM() 
+                { 
+                    Order = References.Count,
+                    Collapsed = base.Collapsed
+                });
                 References = CheckOrdering(References);
             }
             FillSelectionViewModel();
@@ -155,6 +159,15 @@ namespace Vitae.Areas.Manage.Pages.References
                 References.Add(copy);
                 References = CheckOrdering(References);
             }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_REFERENCES);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(References);
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_REFERENCES);

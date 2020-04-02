@@ -104,7 +104,8 @@ namespace Vitae.Areas.Manage.Pages.Abroads
                     Start_Month = DateTime.Now.Month,
                     Start_Year = DateTime.Now.Year,
                     End_Month = DateTime.Now.Month,
-                    End_Year = DateTime.Now.Year
+                    End_Year = DateTime.Now.Year,
+                    Collapsed = base.Collapsed
                 });
                 Abroads = CheckOrdering(Abroads);
             }
@@ -158,6 +159,15 @@ namespace Vitae.Areas.Manage.Pages.Abroads
                 Abroads.Add(copy);
                 Abroads = CheckOrdering(Abroads);
             }
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_ABROADS);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(Abroads);
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_ABROADS);

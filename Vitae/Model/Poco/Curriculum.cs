@@ -12,7 +12,7 @@ namespace Model.Poco
 
         public string ShortIdentifier { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(200)]
         public string FriendlyId { get; set; }
 
         [MaxLength(100)]
