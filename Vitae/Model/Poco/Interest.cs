@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
-    public class Interest
+    public class Interest : Base
     {
         [Key]
         public Guid InterestID { get; set; }
@@ -20,7 +20,5 @@ namespace Model.Poco
 
         [MaxLength(255)]
         public string Link { get; set; }
-
-        public int Order { get; set; }
     }
 }

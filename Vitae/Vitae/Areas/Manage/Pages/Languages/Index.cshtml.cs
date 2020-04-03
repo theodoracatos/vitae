@@ -66,7 +66,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
                     {
                         Order = l.Order,
                         Rate = l.Rate,
-                        Language = vitaeContext.Languages.Single(la => la.LanguageCode == l.LanguageCode)
+                        SpokenLanguage = vitaeContext.Languages.Single(la => la.LanguageCode == l.LanguageCode)
                     }).ToList();
                 curriculum.LastUpdated = DateTime.Now;
 

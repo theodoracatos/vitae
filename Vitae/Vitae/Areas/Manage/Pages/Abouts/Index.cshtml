@@ -1,10 +1,10 @@
 ﻿@page
-@model Vitae.Areas.Manage.Pages.About.IndexModel
+@model Vitae.Areas.Manage.Pages.Abouts.IndexModel
 
 @{
     ViewData["Title"] = @SharedResource.About;
 }
 
 <form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
-    <partial name="@IndexModel.PAGE_ABOUT" model="Model" />
+    <partial name="@IndexModel.PAGE_ABOUTS" model="Model" />
 </form>

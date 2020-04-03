@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
-    public class Certificate
+    public class Certificate : Base
     {
         [Key]
         public Guid CertificateID { get; set; }
@@ -25,7 +25,5 @@ namespace Model.Poco
         public DateTime IssuedOn { get; set; }
 
         public DateTime? ExpiresOn { get; set; }
-
-        public int Order { get; set; }
     }
 }

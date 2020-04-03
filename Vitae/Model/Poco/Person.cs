@@ -9,11 +9,8 @@ namespace Model.Poco
         [Key]
         public Guid PersonID { get; set; }
 
-        public string Language { get; set; }
-
-        public virtual PersonalDetail PersonalDetail { get; set; }
-
-        public virtual About About { get; set; }
+        public virtual ICollection<PersonalDetail> PersonalDetails { get; set; }
+        public virtual ICollection<About> Abouts { get; set; }
         public virtual ICollection<Abroad> Abroads { get; set; }
         public virtual ICollection<Award> Awards { get; set; }
         public virtual ICollection<Certificate> Certificates { get; set; }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
-    public class Skill
+    public class Skill : Base
     {
         [Key]
         public Guid SkillID { get; set; }
@@ -14,7 +14,5 @@ namespace Model.Poco
 
         [MaxLength(1000)]
         public string Skillset { get; set; }
-
-        public int Order { get; set; }
     }
 }

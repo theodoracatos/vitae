@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Poco
 {
-    public class About
+    public class About : Base
     {
         [Key]
         public Guid AboutID { get; set; }

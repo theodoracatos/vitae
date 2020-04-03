@@ -1,0 +1,15 @@
+﻿using System;
+
+namespace Model.Poco
+{
+    public class CurriculumLanguage
+    {
+        public Guid CurriculumID { get; set; }
+        public Curriculum Curriculum { get; set; }
+
+        public Guid LanguageID { get; set; }
+        public Language Language { get; set; }
+
+        public int Order { get; set; }
+    }
+}

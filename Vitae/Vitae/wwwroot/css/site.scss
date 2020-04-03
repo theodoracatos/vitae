@@ -156,7 +156,7 @@ i.sideIcon {
     box-shadow: 0 0 0 0.2rem rgba(208, 187, 149, 0.5) !important;
 }
 
-button.dropdown-toggle {
+button:not(.grey).dropdown-toggle {
     background-color: #ffffff !important;
     border-color: rgb(206, 212, 218);
     cursor: default !important;

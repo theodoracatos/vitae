@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Model.ViewModels
 {
@@ -9,5 +8,8 @@ namespace Model.ViewModels
     {
         public bool Collapsed { get; set; }
         public int Order { get; set; }
+
+        public string CurriculumLanguageCode { get; set; }
+        public IEnumerable<LanguageVM> CurriculumLanguages { get; set; }
     }
 }

@@ -3,10 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Poco
 {
-    public class PersonalDetail
+    public class PersonalDetail : Base
     {
         [Key]
         public Guid PersonalDetailID { get; set; }
@@ -55,7 +56,9 @@ namespace Model.Poco
         public MaritalStatus MaritalStatus { get; set; }
 
         public virtual Country Country { get; set; }
-        public virtual Language Language { get; set; }
+
+        [ForeignKey("SpokenLanguageID")]
+        public virtual Language SpokenLanguage { get; set; }
 
         public virtual ICollection<Child> Children { get; set; }
         public virtual ICollection<PersonCountry> PersonCountries { get; set; }

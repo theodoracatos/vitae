@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
@@ -10,18 +11,14 @@ namespace Model.Poco
 
         public Guid UserID { get; set; }
 
-        public string ShortIdentifier { get; set; }
-
-        [MaxLength(200)]
-        public string FriendlyId { get; set; }
-
-        [MaxLength(100)]
-        public string Password { get; set; }
-
         public DateTime CreatedOn { get; set; }
+
+        public string Language { get; set; }
 
         public DateTime LastUpdated { get; set; }
 
         public virtual Person Person { get; set; }
+
+        public virtual ICollection<CurriculumLanguage> CurriculumLanguages { get; set; }
     }
 }
