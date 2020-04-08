@@ -200,13 +200,6 @@ namespace Vitae.Areas.Manage.Pages.Personalities
             return GetPartialViewResult(PAGE_PERSONALITIES);
         }
 
-        public IActionResult OnPostLanguageChange()
-        {
-            FillSelectionViewModel();
-
-            return GetPartialViewResult(PAGE_PERSONALITIES);
-        }
-
         #endregion
 
         #region Helper

@@ -1,8 +1,7 @@
-﻿declare var jQuery;
-declare var $;
-declare var Resources;
-declare var Chart;
-declare var autosize;
+﻿/* eslint-disable */
+
+declare let Chart;
+declare let autosize;
 
 $(document).ready(function () {
     addJQueryValidators();
