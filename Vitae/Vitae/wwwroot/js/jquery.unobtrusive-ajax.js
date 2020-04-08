@@ -74,7 +74,8 @@ $(document).ready(function () {
     }
 
     function asyncRequest(element, options) {
-        var confirm, loading, method, duration;
+        var confirm, loading, method, duration, dirtyignore;
+        dirtyignore = element.getAttribute("data-dirty-ignore");
         confirm = element.getAttribute("data-ajax-confirm");
         if (confirm && !window.confirm(confirm)) {
             return;
@@ -103,7 +104,7 @@ $(document).ready(function () {
             success: function (data, status, xhr) {
                 asyncOnSuccess(element, data, xhr.getResponseHeader("Content-Type") || "text/html");
                 getFunction(element.getAttribute("data-ajax-success"), ["data", "status", "xhr"]).apply(element, arguments);
-                ajaxCompleted(); // QVS
+                ajaxCompleted(dirtyignore); // QVS
                 loading.hide();
             },
             error: function () {
@@ -184,6 +185,7 @@ $(document).ready(function () {
 
         $(form).attr('data-ajax-update', $(this).attr('data-ajax-update'));
         $(form).attr('data-ajax', 'true');
+        $(form).attr('data-dirty-ignore', $(this).hasClass('dirty-ignore'));
         form.data(data_click, name ? [{ name: name, value: evt.currentTarget.value }] : []);
         form.data(data_target, target);
     });

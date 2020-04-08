@@ -40,6 +40,11 @@ namespace Vitae.Code
         [BindProperty]
         public bool Collapsed { get; set; }
 
+        [BindProperty]
+        public string CurriculumLanguageCode { get; set; }
+
+        public IEnumerable<LanguageVM> CurriculumLanguages { get; set; }
+
         public BasePageModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
         {
             this.localizer = localizer;

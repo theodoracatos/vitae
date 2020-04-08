@@ -11,11 +11,13 @@ $(document).ready(function () {
     setupDirtyForms(false);
 });
 
-function ajaxCompleted() {
+function ajaxCompleted(dirtyignore) {
     loadingProcedure();
     startRating();
     resetFormValidator('form');
-    setupDirtyForms(true);
+    if (dirtyignore === 'false') {
+        setupDirtyForms(true);
+    }
 }
 
 function setupDirtyForms(asyncCall) {
@@ -24,6 +26,7 @@ function setupDirtyForms(asyncCall) {
     }
     else {
         $('form').dirtyForms({
+            ignoreSelector: '.dirty-ignore',
             helpers:
                 [
                     {

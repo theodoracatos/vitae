@@ -45,7 +45,10 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             else
             {
                 var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                About = repository.GetAbout(curriculum);
+                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
+                
+                LoadAbouts(curriculum, CurriculumLanguageCode);
+                FillSelectionViewModel();
 
                 return Page();
             }
@@ -72,11 +75,12 @@ namespace Vitae.Areas.Manage.Pages.Abouts
                 var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 vitaeContext.RemoveRange(curriculum.Person.Abouts);
 
-                var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language; // Always take 1st language!
+                var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Language.LanguageCode == CurriculumLanguageCode).Language;
                 var about = curriculum.Person.Abouts.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new About() { };
                 about.AcademicTitle = About.AcademicTitle;
                 about.Slogan = About.Slogan;
                 about.Photo = About.Photo;
+                about.CurriculumLanguage = currentLanguage;
 
                 if (About.Vfile?.Content != null)
                 {
@@ -115,6 +119,8 @@ namespace Vitae.Areas.Manage.Pages.Abouts
                 await vitaeContext.SaveChangesAsync();
             }
 
+            FillSelectionViewModel();
+
             return Page();
         }
 
@@ -128,10 +134,37 @@ namespace Vitae.Areas.Manage.Pages.Abouts
 
             return GetPartialViewResult(PAGE_ABOUTS);
         }
+
+        public async Task<IActionResult> OnPostLanguageChangeAsync()
+        {
+            var curriculum = await repository.GetCurriculumAsync(curriculumID);
+
+            LoadAbouts(curriculum, CurriculumLanguageCode);
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_ABOUTS);
+        }
+
         #endregion
 
         #region Helper
-        protected override void FillSelectionViewModel() { }
+        protected override void FillSelectionViewModel() 
+        {
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
+        }
+
+        private void LoadAbouts(Curriculum curriculum, string languageCode)
+        {
+            About = repository.GetAbouts(curriculum)
+                   .SingleOrDefault(a => a.CurriculumLanguageCode == languageCode)
+                   ?? new AboutVM()
+                   {
+                       Vfile = new VfileVM()
+                       {
+                           Identifier = Guid.Empty
+                       }
+                   };
+        }
         #endregion
     }
 }

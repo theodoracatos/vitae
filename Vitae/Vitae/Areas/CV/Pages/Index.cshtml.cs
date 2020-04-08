@@ -31,8 +31,8 @@ namespace Vitae.Areas.CV.Pages
         public Guid CurriculumID { get { return curriculumID; } }
 
         public PersonalDetailVM PersonalDetail { get; set; }
-        public AboutVM About { get; set; }
-
+        
+        public IList<AboutVM> Abouts { get; set; }
         public IList<AwardVM> Awards { get; set; } = new List<AwardVM>();
         public IList<EducationVM> Educations { get; set; } = new List<EducationVM>();
         public IList<ExperienceVM> Experiences { get; set; } = new List<ExperienceVM>();
@@ -62,7 +62,7 @@ namespace Vitae.Areas.CV.Pages
             else
             {
                 PersonalDetail = repository.GetPersonalDetail(curriculum);
-                About = repository.GetAbout(curriculum);
+                Abouts = repository.GetAbouts(curriculum);
                 SocialLinks = repository.GetSocialLinks(curriculum);
                 Educations = repository.GetEducations(curriculum);
                 Experiences = repository.GetExperiences(curriculum);

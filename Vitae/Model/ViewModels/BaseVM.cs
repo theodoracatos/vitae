@@ -10,6 +10,5 @@ namespace Model.ViewModels
         public int Order { get; set; }
 
         public string CurriculumLanguageCode { get; set; }
-        public IEnumerable<LanguageVM> CurriculumLanguages { get; set; }
     }
 }

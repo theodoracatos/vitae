@@ -200,6 +200,13 @@ namespace Vitae.Areas.Manage.Pages.Personalities
             return GetPartialViewResult(PAGE_PERSONALITIES);
         }
 
+        public IActionResult OnPostLanguageChange()
+        {
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_PERSONALITIES);
+        }
+
         #endregion
 
         #region Helper
@@ -210,8 +217,8 @@ namespace Vitae.Areas.Manage.Pages.Personalities
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             Nationalities = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
             PersonalDetail.PhonePrefix = repository.GetPhonePrefix(PersonalDetail.CountryCode);
-            PersonalDetail.CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
         }
         #endregion
     }

@@ -167,7 +167,7 @@ namespace Library.Repository
             await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.CurriculumLanguage).LoadAsync();
             await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.PersonCountries).ThenInclude(pc => pc.Country).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Abouts).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Abouts).ThenInclude(a => a.Vfile).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.Abouts).ThenInclude(a => a.Vfile).Include(a => a.CurriculumLanguages).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Abroads).ThenInclude(a => a.Country).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Awards).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Courses).ThenInclude(c => c.Country).LoadAsync();
@@ -288,23 +288,23 @@ namespace Library.Repository
             return personVM;
         }
 
-        public AboutVM GetAbout(Curriculum curriculum)
+        public IList<AboutVM> GetAbouts(Curriculum curriculum)
         {
-            var about = curriculum.Person.Abouts.SingleOrDefault(pd => pd.CurriculumLanguage == curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language);
+            var aboutsVM = curriculum.Person.Abouts.OrderBy(aw => aw.Order)
+               .Select(a => new AboutVM()
+               {
+                   AcademicTitle = a.AcademicTitle,
+                   Photo = a.Photo,
+                   Slogan = a.Slogan,
+                   CurriculumLanguageCode = a.CurriculumLanguage.LanguageCode,
+                   Vfile = new VfileVM()
+                   {
+                       FileName = a.Vfile?.FileName,
+                       Identifier = a.Vfile?.Identifier ?? Guid.Empty
+                   }
+               }).ToList();
 
-            var aboutVM = new AboutVM()
-            {
-                AcademicTitle = about?.AcademicTitle,
-                Photo = about?.Photo,
-                Slogan = about?.Slogan,
-                Vfile = new VfileVM()
-                {
-                    FileName = about?.Vfile?.FileName,
-                    Identifier = about?.Vfile?.Identifier ?? Guid.Empty
-                }
-            };
-
-            return aboutVM;
+            return aboutsVM;
         }
 
         public IList<AwardVM> GetAwards(Curriculum curriculum)
