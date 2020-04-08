@@ -52,11 +52,11 @@ namespace Persistency.Data
             modelBuilder.Entity<CurriculumLanguage>()
                 .HasOne(cu => cu.Curriculum)
                 .WithMany(c => c.CurriculumLanguages)
-                .HasForeignKey(cu => cu.LanguageID);
+                .HasForeignKey(cu => cu.CurriculumID);
             modelBuilder.Entity<CurriculumLanguage>()
                 .HasOne(la => la.Language)
                 .WithMany(l => l.CurriculumLanguages)
-                .HasForeignKey(la => la.CurriculumID);
+                .HasForeignKey(la => la.LanguageID);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

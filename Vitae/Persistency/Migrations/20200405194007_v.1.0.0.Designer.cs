@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200403210918_v.1.0.0")]
+    [Migration("20200405194007_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,7 +31,7 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<Guid?>("LanguageID")
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Order")
@@ -53,7 +53,7 @@ namespace Persistency.Migrations
 
                     b.HasKey("AboutID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -76,15 +76,15 @@ namespace Persistency.Migrations
                     b.Property<Guid>("CountryID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("LanguageID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Order")
                         .HasColumnType("int");
@@ -99,7 +99,7 @@ namespace Persistency.Migrations
 
                     b.HasIndex("CountryID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -120,12 +120,12 @@ namespace Persistency.Migrations
                     b.Property<DateTime>("AwardedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
-
-                    b.Property<Guid?>("LanguageID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(255)")
@@ -144,7 +144,7 @@ namespace Persistency.Migrations
 
                     b.HasKey("AwardID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -155,6 +155,9 @@ namespace Persistency.Migrations
                 {
                     b.Property<Guid>("CertificateID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -171,9 +174,6 @@ namespace Persistency.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
-
-                    b.Property<Guid?>("LanguageID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(255)")
@@ -192,7 +192,7 @@ namespace Persistency.Migrations
 
                     b.HasKey("CertificateID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -289,15 +289,15 @@ namespace Persistency.Migrations
                     b.Property<Guid>("CountryID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("LanguageID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(255)")
@@ -326,7 +326,7 @@ namespace Persistency.Migrations
 
                     b.HasIndex("CountryID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -393,6 +393,9 @@ namespace Persistency.Migrations
                     b.Property<Guid>("CountryID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
@@ -402,9 +405,6 @@ namespace Persistency.Migrations
 
                     b.Property<float?>("Grade")
                         .HasColumnType("real");
-
-                    b.Property<Guid?>("LanguageID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(255)")
@@ -438,7 +438,7 @@ namespace Persistency.Migrations
 
                     b.HasIndex("CountryID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -464,6 +464,9 @@ namespace Persistency.Migrations
                     b.Property<Guid>("CountryID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
@@ -475,9 +478,6 @@ namespace Persistency.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
-
-                    b.Property<Guid?>("LanguageID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(255)")
@@ -496,7 +496,7 @@ namespace Persistency.Migrations
 
                     b.HasIndex("CountryID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -513,6 +513,9 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
@@ -521,9 +524,6 @@ namespace Persistency.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
-
-                    b.Property<Guid?>("LanguageID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(255)")
@@ -537,7 +537,7 @@ namespace Persistency.Migrations
 
                     b.HasKey("InterestID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -594,7 +594,7 @@ namespace Persistency.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("LanguageID")
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Order")
@@ -611,7 +611,7 @@ namespace Persistency.Migrations
 
                     b.HasKey("LanguageSkillID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -750,6 +750,9 @@ namespace Persistency.Migrations
                     b.Property<Guid?>("CountryID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
@@ -762,9 +765,6 @@ namespace Persistency.Migrations
 
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
-
-                    b.Property<Guid?>("LanguageID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Lastname")
                         .IsRequired()
@@ -808,7 +808,7 @@ namespace Persistency.Migrations
 
                     b.HasIndex("CountryID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -830,6 +830,9 @@ namespace Persistency.Migrations
                     b.Property<Guid?>("CountryID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
@@ -848,9 +851,6 @@ namespace Persistency.Migrations
 
                     b.Property<bool>("Hide")
                         .HasColumnType("bit");
-
-                    b.Property<Guid?>("LanguageID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Lastname")
                         .IsRequired()
@@ -876,7 +876,7 @@ namespace Persistency.Migrations
 
                     b.HasIndex("CountryID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -932,7 +932,7 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<Guid?>("LanguageID")
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Order")
@@ -947,7 +947,7 @@ namespace Persistency.Migrations
 
                     b.HasKey("SkillID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -960,7 +960,7 @@ namespace Persistency.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("LanguageID")
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Link")
@@ -979,7 +979,7 @@ namespace Persistency.Migrations
 
                     b.HasKey("SocialLinkID");
 
-                    b.HasIndex("LanguageID");
+                    b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.HasIndex("PersonID");
 
@@ -1014,9 +1014,9 @@ namespace Persistency.Migrations
 
             modelBuilder.Entity("Model.Poco.About", b =>
                 {
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("Abouts")
@@ -1035,9 +1035,9 @@ namespace Persistency.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("Abroads")
@@ -1046,9 +1046,9 @@ namespace Persistency.Migrations
 
             modelBuilder.Entity("Model.Poco.Award", b =>
                 {
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("Awards")
@@ -1057,9 +1057,9 @@ namespace Persistency.Migrations
 
             modelBuilder.Entity("Model.Poco.Certificate", b =>
                 {
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("Certificates")
@@ -1081,9 +1081,9 @@ namespace Persistency.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("Courses")
@@ -1099,13 +1099,13 @@ namespace Persistency.Migrations
 
             modelBuilder.Entity("Model.Poco.CurriculumLanguage", b =>
                 {
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Curriculum", "Curriculum")
                         .WithMany("CurriculumLanguages")
                         .HasForeignKey("CurriculumID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Poco.Curriculum", "Curriculum")
+                    b.HasOne("Model.Poco.Language", "Language")
                         .WithMany("CurriculumLanguages")
                         .HasForeignKey("LanguageID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1120,9 +1120,9 @@ namespace Persistency.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("Educations")
@@ -1137,9 +1137,9 @@ namespace Persistency.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("Experiences")
@@ -1148,9 +1148,9 @@ namespace Persistency.Migrations
 
             modelBuilder.Entity("Model.Poco.Interest", b =>
                 {
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("Interests")
@@ -1159,9 +1159,9 @@ namespace Persistency.Migrations
 
             modelBuilder.Entity("Model.Poco.LanguageSkill", b =>
                 {
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("LanguageSkills")
@@ -1193,9 +1193,9 @@ namespace Persistency.Migrations
                         .WithMany()
                         .HasForeignKey("CountryID");
 
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("PersonalDetails")
@@ -1212,9 +1212,9 @@ namespace Persistency.Migrations
                         .WithMany()
                         .HasForeignKey("CountryID");
 
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("References")
@@ -1230,9 +1230,9 @@ namespace Persistency.Migrations
 
             modelBuilder.Entity("Model.Poco.Skill", b =>
                 {
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("Skills")
@@ -1241,9 +1241,9 @@ namespace Persistency.Migrations
 
             modelBuilder.Entity("Model.Poco.SocialLink", b =>
                 {
-                    b.HasOne("Model.Poco.Language", "Language")
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
-                        .HasForeignKey("LanguageID");
+                        .HasForeignKey("CurriculumLanguageLanguageID");
 
                     b.HasOne("Model.Poco.Person", null)
                         .WithMany("SocialLinks")

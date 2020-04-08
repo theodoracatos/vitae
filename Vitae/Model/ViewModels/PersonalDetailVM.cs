@@ -84,7 +84,7 @@ namespace Model.ViewModels
 
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.MaritalStatus), Prompt = nameof(SharedResource.MaritalStatus))]
-        public MaritalStatus MaritalStatus { get; set; }
+        public MaritalStatus? MaritalStatus { get; set; }
 
         public string PhonePrefix { get; set; }
 

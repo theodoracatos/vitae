@@ -1,4 +1,6 @@
 ﻿using Library.Constants;
+using Library.Extensions;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -77,6 +79,80 @@ namespace Library.Repository
             return curriculum;
         }
 
+        public async Task ChangeCurriculumLanguage(Guid curriculumID, string languageCodeToChange, string languageCode)
+        {
+            await CopyItemsFromCurriculumLanguage(curriculumID, languageCodeToChange, languageCode, true);
+        }
+
+        public async Task CopyItemsFromCurriculumLanguage(Guid curriculumID, string languageCodeToCopy, string languageCode, bool moveOnly = false)
+        {
+            var curriculum = await GetCurriculumAsync(curriculumID);
+            var newLanguage = vitaeContext.CurriculumLanguages.Single(c => c.CurriculumID == curriculumID && c.Language.LanguageCode == languageCode).Language;
+
+            curriculum.Person.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.Abouts.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            curriculum.Person.Abroads.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.Abroads.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            curriculum.Person.Awards.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.Awards.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            curriculum.Person.Courses.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.Courses.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            curriculum.Person.Certificates.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.Certificates.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            curriculum.Person.Educations.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.Educations.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            curriculum.Person.Experiences.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.Experiences.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            curriculum.Person.Interests.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.Interests.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            curriculum.Person.LanguageSkills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.LanguageSkills.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            curriculum.Person.LanguageSkills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.LanguageSkills.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            curriculum.Person.Skills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.Skills.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            curriculum.Person.SocialLinks.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.SocialLinks.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            curriculum.Person.References.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
+                .ToList().ForEach(a => curriculum.Person.References.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+
+            await vitaeContext.SaveChangesAsync();
+        }
+
+        public async Task RemoveCurriculumLanguageItemsAsync(Guid curriculumID, string languageCode)
+        {
+            var curriculum = await GetCurriculumAsync(curriculumID);
+            Func<Base, bool> removeQuery = x => x.CurriculumLanguage.LanguageCode == languageCode;
+
+            vitaeContext.RemoveRange(curriculum.Person.PersonalDetails.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Person.Abouts.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Person.Abroads.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Person.Awards.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Person.Courses.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Person.Certificates.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Person.Educations.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Person.Experiences.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Person.Interests.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Person.LanguageSkills.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Person.Skills.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Person.SocialLinks.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Person.References.Where(removeQuery));
+
+            await vitaeContext.SaveChangesAsync();
+        }
+
         public async Task<Curriculum> GetCurriculumAsync(Guid curriculumID)
         {
             var curriculumQuery = vitaeContext.Curriculums
@@ -88,7 +164,7 @@ namespace Library.Repository
             await curriculumQuery.Include(c => c.Person.PersonalDetails).LoadAsync();
             await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.Children).LoadAsync();
             await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.Language).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.CurriculumLanguage).LoadAsync();
             await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.PersonCountries).ThenInclude(pc => pc.Country).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Abouts).LoadAsync();
             await curriculumQuery.Include(c => c.Person.Abouts).ThenInclude(a => a.Vfile).LoadAsync();
@@ -165,14 +241,15 @@ namespace Library.Repository
                                            uiCulture == "fr" ? cl.Language.Name_fr :
                                            uiCulture == "it" ? cl.Language.Name_it :
                                            uiCulture == "es" ? cl.Language.Name_es :
-                                        cl.Language.Name
+                                        cl.Language.Name,
+                                        Order = cl.Order
                                     }).OrderBy(l => l.Order);
             return languagesVM;
         }
 
         public PersonalDetailVM GetPersonalDetail(Curriculum curriculum, string email = null)
         {
-            var personalDetail = curriculum.Person.PersonalDetails.SingleOrDefault(pd => pd.Language == curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language);
+            var personalDetail = curriculum.Person.PersonalDetails.SingleOrDefault(pd => pd.CurriculumLanguage == curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language);
 
             var personVM = new PersonalDetailVM()
             {
@@ -186,14 +263,14 @@ namespace Library.Repository
                 Firstname = personalDetail?.Firstname,
                 Lastname = personalDetail?.Lastname,
                 Gender = personalDetail?.Gender,
-                LanguageCode = personalDetail?.Language.LanguageCode,
+                LanguageCode = personalDetail?.CurriculumLanguage.LanguageCode,
                 MobileNumber = personalDetail?.MobileNumber,
                 Street = personalDetail?.Street,
                 StreetNo = personalDetail?.StreetNo,
                 ZipCode = personalDetail?.ZipCode,
                 State = personalDetail?.State,
                 PhonePrefix = GetPhonePrefix(personalDetail?.Country.CountryCode),
-                MaritalStatus = personalDetail?.MaritalStatus ?? MaritalStatus.NoInformation,
+                MaritalStatus = personalDetail?.MaritalStatus,
                 Children = personalDetail?.Children?.OrderBy(c => c.Order)
                 .Select(n => new ChildVM
                 {
@@ -211,20 +288,21 @@ namespace Library.Repository
             return personVM;
         }
 
-        public IList<AboutVM> GetAbouts(Curriculum curriculum)
+        public AboutVM GetAbout(Curriculum curriculum)
         {
-            var aboutVM = curriculum.Person.Abouts?.OrderBy(a => a.Order)
-                .Select(a => new AboutVM()
+            var about = curriculum.Person.Abouts.SingleOrDefault(pd => pd.CurriculumLanguage == curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language);
+
+            var aboutVM = new AboutVM()
+            {
+                AcademicTitle = about?.AcademicTitle,
+                Photo = about?.Photo,
+                Slogan = about?.Slogan,
+                Vfile = new VfileVM()
                 {
-                    AcademicTitle = a.AcademicTitle,
-                    Photo = a.Photo,
-                    Slogan = a.Slogan,
-                    Vfile = new VfileVM()
-                    {
-                        FileName = a.Vfile?.FileName,
-                        Identifier = a.Vfile?.Identifier ?? Guid.Empty
-                    }
-                }).ToList();
+                    FileName = about?.Vfile?.FileName,
+                    Identifier = about?.Vfile?.Identifier ?? Guid.Empty
+                }
+            };
 
             return aboutVM;
         }
@@ -481,6 +559,15 @@ namespace Library.Repository
             return lastHits;
         }
 
+        #endregion
+
+        #region Helper
+        private T SetLCurriculumanguage<T>(T basePoco, Language language) where T : Base
+        {
+            basePoco.CurriculumLanguage = language;
+
+            return basePoco;
+        }
         #endregion
     }
 }

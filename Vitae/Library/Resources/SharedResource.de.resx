@@ -270,6 +270,15 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Passwort bestätigen</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopieren</value>
+  </data>
+  <data name="CopyValues" xml:space="preserve">
+    <value>Werte kopieren</value>
+  </data>
+  <data name="CopyValuesDescription" xml:space="preserve">
+    <value>Kopiert alle Werte von der ersten Sprache</value>
+  </data>
   <data name="CountryCode" xml:space="preserve">
     <value>Code</value>
   </data>
@@ -288,11 +297,17 @@
   <data name="CurrentPassword" xml:space="preserve">
     <value>Aktuelles Passwort</value>
   </data>
+  <data name="CurriculumLanguage" xml:space="preserve">
+    <value>Sprachversion</value>
+  </data>
   <data name="CurriculumVitae" xml:space="preserve">
     <value>Curriculum Vitae</value>
   </data>
   <data name="CV" xml:space="preserve">
     <value>Lebenslauf</value>
+  </data>
+  <data name="CVLanguage" xml:space="preserve">
+    <value>CV Sprache</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
@@ -346,7 +361,7 @@
     <value>Ende</value>
   </data>
   <data name="EnterSkill" xml:space="preserve">
-    <value>Bitte drücken Sie die Enter-Taste um einen neue Kompetenz einzufügen</value>
+    <value>Bitte drücken Sie die Enter-Taste um eine neue Kompetenz einzufügen</value>
   </data>
   <data name="ErrorConfirmEmail" xml:space="preserve">
     <value>Fehler bei der Bestätigung Ihrer E-Mail.</value>
@@ -395,6 +410,9 @@
   </data>
   <data name="Homepage" xml:space="preserve">
     <value>Startseite</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importieren</value>
   </data>
   <data name="Interest" xml:space="preserve">
     <value>Interesse</value>
@@ -446,6 +464,9 @@
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Sprachen</value>
+  </data>
+  <data name="LanguageVersions" xml:space="preserve">
+    <value>Sprachversionen</value>
   </data>
   <data name="Lastname" xml:space="preserve">
     <value>Nachname</value>
@@ -529,7 +550,7 @@
     <value>Nationalität</value>
   </data>
   <data name="NeverExpires" xml:space="preserve">
-    <value>Nie</value>
+    <value>Unbegrenzt gültig</value>
   </data>
   <data name="NewEmail" xml:space="preserve">
     <value>Neue E-Mail</value>
@@ -556,7 +577,7 @@
     <value>Keine Suchergebnisse für {0}</value>
   </data>
   <data name="NrOfCVHits" xml:space="preserve">
-    <value>CV-Zugriffe (letzte 30 Tage)</value>
+    <value>CV-Aufrufe (letzte 30 Tage)</value>
   </data>
   <data name="NrOfLogins" xml:space="preserve">
     <value>Logins (letzte 30 Tage)</value>

@@ -270,6 +270,15 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm password</value>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="CopyValues" xml:space="preserve">
+    <value>Copy values</value>
+  </data>
+  <data name="CopyValuesDescription" xml:space="preserve">
+    <value>Copies all values from the first language</value>
+  </data>
   <data name="CountryCode" xml:space="preserve">
     <value>Code</value>
   </data>
@@ -288,11 +297,17 @@
   <data name="CurrentPassword" xml:space="preserve">
     <value>Current password</value>
   </data>
+  <data name="CurriculumLanguage" xml:space="preserve">
+    <value>Curriculum language</value>
+  </data>
   <data name="CurriculumVitae" xml:space="preserve">
     <value>Curriculum Vitae</value>
   </data>
   <data name="CV" xml:space="preserve">
     <value>CV</value>
+  </data>
+  <data name="CVLanguage" xml:space="preserve">
+    <value>CV language</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
@@ -396,6 +411,9 @@
   <data name="Homepage" xml:space="preserve">
     <value>Homepage</value>
   </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
   <data name="Interest" xml:space="preserve">
     <value>Interest</value>
   </data>
@@ -446,6 +464,9 @@
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
+  </data>
+  <data name="LanguageVersions" xml:space="preserve">
+    <value>Language versions</value>
   </data>
   <data name="Lastname" xml:space="preserve">
     <value>Lastname</value>
@@ -522,6 +543,9 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="Name1" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="Nationalities" xml:space="preserve">
     <value>Nationalities</value>
   </data>
@@ -529,7 +553,7 @@
     <value>Nationality</value>
   </data>
   <data name="NeverExpires" xml:space="preserve">
-    <value>Never</value>
+    <value>Never expires</value>
   </data>
   <data name="NewEmail" xml:space="preserve">
     <value>New email</value>
@@ -556,7 +580,7 @@
     <value>No results for {0}</value>
   </data>
   <data name="NrOfCVHits" xml:space="preserve">
-    <value>CV hits (last 30 days)</value>
+    <value>CV calls (last 30 days)</value>
   </data>
   <data name="NrOfLogins" xml:space="preserve">
     <value>Logins (last 30 days)</value>
@@ -643,7 +667,7 @@
     <value>Knowledge</value>
   </data>
   <data name="Reference" xml:space="preserve">
-    <value>References</value>
+    <value>Reference</value>
   </data>
   <data name="References" xml:space="preserve">
     <value>References</value>
@@ -727,7 +751,7 @@
     <value>Single</value>
   </data>
   <data name="SingleDay" xml:space="preserve">
-    <value>SingleDay</value>
+    <value>Single day</value>
   </data>
   <data name="Skill" xml:space="preserve">
     <value>Skill</value>

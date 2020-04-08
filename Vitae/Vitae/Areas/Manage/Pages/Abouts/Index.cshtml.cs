@@ -29,7 +29,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
         public const string PAGE_ABOUTS = "_Abouts";
 
         [BindProperty]
-        public IList<AboutVM> Abouts { get; set; }
+        public AboutVM About { get; set; }
 
         public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
             : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
@@ -45,7 +45,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             else
             {
                 var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                Abouts = repository.GetAbouts(curriculum);
+                About = repository.GetAbout(curriculum);
 
                 return Page();
             }
@@ -69,45 +69,49 @@ namespace Vitae.Areas.Manage.Pages.Abouts
         {
             if (ModelState.IsValid)
             {
-                //var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                //curriculum.Person.About = curriculum.Person.About == null ? new Poco.About() : curriculum.Person.About;
-                //curriculum.Person.About.AcademicTitle = About.AcademicTitle;
-                //curriculum.Person.About.Slogan = About.Slogan;
-                //curriculum.Person.About.Photo = About.Photo;
-                //curriculum.LastUpdated = DateTime.Now;
+                var curriculum = await repository.GetCurriculumAsync(curriculumID);
+                vitaeContext.RemoveRange(curriculum.Person.Abouts);
 
-                //if (About.Vfile?.Content != null)
-                //{
-                //    using (var stream = About.Vfile.Content.OpenReadStream())
-                //    {
-                //        if (CodeHelper.IsPdf(stream))
-                //        {
-                //            using (var reader = new BinaryReader(stream))
-                //            {
-                //                var identifier = Guid.NewGuid();
-                //                byte[] bytes = reader.ReadBytes((int)About.Vfile.Content.Length);
-                //                curriculum.Person.About.Vfile = new Vfile()
-                //                {
-                //                    Content = bytes,
-                //                    FileName = About.Vfile.Content.FileName,
-                //                    Identifier = identifier,
-                //                    MimeType = "application/pdf"
-                //                };
-                //                // Update VM
-                //                About.Vfile.Identifier = identifier;
-                //                About.Vfile.FileName = About.Vfile.Content.FileName;
-                //            }
-                //        }
-                //    }
-                //}
-                //else if (About.Vfile?.FileName == null && About.Vfile.Identifier != Guid.Empty)
-                //{
-                //    vitaeContext.Vfiles.Remove(vitaeContext.Vfiles.Single(v => v.Identifier == About.Vfile.Identifier));
-                //    // Update VM
-                //    About.Vfile.Identifier = Guid.Empty;
-                //    About.Vfile.FileName = null;
-                //}
+                var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language; // Always take 1st language!
+                var about = curriculum.Person.Abouts.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new About() { };
+                about.AcademicTitle = About.AcademicTitle;
+                about.Slogan = About.Slogan;
+                about.Photo = About.Photo;
 
+                if (About.Vfile?.Content != null)
+                {
+                    using (var stream = About.Vfile.Content.OpenReadStream())
+                    {
+                        if (CodeHelper.IsPdf(stream))
+                        {
+                            using (var reader = new BinaryReader(stream))
+                            {
+                                var identifier = Guid.NewGuid();
+                                byte[] bytes = reader.ReadBytes((int)About.Vfile.Content.Length);
+                                about.Vfile = new Vfile()
+                                {
+                                    Content = bytes,
+                                    FileName = About.Vfile.Content.FileName,
+                                    Identifier = identifier,
+                                    MimeType = "application/pdf"
+                                };
+                                // Update VM
+                                About.Vfile.Identifier = identifier;
+                                About.Vfile.FileName = About.Vfile.Content.FileName;
+                            }
+                        }
+                    }
+                }
+                else if (About.Vfile?.FileName == null && About.Vfile.Identifier != Guid.Empty)
+                {
+                    vitaeContext.Vfiles.Remove(vitaeContext.Vfiles.Single(v => v.Identifier == About.Vfile.Identifier));
+                    // Update VM
+                    About.Vfile.Identifier = Guid.Empty;
+                    About.Vfile.FileName = null;
+                }
+
+                curriculum.LastUpdated = DateTime.Now;
+                curriculum.Person.Abouts.Add(about);
                 await vitaeContext.SaveChangesAsync();
             }
 

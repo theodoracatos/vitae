@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels
 {
-    public class SettingsVM
-    {
+    public class ShareVM
+    { 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.ShortIdentifier), Prompt = nameof(SharedResource.ShortIdentifier))]
         [MaxLength(200, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string ShortIdentifier { get; set; }

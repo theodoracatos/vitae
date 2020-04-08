@@ -18,7 +18,7 @@
 @{
     var menuEntries = new List<Tuple<bool, string, string>>()
 {
-      new Tuple<bool, string, string>(Model.Abouts.Count > 0, nameof(About).ToLower(), SharedResource.AboutInfo),
+      new Tuple<bool, string, string>(Model.About != null, nameof(About).ToLower(), SharedResource.AboutInfo),
       new Tuple<bool, string, string>(Model.Experiences.Count > 0, nameof(Experience).ToLower(), SharedResource.Experiences),
       new Tuple<bool, string, string>(Model.Educations.Count > 0, nameof(Education).ToLower(), SharedResource.Educations),
       new Tuple<bool, string, string>(Model.Courses.Count > 0, nameof(Course).ToLower(), SharedResource.Courses),
@@ -41,7 +41,7 @@
         </a>
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-none d-lg-block">
-                <img class="img-fluid img-profile rounded-circle mx-auto" src="@(string.IsNullOrEmpty(Model.Abouts.First().Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : Model.Abouts.First().Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
+                <img class="img-fluid img-profile rounded-circle mx-auto" src="@(string.IsNullOrEmpty(Model.About.Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : Model.About.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,7 @@
 
                 <a class="navbar-brand js-scroll-trigger" href="#page-top">
                     <span class="d-lg-none d-xl-none">
-                        <img class="img-fluid img-profile greyborder rounded-circle mb-3" width="145" src="@(string.IsNullOrEmpty(Model.Abouts.First().Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : Model.Abouts.First().Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
+                        <img class="img-fluid img-profile greyborder rounded-circle mb-3" width="145" src="@(string.IsNullOrEmpty(Model.About.Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : Model.About.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
                     </span>
                 </a>
 
@@ -88,7 +88,7 @@
                         @Model.PersonalDetail.Firstname
                         <span class="text-primary">@Model.PersonalDetail.Lastname</span>
                     </h1>
-                    <h2 class="subheadingBig mt-0">@Model.Abouts.First().AcademicTitle</h2>
+                    <h2 class="subheadingBig mt-0">@Model.About.AcademicTitle</h2>
                     <div class="subheading mb-4 pb-2">
                         @{
                             foreach (var nationality in Model.PersonalDetail.Nationalities.Where(n => n.CountryCode != null))
@@ -104,18 +104,18 @@
                         @Model.PersonalDetail.Street @Model.PersonalDetail.StreetNo &middot; @Model.PersonalDetail.ZipCode @Model.PersonalDetail.City / @Model.PersonalDetail.State &middot; <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber</a> &middot;
                         <a href="mailto:@(Model.PersonalDetail.Email)">@Model.PersonalDetail.Email</a>
                     </div>
-                    if (Model.Abouts.First().Slogan != null)
+                    if (Model.About.Slogan != null)
                     {
                         <p class="lead">
                             <div class="speech-bubble mb-4">
-                                <div class="font-italic">@Model.Abouts.First().Slogan</div>
+                                <div class="font-italic">@Model.About.Slogan</div>
                             </div>
                         </p>
                     }
                     <div class="social-icons">
-                        @if (Model.Abouts.First().Vfile?.FileName != null)
+                        @if (Model.About.Vfile?.FileName != null)
                         {
-                            <a class="mt-2 mb-1" data-toggle="tooltip" asp-page-handler="OpenFile" asp-route-identifier="@Model.Abouts.First().Vfile?.Identifier" title="@Model.Abouts.First().Vfile?.FileName">
+                            <a class="mt-2 mb-1" data-toggle="tooltip" asp-page-handler="OpenFile" asp-route-identifier="@Model.About.Vfile?.Identifier" title="@Model.About.Vfile?.FileName">
                                 <i class="far fa-file-pdf"></i>
                             </a>
                         }

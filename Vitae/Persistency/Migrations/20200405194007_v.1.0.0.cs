@@ -113,7 +113,7 @@ namespace Persistency.Migrations
                 {
                     AbroadID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     CountryID = table.Column<Guid>(nullable: false),
                     City = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
@@ -131,8 +131,8 @@ namespace Persistency.Migrations
                         principalColumn: "CountryID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Abroad_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_Abroad_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -150,7 +150,7 @@ namespace Persistency.Migrations
                 {
                     AwardID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
                     AwardedFrom = table.Column<string>(maxLength: 100, nullable: false),
@@ -162,8 +162,8 @@ namespace Persistency.Migrations
                 {
                     table.PrimaryKey("PK_Award", x => x.AwardID);
                     table.ForeignKey(
-                        name: "FK_Award_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_Award_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -181,7 +181,7 @@ namespace Persistency.Migrations
                 {
                     CertificateID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
                     Issuer = table.Column<string>(maxLength: 100, nullable: false),
@@ -194,8 +194,8 @@ namespace Persistency.Migrations
                 {
                     table.PrimaryKey("PK_Certificate", x => x.CertificateID);
                     table.ForeignKey(
-                        name: "FK_Certificate_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_Certificate_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -213,7 +213,7 @@ namespace Persistency.Migrations
                 {
                     CourseID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     SchoolName = table.Column<string>(maxLength: 100, nullable: false),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
                     Title = table.Column<string>(maxLength: 100, nullable: false),
@@ -234,8 +234,8 @@ namespace Persistency.Migrations
                         principalColumn: "CountryID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Course_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_Course_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -275,7 +275,7 @@ namespace Persistency.Migrations
                 {
                     EducationID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     SchoolName = table.Column<string>(maxLength: 100, nullable: false),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
                     CountryID = table.Column<Guid>(nullable: false),
@@ -298,8 +298,8 @@ namespace Persistency.Migrations
                         principalColumn: "CountryID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Education_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_Education_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -317,7 +317,7 @@ namespace Persistency.Migrations
                 {
                     ExperienceID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     JobTitle = table.Column<string>(maxLength: 100, nullable: false),
                     CompanyName = table.Column<string>(maxLength: 100, nullable: false),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
@@ -338,8 +338,8 @@ namespace Persistency.Migrations
                         principalColumn: "CountryID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Experience_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_Experience_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -357,7 +357,7 @@ namespace Persistency.Migrations
                 {
                     InterestID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     InterestName = table.Column<string>(maxLength: 100, nullable: false),
                     Association = table.Column<string>(maxLength: 100, nullable: true),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
@@ -368,8 +368,8 @@ namespace Persistency.Migrations
                 {
                     table.PrimaryKey("PK_Interest", x => x.InterestID);
                     table.ForeignKey(
-                        name: "FK_Interest_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_Interest_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -387,7 +387,7 @@ namespace Persistency.Migrations
                 {
                     LanguageSkillID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     Rate = table.Column<float>(nullable: false),
                     SpokenLanguageID = table.Column<Guid>(nullable: true),
                     PersonID = table.Column<Guid>(nullable: true)
@@ -396,8 +396,8 @@ namespace Persistency.Migrations
                 {
                     table.PrimaryKey("PK_LanguageSkill", x => x.LanguageSkillID);
                     table.ForeignKey(
-                        name: "FK_LanguageSkill_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_LanguageSkill_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -421,7 +421,7 @@ namespace Persistency.Migrations
                 {
                     PersonalDetailID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     Firstname = table.Column<string>(maxLength: 100, nullable: false),
                     Lastname = table.Column<string>(maxLength: 100, nullable: false),
                     Birthday = table.Column<DateTime>(nullable: false),
@@ -449,8 +449,8 @@ namespace Persistency.Migrations
                         principalColumn: "CountryID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_PersonalDetail_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_PersonalDetail_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -474,7 +474,7 @@ namespace Persistency.Migrations
                 {
                     ReferenceID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     Firstname = table.Column<string>(maxLength: 100, nullable: false),
                     Lastname = table.Column<string>(maxLength: 100, nullable: false),
                     Gender = table.Column<bool>(nullable: false),
@@ -497,8 +497,8 @@ namespace Persistency.Migrations
                         principalColumn: "CountryID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Reference_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_Reference_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -516,7 +516,7 @@ namespace Persistency.Migrations
                 {
                     SkillID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     Category = table.Column<string>(maxLength: 100, nullable: false),
                     Skillset = table.Column<string>(maxLength: 1000, nullable: true),
                     PersonID = table.Column<Guid>(nullable: true)
@@ -525,8 +525,8 @@ namespace Persistency.Migrations
                 {
                     table.PrimaryKey("PK_Skill", x => x.SkillID);
                     table.ForeignKey(
-                        name: "FK_Skill_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_Skill_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -544,7 +544,7 @@ namespace Persistency.Migrations
                 {
                     SocialLinkID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     SocialPlatform = table.Column<int>(nullable: false),
                     Link = table.Column<string>(maxLength: 255, nullable: false),
                     PersonID = table.Column<Guid>(nullable: true)
@@ -553,8 +553,8 @@ namespace Persistency.Migrations
                 {
                     table.PrimaryKey("PK_SocialLink", x => x.SocialLinkID);
                     table.ForeignKey(
-                        name: "FK_SocialLink_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_SocialLink_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -572,7 +572,7 @@ namespace Persistency.Migrations
                 {
                     AboutID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
-                    LanguageID = table.Column<Guid>(nullable: true),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     AcademicTitle = table.Column<string>(maxLength: 100, nullable: true),
                     Slogan = table.Column<string>(maxLength: 4000, nullable: true),
                     Photo = table.Column<string>(type: "varchar(max)", nullable: false),
@@ -583,8 +583,8 @@ namespace Persistency.Migrations
                 {
                     table.PrimaryKey("PK_About", x => x.AboutID);
                     table.ForeignKey(
-                        name: "FK_About_Language_LanguageID",
-                        column: x => x.LanguageID,
+                        name: "FK_About_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
@@ -614,16 +614,16 @@ namespace Persistency.Migrations
                 {
                     table.PrimaryKey("PK_CurriculumLanguage", x => new { x.CurriculumID, x.LanguageID });
                     table.ForeignKey(
-                        name: "FK_CurriculumLanguage_Language_CurriculumID",
+                        name: "FK_CurriculumLanguage_Curriculum_CurriculumID",
                         column: x => x.CurriculumID,
-                        principalTable: "Language",
-                        principalColumn: "LanguageID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CurriculumLanguage_Curriculum_LanguageID",
-                        column: x => x.LanguageID,
                         principalTable: "Curriculum",
                         principalColumn: "CurriculumID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CurriculumLanguage_Language_LanguageID",
+                        column: x => x.LanguageID,
+                        principalTable: "Language",
+                        principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -698,9 +698,9 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_About_LanguageID",
+                name: "IX_About_CurriculumLanguageLanguageID",
                 table: "About",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_About_PersonID",
@@ -718,9 +718,9 @@ namespace Persistency.Migrations
                 column: "CountryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Abroad_LanguageID",
+                name: "IX_Abroad_CurriculumLanguageLanguageID",
                 table: "Abroad",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Abroad_PersonID",
@@ -728,9 +728,9 @@ namespace Persistency.Migrations
                 column: "PersonID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Award_LanguageID",
+                name: "IX_Award_CurriculumLanguageLanguageID",
                 table: "Award",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Award_PersonID",
@@ -738,9 +738,9 @@ namespace Persistency.Migrations
                 column: "PersonID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Certificate_LanguageID",
+                name: "IX_Certificate_CurriculumLanguageLanguageID",
                 table: "Certificate",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Certificate_PersonID",
@@ -765,9 +765,9 @@ namespace Persistency.Migrations
                 column: "CountryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Course_LanguageID",
+                name: "IX_Course_CurriculumLanguageLanguageID",
                 table: "Course",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Course_PersonID",
@@ -790,9 +790,9 @@ namespace Persistency.Migrations
                 column: "CountryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Education_LanguageID",
+                name: "IX_Education_CurriculumLanguageLanguageID",
                 table: "Education",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Education_PersonID",
@@ -805,9 +805,9 @@ namespace Persistency.Migrations
                 column: "CountryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Experience_LanguageID",
+                name: "IX_Experience_CurriculumLanguageLanguageID",
                 table: "Experience",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Experience_PersonID",
@@ -815,9 +815,9 @@ namespace Persistency.Migrations
                 column: "PersonID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Interest_LanguageID",
+                name: "IX_Interest_CurriculumLanguageLanguageID",
                 table: "Interest",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Interest_PersonID",
@@ -831,9 +831,9 @@ namespace Persistency.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_LanguageSkill_LanguageID",
+                name: "IX_LanguageSkill_CurriculumLanguageLanguageID",
                 table: "LanguageSkill",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LanguageSkill_PersonID",
@@ -856,9 +856,9 @@ namespace Persistency.Migrations
                 column: "CountryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PersonalDetail_LanguageID",
+                name: "IX_PersonalDetail_CurriculumLanguageLanguageID",
                 table: "PersonalDetail",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersonalDetail_PersonID",
@@ -881,9 +881,9 @@ namespace Persistency.Migrations
                 column: "CountryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reference_LanguageID",
+                name: "IX_Reference_CurriculumLanguageLanguageID",
                 table: "Reference",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reference_PersonID",
@@ -901,9 +901,9 @@ namespace Persistency.Migrations
                 column: "Identifier");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Skill_LanguageID",
+                name: "IX_Skill_CurriculumLanguageLanguageID",
                 table: "Skill",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Skill_PersonID",
@@ -911,9 +911,9 @@ namespace Persistency.Migrations
                 column: "PersonID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SocialLink_LanguageID",
+                name: "IX_SocialLink_CurriculumLanguageLanguageID",
                 table: "SocialLink",
-                column: "LanguageID");
+                column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SocialLink_PersonID",

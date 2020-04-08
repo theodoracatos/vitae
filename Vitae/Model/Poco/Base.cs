@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Model.Poco
 {
-    public class Base
+    public abstract class Base
     {
         public int Order { get; set; }
 
-        public virtual Language Language { get; set; }
+        public virtual Language CurriculumLanguage { get; set; }
     }
 }

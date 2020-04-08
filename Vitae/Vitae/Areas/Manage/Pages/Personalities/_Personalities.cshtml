@@ -4,12 +4,10 @@
     <div class="card">
         <div class="card-header font-weight-bold">
             <div class="float-left">
-                <h1>
-                    @SharedResource.PersonalDetails
-                </h1>
+                <h1><i class="fas fa-address-book fa-fw"></i>@SharedResource.PersonalDetails</h1>
             </div>
             <div class="float-right">
-                <i class="fas fa-globe-americas fa-fw"></i><label class="control-label" for="lang">@SharedResource.Language</label>
+                <i class="fas fa-globe-americas fa-fw"></i><label class="control-label" for="lang">@SharedResource.CVLanguage</label>
                   <select asp-for="@Model.PersonalDetail.CurriculumLanguageCode" class="form-control cancel" asp-items="@(new SelectList(@Model.PersonalDetail.CurriculumLanguages, "LanguageCode", "Name"))"></select>
             </div>
         </div>
@@ -85,6 +83,7 @@
                     <div class="form-group col-md-4">
                         <label class="control-label" asp-for="@Model.PersonalDetail.MaritalStatus"></label>
                         <select asp-for="@Model.PersonalDetail.MaritalStatus" class="form-control" asp-items="@(new SelectList(Enum.GetValues(typeof(MaritalStatus)).Cast<MaritalStatus>().Select(ma => new SelectListItem { Text = ma.Description(), Value = ma.ToString() }), "Value", "Text"))">
+                            <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                         </select>
                         <span asp-validation-for="@Model.PersonalDetail.MaritalStatus" class="text-danger"></span>
                     </div>
@@ -143,7 +142,7 @@
             <div class="grouping pb-0">
                 @for (int i = 0; i < Model.PersonalDetail.Nationalities.Count; i++)
                 {
-                    <div class="form-row  pb-0">
+                    <div class="form-row pb-0">
                         <div class="form-group col">
                             <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.PersonalDetail.Nationalities[i].CountryCode"></label>
                             <select asp-for="@Model.PersonalDetail.Nationalities[i].CountryCode" class="form-control selectpicker" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Nationalities.Where(n => n.CountryCode == Model.PersonalDetail.Nationalities[i].CountryCode || !Model.PersonalDetail.Nationalities.Select(na => na.CountryCode).Contains(n.CountryCode)), "CountryCode", "Name"))">

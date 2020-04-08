@@ -65,8 +65,8 @@ namespace Vitae.Areas.Manage.Pages.Personalities
                 var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 vitaeContext.RemoveRange(curriculum.Person.PersonalDetails);
 
-                var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language;
-                var personalDetails = curriculum.Person.PersonalDetails.Single(pd => pd.Language == currentLanguage) ?? new PersonalDetail() { PersonCountries = new List<PersonCountry>() };
+                var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language; // Always take 1st language!
+                var personalDetails = curriculum.Person.PersonalDetails.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new PersonalDetail() { PersonCountries = new List<PersonCountry>() };
 
                 personalDetails.Birthday = new DateTime(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
                 personalDetails.City = PersonalDetail.City;
@@ -75,15 +75,15 @@ namespace Vitae.Areas.Manage.Pages.Personalities
                 personalDetails.Firstname = PersonalDetail.Firstname;
                 personalDetails.Lastname = PersonalDetail.Lastname;
                 personalDetails.Gender = PersonalDetail.Gender.Value;
-                personalDetails.Language = vitaeContext.Languages.Single(l => l.LanguageCode == PersonalDetail.LanguageCode);
+                personalDetails.CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == PersonalDetail.LanguageCode);
                 personalDetails.MobileNumber = PersonalDetail.MobileNumber;
-                personalDetails.MaritalStatus = PersonalDetail.MaritalStatus;
+                personalDetails.MaritalStatus = PersonalDetail.MaritalStatus.Value;
                 personalDetails.Street = PersonalDetail.Street;
                 personalDetails.StreetNo = PersonalDetail.StreetNo;
                 personalDetails.ZipCode = PersonalDetail.ZipCode;
                 personalDetails.State = PersonalDetail.State;
                 personalDetails.Citizenship = PersonalDetail.Citizenship;
-                personalDetails.Language = currentLanguage;
+                personalDetails.CurriculumLanguage = currentLanguage;
 
                 // Nationality
                 personalDetails.PersonCountries.Clear();

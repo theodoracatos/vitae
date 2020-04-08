@@ -6,22 +6,54 @@
             <h1><i class="fas fa-cogs fa-fw"></i>@SharedResource.Settings</h1>
         </div>
         <div class="card-body">
-            <div class="grouping pb-0">
+            <div class="grouping">
                 <div class="form-row">
                     <div class="form-group col">
-
-
+                        <label class="control-label" asp-for="@Model.Settings.CurriculumLanguages"></label>
+                        <div>
+                            <button asp-page-handler="AddCurriculumLanguage" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold mr-2" disabled="@(Model.Settings.CurriculumLanguages.Count < Model.MaxCurriculumLanguages ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                        </div>
                     </div>
+                </div>
+                <div class="grouping pb-0">
+                    @for (int i = 0; i < Model.Settings.CurriculumLanguages.Count; i++)
+                    {
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label class="control-label mr-1">@(i + 1). @SharedResource.CurriculumLanguage</label>
+                                <div class="d-flex">
+                                    <select asp-for="@Model.Settings.CurriculumLanguages[i].LanguageCode" class="form-control selectpicker form-control flex-fill" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Languages.Where(l => l.LanguageCode == Model.Settings.CurriculumLanguages[i].LanguageCode || !Model.Settings.CurriculumLanguages.Select(c => c.LanguageCode).Contains(l.LanguageCode)), "LanguageCode", "Name"))">
+                                        <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
+                                    </select>
+                                    <div class="form-control w-auto flex-fill ml-2 @(i == 0 || !Model.Settings.Copies[i].Show ? "d-none" : null)">
+                                        <div class="pretty p-switch p-slim mr-0">
+                                            <input asp-for="@Model.Settings.Copies[i].Copy" />
+                                            <div class="state">
+                                                <label asp-for="@Model.Settings.Copies[i].Copy"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button asp-page-handler="DeleteCurriculumLanguage" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" style="margin-top: 1px" class="btn btn-sm btn-danger cancel ml-2 form-control w-auto flex-fill @(i == 0 ? "d-none" : null)"><i class="far fa-trash-alt"></i></button>
+                                    <input type="hidden" asp-for="@Model.Settings.CurriculumLanguages[i].Order" />
+                                    <input type="hidden" asp-for="@Model.Settings.Copies[i].Show" />
+                                </div>
+                                <span asp-validation-for="@Model.Settings.CurriculumLanguages[i].LanguageCode" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        @if (i < Model.Settings.CurriculumLanguages.Count - 1)
+                        {<hr />}
+                    }
                 </div>
             </div>
         </div>
-            <div class="card-footer">
-                <div class="form-row">
-                    <div class="form-group col mb-0 text-right">
-                        <button id="btnSelectChange" asp-page-handler="SelectChange" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
-                        <button type="submit" class="btn btn-primary float-right" disabled="disabled"><i class="fas fa-save fa-fw"></i>@SharedResource.Save</button>
-                    </div>
+        <div class="card-footer">
+            <div class="form-row">
+                <div class="form-group col mb-0 text-right">
+                    <button id="btnSelectChange" asp-page-handler="SelectChange" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+                    <button type="submit" class="btn btn-primary float-right" disabled="disabled"><i class="fas fa-save fa-fw"></i>@SharedResource.Save</button>
                 </div>
             </div>
         </div>
+    </div>
 </div>
