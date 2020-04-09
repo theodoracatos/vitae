@@ -65,11 +65,12 @@ namespace Vitae.Areas.Manage.Pages.Settings
                     var isFirstCurriculumLanguage = curriculumLanguage.Order == 0;
                     if (isFirstCurriculumLanguage)
                     {
-                         vitaeContext.CurriculumLanguages.Remove(vitaeContext.CurriculumLanguages.Single(c => c.CurriculumID == curriculumID && c.Language.LanguageCode == firstLanguageCode));
+                        // Remove 0
+                        var curriculumLanguageToRemove = vitaeContext.CurriculumLanguages.Single(c => c.CurriculumID == curriculumID && c.Language.LanguageCode == firstLanguageCode);
+                        vitaeContext.Curriculums.Include(c => c.CurriculumLanguages).Single(c => c.CurriculumID == curriculumID).CurriculumLanguages.Remove(curriculumLanguageToRemove);
                     }
-
                     // New
-                    vitaeContext.CurriculumLanguages.Add(
+                    vitaeContext.Curriculums.Include(c => c.CurriculumLanguages).Single(c => c.CurriculumID == curriculumID).CurriculumLanguages.Add(
                         new CurriculumLanguage()
                         {
                             Curriculum = existingCurriculumLanguages.Single(e => e.Order == 0).Curriculum,
@@ -83,8 +84,8 @@ namespace Vitae.Areas.Manage.Pages.Settings
 
                     if (isFirstCurriculumLanguage || Settings.Copies[curriculumLanguage.Order].Copy)
                     {
-                        var languageCodeFrom = vitaeContext.CurriculumLanguages.First(c => c.Order == 0).Language.LanguageCode;
-                        await repository.CopyItemsFromCurriculumLanguage(curriculumID, languageCodeFrom, firstLanguageCode, isFirstCurriculumLanguage);
+                        var languageCodeTo = vitaeContext.CurriculumLanguages.First(c => c.Order == 0).Language.LanguageCode;
+                        await repository.CopyItemsFromCurriculumLanguage(curriculumID, firstLanguageCode, languageCodeTo, isFirstCurriculumLanguage);
                     }
                 }
                 else if (!Settings.CurriculumLanguages.Any(cl => cl.LanguageCode == curriculumLanguage.LanguageCode))

@@ -1,6 +1,6 @@
 ﻿using Library.Constants;
 using Library.Extensions;
-
+using Library.Helper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -156,29 +156,89 @@ namespace Library.Repository
         public async Task<Curriculum> GetCurriculumAsync(Guid curriculumID)
         {
             var curriculumQuery = vitaeContext.Curriculums
+             .Include(c => c.CurriculumLanguages)
+             .ThenInclude(cl => cl.Language)
+             .Where(c => c.CurriculumID == curriculumID).Take(1);
+
+            await curriculumQuery.Include(c => c.Person).LoadAsync();
+            await LoadPersonalDetails(curriculumQuery);
+            await LoadAbouts(curriculumQuery);
+            await LoadAbroads(curriculumQuery);
+            await LoadAwards(curriculumQuery);
+            await LoadCourses(curriculumQuery);
+            await LoadCertificates(curriculumQuery);
+            await LoadEducations(curriculumQuery);
+            await LoadExperiences(curriculumQuery);
+            await LoadInterests(curriculumQuery);
+            await LoadLanguageSkills(curriculumQuery);
+            await LoadSkills(curriculumQuery);
+            await LoadSocialLinks(curriculumQuery);
+            await LoadReferences(curriculumQuery);
+
+            return curriculumQuery.Single();
+        }
+
+        public async Task<Curriculum> GetCurriculumAsync<T>(Guid curriculumID) where T : Base
+        {
+            var curriculumQuery = vitaeContext.Curriculums
                .Include(c => c.CurriculumLanguages)
                .ThenInclude(cl => cl.Language)
                .Where(c => c.CurriculumID == curriculumID).Take(1);
 
             await curriculumQuery.Include(c => c.Person).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.PersonalDetails).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.Children).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.CurriculumLanguage).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.PersonCountries).ThenInclude(pc => pc.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Abouts).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Abouts).ThenInclude(a => a.Vfile).Include(a => a.CurriculumLanguages).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Abroads).ThenInclude(a => a.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Awards).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Courses).ThenInclude(c => c.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Certificates).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Educations).ThenInclude(e => e.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Experiences).ThenInclude(e => e.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Interests).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.LanguageSkills).ThenInclude(ls => ls.SpokenLanguage).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Skills).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.SocialLinks).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.References).ThenInclude(r => r.Country).LoadAsync();
+
+            if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(PersonalDetail)))
+            {
+                await LoadPersonalDetails(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(About)))
+            {
+                await LoadAbouts(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Abroad)))
+            {
+                await LoadAbroads(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Award)))
+            {
+                await LoadAwards(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Course)))
+            {
+                await LoadCourses(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Certificate)))
+            {
+                await LoadCertificates(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Education)))
+            {
+                await LoadEducations(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Experience)))
+            {
+                await LoadExperiences(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Interest)))
+            {
+                await LoadInterests(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(LanguageSkill)))
+            {
+                await LoadLanguageSkills(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Skill)))
+            {
+                await LoadSkills(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(SocialLink)))
+            {
+                await LoadSocialLinks(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Reference)))
+            {
+                await LoadReferences(curriculumQuery);
+            }
 
             return curriculumQuery.Single();
         }
@@ -568,6 +628,75 @@ namespace Library.Repository
 
             return basePoco;
         }
+        private async Task LoadPersonalDetails(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.PersonalDetails).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.Children).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.Country).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.CurriculumLanguage).LoadAsync();
+            await curriculumQuery.Include(c => c.Person.PersonalDetails).ThenInclude(pd => pd.PersonCountries).ThenInclude(pc => pc.Country).LoadAsync();
+        }
+
+        private async Task LoadAbouts(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.Abouts).ThenInclude(a => a.Vfile).LoadAsync();
+        }
+
+        private async Task LoadAbroads(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.Abroads).ThenInclude(a => a.Country).LoadAsync();
+        }
+
+        private async Task LoadAwards(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.Awards).LoadAsync();
+        }
+
+        private async Task LoadCourses(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.Courses).ThenInclude(c => c.Country).LoadAsync();
+        }
+
+        private async Task LoadCertificates(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.Certificates).LoadAsync();
+        }
+
+        private async Task LoadEducations(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.Educations).ThenInclude(e => e.Country).LoadAsync();
+        }
+
+        private async Task LoadExperiences(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.Experiences).ThenInclude(e => e.Country).LoadAsync();
+        }
+
+        private async Task LoadInterests(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.Interests).LoadAsync();
+        }
+
+        private async Task LoadLanguageSkills(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.LanguageSkills).ThenInclude(ls => ls.SpokenLanguage).LoadAsync();
+        }
+
+        private async Task LoadSkills(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.Skills).LoadAsync();
+        }
+
+        private async Task LoadSocialLinks(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.SocialLinks).LoadAsync();
+        }
+
+        private async Task LoadReferences(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Person.References).ThenInclude(r => r.Country).LoadAsync();
+        }
+
         #endregion
     }
 }

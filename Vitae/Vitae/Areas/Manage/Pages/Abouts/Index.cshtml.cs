@@ -44,7 +44,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync<About>(curriculumID);
                 CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
                 
                 LoadAbouts(curriculum, CurriculumLanguageCode);
