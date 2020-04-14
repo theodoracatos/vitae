@@ -484,6 +484,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are about to delete {0}. Do you want to continue?.
+        /// </summary>
+        public static string ConfirmDelete {
+            get {
+                return ResourceManager.GetString("ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm email.
         /// </summary>
         public static string ConfirmEmail {
@@ -795,6 +804,24 @@ namespace Library.Resources {
         public static string EnterSkill {
             get {
                 return ResourceManager.GetString("EnterSkill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to entries.
+        /// </summary>
+        public static string Entries {
+            get {
+                return ResourceManager.GetString("Entries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to entry.
+        /// </summary>
+        public static string Entry {
+            get {
+                return ResourceManager.GetString("Entry", resourceCulture);
             }
         }
         

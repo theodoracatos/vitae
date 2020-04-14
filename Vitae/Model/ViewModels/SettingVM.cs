@@ -10,6 +10,10 @@ namespace Model.ViewModels
         public IList<LanguageVM> CurriculumLanguages { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CopyValues), Prompt = nameof(SharedResource.CopyValues))]
-        public IList<CopyVM> Copies { get; set; }
+        public IList<bool> Copies { get; set; }
+
+        public IList<string> FormerLanguageCodes { get; set; }
+
+        public IList<int> NrOfItems { get; set; }
     }
 }

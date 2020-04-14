@@ -1,4 +1,5 @@
-﻿using Library.Helper;
+﻿using Library.Constants;
+using Library.Helper;
 using Library.Repository;
 using Library.Resources;
 
@@ -56,9 +57,9 @@ namespace Vitae.Areas.Manage.Pages.Abouts
 
         public IActionResult OnGetOpenFile(Guid identifier)
         {
-            if (vitaeContext.Vfiles.Any(v => v.Identifier == identifier))
+            if (vitaeContext.Vfiles.Any(v => v.VfileID == identifier))
             {
-                var vfile = vitaeContext.Vfiles.Single(v => v.Identifier == identifier);
+                var vfile = vitaeContext.Vfiles.Single(v => v.VfileID == identifier);
 
                 return File(vfile.Content, vfile.MimeType, vfile.FileName);
             }
@@ -73,7 +74,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Abouts);
+                //vitaeContext.RemoveRange(curriculum.Person.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
                 var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Language.LanguageCode == CurriculumLanguageCode).Language;
                 var about = curriculum.Person.Abouts.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new About() { };
@@ -96,19 +97,20 @@ namespace Vitae.Areas.Manage.Pages.Abouts
                                 {
                                     Content = bytes,
                                     FileName = About.Vfile.Content.FileName,
-                                    Identifier = identifier,
-                                    MimeType = "application/pdf"
+                                    MimeType = Globals.MIME_PDF
                                 };
-                                // Update VM
-                                About.Vfile.Identifier = identifier;
-                                About.Vfile.FileName = About.Vfile.Content.FileName;
                             }
+
+                            // UpdateVM
+                            About.Vfile.FileName = About.Vfile.Content.FileName;
                         }
                     }
                 }
                 else if (About.Vfile?.FileName == null && About.Vfile.Identifier != Guid.Empty)
                 {
-                    vitaeContext.Vfiles.Remove(vitaeContext.Vfiles.Single(v => v.Identifier == About.Vfile.Identifier));
+                    // Remove file
+                    vitaeContext.Vfiles.Remove(vitaeContext.Vfiles.Single(v => v.VfileID == About.Vfile.Identifier));
+
                     // Update VM
                     About.Vfile.Identifier = Guid.Empty;
                     About.Vfile.FileName = null;
@@ -117,6 +119,12 @@ namespace Vitae.Areas.Manage.Pages.Abouts
                 curriculum.LastUpdated = DateTime.Now;
                 curriculum.Person.Abouts.Add(about);
                 await vitaeContext.SaveChangesAsync();
+
+                // Update VM
+                if (About.Vfile?.Content != null)
+                {
+                    About.Vfile.Identifier = about.Vfile.VfileID;
+                }
             }
 
             FillSelectionViewModel();
@@ -130,8 +138,9 @@ namespace Vitae.Areas.Manage.Pages.Abouts
 
         public IActionResult OnPostRemoveFile()
         {
-            //About.Vfile.FileName = null;
+            About.Vfile.FileName = null;
 
+            FillSelectionViewModel();
             return GetPartialViewResult(PAGE_ABOUTS);
         }
 

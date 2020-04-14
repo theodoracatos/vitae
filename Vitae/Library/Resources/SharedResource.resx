@@ -258,6 +258,9 @@
   <data name="ConfirmationEmailSent" xml:space="preserve">
     <value>Confirmation link to change email sent. Please check your email.</value>
   </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>You are about to delete {0}. Do you want to continue?</value>
+  </data>
   <data name="ConfirmEmail" xml:space="preserve">
     <value>Confirm email</value>
   </data>
@@ -362,6 +365,12 @@
   </data>
   <data name="EnterSkill" xml:space="preserve">
     <value>Please press Enter to insert a new Skill</value>
+  </data>
+  <data name="Entries" xml:space="preserve">
+    <value>entries</value>
+  </data>
+  <data name="Entry" xml:space="preserve">
+    <value>entry</value>
   </data>
   <data name="ErrorConfirmEmail" xml:space="preserve">
     <value>Error confirming your email.</value>

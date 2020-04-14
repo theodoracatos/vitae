@@ -8,8 +8,6 @@ namespace Model.Poco
         [Key]
         public Guid VfileID { get; set; }
 
-        public Guid Identifier { get; set; }
-
         public byte[] Content { get; set; }
 
         public string MimeType { get; set; }

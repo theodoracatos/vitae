@@ -310,7 +310,7 @@ INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_f
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'fy', 'Frisian', 'Friesisch', 'Frison', 'Frisona', 'Frisón')
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'gd', 'Gaelic (Scots Gaelic)', 'Gälisch (Schottisch-Gälisch)', 'Gaélique (gaélique écossais)', 'Gaelico (Gaelico scozzese)', 'Gaélico (Gaélico Escocés)')
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'gl', 'Galician', 'Galicisch', 'Galicien', 'Galiziano', 'Gallego')
-INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'ka', 'Georgian', 'georgisch', 'Géorgien', 'Georgiano', 'Georgiano')
+INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'ka', 'Georgian', 'Georgisch', 'Géorgien', 'Georgiano', 'Georgiano')
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'de', 'German', 'Deutsch', 'En allemand', 'Tedesco', 'Alemán')
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'el', 'Greek', 'Griechisch', 'Grec', 'Greco', 'Griego')
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'kl', 'Greenlandic', 'Grönländisch', 'Groenlandais', 'Groenlandia', 'Groenlandia')

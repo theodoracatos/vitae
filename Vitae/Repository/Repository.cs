@@ -2,6 +2,8 @@
 using Library.Extensions;
 using Library.Helper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 
 using Model.Enumerations;
@@ -14,6 +16,7 @@ using Persistency.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Library.Repository
@@ -79,54 +82,89 @@ namespace Library.Repository
             return curriculum;
         }
 
-        public async Task ChangeCurriculumLanguage(Guid curriculumID, string languageCodeToChange, string languageCode)
-        {
-            await CopyItemsFromCurriculumLanguage(curriculumID, languageCodeToChange, languageCode, true);
-        }
-
-        public async Task CopyItemsFromCurriculumLanguage(Guid curriculumID, string languageCodeToCopy, string languageCode, bool moveOnly = false)
+        public async Task<int> CountItemsFromCurriculumLanguageAsync(Guid curriculumID, string languageToCheck)
         {
             var curriculum = await GetCurriculumAsync(curriculumID);
-            var newLanguage = vitaeContext.CurriculumLanguages.Single(c => c.CurriculumID == curriculumID && c.Language.LanguageCode == languageCode).Language;
+            var nrOfItems = curriculum.Person.Abouts.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Person.Abroads.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Person.Awards.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Person.Courses.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Person.Certificates.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Person.Educations.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Person.Experiences.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Person.Interests.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Person.LanguageSkills.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Person.Skills.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Person.SocialLinks.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Person.References.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
 
-            curriculum.Person.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.Abouts.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+            return nrOfItems;
+        }
 
-            curriculum.Person.Abroads.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.Abroads.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+        public async Task DeleteItemsFromCurriculumLanguageAsync(Guid curriculumID, string languageCodeToDelete)
+        {
+            var curriculum = await GetCurriculumAsync(curriculumID);
 
-            curriculum.Person.Awards.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.Awards.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+            curriculum.Person.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Person.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i.Vfile).State = EntityState.Deleted);
+            curriculum.Person.Abroads.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Person.Awards.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Person.Courses.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Person.Certificates.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Person.Educations.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Person.Experiences.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Person.Interests.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Person.LanguageSkills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Person.Skills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Person.SocialLinks.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Person.References.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
 
-            curriculum.Person.Courses.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.Courses.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+            await vitaeContext.SaveChangesAsync();
+        }
 
-            curriculum.Person.Certificates.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.Certificates.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+        public async Task MoveItemsFromCurriculumLanguageAsync(Guid curriculumID, string languageCodeFrom, string languageCodeTo, bool copy = false)
+        {
+            var curriculum = await GetCurriculumAsync(curriculumID);
+            var newLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == languageCodeTo);
 
-            curriculum.Person.Educations.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.Educations.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+            curriculum.Person.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.Abouts.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(About)}ID").ToObject() as About) : a, newLanguage)));
 
-            curriculum.Person.Experiences.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.Experiences.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+            curriculum.Person.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.Abouts.Single(ab => ab.CurriculumLanguage.LanguageCode == newLanguage.LanguageCode).Vfile = (NullKey(vitaeContext.Entry(a.Vfile).CurrentValues.Clone(), $"{nameof(Vfile)}ID").ToObject() as Vfile));
 
-            curriculum.Person.Interests.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.Interests.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+            curriculum.Person.Abroads.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.Abroads.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Abroad)}ID").ToObject() as Abroad) : a, newLanguage)));
 
-            curriculum.Person.LanguageSkills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.LanguageSkills.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+            curriculum.Person.Awards.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.Awards.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Award)}ID").ToObject() as Award) : a, newLanguage)));
 
-            curriculum.Person.LanguageSkills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.LanguageSkills.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+            curriculum.Person.Courses.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.Courses.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Course)}ID").ToObject() as Course) : a, newLanguage)));
 
-            curriculum.Person.Skills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.Skills.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+            curriculum.Person.Certificates.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.Certificates.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Certificate)}ID").ToObject() as Certificate) : a, newLanguage)));
 
-            curriculum.Person.SocialLinks.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.SocialLinks.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+            curriculum.Person.Educations.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.Educations.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Education)}ID").ToObject() as Education) : a, newLanguage)));
 
-            curriculum.Person.References.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToCopy)
-                .ToList().ForEach(a => curriculum.Person.References.Add(SetLCurriculumanguage(!moveOnly ? a.DeepClone() : a, newLanguage)));
+            curriculum.Person.Experiences.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.Experiences.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Experience)}ID").ToObject() as Experience) : a, newLanguage)));
+
+            curriculum.Person.Interests.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.Interests.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Interest)}ID").ToObject() as Interest) : a, newLanguage)));
+
+            curriculum.Person.LanguageSkills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.LanguageSkills.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(LanguageSkill)}ID").ToObject() as LanguageSkill) : a, newLanguage)));
+
+            curriculum.Person.Skills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.Skills.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Skill)}ID").ToObject() as Skill) : a, newLanguage)));
+
+            curriculum.Person.SocialLinks.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.SocialLinks.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(SocialLink)}ID").ToObject() as SocialLink) : a, newLanguage)));
+
+            curriculum.Person.References.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Person.References.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Reference)}ID").ToObject() as Reference) : a, newLanguage)));
 
             await vitaeContext.SaveChangesAsync();
         }
@@ -360,7 +398,7 @@ namespace Library.Repository
                    Vfile = new VfileVM()
                    {
                        FileName = a.Vfile?.FileName,
-                       Identifier = a.Vfile?.Identifier ?? Guid.Empty
+                       Identifier = a.Vfile?.VfileID ?? Guid.Empty
                    }
                }).ToList();
 
@@ -619,10 +657,25 @@ namespace Library.Repository
             return lastHits;
         }
 
+        public Vfile GetFile(Guid identifier)
+        {
+            var vfile = vitaeContext.Vfiles.SingleOrDefault(v => v.VfileID == identifier);
+
+            return vfile;
+        }
+
         #endregion
 
         #region Helper
-        private T SetLCurriculumanguage<T>(T basePoco, Language language) where T : Base
+
+        private PropertyValues NullKey(PropertyValues propertyValues, string keyName)
+        {
+            propertyValues[keyName] = Guid.Empty;
+
+            return propertyValues;
+        }
+
+        private T SetCurriculumLanguage<T>(T basePoco, Language language) where T : Base
         {
             basePoco.CurriculumLanguage = language;
 

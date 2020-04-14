@@ -280,9 +280,12 @@ function setRequiredLabel() {
 function configureConfirmationModal() {
     $('.confirmation').on('click', function () {
         var formaction = $(this).attr('formaction');
+        var content = $(this).data('confirm-text');
         var hasCancel = $(this).hasClass("cancel");
         var formmethod = $('form').attr('method');
+        var sender = $(this);
         $.confirm({
+            content: content,
             title: Resources.SharedResource.PleaseConfirm,
             theme: "bootstrap",
             buttons: {
@@ -296,7 +299,9 @@ function configureConfirmationModal() {
                                 var validator = $("form").validate();
                                 validator.resetForm();
                             }
-                            $('form').attr('action', formaction).submit();
+  
+                            $(sender).unbind('click');
+                            $(sender).click();
 
                             // Close modal dialog
                             if (($('.modal').data('bs.modal') || {})._isShown) {

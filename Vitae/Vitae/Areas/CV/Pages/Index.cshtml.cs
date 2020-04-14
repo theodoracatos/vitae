@@ -87,10 +87,10 @@ namespace Vitae.Areas.CV.Pages
 
         public IActionResult OnGetOpenFile(Guid identifier)
         {
-            if (vitaeContext.Vfiles.Any(v => v.Identifier == identifier))
-            {
-                var vfile = vitaeContext.Vfiles.Single(v => v.Identifier == identifier);
+            var vfile = repository.GetFile(identifier);
 
+            if(vfile != null)
+            {
                 return File(vfile.Content, vfile.MimeType, vfile.FileName);
             }
             else

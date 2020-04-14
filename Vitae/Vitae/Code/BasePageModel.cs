@@ -129,6 +129,20 @@ namespace Vitae.Code
             }
         }
 
+        protected void Remove<T>(IList<T> items, int order) where T : BaseVM
+        {
+            if (items.Count > 0)
+            {
+                items.Remove(items.Single(i => i.Order == order));
+            }
+
+            // Reorder
+            for(int i = 0; i < items.Count; i++)
+            {
+                items[i].Order = i;
+            }
+        }
+
         protected void Up<T>(IList<T> items, int order) where T : BaseVM
         {
             var oldItem = items[order];

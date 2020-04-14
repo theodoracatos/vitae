@@ -25,17 +25,18 @@
                                     <select asp-for="@Model.Settings.CurriculumLanguages[i].LanguageCode" class="form-control selectpicker form-control flex-fill" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Languages.Where(l => l.LanguageCode == Model.Settings.CurriculumLanguages[i].LanguageCode || !Model.Settings.CurriculumLanguages.Select(c => c.LanguageCode).Contains(l.LanguageCode)), "LanguageCode", "Name"))">
                                         <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                                     </select>
-                                    <div class="form-control w-auto flex-fill ml-2 @(i == 0 || !Model.Settings.Copies[i].Show ? "d-none" : null)">
+                                    <div class="form-control w-auto flex-fill ml-2 @(i == 0 || !Model.Settings.Copies[i] ? "d-none" : null)">
                                         <div class="pretty p-switch p-slim mr-0">
-                                            <input asp-for="@Model.Settings.Copies[i].Copy" />
+                                            <input asp-for="@Model.Settings.Copies[i]" />
                                             <div class="state">
-                                                <label asp-for="@Model.Settings.Copies[i].Copy"></label>
+                                                <label asp-for="@Model.Settings.Copies"></label>
                                             </div>
                                         </div>
                                     </div>
-                                    <button asp-page-handler="DeleteCurriculumLanguage" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" style="margin-top: 1px" class="btn btn-sm btn-danger cancel ml-2 form-control w-auto flex-fill @(i == 0 ? "d-none" : null)"><i class="far fa-trash-alt"></i></button>
+                                    <button asp-page-handler="DeleteCurriculumLanguage" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"{Model.Settings.NrOfItems[i]} {(Model.Settings.NrOfItems[i] == 1 ? SharedResource.Entry : SharedResource.Entries)}")" style="margin-top: 1px" class="btn btn-sm btn-danger cancel ml-2 form-control w-auto flex-fill @(Model.Settings.NrOfItems[i] > 0 ? "confirmation" : null) @(i == 0 ? "d-none" : null)"><i class="far fa-trash-alt"></i></button>
                                     <input type="hidden" asp-for="@Model.Settings.CurriculumLanguages[i].Order" />
-                                    <input type="hidden" asp-for="@Model.Settings.Copies[i].Show" />
+                                    <input type="hidden" asp-for="@Model.Settings.FormerLanguageCodes[i]" />
+                                    <input type="hidden" asp-for="@Model.Settings.NrOfItems[i]" />
                                 </div>
                                 <span asp-validation-for="@Model.Settings.CurriculumLanguages[i].LanguageCode" class="text-danger"></span>
                             </div>
