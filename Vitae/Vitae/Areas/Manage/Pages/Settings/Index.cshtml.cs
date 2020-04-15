@@ -4,6 +4,7 @@ using Library.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Model.Poco;
@@ -11,6 +12,7 @@ using Model.ViewModels;
 using Persistency.Data;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Vitae.Code;
@@ -65,6 +67,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
                 .Include(c => c.Curriculum).Where(cl => cl.CurriculumID == curriculumID);
             var firstLanguage = existingCurriculumLanguages.Single(e => e.Order == 0).Language;
             var deletedLanguageCodes = existingCurriculumLanguages.ToList().Select(e => e.Language.LanguageCode).Where(lc => !Settings.FormerLanguageCodes.Any(fc => fc == lc));
+            var ignoreOrder = new List<int>();
 
             // Delete
             foreach (var deletedLanguageCode in deletedLanguageCodes)
@@ -91,17 +94,36 @@ namespace Vitae.Areas.Manage.Pages.Settings
 
                 if(formerLanguageCode != null && formerLanguageCode != newLanguage.LanguageCode)
                 {
-                    // The language code has changed
                     var curriculum = existingCurriculumLanguages.Single(e => e.Order == i).Curriculum;
-                    vitaeContext.CurriculumLanguages.Remove(existingCurriculumLanguages.Single(o => o.Order == i));
-                    AddCurriculumLanguage(curriculum, vitaeContext.Languages.Single(l => l.LanguageCode == newLanguage.LanguageCode), i);
+
+                    if (!vitaeContext.CurriculumLanguages.Any(c => c.Language.LanguageCode == newLanguage.LanguageCode))
+                    {
+                        // The language code has changed
+                        vitaeContext.CurriculumLanguages.Remove(existingCurriculumLanguages.Single(o => o.Order == i));
+                        AddCurriculumLanguage(curriculum, vitaeContext.Languages.Single(l => l.LanguageCode == newLanguage.LanguageCode), i);
+
+                        // Change items
+                        if (Settings.NrOfItems[i] > 0)
+                        {
+                            await repository.MoveItemsFromCurriculumLanguageAsync(curriculumID, existingLanguage.LanguageCode, newLanguage.LanguageCode, copy: false);
+                        }
+                    }
+                    else if(!ignoreOrder.Contains(i))
+                    {
+                        // Language switch occured
+                        var newOrder = Settings.CurriculumLanguages.Single(c => c.LanguageCode == newLanguage.LanguageCode).Order;
+                        var oldOrder = existingCurriculumLanguages.Single(c => c.Language.LanguageCode == newLanguage.LanguageCode).Order;
+                        existingCurriculumLanguages.Single(c => c.Order == newOrder).Order = oldOrder;
+                        existingCurriculumLanguages.Single(c => c.Language.LanguageCode == newLanguage.LanguageCode).Order = newOrder;
+
+                        ignoreOrder.Add(oldOrder);
+
+                    }
                     await vitaeContext.SaveChangesAsync();
 
-                    // Change items
-                    if (Settings.NrOfItems[i] > 0)
-                    {
-                        await repository.MoveItemsFromCurriculumLanguageAsync(curriculumID, existingLanguage.LanguageCode, newLanguage.LanguageCode, copy: false);
-                    }
+                    // Update view model
+                    ModelState.SetModelValue($"{nameof(Settings)}.{nameof(Settings.FormerLanguageCodes)}[{i}]", new ValueProviderResult(newLanguage.LanguageCode, CultureInfo.InvariantCulture));
+
                 }
                 else if (existingLanguage == null)
                 {
@@ -113,10 +135,18 @@ namespace Vitae.Areas.Manage.Pages.Settings
                     {
                         // Copy from first language
                         await repository.MoveItemsFromCurriculumLanguageAsync(curriculumID, firstLanguage.LanguageCode, newLanguage.LanguageCode, copy: true);
+
+                        // Update view model
+                        var nrOfItems = repository.CountItemsFromCurriculumLanguageAsync(curriculumID, newLanguage.LanguageCode).Result;
+                        ModelState.SetModelValue($"{nameof(Settings)}.{nameof(Settings.Copies)}[{i}]", new ValueProviderResult("false", CultureInfo.InvariantCulture));
+                        ModelState.SetModelValue($"{nameof(Settings)}.{nameof(Settings.FormerLanguageCodes)}[{i}]", new ValueProviderResult(newLanguage.LanguageCode, CultureInfo.InvariantCulture));
+                        ModelState.SetModelValue($"{nameof(Settings)}.{nameof(Settings.NrOfItems)}[{i}]", new ValueProviderResult(nrOfItems.ToString(), CultureInfo.InvariantCulture));
+
+                        Settings.Copies[i] = false;
+                        Settings.FormerLanguageCodes.Add(newLanguage.LanguageCode);
+                        Settings.NrOfItems[i] = nrOfItems;
                     }
                 }
-
-                Settings.Copies[i] = false;
             }
 
             FillSelectionViewModel();
@@ -139,14 +169,8 @@ namespace Vitae.Areas.Manage.Pages.Settings
             if (Settings.CurriculumLanguages.Count < MaxCurriculumLanguages)
             {
                 Settings.CurriculumLanguages.Add(new LanguageVM() {  Order = Settings.CurriculumLanguages.Count });
-                if (Settings.Copies.Count < Settings.CurriculumLanguages.Count)
-                {
-                    Settings.Copies.Add(true);
-                }
-                else
-                {
-                    Settings.Copies[Settings.Copies.Count - 1] = true;
-                }
+                Settings.Copies.Add(true);
+                ModelState.SetModelValue($"{nameof(Settings)}.{nameof(Settings.Copies)}[{Settings.CurriculumLanguages.Count}]", new ValueProviderResult("true", CultureInfo.InvariantCulture));
                 Settings.FormerLanguageCodes.Add("");
                 Settings.NrOfItems.Add(0);
             }
