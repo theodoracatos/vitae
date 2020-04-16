@@ -9,40 +9,40 @@
             <div class="grouping">
                 <div class="form-row">
                     <div class="form-group col">
-                        <label class="control-label" asp-for="@Model.Settings.CurriculumLanguages"></label>
+                        <label class="control-label" asp-for="@Model.Setting.CurriculumLanguages"></label>
                         <div>
-                            <button asp-page-handler="AddCurriculumLanguage" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold mr-2" disabled="@(Model.Settings.CurriculumLanguages.Count < Model.MaxCurriculumLanguages ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                            <button asp-page-handler="AddCurriculumLanguage" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold mr-2" disabled="@(Model.Setting.CurriculumLanguages.Count < Model.MaxCurriculumLanguages ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
                         </div>
                     </div>
                 </div>
                 <div class="grouping pb-0">
-                    @for (int i = 0; i < Model.Settings.CurriculumLanguages.Count; i++)
+                    @for (int i = 0; i < Model.Setting.CurriculumLanguages.Count; i++)
                     {
                         <div class="form-row">
                             <div class="form-group col">
                                 <label class="control-label mr-1">@(i + 1). @SharedResource.CurriculumLanguage</label>
                                 <div class="d-flex">
-                                    <select asp-for="@Model.Settings.CurriculumLanguages[i].LanguageCode" class="form-control selectpicker form-control flex-fill" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Languages.Where(l => l.LanguageCode == Model.Settings.CurriculumLanguages[i].LanguageCode || !Model.Settings.CurriculumLanguages.Select(c => c.LanguageCode).Contains(l.LanguageCode)), "LanguageCode", "Name"))">
+                                    <select asp-for="@Model.Setting.CurriculumLanguages[i].LanguageCode" class="form-control selectpicker form-control flex-fill" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Languages.Where(l => l.LanguageCode == Model.Setting.CurriculumLanguages[i].LanguageCode || !Model.Setting.CurriculumLanguages.Select(c => c.LanguageCode).Contains(l.LanguageCode)), "LanguageCode", "Name"))">
                                         <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                                     </select>
-                                    <div class="form-control w-auto flex-fill ml-2 @(i == 0 || !Model.Settings.Copies[i] ? "d-none" : null)">
+                                    <div class="form-control w-auto flex-fill ml-2 @(i == 0 || !string.IsNullOrEmpty(Model.Setting.SettingItems[i].FormerLanguageCode) ? "d-none" : null)">
                                         <div class="pretty p-switch p-slim mr-0">
-                                            <input asp-for="@Model.Settings.Copies[i]" />
+                                            <input type="checkbox" class="cancel" name="@(nameof(Model.Setting)).@(nameof(Model.Setting.SettingItems))[@i].@(nameof(SettingItemVM.Copy))" value="true" checked="@(Model.Setting.SettingItems[i].Copy ? "checked" : null)" />
                                             <div class="state">
-                                                <label asp-for="@Model.Settings.Copies"></label>
+                                                <label asp-for="@Model.Setting.SettingItems[i].Copy"></label>
                                             </div>
                                         </div>
                                     </div>
-                                    <button asp-page-handler="DeleteCurriculumLanguage" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"{Model.Settings.NrOfItems[i]} {(Model.Settings.NrOfItems[i] == 1 ? SharedResource.Entry : SharedResource.Entries)}")" style="margin-top: 1px" class="btn btn-sm btn-danger cancel ml-2 form-control w-auto flex-fill @(Model.Settings.NrOfItems[i] > 0 ? "confirmation" : null) @(i == 0 ? "d-none" : null)"><i class="far fa-trash-alt"></i></button>
-                                    <input type="hidden" asp-for="@Model.Settings.CurriculumLanguages[i].Order" />
-                                    <input type="hidden" asp-for="@Model.Settings.FormerLanguageCodes[i]" />
-                                    <input type="hidden" asp-for="@Model.Settings.NrOfItems[i]" />
+                                    <button asp-page-handler="DeleteCurriculumLanguage" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"{Model.Setting.SettingItems[i].NrOfItems} {(Model.Setting.SettingItems[i].NrOfItems == 1 ? SharedResource.Entry : SharedResource.Entries)}")" style="margin-top: 1px" class="btn btn-sm btn-danger cancel ml-2 form-control w-auto flex-fill @(Model.Setting.SettingItems[i].NrOfItems > 0 ? "confirmation" : null) @(i == 0 ? "d-none" : null)"><i class="far fa-trash-alt"></i></button>
+                                    <input type="hidden" asp-for="@Model.Setting.CurriculumLanguages[i].Order" />
+                                    <input type="hidden" asp-for="@Model.Setting.SettingItems[i].FormerLanguageCode" />
+                                    <input type="hidden" asp-for="@Model.Setting.SettingItems[i].NrOfItems" />
                                 </div>
-                                <span asp-validation-for="@Model.Settings.CurriculumLanguages[i].LanguageCode" class="text-danger"></span>
+                                <span asp-validation-for="@Model.Setting.CurriculumLanguages[i].LanguageCode" class="text-danger"></span>
                             </div>
                         </div>
 
-                        @if (i < Model.Settings.CurriculumLanguages.Count - 1)
+                        @if (i < Model.Setting.CurriculumLanguages.Count - 1)
                         {<hr />}
                     }
                 </div>
