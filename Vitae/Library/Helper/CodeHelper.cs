@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -140,6 +141,32 @@ namespace Library.Helper
                 toCheck = toCheck.BaseType;
             }
             return false;
+        }
+
+        public static TEntity ShallowCopyEntity<TEntity>(TEntity source) where TEntity : class, new()
+        {
+            // Get properties from EF that are read/write and not marked witht he NotMappedAttribute
+            var sourceProperties = typeof(TEntity)
+                                    .GetProperties()
+                                    .Where(p => p.CanRead && p.CanWrite &&
+                                                p.GetCustomAttributes(typeof(System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute), true).Length == 0);
+            //var notVirtualProperties = sourceProperties.Where(p => !p.GetGetMethod().IsVirtual);
+            var newObj = new TEntity();
+
+            foreach (var property in sourceProperties)
+            {
+                if (Attribute.IsDefined(property, typeof(KeyAttribute)))
+                {
+                    property.SetValue(newObj, Guid.Empty, null);
+                }
+                else
+                {
+                    // Copy value
+                    property.SetValue(newObj, property.GetValue(source, null), null);
+                }
+            }
+
+            return newObj;
         }
     }
 }

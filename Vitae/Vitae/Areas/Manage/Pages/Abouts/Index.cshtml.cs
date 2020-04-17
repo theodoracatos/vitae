@@ -48,7 +48,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
                 var curriculum = await repository.GetCurriculumAsync<About>(curriculumID);
                 CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
                 
-                LoadAbouts(curriculum, CurriculumLanguageCode);
+                await LoadAbouts(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
 
                 return Page();
@@ -74,8 +74,6 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                //vitaeContext.RemoveRange(curriculum.Person.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
-
                 var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Language.LanguageCode == CurriculumLanguageCode).Language;
                 var about = curriculum.Person.Abouts.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new About() { };
                 about.AcademicTitle = About.AcademicTitle;
@@ -146,9 +144,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
 
         public async Task<IActionResult> OnPostLanguageChangeAsync()
         {
-            var curriculum = await repository.GetCurriculumAsync(curriculumID);
-
-            LoadAbouts(curriculum, CurriculumLanguageCode);
+            await LoadAbouts(CurriculumLanguageCode);
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_ABOUTS);
@@ -162,10 +158,10 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
         }
 
-        private void LoadAbouts(Curriculum curriculum, string languageCode)
+        private async Task LoadAbouts(string languageCode, Curriculum curr = null)
         {
-            About = repository.GetAbouts(curriculum)
-                   .SingleOrDefault(a => a.CurriculumLanguageCode == languageCode)
+            var curriculum = curr ?? await repository.GetCurriculumAsync<About>(curriculumID);
+            About = repository.GetAbouts(curriculum, languageCode).SingleOrDefault()
                    ?? new AboutVM()
                    {
                        Vfile = new VfileVM()

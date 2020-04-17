@@ -23,7 +23,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
     {
         public const string PAGE_SETTINGS = "_Settings";
 
-        public int MaxCurriculumLanguages { get; } = 5;
+        public int MaxCurriculumLanguages { get; } = 3;
 
         [BindProperty]
         public SettingVM Setting { get; set; }

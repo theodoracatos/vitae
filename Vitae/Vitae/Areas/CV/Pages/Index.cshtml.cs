@@ -62,10 +62,10 @@ namespace Vitae.Areas.CV.Pages
             else
             {
                 PersonalDetail = repository.GetPersonalDetail(curriculum);
-                Abouts = repository.GetAbouts(curriculum);
+                Abouts = repository.GetAbouts(curriculum, "de");
                 SocialLinks = repository.GetSocialLinks(curriculum);
                 Educations = repository.GetEducations(curriculum);
-                Experiences = repository.GetExperiences(curriculum);
+                Experiences = repository.GetExperiences(curriculum, "de");
                 Courses = repository.GetCourses(curriculum);
                 Abroads = repository.GetAbroads(curriculum);
                 LanguageSkills = repository.GetLanguageSkills(curriculum);

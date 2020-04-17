@@ -1,9 +1,8 @@
 ﻿using Library.Constants;
-using Library.Extensions;
 using Library.Helper;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 
 using Model.Enumerations;
@@ -16,7 +15,6 @@ using Persistency.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Library.Repository
@@ -128,43 +126,43 @@ namespace Library.Repository
             var newLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == languageCodeTo);
 
             curriculum.Person.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.Abouts.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(About)}ID").ToObject() as About) : a, newLanguage)));
+                .ToList().ForEach(a => curriculum.Person.Abouts.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
             curriculum.Person.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.Abouts.Single(ab => ab.CurriculumLanguage.LanguageCode == newLanguage.LanguageCode).Vfile = (NullKey(vitaeContext.Entry(a.Vfile).CurrentValues.Clone(), $"{nameof(Vfile)}ID").ToObject() as Vfile));
+            .ToList().ForEach(a => curriculum.Person.Abouts.Single(ab => ab.CurriculumLanguage.LanguageCode == newLanguage.LanguageCode).Vfile = (copy ? CopyEntity(a.Vfile) : a.Vfile));
 
             curriculum.Person.Abroads.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.Abroads.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Abroad)}ID").ToObject() as Abroad) : a, newLanguage)));
+                .ToList().ForEach(a => curriculum.Person.Abroads.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
             curriculum.Person.Awards.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.Awards.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Award)}ID").ToObject() as Award) : a, newLanguage)));
+                .ToList().ForEach(a => curriculum.Person.Awards.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
             curriculum.Person.Courses.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.Courses.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Course)}ID").ToObject() as Course) : a, newLanguage)));
+                .ToList().ForEach(a => curriculum.Person.Courses.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
             curriculum.Person.Certificates.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.Certificates.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Certificate)}ID").ToObject() as Certificate) : a, newLanguage)));
+                .ToList().ForEach(a => curriculum.Person.Certificates.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
             curriculum.Person.Educations.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.Educations.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Education)}ID").ToObject() as Education) : a, newLanguage)));
+                .ToList().ForEach(a => curriculum.Person.Educations.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
-            curriculum.Person.Experiences.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.Experiences.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Experience)}ID").ToObject() as Experience) : a, newLanguage)));
+            curriculum.Person.Experiences.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom).ToList()
+                .ForEach(a => curriculum.Person.Experiences.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
             curriculum.Person.Interests.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.Interests.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Interest)}ID").ToObject() as Interest) : a, newLanguage)));
+                .ToList().ForEach(a => curriculum.Person.Interests.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
             curriculum.Person.LanguageSkills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.LanguageSkills.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(LanguageSkill)}ID").ToObject() as LanguageSkill) : a, newLanguage)));
+                .ToList().ForEach(a => curriculum.Person.LanguageSkills.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
             curriculum.Person.Skills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.Skills.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Skill)}ID").ToObject() as Skill) : a, newLanguage)));
+                .ToList().ForEach(a => curriculum.Person.Skills.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
             curriculum.Person.SocialLinks.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.SocialLinks.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(SocialLink)}ID").ToObject() as SocialLink) : a, newLanguage)));
+                .ToList().ForEach(a => curriculum.Person.SocialLinks.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
             curriculum.Person.References.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                .ToList().ForEach(a => curriculum.Person.References.Add(SetCurriculumLanguage(copy ? (NullKey(vitaeContext.Entry(a).CurrentValues.Clone(), $"{nameof(Reference)}ID").ToObject() as Reference) : a, newLanguage)));
+                .ToList().ForEach(a => curriculum.Person.References.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
             await vitaeContext.SaveChangesAsync();
         }
@@ -193,12 +191,11 @@ namespace Library.Repository
 
         public async Task<Curriculum> GetCurriculumAsync(Guid curriculumID)
         {
-            var curriculumQuery = vitaeContext.Curriculums
-             .Include(c => c.CurriculumLanguages)
-             .ThenInclude(cl => cl.Language)
-             .Where(c => c.CurriculumID == curriculumID).Take(1);
+            var curriculumQuery = vitaeContext.Curriculums.Include(c => c.Person)
+                .Include(c => c.CurriculumLanguages)
+                .ThenInclude(cl => cl.Language)
+                .Where(c => c.CurriculumID == curriculumID).Take(1);
 
-            await curriculumQuery.Include(c => c.Person).LoadAsync();
             await LoadPersonalDetails(curriculumQuery);
             await LoadAbouts(curriculumQuery);
             await LoadAbroads(curriculumQuery);
@@ -386,9 +383,11 @@ namespace Library.Repository
             return personVM;
         }
 
-        public IList<AboutVM> GetAbouts(Curriculum curriculum)
+        public IList<AboutVM> GetAbouts(Curriculum curriculum, string languageCode)
         {
-            var aboutsVM = curriculum.Person.Abouts.OrderBy(aw => aw.Order)
+            var aboutsVM = curriculum.Person.Abouts
+                .Where(a => a.CurriculumLanguage.LanguageCode == languageCode)
+               .OrderBy(aw => aw.Order)
                .Select(a => new AboutVM()
                {
                    AcademicTitle = a.AcademicTitle,
@@ -491,9 +490,11 @@ namespace Library.Repository
             return educationsVM;
         }
 
-        public IList<ExperienceVM> GetExperiences(Curriculum curriculum)
+        public IList<ExperienceVM> GetExperiences(Curriculum curriculum, string languageCode)
         {
-            var experiencesVM = curriculum.Person.Experiences?.OrderBy(ex => ex.Order)
+            var experiencesVM = curriculum.Person.Experiences?
+                .Where(e => e.CurriculumLanguage?.LanguageCode == languageCode)
+                .OrderBy(ex => ex.Order)
                     .Select(e => new ExperienceVM()
                     {
                         City = e.City,
@@ -668,19 +669,21 @@ namespace Library.Repository
 
         #region Helper
 
-        private PropertyValues NullKey(PropertyValues propertyValues, string keyName)
+        private T CopyEntity<T>(T basePoco) where T : class, new()
         {
-            propertyValues[keyName] = Guid.Empty;
+            var newPoco = CodeHelper.ShallowCopyEntity(basePoco);
 
-            return propertyValues;
+
+            return newPoco;
         }
 
-        private T SetCurriculumLanguage<T>(T basePoco, Language language) where T : Base
+        private T SetKeys<T>(T basePoco, Language language) where T : Base
         {
             basePoco.CurriculumLanguage = language;
 
             return basePoco;
         }
+
         private async Task LoadPersonalDetails(IQueryable<Curriculum> curriculumQuery)
         {
             await curriculumQuery.Include(c => c.Person.PersonalDetails).LoadAsync();
