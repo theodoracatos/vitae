@@ -204,6 +204,12 @@ span.field-validation-error {
 .eqfont {
     font-family: monospace;
 }
+
+#languageSelect {
+    width: 140px;
+    max-width: 140px;
+}
+
 /* Datetimepicker */
 .datetimepicker[readonly] {
 }

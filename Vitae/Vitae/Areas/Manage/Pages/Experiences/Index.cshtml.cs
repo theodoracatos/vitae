@@ -184,7 +184,7 @@ namespace Vitae.Areas.Manage.Pages.Experiences
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_EXPERIENCES);
+            return GetPartialViewResult(PAGE_EXPERIENCES, hasUnsafedChanges: false);
         }
 
         #endregion

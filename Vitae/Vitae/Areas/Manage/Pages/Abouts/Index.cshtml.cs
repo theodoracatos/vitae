@@ -73,7 +73,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
         {
             if (ModelState.IsValid)
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync<About>(curriculumID);
                 var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Language.LanguageCode == CurriculumLanguageCode).Language;
                 var about = curriculum.Person.Abouts.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new About() { };
                 about.AcademicTitle = About.AcademicTitle;
@@ -147,7 +147,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             await LoadAbouts(CurriculumLanguageCode);
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_ABOUTS);
+            return GetPartialViewResult(PAGE_ABOUTS, hasUnsafedChanges: false);
         }
 
         #endregion

@@ -39,21 +39,34 @@ function setupDirtyForms(asyncCall) {
         });
     }
     $('form').on('dirty.dirtyforms clean.dirtyforms', function (ev) {  
-        var $submitResetButtons = $('form').find('[type="submit"]');
+        let $submitResetButtons = $('form').find('[type="submit"]');
+        let $languageSelect = $('form').find('#languageSelect select');
 
         if (ev.type === 'dirty') {
             $submitResetButtons.removeAttr('disabled');
+            $languageSelect.attr('disabled', 'disabled');
         }
         else {
-            $submitResetButtons.addAttr('disabled');
+            $submitResetButtons.attr('disabled', 'disabled');
+            $languageSelect.removeAttr('disabled');
         }
     });
 }
 
+function setHiddenLanguageSelect() {
+    let $languageSelect = $('form').find('#languageSelect select');
+    let $languageSelectHidden = $('form').find('#languageSelect input[type="hidden"]');
+
+    $languageSelectHidden.val($languageSelect.val());
+}
+
 function setDirty() {
-    var $submitResetButtons = $('form').find('[type="submit"]');
+    let $submitResetButtons = $('form').find('[type="submit"]');
+    let $languageSelect = $('form').find('#languageSelect select');
+
     $('form').addClass('mydirty');
     $submitResetButtons.removeAttr('disabled');
+    $languageSelect.attr('disabled', 'disabled');
 }
 
 function drawRadar(chartId, title, labels, dataset, color) {

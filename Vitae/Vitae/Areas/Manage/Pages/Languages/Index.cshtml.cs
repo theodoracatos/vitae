@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-
+using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
@@ -47,9 +47,11 @@ namespace Vitae.Areas.Manage.Pages.Languages
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                LanguageSkills = repository.GetLanguageSkills(curriculum);
-                
+                var curriculum = await repository.GetCurriculumAsync<LanguageSkill>(curriculumID);
+                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
+
+                await LoadLanguageSkills(CurriculumLanguageCode, curriculum);
+
                 FillSelectionViewModel();
                 return Page();
             }
@@ -58,16 +60,16 @@ namespace Vitae.Areas.Manage.Pages.Languages
         {
             if (ModelState.IsValid)
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.LanguageSkills);
+                var curriculum = await repository.GetCurriculumAsync<LanguageSkill>(curriculumID);
+                vitaeContext.RemoveRange(curriculum.Person.LanguageSkills.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
-                curriculum.Person.LanguageSkills =
-                    LanguageSkills.Select(l => new Poco.LanguageSkill()
-                    {
-                        Order = l.Order,
-                        Rate = l.Rate,
-                        SpokenLanguage = vitaeContext.Languages.Single(la => la.LanguageCode == l.LanguageCode)
-                    }).ToList();
+                LanguageSkills.Select(l => new Poco.LanguageSkill()
+                {
+                    Order = l.Order,
+                    Rate = l.Rate,
+                    SpokenLanguage = vitaeContext.Languages.Single(la => la.LanguageCode == l.LanguageCode),
+                    CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
+                }).ToList().ForEach(l => curriculum.Person.LanguageSkills.Add(l));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
@@ -164,13 +166,30 @@ namespace Vitae.Areas.Manage.Pages.Languages
             return GetPartialViewResult(PAGE_LANGUAGES);
         }
 
+        public async Task<IActionResult> OnPostLanguageChangeAsync()
+        {
+            await LoadLanguageSkills(CurriculumLanguageCode);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_LANGUAGES, hasUnsafedChanges: false);
+        }
+
         #endregion
 
         #region Helper
 
         protected override void FillSelectionViewModel()
         {
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
             Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
+        }
+
+        private async Task LoadLanguageSkills(string languageCode, Curriculum curr = null)
+        {
+            var curriculum = curr ?? await repository.GetCurriculumAsync<LanguageSkill>(curriculumID);
+
+            LanguageSkills = repository.GetLanguageSkills(curriculum, languageCode);
         }
 
         #endregion

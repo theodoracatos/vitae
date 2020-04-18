@@ -8,7 +8,5 @@ namespace Model.ViewModels
     {
         public bool Collapsed { get; set; }
         public int Order { get; set; }
-
-        public string CurriculumLanguageCode { get; set; }
     }
 }

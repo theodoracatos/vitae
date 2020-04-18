@@ -2,9 +2,8 @@
 
 <div id="panel">
     <div class="card">
-        <div class="card-header font-weight-bold">
-            <h1><i class="fas fa-graduation-cap fa-fw"></i>@SharedResource.Educations</h1>
-        </div>
+        <partial name="_CardHeader" model="@(new Tuple<BasePageModel, string, string>(Model, "fas fa-graduation-cap", SharedResource.Educations))" />
+
         <div class="card-body">
             <div class="form-row">
                 <div class="form-group col">
@@ -140,13 +139,6 @@
                 {<hr />}
             }
         </div>
-        <div class="card-footer">
-            <div class="form-row">
-                <div class="form-group col mb-0 text-right">
-                    <button id="btnCollapse" asp-page-handler="Collapse" data-ajax="true" data-ajax-update="#panel" class="d-none cancel"></button>
-                    <button type="submit" class="btn btn-primary float-right" disabled="disabled"><i class="fas fa-save fa-fw"></i>@SharedResource.Save</button>
-                </div>
-            </div>
-        </div>
+        <partial name="_CardFooter" model="@Model" />
     </div>
 </div>

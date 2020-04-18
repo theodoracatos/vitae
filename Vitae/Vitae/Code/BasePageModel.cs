@@ -35,6 +35,9 @@ namespace Vitae.Code
         public bool IsLoggedIn { get { return this.curriculumID != Guid.Empty; } }
 
         [BindProperty]
+        public bool HasUnsafedChanges { get; set; }
+
+        [BindProperty]
         public bool AddToTop { get; set; }
 
         [BindProperty]
@@ -56,8 +59,11 @@ namespace Vitae.Code
             this.httpContext = httpContextAccessor.HttpContext;
         }
 
-        protected PartialViewResult GetPartialViewResult(string viewName, string modelName = "IndexModel")
+        protected PartialViewResult GetPartialViewResult(string viewName, string modelName = "IndexModel", bool hasUnsafedChanges = true)
         {
+            // A change occured
+            HasUnsafedChanges = hasUnsafedChanges;
+
             // Ajax
             var dataDictionary = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { { modelName, this } };
             dataDictionary.Model = this;

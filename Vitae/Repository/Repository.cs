@@ -393,7 +393,6 @@ namespace Library.Repository
                    AcademicTitle = a.AcademicTitle,
                    Photo = a.Photo,
                    Slogan = a.Slogan,
-                   CurriculumLanguageCode = a.CurriculumLanguage.LanguageCode,
                    Vfile = new VfileVM()
                    {
                        FileName = a.Vfile?.FileName,
@@ -441,9 +440,11 @@ namespace Library.Repository
             return certificatesVM;
         }
 
-        public IList<CourseVM> GetCourses(Curriculum curriculum)
+        public IList<CourseVM> GetCourses(Curriculum curriculum, string languageCode)
         {
-            var coursesVM = curriculum.Person.Courses?.OrderBy(co => co.Order)
+            var coursesVM = curriculum.Person.Courses?
+               .Where(c => c.CurriculumLanguage?.LanguageCode == languageCode)
+               .OrderBy(co => co.Order)
                .Select(c => new CourseVM()
                {
                    Description = c.Description,
@@ -465,9 +466,11 @@ namespace Library.Repository
             return coursesVM;
         }
 
-        public IList<EducationVM> GetEducations(Curriculum curriculum)
+        public IList<EducationVM> GetEducations(Curriculum curriculum, string languageCode)
         {
-            var educationsVM = curriculum.Person.Educations?.OrderBy(ed => ed.Order)
+            var educationsVM = curriculum.Person.Educations?
+                 .Where(e => e.CurriculumLanguage?.LanguageCode == languageCode)
+                 .OrderBy(ed => ed.Order)
                     .Select(e => new EducationVM()
                     {
                         City = e.City,
@@ -530,9 +533,11 @@ namespace Library.Repository
             return interestsVM;
         }
 
-        public IList<LanguageSkillVM> GetLanguageSkills(Curriculum curriculum)
+        public IList<LanguageSkillVM> GetLanguageSkills(Curriculum curriculum, string languageCode)
         {
-            var languageSkillsVM = curriculum.Person.LanguageSkills?.OrderBy(ls => ls.Order)
+            var languageSkillsVM = curriculum.Person.LanguageSkills?
+                    .Where(l => l.CurriculumLanguage?.LanguageCode == languageCode)
+                    .OrderBy(la => la.Order)
                     .Select(l => new LanguageSkillVM()
                     {
                         LanguageCode = l.SpokenLanguage?.LanguageCode,
@@ -590,9 +595,11 @@ namespace Library.Repository
             return referencesVM;
         }
 
-        public IList<AbroadVM> GetAbroads(Curriculum curriculum)
+        public IList<AbroadVM> GetAbroads(Curriculum curriculum, string languageCode)
         {
-            var abroadsVM = curriculum.Person.Abroads?.OrderBy(ab => ab.Order)
+            var abroadsVM = curriculum.Person.Abroads?
+                .Where(e => e.CurriculumLanguage?.LanguageCode == languageCode)
+                .OrderBy(ab => ab.Order)
                 .Select(a => new AbroadVM()
                 {
                     City = a.City,
