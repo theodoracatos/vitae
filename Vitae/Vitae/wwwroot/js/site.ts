@@ -41,12 +41,13 @@ function setupDirtyForms(asyncCall) {
     $('form').on('dirty.dirtyforms clean.dirtyforms', function (ev) {  
         let $submitResetButtons = $('form').find('[type="submit"]');
         let $languageSelect = $('form').find('#languageSelect select');
+        let $hasUnsafedChanges = $('form').find('#HasUnsafedChanges');
 
         if (ev.type === 'dirty') {
             $submitResetButtons.removeAttr('disabled');
             $languageSelect.attr('disabled', 'disabled');
         }
-        else {
+        else if ($hasUnsafedChanges.val() != "True") {
             $submitResetButtons.attr('disabled', 'disabled');
             $languageSelect.removeAttr('disabled');
         }
@@ -421,6 +422,7 @@ function readImage(file) {
     reader.readAsDataURL(file);
     $('#divPreview').removeClass("d-none");
     $('#divSelector').addClass("d-none");
+    setDirty();
 }
 
 function loadFilerUpload() {

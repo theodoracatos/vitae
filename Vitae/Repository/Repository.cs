@@ -687,8 +687,8 @@ namespace Library.Repository
 
         private T CopyEntity<T>(T basePoco) where T : class, new()
         {
+            if(basePoco == null) { return null; }
             var newPoco = CodeHelper.ShallowCopyEntity(basePoco);
-
 
             return newPoco;
         }

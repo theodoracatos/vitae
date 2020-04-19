@@ -48,13 +48,6 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer">
-            <div class="form-row">
-                <div class="form-group col mb-0 text-right">
-                    <button id="btnSelectChange" asp-page-handler="SelectChange" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
-                    <button type="submit" class="btn btn-primary float-right" disabled="disabled"><i class="fas fa-save fa-fw"></i>@SharedResource.Save</button>
-                </div>
-            </div>
-        </div>
+        <partial name="_CardFooter" model="@Model" />
     </div>
 </div>

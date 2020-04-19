@@ -4,7 +4,7 @@
     @(Model.Item1.ToShortDateCultureString()) - @(!Model.Item2.HasValue ? SharedResource.UntilNow : Model.Item2.Value.ToShortDateCultureString())
 </span>
 @{
-    var dateDifference = new DateDifference(Model.Item1, new DateTime(Model.Item2.HasValue ? Model.Item2.Value.Year : DateTime.Now.Year, Model.Item2.HasValue ? Model.Item2.Value.Month : DateTime.Now.Month, 1));
+    var dateDifference = new DateDifference(Model.Item1, new DateTime(Model.Item2.HasValue ? Model.Item2.Value.Year : DateTime.Now.Year, Model.Item2.HasValue ? Model.Item2.Value.Month : DateTime.Now.Month, Model.Item2.HasValue ? Model.Item2.Value.Day : 1));
     var text = new StringBuilder();
     if (dateDifference.Years > 0)
     {

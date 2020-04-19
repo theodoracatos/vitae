@@ -17,7 +17,7 @@
 
 @{
     var menuEntries = new List<Tuple<bool, string, string>>()
-{
+    {
       new Tuple<bool, string, string>(Model.Abouts.Count > 0, nameof(About).ToLower(), SharedResource.AboutInfo),
       new Tuple<bool, string, string>(Model.Experiences.Count > 0, nameof(Experience).ToLower(), SharedResource.Experiences),
       new Tuple<bool, string, string>(Model.Educations.Count > 0, nameof(Education).ToLower(), SharedResource.Educations),

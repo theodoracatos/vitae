@@ -5,6 +5,7 @@ namespace Model.Poco
 {
     public class Reference : Base
     {
+        [Key]
         public Guid ReferenceID { get; set; }
 
         [Required]
