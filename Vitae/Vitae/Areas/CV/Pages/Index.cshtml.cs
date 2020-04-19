@@ -63,17 +63,17 @@ namespace Vitae.Areas.CV.Pages
             {
                 PersonalDetail = repository.GetPersonalDetail(curriculum);
                 Abouts = repository.GetAbouts(curriculum, "de");
-                SocialLinks = repository.GetSocialLinks(curriculum);
+                SocialLinks = repository.GetSocialLinks(curriculum, "de");
                 Educations = repository.GetEducations(curriculum, "de");
                 Experiences = repository.GetExperiences(curriculum, "de");
                 Courses = repository.GetCourses(curriculum, "de");
                 Abroads = repository.GetAbroads(curriculum, "de");
                 LanguageSkills = repository.GetLanguageSkills(curriculum, "de");
-                Interests = repository.GetInterests(curriculum);
-                Awards = repository.GetAwards(curriculum);
-                Skills = repository.GetSkills(curriculum);
-                Certificates = repository.GetCertificates(curriculum);
-                References = repository.GetReferences(curriculum);
+                Interests = repository.GetInterests(curriculum, "de");
+                Awards = repository.GetAwards(curriculum, "de");
+                Skills = repository.GetSkills(curriculum, "de");
+                Certificates = repository.GetCertificates(curriculum, "de");
+                References = repository.GetReferences(curriculum, "de");
 
                 FillSelectionViewModel();
 

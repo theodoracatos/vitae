@@ -48,9 +48,10 @@ namespace Vitae.Areas.Manage.Pages.Awards
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                Awards = repository.GetAwards(curriculum);
+                var curriculum = await repository.GetCurriculumAsync<Award>(curriculumID);
+                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
 
+                await LoadAwards(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
                 return Page();
             }
@@ -59,19 +60,19 @@ namespace Vitae.Areas.Manage.Pages.Awards
         {
             if (ModelState.IsValid)
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Awards);
+                var curriculum = await repository.GetCurriculumAsync<Award>(curriculumID);
+                vitaeContext.RemoveRange(curriculum.Person.Awards.Where(a => a.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
-                curriculum.Person.Awards =
-                    Awards.Select(a => new Poco.Award()
+                Awards.Select(a => new Poco.Award()
                     {
                         AwardedFrom = a.AwardedFrom,
                         AwardedOn = new DateTime(a.Year, a.Month, 1),
                         Description = a.Description,
                         Link = a.Link,
                         Name = a.Name,
-                        Order = a.Order
-                    }).ToList();
+                        Order = a.Order,
+                        CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
+                    }).ToList().ForEach(a => curriculum.Person.Awards.Add(a));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
@@ -158,13 +159,30 @@ namespace Vitae.Areas.Manage.Pages.Awards
             return GetPartialViewResult(PAGE_AWARDS);
         }
 
+        public async Task<IActionResult> OnPostLanguageChangeAsync()
+        {
+            await LoadAwards(CurriculumLanguageCode);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_AWARDS, hasUnsafedChanges: false);
+        }
+
         #endregion
 
         #region Helper
 
         protected override void FillSelectionViewModel()
         {
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
+        }
+
+        private async Task LoadAwards(string languageCode, Curriculum curr = null)
+        {
+            var curriculum = curr ?? await repository.GetCurriculumAsync<Award>(curriculumID);
+
+            Awards = repository.GetAwards(curriculum, languageCode);
         }
 
         #endregion

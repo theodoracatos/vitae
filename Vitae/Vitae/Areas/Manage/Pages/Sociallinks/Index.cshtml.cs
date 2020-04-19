@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
 using Model.Enumerations;
+using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
@@ -47,9 +48,10 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                SocialLinks = repository.GetSocialLinks(curriculum);
+                var curriculum = await repository.GetCurriculumAsync<SocialLink>(curriculumID);
+                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
 
+                await LoadSocialLinks(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
                 return Page();
             }
@@ -59,16 +61,16 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
         {
             if (ModelState.IsValid)
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.SocialLinks);
+                var curriculum = await repository.GetCurriculumAsync<SocialLink>(curriculumID);
+                vitaeContext.RemoveRange(curriculum.Person.SocialLinks.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
-                curriculum.Person.SocialLinks =
-                    SocialLinks.Select(s => new Poco.SocialLink()
+                SocialLinks.Select(s => new Poco.SocialLink()
                     {
                         Order = s.Order,
                         SocialPlatform = s.SocialPlatform,
-                        Link = s.Link
-                    }).ToList();
+                        Link = s.Link,
+                        CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
+                    }).ToList().ForEach(s => curriculum.Person.SocialLinks.Add(s));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
@@ -163,12 +165,30 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
             return GetPartialViewResult(PAGE_SOCIALLINKS);
         }
 
+        public async Task<IActionResult> OnPostLanguageChangeAsync()
+        {
+            await LoadSocialLinks(CurriculumLanguageCode);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_SOCIALLINKS, hasUnsafedChanges: false);
+        }
+
         #endregion
 
         #region Helper
 
         protected override void FillSelectionViewModel()
-        {}
+        {
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
+        }
+
+        private async Task LoadSocialLinks(string languageCode, Curriculum curr = null)
+        {
+            var curriculum = curr ?? await repository.GetCurriculumAsync<SocialLink>(curriculumID);
+
+            SocialLinks = repository.GetSocialLinks(curriculum, languageCode);
+        }
 
         #endregion
     }

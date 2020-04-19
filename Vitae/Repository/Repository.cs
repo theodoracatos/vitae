@@ -403,9 +403,11 @@ namespace Library.Repository
             return aboutsVM;
         }
 
-        public IList<AwardVM> GetAwards(Curriculum curriculum)
+        public IList<AwardVM> GetAwards(Curriculum curriculum, string languageCode)
         {
-            var awardsVM = curriculum.Person.Awards?.OrderBy(aw => aw.Order)
+            var awardsVM = curriculum.Person.Awards?
+                .Where(a => a.CurriculumLanguage.LanguageCode == languageCode)
+                .OrderBy(aw => aw.Order)
                    .Select(a => new AwardVM()
                    {
                        AwardedFrom = a.AwardedFrom,
@@ -420,9 +422,11 @@ namespace Library.Repository
             return awardsVM;
         }
 
-        public IList<CertificateVM> GetCertificates(Curriculum curriculum)
+        public IList<CertificateVM> GetCertificates(Curriculum curriculum, string languageCode)
         {
-            var certificatesVM = curriculum.Person.Certificates?.OrderBy(ce => ce.Order)
+            var certificatesVM = curriculum.Person.Certificates?
+                .Where(a => a.CurriculumLanguage.LanguageCode == languageCode)
+                .OrderBy(ce => ce.Order)
                .Select(c => new CertificateVM()
                {
                    Description = c.Description,
@@ -518,9 +522,11 @@ namespace Library.Repository
             return experiencesVM;
         }
 
-        public IList<InterestVM> GetInterests(Curriculum curriculum)
+        public IList<InterestVM> GetInterests(Curriculum curriculum, string languageCode)
         {
-            var interestsVM = curriculum.Person.Interests?.OrderBy(ir => ir.Order)
+            var interestsVM = curriculum.Person.Interests?
+                .Where(i => i.CurriculumLanguage?.LanguageCode == languageCode)
+                .OrderBy(ir => ir.Order)
                     .Select(i => new InterestVM()
                     {
                         Description = i.Description,
@@ -548,9 +554,11 @@ namespace Library.Repository
             return languageSkillsVM;
         }
 
-        public IList<SkillVM> GetSkills(Curriculum curriculum)
+        public IList<SkillVM> GetSkills(Curriculum curriculum, string languageCode)
         {
-            var skillsVM = curriculum.Person.Skills?.OrderBy(ls => ls.Order)
+            var skillsVM = curriculum.Person.Skills?
+                .Where(l => l.CurriculumLanguage?.LanguageCode == languageCode)
+                .OrderBy(ls => ls.Order)
                     .Select(s => new SkillVM()
                     {
                         Category = s.Category,
@@ -561,9 +569,11 @@ namespace Library.Repository
             return skillsVM;
         }
 
-        public IList<SocialLinkVM> GetSocialLinks(Curriculum curriculum)
+        public IList<SocialLinkVM> GetSocialLinks(Curriculum curriculum, string languageCode)
         {
-            var socialLinksVM = curriculum.Person.SocialLinks?.OrderBy(ls => ls.Order)
+            var socialLinksVM = curriculum.Person.SocialLinks?
+                .Where(l => l.CurriculumLanguage?.LanguageCode == languageCode)
+                .OrderBy(ls => ls.Order)
                     .Select(s => new SocialLinkVM()
                     {
                         Link = s.Link,
@@ -574,9 +584,11 @@ namespace Library.Repository
             return socialLinksVM;
         }
 
-        public IList<ReferenceVM> GetReferences(Curriculum curriculum)
+        public IList<ReferenceVM> GetReferences(Curriculum curriculum, string languageCode)
         {
-            var referencesVM = curriculum.Person.References?.OrderBy(re => re.Order)
+            var referencesVM = curriculum.Person.References?
+                .Where(r => r.CurriculumLanguage?.LanguageCode == languageCode)
+                .OrderBy(re => re.Order)
                 .Select(r => new ReferenceVM()
                 {
                     CompanyName = r.CompanyName,

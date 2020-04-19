@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-
+using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
@@ -48,9 +48,10 @@ namespace Vitae.Areas.Manage.Pages.References
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                References = repository.GetReferences(curriculum);
+                var curriculum = await repository.GetCurriculumAsync<Reference>(curriculumID);
+                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
 
+                await LoadReferences(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
                 return Page();
             }
@@ -60,24 +61,24 @@ namespace Vitae.Areas.Manage.Pages.References
         {
             if (ModelState.IsValid)
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.References);
+                var curriculum = await repository.GetCurriculumAsync<Reference>(curriculumID);
+                vitaeContext.RemoveRange(curriculum.Person.References.Where(r => r.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
-                curriculum.Person.References =
-                    References.Select(r => new Poco.Reference()
-                    {
-                        CompanyName = r.CompanyName,
-                        Email = r.Email,
-                        Firstname = r.Firstname,
-                        Lastname = r.Lastname,
-                        PhoneNumber = r.PhoneNumber,
-                        Order = r.Order,
-                        Description = r.Description,
-                        Gender = r.Gender.Value,
-                        Link = r.Link,
-                        Hide = r.Hide,
-                        Country = vitaeContext.Countries.Single(c => c.CountryCode == r.CountryCode)
-                    }).ToList();
+                References.Select(r => new Poco.Reference()
+                {
+                    CompanyName = r.CompanyName,
+                    Email = r.Email,
+                    Firstname = r.Firstname,
+                    Lastname = r.Lastname,
+                    PhoneNumber = r.PhoneNumber,
+                    Order = r.Order,
+                    Description = r.Description,
+                    Gender = r.Gender.Value,
+                    Link = r.Link,
+                    Hide = r.Hide,
+                    Country = vitaeContext.Countries.Single(c => c.CountryCode == r.CountryCode),
+                    CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
+                }).ToList().ForEach(r => curriculum.Person.References.Add(r));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
@@ -173,17 +174,34 @@ namespace Vitae.Areas.Manage.Pages.References
             return GetPartialViewResult(PAGE_REFERENCES);
         }
 
+        public async Task<IActionResult> OnPostLanguageChangeAsync()
+        {
+            await LoadReferences(CurriculumLanguageCode);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_REFERENCES, hasUnsafedChanges: false);
+        }
+
         #endregion
 
         #region Helper
 
         protected override void FillSelectionViewModel()
         {
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             foreach(var reference in References)
             {
                 reference.PhonePrefix = repository.GetPhonePrefix(reference.CountryCode);
             }
+        }
+
+        private async Task LoadReferences(string languageCode, Curriculum curr = null)
+        {
+            var curriculum = curr ?? await repository.GetCurriculumAsync<Reference>(curriculumID);
+
+            References = repository.GetReferences(curriculum, languageCode);
         }
         #endregion
     }
