@@ -7,10 +7,16 @@ BEGIN TRY
 DECLARE @CurriculumID uniqueidentifier = (SELECT [cla].[ClaimValue] FROM [AspNetUsers] [usr] INNER JOIN [AspNetUserClaims] [cla] ON [cla].[UserId] = [usr].[Id] WHERE [usr].[Email] = 'theodoracatos@gmail.com')
 DECLARE @UserID uniqueidentifier = (SELECT [cla].[UserId] FROM [AspNetUsers] [usr] INNER JOIN [AspNetUserClaims] [cla] ON [cla].[UserId] = [usr].[Id] WHERE [usr].[Email] = 'theodoracatos@gmail.com')
 
-select * from About
+IF NOT EXISTS(SELECT 1 FROM [CurriculumLanguage] WHERE [CurriculumID] = @CurriculumID)
+BEGIN
+	INSERT INTO [CurriculumLanguage]
+	VALUES (@CurriculumID, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), 0)
+END
 
+DECLARE @CurrLangId uniqueidentifier = (SELECT [LanguageID] FROM [CurriculumLanguage] WHERE [CurriculumID] = @CurriculumID AND [Order] = 0)
+select * from about
 INSERT INTO [About]
-VALUES(NEWID(), 'Dipl.-Ing. FH | MAS ZFH', '"Wer hohe Türme bauen will, muss lange beim Fundament verweilen." Aristoteles',  '', null)
+VALUES(NEWID(), 0, @CurrLangID, 'Dipl.-Ing. FH | MAS ZFH', '"Wer hohe Türme bauen will, muss lange beim Fundament verweilen." Aristoteles',  '', null)
 
 INSERT INTO [PersonalDetail]
 VALUES (NEWID(), 'Alexandros', 'Theodoracatos', '1983-06-23', 1, 'Zwischenbächen', 143, 'Zürich', 'Zürich', '8048', 'theodoracatos@gmail.com', '787044438', 'Zürich ZH, Eschenbach SG', 2, (SELECT TOP 1 [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), (SELECT TOP 1 [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'))
