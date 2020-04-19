@@ -62,7 +62,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync<Certificate>(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Certificates.Where(c => c.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
+                vitaeContext.RemoveRange(curriculum.Certificates.Where(c => c.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
                 Certificates.Select(c => new Poco.Certificate()
                 {
@@ -74,7 +74,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
                     Link = c.Link,
                     Name = c.Name,
                     CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
-                }).ToList().ForEach(c => curriculum.Person.Certificates.Add(c));
+                }).ToList().ForEach(c => curriculum.Certificates.Add(c));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();

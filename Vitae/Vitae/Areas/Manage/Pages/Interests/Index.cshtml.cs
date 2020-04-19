@@ -59,7 +59,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync<Interest>(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Interests.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
+                vitaeContext.RemoveRange(curriculum.Interests.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
                 Interests.Select(i => new Poco.Interest()
                     {
@@ -69,7 +69,7 @@ namespace Vitae.Areas.Manage.Pages.Interests
                         InterestName = i.InterestName,
                         Order = i.Order,
                         CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
-                    }).ToList().ForEach(i => curriculum.Person.Interests.Add(i));
+                    }).ToList().ForEach(i => curriculum.Interests.Add(i));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();

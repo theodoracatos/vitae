@@ -62,7 +62,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync<SocialLink>(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.SocialLinks.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
+                vitaeContext.RemoveRange(curriculum.SocialLinks.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
                 SocialLinks.Select(s => new Poco.SocialLink()
                     {
@@ -70,7 +70,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
                         SocialPlatform = s.SocialPlatform,
                         Link = s.Link,
                         CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
-                    }).ToList().ForEach(s => curriculum.Person.SocialLinks.Add(s));
+                    }).ToList().ForEach(s => curriculum.SocialLinks.Add(s));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();

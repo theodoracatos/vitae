@@ -65,7 +65,7 @@ namespace Vitae.Areas.Manage.Pages.Educations
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync<Education>(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Educations.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
+                vitaeContext.RemoveRange(curriculum.Educations.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
                 Educations.Select(e => new Poco.Education()
                 {
@@ -81,7 +81,7 @@ namespace Vitae.Areas.Manage.Pages.Educations
                     Title = e.Title,
                     Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode),
                     CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
-                }).ToList().ForEach(e => curriculum.Person.Educations.Add(e));
+                }).ToList().ForEach(e => curriculum.Educations.Add(e));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();

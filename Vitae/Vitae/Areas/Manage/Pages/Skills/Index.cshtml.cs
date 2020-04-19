@@ -59,7 +59,7 @@ namespace Vitae.Areas.Manage.Pages.Skills
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync<Skill>(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Skills.Where(s => s.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
+                vitaeContext.RemoveRange(curriculum.Skills.Where(s => s.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
                 Skills.Select(s => new Poco.Skill()
                     {
@@ -67,7 +67,7 @@ namespace Vitae.Areas.Manage.Pages.Skills
                         Order = s.Order,
                         Skillset = s.Skillset,
                     CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
-                }).ToList().ForEach(s => curriculum.Person.Skills.Add(s));
+                }).ToList().ForEach(s => curriculum.Skills.Add(s));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();

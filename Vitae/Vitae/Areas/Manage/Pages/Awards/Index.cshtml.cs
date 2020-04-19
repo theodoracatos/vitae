@@ -61,7 +61,7 @@ namespace Vitae.Areas.Manage.Pages.Awards
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync<Award>(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Awards.Where(a => a.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
+                vitaeContext.RemoveRange(curriculum.Awards.Where(a => a.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
                 Awards.Select(a => new Poco.Award()
                     {
@@ -72,7 +72,7 @@ namespace Vitae.Areas.Manage.Pages.Awards
                         Name = a.Name,
                         Order = a.Order,
                         CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
-                    }).ToList().ForEach(a => curriculum.Person.Awards.Add(a));
+                    }).ToList().ForEach(a => curriculum.Awards.Add(a));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();

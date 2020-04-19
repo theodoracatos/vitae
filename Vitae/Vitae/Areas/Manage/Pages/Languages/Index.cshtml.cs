@@ -61,7 +61,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync<LanguageSkill>(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.LanguageSkills.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
+                vitaeContext.RemoveRange(curriculum.LanguageSkills.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
                 LanguageSkills.Select(l => new Poco.LanguageSkill()
                 {
@@ -69,7 +69,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
                     Rate = l.Rate,
                     SpokenLanguage = vitaeContext.Languages.Single(la => la.LanguageCode == l.LanguageCode),
                     CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
-                }).ToList().ForEach(l => curriculum.Person.LanguageSkills.Add(l));
+                }).ToList().ForEach(l => curriculum.LanguageSkills.Add(l));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();

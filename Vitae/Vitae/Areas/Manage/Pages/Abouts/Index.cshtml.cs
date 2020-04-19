@@ -74,12 +74,11 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync<About>(curriculumID);
-                var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Language.LanguageCode == CurriculumLanguageCode).Language;
-                var about = curriculum.Person.Abouts.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new About() { };
+                var about = curriculum.Abouts.SingleOrDefault(a => a.CurriculumLanguage.LanguageCode == CurriculumLanguageCode) ?? new About() { };
                 about.AcademicTitle = About.AcademicTitle;
                 about.Slogan = About.Slogan;
                 about.Photo = About.Photo;
-                about.CurriculumLanguage = currentLanguage;
+                about.CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode);
 
                 if (About.Vfile?.Content != null)
                 {
@@ -115,7 +114,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
                 }
 
                 curriculum.LastUpdated = DateTime.Now;
-                curriculum.Person.Abouts.Add(about);
+                curriculum.Abouts.Add(about);
                 await vitaeContext.SaveChangesAsync();
 
                 // Update VM

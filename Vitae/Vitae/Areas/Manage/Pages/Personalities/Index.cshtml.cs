@@ -63,10 +63,10 @@ namespace Vitae.Areas.Manage.Pages.Personalities
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync<PersonalDetail>(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.PersonalDetails);
+                vitaeContext.RemoveRange(curriculum.PersonalDetails);
 
                 var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language; // Always take 1st language!
-                var personalDetails = curriculum.Person.PersonalDetails.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new PersonalDetail() { PersonCountries = new List<PersonCountry>(), Children = new List<Child>() };
+                var personalDetails = curriculum.PersonalDetails.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new PersonalDetail() { PersonCountries = new List<PersonCountry>(), Children = new List<Child>() };
 
                 personalDetails.Birthday = new DateTime(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
                 personalDetails.City = PersonalDetail.City;
@@ -113,7 +113,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
                         }).ToList();
                 }
                 curriculum.LastUpdated = DateTime.Now;
-                curriculum.Person.PersonalDetails.Add(personalDetails);
+                curriculum.PersonalDetails.Add(personalDetails);
                 await vitaeContext.SaveChangesAsync();
             }
 
