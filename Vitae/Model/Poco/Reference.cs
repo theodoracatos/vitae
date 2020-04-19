@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
-    public class Reference
+    public class Reference : Base
     {
         public Guid ReferenceID { get; set; }
 
@@ -36,7 +36,5 @@ namespace Model.Poco
         public virtual Country Country { get; set; }
 
         public bool Hide { get; set; }
-
-        public int Order { get; set; }
     }
 }

@@ -35,10 +35,18 @@ namespace Vitae.Code
         public bool IsLoggedIn { get { return this.curriculumID != Guid.Empty; } }
 
         [BindProperty]
+        public bool HasUnsafedChanges { get; set; }
+
+        [BindProperty]
         public bool AddToTop { get; set; }
 
         [BindProperty]
         public bool Collapsed { get; set; }
+
+        [BindProperty]
+        public string CurriculumLanguageCode { get; set; }
+
+        public IEnumerable<LanguageVM> CurriculumLanguages { get; set; }
 
         public BasePageModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
         {
@@ -51,8 +59,11 @@ namespace Vitae.Code
             this.httpContext = httpContextAccessor.HttpContext;
         }
 
-        protected PartialViewResult GetPartialViewResult(string viewName, string modelName = "IndexModel")
+        protected PartialViewResult GetPartialViewResult(string viewName, string modelName = "IndexModel", bool hasUnsafedChanges = true)
         {
+            // A change occured
+            HasUnsafedChanges = hasUnsafedChanges;
+
             // Ajax
             var dataDictionary = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { { modelName, this } };
             dataDictionary.Model = this;
@@ -121,6 +132,20 @@ namespace Vitae.Code
             if (items.Count > 0)
             {
                 items.RemoveAt(items.Count - 1);
+            }
+        }
+
+        protected void Remove<T>(IList<T> items, int order) where T : BaseVM
+        {
+            if (items.Count > 0)
+            {
+                items.Remove(items.Single(i => i.Order == order));
+            }
+
+            // Reorder
+            for(int i = 0; i < items.Count; i++)
+            {
+                items[i].Order = i;
             }
         }
 

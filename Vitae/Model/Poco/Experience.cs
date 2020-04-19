@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
-    public class Experience
+    public class Experience : Base
     {
         [Key]
         public Guid ExperienceID { get; set; }
@@ -32,7 +32,5 @@ namespace Model.Poco
         public DateTime Start { get; set; }
 
         public DateTime? End { get; set; }
-
-        public int Order { get; set; }
     }
 }

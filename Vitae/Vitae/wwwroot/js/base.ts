@@ -1,4 +1,6 @@
-﻿declare var jQuery;
+﻿/* eslint-disable */
+
+declare var jQuery;
 declare var $;
 declare var Resources;
 

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
-    public class Award
+    public class Award : Base
     {
         [Key]
         public Guid AwardID { get; set; }
@@ -23,7 +23,5 @@ namespace Model.Poco
         public string Link { get; set; }
 
         public DateTime AwardedOn { get; set; }
-
-        public int Order { get; set; }
     }
 }

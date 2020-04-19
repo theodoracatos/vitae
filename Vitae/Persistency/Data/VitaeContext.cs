@@ -12,6 +12,7 @@ namespace Persistency.Data
     public class VitaeContext : DbContext
     {
         public virtual DbSet<Curriculum> Curriculums { get; set; }
+        public virtual DbSet<CurriculumLanguage> CurriculumLanguages { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Month> Months { get; set; }
@@ -28,10 +29,9 @@ namespace Persistency.Data
             modelBuilder.RemovePluralizingTableNameConvention();
 
             /* Index, unique */
-            modelBuilder.Entity<Curriculum>().HasIndex(c => c.FriendlyId);
+            modelBuilder.Entity<Share>().HasIndex(c => c.Identifier);
             modelBuilder.Entity<Country>().HasIndex(c => c.CountryCode).IsUnique();
             modelBuilder.Entity<Language>().HasIndex(c => c.LanguageCode).IsUnique();
-            modelBuilder.Entity<Vfile>().HasIndex(c => c.Identifier).IsUnique();
             modelBuilder.Entity<Log>().HasIndex(c => c.CurriculumID);
 
             /* N-M */
@@ -45,6 +45,17 @@ namespace Persistency.Data
                 .HasOne(pc => pc.Country)
                 .WithMany(c => c.PersonCountries)
                 .HasForeignKey(pc => pc.CountryID);
+
+            modelBuilder.Entity<CurriculumLanguage>()
+                .HasKey(cu => new { cu.CurriculumID, cu.LanguageID });
+            modelBuilder.Entity<CurriculumLanguage>()
+                .HasOne(cu => cu.Curriculum)
+                .WithMany(c => c.CurriculumLanguages)
+                .HasForeignKey(cu => cu.CurriculumID);
+            modelBuilder.Entity<CurriculumLanguage>()
+                .HasOne(la => la.Language)
+                .WithMany(l => l.CurriculumLanguages)
+                .HasForeignKey(la => la.LanguageID);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

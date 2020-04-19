@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Library.Constants;
+using Library.Helper;
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Logging;
 
 using Model.Enumerations;
@@ -48,13 +52,13 @@ namespace Library.Repository
         {
             var curriculum = new Curriculum()
             {
-                ShortIdentifier = (DateTime.Now.Ticks - new DateTime(2020, 1, 1).Ticks).ToString("x"),
                 UserID = userid,
                 CreatedOn = DateTime.Now,
-                FriendlyId = (DateTime.Now.Ticks - new DateTime(2020, 1, 1).Ticks).ToString("x"),
                 LastUpdated = DateTime.Now,
-                Person = new Person() { Language = language }
+                Language = language
             };
+            var languagePoco = vitaeContext.Languages.SingleOrDefault(l => l.LanguageCode == language.ToLower()) ?? vitaeContext.Languages.Single(l => l.LanguageCode == Globals.DEFAULT_LANGUAGE);
+            curriculum.CurriculumLanguages = new List<CurriculumLanguage>() { new CurriculumLanguage() { Curriculum = curriculum, CurriculumID = curriculum.CurriculumID, Language = languagePoco, LanguageID = languagePoco.LanguageID } };
             vitaeContext.Curriculums.Add(curriculum);
 
             await vitaeContext.SaveChangesAsync();
@@ -65,7 +69,7 @@ namespace Library.Repository
         public async Task<Curriculum> GetCurriculumByWeakIdentifierAsync(string identifier)
         {
             Curriculum curriculum = null;
-            var curriculumID = vitaeContext.Curriculums.SingleOrDefault(c => c.CurriculumID.ToString().ToLower() == identifier.ToLower() || c.FriendlyId == identifier)?.CurriculumID;
+            var curriculumID = vitaeContext.Curriculums.SingleOrDefault(c => c.CurriculumID.ToString().ToLower() == identifier.ToLower())?.CurriculumID;
 
             if (curriculumID.HasValue)
             {
@@ -75,30 +79,198 @@ namespace Library.Repository
             return curriculum;
         }
 
-            public async Task<Curriculum> GetCurriculumAsync(Guid curriculumID)
-            {
+        public async Task<int> CountItemsFromCurriculumLanguageAsync(Guid curriculumID, string languageToCheck)
+        {
+            var curriculum = await GetCurriculumAsync(curriculumID);
+            var nrOfItems = curriculum.Abouts.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Abroads.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Awards.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Courses.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Certificates.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Educations.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Experiences.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Interests.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.LanguageSkills.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.Skills.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.SocialLinks.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+            nrOfItems += curriculum.References.Count(a => a.CurriculumLanguage.LanguageCode == languageToCheck);
+
+            return nrOfItems;
+        }
+
+        public async Task DeleteItemsFromCurriculumLanguageAsync(Guid curriculumID, string languageCodeToDelete)
+        {
+            var curriculum = await GetCurriculumAsync(curriculumID);
+
+            curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i.Vfile).State = EntityState.Deleted);
+            curriculum.Abroads.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Awards.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Courses.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Certificates.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Educations.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Experiences.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Interests.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.LanguageSkills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.Skills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.SocialLinks.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+            curriculum.References.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
+
+            await vitaeContext.SaveChangesAsync();
+        }
+
+        public async Task MoveItemsFromCurriculumLanguageAsync(Guid curriculumID, string languageCodeFrom, string languageCodeTo, bool copy = false)
+        {
+            var curriculum = await GetCurriculumAsync(curriculumID);
+            var newLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == languageCodeTo);
+
+            curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Abouts.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
+            curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+            .ToList().ForEach(a => curriculum.Abouts.Single(ab => ab.CurriculumLanguage.LanguageCode == newLanguage.LanguageCode).Vfile = (copy ? CopyEntity(a.Vfile) : a.Vfile));
+
+            curriculum.Abroads.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Abroads.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
+            curriculum.Awards.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Awards.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
+            curriculum.Courses.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Courses.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
+            curriculum.Certificates.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Certificates.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
+            curriculum.Educations.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Educations.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
+            curriculum.Experiences.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom).ToList()
+                .ForEach(a => curriculum.Experiences.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
+            curriculum.Interests.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Interests.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
+            curriculum.LanguageSkills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.LanguageSkills.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
+            curriculum.Skills.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.Skills.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
+            curriculum.SocialLinks.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.SocialLinks.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
+            curriculum.References.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                .ToList().ForEach(a => curriculum.References.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
+            await vitaeContext.SaveChangesAsync();
+        }
+
+        public async Task RemoveCurriculumLanguageItemsAsync(Guid curriculumID, string languageCode)
+        {
+            var curriculum = await GetCurriculumAsync(curriculumID);
+            Func<Base, bool> removeQuery = x => x.CurriculumLanguage.LanguageCode == languageCode;
+
+            vitaeContext.RemoveRange(curriculum.PersonalDetails.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Abouts.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Abroads.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Awards.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Courses.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Certificates.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Educations.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Experiences.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Interests.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.LanguageSkills.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.Skills.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.SocialLinks.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.References.Where(removeQuery));
+
+            await vitaeContext.SaveChangesAsync();
+        }
+
+        public async Task<Curriculum> GetCurriculumAsync(Guid curriculumID)
+        {
             var curriculumQuery = vitaeContext.Curriculums
+                .Include(c => c.CurriculumLanguages)
+                .ThenInclude(cl => cl.Language)
+                .Where(c => c.CurriculumID == curriculumID).Take(1);
+
+            await LoadPersonalDetails(curriculumQuery);
+            await LoadAbouts(curriculumQuery);
+            await LoadAbroads(curriculumQuery);
+            await LoadAwards(curriculumQuery);
+            await LoadCourses(curriculumQuery);
+            await LoadCertificates(curriculumQuery);
+            await LoadEducations(curriculumQuery);
+            await LoadExperiences(curriculumQuery);
+            await LoadInterests(curriculumQuery);
+            await LoadLanguageSkills(curriculumQuery);
+            await LoadSkills(curriculumQuery);
+            await LoadSocialLinks(curriculumQuery);
+            await LoadReferences(curriculumQuery);
+
+            return curriculumQuery.Single();
+        }
+
+        public async Task<Curriculum> GetCurriculumAsync<T>(Guid curriculumID) where T : Base
+        {
+            var curriculumQuery = vitaeContext.Curriculums
+               .Include(c => c.CurriculumLanguages)
+               .ThenInclude(cl => cl.Language)
                .Where(c => c.CurriculumID == curriculumID).Take(1);
 
-            await curriculumQuery.Include(c => c.Person).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.PersonalDetail).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.PersonalDetail.Children).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.PersonalDetail.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.PersonalDetail.Language).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.PersonalDetail.PersonCountries).ThenInclude(pc => pc.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.About).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.About.Vfile).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Abroads).ThenInclude(a => a.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Awards).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Courses).ThenInclude(c => c.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Certificates).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Educations).ThenInclude(e => e.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Experiences).ThenInclude(e => e.Country).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Interests).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.LanguageSkills).ThenInclude(ls => ls.Language).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.Skills).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.SocialLinks).LoadAsync();
-            await curriculumQuery.Include(c => c.Person.References).ThenInclude(r => r.Country).LoadAsync();
+            if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(PersonalDetail)))
+            {
+                await LoadPersonalDetails(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(About)))
+            {
+                await LoadAbouts(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Abroad)))
+            {
+                await LoadAbroads(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Award)))
+            {
+                await LoadAwards(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Course)))
+            {
+                await LoadCourses(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Certificate)))
+            {
+                await LoadCertificates(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Education)))
+            {
+                await LoadEducations(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Experience)))
+            {
+                await LoadExperiences(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Interest)))
+            {
+                await LoadInterests(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(LanguageSkill)))
+            {
+                await LoadLanguageSkills(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Skill)))
+            {
+                await LoadSkills(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(SocialLink)))
+            {
+                await LoadSocialLinks(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Reference)))
+            {
+                await LoadReferences(curriculumQuery);
+            }
 
             return curriculumQuery.Single();
         }
@@ -149,29 +321,49 @@ namespace Library.Repository
             return languagesVM;
         }
 
+        public IEnumerable<LanguageVM> GetCurriculumLanguages(Guid curriculumID, string uiCulture)
+        {
+            var languagesVM = vitaeContext.CurriculumLanguages.Include(cl => cl.Language)
+                                    .Where(cl => cl.Curriculum.CurriculumID == curriculumID)
+                                    .ToList()
+                                    .Select(cl => new LanguageVM
+                                    {
+                                        LanguageCode = cl.Language.LanguageCode,
+                                        Name = uiCulture == "de" ? cl.Language.Name_de :
+                                           uiCulture == "fr" ? cl.Language.Name_fr :
+                                           uiCulture == "it" ? cl.Language.Name_it :
+                                           uiCulture == "es" ? cl.Language.Name_es :
+                                        cl.Language.Name,
+                                        Order = cl.Order
+                                    }).OrderBy(l => l.Order);
+            return languagesVM;
+        }
+
         public PersonalDetailVM GetPersonalDetail(Curriculum curriculum, string email = null)
         {
+            var personalDetail = curriculum.PersonalDetails.SingleOrDefault(pd => pd.CurriculumLanguage == curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language);
+
             var personVM = new PersonalDetailVM()
             {
-                Birthday_Day = curriculum.Person.PersonalDetail?.Birthday.Day ?? 1,
-                Birthday_Month = curriculum.Person.PersonalDetail?.Birthday.Month ?? 1,
-                Birthday_Year = curriculum.Person.PersonalDetail?.Birthday.Year ?? DateTime.Now.Year,
-                City = curriculum.Person.PersonalDetail?.City,
-                CountryCode = curriculum.Person.PersonalDetail?.Country.CountryCode,
-                Citizenship = curriculum.Person.PersonalDetail?.Citizenship,
-                Email = curriculum.Person.PersonalDetail?.Email ?? email,
-                Firstname = curriculum.Person.PersonalDetail?.Firstname,
-                Lastname = curriculum.Person.PersonalDetail?.Lastname,
-                Gender = curriculum.Person.PersonalDetail?.Gender,
-                LanguageCode = curriculum.Person.PersonalDetail?.Language.LanguageCode,
-                MobileNumber = curriculum.Person.PersonalDetail?.MobileNumber,
-                Street = curriculum.Person.PersonalDetail?.Street,
-                StreetNo = curriculum.Person.PersonalDetail?.StreetNo,
-                ZipCode = curriculum.Person.PersonalDetail?.ZipCode,
-                State = curriculum.Person.PersonalDetail?.State,
-                PhonePrefix = GetPhonePrefix(curriculum.Person.PersonalDetail?.Country.CountryCode),
-                MaritalStatus = curriculum.Person.PersonalDetail?.MaritalStatus ?? MaritalStatus.NoInformation,
-                Children = curriculum.Person.PersonalDetail?.Children?.OrderBy(c => c.Order)
+                Birthday_Day = personalDetail?.Birthday.Day ?? 1,
+                Birthday_Month = personalDetail?.Birthday.Month ?? 1,
+                Birthday_Year = personalDetail?.Birthday.Year ?? DateTime.Now.Year,
+                City = personalDetail?.City,
+                CountryCode = personalDetail?.Country.CountryCode,
+                Citizenship = personalDetail?.Citizenship,
+                Email = personalDetail?.Email ?? email,
+                Firstname = personalDetail?.Firstname,
+                Lastname = personalDetail?.Lastname,
+                Gender = personalDetail?.Gender,
+                LanguageCode = personalDetail?.CurriculumLanguage.LanguageCode,
+                MobileNumber = personalDetail?.MobileNumber,
+                Street = personalDetail?.Street,
+                StreetNo = personalDetail?.StreetNo,
+                ZipCode = personalDetail?.ZipCode,
+                State = personalDetail?.State,
+                PhonePrefix = GetPhonePrefix(personalDetail?.Country.CountryCode),
+                MaritalStatus = personalDetail?.MaritalStatus,
+                Children = personalDetail?.Children?.OrderBy(c => c.Order)
                 .Select(n => new ChildVM
                 {
                     Firstname = n.Firstname,
@@ -180,7 +372,7 @@ namespace Library.Repository
                     Birthday_Month = n.Birthday.Month,
                     Birthday_Day = n.Birthday.Day
                 }).ToList() ?? new List<ChildVM>(),
-                Nationalities = curriculum.Person.PersonalDetail?.PersonCountries?.OrderBy(pc => pc.Order)
+                Nationalities = personalDetail?.PersonCountries?.OrderBy(pc => pc.Order)
                 .Select(n => new NationalityVM { CountryCode = n.Country.CountryCode, Order = n.Order })
                 .ToList() ?? new List<NationalityVM>() { new NationalityVM() { Order = 0 } }
             };
@@ -188,26 +380,31 @@ namespace Library.Repository
             return personVM;
         }
 
-        public AboutVM GetAbout(Curriculum curriculum)
+        public IList<AboutVM> GetAbouts(Curriculum curriculum, string languageCode)
         {
-            var aboutVM = new AboutVM()
-            {
-                AcademicTitle = curriculum.Person.About?.AcademicTitle,
-                Photo = curriculum.Person.About?.Photo,
-                Slogan = curriculum.Person.About?.Slogan,
-                Vfile = new VfileVM()
-                {
-                    FileName = curriculum.Person.About?.Vfile?.FileName,
-                    Identifier = curriculum.Person.About?.Vfile?.Identifier ?? Guid.Empty
-                }
-            };
+            var aboutsVM = curriculum.Abouts
+                .Where(a => a.CurriculumLanguage.LanguageCode == languageCode)
+               .OrderBy(aw => aw.Order)
+               .Select(a => new AboutVM()
+               {
+                   AcademicTitle = a.AcademicTitle,
+                   Photo = a.Photo,
+                   Slogan = a.Slogan,
+                   Vfile = new VfileVM()
+                   {
+                       FileName = a.Vfile?.FileName,
+                       Identifier = a.Vfile?.VfileID ?? Guid.Empty
+                   }
+               }).ToList();
 
-            return aboutVM;
+            return aboutsVM;
         }
 
-        public IList<AwardVM> GetAwards(Curriculum curriculum)
+        public IList<AwardVM> GetAwards(Curriculum curriculum, string languageCode)
         {
-            var awardsVM = curriculum.Person.Awards?.OrderBy(aw => aw.Order)
+            var awardsVM = curriculum.Awards?
+                .Where(a => a.CurriculumLanguage.LanguageCode == languageCode)
+                .OrderBy(aw => aw.Order)
                    .Select(a => new AwardVM()
                    {
                        AwardedFrom = a.AwardedFrom,
@@ -222,9 +419,11 @@ namespace Library.Repository
             return awardsVM;
         }
 
-        public IList<CertificateVM> GetCertificates(Curriculum curriculum)
+        public IList<CertificateVM> GetCertificates(Curriculum curriculum, string languageCode)
         {
-            var certificatesVM = curriculum.Person.Certificates?.OrderBy(ce => ce.Order)
+            var certificatesVM = curriculum.Certificates?
+                .Where(a => a.CurriculumLanguage.LanguageCode == languageCode)
+                .OrderBy(ce => ce.Order)
                .Select(c => new CertificateVM()
                {
                    Description = c.Description,
@@ -242,9 +441,11 @@ namespace Library.Repository
             return certificatesVM;
         }
 
-        public IList<CourseVM> GetCourses(Curriculum curriculum)
+        public IList<CourseVM> GetCourses(Curriculum curriculum, string languageCode)
         {
-            var coursesVM = curriculum.Person.Courses?.OrderBy(co => co.Order)
+            var coursesVM = curriculum.Courses?
+               .Where(c => c.CurriculumLanguage?.LanguageCode == languageCode)
+               .OrderBy(co => co.Order)
                .Select(c => new CourseVM()
                {
                    Description = c.Description,
@@ -266,9 +467,11 @@ namespace Library.Repository
             return coursesVM;
         }
 
-        public IList<EducationVM> GetEducations(Curriculum curriculum)
+        public IList<EducationVM> GetEducations(Curriculum curriculum, string languageCode)
         {
-            var educationsVM = curriculum.Person.Educations?.OrderBy(ed => ed.Order)
+            var educationsVM = curriculum.Educations?
+                 .Where(e => e.CurriculumLanguage?.LanguageCode == languageCode)
+                 .OrderBy(ed => ed.Order)
                     .Select(e => new EducationVM()
                     {
                         City = e.City,
@@ -291,9 +494,11 @@ namespace Library.Repository
             return educationsVM;
         }
 
-        public IList<ExperienceVM> GetExperiences(Curriculum curriculum)
+        public IList<ExperienceVM> GetExperiences(Curriculum curriculum, string languageCode)
         {
-            var experiencesVM = curriculum.Person.Experiences?.OrderBy(ex => ex.Order)
+            var experiencesVM = curriculum.Experiences?
+                .Where(e => e.CurriculumLanguage?.LanguageCode == languageCode)
+                .OrderBy(ex => ex.Order)
                     .Select(e => new ExperienceVM()
                     {
                         City = e.City,
@@ -314,9 +519,11 @@ namespace Library.Repository
             return experiencesVM;
         }
 
-        public IList<InterestVM> GetInterests(Curriculum curriculum)
+        public IList<InterestVM> GetInterests(Curriculum curriculum, string languageCode)
         {
-            var interestsVM = curriculum.Person.Interests?.OrderBy(ir => ir.Order)
+            var interestsVM = curriculum.Interests?
+                .Where(i => i.CurriculumLanguage?.LanguageCode == languageCode)
+                .OrderBy(ir => ir.Order)
                     .Select(i => new InterestVM()
                     {
                         Description = i.Description,
@@ -329,12 +536,14 @@ namespace Library.Repository
             return interestsVM;
         }
 
-        public IList<LanguageSkillVM> GetLanguageSkills(Curriculum curriculum)
+        public IList<LanguageSkillVM> GetLanguageSkills(Curriculum curriculum, string languageCode)
         {
-            var languageSkillsVM = curriculum.Person.LanguageSkills?.OrderBy(ls => ls.Order)
+            var languageSkillsVM = curriculum.LanguageSkills?
+                    .Where(l => l.CurriculumLanguage?.LanguageCode == languageCode)
+                    .OrderBy(la => la.Order)
                     .Select(l => new LanguageSkillVM()
                     {
-                        LanguageCode = l.Language?.LanguageCode,
+                        LanguageCode = l.SpokenLanguage?.LanguageCode,
                         Order = l.Order,
                         Rate = l.Rate
                     }).ToList();
@@ -342,9 +551,11 @@ namespace Library.Repository
             return languageSkillsVM;
         }
 
-        public IList<SkillVM> GetSkills(Curriculum curriculum)
+        public IList<SkillVM> GetSkills(Curriculum curriculum, string languageCode)
         {
-            var skillsVM = curriculum.Person.Skills?.OrderBy(ls => ls.Order)
+            var skillsVM = curriculum.Skills?
+                .Where(l => l.CurriculumLanguage?.LanguageCode == languageCode)
+                .OrderBy(ls => ls.Order)
                     .Select(s => new SkillVM()
                     {
                         Category = s.Category,
@@ -355,9 +566,11 @@ namespace Library.Repository
             return skillsVM;
         }
 
-        public IList<SocialLinkVM> GetSocialLinks(Curriculum curriculum)
+        public IList<SocialLinkVM> GetSocialLinks(Curriculum curriculum, string languageCode)
         {
-            var socialLinksVM = curriculum.Person.SocialLinks?.OrderBy(ls => ls.Order)
+            var socialLinksVM = curriculum.SocialLinks?
+                .Where(l => l.CurriculumLanguage?.LanguageCode == languageCode)
+                .OrderBy(ls => ls.Order)
                     .Select(s => new SocialLinkVM()
                     {
                         Link = s.Link,
@@ -368,9 +581,11 @@ namespace Library.Repository
             return socialLinksVM;
         }
 
-        public IList<ReferenceVM> GetReferences(Curriculum curriculum)
+        public IList<ReferenceVM> GetReferences(Curriculum curriculum, string languageCode)
         {
-            var referencesVM = curriculum.Person.References?.OrderBy(re => re.Order)
+            var referencesVM = curriculum.References?
+                .Where(r => r.CurriculumLanguage?.LanguageCode == languageCode)
+                .OrderBy(re => re.Order)
                 .Select(r => new ReferenceVM()
                 {
                     CompanyName = r.CompanyName,
@@ -389,9 +604,11 @@ namespace Library.Repository
             return referencesVM;
         }
 
-        public IList<AbroadVM> GetAbroads(Curriculum curriculum)
+        public IList<AbroadVM> GetAbroads(Curriculum curriculum, string languageCode)
         {
-            var abroadsVM = curriculum.Person.Abroads?.OrderBy(ab => ab.Order)
+            var abroadsVM = curriculum.Abroads?
+                .Where(e => e.CurriculumLanguage?.LanguageCode == languageCode)
+                .OrderBy(ab => ab.Order)
                 .Select(a => new AbroadVM()
                 {
                     City = a.City,
@@ -433,7 +650,7 @@ namespace Library.Repository
             var lastHits = GetHits(curriculumID);
             var allLogins = new List<LogVM>();
             var currentHits = 0;
-            foreach(var hit in lastHits)
+            foreach (var hit in lastHits)
             {
                 currentHits += hit.Hits;
                 allLogins.Add(new LogVM() { Hits = currentHits, LogDate = hit.LogDate });
@@ -457,6 +674,101 @@ namespace Library.Repository
             return lastHits;
         }
 
+        public Vfile GetFile(Guid identifier)
+        {
+            var vfile = vitaeContext.Vfiles.SingleOrDefault(v => v.VfileID == identifier);
+
+            return vfile;
+        }
+
         #endregion
-     }
+
+        #region Helper
+
+        private T CopyEntity<T>(T basePoco) where T : class, new()
+        {
+            var newPoco = CodeHelper.ShallowCopyEntity(basePoco);
+
+
+            return newPoco;
+        }
+
+        private T SetKeys<T>(T basePoco, Language language) where T : Base
+        {
+            basePoco.CurriculumLanguage = language;
+
+            return basePoco;
+        }
+
+        private async Task LoadPersonalDetails(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.PersonalDetails).LoadAsync();
+            await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.Children).LoadAsync();
+            await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.Country).LoadAsync();
+            await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.CurriculumLanguage).LoadAsync();
+            await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.PersonCountries).ThenInclude(pc => pc.Country).LoadAsync();
+        }
+
+        private async Task LoadAbouts(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Abouts).ThenInclude(a => a.Vfile).LoadAsync();
+        }
+
+        private async Task LoadAbroads(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Abroads).ThenInclude(a => a.Country).LoadAsync();
+        }
+
+        private async Task LoadAwards(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Awards).LoadAsync();
+        }
+
+        private async Task LoadCourses(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Courses).ThenInclude(c => c.Country).LoadAsync();
+        }
+
+        private async Task LoadCertificates(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Certificates).LoadAsync();
+        }
+
+        private async Task LoadEducations(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Educations).ThenInclude(e => e.Country).LoadAsync();
+        }
+
+        private async Task LoadExperiences(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Experiences).ThenInclude(e => e.Country).LoadAsync();
+        }
+
+        private async Task LoadInterests(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Interests).LoadAsync();
+        }
+
+        private async Task LoadLanguageSkills(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.LanguageSkills).ThenInclude(ls => ls.SpokenLanguage).LoadAsync();
+        }
+
+        private async Task LoadSkills(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Skills).LoadAsync();
+        }
+
+        private async Task LoadSocialLinks(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.SocialLinks).LoadAsync();
+        }
+
+        private async Task LoadReferences(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.References).ThenInclude(r => r.Country).LoadAsync();
+        }
+
+        #endregion
+    }
 }

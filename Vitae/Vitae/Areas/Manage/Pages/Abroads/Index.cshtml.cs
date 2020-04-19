@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-
+using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
@@ -50,9 +50,10 @@ namespace Vitae.Areas.Manage.Pages.Abroads
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                Abroads = repository.GetAbroads(curriculum);
+                var curriculum = await repository.GetCurriculumAsync<Abroad>(curriculumID);
+                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
 
+                await LoadAbroads(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
                 return Page();
             }
@@ -62,19 +63,19 @@ namespace Vitae.Areas.Manage.Pages.Abroads
         {
             if (ModelState.IsValid)
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Abroads);
+                var curriculum = await repository.GetCurriculumAsync<Abroad>(curriculumID);
+                vitaeContext.RemoveRange(curriculum.Abroads.Where(c => c.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
-                curriculum.Person.Abroads =
-                    Abroads.Select(e => new Poco.Abroad()
+                Abroads.Select(e => new Poco.Abroad()
                     { 
                         City = e.City,
                         Start = new DateTime(e.Start_Year, e.Start_Month, 1),
                         End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, 1),
                         Order = e.Order,
                         Description = e.Description,
-                        Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode)
-                    }).ToList();
+                        Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode),
+                        CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
+                    }).ToList().ForEach(a => curriculum.Abroads.Add(a));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
@@ -173,14 +174,32 @@ namespace Vitae.Areas.Manage.Pages.Abroads
             return GetPartialViewResult(PAGE_ABROADS);
         }
 
+        public async Task<IActionResult> OnPostLanguageChangeAsync()
+        {
+            await LoadAbroads(CurriculumLanguageCode);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_ABROADS, hasUnsafedChanges: false);
+        }
+
         #endregion
 
         #region Helper
 
         protected override void FillSelectionViewModel()
         {
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
+        }
+
+        private async Task LoadAbroads(string languageCode, Curriculum curr = null)
+        {
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
+            var curriculum = curr ?? await repository.GetCurriculumAsync<Abroad>(curriculumID);
+
+            Abroads = repository.GetAbroads(curriculum, languageCode);
         }
         #endregion
     }

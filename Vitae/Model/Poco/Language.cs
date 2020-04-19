@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
@@ -31,5 +32,7 @@ namespace Model.Poco
         [Required]
         [MaxLength(100)]
         public string Name_es { get; set; }
+
+        public virtual ICollection<CurriculumLanguage> CurriculumLanguages { get; set; }
     }
 }

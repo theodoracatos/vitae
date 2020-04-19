@@ -50,7 +50,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync<PersonalDetail>(curriculumID);
                 PersonalDetail = repository.GetPersonalDetail(curriculum, identity.Name);
 
                 FillSelectionViewModel();
@@ -62,44 +62,49 @@ namespace Vitae.Areas.Manage.Pages.Personalities
         {
             if (ModelState.IsValid)
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                curriculum.Person.PersonalDetail = curriculum.Person.PersonalDetail ?? new PersonalDetail() { PersonCountries = new List<PersonCountry>() };
-                curriculum.Person.PersonalDetail.Birthday = new DateTime(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
-                curriculum.Person.PersonalDetail.City = PersonalDetail.City;
-                curriculum.Person.PersonalDetail.Country = vitaeContext.Countries.Single(c => c.CountryCode == PersonalDetail.CountryCode);
-                curriculum.Person.PersonalDetail.Email = PersonalDetail.Email;
-                curriculum.Person.PersonalDetail.Firstname = PersonalDetail.Firstname;
-                curriculum.Person.PersonalDetail.Lastname = PersonalDetail.Lastname;
-                curriculum.Person.PersonalDetail.Gender = PersonalDetail.Gender.Value;
-                curriculum.Person.PersonalDetail.Language = vitaeContext.Languages.Single(l => l.LanguageCode == PersonalDetail.LanguageCode);
-                curriculum.Person.PersonalDetail.MobileNumber = PersonalDetail.MobileNumber;
-                curriculum.Person.PersonalDetail.MaritalStatus = PersonalDetail.MaritalStatus;
-                curriculum.Person.PersonalDetail.Street = PersonalDetail.Street;
-                curriculum.Person.PersonalDetail.StreetNo = PersonalDetail.StreetNo;
-                curriculum.Person.PersonalDetail.ZipCode = PersonalDetail.ZipCode;
-                curriculum.Person.PersonalDetail.State = PersonalDetail.State;
-                curriculum.Person.PersonalDetail.Citizenship = PersonalDetail.Citizenship;
+                var curriculum = await repository.GetCurriculumAsync<PersonalDetail>(curriculumID);
+                vitaeContext.RemoveRange(curriculum.PersonalDetails);
+
+                var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language; // Always take 1st language!
+                var personalDetails = curriculum.PersonalDetails.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new PersonalDetail() { PersonCountries = new List<PersonCountry>(), Children = new List<Child>() };
+
+                personalDetails.Birthday = new DateTime(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
+                personalDetails.City = PersonalDetail.City;
+                personalDetails.Country = vitaeContext.Countries.Single(c => c.CountryCode == PersonalDetail.CountryCode);
+                personalDetails.Email = PersonalDetail.Email;
+                personalDetails.Firstname = PersonalDetail.Firstname;
+                personalDetails.Lastname = PersonalDetail.Lastname;
+                personalDetails.Gender = PersonalDetail.Gender.Value;
+                personalDetails.CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == PersonalDetail.LanguageCode);
+                personalDetails.MobileNumber = PersonalDetail.MobileNumber;
+                personalDetails.MaritalStatus = PersonalDetail.MaritalStatus.Value;
+                personalDetails.Street = PersonalDetail.Street;
+                personalDetails.StreetNo = PersonalDetail.StreetNo;
+                personalDetails.ZipCode = PersonalDetail.ZipCode;
+                personalDetails.State = PersonalDetail.State;
+                personalDetails.Citizenship = PersonalDetail.Citizenship;
+                personalDetails.CurriculumLanguage = currentLanguage;
 
                 // Nationality
-                curriculum.Person.PersonalDetail.PersonCountries.Clear();
+                personalDetails.PersonCountries.Clear();
                 foreach (var nationality in PersonalDetail.Nationalities)
                 {
                     var personCountry = new PersonCountry()
                     {
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == nationality.CountryCode),
                         CountryID = vitaeContext.Countries.Single(c => c.CountryCode == nationality.CountryCode).CountryID,
-                        PersonalDetail = curriculum.Person.PersonalDetail,
-                        PersonalDetailID = curriculum.Person.PersonalDetail.PersonalDetailID,
+                        PersonalDetail = personalDetails,
+                        PersonalDetailID = personalDetails.PersonalDetailID,
                         Order = PersonalDetail.Nationalities.IndexOf(nationality)
                     };
-                    curriculum.Person.PersonalDetail.PersonCountries.Add(personCountry);
+                    personalDetails.PersonCountries.Add(personCountry);
                 }
 
                 // Children
                 if (PersonalDetail.Children != null)
                 {
-                    vitaeContext.RemoveRange(curriculum.Person.PersonalDetail.Children);
-                    curriculum.Person.PersonalDetail.Children =
+                    vitaeContext.RemoveRange(personalDetails.Children);
+                    personalDetails.Children =
                         PersonalDetail.Children?.Select(c => new Child()
                         {
                             Firstname = c.Firstname,
@@ -108,6 +113,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
                         }).ToList();
                 }
                 curriculum.LastUpdated = DateTime.Now;
+                curriculum.PersonalDetails.Add(personalDetails);
                 await vitaeContext.SaveChangesAsync();
             }
 
@@ -204,6 +210,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             Nationalities = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
             PersonalDetail.PhonePrefix = repository.GetPhonePrefix(PersonalDetail.CountryCode);
         }
         #endregion

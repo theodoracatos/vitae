@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-
+using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
@@ -46,9 +46,10 @@ namespace Vitae.Areas.Manage.Pages.Interests
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                Interests = repository.GetInterests(curriculum);
+                var curriculum = await repository.GetCurriculumAsync<Interest>(curriculumID);
+                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
 
+                await LoadInterests(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
                 return Page();
             }
@@ -57,18 +58,18 @@ namespace Vitae.Areas.Manage.Pages.Interests
         {
             if (ModelState.IsValid)
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Interests);
+                var curriculum = await repository.GetCurriculumAsync<Interest>(curriculumID);
+                vitaeContext.RemoveRange(curriculum.Interests.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
-                curriculum.Person.Interests =
-                    Interests.Select(i => new Poco.Interest()
+                Interests.Select(i => new Poco.Interest()
                     {
                         Description = i.Description,
                         Association = i.Association,
                         Link = i.Link,
                         InterestName = i.InterestName,
-                        Order = i.Order
-                    }).ToList();
+                        Order = i.Order,
+                        CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
+                    }).ToList().ForEach(i => curriculum.Interests.Add(i));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
@@ -155,12 +156,30 @@ namespace Vitae.Areas.Manage.Pages.Interests
             return GetPartialViewResult(PAGE_INTERESTS);
         }
 
+        public async Task<IActionResult> OnPostLanguageChangeAsync()
+        {
+            await LoadInterests(CurriculumLanguageCode);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_INTERESTS, hasUnsafedChanges: false);
+        }
+
         #endregion
 
         #region Helper
 
         protected override void FillSelectionViewModel()
-        {}
+        {
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
+        }
+
+        private async Task LoadInterests(string languageCode, Curriculum curr = null)
+        {
+            var curriculum = curr ?? await repository.GetCurriculumAsync<Interest>(curriculumID);
+
+            Interests = repository.GetInterests(curriculum, languageCode);
+        }
 
         #endregion
     }

@@ -1,8 +1,7 @@
-﻿declare var jQuery;
-declare var $;
-declare var Resources;
-declare var Chart;
-declare var autosize;
+﻿/* eslint-disable */
+
+declare let Chart;
+declare let autosize;
 
 $(document).ready(function () {
     addJQueryValidators();
@@ -11,11 +10,13 @@ $(document).ready(function () {
     setupDirtyForms(false);
 });
 
-function ajaxCompleted() {
+function ajaxCompleted(dirtyignore) {
     loadingProcedure();
     startRating();
     resetFormValidator('form');
-    setupDirtyForms(true);
+    if (dirtyignore === 'false') {
+        setupDirtyForms(true);
+    }
 }
 
 function setupDirtyForms(asyncCall) {
@@ -24,6 +25,7 @@ function setupDirtyForms(asyncCall) {
     }
     else {
         $('form').dirtyForms({
+            ignoreSelector: '.dirty-ignore',
             helpers:
                 [
                     {
@@ -37,21 +39,34 @@ function setupDirtyForms(asyncCall) {
         });
     }
     $('form').on('dirty.dirtyforms clean.dirtyforms', function (ev) {  
-        var $submitResetButtons = $('form').find('[type="submit"]');
+        let $submitResetButtons = $('form').find('[type="submit"]');
+        let $languageSelect = $('form').find('#languageSelect select');
 
         if (ev.type === 'dirty') {
             $submitResetButtons.removeAttr('disabled');
+            $languageSelect.attr('disabled', 'disabled');
         }
         else {
-            $submitResetButtons.addAttr('disabled');
+            $submitResetButtons.attr('disabled', 'disabled');
+            $languageSelect.removeAttr('disabled');
         }
     });
 }
 
+function setHiddenLanguageSelect() {
+    let $languageSelect = $('form').find('#languageSelect select');
+    let $languageSelectHidden = $('form').find('#languageSelect input[type="hidden"]');
+
+    $languageSelectHidden.val($languageSelect.val());
+}
+
 function setDirty() {
-    var $submitResetButtons = $('form').find('[type="submit"]');
+    let $submitResetButtons = $('form').find('[type="submit"]');
+    let $languageSelect = $('form').find('#languageSelect select');
+
     $('form').addClass('mydirty');
     $submitResetButtons.removeAttr('disabled');
+    $languageSelect.attr('disabled', 'disabled');
 }
 
 function drawRadar(chartId, title, labels, dataset, color) {
@@ -278,9 +293,12 @@ function setRequiredLabel() {
 function configureConfirmationModal() {
     $('.confirmation').on('click', function () {
         var formaction = $(this).attr('formaction');
+        var content = $(this).data('confirm-text');
         var hasCancel = $(this).hasClass("cancel");
         var formmethod = $('form').attr('method');
+        var sender = $(this);
         $.confirm({
+            content: content,
             title: Resources.SharedResource.PleaseConfirm,
             theme: "bootstrap",
             buttons: {
@@ -294,7 +312,9 @@ function configureConfirmationModal() {
                                 var validator = $("form").validate();
                                 validator.resetForm();
                             }
-                            $('form').attr('action', formaction).submit();
+  
+                            $(sender).unbind('click');
+                            $(sender).click();
 
                             // Close modal dialog
                             if (($('.modal').data('bs.modal') || {})._isShown) {

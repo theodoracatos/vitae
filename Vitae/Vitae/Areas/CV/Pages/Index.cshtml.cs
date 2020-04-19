@@ -31,8 +31,8 @@ namespace Vitae.Areas.CV.Pages
         public Guid CurriculumID { get { return curriculumID; } }
 
         public PersonalDetailVM PersonalDetail { get; set; }
-        public AboutVM About { get; set; }
-
+        
+        public IList<AboutVM> Abouts { get; set; }
         public IList<AwardVM> Awards { get; set; } = new List<AwardVM>();
         public IList<EducationVM> Educations { get; set; } = new List<EducationVM>();
         public IList<ExperienceVM> Experiences { get; set; } = new List<ExperienceVM>();
@@ -62,18 +62,18 @@ namespace Vitae.Areas.CV.Pages
             else
             {
                 PersonalDetail = repository.GetPersonalDetail(curriculum);
-                About = repository.GetAbout(curriculum);
-                SocialLinks = repository.GetSocialLinks(curriculum);
-                Educations = repository.GetEducations(curriculum);
-                Experiences = repository.GetExperiences(curriculum);
-                Courses = repository.GetCourses(curriculum);
-                Abroads = repository.GetAbroads(curriculum);
-                LanguageSkills = repository.GetLanguageSkills(curriculum);
-                Interests = repository.GetInterests(curriculum);
-                Awards = repository.GetAwards(curriculum);
-                Skills = repository.GetSkills(curriculum);
-                Certificates = repository.GetCertificates(curriculum);
-                References = repository.GetReferences(curriculum);
+                Abouts = repository.GetAbouts(curriculum, "de");
+                SocialLinks = repository.GetSocialLinks(curriculum, "de");
+                Educations = repository.GetEducations(curriculum, "de");
+                Experiences = repository.GetExperiences(curriculum, "de");
+                Courses = repository.GetCourses(curriculum, "de");
+                Abroads = repository.GetAbroads(curriculum, "de");
+                LanguageSkills = repository.GetLanguageSkills(curriculum, "de");
+                Interests = repository.GetInterests(curriculum, "de");
+                Awards = repository.GetAwards(curriculum, "de");
+                Skills = repository.GetSkills(curriculum, "de");
+                Certificates = repository.GetCertificates(curriculum, "de");
+                References = repository.GetReferences(curriculum, "de");
 
                 FillSelectionViewModel();
 
@@ -87,10 +87,10 @@ namespace Vitae.Areas.CV.Pages
 
         public IActionResult OnGetOpenFile(Guid identifier)
         {
-            if (vitaeContext.Vfiles.Any(v => v.Identifier == identifier))
-            {
-                var vfile = vitaeContext.Vfiles.Single(v => v.Identifier == identifier);
+            var vfile = repository.GetFile(identifier);
 
+            if(vfile != null)
+            {
                 return File(vfile.Content, vfile.MimeType, vfile.FileName);
             }
             else

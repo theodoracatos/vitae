@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-
+using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
@@ -50,9 +50,10 @@ namespace Vitae.Areas.Manage.Pages.Courses
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                Courses = repository.GetCourses(curriculum);
+                var curriculum = await repository.GetCurriculumAsync<Course>(curriculumID);
+                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
 
+                await LoadCourses(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
                 return Page();
             }
@@ -62,22 +63,22 @@ namespace Vitae.Areas.Manage.Pages.Courses
         {
             if (ModelState.IsValid)
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Person.Courses);
+                var curriculum = await repository.GetCurriculumAsync<Course>(curriculumID);
+                vitaeContext.RemoveRange(curriculum.Courses.Where(c => c.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
-                curriculum.Person.Courses =
-                    Courses.Select(e => new Poco.Course()
+                Courses.Select(c => new Poco.Course()
                     {
-                        City = e.City,
-                        Start = new DateTime(e.Start_Year, e.Start_Month, 1),
-                        End = e.SingleDay ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, e.Start_Day),
-                        Order = e.Order,
-                        Description = e.Description,
-                        Link = e.Link,
-                        SchoolName = e.SchoolName,
-                        Title = e.Title,
-                        Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode)
-                    }).ToList();
+                        City = c.City,
+                        Start = new DateTime(c.Start_Year, c.Start_Month, 1),
+                        End = c.SingleDay ? null : (DateTime?)new DateTime(c.End_Year.Value, c.End_Month.Value, c.Start_Day),
+                        Order = c.Order,
+                        Description = c.Description,
+                        Link = c.Link,
+                        SchoolName = c.SchoolName,
+                        Title = c.Title,
+                        Country = vitaeContext.Countries.Single(cc => cc.CountryCode == c.CountryCode),
+                        CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
+                }).ToList().ForEach(c => curriculum.Courses.Add(c));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
@@ -190,14 +191,32 @@ namespace Vitae.Areas.Manage.Pages.Courses
             return GetPartialViewResult(PAGE_COURSES);
         }
 
+        public async Task<IActionResult> OnPostLanguageChangeAsync()
+        {
+            await LoadCourses(CurriculumLanguageCode);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_COURSES, hasUnsafedChanges: false);
+        }
+
         #endregion
 
         #region Helper
 
         protected override void FillSelectionViewModel()
         {
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
+        }
+
+        private async Task LoadCourses(string languageCode, Curriculum curr = null)
+        {
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
+            var curriculum = curr ?? await repository.GetCurriculumAsync<Course>(curriculumID);
+
+            Courses = repository.GetCourses(curriculum, languageCode);
         }
         #endregion
     }

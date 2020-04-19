@@ -484,6 +484,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are about to delete {0}. Do you want to continue?.
+        /// </summary>
+        public static string ConfirmDelete {
+            get {
+                return ResourceManager.GetString("ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm email.
         /// </summary>
         public static string ConfirmEmail {
@@ -516,6 +525,33 @@ namespace Library.Resources {
         public static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string Copy {
+            get {
+                return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy values.
+        /// </summary>
+        public static string CopyValues {
+            get {
+                return ResourceManager.GetString("CopyValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copies all values from the first language.
+        /// </summary>
+        public static string CopyValuesDescription {
+            get {
+                return ResourceManager.GetString("CopyValuesDescription", resourceCulture);
             }
         }
         
@@ -574,6 +610,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curriculum language.
+        /// </summary>
+        public static string CurriculumLanguage {
+            get {
+                return ResourceManager.GetString("CurriculumLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Curriculum Vitae.
         /// </summary>
         public static string CurriculumVitae {
@@ -588,6 +633,15 @@ namespace Library.Resources {
         public static string CV {
             get {
                 return ResourceManager.GetString("CV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CV language.
+        /// </summary>
+        public static string CVLanguage {
+            get {
+                return ResourceManager.GetString("CVLanguage", resourceCulture);
             }
         }
         
@@ -754,6 +808,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to entries.
+        /// </summary>
+        public static string Entries {
+            get {
+                return ResourceManager.GetString("Entries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to entry.
+        /// </summary>
+        public static string Entry {
+            get {
+                return ResourceManager.GetString("Entry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error confirming your email..
         /// </summary>
         public static string ErrorConfirmEmail {
@@ -894,6 +966,15 @@ namespace Library.Resources {
         public static string Homepage {
             get {
                 return ResourceManager.GetString("Homepage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        public static string Import {
+            get {
+                return ResourceManager.GetString("Import", resourceCulture);
             }
         }
         
@@ -1047,6 +1128,15 @@ namespace Library.Resources {
         public static string Languages {
             get {
                 return ResourceManager.GetString("Languages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language versions.
+        /// </summary>
+        public static string LanguageVersions {
+            get {
+                return ResourceManager.GetString("LanguageVersions", resourceCulture);
             }
         }
         
@@ -1276,6 +1366,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name1 {
+            get {
+                return ResourceManager.GetString("Name1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nationalities.
         /// </summary>
         public static string Nationalities {
@@ -1294,7 +1393,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Never.
+        ///   Looks up a localized string similar to Never expires.
         /// </summary>
         public static string NeverExpires {
             get {
@@ -1375,7 +1474,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CV hits (last 30 days).
+        ///   Looks up a localized string similar to CV calls (last 30 days).
         /// </summary>
         public static string NrOfCVHits {
             get {
@@ -1636,7 +1735,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to References.
+        ///   Looks up a localized string similar to Reference.
         /// </summary>
         public static string Reference {
             get {
@@ -1888,7 +1987,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SingleDay.
+        ///   Looks up a localized string similar to Single day.
         /// </summary>
         public static string SingleDay {
             get {
