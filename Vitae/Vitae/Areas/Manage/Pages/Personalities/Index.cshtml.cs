@@ -50,7 +50,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync<PersonalDetail>(curriculumID);
                 PersonalDetail = repository.GetPersonalDetail(curriculum, identity.Name);
 
                 FillSelectionViewModel();
@@ -62,11 +62,11 @@ namespace Vitae.Areas.Manage.Pages.Personalities
         {
             if (ModelState.IsValid)
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync<PersonalDetail>(curriculumID);
                 vitaeContext.RemoveRange(curriculum.Person.PersonalDetails);
 
                 var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language; // Always take 1st language!
-                var personalDetails = curriculum.Person.PersonalDetails.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new PersonalDetail() { PersonCountries = new List<PersonCountry>() };
+                var personalDetails = curriculum.Person.PersonalDetails.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new PersonalDetail() { PersonCountries = new List<PersonCountry>(), Children = new List<Child>() };
 
                 personalDetails.Birthday = new DateTime(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
                 personalDetails.City = PersonalDetail.City;

@@ -61,7 +61,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
         {
             if (ModelState.IsValid)
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
+                var curriculum = await repository.GetCurriculumAsync<Certificate>(curriculumID);
                 vitaeContext.RemoveRange(curriculum.Person.Certificates.Where(c => c.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
                 Certificates.Select(c => new Poco.Certificate()

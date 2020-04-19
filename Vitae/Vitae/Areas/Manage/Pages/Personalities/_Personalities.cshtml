@@ -78,7 +78,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label class="control-label" asp-for="@Model.PersonalDetail.MaritalStatus"></label>
-                        <select asp-for="@Model.PersonalDetail.MaritalStatus" class="form-control" asp-items="@(new SelectList(Enum.GetValues(typeof(MaritalStatus)).Cast<MaritalStatus>().Select(ma => new SelectListItem { Text = ma.Description(), Value = ma.ToString() }), "Value", "Text"))">
+                        <select asp-for="@Model.PersonalDetail.MaritalStatus" class="form-control" asp-items="@(new SelectList(Enum.GetValues(typeof(MaritalStatus)).Cast<MaritalStatus>().OrderBy(c => c.Description()).Select(ma => new SelectListItem { Text = ma.Description(), Value = ma.ToString() }), "Value", "Text"))">
                             <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                         </select>
                         <span asp-validation-for="@Model.PersonalDetail.MaritalStatus" class="text-danger"></span>
