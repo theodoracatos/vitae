@@ -306,6 +306,21 @@ namespace Library.Repository
             return countriesVM;
         }
 
+        public IEnumerable<MaritalStatusVM> GetMaritalStatuses(string uiCulture)
+        {
+            var maritalStatusesVM = vitaeContext.MaritalStatuses.Select(m => new MaritalStatusVM()
+            {
+                MaritalStatusCode = m.MaritalStatusCode,
+                Name = uiCulture == "de" ? m.Name_de :
+                uiCulture == "fr" ? m.Name_fr :
+                uiCulture == "it" ? m.Name_it :
+                uiCulture == "es" ? m.Name_es :
+                m.Name,
+            }).OrderBy(m => m.Name);
+
+            return maritalStatusesVM;
+        }
+
         public IEnumerable<LanguageVM> GetLanguages(string uiCulture)
         {
             var languagesVM = vitaeContext.Languages.Select(c => new LanguageVM()
@@ -362,7 +377,7 @@ namespace Library.Repository
                 ZipCode = personalDetail?.ZipCode,
                 State = personalDetail?.State,
                 PhonePrefix = GetPhonePrefix(personalDetail?.Country.CountryCode),
-                MaritalStatus = personalDetail?.MaritalStatus,
+                MaritalStatusCode = personalDetail?.MaritalStatus.MaritalStatusCode ?? 1,
                 Children = personalDetail?.Children?.OrderBy(c => c.Order)
                 .Select(n => new ChildVM
                 {
@@ -707,6 +722,7 @@ namespace Library.Repository
             await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.Country).LoadAsync();
             await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.CurriculumLanguage).LoadAsync();
             await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.PersonCountries).ThenInclude(pc => pc.Country).LoadAsync();
+            await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.MaritalStatus).LoadAsync();
         }
 
         private async Task LoadAbouts(IQueryable<Curriculum> curriculumQuery)

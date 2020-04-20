@@ -52,8 +52,7 @@ namespace Model.Poco
         [MaxLength(100)]
         public string Citizenship { get; set; }
 
-        [Required]
-        public MaritalStatus MaritalStatus { get; set; }
+        public virtual MaritalStatus MaritalStatus { get; set; }
 
         public virtual Country Country { get; set; }
 

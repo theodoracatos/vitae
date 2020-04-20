@@ -29,6 +29,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
 
         public IEnumerable<CountryVM> Countries { get; set; }
         public IEnumerable<LanguageVM> Languages { get; set; }
+        public IEnumerable<MaritalStatusVM> MaritalStatuses { get; set; }
 
         public IEnumerable<CountryVM> Nationalities { get; set; }
         public IEnumerable<MonthVM> Months { get; set; }
@@ -77,7 +78,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
                 personalDetails.Gender = PersonalDetail.Gender.Value;
                 personalDetails.CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == PersonalDetail.LanguageCode);
                 personalDetails.MobileNumber = PersonalDetail.MobileNumber;
-                personalDetails.MaritalStatus = PersonalDetail.MaritalStatus.Value;
+                personalDetails.MaritalStatus = vitaeContext.MaritalStatuses.Single(m => m.MaritalStatusCode == PersonalDetail.MaritalStatusCode);
                 personalDetails.Street = PersonalDetail.Street;
                 personalDetails.StreetNo = PersonalDetail.StreetNo;
                 personalDetails.ZipCode = PersonalDetail.ZipCode;
@@ -209,6 +210,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
             Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             Nationalities = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
+            MaritalStatuses = repository.GetMaritalStatuses(requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
             CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
             PersonalDetail.PhonePrefix = repository.GetPhonePrefix(PersonalDetail.CountryCode);

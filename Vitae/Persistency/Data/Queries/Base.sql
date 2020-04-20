@@ -3,7 +3,7 @@ GO
 
 BEGIN TRY
     BEGIN TRANSACTION
-
+	
 -- Roles
 IF NOT EXISTS(SELECT 1 FROM [dbo].[AspNetRoles])
 BEGIN
@@ -425,6 +425,49 @@ INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name
 INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 11, 'November', 'November', 'Novembre', 'Novembre', 'Noviembre');
 INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 12, 'December', 'Dezember', 'Décembre', 'Dicembre', 'Diciembre');
 END
+
+-- Martial status
+IF NOT EXISTS(SELECT 1 FROM [dbo].[MaritalStatus])
+BEGIN
+INSERT INTO [MaritalStatus] ([MaritalStatusID], [MaritalStatusCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 1, 'No information', 'Keine Information', 'Aucune information', 'Nessuna informazione', 'No hay información');
+INSERT INTO [MaritalStatus] ([MaritalStatusID], [MaritalStatusCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 2, 'Single', 'Single', 'Célibataire', 'Single', 'Soltero');
+INSERT INTO [MaritalStatus] ([MaritalStatusID], [MaritalStatusCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 3, 'Married', 'Verheiratet', 'Marié', 'Sposato', 'Casado');
+INSERT INTO [MaritalStatus] ([MaritalStatusID], [MaritalStatusCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 4, 'Concubinage', 'Konkubinat', 'Concubinage', 'Concubinaggio', 'Concubinato');
+INSERT INTO [MaritalStatus] ([MaritalStatusID], [MaritalStatusCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 5, 'Divorced', 'Geschieden', 'Divorcé', 'Divorziato', 'Divorciado');
+INSERT INTO [MaritalStatus] ([MaritalStatusID], [MaritalStatusCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 6, 'Widowed', 'Verwitwet', 'Veuf', 'Vedova', 'Viudo');
+INSERT INTO [MaritalStatus] ([MaritalStatusID], [MaritalStatusCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 7, 'Other', 'Sonstiges', 'Autres', 'Altro', 'Otros');
+END
+S
+IF NOT EXISTS(SELECT 1 FROM [dbo].[Level])
+BEGIN
+INSERT INTO [Level] ([LevelID], [LevelCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '1',  'Without management function',  'Ohne Kaderfunktion',  'Sans fonction de cadre',  'Senza funzione di quadro', 'Sin la función de gestión');
+INSERT INTO [Level] ([LevelID], [LevelCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '2',  'Lower management',  'Unteres Kader',  'Cadre inférieur',  'Quadro inferiore', 'La dirección inferior');
+INSERT INTO [Level] ([LevelID], [LevelCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '3',  'Upper and middle management',  'Oberes und mittleres Kader',  'Cadre supérieur et moyen',  'Quadro superiore', 'Dirección superior e intermedia');
+END
+
+IF NOT EXISTS(SELECT 1 FROM [dbo].[Industry])
+BEGIN
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '1',  'Bergbau / Gewinnung von Steinen und Erden',  'Mining and quarrying',  'Industries extractives',  'Attività estrattiva', 'La minería y la cantera');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '2',  'Herstellung von Waren',  'Production of goods',  'Industrie manufacturière',  'Attività manifatturiere', 'Producción de bienes');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '3',  'Energieversorgung',  'Energy supply',  'Production et distribution d''énergie',  'Fornitura di energia elettrica, gas, vapore e aria condizionata', 'Suministro de energía');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '4',  'Wasserversorgung / Abfallentsorgung',  'Water supply / waste disposal',  'Production et distribution d''eau; gestion des déchets; depollution',  'Fornitura di acqua; reti fognarie, trattamento rifiuti, risanamento', 'Suministro de agua / eliminación de desechos');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '5',  'Baugewerbe / Bau',  'Building industry / Construction',  'Construction',  'Costruzioni', 'Industria de la construcción / Construcción');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '6',  'Handel; Instandhaltung und Reparatur von Motorfahrzeugen',  'Wholesale and retail trade; Repair of motor vehicles and motorcycles',  'Commerce; Réparation d''automobiles et de motocycles',  'Commercio; riparazione di autoveicoli e motocicli', 'Comercio al por mayor y al por menor; reparación de vehículos de motor y motocicletas');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '7',  'Verkehr und Lagerei',  'Transport and storage',  'Transports et entreposage',  'Trasporto e magazzinaggio', 'Transporte y almacenamiento');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '8',  'Beherbung und Gastgewerbe',  'Accommodation and catering',  'Hébergement et restauration',  'Servizi di alloggio e di ristorazione', 'Alojamiento y comida');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '9',  'Information und Kommunikation',  'Information and communication',  'Information et communication',  'Servizi di informazione e comunicazione', 'Información y comunicación');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '10',  'Finanz- und Versicherungsdienstleistungen',  'Financial and insurance services',  'Activités financières et d''assurance',  'Attività finanziarie e assicurative', 'Servicios financieros y de seguros');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '11',  'Grundstücks- und Wohnungswesen',  'Real estate sector',  'Activités immobilières',  'Attività immobiliari', 'Sector inmobiliario');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '12',  'Freiberufliche, Wissenschaftliche und technische Dienstleistungen',  'Professional, scientific and technical services',  'Activités spécialisées, scientifiques et techniques',  'Attività professionali, scientifiche e tecniche', 'Servicios profesionales, científicos y técnicos');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '13',  'Sonstige Dienstleistungen für Unternehmen und Privatpersonen',  'Other services for companies and private individuals',  'Services administratifs et de soutien',  'Attività amministrative e di servizi di supporto', 'Otros servicios para empresas y particulares');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '14',  'Erziehung und Unterricht',  'Education and teaching',  'Enseignement',  'Istruzione', 'La educación y la enseñanza');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '15',  'Gesundheits- und Sozialwesen',  'Health and social services',  'Santé humaine et action sociale',  'Sanità'' e assistenza sociale', 'Servicios sociales y de salud');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '16',  'Kunst, Unterhaltung und Erholung',  'Arts, entertainment and recreation',  'Arts, spectacles et activités récréatives',  'Attività artistiche, di intrattenimento e divertimento', 'Artes, entretenimiento y recreación');
+INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '17',  'Sonstige Dienstleistungen',  'Other services',  'Autres activités de services',  'Altre attività di servizi', 'Otros servicios');
+END
+
+
+-- Industry
 
 COMMIT TRANSACTION -- Transaction Success!
 END TRY

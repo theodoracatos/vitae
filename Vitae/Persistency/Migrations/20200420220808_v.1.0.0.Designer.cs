@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200419194329_v.1.0.0")]
+    [Migration("20200420220808_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -498,6 +498,40 @@ namespace Persistency.Migrations
                     b.ToTable("Experience");
                 });
 
+            modelBuilder.Entity("Model.Poco.Industry", b =>
+                {
+                    b.Property<Guid>("IndustryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("IndustryCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_de")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_es")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_fr")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_it")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("IndustryID");
+
+                    b.ToTable("Industry");
+                });
+
             modelBuilder.Entity("Model.Poco.Interest", b =>
                 {
                     b.Property<Guid>("InterestID")
@@ -615,6 +649,40 @@ namespace Persistency.Migrations
                     b.ToTable("LanguageSkill");
                 });
 
+            modelBuilder.Entity("Model.Poco.Level", b =>
+                {
+                    b.Property<Guid>("LevelID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("LevelCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_de")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_es")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_fr")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_it")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("LevelID");
+
+                    b.ToTable("Level");
+                });
+
             modelBuilder.Entity("Model.Poco.Log", b =>
                 {
                     b.Property<Guid>("LogID")
@@ -659,6 +727,40 @@ namespace Persistency.Migrations
                     b.HasIndex("CurriculumID");
 
                     b.ToTable("Log");
+                });
+
+            modelBuilder.Entity("Model.Poco.MaritalStatus", b =>
+                {
+                    b.Property<Guid>("MaritalStatusID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("MaritalStatusCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_de")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_es")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_fr")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_it")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("MaritalStatusID");
+
+                    b.ToTable("MaritalStatus");
                 });
 
             modelBuilder.Entity("Model.Poco.Month", b =>
@@ -758,8 +860,8 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int>("MaritalStatus")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("MaritalStatusID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MobileNumber")
                         .IsRequired()
@@ -795,6 +897,8 @@ namespace Persistency.Migrations
                     b.HasIndex("CurriculumID");
 
                     b.HasIndex("CurriculumLanguageLanguageID");
+
+                    b.HasIndex("MaritalStatusID");
 
                     b.HasIndex("SpokenLanguageID");
 
@@ -1172,6 +1276,10 @@ namespace Persistency.Migrations
                     b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
                         .HasForeignKey("CurriculumLanguageLanguageID");
+
+                    b.HasOne("Model.Poco.MaritalStatus", "MaritalStatus")
+                        .WithMany()
+                        .HasForeignKey("MaritalStatusID");
 
                     b.HasOne("Model.Poco.Language", "SpokenLanguage")
                         .WithMany()
