@@ -1,7 +1,7 @@
 [
   {
     "$type": "VSToDoList.Models.Task, VSToDoList",
-    "Name": "Langage Screen: Star causes Save button to disable",
+    "Name": "Martial status as table",
     "IsDone": false,
     "IsExpanded": false,
     "SubTasks": [],
@@ -9,23 +9,23 @@
   },
   {
     "$type": "VSToDoList.Models.Task, VSToDoList",
-    "Name": "Unsafe changes must not run when choosing language (problem with safing, no active hidden field)",
-    "IsDone": false,
-    "IsExpanded": true,
-    "SubTasks": [],
-    "Status": 2
-  },
-  {
-    "$type": "VSToDoList.Models.Task, VSToDoList",
-    "Name": "Continue Adding language selector",
+    "Name": "Industry as table",
     "IsDone": false,
     "IsExpanded": false,
     "SubTasks": [],
-    "Status": 2
+    "Status": 0
   },
   {
     "$type": "VSToDoList.Models.Task, VSToDoList",
-    "Name": "Import Theodoractos data",
+    "Name": "Complete english SQL",
+    "IsDone": false,
+    "IsExpanded": false,
+    "SubTasks": [],
+    "Status": 0
+  },
+  {
+    "$type": "VSToDoList.Models.Task, VSToDoList",
+    "Name": "Add visibility GUID's (with timespan and QR-code)",
     "IsDone": false,
     "IsExpanded": false,
     "SubTasks": [],
@@ -34,6 +34,30 @@
   {
     "$type": "VSToDoList.Models.Task, VSToDoList",
     "Name": "Include DateFrom DateTo check",
+    "IsDone": false,
+    "IsExpanded": false,
+    "SubTasks": [],
+    "Status": 0
+  },
+  {
+    "$type": "VSToDoList.Models.Task, VSToDoList",
+    "Name": "Be able to delete account",
+    "IsDone": false,
+    "IsExpanded": false,
+    "SubTasks": [],
+    "Status": 0
+  },
+  {
+    "$type": "VSToDoList.Models.Task, VSToDoList",
+    "Name": "Be ablte to download data",
+    "IsDone": false,
+    "IsExpanded": false,
+    "SubTasks": [],
+    "Status": 0
+  },
+  {
+    "$type": "VSToDoList.Models.Task, VSToDoList",
+    "Name": "Switch language to cookie",
     "IsDone": false,
     "IsExpanded": false,
     "SubTasks": [],

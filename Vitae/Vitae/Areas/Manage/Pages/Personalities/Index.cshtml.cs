@@ -116,6 +116,9 @@ namespace Vitae.Areas.Manage.Pages.Personalities
                 curriculum.LastUpdated = DateTime.Now;
                 curriculum.PersonalDetails.Add(personalDetails);
                 await vitaeContext.SaveChangesAsync();
+
+                // A change occured
+                HasUnsafedChanges = false;
             }
 
             FillSelectionViewModel();

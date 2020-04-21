@@ -69,8 +69,8 @@ namespace Vitae.Areas.Manage.Pages.Courses
                 Courses.Select(c => new Poco.Course()
                     {
                         City = c.City,
-                        Start = new DateTime(c.Start_Year, c.Start_Month, 1),
-                        End = c.SingleDay ? null : (DateTime?)new DateTime(c.End_Year.Value, c.End_Month.Value, c.Start_Day),
+                        Start = new DateTime(c.Start_Year, c.Start_Month, c.Start_Day),
+                        End = c.SingleDay ? null : (DateTime?)new DateTime(c.End_Year.Value, c.End_Month.Value, c.End_Day.Value),
                         Order = c.Order,
                         Description = c.Description,
                         Link = c.Link,
@@ -82,6 +82,9 @@ namespace Vitae.Areas.Manage.Pages.Courses
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
+
+                // A change occured
+                HasUnsafedChanges = false;
             }
 
             FillSelectionViewModel();
@@ -188,7 +191,7 @@ namespace Vitae.Areas.Manage.Pages.Courses
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_COURSES);
+            return GetPartialViewResult(PAGE_COURSES, hasUnsafedChanges: false);
         }
 
         public async Task<IActionResult> OnPostLanguageChangeAsync()

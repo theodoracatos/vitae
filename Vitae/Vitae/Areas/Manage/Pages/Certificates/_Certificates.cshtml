@@ -12,7 +12,7 @@
                         <button asp-page-handler="AddCertificate" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold mr-2" disabled="@(Model.Certificates?.Count < Model.MaxCertificates ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
                         <div class="form-control d-sm-block d-md-inline mt-2 mr-2">
                             <div class="pretty p-switch p-slim mr-0">
-                                <input type="checkbox" name="@nameof(Model.AddToTop)" class="cancel" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
+                                <input type="checkbox" name="@nameof(Model.AddToTop)" class="dirty-ignore cancel" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
                                 <div class="state">
                                     <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
                                 </div>
@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-control d-sm-block d-md-inline mt-2">
                             <div class="pretty p-switch p-slim mr-0 mr-0">
-                                <input type="checkbox" name="@nameof(Model.Collapsed)" class="cancel" value="true" onclick="$('#btnCollapse').click()" checked="@(Model.Collapsed ? "checked" : null)" />
+                                <input type="checkbox" name="@nameof(Model.Collapsed)" class="dirty-ignore cancel" value="true" onclick="$('#btnCollapse').click()" checked="@(Model.Collapsed ? "checked" : null)" />
                                 <div class="state">
                                     <label asp-for="@Model.Collapsed">@SharedResource.Collapse</label>
                                 </div>
@@ -102,6 +102,9 @@
                                         <input asp-for="@Model.Certificates[i].End_Month" type="hidden" />
                                         <input asp-for="@Model.Certificates[i].End_Year" type="hidden" />
                                     }
+                                </div>
+                                <div>
+                                    <span asp-validation-for="@Model.Certificates[i].End_Year" class="text-danger d-block"></span>
                                 </div>
                             </div>
                         </div>

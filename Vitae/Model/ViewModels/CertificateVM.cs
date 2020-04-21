@@ -1,5 +1,5 @@
 ﻿using Library.Resources;
-
+using Model.Attriutes;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -35,6 +35,7 @@ namespace Model.ViewModels
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.ExpiresOn), Prompt = nameof(SharedResource.ExpiresOn))]
         public int? End_Month { get; set; }
 
+        [DateGreaterThan(nameof(NeverExpires), nameof(Start_Year), nameof(Start_Month), nameof(End_Month))]
         public int? End_Year { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.NeverExpires), Prompt = nameof(SharedResource.NeverExpires))]

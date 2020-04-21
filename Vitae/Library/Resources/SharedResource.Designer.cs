@@ -655,6 +655,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The start date can&apos;t be greater than the end date.
+        /// </summary>
+        public static string DateCompareError {
+            get {
+                return ResourceManager.GetString("DateCompareError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Day.
         /// </summary>
         public static string Day {

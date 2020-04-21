@@ -73,9 +73,13 @@ namespace Vitae.Areas.Manage.Pages.Languages
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
+
+                // A change occured
+                HasUnsafedChanges = false;
             }
 
             FillSelectionViewModel();
+
             return Page();
         }
         #endregion
@@ -163,7 +167,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_LANGUAGES);
+            return GetPartialViewResult(PAGE_LANGUAGES, hasUnsafedChanges: false);
         }
 
         public async Task<IActionResult> OnPostLanguageChangeAsync()

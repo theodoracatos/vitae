@@ -315,6 +315,9 @@
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
+  <data name="DateCompareError" xml:space="preserve">
+    <value>The start date can't be greater than the end date</value>
+  </data>
   <data name="Day" xml:space="preserve">
     <value>Day</value>
   </data>

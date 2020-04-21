@@ -11,6 +11,7 @@ $(document).ready(function () {
 });
 
 function ajaxCompleted(dirtyignore) {
+    addJQueryValidators();
     loadingProcedure();
     startRating();
     resetFormValidator('form');
@@ -178,14 +179,14 @@ function getColor(color, isBgColor) {
 }
 
 function addJQueryValidators() {
-    $.validator.addMethod('agelimit', function (value, element, params) {
+    $.validator.addMethod('datecompare', function (value, element, params) {
         var date = new Date();
         var year = params[1];
 
         return (parseInt(value) < date.getUTCFullYear() - year);
     });
 
-    $.validator.unobtrusive.adapters.add('agelimit', ['year'], function (options) {
+    $.validator.unobtrusive.adapters.add('datecompare', ['year'], function (options) {
         var element = $(options.form).find('select#Person_Birthday_Year')[0];
 
         options.rules['agelimit'] = [element, parseInt(options.params['year'])];
