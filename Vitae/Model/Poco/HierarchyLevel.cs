@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
-    public class Level
+    public class HierarchyLevel
     {
         [Key]
-        public Guid LevelID { get; set; }
+        public Guid HierarchyLevelID { get; set; }
 
-        public int LevelCode { get; set; }
+        public int HierarchyLevelCode { get; set; }
 
         [MaxLength(100)]
         public string Name { get; set; }

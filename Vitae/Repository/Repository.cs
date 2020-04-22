@@ -2,7 +2,6 @@
 using Library.Helper;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Logging;
 
 using Model.Enumerations;
@@ -306,6 +305,36 @@ namespace Library.Repository
             return countriesVM;
         }
 
+        public IEnumerable<IndustryVM> GetIndustries(string uiCulture)
+        {
+            var industriesVM = vitaeContext.Industries.Select(i => new IndustryVM()
+            {
+                IndustryCode = i.IndustryCode,
+                Name = uiCulture == "de" ? i.Name_de :
+                uiCulture == "fr" ? i.Name_fr :
+                uiCulture == "it" ? i.Name_it :
+                uiCulture == "es" ? i.Name_es :
+                i.Name
+            }).OrderBy(i => i.Name);
+
+            return industriesVM;
+        }
+
+        public IEnumerable<HierarchyLevelVM> GetHierarchyLevels(string uiCulture)
+        {
+            var hierarchyLevelsVM = vitaeContext.HierarchyLevels.Select(h => new HierarchyLevelVM()
+            {
+                HierarchyLevelCode = h.HierarchyLevelCode,
+                Name = uiCulture == "de" ? h.Name_de :
+                uiCulture == "fr" ? h.Name_fr :
+                uiCulture == "it" ? h.Name_it :
+                uiCulture == "es" ? h.Name_es :
+                h.Name
+            }).OrderBy(i => i.HierarchyLevelCode);
+
+            return hierarchyLevelsVM;
+        }
+
         public IEnumerable<MaritalStatusVM> GetMaritalStatuses(string uiCulture)
         {
             var maritalStatusesVM = vitaeContext.MaritalStatuses.Select(m => new MaritalStatusVM()
@@ -527,7 +556,9 @@ namespace Library.Repository
                         Link = e.Link,
                         CompanyName = e.CompanyName,
                         JobTitle = e.JobTitle,
-                        CountryCode = e.Country.CountryCode
+                        CountryCode = e.Country.CountryCode,
+                        IndustryCode= e.Industry.IndustryCode,
+                        HierarchyLevelCode = e.HierarchyLevel.HierarchyLevelCode
                     })
                     .ToList();
 
@@ -758,6 +789,8 @@ namespace Library.Repository
         private async Task LoadExperiences(IQueryable<Curriculum> curriculumQuery)
         {
             await curriculumQuery.Include(c => c.Experiences).ThenInclude(e => e.Country).LoadAsync();
+            await curriculumQuery.Include(c => c.Experiences).ThenInclude(e => e.Industry).LoadAsync();
+            await curriculumQuery.Include(c => c.Experiences).ThenInclude(e => e.HierarchyLevel).LoadAsync();
         }
 
         private async Task LoadInterests(IQueryable<Curriculum> curriculumQuery)

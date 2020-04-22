@@ -33,12 +33,11 @@
 }
 
 <body id="page-top">
-
-    <!-- #region Menu -->
-    @{ 
-        var about = Model.Abouts.First(); // TODO: Get Language Code
+    @{
+        var about = Model.Abouts.Single();
     }
 
+    <!-- #region Menu -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
         <a class="js-scroll-trigger mt-1 mb-1" href="#page-top">
             <img src="~/img/Logo.png" class="" title="Vitae" />
@@ -136,7 +135,6 @@
         <hr class="m-0">
         <!-- #endregion -->
         <!-- #region Experiences -->
-
         @if (Model.Experiences.Count > 0)
         {
             <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="@nameof(Experience).ToLower()">
@@ -148,7 +146,7 @@
                             <div class="resume-content">
                                 <h3 class="mb-0">@experience.JobTitle</h3>
                                 <div class="subheading mb-3">
-                                    <a href="@experience.Link" target="_blank">@experience.CompanyName</a> &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(experience.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == experience.CountryCode).Name)"></span> @experience.City
+                                    <a href="@experience.Link" target="_blank">@experience.CompanyName</a> &middot; @(Model.Industries.Single(i => i.IndustryCode == experience.IndustryCode).Name) &middot; @(Model.HierarchyLevels.Single(h => h.HierarchyLevelCode == experience.HierarchyLevelCode).Name) &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(experience.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == experience.CountryCode).Name)"></span> @experience.City
                                 </div>
                                 <p>@experience.Description</p>
                             </div>

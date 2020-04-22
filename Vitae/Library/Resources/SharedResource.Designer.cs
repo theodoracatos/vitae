@@ -970,6 +970,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hierarchy level.
+        /// </summary>
+        public static string HierarchyLevel {
+            get {
+                return ResourceManager.GetString("HierarchyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hierarchy levels.
+        /// </summary>
+        public static string HierarchyLevels {
+            get {
+                return ResourceManager.GetString("HierarchyLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Homepage.
         /// </summary>
         public static string Homepage {
@@ -984,6 +1002,24 @@ namespace Library.Resources {
         public static string Import {
             get {
                 return ResourceManager.GetString("Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Industries.
+        /// </summary>
+        public static string Industries {
+            get {
+                return ResourceManager.GetString("Industries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Industry.
+        /// </summary>
+        public static string Industry {
+            get {
+                return ResourceManager.GetString("Industry", resourceCulture);
             }
         }
         

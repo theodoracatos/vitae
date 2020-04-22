@@ -2,6 +2,7 @@
 
 using Model.Attriutes;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels
@@ -18,6 +19,14 @@ namespace Model.ViewModels
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CompanyName), Prompt = nameof(SharedResource.CompanyName))]
         [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string CompanyName { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Industry), Prompt = nameof(SharedResource.Industry))]
+        public int IndustryCode { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.HierarchyLevel), Prompt = nameof(SharedResource.HierarchyLevel))]
+        public int HierarchyLevelCode { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.URL), Prompt = nameof(SharedResource.URL))]
         [Url(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
@@ -36,6 +45,12 @@ namespace Model.ViewModels
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Resumee), Prompt = nameof(SharedResource.Resumee))]
         [MaxLength(1000, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string Description { get; set; }
+
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.HierarchyLevel), Prompt = nameof(SharedResource.HierarchyLevels))]
+        public IList<HierarchyLevelVM> HierarchyLevels { get; set; }
+
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Industry), Prompt = nameof(SharedResource.Industries))]
+        public IList<IndustryVM> Industries { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Start), Prompt = nameof(SharedResource.Start))]
         public int Start_Month { get; set; }

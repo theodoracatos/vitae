@@ -17,7 +17,7 @@ namespace Persistency.Data
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Month> Months { get; set; }
         public virtual DbSet<MaritalStatus> MaritalStatuses { get; set; }
-        public virtual DbSet<Level> Levels { get; set; }
+        public virtual DbSet<HierarchyLevel> HierarchyLevels { get; set; }
         public virtual DbSet<Industry> Industries { get; set; }
         public virtual DbSet<Vfile> Vfiles { get; set; }
 

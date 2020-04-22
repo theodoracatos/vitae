@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200420220808_v.1.0.0")]
+    [Migration("20200422205359_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -472,6 +472,12 @@ namespace Persistency.Migrations
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("HierarchyLevelID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IndustryID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("JobTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
@@ -495,7 +501,45 @@ namespace Persistency.Migrations
 
                     b.HasIndex("CurriculumLanguageLanguageID");
 
+                    b.HasIndex("HierarchyLevelID");
+
+                    b.HasIndex("IndustryID");
+
                     b.ToTable("Experience");
+                });
+
+            modelBuilder.Entity("Model.Poco.HierarchyLevel", b =>
+                {
+                    b.Property<Guid>("HierarchyLevelID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("HierarchyLevelCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_de")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_es")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_fr")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Name_it")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("HierarchyLevelID");
+
+                    b.ToTable("HierarchyLevel");
                 });
 
             modelBuilder.Entity("Model.Poco.Industry", b =>
@@ -647,40 +691,6 @@ namespace Persistency.Migrations
                     b.HasIndex("SpokenLanguageID");
 
                     b.ToTable("LanguageSkill");
-                });
-
-            modelBuilder.Entity("Model.Poco.Level", b =>
-                {
-                    b.Property<Guid>("LevelID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("LevelCode")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Name_de")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Name_es")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Name_fr")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Name_it")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("LevelID");
-
-                    b.ToTable("Level");
                 });
 
             modelBuilder.Entity("Model.Poco.Log", b =>
@@ -1220,6 +1230,18 @@ namespace Persistency.Migrations
                     b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
                         .HasForeignKey("CurriculumLanguageLanguageID");
+
+                    b.HasOne("Model.Poco.HierarchyLevel", "HierarchyLevel")
+                        .WithMany()
+                        .HasForeignKey("HierarchyLevelID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.Poco.Industry", "Industry")
+                        .WithMany()
+                        .HasForeignKey("IndustryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Model.Poco.Interest", b =>

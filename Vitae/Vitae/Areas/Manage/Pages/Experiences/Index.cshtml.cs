@@ -28,13 +28,17 @@ namespace Vitae.Areas.Manage.Pages.Experiences
     {
         public const string PAGE_EXPERIENCES = "_Experiences";
 
+        public int MaxExperiences { get; } = 20;
+
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.JobExperiences), Prompt = nameof(SharedResource.JobExperiences))]
         [BindProperty]
         public IList<ExperienceVM> Experiences { get; set; }
 
         public IEnumerable<CountryVM> Countries { get; set; }
 
-        public int MaxExperiences { get; } = 20;
+        public IEnumerable<IndustryVM> Industries { get; set; }
+
+        public IEnumerable<HierarchyLevelVM> HierarchyLevels{ get; set; }
 
         public IEnumerable<MonthVM> Months { get; set; }
 
@@ -78,7 +82,9 @@ namespace Vitae.Areas.Manage.Pages.Experiences
                     CompanyName = e.CompanyName,
                     JobTitle = e.JobTitle,
                     Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode),
-                    CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
+                    CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode),
+                    HierarchyLevel = vitaeContext.HierarchyLevels.Single(h => h.HierarchyLevelCode == e.HierarchyLevelCode),
+                    Industry = vitaeContext.Industries.Single(i => i.IndustryCode == e.IndustryCode),
                 }).ToList().ForEach(e => curriculum.Experiences.Add(e));
                 curriculum.LastUpdated = DateTime.Now;
 
@@ -200,6 +206,8 @@ namespace Vitae.Areas.Manage.Pages.Experiences
             CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
+            Industries = repository.GetIndustries(requestCulture.RequestCulture.UICulture.Name);
+            HierarchyLevels = repository.GetHierarchyLevels(requestCulture.RequestCulture.UICulture.Name);
         }
 
         private async Task LoadExperiences(string languageCode, Curriculum curr = null)

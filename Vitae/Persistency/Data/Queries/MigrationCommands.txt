@@ -1,10 +1,20 @@
-﻿/* ADD */
+﻿/*************************/
+/***** VITAE CONTEXT *****/
+/*************************/
+// ADD
 EntityFrameworkCore\add-migration -startupproject Vitae -project Persistency -context VitaeContext v.1.0.0
-EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context VitaeContext
-EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context IdentityContext
 
-/* REMOVE */
+// UPDATE
+EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context VitaeContext
+
+// REMOVE
 EntityFrameworkCore\remove-migration -startupproject Vitae -project Persistency -context VitaeContext
 
-/* REVERT ALL */
+// REVERT ALL
 EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context VitaeContext –migration 0
+
+
+/*************************/
+/*** IDENTITY CONTEXT ****/
+/*************************/
+EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context IdentityContext

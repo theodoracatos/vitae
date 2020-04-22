@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations;
 namespace Model.ViewModels
 {
     [Serializable]
-    public class LevelVM : BaseVM
+    public class HierarchyLevelVM : BaseVM
     {
         [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string Name { get; set; }
 
-        public int LevelCode { get; set; }
+        public int HierarchyLevelCode { get; set; }
     }
 }

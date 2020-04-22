@@ -20,6 +20,12 @@ namespace Model.Poco
         public string Link { get; set; }
 
         [Required]
+        public virtual HierarchyLevel HierarchyLevel { get; set; }
+
+        [Required]
+        public virtual Industry Industry { get; set; }
+
+        [Required]
         public virtual Country Country { get; set; }
 
         [Required]

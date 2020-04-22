@@ -420,11 +420,23 @@
   <data name="HideReference" xml:space="preserve">
     <value>Referenz verstecken</value>
   </data>
+  <data name="HierarchyLevel" xml:space="preserve">
+    <value>Hierarchiestufe</value>
+  </data>
+  <data name="HierarchyLevels" xml:space="preserve">
+    <value>Hierarchiestufen</value>
+  </data>
   <data name="Homepage" xml:space="preserve">
     <value>Startseite</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>Importieren</value>
+  </data>
+  <data name="Industries" xml:space="preserve">
+    <value>Industrien</value>
+  </data>
+  <data name="Industry" xml:space="preserve">
+    <value>Industrie</value>
   </data>
   <data name="Interest" xml:space="preserve">
     <value>Interesse</value>

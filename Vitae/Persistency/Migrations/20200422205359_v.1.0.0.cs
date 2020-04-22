@@ -43,6 +43,23 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "HierarchyLevel",
+                columns: table => new
+                {
+                    HierarchyLevelID = table.Column<Guid>(nullable: false),
+                    HierarchyLevelCode = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: true),
+                    Name_de = table.Column<string>(maxLength: 100, nullable: true),
+                    Name_fr = table.Column<string>(maxLength: 100, nullable: true),
+                    Name_it = table.Column<string>(maxLength: 100, nullable: true),
+                    Name_es = table.Column<string>(maxLength: 100, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HierarchyLevel", x => x.HierarchyLevelID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Industry",
                 columns: table => new
                 {
@@ -74,23 +91,6 @@ namespace Persistency.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Language", x => x.LanguageID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Level",
-                columns: table => new
-                {
-                    LevelID = table.Column<Guid>(nullable: false),
-                    LevelCode = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(maxLength: 100, nullable: true),
-                    Name_de = table.Column<string>(maxLength: 100, nullable: true),
-                    Name_fr = table.Column<string>(maxLength: 100, nullable: true),
-                    Name_it = table.Column<string>(maxLength: 100, nullable: true),
-                    Name_es = table.Column<string>(maxLength: 100, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Level", x => x.LevelID);
                 });
 
             migrationBuilder.CreateTable(
@@ -402,6 +402,8 @@ namespace Persistency.Migrations
                     JobTitle = table.Column<string>(maxLength: 100, nullable: false),
                     CompanyName = table.Column<string>(maxLength: 100, nullable: false),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
+                    HierarchyLevelID = table.Column<Guid>(nullable: false),
+                    IndustryID = table.Column<Guid>(nullable: false),
                     CountryID = table.Column<Guid>(nullable: false),
                     City = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
@@ -430,6 +432,18 @@ namespace Persistency.Migrations
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Experience_HierarchyLevel_HierarchyLevelID",
+                        column: x => x.HierarchyLevelID,
+                        principalTable: "HierarchyLevel",
+                        principalColumn: "HierarchyLevelID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Experience_Industry_IndustryID",
+                        column: x => x.IndustryID,
+                        principalTable: "Industry",
+                        principalColumn: "IndustryID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -848,6 +862,16 @@ namespace Persistency.Migrations
                 column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Experience_HierarchyLevelID",
+                table: "Experience",
+                column: "HierarchyLevelID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Experience_IndustryID",
+                table: "Experience",
+                column: "IndustryID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Interest_CurriculumID",
                 table: "Interest",
                 column: "CurriculumID");
@@ -989,16 +1013,10 @@ namespace Persistency.Migrations
                 name: "Experience");
 
             migrationBuilder.DropTable(
-                name: "Industry");
-
-            migrationBuilder.DropTable(
                 name: "Interest");
 
             migrationBuilder.DropTable(
                 name: "LanguageSkill");
-
-            migrationBuilder.DropTable(
-                name: "Level");
 
             migrationBuilder.DropTable(
                 name: "Log");
@@ -1023,6 +1041,12 @@ namespace Persistency.Migrations
 
             migrationBuilder.DropTable(
                 name: "Vfile");
+
+            migrationBuilder.DropTable(
+                name: "HierarchyLevel");
+
+            migrationBuilder.DropTable(
+                name: "Industry");
 
             migrationBuilder.DropTable(
                 name: "PersonalDetail");

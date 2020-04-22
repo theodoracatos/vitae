@@ -48,6 +48,8 @@ namespace Vitae.Areas.CV.Pages
         public IEnumerable<LanguageVM> Languages { get; set; }
         public IEnumerable<CountryVM> Countries { get; set; }
         public IEnumerable<MaritalStatusVM> MaritalStatuses { get; set; }
+        public IEnumerable<IndustryVM> Industries { get; set; }
+        public IEnumerable<HierarchyLevelVM> HierarchyLevels { get; set; }
 
         public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
     : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
@@ -128,6 +130,8 @@ namespace Vitae.Areas.CV.Pages
             Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             MaritalStatuses = repository.GetMaritalStatuses(requestCulture.RequestCulture.UICulture.Name);
+            Industries = repository.GetIndustries(requestCulture.RequestCulture.UICulture.Name);
+            HierarchyLevels = repository.GetHierarchyLevels(requestCulture.RequestCulture.UICulture.Name);
         }
 
         #endregion
