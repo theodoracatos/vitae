@@ -48,7 +48,7 @@ namespace Model.ViewModels
 
         public int? End_Month { get; set; }
 
-        [DateGreaterThan(nameof(Start_Year), nameof(Start_Month), nameof(End_Month), nameof(Start_Day), nameof(End_Day))]
+        [DateGreaterThan(nameof(SingleDay), nameof(Start_Year), nameof(Start_Month), nameof(End_Month), nameof(Start_Day), nameof(End_Day))]
         public int? End_Year { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.SingleDay), Prompt = nameof(SharedResource.SingleDay))]
