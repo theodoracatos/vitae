@@ -5,29 +5,36 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.Attriutes
 {
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
     public class DateGreaterThanAttribute : ValidationAttribute
     {
-        private string untilNowProperty, startYearProperty, startMonthProperty, startDayProperty, endMonthProperty, endDayProperty;
+        public string UntilNow { get; set; }
+        public string StartYear { get; set; }
+        public string StartMonth { get; set; }
+        public string StartDay { get; set; }
+        public string EndYear { get; set; }
+        public string EndMonth { get; set; }
+        public string EndDay { get; set; }
 
         public string GetErrorMessage() => $"{SharedResource.DateCompareError}";
 
         public DateGreaterThanAttribute(string untilNowProperty, string startYearProperty, string startMonthProperty, string endMonthProperty, string startDayProperty = null, string endDayProperty = null)
         {
-            this.untilNowProperty = untilNowProperty;
-            this.startYearProperty = startYearProperty;
-            this.startMonthProperty = startMonthProperty;
-            this.startDayProperty = startDayProperty;
-            this.endMonthProperty = endMonthProperty;
-            this.endDayProperty = endDayProperty;
+            UntilNow = untilNowProperty;
+            StartYear = startYearProperty;
+            StartMonth = startMonthProperty;
+            StartDay = startDayProperty ?? "";
+            EndMonth = endMonthProperty;
+            EndDay = endDayProperty ?? "";
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             try
             {
-                var untilNow = GetPropertyValue<bool>(validationContext, untilNowProperty);
-                var startDate = new DateTime(GetPropertyValue<int>(validationContext, startYearProperty), GetPropertyValue<int>(validationContext, startMonthProperty), GetPropertyValue(validationContext, startDayProperty, 1));
-                var endDate = new DateTime((int)value, GetPropertyValue<int>(validationContext, endMonthProperty), GetPropertyValue(validationContext, endDayProperty, 1));
+                var untilNow = GetPropertyValue<bool>(validationContext, UntilNow);
+                var startDate = new DateTime(GetPropertyValue<int>(validationContext, StartYear), GetPropertyValue<int>(validationContext, StartMonth), GetPropertyValue(validationContext, StartDay, 1));
+                var endDate = new DateTime((int)value, GetPropertyValue<int>(validationContext, EndMonth), GetPropertyValue(validationContext, EndDay, 1));
 
                 if (!untilNow && startDate > endDate)
                 {

@@ -179,19 +179,32 @@ function getColor(color, isBgColor) {
 }
 
 function addJQueryValidators() {
-    $.validator.addMethod('datecompare', function (value, element, params) {
-        var date = new Date();
-        var year = params[1];
-
-        return (parseInt(value) < date.getUTCFullYear() - year);
+    $.validator.unobtrusive.adapters.add('dategreaterthan', [], function (options) {
+        options.rules['dategreaterthan'] = {};
+        options.messages['dategreaterthan'] = options.message;
     });
 
-    $.validator.unobtrusive.adapters.add('datecompare', ['year'], function (options) {
-        var element = $(options.form).find('select#Person_Birthday_Year')[0];
+    $.validator.addMethod('dategreaterthan', function (value, element, params) {
+        var baseName = $(element).attr('name').substr(0, $(element).attr('name').indexOf('.'));
 
-        options.rules['agelimit'] = [element, parseInt(options.params['year'])];
-        options.messages['agelimit'] = options.message;
+        var startYear = baseName + "." + $(element).data('val-dategreaterthan-startyear');
+        var startMonth = baseName + "." + $(element).data('val-dategreaterthan-startmonth')
+        var startDay = baseName + "." + $(element).data('val-dategreaterthan-startday')
+        var endMonth = baseName + "." + $(element).data('val-dategreaterthan-endmonth')
+        var endDay = baseName + "." + $(element).data('val-dategreaterthan-endday')
+
+        var startDate = new Date($("select[name='" + startYear + "']").val(), $("select[name='" + startMonth + "']").val(), $("select[name='" + startDay + "']").val() || 1);
+        var endDate = new Date($(element).val(), $("select[name='" + endMonth + "']").val(), $("select[name='" + endDay + "']").val() || 1);
+
+        // Compare dates
+        return startDate <= endDate;
     });
+
+    var $form = $("form");
+    $form.unbind();
+    $form.data("validator", null);
+    $.validator.unobtrusive.parse($form);
+    $form.validate($form.data("unobtrusiveValidation").options);
 }
 
 function setupSbAdmin() {
