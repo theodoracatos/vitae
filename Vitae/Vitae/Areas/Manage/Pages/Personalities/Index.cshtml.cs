@@ -64,48 +64,49 @@ namespace Vitae.Areas.Manage.Pages.Personalities
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync<PersonalDetail>(curriculumID);
-                vitaeContext.RemoveRange(curriculum.PersonalDetails);
+                var curriculumLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language; // Always take 1st language!
+                vitaeContext.RemoveRange(curriculum.PersonalDetails.Where(p => p.CurriculumLanguage.LanguageCode == curriculumLanguage.LanguageCode));
 
-                var currentLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language; // Always take 1st language!
-                var personalDetails = curriculum.PersonalDetails.SingleOrDefault(pd => pd.CurriculumLanguage == currentLanguage) ?? new PersonalDetail() { PersonCountries = new List<PersonCountry>(), Children = new List<Child>() };
-
-                personalDetails.Birthday = new DateTime(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
-                personalDetails.City = PersonalDetail.City;
-                personalDetails.Country = vitaeContext.Countries.Single(c => c.CountryCode == PersonalDetail.CountryCode);
-                personalDetails.Email = PersonalDetail.Email;
-                personalDetails.Firstname = PersonalDetail.Firstname;
-                personalDetails.Lastname = PersonalDetail.Lastname;
-                personalDetails.Gender = PersonalDetail.Gender.Value;
-                personalDetails.CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == PersonalDetail.LanguageCode);
-                personalDetails.MobileNumber = PersonalDetail.MobileNumber;
-                personalDetails.MaritalStatus = vitaeContext.MaritalStatuses.Single(m => m.MaritalStatusCode == PersonalDetail.MaritalStatusCode);
-                personalDetails.Street = PersonalDetail.Street;
-                personalDetails.StreetNo = PersonalDetail.StreetNo;
-                personalDetails.ZipCode = PersonalDetail.ZipCode;
-                personalDetails.State = PersonalDetail.State;
-                personalDetails.Citizenship = PersonalDetail.Citizenship;
-                personalDetails.CurriculumLanguage = currentLanguage;
+                // Add new
+                var personalDetail = new PersonalDetail() { PersonCountries = new List<PersonCountry>(), Children = new List<Child>() };
+                personalDetail.Birthday = new DateTime(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
+                personalDetail.City = PersonalDetail.City;
+                personalDetail.Country = vitaeContext.Countries.Single(c => c.CountryCode == PersonalDetail.CountryCode);
+                personalDetail.Email = PersonalDetail.Email;
+                personalDetail.Firstname = PersonalDetail.Firstname;
+                personalDetail.Lastname = PersonalDetail.Lastname;
+                personalDetail.Gender = PersonalDetail.Gender.Value;
+                personalDetail.SpokenLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == PersonalDetail.LanguageCode);
+                personalDetail.PhonePrefix = PersonalDetail.PhonePrefix;
+                personalDetail.MobileNumber = PersonalDetail.MobileNumber;
+                personalDetail.MaritalStatus = vitaeContext.MaritalStatuses.Single(m => m.MaritalStatusCode == PersonalDetail.MaritalStatusCode);
+                personalDetail.Street = PersonalDetail.Street;
+                personalDetail.StreetNo = PersonalDetail.StreetNo;
+                personalDetail.ZipCode = PersonalDetail.ZipCode;
+                personalDetail.State = PersonalDetail.State;
+                personalDetail.Citizenship = PersonalDetail.Citizenship;
+                personalDetail.CurriculumLanguage = curriculumLanguage;
 
                 // Nationality
-                personalDetails.PersonCountries.Clear();
+                personalDetail.PersonCountries.Clear();
                 foreach (var nationality in PersonalDetail.Nationalities)
                 {
                     var personCountry = new PersonCountry()
                     {
                         Country = vitaeContext.Countries.Single(c => c.CountryCode == nationality.CountryCode),
                         CountryID = vitaeContext.Countries.Single(c => c.CountryCode == nationality.CountryCode).CountryID,
-                        PersonalDetail = personalDetails,
-                        PersonalDetailID = personalDetails.PersonalDetailID,
+                        PersonalDetail = personalDetail,
+                        PersonalDetailID = personalDetail.PersonalDetailID,
                         Order = PersonalDetail.Nationalities.IndexOf(nationality)
                     };
-                    personalDetails.PersonCountries.Add(personCountry);
+                    personalDetail.PersonCountries.Add(personCountry);
                 }
 
                 // Children
                 if (PersonalDetail.Children != null)
                 {
-                    vitaeContext.RemoveRange(personalDetails.Children);
-                    personalDetails.Children =
+                    vitaeContext.RemoveRange(personalDetail.Children);
+                    personalDetail.Children =
                         PersonalDetail.Children?.Select(c => new Child()
                         {
                             Firstname = c.Firstname,
@@ -114,7 +115,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
                         }).ToList();
                 }
                 curriculum.LastUpdated = DateTime.Now;
-                curriculum.PersonalDetails.Add(personalDetails);
+                curriculum.PersonalDetails.Add(personalDetail);
                 await vitaeContext.SaveChangesAsync();
 
                 // A change occured
@@ -199,6 +200,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
 
         public IActionResult OnPostChangeCountry()
         {
+            PersonalDetail.PhonePrefix = repository.GetPhonePrefix(PersonalDetail.CountryCode);
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_PERSONALITIES);
@@ -216,7 +218,6 @@ namespace Vitae.Areas.Manage.Pages.Personalities
             MaritalStatuses = repository.GetMaritalStatuses(requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
             CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
-            PersonalDetail.PhonePrefix = repository.GetPhonePrefix(PersonalDetail.CountryCode);
         }
         #endregion
     }

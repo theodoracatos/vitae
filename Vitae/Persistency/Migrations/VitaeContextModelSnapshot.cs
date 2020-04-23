@@ -537,6 +537,9 @@ namespace Persistency.Migrations
 
                     b.HasKey("HierarchyLevelID");
 
+                    b.HasIndex("HierarchyLevelCode")
+                        .IsUnique();
+
                     b.ToTable("HierarchyLevel");
                 });
 
@@ -570,6 +573,9 @@ namespace Persistency.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("IndustryID");
+
+                    b.HasIndex("IndustryCode")
+                        .IsUnique();
 
                     b.ToTable("Industry");
                 });
@@ -768,6 +774,9 @@ namespace Persistency.Migrations
 
                     b.HasKey("MaritalStatusID");
 
+                    b.HasIndex("MaritalStatusCode")
+                        .IsUnique();
+
                     b.ToTable("MaritalStatus");
                 });
 
@@ -801,6 +810,9 @@ namespace Persistency.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("MonthID");
+
+                    b.HasIndex("MonthCode")
+                        .IsUnique();
 
                     b.ToTable("Month");
                 });
@@ -878,6 +890,11 @@ namespace Persistency.Migrations
 
                     b.Property<int>("Order")
                         .HasColumnType("int");
+
+                    b.Property<string>("PhonePrefix")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(6)")
+                        .HasMaxLength(6);
 
                     b.Property<Guid?>("SpokenLanguageID")
                         .HasColumnType("uniqueidentifier");
@@ -977,44 +994,6 @@ namespace Persistency.Migrations
                     b.HasIndex("CurriculumLanguageLanguageID");
 
                     b.ToTable("Reference");
-                });
-
-            modelBuilder.Entity("Model.Poco.Share", b =>
-                {
-                    b.Property<Guid>("ShareID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Anonymize")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid?>("CurriculumID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("End")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("Identifier")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("QrCode")
-                        .IsRequired()
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<DateTime>("Start")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ShareID");
-
-                    b.HasIndex("CurriculumID");
-
-                    b.HasIndex("Identifier");
-
-                    b.ToTable("Share");
                 });
 
             modelBuilder.Entity("Model.Poco.Skill", b =>
@@ -1319,13 +1298,6 @@ namespace Persistency.Migrations
                     b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
                         .HasForeignKey("CurriculumLanguageLanguageID");
-                });
-
-            modelBuilder.Entity("Model.Poco.Share", b =>
-                {
-                    b.HasOne("Model.Poco.Curriculum", "Curriculum")
-                        .WithMany()
-                        .HasForeignKey("CurriculumID");
                 });
 
             modelBuilder.Entity("Model.Poco.Skill", b =>

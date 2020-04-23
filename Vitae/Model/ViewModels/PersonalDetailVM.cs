@@ -70,10 +70,16 @@ namespace Model.ViewModels
         [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string Email { get; set; }
 
+
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
+        [MaxLength(6, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        [RegularExpression(@"^(\+|00)[0-9]{1,4}", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        public string PhonePrefix { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.MobileNumber), Prompt = nameof(SharedResource.MobileNumber))]
         [DataType(DataType.PhoneNumber, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
-        [RegularExpression(@"^[1-9][0-9 ]{5,15}", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
+        [RegularExpression(@"^[1-9][0-9 ]{5,15}", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         [MaxLength(16, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string MobileNumber { get; set; }
 
@@ -85,8 +91,6 @@ namespace Model.ViewModels
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.MaritalStatus), Prompt = nameof(SharedResource.MaritalStatus))]
         public int MaritalStatusCode { get; set; }
-
-        public string PhonePrefix { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Children), Prompt = nameof(SharedResource.Children))]
         public IList<ChildVM> Children { get; set; }

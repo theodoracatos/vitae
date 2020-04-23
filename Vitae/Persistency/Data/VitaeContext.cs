@@ -32,9 +32,13 @@ namespace Persistency.Data
             modelBuilder.RemovePluralizingTableNameConvention();
 
             /* Index, unique */
-            modelBuilder.Entity<Share>().HasIndex(c => c.Identifier);
             modelBuilder.Entity<Country>().HasIndex(c => c.CountryCode).IsUnique();
             modelBuilder.Entity<Language>().HasIndex(c => c.LanguageCode).IsUnique();
+            modelBuilder.Entity<Industry>().HasIndex(c => c.IndustryCode).IsUnique();
+            modelBuilder.Entity<HierarchyLevel>().HasIndex(c => c.HierarchyLevelCode).IsUnique();
+            modelBuilder.Entity<Month>().HasIndex(c => c.MonthCode).IsUnique();
+            modelBuilder.Entity<MaritalStatus>().HasIndex(c => c.MaritalStatusCode).IsUnique();
+
             modelBuilder.Entity<Log>().HasIndex(c => c.CurriculumID);
 
             /* N-M */

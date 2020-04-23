@@ -765,6 +765,9 @@
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="ShareIdentifier" xml:space="preserve">
+    <value>ID</value>
+  </data>
   <data name="ShortIdentifier" xml:space="preserve">
     <value>Short ID</value>
   </data>

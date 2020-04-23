@@ -78,6 +78,8 @@
     <Compile Remove="Migrations\20200420220346_v.1.0.0.Designer.cs" />
     <Compile Remove="Migrations\20200420220808_v.1.0.0.cs" />
     <Compile Remove="Migrations\20200420220808_v.1.0.0.Designer.cs" />
+    <Compile Remove="Migrations\20200422205359_v.1.0.0.cs" />
+    <Compile Remove="Migrations\20200422205359_v.1.0.0.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

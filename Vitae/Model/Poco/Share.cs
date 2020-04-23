@@ -9,20 +9,13 @@ namespace Model.Poco
         [Key]
         public Guid ShareID { get; set; }
 
-        public Guid Identifier { get; set; }
-
         public bool Anonymize { get; set; }
 
         [MaxLength(50)]
+        [MinLength(4)]
         public string Password { get; set; }
 
-        [Required]
-        [Column(TypeName = "varchar(max)")]
-        public string QrCode { get; set; }
-
-        public DateTime Start { get; set; }
-
-        public DateTime? End { get; set; }
+        public virtual Language CurriculumLanguage { get; set; }
 
         public virtual Curriculum Curriculum { get; set; }
     }

@@ -113,10 +113,11 @@
                         <label class="control-label" asp-for="@Model.PersonalDetail.MobileNumber"></label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">@Model.PersonalDetail.PhonePrefix</span>
+                                <input class="form-control" type="text" asp-for="@Model.PersonalDetail.PhonePrefix" />
                             </div>
                             <input class="form-control" type="text" asp-for="@Model.PersonalDetail.MobileNumber" />
                         </div>
+                        <span asp-validation-for="@Model.PersonalDetail.PhonePrefix" class="text-danger"></span>
                         <span asp-validation-for="@Model.PersonalDetail.MobileNumber" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-8">

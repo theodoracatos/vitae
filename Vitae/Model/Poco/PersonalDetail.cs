@@ -45,9 +45,13 @@ namespace Model.Poco
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(16)]
-        public string MobileNumber { get; set; }
+        [MaxLength(6)]
+        public string PhonePrefix { get; set; }
 
+        [Required]
+        [MaxLength(16)]
+        public string MobileNumber { get; set; } 
+       
         [Required]
         [MaxLength(100)]
         public string Citizenship { get; set; }

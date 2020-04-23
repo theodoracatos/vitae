@@ -162,30 +162,6 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Share",
-                columns: table => new
-                {
-                    ShareID = table.Column<Guid>(nullable: false),
-                    Identifier = table.Column<Guid>(nullable: false),
-                    Anonymize = table.Column<bool>(nullable: false),
-                    Password = table.Column<string>(maxLength: 50, nullable: true),
-                    QrCode = table.Column<string>(type: "varchar(max)", nullable: false),
-                    Start = table.Column<DateTime>(nullable: false),
-                    End = table.Column<DateTime>(nullable: true),
-                    CurriculumID = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Share", x => x.ShareID);
-                    table.ForeignKey(
-                        name: "FK_Share_Curriculum_CurriculumID",
-                        column: x => x.CurriculumID,
-                        principalTable: "Curriculum",
-                        principalColumn: "CurriculumID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Abroad",
                 columns: table => new
                 {
@@ -625,6 +601,7 @@ namespace Persistency.Migrations
                     City = table.Column<string>(maxLength: 100, nullable: true),
                     ZipCode = table.Column<string>(maxLength: 10, nullable: true),
                     Email = table.Column<string>(maxLength: 100, nullable: false),
+                    PhonePrefix = table.Column<string>(maxLength: 6, nullable: false),
                     MobileNumber = table.Column<string>(maxLength: 16, nullable: false),
                     Citizenship = table.Column<string>(maxLength: 100, nullable: false),
                     MaritalStatusID = table.Column<Guid>(nullable: true),
@@ -872,6 +849,18 @@ namespace Persistency.Migrations
                 column: "IndustryID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_HierarchyLevel_HierarchyLevelCode",
+                table: "HierarchyLevel",
+                column: "HierarchyLevelCode",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Industry_IndustryCode",
+                table: "Industry",
+                column: "IndustryCode",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Interest_CurriculumID",
                 table: "Interest",
                 column: "CurriculumID");
@@ -906,6 +895,18 @@ namespace Persistency.Migrations
                 name: "IX_Log_CurriculumID",
                 table: "Log",
                 column: "CurriculumID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MaritalStatus_MaritalStatusCode",
+                table: "MaritalStatus",
+                column: "MaritalStatusCode",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Month_MonthCode",
+                table: "Month",
+                column: "MonthCode",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersonalDetail_CountryID",
@@ -951,16 +952,6 @@ namespace Persistency.Migrations
                 name: "IX_Reference_CurriculumLanguageLanguageID",
                 table: "Reference",
                 column: "CurriculumLanguageLanguageID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Share_CurriculumID",
-                table: "Share",
-                column: "CurriculumID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Share_Identifier",
-                table: "Share",
-                column: "Identifier");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Skill_CurriculumID",
@@ -1029,9 +1020,6 @@ namespace Persistency.Migrations
 
             migrationBuilder.DropTable(
                 name: "Reference");
-
-            migrationBuilder.DropTable(
-                name: "Share");
 
             migrationBuilder.DropTable(
                 name: "Skill");

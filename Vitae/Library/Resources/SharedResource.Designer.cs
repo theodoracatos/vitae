@@ -2005,6 +2005,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ID.
+        /// </summary>
+        public static string ShareIdentifier {
+            get {
+                return ResourceManager.GetString("ShareIdentifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Short ID.
         /// </summary>
         public static string ShortIdentifier {

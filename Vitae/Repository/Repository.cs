@@ -399,13 +399,13 @@ namespace Library.Repository
                 Firstname = personalDetail?.Firstname,
                 Lastname = personalDetail?.Lastname,
                 Gender = personalDetail?.Gender,
-                LanguageCode = personalDetail?.CurriculumLanguage.LanguageCode,
+                LanguageCode = personalDetail?.SpokenLanguage.LanguageCode,
+                PhonePrefix = personalDetail?.PhonePrefix,
                 MobileNumber = personalDetail?.MobileNumber,
                 Street = personalDetail?.Street,
                 StreetNo = personalDetail?.StreetNo,
                 ZipCode = personalDetail?.ZipCode,
                 State = personalDetail?.State,
-                PhonePrefix = GetPhonePrefix(personalDetail?.Country.CountryCode),
                 MaritalStatusCode = personalDetail?.MaritalStatus.MaritalStatusCode ?? 1,
                 Children = personalDetail?.Children?.OrderBy(c => c.Order)
                 .Select(n => new ChildVM
@@ -751,6 +751,7 @@ namespace Library.Repository
             await curriculumQuery.Include(c => c.PersonalDetails).LoadAsync();
             await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.Children).LoadAsync();
             await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.Country).LoadAsync();
+            await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.SpokenLanguage).LoadAsync();
             await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.CurriculumLanguage).LoadAsync();
             await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.PersonCountries).ThenInclude(pc => pc.Country).LoadAsync();
             await curriculumQuery.Include(c => c.PersonalDetails).ThenInclude(pd => pd.MaritalStatus).LoadAsync();
