@@ -487,6 +487,34 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Publication",
+                columns: table => new
+                {
+                    PublicationID = table.Column<Guid>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    Anonymize = table.Column<bool>(nullable: false),
+                    Password = table.Column<string>(maxLength: 50, nullable: true),
+                    CurriculumID = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Publication", x => x.PublicationID);
+                    table.ForeignKey(
+                        name: "FK_Publication_Curriculum_CurriculumID",
+                        column: x => x.CurriculumID,
+                        principalTable: "Curriculum",
+                        principalColumn: "CurriculumID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Publication_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
+                        principalTable: "Language",
+                        principalColumn: "LanguageID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Reference",
                 columns: table => new
                 {
@@ -939,6 +967,16 @@ namespace Persistency.Migrations
                 column: "CountryID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Publication_CurriculumID",
+                table: "Publication",
+                column: "CurriculumID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Publication_CurriculumLanguageLanguageID",
+                table: "Publication",
+                column: "CurriculumLanguageLanguageID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reference_CountryID",
                 table: "Reference",
                 column: "CountryID");
@@ -1017,6 +1055,9 @@ namespace Persistency.Migrations
 
             migrationBuilder.DropTable(
                 name: "PersonCountry");
+
+            migrationBuilder.DropTable(
+                name: "Publication");
 
             migrationBuilder.DropTable(
                 name: "Reference");

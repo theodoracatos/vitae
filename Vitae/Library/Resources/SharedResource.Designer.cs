@@ -1411,15 +1411,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
-        /// </summary>
-        public static string Name1 {
-            get {
-                return ResourceManager.GetString("Name1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Nationalities.
         /// </summary>
         public static string Nationalities {
@@ -1771,6 +1762,42 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Publication.
+        /// </summary>
+        public static string Publication {
+            get {
+                return ResourceManager.GetString("Publication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID.
+        /// </summary>
+        public static string PublicationIdentifier {
+            get {
+                return ResourceManager.GetString("PublicationIdentifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publications.
+        /// </summary>
+        public static string Publications {
+            get {
+                return ResourceManager.GetString("Publications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publish.
+        /// </summary>
+        public static string Publish {
+            get {
+                return ResourceManager.GetString("Publish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Knowledge.
         /// </summary>
         public static string Rate {
@@ -2001,15 +2028,6 @@ namespace Library.Resources {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ID.
-        /// </summary>
-        public static string ShareIdentifier {
-            get {
-                return ResourceManager.GetString("ShareIdentifier", resourceCulture);
             }
         }
         

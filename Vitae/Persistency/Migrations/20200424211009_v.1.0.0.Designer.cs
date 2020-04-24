@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200423214930_v.1.0.0")]
+    [Migration("20200424211009_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -932,6 +932,37 @@ namespace Persistency.Migrations
                     b.ToTable("PersonalDetail");
                 });
 
+            modelBuilder.Entity("Model.Poco.Publication", b =>
+                {
+                    b.Property<Guid>("PublicationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Anonymize")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("CurriculumID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CurriculumLanguageLanguageID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("PublicationID");
+
+                    b.HasIndex("CurriculumID");
+
+                    b.HasIndex("CurriculumLanguageLanguageID");
+
+                    b.ToTable("Publication");
+                });
+
             modelBuilder.Entity("Model.Poco.Reference", b =>
                 {
                     b.Property<Guid>("ReferenceID")
@@ -1285,6 +1316,17 @@ namespace Persistency.Migrations
                     b.HasOne("Model.Poco.Language", "SpokenLanguage")
                         .WithMany()
                         .HasForeignKey("SpokenLanguageID");
+                });
+
+            modelBuilder.Entity("Model.Poco.Publication", b =>
+                {
+                    b.HasOne("Model.Poco.Curriculum", "Curriculum")
+                        .WithMany("Publications")
+                        .HasForeignKey("CurriculumID");
+
+                    b.HasOne("Model.Poco.Language", "CurriculumLanguage")
+                        .WithMany()
+                        .HasForeignKey("CurriculumLanguageLanguageID");
                 });
 
             modelBuilder.Entity("Model.Poco.Reference", b =>

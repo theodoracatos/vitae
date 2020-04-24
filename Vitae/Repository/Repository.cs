@@ -207,6 +207,7 @@ namespace Library.Repository
             await LoadSkills(curriculumQuery);
             await LoadSocialLinks(curriculumQuery);
             await LoadReferences(curriculumQuery);
+            await LoadPublications(curriculumQuery);
 
             return curriculumQuery.Single();
         }
@@ -269,6 +270,10 @@ namespace Library.Repository
             else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Reference)))
             {
                 await LoadReferences(curriculumQuery);
+            }
+            else if (CodeHelper.IsSubclassOfRawGeneric(typeof(T), typeof(Publication)))
+            {
+                await LoadPublications(curriculumQuery);
             }
 
             return curriculumQuery.Single();
@@ -671,6 +676,22 @@ namespace Library.Repository
             return abroadsVM;
         }
 
+        public IList<PublicationVM> GetPublications(Curriculum curriculum)
+        {
+            var publicationsVM = curriculum.Publications?
+                .OrderBy(ab => ab.Order)
+                .Select(p => new PublicationVM()
+                {
+                    Anonymize = p.Anonymize,
+                    EnablePassword = !string.IsNullOrEmpty(p.Password),
+                    LanguageCode = p.CurriculumLanguage.LanguageCode,
+                    Password = p.Password,
+                    PublicationIdentifier = p.PublicationID,
+                }).ToList();
+
+            return publicationsVM;
+        }
+
         public string GetPhonePrefix(string countryCode)
         {
             return !string.IsNullOrEmpty(countryCode) ? "+" + vitaeContext.Countries.Where(c => c.CountryCode == countryCode).Select(c => c.PhoneCode).Single().ToString() : string.Empty;
@@ -817,6 +838,11 @@ namespace Library.Repository
         private async Task LoadReferences(IQueryable<Curriculum> curriculumQuery)
         {
             await curriculumQuery.Include(c => c.References).ThenInclude(r => r.Country).LoadAsync();
+        }
+
+        private async Task LoadPublications(IQueryable<Curriculum> curriculumQuery)
+        {
+            await curriculumQuery.Include(c => c.Publications).LoadAsync();
         }
 
         #endregion

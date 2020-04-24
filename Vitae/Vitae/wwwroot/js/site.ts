@@ -204,7 +204,10 @@ function addJQueryValidators() {
     $form.unbind();
     $form.data("validator", null);
     $.validator.unobtrusive.parse($form);
-    $form.validate($form.data("unobtrusiveValidation").options);
+
+    if ($form.data("unobtrusiveValidation") != null) {
+        $form.validate($form.data("unobtrusiveValidation").options);
+    }
 }
 
 function setupSbAdmin() {

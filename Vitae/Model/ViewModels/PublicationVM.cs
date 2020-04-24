@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.ViewModels
 {
-    public class ShareVM
+    public class PublicationVM : BaseVM
     { 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.ShortIdentifier), Prompt = nameof(SharedResource.ShareIdentifier))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.PublicationIdentifier), Prompt = nameof(SharedResource.PublicationIdentifier))]
         [MaxLength(200, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
-        public string ShareIdentifier { get; set; }
+        public Guid? PublicationIdentifier { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Password), Prompt = nameof(SharedResource.Password))]
         [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]

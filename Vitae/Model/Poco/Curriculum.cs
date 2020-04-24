@@ -32,5 +32,6 @@ namespace Model.Poco
         public virtual ICollection<Reference> References { get; set; }
 
         public virtual ICollection<CurriculumLanguage> CurriculumLanguages { get; set; }
+        public virtual ICollection<Publication> Publications { get; set; }
     }
 }

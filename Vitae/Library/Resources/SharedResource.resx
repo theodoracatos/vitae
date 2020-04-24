@@ -567,9 +567,6 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="Name1" xml:space="preserve">
-    <value>Name</value>
-  </data>
   <data name="Nationalities" xml:space="preserve">
     <value>Nationalities</value>
   </data>
@@ -687,6 +684,18 @@
   <data name="ProperValue" xml:space="preserve">
     <value>Please enter a proper value</value>
   </data>
+  <data name="Publication" xml:space="preserve">
+    <value>Publication</value>
+  </data>
+  <data name="PublicationIdentifier" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Publications" xml:space="preserve">
+    <value>Publications</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publish</value>
+  </data>
   <data name="Rate" xml:space="preserve">
     <value>Knowledge</value>
   </data>
@@ -764,9 +773,6 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
-  </data>
-  <data name="ShareIdentifier" xml:space="preserve">
-    <value>ID</value>
   </data>
   <data name="ShortIdentifier" xml:space="preserve">
     <value>Short ID</value>

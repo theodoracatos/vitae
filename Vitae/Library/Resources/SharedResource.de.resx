@@ -276,7 +276,7 @@
   <data name="Copy" xml:space="preserve">
     <value>Kopieren</value>
   </data>
-  <data name="CopyValues" xml:space="preserve">
+  <data name="Copy Values" xml:space="preserve">
     <value>Werte kopieren</value>
   </data>
   <data name="CopyValuesDescription" xml:space="preserve">
@@ -420,9 +420,6 @@
   <data name="HideReference" xml:space="preserve">
     <value>Referenz verstecken</value>
   </data>
-  <data name="HierarchyLevel" xml:space="preserve">
-    <value>Hierarchiestufe</value>
-  </data>
   <data name="HierarchyLevels" xml:space="preserve">
     <value>Hierarchiestufen</value>
   </data>
@@ -497,6 +494,9 @@
   </data>
   <data name="Level" xml:space="preserve">
     <value>Niveau</value>
+  </data>
+  <data name="Level1" xml:space="preserve">
+    <value>Hierarchiestufe</value>
   </data>
   <data name="LockedOut" xml:space="preserve">
     <value>Ausgesperrt</value>
@@ -684,6 +684,18 @@
   <data name="ProperValue" xml:space="preserve">
     <value>Bitte einen gültigen Wert eingeben</value>
   </data>
+  <data name="Publication" xml:space="preserve">
+    <value>Veröffentlichung</value>
+  </data>
+  <data name="PublicationIdentifier" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Publications" xml:space="preserve">
+    <value>Veröffentlichungen</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Veröffentlichen</value>
+  </data>
   <data name="Rate" xml:space="preserve">
     <value>Kenntniss</value>
   </data>
@@ -761,9 +773,6 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Einstellungen</value>
-  </data>
-  <data name="ShareIdentifier" xml:space="preserve">
-    <value>ID</value>
   </data>
   <data name="ShortIdentifier" xml:space="preserve">
     <value>Kurze ID</value>
