@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Model.Enumerations;
 
 using System;
+using System.Globalization;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +52,7 @@ namespace Vitae.Areas.Identity.Pages.Account
             {
                 return RedirectToPage("/Index");
             }
-             
+
             var user = await userManager.FindByIdAsync(userId);
             if (user == null)
             {
@@ -70,6 +71,13 @@ namespace Vitae.Areas.Identity.Pages.Account
                     // CV
                     var curriculumID = await repository.AddCurriculumAsync(Guid.Parse(user.Id), requestCulture.RequestCulture.UICulture.Name);
                     repository.Log(curriculumID, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
+
+                    // Language
+                    Response.Cookies.Append(
+                       CookieRequestCultureProvider.DefaultCookieName,
+                       CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(new CultureInfo(requestCulture.RequestCulture.UICulture.Name))),
+                       new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+                   );
 
                     // Role & Claims
                     await userManager.AddToRoleAsync(user, Roles.USER);

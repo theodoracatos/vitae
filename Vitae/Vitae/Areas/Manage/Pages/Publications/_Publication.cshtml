@@ -24,55 +24,91 @@
                         <div class="float-left">
                             <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark">
                                 @(i + 1). @SharedResource.Publication
-                                <input type="hidden" asp-for="@Model.Publications[i].Order" />
-                                <input type="hidden" asp-for="@Model.Publications[i].PublicationIdentifier" />
                             </a>
+                            <input type="hidden" asp-for="@Model.Publications[i].Order" />
+                            <input type="hidden" asp-for="@Model.Publications[i].PublicationIdentifier" />
                         </div>
                         <div class="float-right">
                             <button asp-page-handler="UpPublication" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
                             <button asp-page-handler="DownPublication" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1 @(i == Model.Publications.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
-                            <button asp-page-handler="DeletePublication" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.Publications?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
+                            <button asp-page-handler="DeletePublication" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.Publications?.Count <= 0 ? "disabled" : null)"><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
                     <div class="card-body collapse pb-0 @(Model.Publications[i].Collapsed ? null : "show")" id="collapse-@i">
-                        @*<div class="form-row">
+                        <div class="form-row">
                             <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Publications[i].LanguageCode"></label>
+                                <select asp-for="@Model.Publications[i].LanguageCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.Languages.Where(l => Model.CurriculumLanguages.Select(c => c.LanguageCode).Contains(l.LanguageCode)), "LanguageCode", "Name"))">
+                                    <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
+                                </select>
+                                <small class="muted mt-1 float-left">@SharedResource.LanguageDescription</small>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Publications[i].Password"></label>
                                 <div class="d-flex">
                                     <div class="form-control w-auto flex-fill">
-                                        <div class="pretty p-switch p-slim mr-0" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
+                                        <div class="pretty p-switch p-slim mr-0" onchange="$('#btnEnablePassword'+@i).trigger('click');">
                                             <input type="checkbox" name="@(nameof(Publications))[@i].@nameof(PublicationVM.EnablePassword)" value="true" checked="@(Model.Publications[i].EnablePassword ? "checked" : null)" />
                                             <div class="state">
                                                 <label class="d-none d-sm-block" asp-for="@Model.Publications[i].EnablePassword"></label><label class="d-sm-none"></label>
-                                                <input type="hidden" asp-for="@Model.Publications[i].EnablePassword" />
+                                                <input type="hidden" asp-for="@Model.Publications[i].Order" />
                                             </div>
                                         </div>
-                                        <button id="btnEnablePassword@(i)" asp-page-handler="ChangeEnablePassword" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+                                        <button id="btnEnablePassword@(i)" asp-page-handler="EnablePassword" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                                     </div>
                                     @if (@Model.Publications[i].EnablePassword)
                                     {
-                                        <label class="control-label" asp-for="@Model.Publications[i].Password"></label>
-                                        <input class="form-control" type="text" asp-for="@Model.Publications[i].Password" />
-                                        <span asp-validation-for="@Model.Publications[i].Password" class="text-danger"></span>
+                                        <input type="text" class="form-control ml-2" asp-for="@Model.Publications[i].Password" />
                                     }
                                     else
                                     {
-                                        <input asp-for="@Model.Publications[i].Password" type="hidden" />
+                                        <input type="hidden" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Password)" value="-" />
+                                    }
+                                </div>
+                                <div>
+                                    <small class="muted mt-1 float-left">@SharedResource.EnablePasswordDescription</small>
+                                    @if (@Model.Publications[i].EnablePassword)
+                                    {
+                                        <span asp-validation-for="@Model.Publications[i].Password" class="text-danger text-right mt-1 ml-1 float-right"></span>
                                     }
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <div class="pretty p-switch p-slim mr-0" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
-                                    <input type="checkbox" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Anonymize)" value="true" checked="@(Model.Publications[i].Anonymize ? "checked" : null)" />
-                                    <div class="state">
-                                        <label class="d-none d-sm-block" asp-for="@Model.Publications[i].Anonymize"></label><label class="d-sm-none"></label>
-                                        <input type="hidden" asp-for="@Model.Publications[i].Anonymize" />
+                                <label class="control-label" asp-for="@Model.Publications[i].Anonymize"></label>
+                                <div class="d-flex">
+                                    <div class="form-control w-auto flex-fill">
+                                        <div class="pretty p-switch p-slim mr-0">
+                                            <input type="checkbox" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Anonymize)" value="true" checked="@(Model.Publications[i].Anonymize ? "checked" : null)" />
+                                            <div class="state">
+                                                <label class="d-none d-sm-block" asp-for="@Model.Publications[i].Anonymize"></label><label class="d-sm-none"></label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <div>
+                                    <small class="muted mt-1 float-left">@SharedResource.AnonymizeDescription</small>
+                                </div>
                             </div>
-                        </div>*@
-                    </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Publications[i].Link"></label>
+                                @if (string.IsNullOrEmpty(Model.Publications[i].Link))
+                                {
+                                    <label class="d-block">-</label>
+                                }
+                                else
+                                {
+                                    <div class="d-flex">
+                                        <div class="form-control w-auto flex-fill">
+                                            <a alt="@Model.Publications[i].Link" href="@Model.Publications[i].Link">@Model.Publications[i].Link</a>
+                                        </div>
+                                        </div>
+                                }
+                                        </div>
+                                    </div>
+                                </div>
                 </div>
                 @if (i < Model.Publications.Count - 1)
                 {<hr />}

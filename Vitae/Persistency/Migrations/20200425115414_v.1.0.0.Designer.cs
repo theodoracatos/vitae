@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200424211009_v.1.0.0")]
+    [Migration("20200425115414_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -954,11 +954,17 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<Guid>("PublicationIdentifier")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("PublicationID");
 
                     b.HasIndex("CurriculumID");
 
                     b.HasIndex("CurriculumLanguageLanguageID");
+
+                    b.HasIndex("PublicationIdentifier")
+                        .IsUnique();
 
                     b.ToTable("Publication");
                 });

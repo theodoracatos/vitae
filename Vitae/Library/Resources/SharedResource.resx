@@ -162,6 +162,12 @@
   <data name="AllowedFiles" xml:space="preserve">
     <value>files are allowed to be uploaded</value>
   </data>
+  <data name="Anonymize" xml:space="preserve">
+    <value>Anonymize CV</value>
+  </data>
+  <data name="AnonymizeDescription" xml:space="preserve">
+    <value>Some personal details will be hidden</value>
+  </data>
   <data name="Association" xml:space="preserve">
     <value>Association</value>
   </data>
@@ -206,6 +212,9 @@
   </data>
   <data name="ChangeEmail" xml:space="preserve">
     <value>Change email</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>Change language</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Change password</value>
@@ -363,8 +372,17 @@
   <data name="EmailUnchanged" xml:space="preserve">
     <value>Your email is unchanged.</value>
   </data>
+  <data name="EnablePassword" xml:space="preserve">
+    <value>Access with password</value>
+  </data>
+  <data name="EnablePasswordDescription" xml:space="preserve">
+    <value>Secures your CV with an additional password</value>
+  </data>
   <data name="End" xml:space="preserve">
     <value>End</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
   </data>
   <data name="EnterSkill" xml:space="preserve">
     <value>Please press Enter to insert a new Skill</value>
@@ -402,6 +420,9 @@
   <data name="FolderUpload" xml:space="preserve">
     <value>You are not allowed to upload folders</value>
   </data>
+  <data name="French" xml:space="preserve">
+    <value>Français</value>
+  </data>
   <data name="From" xml:space="preserve">
     <value>From</value>
   </data>
@@ -410,6 +431,9 @@
   </data>
   <data name="Gender" xml:space="preserve">
     <value>Gender</value>
+  </data>
+  <data name="German" xml:space="preserve">
+    <value>Deutsch</value>
   </data>
   <data name="Grade" xml:space="preserve">
     <value>Grade</value>
@@ -465,6 +489,9 @@
   <data name="Issuer" xml:space="preserve">
     <value>Issuer</value>
   </data>
+  <data name="Italian" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
   <data name="JobExperiences" xml:space="preserve">
     <value>Job experiences</value>
   </data>
@@ -486,6 +513,9 @@
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="LanguageDescription" xml:space="preserve">
+    <value>The language in which the CV is loaded</value>
+  </data>
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
   </data>
@@ -497,6 +527,9 @@
   </data>
   <data name="Level" xml:space="preserve">
     <value>Level</value>
+  </data>
+  <data name="LinkNotGenerated" xml:space="preserve">
+    <value>The link has not been generated yet</value>
   </data>
   <data name="LockedOut" xml:space="preserve">
     <value>Locked out</value>
@@ -806,6 +839,9 @@
   </data>
   <data name="SocialPlatform" xml:space="preserve">
     <value>Social platform</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Español</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>

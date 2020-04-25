@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Model.Attributes;
+using Model.Enumerations;
 using Persistency.Data;
 
 using System;
@@ -26,10 +27,9 @@ namespace Vitae
 {
     public class Startup
     {
-        private const string DEFAULT_CULTURE = "en";
         private readonly IWebHostEnvironment hostingEnvironment;
-        private CultureInfo[] SupportedCultures = new[] { new CultureInfo("de-CH") };
-        private CultureInfo[] SupportedUiCultures = new[] { new CultureInfo(DEFAULT_CULTURE), new CultureInfo("de") };
+        private CultureInfo[] SupportedCultures = new[] { new CultureInfo($"{ApplicationLanguage.de}-CH") };
+        private CultureInfo[] SupportedUiCultures = new[] { new CultureInfo($"{ApplicationLanguage.en}"), new CultureInfo($"{ApplicationLanguage.de}"), new CultureInfo($"{ApplicationLanguage.fr}"), new CultureInfo($"{ApplicationLanguage.it}"), new CultureInfo($"{ApplicationLanguage.es}") };
 
         public IConfiguration Configuration { get; }
 
@@ -121,10 +121,10 @@ namespace Vitae
             services.AddSingleton<IValidationAttributeAdapterProvider, CustomValidationAttributeAdapterProvider>();
             services.Configure<RequestLocalizationOptions>(options =>
             {
-                options.DefaultRequestCulture = new RequestCulture(DEFAULT_CULTURE);
+                options.DefaultRequestCulture = new RequestCulture($"{ApplicationLanguage.en}");
                 options.SupportedCultures = SupportedCultures;
                 options.SupportedUICultures = SupportedCultures;
-                options.RequestCultureProviders = new List<IRequestCultureProvider> { new AcceptLanguageHeaderRequestCultureProvider() };
+                options.RequestCultureProviders = new List<IRequestCultureProvider> { new CookieRequestCultureProvider(), new AcceptLanguageHeaderRequestCultureProvider() };
             });
 
             services.AddSingleton<IValidationAttributeAdapterProvider, DateGreaterThanAdapterProvider>();
@@ -152,7 +152,7 @@ namespace Vitae
             app.UseCookiePolicy();
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new RequestCulture(DEFAULT_CULTURE),
+                DefaultRequestCulture = new RequestCulture($"{ApplicationLanguage.en}"),
                 SupportedCultures = SupportedCultures, // Formatting numbers, dates, etc.
                 SupportedUICultures = SupportedUiCultures // UI strings that we have localized.
             });

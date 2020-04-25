@@ -99,7 +99,7 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
             StatusMessage = SharedResource.PasswordChanged;
             Success = true;
 
-            return RedirectToPage();
+            return Redirect("/Manage");
         }
     }
 }

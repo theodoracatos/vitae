@@ -952,11 +952,17 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<Guid>("PublicationIdentifier")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("PublicationID");
 
                     b.HasIndex("CurriculumID");
 
                     b.HasIndex("CurriculumLanguageLanguageID");
+
+                    b.HasIndex("PublicationIdentifier")
+                        .IsUnique();
 
                     b.ToTable("Publication");
                 });

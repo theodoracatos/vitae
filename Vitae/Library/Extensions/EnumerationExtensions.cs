@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 
 namespace Library.Extensions
 {
@@ -7,21 +9,23 @@ namespace Library.Extensions
     {
         public static string Description(this Enum value)
         {
-            // get attributes  
-            var field = value.GetType().GetField(value.ToString());
-            var attributes = field.GetCustomAttributes(false);
+            var fi = value.GetType().GetField(value.ToString());
 
-            // Description is in a hidden Attribute class called DisplayAttribute
-            // Not to be confused with DisplayNameAttribute
-            dynamic displayAttribute = null;
+            var attributes = fi.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
 
-            if (attributes.Any())
+            if (attributes != null && attributes.Any())
             {
-                displayAttribute = attributes.ElementAt(0);
+                return attributes.First().Description;
             }
 
-            // return description
-            return displayAttribute?.Description ?? "Description Not Found";
+            return value.ToString();
+        }
+
+        public static TAttribute GetAttribute<TAttribute>(this Enum value) where TAttribute : Attribute
+        {
+            var type = value.GetType();
+            var name = Enum.GetName(type, value);
+            return type.GetField(name).GetCustomAttribute<TAttribute>();
         }
     }
 }

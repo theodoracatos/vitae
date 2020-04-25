@@ -493,6 +493,7 @@ namespace Persistency.Migrations
                     PublicationID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    PublicationIdentifier = table.Column<Guid>(nullable: false),
                     Anonymize = table.Column<bool>(nullable: false),
                     Password = table.Column<string>(maxLength: 50, nullable: true),
                     CurriculumID = table.Column<Guid>(nullable: true)
@@ -975,6 +976,12 @@ namespace Persistency.Migrations
                 name: "IX_Publication_CurriculumLanguageLanguageID",
                 table: "Publication",
                 column: "CurriculumLanguageLanguageID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Publication_PublicationIdentifier",
+                table: "Publication",
+                column: "PublicationIdentifier",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reference_CountryID",

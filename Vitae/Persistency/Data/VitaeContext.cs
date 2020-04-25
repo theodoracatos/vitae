@@ -38,6 +38,7 @@ namespace Persistency.Data
             modelBuilder.Entity<HierarchyLevel>().HasIndex(c => c.HierarchyLevelCode).IsUnique();
             modelBuilder.Entity<Month>().HasIndex(c => c.MonthCode).IsUnique();
             modelBuilder.Entity<MaritalStatus>().HasIndex(c => c.MaritalStatusCode).IsUnique();
+            modelBuilder.Entity<Publication>().HasIndex(p => p.PublicationIdentifier).IsUnique();
 
             modelBuilder.Entity<Log>().HasIndex(c => c.CurriculumID);
 

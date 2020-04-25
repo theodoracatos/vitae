@@ -22,6 +22,14 @@ hr {
     border-color: #c0c3c8
 }
 
+a {
+    color: $qvs-gold-color;
+}
+
+a:hover {
+    color: $qvs-lightgold-color;
+}
+
 .bg-dark {
     background-color: #202020 !important
 }

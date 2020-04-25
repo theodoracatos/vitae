@@ -1,4 +1,5 @@
 using Library.Extensions;
+using Library.Helper;
 using Library.Repository;
 using Library.Resources;
 
@@ -16,6 +17,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Vitae.Code;
+
+using Poco = Model.Poco;
 
 namespace Vitae.Areas.Manage.Pages.Publications
 {
@@ -53,6 +56,37 @@ namespace Vitae.Areas.Manage.Pages.Publications
             }
         }
 
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (ModelState.IsValid)
+            {
+                var curriculum = await repository.GetCurriculumAsync<Publication>(curriculumID);
+                vitaeContext.RemoveRange(curriculum.Publications);
+
+                Publications.Select(p => new Poco.Publication()
+                {
+                    Order = p.Order,
+                    Anonymize = p.Anonymize,
+                    Curriculum = curriculum,
+                    Password = p.EnablePassword ? p.Password : null,
+                    PublicationIdentifier = Guid.Parse(p.PublicationIdentifier),
+                    CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == p.LanguageCode),
+                }).ToList().ForEach(p => curriculum.Publications.Add(p));
+                curriculum.LastUpdated = DateTime.Now;
+
+                await vitaeContext.SaveChangesAsync();
+
+                // A change occured
+                HasUnsafedChanges = false;
+
+                // Set link & QR-Code
+                Publications.Cast<PublicationVM>().ToList().ForEach(p => p.Link = $"{this.BaseUrl}/CV/{p.Link}");
+            }
+
+            FillSelectionViewModel();
+
+            return Page();
+        }
         #endregion
 
         #region ASYNC
@@ -64,7 +98,8 @@ namespace Vitae.Areas.Manage.Pages.Publications
                 Publications.Add(new PublicationVM()
                 {
                     Order = Publications.Count,
-                    Collapsed = base.Collapsed
+                    Collapsed = base.Collapsed,
+                    PublicationIdentifier = Guid.NewGuid().ToString()
                 });
                 Publications = CheckOrdering(Publications);
             }
@@ -109,6 +144,14 @@ namespace Vitae.Areas.Manage.Pages.Publications
             return GetPartialViewResult(PAGE_PUBLICATION);
         }
 
+        public IActionResult OnPostEnablePassword(int order)
+        {
+            Publications[order].Password = string.Empty;
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_PUBLICATION);
+        }
+
         #endregion
 
         #region HELPER
@@ -117,11 +160,12 @@ namespace Vitae.Areas.Manage.Pages.Publications
         {
             var curriculum = curr ?? await repository.GetCurriculumAsync<Publication>(curriculumID);
 
-            Publications = repository.GetPublications(curriculum);
+            Publications = repository.GetPublications(curriculum, this.BaseUrl);
         }
 
         protected override void FillSelectionViewModel()
         {
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
             Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
         }
 

@@ -1,7 +1,7 @@
 ﻿using Library.Helper;
 using Library.Repository;
 using Library.Resources;
-
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -47,6 +47,14 @@ namespace Vitae.Code
         public string CurriculumLanguageCode { get; set; }
 
         public IEnumerable<LanguageVM> CurriculumLanguages { get; set; }
+
+        public string BaseUrl
+        {
+            get
+            {
+                return $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}";
+            }
+        }
 
         public BasePageModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
         {

@@ -13,6 +13,7 @@ using Persistency.Data;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -676,17 +677,19 @@ namespace Library.Repository
             return abroadsVM;
         }
 
-        public IList<PublicationVM> GetPublications(Curriculum curriculum)
+        public IList<PublicationVM> GetPublications(Curriculum curriculum, string baseUrl)
         {
             var publicationsVM = curriculum.Publications?
                 .OrderBy(ab => ab.Order)
                 .Select(p => new PublicationVM()
                 {
+                    Order = p.Order,
                     Anonymize = p.Anonymize,
                     EnablePassword = !string.IsNullOrEmpty(p.Password),
                     LanguageCode = p.CurriculumLanguage.LanguageCode,
                     Password = p.Password,
-                    PublicationIdentifier = p.PublicationID,
+                    PublicationIdentifier = p.PublicationIdentifier.ToString(),
+                    Link = $"{baseUrl}/CV/{p.PublicationIdentifier}"
                 }).ToList();
 
             return publicationsVM;

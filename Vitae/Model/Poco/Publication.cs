@@ -8,10 +8,11 @@ namespace Model.Poco
         [Key]
         public Guid PublicationID { get; set; }
 
+        public Guid PublicationIdentifier { get; set; }
+
         public bool Anonymize { get; set; }
 
         [MaxLength(50)]
-        [MinLength(4)]
         public string Password { get; set; }
 
         public virtual Curriculum Curriculum { get; set; }
