@@ -1,27 +1,24 @@
+using Library.Helper;
 using Library.Repository;
 using Library.Resources;
-using Library.Helper;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+
 using Model.Enumerations;
 using Model.ViewModels;
 
 using Persistency.Data;
 
-using QRCoder;
-
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 
 using Vitae.Code;
-using System.Linq;
 
 namespace Vitae.Areas.CV.Pages
 {
@@ -104,27 +101,6 @@ namespace Vitae.Areas.CV.Pages
 
         #region Helper
 
-        private string CreateQRCode(Guid id)
-        {
-            using (var qrGenerator = new QRCodeGenerator())
-            {
-                var qrCodeData = qrGenerator.CreateQrCode($"https//localhost/" + id.ToString(), QRCodeGenerator.ECCLevel.Q);
-                var qrCode = new QRCode(qrCodeData);
-                var bitmap = qrCode.GetGraphic(3);
-                var imageBytes = BitmapToBytes(bitmap);
-                return Convert.ToBase64String(imageBytes);
-            }
-        }
-
-        private static Byte[] BitmapToBytes(Bitmap img)
-        {
-            using (MemoryStream stream = new MemoryStream())
-            {
-                img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-                return stream.ToArray();
-            }
-        }
-
         protected override void FillSelectionViewModel() 
         {
             Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
@@ -137,4 +113,3 @@ namespace Vitae.Areas.CV.Pages
         #endregion
     }
 }
- 

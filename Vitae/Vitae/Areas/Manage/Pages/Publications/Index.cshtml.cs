@@ -68,7 +68,7 @@ namespace Vitae.Areas.Manage.Pages.Publications
                     Order = p.Order,
                     Anonymize = p.Anonymize,
                     Curriculum = curriculum,
-                    Password = p.EnablePassword ? p.Password : null,
+                    Password = p.EnablePassword ? AesHandler.Encrypt(p.Password, p.PublicationIdentifier) : null,
                     PublicationIdentifier = Guid.Parse(p.PublicationIdentifier),
                     CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == p.LanguageCode),
                 }).ToList().ForEach(p => curriculum.Publications.Add(p));

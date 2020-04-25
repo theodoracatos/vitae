@@ -1,10 +1,10 @@
 ﻿using Library.Constants;
 
 using Microsoft.AspNetCore.Http;
-
+using QRCoder;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -167,6 +167,27 @@ namespace Library.Helper
             }
 
             return newObj;
+        }
+
+        public static string CreateQRCode(string uri)
+        {
+            using (var qrGenerator = new QRCodeGenerator())
+            {
+                var qrCodeData = qrGenerator.CreateQrCode(uri, QRCodeGenerator.ECCLevel.Q);
+                var qrCode = new QRCode(qrCodeData);
+                var bitmap = qrCode.GetGraphic(3);
+                var imageBytes = BitmapToBytes(bitmap);
+                return Convert.ToBase64String(imageBytes);
+            }
+        }
+
+        private static Byte[] BitmapToBytes(Bitmap img)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                return stream.ToArray();
+            }
         }
     }
 }
