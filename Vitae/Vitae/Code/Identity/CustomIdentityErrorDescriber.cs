@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Identity;
 
-namespace Vitae.Code
+namespace Vitae.Code.Identity
 {
     public class CustomIdentityErrorDescriber : IdentityErrorDescriber
     {

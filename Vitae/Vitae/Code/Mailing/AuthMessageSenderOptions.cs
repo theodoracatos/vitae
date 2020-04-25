@@ -1,4 +1,4 @@
-﻿namespace Vitae.Code
+﻿namespace Vitae.Code.Mailing
 {
     public class AuthMessageSenderOptions
     {

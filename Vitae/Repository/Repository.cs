@@ -30,7 +30,7 @@ namespace Library.Repository
 
         #region API
 
-        public void Log(Guid curriculumID, LogArea logArea, LogLevel logLevel, string page, string userAgent, string userLanguage, string ipAddress, string message = null)
+        public async Task LogAsync (Guid curriculumID, LogArea logArea, LogLevel logLevel, string page, string userAgent, string userLanguage, string ipAddress, string message = null)
         {
             vitaeContext.Logs.Add(new Log()
             {
@@ -45,7 +45,7 @@ namespace Library.Repository
                 Timestamp = DateTime.Now,
             });
 
-            vitaeContext.SaveChanges();
+            await vitaeContext.SaveChangesAsync();
         }
 
         public async Task<Guid> AddCurriculumAsync(Guid userid, string language)
@@ -64,19 +64,6 @@ namespace Library.Repository
             await vitaeContext.SaveChangesAsync();
 
             return curriculum.CurriculumID;
-        }
-
-        public async Task<Curriculum> GetCurriculumByWeakIdentifierAsync(string identifier)
-        {
-            Curriculum curriculum = null;
-            var curriculumID = vitaeContext.Curriculums.SingleOrDefault(c => c.CurriculumID.ToString().ToLower() == identifier.ToLower())?.CurriculumID;
-
-            if (curriculumID.HasValue)
-            {
-                curriculum = await GetCurriculumAsync(curriculumID.Value);
-            }
-
-            return curriculum;
         }
 
         public async Task<int> CountItemsFromCurriculumLanguageAsync(Guid curriculumID, string languageToCheck)
@@ -285,10 +272,10 @@ namespace Library.Repository
             var monthsVM = vitaeContext.Months.Select(c => new MonthVM()
             {
                 MonthCode = c.MonthCode,
-                Name = uiCulture == "de" ? c.Name_de :
-                uiCulture == "fr" ? c.Name_fr :
-                uiCulture == "it" ? c.Name_it :
-                uiCulture == "es" ? c.Name_es :
+                Name = uiCulture == $"{ApplicationLanguage.de}" ? c.Name_de :
+                uiCulture == $"{ApplicationLanguage.fr}" ? c.Name_fr :
+                uiCulture == $"{ApplicationLanguage.it}" ? c.Name_it :
+                uiCulture == $"{ApplicationLanguage.es}" ? c.Name_es :
                 c.Name
             }).OrderBy(c => c.MonthCode);
 
@@ -300,10 +287,10 @@ namespace Library.Repository
             var countriesVM = vitaeContext.Countries.Select(c => new CountryVM()
             {
                 CountryCode = c.CountryCode,
-                Name = uiCulture == "de" ? c.Name_de :
-                uiCulture == "fr" ? c.Name_fr :
-                uiCulture == "it" ? c.Name_it :
-                uiCulture == "es" ? c.Name_es :
+                Name = uiCulture == $"{ApplicationLanguage.de}" ? c.Name_de :
+                uiCulture == $"{ApplicationLanguage.fr}" ? c.Name_fr :
+                uiCulture == $"{ApplicationLanguage.it}" ? c.Name_it :
+                uiCulture == $"{ApplicationLanguage.es}" ? c.Name_es :
                 c.Name,
                 PhoneCode = c.PhoneCode
             }).OrderBy(c => c.Name);
@@ -316,10 +303,10 @@ namespace Library.Repository
             var industriesVM = vitaeContext.Industries.Select(i => new IndustryVM()
             {
                 IndustryCode = i.IndustryCode,
-                Name = uiCulture == "de" ? i.Name_de :
-                uiCulture == "fr" ? i.Name_fr :
-                uiCulture == "it" ? i.Name_it :
-                uiCulture == "es" ? i.Name_es :
+                Name = uiCulture == $"{ApplicationLanguage.de}" ? i.Name_de :
+                uiCulture == $"{ApplicationLanguage.fr}" ? i.Name_fr :
+                uiCulture == $"{ApplicationLanguage.it}" ? i.Name_it :
+                uiCulture == $"{ApplicationLanguage.es}" ? i.Name_es :
                 i.Name
             }).OrderBy(i => i.Name);
 
@@ -331,10 +318,10 @@ namespace Library.Repository
             var hierarchyLevelsVM = vitaeContext.HierarchyLevels.Select(h => new HierarchyLevelVM()
             {
                 HierarchyLevelCode = h.HierarchyLevelCode,
-                Name = uiCulture == "de" ? h.Name_de :
-                uiCulture == "fr" ? h.Name_fr :
-                uiCulture == "it" ? h.Name_it :
-                uiCulture == "es" ? h.Name_es :
+                Name = uiCulture == $"{ApplicationLanguage.de}" ? h.Name_de :
+                uiCulture == $"{ApplicationLanguage.fr}" ? h.Name_fr :
+                uiCulture == $"{ApplicationLanguage.it}" ? h.Name_it :
+                uiCulture == $"{ApplicationLanguage.es}" ? h.Name_es :
                 h.Name
             }).OrderBy(i => i.HierarchyLevelCode);
 
@@ -346,10 +333,10 @@ namespace Library.Repository
             var maritalStatusesVM = vitaeContext.MaritalStatuses.Select(m => new MaritalStatusVM()
             {
                 MaritalStatusCode = m.MaritalStatusCode,
-                Name = uiCulture == "de" ? m.Name_de :
-                uiCulture == "fr" ? m.Name_fr :
-                uiCulture == "it" ? m.Name_it :
-                uiCulture == "es" ? m.Name_es :
+                Name = uiCulture == $"{ApplicationLanguage.de}" ? m.Name_de :
+                uiCulture == $"{ApplicationLanguage.fr}" ? m.Name_fr :
+                uiCulture == $"{ApplicationLanguage.it}" ? m.Name_it :
+                uiCulture == $"{ApplicationLanguage.es}" ? m.Name_es :
                 m.Name,
             }).OrderBy(m => m.Name);
 
@@ -361,10 +348,10 @@ namespace Library.Repository
             var languagesVM = vitaeContext.Languages.Select(c => new LanguageVM()
             {
                 LanguageCode = c.LanguageCode,
-                Name = uiCulture == "de" ? c.Name_de :
-                       uiCulture == "fr" ? c.Name_fr :
-                       uiCulture == "it" ? c.Name_it :
-                       uiCulture == "es" ? c.Name_es :
+                Name = uiCulture == $"{ApplicationLanguage.de}" ? c.Name_de :
+                uiCulture == $"{ApplicationLanguage.fr}" ? c.Name_fr :
+                uiCulture == $"{ApplicationLanguage.it}" ? c.Name_it :
+                uiCulture == $"{ApplicationLanguage.es}" ? c.Name_es :
                         c.Name
             }).OrderBy(c => c.Name);
 
@@ -379,10 +366,10 @@ namespace Library.Repository
                                     .Select(cl => new LanguageVM
                                     {
                                         LanguageCode = cl.Language.LanguageCode,
-                                        Name = uiCulture == "de" ? cl.Language.Name_de :
-                                           uiCulture == "fr" ? cl.Language.Name_fr :
-                                           uiCulture == "it" ? cl.Language.Name_it :
-                                           uiCulture == "es" ? cl.Language.Name_es :
+                                        Name = uiCulture == $"{ApplicationLanguage.de}" ? cl.Language.Name_de :
+                                           uiCulture == $"{ApplicationLanguage.fr}" ? cl.Language.Name_fr :
+                                           uiCulture == $"{ApplicationLanguage.it}" ? cl.Language.Name_it :
+                                           uiCulture == $"{ApplicationLanguage.es}" ? cl.Language.Name_es :
                                         cl.Language.Name,
                                         Order = cl.Order
                                     }).OrderBy(l => l.Order);

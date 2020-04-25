@@ -20,6 +20,7 @@ namespace Persistency.Data
         public virtual DbSet<HierarchyLevel> HierarchyLevels { get; set; }
         public virtual DbSet<Industry> Industries { get; set; }
         public virtual DbSet<Vfile> Vfiles { get; set; }
+        public virtual DbSet<Publication> Publications { get; set; }
 
         public virtual DbSet<Log> Logs { get; set; }
 

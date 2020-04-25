@@ -11,7 +11,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Vitae.Code
+namespace Vitae.Code.Mailing
 {
     public class EmailSender : IEmailSender
     {

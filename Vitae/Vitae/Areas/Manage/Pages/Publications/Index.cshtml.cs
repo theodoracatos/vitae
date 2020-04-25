@@ -84,8 +84,8 @@ namespace Vitae.Areas.Manage.Pages.Publications
                 // Set link & QR-Code
                 Publications.Cast<PublicationVM>().ToList().ForEach(p =>
                 {
-                    p.Link = $"{this.BaseUrl}/CV/{p.PublicationIdentifier}";
-                    p.QrCode = CodeHelper.CreateQRCode($"{this.BaseUrl}/CV/{p.PublicationIdentifier}");
+                    p.Link = $"{this.BaseUrl}/CV/{p.PublicationIdentifier}?culture={p.LanguageCode.ToLower()}";
+                    p.QrCode = CodeHelper.CreateQRCode($"{this.BaseUrl}/CV/{p.PublicationIdentifier}?culture={p.LanguageCode.ToLower()}");
                  });
             }
 

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Vitae.Code
+namespace Vitae.Code.Identity
 {
     public class CurriculumClaimFactory : UserClaimsPrincipalFactory<IdentityUser>
     {

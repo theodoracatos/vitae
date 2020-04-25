@@ -13,15 +13,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 using Model.Attributes;
 using Model.Enumerations;
+
 using Persistency.Data;
 
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-using Vitae.Code;
+using Vitae.Code.Identity;
+using Vitae.Code.Mailing;
 
 namespace Vitae
 {
@@ -124,7 +127,7 @@ namespace Vitae
                 options.DefaultRequestCulture = new RequestCulture($"{ApplicationLanguage.en}");
                 options.SupportedCultures = SupportedCultures;
                 options.SupportedUICultures = SupportedCultures;
-                options.RequestCultureProviders = new List<IRequestCultureProvider> { new CookieRequestCultureProvider(), new AcceptLanguageHeaderRequestCultureProvider() };
+                options.RequestCultureProviders = new List<IRequestCultureProvider> { new QueryStringRequestCultureProvider(), new CookieRequestCultureProvider(), new AcceptLanguageHeaderRequestCultureProvider() };
             });
 
             services.AddSingleton<IValidationAttributeAdapterProvider, DateGreaterThanAdapterProvider>();
