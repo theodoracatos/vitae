@@ -1,4 +1,3 @@
-using Library.Extensions;
 using Library.Helper;
 using Library.Repository;
 using Library.Resources;
@@ -7,15 +6,18 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+
 using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Vitae.Code;
 
 using Poco = Model.Poco;
@@ -80,7 +82,11 @@ namespace Vitae.Areas.Manage.Pages.Publications
                 HasUnsafedChanges = false;
 
                 // Set link & QR-Code
-                Publications.Cast<PublicationVM>().ToList().ForEach(p => p.Link = $"{this.BaseUrl}/CV/{p.Link}");
+                Publications.Cast<PublicationVM>().ToList().ForEach(p =>
+                {
+                    p.Link = $"{this.BaseUrl}/CV/{p.PublicationIdentifier}";
+                    p.QrCode = CodeHelper.CreateQRCode($"{this.BaseUrl}/CV/{p.PublicationIdentifier}");
+                 });
             }
 
             FillSelectionViewModel();
@@ -142,6 +148,15 @@ namespace Vitae.Areas.Manage.Pages.Publications
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_PUBLICATION);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(Publications);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_PUBLICATION, hasUnsafedChanges: false);
         }
 
         public IActionResult OnPostEnablePassword(int order)

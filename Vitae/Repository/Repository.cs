@@ -687,7 +687,7 @@ namespace Library.Repository
                     Anonymize = p.Anonymize,
                     EnablePassword = !string.IsNullOrEmpty(p.Password),
                     LanguageCode = p.CurriculumLanguage.LanguageCode,
-                    Password = AesHandler.Decrypt(p.Password, p.PublicationIdentifier.ToString()),
+                    Password = string.IsNullOrEmpty(p.Password) ? null : AesHandler.Decrypt(p.Password, p.PublicationIdentifier.ToString()),
                     PublicationIdentifier = p.PublicationIdentifier.ToString(),
                     Link = $"{baseUrl}/CV/{p.PublicationIdentifier}",
                     QrCode = CodeHelper.CreateQRCode($"{baseUrl}/CV/{p.PublicationIdentifier}")

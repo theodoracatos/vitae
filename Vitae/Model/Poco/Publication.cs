@@ -12,7 +12,7 @@ namespace Model.Poco
 
         public bool Anonymize { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(250)]
         public string Password { get; set; }
 
         public virtual Curriculum Curriculum { get; set; }

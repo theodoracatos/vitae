@@ -495,7 +495,7 @@ namespace Persistency.Migrations
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     PublicationIdentifier = table.Column<Guid>(nullable: false),
                     Anonymize = table.Column<bool>(nullable: false),
-                    Password = table.Column<string>(maxLength: 50, nullable: true),
+                    Password = table.Column<string>(maxLength: 250, nullable: true),
                     CurriculumID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>

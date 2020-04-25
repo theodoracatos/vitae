@@ -169,7 +169,7 @@ namespace Library.Helper
             return newObj;
         }
 
-        public static string CreateQRCode(string uri)
+        public static string CreateQRCode(string uri, string prefix = "data:image/jpg;base64,")
         {
             using (var qrGenerator = new QRCodeGenerator())
             {
@@ -177,7 +177,7 @@ namespace Library.Helper
                 var qrCode = new QRCode(qrCodeData);
                 var bitmap = qrCode.GetGraphic(3);
                 var imageBytes = BitmapToBytes(bitmap);
-                return Convert.ToBase64String(imageBytes);
+                return $"{prefix}{Convert.ToBase64String(imageBytes)}";
             }
         }
 
