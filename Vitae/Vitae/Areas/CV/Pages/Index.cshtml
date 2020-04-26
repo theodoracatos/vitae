@@ -34,7 +34,7 @@
 
 <body id="page-top">
     @{
-        var about = Model.Abouts.Single();
+        var about = Model.Abouts.SingleOrDefault();
     }
 
     <!-- #region Menu -->
@@ -42,11 +42,14 @@
         <a class="js-scroll-trigger mt-1 mb-1" href="#page-top">
             <img src="~/img/Logo.png" class="" title="Vitae" />
         </a>
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <span class="d-none d-lg-block">
-                <img class="img-fluid img-profile rounded-circle mx-auto" src="@(string.IsNullOrEmpty(about.Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : about.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
-            </span>
-        </a>
+        @if (Model.PersonalDetail.Gender != null)
+        {
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-none d-lg-block">
+                    <img class="img-fluid img-profile rounded-circle mx-auto" src="@(string.IsNullOrEmpty(about?.Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : about.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
+                </span>
+            </a>
+        }
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -81,7 +84,7 @@
 
                 <a class="navbar-brand js-scroll-trigger" href="#page-top">
                     <span class="d-lg-none d-xl-none">
-                        <img class="img-fluid img-profile greyborder rounded-circle mb-3" width="145" src="@(string.IsNullOrEmpty(about.Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : about.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
+                        <img class="img-fluid img-profile greyborder rounded-circle mb-3" width="145" src="@(string.IsNullOrEmpty(about?.Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : about.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
                     </span>
                 </a>
 
@@ -442,5 +445,34 @@
     </div>
 
     <partial name="_Scripts" />
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#passwordModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
+        <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-key fa-fw mr-2"></i>@SharedResource.EnterPassword</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label class="control-label font-weight-bold text-body" asp-for="@Model.Password"></label>
+                        <input type="password" class="form-control mb-1" asp-for="@Model.Password" />
+                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="@SharedResource.Submit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </body>
 </html>

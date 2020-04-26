@@ -393,6 +393,9 @@
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Passwort eingeben</value>
+  </data>
   <data name="EnterSkill" xml:space="preserve">
     <value>Bitte drücken Sie die Enter-Taste um eine neue Kompetenz einzufügen</value>
   </data>
@@ -880,6 +883,9 @@ Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und
   </data>
   <data name="Subject" xml:space="preserve">
     <value>Thema der Ausbildung</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Übermitteln</value>
   </data>
   <data name="SumOfCVHits" xml:space="preserve">
     <value>Summer aller CV-Aufrufe</value>

@@ -889,6 +889,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter password.
+        /// </summary>
+        public static string EnterPassword {
+            get {
+                return ResourceManager.GetString("EnterPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please press Enter to insert a new Skill.
         /// </summary>
         public static string EnterSkill {
@@ -2345,6 +2354,15 @@ namespace Library.Resources {
         public static string Subject {
             get {
                 return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        public static string Submit {
+            get {
+                return ResourceManager.GetString("Submit", resourceCulture);
             }
         }
         

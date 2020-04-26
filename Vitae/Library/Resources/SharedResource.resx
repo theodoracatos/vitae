@@ -393,6 +393,9 @@
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Enter password</value>
+  </data>
   <data name="EnterSkill" xml:space="preserve">
     <value>Please press Enter to insert a new Skill</value>
   </data>
@@ -880,6 +883,9 @@ This website requires cookies to optimize the content of its web pages and to pr
   </data>
   <data name="Subject" xml:space="preserve">
     <value>Subject of education</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
   </data>
   <data name="SumOfCVHits" xml:space="preserve">
     <value>Sum of CV calls</value>

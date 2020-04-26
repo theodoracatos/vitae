@@ -24,3 +24,24 @@
     background-size: cover;
     background-attachment: fixed
 }
+
+.btn-primary {
+    background-color: $qvs-gold-color !important;
+    border-color: transparent;
+}
+
+.btn-primary[disabled] {
+    background-color: $qvs-lightgold-color !important;
+    border-color: transparent !important;
+    opacity: 0.8;
+}
+
+.btn-primary:not([disabled]):hover, .btn-primary:not([disabled]):active, .btn-primary:not([disabled]):focus {
+    background-color: $qvs-lightgold-color !important;
+    border-color: transparent !important;
+    text-decoration: none !important;
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(208, 187, 149, 0.5) !important;
+}

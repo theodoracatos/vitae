@@ -5,6 +5,7 @@ using Library.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
@@ -17,8 +18,10 @@ using Persistency.Data;
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 using Vitae.Code;
@@ -29,13 +32,20 @@ namespace Vitae.Areas.CV.Pages
     public class IndexModel : BasePageModel
     {
         private readonly IHttpContextAccessor httpContextAccessor;
+        private bool anonymize;
+        private string password;
         private string language;
+
+        [BindProperty]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Password), Prompt = nameof(SharedResource.Password))]
+        public string Password { get; set; }
 
         public Guid CurriculumID { get { return curriculumID; } }
 
-        public PersonalDetailVM PersonalDetail { get; set; }
-        
-        public IList<AboutVM> Abouts { get; set; }
+        public PersonalDetailVM PersonalDetail { get; set; } = new PersonalDetailVM();
+
+        public IList<AboutVM> Abouts { get; set; } = new List<AboutVM>();
         public IList<AwardVM> Awards { get; set; } = new List<AwardVM>();
         public IList<EducationVM> Educations { get; set; } = new List<EducationVM>();
         public IList<ExperienceVM> Experiences { get; set; } = new List<ExperienceVM>();
@@ -60,40 +70,44 @@ namespace Vitae.Areas.CV.Pages
             this.httpContextAccessor = httpContextAccessor;
         }
 
+        #region SYNC
+
+        public async Task<IActionResult> OnPostAsync(Guid? id, string lang)
+        {
+            if (ModelState.IsValid)
+            {
+                var curriculumID = LoadCurriculumID(id, ref lang);
+
+                if (AesHandler.Decrypt(password, curriculumID.ToString()) == Password)
+                {
+                    return await LoadPageAsync(curriculumID, lang, id.HasValue);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+            return Page();
+        }
+
         public async Task<IActionResult> OnGetAsync(Guid? id, string lang)
         {
-            var curriculumID = GetCurriculumID(id, ref lang);
+            var curriculumID = LoadCurriculumID(id, ref lang);
 
             if (curriculumID == Guid.Empty)
             {
                 return NotFound();
             }
-            else
+            else if(!string.IsNullOrEmpty(password))
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID.Value);
-                language = string.IsNullOrEmpty(lang) ? curriculum.CurriculumLanguages.OrderBy(c => c.Order).First().Language.LanguageCode : lang;
-
-                PersonalDetail = repository.GetPersonalDetail(curriculum);
-                Abouts = repository.GetAbouts(curriculum, language);
-                SocialLinks = repository.GetSocialLinks(curriculum, language);
-                Educations = repository.GetEducations(curriculum, language);
-                Experiences = repository.GetExperiences(curriculum, language);
-                Courses = repository.GetCourses(curriculum, language);
-                Abroads = repository.GetAbroads(curriculum, language);
-                LanguageSkills = repository.GetLanguageSkills(curriculum, language);
-                Interests = repository.GetInterests(curriculum, language);
-                Awards = repository.GetAwards(curriculum, language);
-                Skills = repository.GetSkills(curriculum, language);
-                Certificates = repository.GetCertificates(curriculum, language);
-                References = repository.GetReferences(curriculum, language);
-
                 FillSelectionViewModel();
 
-                if (id.HasValue)
-                {
-                   await repository.LogAsync(curriculum.CurriculumID, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
-                }
                 return Page();
+            }
+            else
+            {
+                return await LoadPageAsync(curriculumID, lang, id.HasValue);
             }
         }
 
@@ -111,7 +125,51 @@ namespace Vitae.Areas.CV.Pages
             }
         }
 
+        #endregion
+
         #region Helper
+
+        private async Task<PageResult> LoadPageAsync(Guid? curriculumID, string lang, bool log)
+        {
+            var curriculum = await repository.GetCurriculumAsync(curriculumID.Value);
+            language = string.IsNullOrEmpty(lang) ? curriculum.CurriculumLanguages.OrderBy(c => c.Order).First().Language.LanguageCode : lang;
+
+            PersonalDetail = repository.GetPersonalDetail(curriculum);
+            Abouts = repository.GetAbouts(curriculum, language);
+            SocialLinks = repository.GetSocialLinks(curriculum, language);
+            Educations = repository.GetEducations(curriculum, language);
+            Experiences = repository.GetExperiences(curriculum, language);
+            Courses = repository.GetCourses(curriculum, language);
+            Abroads = repository.GetAbroads(curriculum, language);
+            LanguageSkills = repository.GetLanguageSkills(curriculum, language);
+            Interests = repository.GetInterests(curriculum, language);
+            Awards = repository.GetAwards(curriculum, language);
+            Skills = repository.GetSkills(curriculum, language);
+            Certificates = repository.GetCertificates(curriculum, language);
+            References = repository.GetReferences(curriculum, language);
+
+            if (anonymize)
+            {
+                Anonymize();
+            }
+
+            // Log
+            if (log)
+            {
+                await repository.LogAsync(curriculum.CurriculumID, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
+            }
+
+            FillSelectionViewModel();
+
+            return Page();
+        }
+
+        private void Anonymize()
+        {
+            PersonalDetail.Firstname = "X";
+            PersonalDetail.Lastname = "Y";
+            Abouts.ToList().ForEach(a => a.Photo = string.Empty);
+        }
 
         protected override void FillSelectionViewModel() 
         {
@@ -122,7 +180,7 @@ namespace Vitae.Areas.CV.Pages
             HierarchyLevels = repository.GetHierarchyLevels(language);
         }
 
-        private Guid? GetCurriculumID(Guid? id, ref string lang)
+        private Guid? LoadCurriculumID(Guid? id, ref string lang)
         {
             Guid? curriculumID = Guid.Empty;
 
@@ -131,6 +189,8 @@ namespace Vitae.Areas.CV.Pages
                 var publication = vitaeContext.Publications.Include(p => p.Curriculum).Include(p => p.CurriculumLanguage).SingleOrDefault(p => p.PublicationIdentifier == id);
                 curriculumID = publication?.Curriculum.CurriculumID;
                 lang = publication?.CurriculumLanguage.LanguageCode;
+                password = publication?.Password;
+                anonymize = publication?.Anonymize ?? false;
             }
             else if (CodeHelper.GetCurriculumID(httpContextAccessor.HttpContext) != Guid.Empty)
             {
@@ -138,6 +198,19 @@ namespace Vitae.Areas.CV.Pages
             }
 
             return curriculumID;
+        }
+
+        private string GetPassword(Guid? id)
+        {
+            var password = string.Empty;
+
+            if (id.HasValue)
+            {
+                var publication = vitaeContext.Publications.Include(p => p.Curriculum).Include(p => p.CurriculumLanguage).SingleOrDefault(p => p.PublicationIdentifier == id);
+                password = publication.Password;
+            }
+
+            return password;
         }
 
         #endregion
