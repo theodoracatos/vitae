@@ -100,31 +100,37 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label class="control-label" asp-for="@Model.Publications[i].Link"></label>
-                                @if (string.IsNullOrEmpty(Model.Publications[i].Link))
-                                {
-                                    <div class="d-flex">
-                                        <div class="form-control w-auto flex-fill bg-light">
-                                            <label class="d-block">-</label>
+                                <label class="control-label" asp-for="@Model.Publications[i].Notes"></label>
+                                <textarea rows="1" asp-for="@Model.Publications[i].Notes" class="form-control"></textarea>
+                                <small class="muted mt-1 float-left">@SharedResource.NotesDescription</small>
+                                <span asp-validation-for="@Model.Publications[i].Notes" class="text-danger"></span>
+                            </div>
+                                <div class="form-group col">
+                                    <label class="control-label" asp-for="@Model.Publications[i].Link"></label>
+                                    @if (string.IsNullOrEmpty(Model.Publications[i].Link))
+                                    {
+                                        <div class="d-flex">
+                                            <div class="form-control w-auto flex-fill bg-light">
+                                                <label class="d-block">-</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="d-flex">
-                                        <div class="form-control w-auto h-auto flex-fill bg-light">
-                                            <img class="rounded border border-light shadow" src="@Model.Publications[i].QrCode" />
-                                            <a target="_blank" class="ml-1 mt-1 d-block" alt="@Model.Publications[i].Link" href="@Model.Publications[i].Link">
-                                                @Model.Publications[i].Link
-                                            </a>
+                                    }
+                                    else
+                                    {
+                                        <div class="d-flex">
+                                            <div class="form-control w-auto h-auto flex-fill bg-light">
+                                                <img class="rounded border border-light shadow mt-1" src="@Model.Publications[i].QrCode" />
+                                                <a target="_blank" class="ml-1 mt-1 d-block" alt="@Model.Publications[i].Link" href="@Model.Publications[i].Link">
+                                                    @Model.Publications[i].Link
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                }
-                                <input type="hidden" asp-for="@Model.Publications[i].QrCode" />
-                                <input type="hidden" asp-for="@Model.Publications[i].Link" />
+                                    }
+                                    <input type="hidden" asp-for="@Model.Publications[i].QrCode" />
+                                    <input type="hidden" asp-for="@Model.Publications[i].Link" />
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </div>
                 @if (i < Model.Publications.Count - 1)
                 {<hr />}

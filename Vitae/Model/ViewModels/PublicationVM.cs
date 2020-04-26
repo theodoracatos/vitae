@@ -31,5 +31,8 @@ namespace Model.ViewModels
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.EnablePassword), Prompt = nameof(SharedResource.EnablePassword))]
         public bool EnablePassword { get; set; }
+
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Notes), Prompt = nameof(SharedResource.Notes))]
+        public string Notes { get; set; }
     }
 }

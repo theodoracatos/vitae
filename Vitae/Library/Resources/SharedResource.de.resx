@@ -642,6 +642,12 @@
   <data name="NoResults" xml:space="preserve">
     <value>Keine Suchergebnisse für {0}</value>
   </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notizen</value>
+  </data>
+  <data name="NotesDescription" xml:space="preserve">
+    <value>Die Notizen sind für den Besucher nicht sichtbar</value>
+  </data>
   <data name="NrOfCVHits" xml:space="preserve">
     <value>CV-Aufrufe (letzte 30 Tage)</value>
   </data>

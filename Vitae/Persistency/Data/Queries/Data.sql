@@ -202,6 +202,12 @@ VALUES(NEWID(), 6, @CurrLangId_de,'Digicomp Academy AG', 'https://www.digicomp.c
 INSERT INTO [Course]
 VALUES(NEWID(), 7, @CurrLangId_de,' IFA Weiterbildung AG', 'https://www.ifa.ch', 'Einsatz digitaler Medien im Unterricht', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
 
+INSERT INTO [Publication]
+VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), NEWID(), 0, null, @CurriculumID, '')
+
+INSERT INTO [Publication]
+VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), NEWID(), 0, null, @CurriculumID, '')
+
 --------------------------------
 
 COMMIT TRANSACTION -- Transaction Success!

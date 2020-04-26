@@ -16,5 +16,8 @@ namespace Model.Poco
         public string Password { get; set; }
 
         public virtual Curriculum Curriculum { get; set; }
+
+        [MaxLength(1000)]
+        public string Notes { get; set; }
     }
 }

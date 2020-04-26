@@ -1636,6 +1636,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        public static string Notes {
+            get {
+                return ResourceManager.GetString("Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes are invisible for visitors.
+        /// </summary>
+        public static string NotesDescription {
+            get {
+                return ResourceManager.GetString("NotesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CV calls (last 30 days).
         /// </summary>
         public static string NrOfCVHits {

@@ -945,6 +945,10 @@ namespace Persistency.Migrations
                     b.Property<Guid?>("CurriculumLanguageLanguageID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
+
                     b.Property<int>("Order")
                         .HasColumnType("int");
 

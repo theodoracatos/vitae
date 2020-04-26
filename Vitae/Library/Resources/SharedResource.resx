@@ -642,6 +642,12 @@
   <data name="NoResults" xml:space="preserve">
     <value>No results for {0}</value>
   </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="NotesDescription" xml:space="preserve">
+    <value>Notes are invisible for visitors</value>
+  </data>
   <data name="NrOfCVHits" xml:space="preserve">
     <value>CV calls (last 30 days)</value>
   </data>

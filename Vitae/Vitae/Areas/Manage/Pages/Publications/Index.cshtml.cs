@@ -31,7 +31,7 @@ namespace Vitae.Areas.Manage.Pages.Publications
         public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
     : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
 
-        public int MaxPublications { get; } = 5;
+        public int MaxPublications { get; } = 10;
 
         [BindProperty]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Publications), Prompt = nameof(SharedResource.Publications))]
@@ -72,6 +72,7 @@ namespace Vitae.Areas.Manage.Pages.Publications
                     Curriculum = curriculum,
                     Password = p.EnablePassword ? AesHandler.Encrypt(p.Password, p.PublicationIdentifier) : null,
                     PublicationIdentifier = Guid.Parse(p.PublicationIdentifier),
+                    Notes = p.Notes,
                     CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == p.LanguageCode),
                 }).ToList().ForEach(p => curriculum.Publications.Add(p));
                 curriculum.LastUpdated = DateTime.Now;

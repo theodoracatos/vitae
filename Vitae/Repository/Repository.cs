@@ -677,6 +677,7 @@ namespace Library.Repository
                     Password = string.IsNullOrEmpty(p.Password) ? null : AesHandler.Decrypt(p.Password, p.PublicationIdentifier.ToString()),
                     PublicationIdentifier = p.PublicationIdentifier.ToString(),
                     Link = $"{baseUrl}/CV/{p.PublicationIdentifier}",
+                    Notes = p.Notes,
                     QrCode = CodeHelper.CreateQRCode($"{baseUrl}/CV/{p.PublicationIdentifier}")
                 }).ToList();
 
