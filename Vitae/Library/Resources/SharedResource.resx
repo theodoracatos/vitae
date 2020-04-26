@@ -132,6 +132,9 @@
   <data name="AcademicTitle" xml:space="preserve">
     <value>Academic title</value>
   </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
   <data name="AccessDenied" xml:space="preserve">
     <value>Access denied</value>
   </data>
@@ -281,6 +284,12 @@
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm password</value>
+  </data>
+  <data name="CookiePolicy" xml:space="preserve">
+    <value>By continuing to visit the website, you accept the storage of cookies on your computer</value>
+  </data>
+  <data name="CookiePolicyLearnMore" xml:space="preserve">
+    <value>Learn more</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Copy</value>
@@ -710,6 +719,14 @@
   </data>
   <data name="PleaseUpload" xml:space="preserve">
     <value>Please upload files up to</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="PrivacyPolicyText" xml:space="preserve">
+    <value>When you visit this website, the web server will automatically record certain details of your visit (IP address, source website, destination website) using a tracking technology called "cookies". A cookie is a small piece of data that is stored by the website on the browser or mobile device. The cookie allows the website to save your settings or preferences for a certain period of time.
+
+This website requires cookies to optimize the content of its web pages and to provide information about the use of the website. No "third-party" cookies are used for this purpose. Cookies that are used cannot be used for user identification for QWM. You can accept the cookies or refuse the cookies at any time by changing the settings of your web browser. Please note, however, that if you refuse cookies, certain functionalities may be impaired. By continuing to use the website, you automatically accept the storage of cookies on your computer in accordance with the conditions described here.</value>
   </data>
   <data name="ProfileOverview" xml:space="preserve">
     <value>Profile overview</value>

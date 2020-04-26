@@ -8,10 +8,10 @@
 
 @if (showBanner)
 {
-    <div id="cookieConsent" class="alert alert-info alert-dismissible fade show" role="alert">
-        Use this space to summarize your privacy and cookie use policy. <a asp-page="/Privacy">Learn More</a>.
-        <button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
-            <span aria-hidden="true">Accept</span>
+    <div id="cookieConsent" class="alert alert-info bg-white alert-dismissible fade show" role="alert">
+        @SharedResource.CookiePolicy. <a asp-page="/Privacy">@SharedResource.CookiePolicyLearnMore</a>
+        <button type="button" class="btn-warning btn font-weight-bold float-right" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
+            <span aria-hidden="true">@SharedResource.Accept</span>
         </button>
     </div>
     <script>

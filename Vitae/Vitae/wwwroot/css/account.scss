@@ -37,3 +37,15 @@ footer {
     box-shadow: 0 2px 18px 1px rgba(49,53,72,.1);
     border: 1px solid rgba(0,0,0,.125);
 }
+
+#cookieConsent {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    padding-right: 1em;
+    line-height: 38px;
+    z-index: 2;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}

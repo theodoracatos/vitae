@@ -132,6 +132,9 @@
   <data name="AcademicTitle" xml:space="preserve">
     <value>Akademischer Titel</value>
   </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Akzeptieren</value>
+  </data>
   <data name="AccessDenied" xml:space="preserve">
     <value>Zugang verweigert</value>
   </data>
@@ -281,6 +284,12 @@
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Passwort bestätigen</value>
+  </data>
+  <data name="CookiePolicy" xml:space="preserve">
+    <value>Mit dem weiteren Besuch der Website akzeptieren Sie das Speichern von Cookies auf Ihrem Computer</value>
+  </data>
+  <data name="CookiePolicyLearnMore" xml:space="preserve">
+    <value>Mehr Infos</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Kopieren</value>
@@ -710,6 +719,14 @@
   </data>
   <data name="PleaseUpload" xml:space="preserve">
     <value>Bitte beachten Sie die Dateigrösse von</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Datenschutzerklärung</value>
+  </data>
+  <data name="PrivacyPolicyText" xml:space="preserve">
+    <value>Wenn Sie diese Website besuchen, wird der Webserver automatisch gewisse Details Ihres Besuches (IP Adresse, Ursprungs-Webseite, Ziel-Webseite) mit einer Tracking-Technologie namens "Cookies" aufzeichnen. Ein Cookie ist ein kleines Datenstück, welches von der Webseite auf dem Browser oder mobilen Gerät gespeichert wird. Das Cookie erlaubt der Webseite Ihre Einstellungen oder Präferenzen in einer gewissen Zeitspanne zu speichern.
+
+Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und um Informationen über die Benutzung der Webseite zu liefern. Es werden dabei keine "third-party" Cookies eingesetzt. Cookies, welche eingesetzt werden, können nicht zur Benutzeridentifikation für QWM eingesetzt werden. Sie können die Cookies akzeptieren oder zu jeder Zeit durch Einstellungen ihres Webbrowsers die Cookies verweigern. Bitte beachten Sie jedoch, dass im Falle einer Ablehnung gewisse Funktionalitäten beeinträchtigt werden können. Durch die Weiternutzung der Website akzeptieren Sie automatisch die Speicherung von Cookies auf Ihrem Computer in übereinstimmung mit den hier beschriebenen Bedingungen.</value>
   </data>
   <data name="ProfileOverview" xml:space="preserve">
     <value>Profilübersicht</value>

@@ -106,6 +106,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept.
+        /// </summary>
+        public static string Accept {
+            get {
+                return ResourceManager.GetString("Accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access denied.
         /// </summary>
         public static string AccessDenied {
@@ -552,6 +561,24 @@ namespace Library.Resources {
         public static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By continuing to visit the website, you accept the storage of cookies on your computer.
+        /// </summary>
+        public static string CookiePolicy {
+            get {
+                return ResourceManager.GetString("CookiePolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more.
+        /// </summary>
+        public static string CookiePolicyLearnMore {
+            get {
+                return ResourceManager.GetString("CookiePolicyLearnMore", resourceCulture);
             }
         }
         
@@ -1839,6 +1866,26 @@ namespace Library.Resources {
         public static string PleaseUpload {
             get {
                 return ResourceManager.GetString("PleaseUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Privacy policy.
+        /// </summary>
+        public static string PrivacyPolicy {
+            get {
+                return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you visit this website, the web server will automatically record certain details of your visit (IP address, source website, destination website) using a tracking technology called &quot;cookies&quot;. A cookie is a small piece of data that is stored by the website on the browser or mobile device. The cookie allows the website to save your settings or preferences for a certain period of time.
+        ///
+        ///This website requires cookies to optimize the content of its web pages and to provide information about the use of the  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string PrivacyPolicyText {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyText", resourceCulture);
             }
         }
         

@@ -77,10 +77,10 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
 
             // Set cookie value
             Response.Cookies.Append(
-                   CookieRequestCultureProvider.DefaultCookieName,
-                   CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(cultureInfo)),
-                   new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
-               );
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(cultureInfo)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
 
             await vitaeContext.SaveChangesAsync();
             Success = true;
