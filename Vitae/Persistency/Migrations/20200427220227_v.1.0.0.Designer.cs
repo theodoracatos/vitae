@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200426165812_v.1.0.0")]
+    [Migration("20200427220227_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

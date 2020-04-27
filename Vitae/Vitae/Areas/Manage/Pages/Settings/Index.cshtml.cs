@@ -171,9 +171,11 @@ namespace Vitae.Areas.Manage.Pages.Settings
 
             vitaeContext.CurriculumLanguages.RemoveRange(vitaeContext.CurriculumLanguages.Include(c => c.Language).Where(c => c.CurriculumID == curriculumID));
             vitaeContext.Publications.RemoveRange(vitaeContext.Publications.Include(p => p.Curriculum).Where(p => p.Curriculum.CurriculumID == curriculumID));
-            var personalDetail = vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID).PersonalDetails.Single();
+            var personalDetail = vitaeContext.Curriculums.Include(c => c.PersonalDetails).ThenInclude(p => p.Children).Single(c => c.CurriculumID == curriculumID).PersonalDetails.Single();
+
+            var curriculum = vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID);
             personalDetail.Children.ToList().ForEach(c => personalDetail.Children.Remove(c));
-            vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID).PersonalDetails.Remove(personalDetail);
+            curriculum.PersonalDetails.Remove(personalDetail);
             vitaeContext.Curriculums.Remove(vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID));
 
             await vitaeContext.SaveChangesAsync();
