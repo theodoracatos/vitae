@@ -1,3 +1,4 @@
+using Library.Resources;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -35,7 +36,23 @@ namespace Vitae.Pages
             RequestFeature = HttpContext.Features.Get<IHttpRequestFeature>();
             Exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
 
-            Message = ReasonPhrases.GetReasonPhrase(statusCode); // https://httpstatuses.com/
+            Message = GetCustomizedMessage(statusCode) ?? ReasonPhrases.GetReasonPhrase(statusCode); // https://httpstatuses.com/
         }
+
+        private string GetCustomizedMessage(int statusCode)
+        {
+            string message = null;
+
+            switch(statusCode)
+            {
+                case 404:
+                    {
+                        message = SharedResource.Status404;
+                        break;
+                    }
+            }
+
+            return message;
+        }
     }
 }

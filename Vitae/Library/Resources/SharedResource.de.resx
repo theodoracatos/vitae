@@ -345,6 +345,15 @@
   <data name="DefaultError" xml:space="preserve">
     <value>Ein unbekannter Fehler ist aufgetreten.</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="DeleteAccount" xml:space="preserve">
+    <value>Konto löschen</value>
+  </data>
+  <data name="DeleteAccountConfirm" xml:space="preserve">
+    <value>Möchten Sie Ihr Konto wirklich löschen? Alle Daten werden unwiderruflich gelöscht.</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Beschreibung</value>
   </data>
@@ -877,6 +886,9 @@ Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und
   </data>
   <data name="State" xml:space="preserve">
     <value>Kanton / Bundesland</value>
+  </data>
+  <data name="Status404" xml:space="preserve">
+    <value>Die gesuchte Seite konnte nicht gefunden werden</value>
   </data>
   <data name="Street" xml:space="preserve">
     <value>Strasse</value>

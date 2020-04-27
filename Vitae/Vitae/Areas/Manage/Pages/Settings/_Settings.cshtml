@@ -47,6 +47,16 @@
                     }
                 </div>
             </div>
+            <div class="grouping">
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="control-label d-block">@SharedResource.DeleteAccount</label>
+                        <div class="grouping">
+                            <button asp-page-handler="DeleteAccount" data-confirm-text="@SharedResource.DeleteAccountConfirm" class="btn btn-sm btn-danger confirmation cancel"><i class="far fa-trash-alt fa-fw"></i>@SharedResource.Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <partial name="_CardFooter" model="@Model" />
     </div>

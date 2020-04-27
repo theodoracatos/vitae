@@ -745,6 +745,33 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete account.
+        /// </summary>
+        public static string DeleteAccount {
+            get {
+                return ResourceManager.GetString("DeleteAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete your account? All data will be irrevocably deleted..
+        /// </summary>
+        public static string DeleteAccountConfirm {
+            get {
+                return ResourceManager.GetString("DeleteAccountConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
@@ -2336,6 +2363,15 @@ namespace Library.Resources {
         public static string State {
             get {
                 return ResourceManager.GetString("State", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The requested page could not be found.
+        /// </summary>
+        public static string Status404 {
+            get {
+                return ResourceManager.GetString("Status404", resourceCulture);
             }
         }
         

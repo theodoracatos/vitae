@@ -101,8 +101,11 @@
                             {
                                 <span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(nationality.CountryCode.ToLower())" title="@($"{SharedResource.Nationality} {Model.PersonalDetail.Nationalities.IndexOf(nationality) + 1}: {Model.Countries.Single(c => c.CountryCode == nationality.CountryCode).Name}")"></span>
                             }
-                            @Html.Raw("&middot;")
-                        }
+                            if (Model.PersonalDetail.Nationalities.Any())
+                            {
+                                @Html.Raw("&middot;")
+                            }
+                            }
                         @{
                             if (Model.PersonalDetail.Gender.HasValue)
                                 if (Model.PersonalDetail.Gender.Value)

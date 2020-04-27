@@ -74,9 +74,9 @@ namespace Vitae.Areas.CV.Pages
 
         #region SYNC
 
-        public async Task<IActionResult> OnGetAsync(Guid? id, string lang)
+        public async Task<IActionResult> OnGetAsync(Guid? id, string culture)
         {
-            var curriculumID = LoadCurriculumID(id, ref lang);
+            var curriculumID = LoadCurriculumID(id, ref culture);
 
             if (curriculumID == Guid.Empty)
             {
@@ -91,23 +91,23 @@ namespace Vitae.Areas.CV.Pages
             }
             else
             {
-                return await LoadPageAsync(curriculumID, lang, id.HasValue);
+                return await LoadPageAsync(curriculumID, culture, id.HasValue);
             }
         }
 
-        public async Task<IActionResult> OnPostAsync(Guid? id, string lang)
+        public async Task<IActionResult> OnPostAsync(Guid? id, string culture)
         {
             if (ModelState.IsValid)
             {
-                var curriculumID = LoadCurriculumID(id, ref lang);
+                var curriculumID = LoadCurriculumID(id, ref culture);
 
                 if (AesHandler.Decrypt(password, curriculumID.ToString()) == Password)
                 {
-                    return await LoadPageAsync(curriculumID, lang, id.HasValue);
+                    return await LoadPageAsync(curriculumID, culture, id.HasValue);
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    return NotFound();
                 }
             }
 
@@ -171,6 +171,7 @@ namespace Vitae.Areas.CV.Pages
         {
             PersonalDetail.Firstname = "X";
             PersonalDetail.Lastname = "Y";
+            PersonalDetail.Nationalities.Clear();
             Abouts.ToList().ForEach(a => a.Photo = string.Empty);
         }
 
@@ -190,7 +191,7 @@ namespace Vitae.Areas.CV.Pages
             if (id.HasValue)
             {
                 var publication = vitaeContext.Publications.Include(p => p.Curriculum).Include(p => p.CurriculumLanguage).SingleOrDefault(p => p.PublicationIdentifier == id);
-                curriculumID = publication?.Curriculum.CurriculumID;
+                curriculumID = publication?.Curriculum.CurriculumID ?? Guid.Empty;
                 lang = publication?.CurriculumLanguage.LanguageCode;
                 password = publication?.Password;
                 anonymize = publication?.Anonymize ?? false;

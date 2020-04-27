@@ -345,6 +345,15 @@
   <data name="DefaultError" xml:space="preserve">
     <value>An unknown failure has occurred.</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteAccount" xml:space="preserve">
+    <value>Delete account</value>
+  </data>
+  <data name="DeleteAccountConfirm" xml:space="preserve">
+    <value>Do you really want to delete your account? All data will be irrevocably deleted.</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
@@ -877,6 +886,9 @@ This website requires cookies to optimize the content of its web pages and to pr
   </data>
   <data name="State" xml:space="preserve">
     <value>State</value>
+  </data>
+  <data name="Status404" xml:space="preserve">
+    <value>The requested page could not be found</value>
   </data>
   <data name="Street" xml:space="preserve">
     <value>Street</value>

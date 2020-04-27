@@ -90,7 +90,7 @@ namespace Library.Repository
             var curriculum = await GetCurriculumAsync(curriculumID);
 
             curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
-            curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i.Vfile).State = EntityState.Deleted);
+            curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete && a.Vfile != null).ToList().ForEach(i => vitaeContext.Entry(i.Vfile).State = EntityState.Deleted);
             curriculum.Abroads.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
             curriculum.Awards.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
             curriculum.Courses.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
@@ -676,7 +676,7 @@ namespace Library.Repository
                     LanguageCode = p.CurriculumLanguage.LanguageCode,
                     Password = string.IsNullOrEmpty(p.Password) ? null : AesHandler.Decrypt(p.Password, p.PublicationIdentifier.ToString()),
                     PublicationIdentifier = p.PublicationIdentifier.ToString(),
-                    Link = $"{baseUrl}/CV/{p.PublicationIdentifier}",
+                    Link = $"{baseUrl}/CV/{p.PublicationIdentifier}?culture={p.CurriculumLanguage.LanguageCode.ToLower()}",
                     Notes = p.Notes,
                     QrCode = CodeHelper.CreateQRCode($"{baseUrl}/CV/{p.PublicationIdentifier}")
                 }).ToList();
