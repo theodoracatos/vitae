@@ -36,6 +36,8 @@ namespace Vitae.Areas.CV.Pages
         private string password;
         private string language;
 
+        public bool CheckPassword { get; set; }
+
         [BindProperty]
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Password), Prompt = nameof(SharedResource.Password))]
@@ -72,6 +74,27 @@ namespace Vitae.Areas.CV.Pages
 
         #region SYNC
 
+        public async Task<IActionResult> OnGetAsync(Guid? id, string lang)
+        {
+            var curriculumID = LoadCurriculumID(id, ref lang);
+
+            if (curriculumID == Guid.Empty)
+            {
+                return NotFound();
+            }
+            else if (!string.IsNullOrEmpty(password))
+            {
+                CheckPassword = true;
+                FillSelectionViewModel();
+
+                return Page();
+            }
+            else
+            {
+                return await LoadPageAsync(curriculumID, lang, id.HasValue);
+            }
+        }
+
         public async Task<IActionResult> OnPostAsync(Guid? id, string lang)
         {
             if (ModelState.IsValid)
@@ -84,31 +107,11 @@ namespace Vitae.Areas.CV.Pages
                 }
                 else
                 {
-                    return NotFound();
+                    return RedirectToAction("Index");
                 }
             }
 
             return Page();
-        }
-
-        public async Task<IActionResult> OnGetAsync(Guid? id, string lang)
-        {
-            var curriculumID = LoadCurriculumID(id, ref lang);
-
-            if (curriculumID == Guid.Empty)
-            {
-                return NotFound();
-            }
-            else if(!string.IsNullOrEmpty(password))
-            {
-                FillSelectionViewModel();
-
-                return Page();
-            }
-            else
-            {
-                return await LoadPageAsync(curriculumID, lang, id.HasValue);
-            }
         }
 
         public IActionResult OnGetOpenFile(Guid identifier)

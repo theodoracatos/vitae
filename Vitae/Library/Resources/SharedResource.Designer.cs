@@ -1771,6 +1771,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password protection.
+        /// </summary>
+        public static string PasswordProtection {
+            get {
+                return ResourceManager.GetString("PasswordProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passwords must have at least one digit (&apos;0&apos;-&apos;9&apos;)..
         /// </summary>
         public static string PasswordRequiresDigit {

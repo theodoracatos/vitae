@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 declare var jQuery;
 declare var $;
 declare var Resources;
@@ -27,6 +29,12 @@ $(document).ready(function () {
         target: '#sideNav'
     });
 
+    // Show password dialog if necessary
+    if ($('#btnShowPasswordModal').length) {
+        $('#btnShowPasswordModal').trigger('click');
+    }
+
     initializeTagsinput();
 });
 //# sourceMappingURL=resume.js.map
+

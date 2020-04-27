@@ -687,6 +687,9 @@
   <data name="PasswordMismatch" xml:space="preserve">
     <value>Falsches Kennwort.</value>
   </data>
+  <data name="PasswordProtection" xml:space="preserve">
+    <value>Passwortschutz</value>
+  </data>
   <data name="PasswordRequiresDigit" xml:space="preserve">
     <value>Passwörter müssen mindestens eine Ziffer ('0'-'9') haben.</value>
   </data>
