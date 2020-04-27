@@ -22,6 +22,8 @@ namespace Vitae.Areas.Manage.Pages.Settings
     public class IndexModel : BasePageModel
     {
         private readonly SignInManager<IdentityUser> signInManager;
+        private readonly IdentityContext identityContext;
+        private readonly UserManager<IdentityUser> userManager;
 
         public const string PAGE_SETTINGS = "_Settings";
 
@@ -32,10 +34,12 @@ namespace Vitae.Areas.Manage.Pages.Settings
 
         public IEnumerable<LanguageVM> Languages { get; set; }
 
-        public IndexModel(SignInManager<IdentityUser> signInManager, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+        public IndexModel(SignInManager<IdentityUser> signInManager, IStringLocalizer<SharedResource> localizer, IdentityContext identityContext, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
             : base(localizer, vitaeContext, httpContextAccessor, userManager, repository)
         {
             this.signInManager = signInManager;
+            this.userManager = userManager;
+            this.identityContext = identityContext;
         }
 
         #region SYNC
@@ -172,7 +176,13 @@ namespace Vitae.Areas.Manage.Pages.Settings
             vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID).PersonalDetails.Remove(personalDetail);
             vitaeContext.Curriculums.Remove(vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID));
 
-            vitaeContext.SaveChanges();
+            await vitaeContext.SaveChangesAsync();
+
+            // Identity context
+            var user = await userManager.GetUserAsync(User);
+            identityContext.Users.Remove(identityContext.Users.Single(u => u.Id == user.Id));
+
+            await identityContext.SaveChangesAsync();
 
             await signInManager.SignOutAsync();
 
