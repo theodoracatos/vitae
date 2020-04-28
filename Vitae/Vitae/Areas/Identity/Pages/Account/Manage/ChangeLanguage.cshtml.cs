@@ -79,7 +79,12 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(cultureInfo)),
-                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+                new CookieOptions 
+                { 
+                    Expires = DateTimeOffset.UtcNow.AddYears(1),
+                    SameSite = SameSiteMode.Lax,
+                    Secure = true
+                }
             );
 
             await vitaeContext.SaveChangesAsync();

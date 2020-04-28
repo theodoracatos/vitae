@@ -76,7 +76,12 @@ namespace Vitae.Areas.Identity.Pages.Account
                     Response.Cookies.Append(
                        CookieRequestCultureProvider.DefaultCookieName,
                        CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(new CultureInfo(requestCulture.RequestCulture.UICulture.Name))),
-                       new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+                       new CookieOptions 
+                       { 
+                           Expires = DateTimeOffset.UtcNow.AddYears(1),
+                           SameSite = SameSiteMode.Lax,
+                           Secure = true
+                       }
                    );
 
                     // Role & Claims
