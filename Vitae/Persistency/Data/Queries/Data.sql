@@ -219,7 +219,7 @@ INSERT INTO [Publication]
 VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), NEWID(), 0, null, @CurriculumID, '')
 
 INSERT INTO [Publication]
-VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), NEWID(), 0, null, @CurriculumID, '')
+VALUES(NEWID(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), NEWID(), 0, null, @CurriculumID, '')
 
 --------------------------------
 

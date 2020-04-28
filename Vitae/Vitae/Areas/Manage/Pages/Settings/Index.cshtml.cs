@@ -171,16 +171,15 @@ namespace Vitae.Areas.Manage.Pages.Settings
 
             vitaeContext.CurriculumLanguages.RemoveRange(vitaeContext.CurriculumLanguages.Include(c => c.Language).Where(c => c.CurriculumID == curriculumID));
             vitaeContext.Publications.RemoveRange(vitaeContext.Publications.Include(p => p.Curriculum).Where(p => p.Curriculum.CurriculumID == curriculumID));
-            vitaeContext.Curriculums.Remove(vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID));
-
             var curriculum = await repository.GetCurriculumAsync<PersonalDetail>(curriculumID);
 
             if (curriculum.PersonalDetails.Count == 1)
             {
                 curriculum.PersonalDetails.Single().Children.ToList().ForEach(c => curriculum.PersonalDetails.Single().Children.Remove(c));
-                curriculum.PersonalDetails.Single().Citizenship.ToList().ForEach(c => curriculum.PersonalDetails.Single().Citizenship.Remove(c));
+                curriculum.PersonalDetails.Single().PersonCountries.ToList().ForEach(p => curriculum.PersonalDetails.Single().PersonCountries.Remove(p));
                 curriculum.PersonalDetails.Remove(curriculum.PersonalDetails.Single());
             }
+            vitaeContext.Curriculums.Remove(vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID));
 
             await vitaeContext.SaveChangesAsync();
 
