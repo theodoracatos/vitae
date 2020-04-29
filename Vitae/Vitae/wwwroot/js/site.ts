@@ -8,6 +8,7 @@ $(document).ready(function () {
     loadingProcedure();
     setupSbAdmin();
     setupDirtyForms(false);
+    displayScrollButton();
 });
 
 function ajaxCompleted(dirtyignore) {
@@ -51,6 +52,32 @@ function setupDirtyForms(asyncCall) {
         else if ($hasUnsafedChanges.val() != "True") {
             $submitResetButtons.attr('disabled', 'disabled');
             $languageSelect.removeAttr('disabled');
+        }
+    });
+}
+
+function displayScrollButton() {
+    // Smooth scrolling using jQuery easing
+    $('a.js-scroll-trigger').click(function () {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+            if (target.length) {
+                $('html, body').animate({
+                    scrollTop: target.offset().top
+                }, 1000, "easeInOutExpo");
+                return false;
+            }
+        }
+    });
+
+    // Scroll to top button appear
+    $(document).scroll(function () {
+        var scrollDistance = $(this).scrollTop();
+        if (scrollDistance > 100) {
+            $('.scroll-to-top').fadeIn();
+        } else {
+            $('.scroll-to-top').fadeOut();
         }
     });
 }

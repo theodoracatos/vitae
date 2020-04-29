@@ -21,22 +21,19 @@
     <main>
         @RenderBody()
     </main>
-    <footer class="py-4 bg-light mt-auto">
-        <div class="container-fluid">
-            <div class="d-flex align-items-center justify-content-end small mr-2">
+
+    <footer class="bg-light">
+        <div class="w-100">
+            <div class="d-flex justify-content-end small mr-4">
                 <div>
                     <a href="/Privacy">@SharedResource.PrivacyPolicy</a>
                 </div>
                 <div class="ml-1 mr-1">&bull;</div>
                 <div class="text-muted">Copyright &copy; @DateTime.Now.Year, Vitae &middot; Made with <font color="red">❤</font> in Switzerland</div>
-                @*<div>
-            <a href="#">Privacy Policy</a>
-            &middot;
-            <a href="#">Terms &amp; Conditions</a>
-        </div>*@
             </div>
         </div>
     </footer>
+
     <partial name="_Scripts" />
     @RenderSection("Scripts", required: false)
 </body>

@@ -14,17 +14,17 @@
                         <hr />
                         <div class="form-group">
                             <label asp-for="Input.Email"></label>
-                            <input asp-for="Input.Email" class="form-control" />
+                            <input asp-for="Input.Email" class="form-control dirty-ignore" />
                             <span asp-validation-for="Input.Email" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="Input.Password"></label>
-                            <input asp-for="Input.Password" class="form-control" />
+                            <input asp-for="Input.Password" class="form-control dirty-ignore" />
                             <span asp-validation-for="Input.Password" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="Input.ConfirmPassword"></label>
-                            <input asp-for="Input.ConfirmPassword" class="form-control" />
+                            <input asp-for="Input.ConfirmPassword" class="form-control dirty-ignore" />
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
                         <partial name="_StatusMessage" model="new KeyValuePair<bool, string>(ViewData.ModelState.IsValid, string.Empty)" />
