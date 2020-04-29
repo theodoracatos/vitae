@@ -96,19 +96,19 @@ $(document).ready(function () {
                 asyncOnBeforeSend(xhr, method);
                 result = getFunction(element.getAttribute("data-ajax-begin"), ["xhr"]).apply(element, arguments);
                 if (result !== false) {
-                    loading.delay(200).show(0);
+                    loading.removeClass('d-none');
                 }
                 return result;
             },
             complete: function () {
-                loading.hide(duration);
+                loading.addClass('d-none');
                 getFunction(element.getAttribute("data-ajax-complete"), ["xhr", "status"]).apply(element, arguments);
             },
             success: function (data, status, xhr) {
                 asyncOnSuccess(element, data, xhr.getResponseHeader("Content-Type") || "text/html");
                 getFunction(element.getAttribute("data-ajax-success"), ["data", "status", "xhr"]).apply(element, arguments);
                 ajaxCompleted(dirtyignore); // QVS
-                loading.hide();
+                loading.addClass('d-none');
             },
             error: function () {
                 getFunction(element.getAttribute("data-ajax-failure"), ["xhr", "status", "error"]).apply(element, arguments);
@@ -189,6 +189,8 @@ $(document).ready(function () {
         $(form).attr('data-ajax-update', $(this).attr('data-ajax-update'));
         $(form).attr('data-ajax', 'true');
         $(form).attr('data-dirty-ignore', $(this).hasClass('dirty-ignore'));
+        $(form).attr('data-ajax-loading', $(this).attr('data-ajax-loading'));
+        $(form).attr('data-ajax-loading-duration', $(this).attr('data-ajax-loading-duration'));
         form.data(data_click, name ? [{ name: name, value: evt.currentTarget.value }] : []);
         form.data(data_target, target);
     });

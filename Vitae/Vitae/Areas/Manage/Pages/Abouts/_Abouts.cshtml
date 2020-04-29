@@ -67,7 +67,7 @@
 
             <input type="hidden" asp-for="@Model.About.Vfile.FileName" />
             <input type="hidden" asp-for="@Model.About.Vfile.Identifier" value="@Model.About.Vfile.Identifier" />
-            <input type="text" asp-for="@Model.About.Photo" class="imgPhoto invisible" />
-            <input id="imgInput" type="file" class="invisible" accept="image/jpeg, image/png" style="height:0; width: 0" />
+            <input type="text" asp-for="@Model.About.Photo" class="imgPhoto d-none" />
+            <input id="imgInput" type="file" class="d-none" accept="image/jpeg, image/png" style="height:0; width: 0" />
         </div>
     </div>

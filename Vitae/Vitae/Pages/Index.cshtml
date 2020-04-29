@@ -7,7 +7,7 @@
 <div class="container-fluid h-100">
     <div class="row h-100">
         <div class="col-xl-6 text-left my-auto">
-            <div class="ml-5 mr-5">
+            <div class="ml-5 pl-3 mr-5">
                 <div class="bg-white-opaque p-5 ml-5 mr-5 mb-5 rounded shadow">
                     <h1>@(CodeHelper.GetStaticPropValue(typeof(SharedResource), $"AdTextA{new Random().Next() % 3}"))</h1>
                     <h2 class="mb-5">@SharedResource.AdTextB0</h2>
@@ -18,10 +18,10 @@
             </div>
         </div>
         <div class="col-xl-6 d-none d-xl-block text-center my-auto">
-            <div class="ml-5 mr-5">
-                    <div class="mr-5">
-                        <img src="~/img/Preview.png" alt="Vitae" class="fit-image" />
-                    </div>
+            <div class="mr-5 mb-5">
+                <div class="mr5">
+                    <img src="~/img/Preview.png" alt="Vitae" class="fit-image" />
+                </div>
             </div>
         </div>
     </div>

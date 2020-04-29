@@ -7,14 +7,15 @@ $(document).ready(function () {
     addJQueryValidators();
     loadingProcedure();
     setupSbAdmin();
-    setupDirtyForms(false);
     displayScrollButton();
+    setupDirtyForms(false);
 });
 
 function ajaxCompleted(dirtyignore) {
     addJQueryValidators();
     loadingProcedure();
     startRating();
+    showDynamicContent();
     resetFormValidator('form');
     if (dirtyignore === 'false') {
         setupDirtyForms(true);
@@ -26,7 +27,7 @@ function setupDirtyForms(asyncCall) {
         setDirty();
     }
     else {
-        $('form').dirtyForms({
+        $('form:not(.nodirty)').dirtyForms({
             ignoreSelector: '.dirty-ignore',
             helpers:
                 [
@@ -54,6 +55,11 @@ function setupDirtyForms(asyncCall) {
             $languageSelect.removeAttr('disabled');
         }
     });
+}
+
+function showDynamicContent() {
+    $('.footer-content').fadeIn(2000);
+    $('.footer-content').removeClass('d-none');
 }
 
 function displayScrollButton() {
@@ -180,7 +186,7 @@ function drawChart(chartId, title, xLabels, yValues, color) {
                 ticks: {
                     min: 0,
                     beginAtZero: true
-                },
+                }, 
                 gridLines: {
                     display: true,
                     //color: 'rgba(208, 187, 149, 0.15)'
@@ -198,10 +204,10 @@ function drawChart(chartId, title, xLabels, yValues, color) {
 
 function getColor(color, isBgColor) {
     if (isBgColor) {
-        return color == 'gold' ? 'rgba(183, 158, 103, 0.5)' : 'red' ? 'rgba(239, 110, 126, 0.5)' : '';
+        return color == 'gold' ? 'rgba(183, 158, 103, 0.5)' : 'red' ? 'rgba(239, 110, 126, 0.5)' : 'blue' ? 'rgba(0, 22, 254, 0.5)' : '';
     }
     else {
-        color == 'gold' ? 'rgba(183, 158, 103, 1)' : 'red' ? 'rgba(239, 110, 126, 1)' : '';
+        color == 'gold' ? 'rgba(183, 158, 103, 1)' : 'red' ? 'rgba(239, 110, 126, 1)' : 'blue' ? 'rgba(0, 22, 254, 0.5)' : '';
     }
 }
 
@@ -279,10 +285,34 @@ function loadingProcedure() {
     initializeTagsinput();
     loadDisabledLinkMessage();
     assignCollapser();
+    loadDynamicContent();
 }
 
 function setupAutosize() {
     autosize($('textarea'));
+}
+
+function loadDynamicContent() {
+    let lastScrollTop = 0;
+    $(window).scroll(function (event) {
+        let st = $(this).scrollTop();
+
+        if (st > lastScrollTop) {
+            // downscroll code
+            $(".partial").each(function (index) {
+                if (index == 0 && !$(this).hasClass('clicked')) {
+                    if ($(this).visible()) {
+                        $(this).trigger('click');
+                        $(this).addClass('clicked');
+                    }
+                }
+            });
+
+        } else {
+            // upscroll code
+        }
+        lastScrollTop = st;
+    });
 }
 
 function assignCollapser() {

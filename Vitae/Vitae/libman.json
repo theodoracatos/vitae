@@ -80,6 +80,10 @@
     {
       "library": "jquery-easing@1.4.1",
       "destination": "wwwroot/lib/jquery-easing/"
+    },
+    {
+      "library": "jquery-visible@1.2.0",
+      "destination": "wwwroot/lib/jquery-visible/"
     }
   ]
 }

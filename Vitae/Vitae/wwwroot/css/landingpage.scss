@@ -107,6 +107,29 @@ footer {
     width: 100%;
 }
 
+.footer-content {
+    background-color: $text-white;
+    box-shadow: 0 2px 18px 1px $qvs-box-shadow-form;
+    margin: 2em;
+    padding: 1em;
+    padding-top: 2em;
+    border-radius: 12px;
+}
+
+.footer-content p {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+}
+
+.footer-content h1 {
+    text-transform: uppercase;
+}
+
+.footer-content a {
+    cursor: pointer;
+}
+
 .lato-bold {
     font-family: Lato-Bold, Helvetica, Arial, sans-serif;
 }
@@ -122,7 +145,7 @@ footer {
 
 .fit-image {
     width: 100%;
-    height: 350px;
+    height: 450px;
     object-fit: contain !important;
 }
 
@@ -138,91 +161,3 @@ footer {
     border-radius: 0;
     background-color: rgba(255,255,255, 0.9) !important;
 }
-
-/*html, body {
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    display: -ms-flexbox;
-    display: flex;
-    color: #fff;
-    background: url("/img/Background.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}
-
-h1 {
-    font-family: "Lato";
-    font-weight: bold;
-}
-
-h2 {
-    font-size: 1.25em !important;
-}
-
-header {
-    height: 60px;
-}
-
-main {
-    flex: auto;
-}
-
-footer {
-    height: 60px;
-    opacity: 0.9;
-}
-
-.leftbox {
-    margin-top: 24%;
-    margin-left: 17%;
-    margin-right: 17%;
-}
-
-.rightbox {
-    margin: 20% 27% 0 10%;
-}
-
-img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.jumbotron {
-    margin-top: 2rem !important;
-    background-color: rgba(233,236,239, 0.95) !important;
-    box-shadow: 0 2px 18px 1px rgba(49,53,72,.1);
-    border: 1px solid rgba(0,0,0,.125);
-    margin-bottom: 0px !important;
-}
-
-#cookieConsent {
-    position: absolute;
-    top: 60px;
-    width: 100%;
-    padding-right: 1em;
-    line-height: 38px;
-    z-index: 2;
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-}
-
-.infobox{
-    margin-bottom: 4em;
-}
-
-.content {
-    background-color: rgba(251, 252, 253, 0.95);
-    margin: 2em 1em;
-    padding: 2em;
-    height: 100%;
-}*/
