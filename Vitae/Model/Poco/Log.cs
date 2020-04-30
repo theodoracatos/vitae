@@ -13,13 +13,15 @@ namespace Model.Poco
 
         public Guid CurriculumID { get; set; }
 
+        public Guid? PublicationID { get; set; }
+
         public LogLevel LogLevel { get; set; }
 
         [MaxLength(100)]
         public LogArea LogArea { get; set; }
 
         [MaxLength(2000)]
-        public string Page { get; set; }
+        public string Link { get; set; }
 
         [MaxLength(50)]
         public string IpAddress { get; set; }

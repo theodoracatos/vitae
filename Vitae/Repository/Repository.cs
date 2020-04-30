@@ -30,15 +30,16 @@ namespace Library.Repository
 
         #region API
 
-        public async Task LogAsync (Guid curriculumID, LogArea logArea, LogLevel logLevel, string page, string userAgent, string userLanguage, string ipAddress, string message = null)
+        public async Task LogAsync(Guid curriculumID, Guid? publicationID, LogArea logArea, LogLevel logLevel, string link, string userAgent, string userLanguage, string ipAddress, string message = null)
         {
             vitaeContext.Logs.Add(new Log()
             {
                 CurriculumID = curriculumID,
+                PublicationID = publicationID,
                 LogArea = logArea,
                 IpAddress = ipAddress,
                 LogLevel = logLevel,
-                Page = page,
+                Link = link,
                 UserAgent = userAgent,
                 UserLanguage = userLanguage,
                 Message = message,
@@ -689,33 +690,21 @@ namespace Library.Repository
             return !string.IsNullOrEmpty(countryCode) ? "+" + vitaeContext.Countries.Where(c => c.CountryCode == countryCode).Select(c => c.PhoneCode).Single().ToString() : string.Empty;
         }
 
-        public IList<LogVM> GetHits(Guid curriculumID, int? days = null)
+        public IList<LogVM> GetHits(Guid curriculumID, int? days = null, int hits = 1000)
         {
             var lastHits = vitaeContext.Logs
                 .Where(l => l.CurriculumID == curriculumID && l.LogArea == LogArea.Access)
                 .Where(l => !days.HasValue || l.Timestamp > DateTime.Now.Date.AddDays(-days.Value))
-                .GroupBy(l => l.Timestamp.Date)
+                .GroupBy(l => new { l.Timestamp.Date, l.PublicationID } )
+                .Take(hits)
                 .Select(l => new LogVM()
                 {
                     Hits = l.Count(),
-                    LogDate = l.Key
+                    LogDate = l.Key.Date,
+                    PublicationID = l.Key.PublicationID.Value
                 }).ToList();
 
             return lastHits;
-        }
-
-        public IList<LogVM> GetAllHits(Guid curriculumID)
-        {
-            var lastHits = GetHits(curriculumID);
-            var allLogins = new List<LogVM>();
-            var currentHits = 0;
-            foreach (var hit in lastHits)
-            {
-                currentHits += hit.Hits;
-                allLogins.Add(new LogVM() { Hits = currentHits, LogDate = hit.LogDate });
-            }
-
-            return allLogins;
         }
 
         public IList<LogVM> GetLogins(Guid curriculumID, int? days = null)

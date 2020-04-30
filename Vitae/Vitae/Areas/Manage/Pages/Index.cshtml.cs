@@ -17,6 +17,7 @@ namespace Vitae.Areas.Manage.Pages
 {
     public class IndexModel : BasePageModel
     {
+        private const int HITS = 100;
         private const int DAYS = 30;
 
         public ReportVM Report { get; set; }
@@ -31,12 +32,42 @@ namespace Vitae.Areas.Manage.Pages
 
         protected override void FillSelectionViewModel()
         {
+            var lastHits = repository.GetHits(curriculumID, days: DAYS);
+            var lastHits_Dates = lastHits.OrderBy(l => l.LogDate).Select(l => l.LogDate.ToString("dd.MM")).Distinct();
+            var lastHits_PublicationIds = lastHits.OrderBy(l => l.LogDate).Select(l => l.PublicationID).Distinct();
+
+            var lastHitsHits = new List<List<int>>();
+            foreach (var pubId in lastHits_PublicationIds)
+            {
+                var filteredHits = lastHits.Where(l => l.PublicationID == pubId);
+                lastHitsHits.Add(GetHits(lastHits_Dates, filteredHits, pubId));
+            }
+
             Report = new ReportVM()
             {
-                LastHits = repository.GetHits(curriculumID, DAYS),
+                LastHits = (lastHits_Dates, lastHitsHits, lastHits_PublicationIds),
                 Logins = repository.GetLogins(curriculumID, DAYS),
-                SumHits = repository.GetHits(curriculumID)
+                SumHits = repository.GetHits(curriculumID, hits: HITS)
             };
+        }
+
+        private List<int> GetHits(IEnumerable<string> dates, IEnumerable<LogVM> hits, Guid guid)
+        {
+            var hitlist = new List<int>(); 
+
+            foreach(var date in dates)
+            {
+                if(hits.Any(h => h.LogDate.ToString("dd.MM") == date))
+                {
+                    hitlist.Add(hits.Single(h => h.LogDate.ToString("dd.MM") == date).Hits);
+                }
+                else
+                {
+                    hitlist.Add(0);
+                }
+            }
+
+            return hitlist;
         }
     }
 }

@@ -91,7 +91,7 @@ namespace Vitae.Areas.CV.Pages
             }
             else
             {
-                return await LoadPageAsync(curriculumID, culture, id.HasValue);
+                return await LoadPageAsync(curriculumID.Value, id, culture, id.HasValue);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Vitae.Areas.CV.Pages
 
                 if (AesHandler.Decrypt(password, curriculumID.ToString()) == Password)
                 {
-                    return await LoadPageAsync(curriculumID, culture, id.HasValue);
+                    return await LoadPageAsync(curriculumID.Value, id, culture, id.HasValue);
                 }
                 else
                 {
@@ -132,9 +132,9 @@ namespace Vitae.Areas.CV.Pages
 
         #region Helper
 
-        private async Task<PageResult> LoadPageAsync(Guid? curriculumID, string lang, bool log)
+        private async Task<PageResult> LoadPageAsync(Guid curriculumID, Guid? publicationID, string lang, bool log)
         {
-            var curriculum = await repository.GetCurriculumAsync(curriculumID.Value);
+            var curriculum = await repository.GetCurriculumAsync(curriculumID);
             language = string.IsNullOrEmpty(lang) ? curriculum.CurriculumLanguages.OrderBy(c => c.Order).First().Language.LanguageCode : lang;
 
             PersonalDetail = repository.GetPersonalDetail(curriculum);
@@ -159,7 +159,7 @@ namespace Vitae.Areas.CV.Pages
             // Log
             if (log)
             {
-                await repository.LogAsync(curriculum.CurriculumID, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
+                await repository.LogAsync(curriculum.CurriculumID, publicationID, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
             }
 
             FillSelectionViewModel();

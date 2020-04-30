@@ -4,8 +4,9 @@
     ViewData["Title"] = SharedResource.Homepage;
 }
 @{
-    var xLabelsHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.LastHits.Select(x => x.LogDate.ToString("dd.MM")).ToList());
-    var yValuesHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.LastHits.Select(y => y.Hits).ToList());
+    var xLabelsHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.LastHits.Item1);
+    var yValuesHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.LastHits.Item2);
+    var yLabelsHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.LastHits.Item3);
 
     var xLabelsLogins = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Logins.Select(x => x.LogDate.ToString("dd.MM")).ToList());
     var yValuesLogins = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Logins.Select(y => y.Hits).ToList());
@@ -47,9 +48,9 @@
 
             <script type="text/javascript">
         $(function () {
-            drawChart('chartHits', Resources.SharedResource.NrOfCVHits, @Html.Raw(xLabelsHits), @Html.Raw(yValuesHits), 'gold');
-            drawChart('chartLogins', Resources.SharedResource.NrOfLogins, @Html.Raw(xLabelsLogins), @Html.Raw(yValuesLogins), 'gold');
-            drawChart('chartMaxHits', Resources.SharedResource.SumOfCVHits, @Html.Raw(xLabelsSumHits), @Html.Raw(yValuesSumHits), 'blue');
+            drawChart('chartHits', Resources.SharedResource.NrOfCVHits, @Html.Raw(xLabelsHits), @Html.Raw(yValuesHits),  @Html.Raw(yLabelsHits));
+            @*drawChart('chartLogins', Resources.SharedResource.NrOfLogins, @Html.Raw(xLabelsLogins), @Html.Raw(yValuesLogins), 'gold');
+            drawChart('chartMaxHits', Resources.SharedResource.SumOfCVHits, @Html.Raw(xLabelsSumHits), @Html.Raw(yValuesSumHits), 'blue');*@
         });
             </script>
         }

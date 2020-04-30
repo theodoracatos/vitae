@@ -7,5 +7,7 @@ namespace Model.ViewModels.Reports
         public DateTime LogDate { get; set; }
 
         public int Hits { get; set; }
+
+        public Guid PublicationID { get; set; }
     }
 }

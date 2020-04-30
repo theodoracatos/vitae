@@ -710,6 +710,10 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(2000)")
+                        .HasMaxLength(2000);
+
                     b.Property<int>("LogArea")
                         .HasColumnType("int")
                         .HasMaxLength(100);
@@ -721,9 +725,8 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.Property<string>("Page")
-                        .HasColumnType("nvarchar(2000)")
-                        .HasMaxLength(2000);
+                    b.Property<Guid?>("PublicationID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");

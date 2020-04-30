@@ -105,9 +105,9 @@ function setDirty() {
 }
 
 function drawRadar(chartId, title, labels, dataset, color) {
-    var canvas: any = document.getElementById(chartId);
-    var ctx = canvas.getContext("2d");
-    var bgColor = getColor(color, true);
+    let canvas: any = document.getElementById(chartId);
+    let ctx = canvas.getContext("2d");
+    let bgColor = getColor(0);
 
     var data = {
         labels: labels,
@@ -119,7 +119,7 @@ function drawRadar(chartId, title, labels, dataset, color) {
         }]
     };
 
-    var options = {
+    let options = {
         legend: {
             position: 'top',
             display: false
@@ -143,31 +143,45 @@ function drawRadar(chartId, title, labels, dataset, color) {
     }); 
 }
 
-function drawChart(chartId, title, xLabels, yValues, color) {
-    var canvas: any = document.getElementById(chartId);
-    var ctx = canvas.getContext("2d");
-    var bgColor = getColor(color, true);
-    var data = {
-        labels: xLabels,
-        datasets: [{
-        fill: true,
-        lineTension: 0.1,
-        backgroundColor: [
-            bgColor
-        ],
-      // borderColor: bgColor,
-        borderWidth: 1,
-            data: yValues
-         }]};
+function drawChart(chartId, title, xLabels, yValues, yLabels) {
+    let canvas: any = document.getElementById(chartId);
+    let ctx = canvas.getContext("2d");
 
-    var options = {
+    var datasets = [];
+    $(yValues).each(function (index) {
+        let bgColor = getColor(index);
+        let d = {
+            label: yLabels[index],
+            fill: true,
+            lineTension: 0.1,
+            backgroundColor: [
+                bgColor
+            ],
+            borderColor: bgColor,
+            borderWidth: 1,
+            data: $(this)
+        }
+        datasets.push(d);
+    });
+
+    let data = {
+        labels: xLabels,
+        datasets: datasets
+    };
+
+    let options = {
+        responsive: true,
         maintainAspectRatio: false,
         legend: {
-            display: false
+            display: true
         },
         title: {
             display: true,
             text: title
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true
         },
         scales: {
             yAxes: [{
@@ -202,12 +216,38 @@ function drawChart(chartId, title, xLabels, yValues, color) {
     });  
 }
 
-function getColor(color, isBgColor) {
-    if (isBgColor) {
-        return color == 'gold' ? 'rgba(183, 158, 103, 0.5)' : 'red' ? 'rgba(239, 110, 126, 0.5)' : 'blue' ? 'rgba(0, 22, 254, 0.5)' : '';
-    }
-    else {
-        color == 'gold' ? 'rgba(183, 158, 103, 1)' : 'red' ? 'rgba(239, 110, 126, 1)' : 'blue' ? 'rgba(0, 22, 254, 0.5)' : '';
+function getColor(index) {
+    switch (index) {
+        case 0: default: {
+            return 'rgba(63, 81, 181, 0.5)';
+        }
+        case 1: {
+            return 'rgba(76, 175, 80, 0.5)';
+        }
+        case 2: {
+            return 'rgba(255, 152, 0, 0.5)';
+        }
+        case 3: {
+            return 'rgba(244, 67, 54, 0.5)';
+        }
+        case 4: {
+            return 'rgba(255, 235, 59, 0.5)';
+        }
+        case 5: {
+            return 'rgba(103, 58, 183, 0.5)';
+        }
+        case 6: {
+            return 'rgba(233, 30, 99, 0.5)';
+        }
+        case 7: {
+            return 'rgba(0, 188, 212,0.5)';
+        }
+        case 8: {
+            return 'rgba(96, 125, 139,0.5)';
+        }
+        case 9: {
+            return 'rgba(121, 85, 72,0.5)';
+        }
     }
 }
 

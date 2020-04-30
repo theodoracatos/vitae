@@ -2412,7 +2412,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sum of CV calls.
+        ///   Looks up a localized string similar to Sum of last CV calls (last 100).
         /// </summary>
         public static string SumOfCVHits {
             get {

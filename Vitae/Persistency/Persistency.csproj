@@ -92,6 +92,12 @@
     <Compile Remove="Migrations\20200425210539_v.1.0.0.Designer.cs" />
     <Compile Remove="Migrations\20200426165812_v.1.0.0.cs" />
     <Compile Remove="Migrations\20200426165812_v.1.0.0.Designer.cs" />
+    <Compile Remove="Migrations\20200427220227_v.1.0.0.cs" />
+    <Compile Remove="Migrations\20200427220227_v.1.0.0.Designer.cs" />
+    <Compile Remove="Migrations\20200429200627_v.1.0.0.cs" />
+    <Compile Remove="Migrations\20200429200627_v.1.0.0.Designer.cs" />
+    <Compile Remove="Migrations\20200430180645_v.1.0.0.cs" />
+    <Compile Remove="Migrations\20200430180645_v.1.0.0.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
