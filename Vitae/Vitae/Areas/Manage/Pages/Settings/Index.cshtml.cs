@@ -63,7 +63,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
                         {
                             Copy = false,
                             FormerLanguageCode = cl.LanguageCode,
-                            NrOfItems = repository.CountItemsFromCurriculumLanguageAsync(curriculumID, cl.LanguageCode).Result
+                            NrOfItems = (repository.CountItemsFromCurriculumLanguageAsync(curriculumID, cl.LanguageCode).Result).Sum(i => i.Value)
                         }).ToList()
                 };
 
@@ -145,7 +145,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
                     }
 
                     // Update View Model
-                    var nrOfItems = repository.CountItemsFromCurriculumLanguageAsync(curriculumID, newLanguage.LanguageCode).Result;
+                    var nrOfItems = (await repository.CountItemsFromCurriculumLanguageAsync(curriculumID, newLanguage.LanguageCode)).Sum(i => i.Value);
                     Setting.SettingItems[i].Copy = false;
                     Setting.SettingItems[i].FormerLanguageCode = newLanguage.LanguageCode;
                     Setting.SettingItems[i].NrOfItems = nrOfItems;

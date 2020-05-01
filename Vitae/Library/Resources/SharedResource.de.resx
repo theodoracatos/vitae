@@ -903,7 +903,7 @@ Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und
     <value>Übermitteln</value>
   </data>
   <data name="SumOfCVHits" xml:space="preserve">
-    <value>Summer aller CV-Aufrufe (letzte 100)</value>
+    <value>Summer aller CV-Aufrufe (letzte 50)</value>
   </data>
   <data name="SupplyCode" xml:space="preserve">
     <value>Für das Zurücksetzen des Passworts muss ein Code angegeben werden.</value>

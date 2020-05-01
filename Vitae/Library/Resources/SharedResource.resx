@@ -903,7 +903,7 @@ This website requires cookies to optimize the content of its web pages and to pr
     <value>Submit</value>
   </data>
   <data name="SumOfCVHits" xml:space="preserve">
-    <value>Sum of last CV calls (last 100)</value>
+    <value>Sum of last CV calls (last 50)</value>
   </data>
   <data name="SupplyCode" xml:space="preserve">
     <value>A code must be supplied for password reset.</value>

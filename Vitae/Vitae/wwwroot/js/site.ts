@@ -104,18 +104,18 @@ function setDirty() {
     $languageSelect.attr('disabled', 'disabled');
 }
 
-function drawRadar(chartId, title, labels, dataset, color) {
+function drawRadar(chartId, title, xLabels, yValues) {
     let canvas: any = document.getElementById(chartId);
     let ctx = canvas.getContext("2d");
     let bgColor = getColor(0);
 
     var data = {
-        labels: labels,
+        labels: xLabels,
         datasets: [{
             backgroundColor: [
                 bgColor
             ],
-            data: dataset
+            data: yValues
         }]
     };
 
