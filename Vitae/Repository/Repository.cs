@@ -203,7 +203,7 @@ namespace Library.Repository
 
             return curriculumQuery.Single();
         }
-
+        
         public async Task<Curriculum> GetCurriculumAsync<T>(Guid curriculumID) where T : Base
         {
             var curriculumQuery = vitaeContext.Curriculums

@@ -171,6 +171,9 @@
   <data name="AnonymizeDescription" xml:space="preserve">
     <value>Einige Personalien werden versteckt</value>
   </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Möchten Sie diesen Eintrag wirklich löschen?</value>
+  </data>
   <data name="Association" xml:space="preserve">
     <value>Verein / Club</value>
   </data>
@@ -294,7 +297,7 @@
   <data name="Copy" xml:space="preserve">
     <value>Kopieren</value>
   </data>
-  <data name="Copy Values" xml:space="preserve">
+  <data name="CopyValues" xml:space="preserve">
     <value>Werte kopieren</value>
   </data>
   <data name="CopyValuesDescription" xml:space="preserve">

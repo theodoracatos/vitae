@@ -82,9 +82,6 @@ namespace Vitae.Areas.Manage.Pages.References
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
-
-                // A change occured
-                HasUnsafedChanges = false;
             }
 
             FillSelectionViewModel();
@@ -175,7 +172,7 @@ namespace Vitae.Areas.Manage.Pages.References
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_REFERENCES, hasUnsafedChanges: false);
+            return GetPartialViewResult(PAGE_REFERENCES);
         }
 
         public async Task<IActionResult> OnPostLanguageChangeAsync()
@@ -184,7 +181,7 @@ namespace Vitae.Areas.Manage.Pages.References
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_REFERENCES, hasUnsafedChanges: false);
+            return GetPartialViewResult(PAGE_REFERENCES);
         }
 
         #endregion

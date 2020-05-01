@@ -79,9 +79,6 @@ namespace Vitae.Areas.Manage.Pages.Publications
 
                 await vitaeContext.SaveChangesAsync();
 
-                // A change occured
-                HasUnsafedChanges = false;
-
                 // Set link & QR-Code
                 Publications.Cast<PublicationVM>().ToList().ForEach(p =>
                 {
@@ -157,7 +154,7 @@ namespace Vitae.Areas.Manage.Pages.Publications
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_PUBLICATION, hasUnsafedChanges: false);
+            return GetPartialViewResult(PAGE_PUBLICATION);
         }
 
         public IActionResult OnPostEnablePassword(int order)

@@ -55,6 +55,11 @@ function setupDirtyForms(asyncCall) {
             $languageSelect.removeAttr('disabled');
         }
     });
+
+    $(document).bind('dirty.dirtyforms', function (event) {
+        // Access the form that triggered the event
+        var $form = $(event.target);
+    });
 }
 
 function showDynamicContent() {
@@ -217,7 +222,7 @@ function drawChart(chartId, title, xLabels, yValues, yLabels) {
 }
 
 function getColor(index) {
-    switch (index) {
+    switch (index % 10) {
         case 0: default: {
             return 'rgba(63, 81, 181, 0.5)';
         }

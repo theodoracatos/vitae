@@ -6,7 +6,7 @@
     </div>
     <div id="languageSelect" class="float-right">
         <i class="fa fa-flag fa-fw"></i><label class="control-label" for="lang">@SharedResource.CVLanguage</label>
-        <select asp-for="@Model.Item1.CurriculumLanguageCode"  asp-disabled="@Model.Item1.HasUnsafedChanges" class="form-control dirty-ignore cancel" onchange="setHiddenLanguageSelect(); $('#btnLanguageChange').trigger('click')" asp-items="@(new SelectList(Model.Item1.CurriculumLanguages, "LanguageCode", "Name"))"></select>
+        <select asp-for="@Model.Item1.CurriculumLanguageCode" class="form-control dirty-ignore cancel" onchange="setHiddenLanguageSelect(); $('#btnLanguageChange').trigger('click')" asp-items="@(new SelectList(Model.Item1.CurriculumLanguages, "LanguageCode", "Name"))"></select>
         <input id="@nameof(Model.Item1.CurriculumLanguageCode)" type="hidden" name="@nameof(Model.Item1.CurriculumLanguageCode)" value="@Model.Item1.CurriculumLanguageCode" />
     </div>
 </div>

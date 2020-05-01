@@ -171,6 +171,9 @@
   <data name="AnonymizeDescription" xml:space="preserve">
     <value>Some personal details will be hidden</value>
   </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Do you really want to delete this item?</value>
+  </data>
   <data name="Association" xml:space="preserve">
     <value>Association</value>
   </data>

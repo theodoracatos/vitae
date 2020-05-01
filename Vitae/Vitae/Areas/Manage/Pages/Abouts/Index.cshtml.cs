@@ -122,9 +122,6 @@ namespace Vitae.Areas.Manage.Pages.Abouts
                 {
                     About.Vfile.Identifier = about.Vfile.VfileID;
                 }
-
-                // A change occured
-                HasUnsafedChanges = false;
             }
 
             FillSelectionViewModel();
@@ -149,7 +146,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             await LoadAbouts(CurriculumLanguageCode);
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_ABOUTS, hasUnsafedChanges: false);
+            return GetPartialViewResult(PAGE_ABOUTS);
         }
 
         #endregion

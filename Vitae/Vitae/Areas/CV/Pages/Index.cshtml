@@ -42,14 +42,12 @@
         <a class="js-scroll-trigger mt-1 mb-1" href="#page-top">
             <img src="~/img/Logo.png" class="" title="Vitae" />
         </a>
-        @if (Model.PersonalDetail.Gender != null)
-        {
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span class="d-none d-lg-block">
-                    <img class="img-fluid img-profile rounded-circle mx-auto" src="@(string.IsNullOrEmpty(about?.Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : about.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
-                </span>
-            </a>
-        }
+
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <span class="d-none d-lg-block">
+                <img class="img-fluid img-profile rounded-circle mx-auto" src="@(string.IsNullOrEmpty(about?.Photo) ? (Model.PersonalDetail.Gender == null || Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : about.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
+            </span>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

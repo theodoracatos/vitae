@@ -153,9 +153,6 @@ namespace Vitae.Areas.Manage.Pages.Settings
                     ModelState.SetModelValue($"{nameof(Setting)}.{nameof(Setting.SettingItems)}[{i}].{nameof(SettingItemVM.FormerLanguageCode)}", new ValueProviderResult(newLanguage.LanguageCode, CultureInfo.InvariantCulture));
                     ModelState.SetModelValue($"{nameof(Setting)}.{nameof(Setting.SettingItems)}[{i}].{nameof(SettingItemVM.NrOfItems)}", new ValueProviderResult(nrOfItems.ToString(), CultureInfo.InvariantCulture));
                 }
-
-                // A change occured
-                HasUnsafedChanges = false;
             }
 
             FillSelectionViewModel();

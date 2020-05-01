@@ -30,7 +30,7 @@
                     <div class="card-header card-header-small">
                         <div class="float-left">
                             <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark">
-                                @(i + 1). @SharedResource.Publication
+                                @(i + 1). @SharedResource.Publication @($"({@Model.Publications[i].PublicationIdentifier.Substring(0, @Model.Publications[i].PublicationIdentifier.IndexOf("-"))})")
                             </a>
                             <input type="hidden" asp-for="@Model.Publications[i].Order" />
                             <input type="hidden" asp-for="@Model.Publications[i].PublicationIdentifier" />

@@ -71,9 +71,6 @@ namespace Vitae.Areas.Manage.Pages.Skills
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
-
-                // A change occured
-                HasUnsafedChanges = false;
             }
 
             FillSelectionViewModel();
@@ -156,7 +153,7 @@ namespace Vitae.Areas.Manage.Pages.Skills
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_SKILLS, hasUnsafedChanges: false);
+            return GetPartialViewResult(PAGE_SKILLS);
         }
 
         public async Task<IActionResult> OnPostLanguageChangeAsync()
@@ -165,7 +162,7 @@ namespace Vitae.Areas.Manage.Pages.Skills
 
             FillSelectionViewModel();
 
-            return GetPartialViewResult(PAGE_SKILLS, hasUnsafedChanges: false);
+            return GetPartialViewResult(PAGE_SKILLS);
         }
 
         #endregion

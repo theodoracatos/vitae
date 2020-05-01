@@ -43,31 +43,31 @@
                             <button asp-page-handler="UpEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
                             <button asp-page-handler="DownEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1 @(i == Model.Educations.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
                             <button asp-page-handler="CopyEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1" disabled="@(Model.Educations.Count < Model.MaxEducations ? null: "disabled")"><i class="fas fa-copy"></i></button>
-                            <button asp-page-handler="DeleteEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.Educations?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
+                            <button asp-page-handler="DeleteEducation" asp-route-order="@i" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"\"{SharedResource.Education} {(i+1)}\"")" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel dirty-ignore confirmation ml-1" disabled="@(Model.Educations?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
                     <div class="card-body collapse pb-0 @(Model.Educations[i].Collapsed ? null : "show")" id="collapse-@i">
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-5">
                                 <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Educations[i].SchoolName"></label>
                                 <input class="form-control" type="text" asp-for="@Model.Educations[i].SchoolName" />
                                 <span asp-validation-for="@Model.Educations[i].SchoolName" class="text-danger"></span>
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-7">
                                 <label class="control-label" asp-for="@Model.Educations[i].Link"></label>
                                 <input class="form-control" type="text" asp-for="@Model.Educations[i].Link" />
                                 <span asp-validation-for="@Model.Educations[i].Link" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-5">
                                 <label class="control-label" asp-for="@Model.Educations[i].CountryCode"></label>
                                 <select asp-for="@Model.Educations[i].CountryCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
                                     <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                                 </select>
                                 <span asp-validation-for="@Model.Educations[i].CountryCode" class="text-danger"></span>
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-7">
                                 <label class="control-label" asp-for="@Model.Educations[i].City"></label>
                                 <input class="form-control" type="text" asp-for="@Model.Educations[i].City" />
                                 <span asp-validation-for="@Model.Educations[i].City" class="text-danger"></span>
