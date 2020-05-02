@@ -20,48 +20,48 @@
     var yValuesCvCompletenes = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.CvOverview.Item2);
 
 }
-    <div class="card p-4">
-        <div class="row">
-            <div class="col-md-6 mb-4 pr-2-5">
-                <div class="grouping mb-0">
-                    <div class="box-body">
-                        <div class="chart-container">
-                            <canvas id="chartHits" class="w-100 chart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4 pl-2-5">
-                <div class="grouping mb-0">
-                    <div class="box-body">
-                        <div class="chart-container">
-                            <canvas id="chartLogins" class="w-100 chart"></canvas>
-                        </div>
+<div class="card p-4">
+    <div class="row">
+        <div class="col-xl-6 mb-4">
+            <div class="grouping mb-0">
+                <div class="box-body">
+                    <div class="chart-container">
+                        <canvas id="chartHits" class="w-100 chart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 mb-4 pl-2-5">
+        <div class="col-xl-6 mb-4">
+            <div class="grouping mb-0">
                 <div class="box-body">
-                    <div class="grouping mb-0">
-                        <canvas id="chartMaxHits" class="w-100 chart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4 pl-2-5">
-                <div class="box-body">
-                    <div class="grouping mb-0">
-                        <canvas id="chartCvOverview" class="w-100 chart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="chartLogins" class="w-100 chart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xl-6 mb-2">
+            <div class="box-body">
+                <div class="grouping">
+                    <canvas id="chartMaxHits" class="w-100 chart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 mb-2">
+            <div class="box-body">
+                <div class="grouping">
+                    <canvas id="chartCvOverview" class="w-100 chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        @section Scripts {
+@section Scripts {
 
-            <script type="text/javascript">
+    <script type="text/javascript">
         $(function () {
             drawChart('chartHits', Resources.SharedResource.NrOfCVHits, @Html.Raw(xLabelsHits), @Html.Raw(yValuesHits),  @Html.Raw(yLabelsHits));
             drawChart('chartLogins', Resources.SharedResource.NrOfLogins, @Html.Raw(xLabelsLogins), @Html.Raw(yValuesLogins),  @Html.Raw(yLabelsLogins));
@@ -69,5 +69,5 @@
             drawRadar('chartCvOverview', Resources.SharedResource.Overview, @Html.Raw(xLabelsCvCompletenes), @Html.Raw(yValuesCvCompletenes));
 
         });
-            </script>
-        }
+    </script>
+}

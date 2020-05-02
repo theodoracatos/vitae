@@ -44,7 +44,7 @@
                             <button asp-page-handler="UpAbroad" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
                             <button asp-page-handler="DownAbroad" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1 @(i == Model.Abroads.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
                             <button asp-page-handler="CopyAbroad" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1" disabled="@(Model.Abroads.Count < Model.MaxAbroads ? null: "disabled")"><i class="fas fa-copy"></i></button>
-                            <button asp-page-handler="DeleteAbroad" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.Abroads?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
+                            <button asp-page-handler="DeleteAbroad" asp-route-order="@i" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"\"{SharedResource.Abroad} {(i+1)}\"")" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel dirty-ignore confirmation ml-1" disabled="@(Model.Abroads?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
                     <div class="card-body collapse pb-0 @(Model.Abroads[i].Collapsed ? null : "show")" id="collapse-@i">

@@ -17,9 +17,7 @@ function ajaxCompleted(dirtyignore) {
     startRating();
     showDynamicContent();
     resetFormValidator('form');
-    if (dirtyignore === 'false') {
-        setupDirtyForms(true);
-    }
+    setupDirtyForms(dirtyignore === 'false');
 }
 
 function setupDirtyForms(asyncCall) {
@@ -50,10 +48,10 @@ function setupDirtyForms(asyncCall) {
             $submitResetButtons.removeAttr('disabled');
             $languageSelect.attr('disabled', 'disabled');
         }
-        else if ($hasUnsafedChanges.val() != "True") {
-            $submitResetButtons.attr('disabled', 'disabled');
-            $languageSelect.removeAttr('disabled');
-        }
+        //else if ($hasUnsafedChanges.val() != "True") {
+        //    $submitResetButtons.attr('disabled', 'disabled');
+        //    $languageSelect.removeAttr('disabled');
+        //}
     });
 
     $(document).bind('dirty.dirtyforms', function (event) {

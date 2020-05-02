@@ -62,8 +62,33 @@ namespace Vitae.Areas.Manage.Pages.Educations
 
         public async Task<IActionResult> OnPostAsync()
         {
-            await SaveAsync();
+            if (ModelState.IsValid)
+            {
+                var curriculum = await repository.GetCurriculumAsync<Education>(curriculumID);
+                vitaeContext.RemoveRange(curriculum.Educations.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
+                Educations.Select(e => new Poco.Education()
+                {
+                    City = e.City,
+                    Start = new DateTime(e.Start_Year, e.Start_Month, 1),
+                    End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, 1),
+                    Grade = e.Grade,
+                    Order = e.Order,
+                    Description = e.Description,
+                    Link = e.Link,
+                    SchoolName = e.SchoolName,
+                    Subject = e.Subject,
+                    Title = e.Title,
+                    Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode),
+                    CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
+                }).ToList().ForEach(e => curriculum.Educations.Add(e));
+                curriculum.LastUpdated = DateTime.Now;
+
+                await vitaeContext.SaveChangesAsync();
+            }
+
+            FillSelectionViewModel();
+            
             return Page();
         }
 
@@ -128,7 +153,17 @@ namespace Vitae.Areas.Manage.Pages.Educations
         {
             Delete(Educations, order);
 
-            await SaveAsync();
+            var curriculum = await repository.GetCurriculumAsync<Education>(curriculumID);
+
+            var item = curriculum.Educations.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
+            if (item != null)
+            {
+                vitaeContext.Remove(item);
+                curriculum.Educations.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
+
+                await vitaeContext.SaveChangesAsync();
+            }
+            FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EDUCATIONS);
         }
@@ -174,36 +209,6 @@ namespace Vitae.Areas.Manage.Pages.Educations
             CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
-        }
-
-        private async Task SaveAsync()
-        {
-            if (ModelState.IsValid)
-            {
-                var curriculum = await repository.GetCurriculumAsync<Education>(curriculumID);
-                vitaeContext.RemoveRange(curriculum.Educations.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
-
-                Educations.Select(e => new Poco.Education()
-                {
-                    City = e.City,
-                    Start = new DateTime(e.Start_Year, e.Start_Month, 1),
-                    End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, 1),
-                    Grade = e.Grade,
-                    Order = e.Order,
-                    Description = e.Description,
-                    Link = e.Link,
-                    SchoolName = e.SchoolName,
-                    Subject = e.Subject,
-                    Title = e.Title,
-                    Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode),
-                    CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
-                }).ToList().ForEach(e => curriculum.Educations.Add(e));
-                curriculum.LastUpdated = DateTime.Now;
-
-                await vitaeContext.SaveChangesAsync();
-            }
-
-            FillSelectionViewModel();
         }
 
         private async Task LoadEducations(string languageCode, Curriculum curr = null)

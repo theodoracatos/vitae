@@ -67,15 +67,15 @@ namespace Vitae.Areas.Manage.Pages.Abroads
                 vitaeContext.RemoveRange(curriculum.Abroads.Where(c => c.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
                 Abroads.Select(e => new Poco.Abroad()
-                    { 
-                        City = e.City,
-                        Start = new DateTime(e.Start_Year, e.Start_Month, 1),
-                        End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, 1),
-                        Order = e.Order,
-                        Description = e.Description,
-                        Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode),
-                        CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
-                    }).ToList().ForEach(a => curriculum.Abroads.Add(a));
+                {
+                    City = e.City,
+                    Start = new DateTime(e.Start_Year, e.Start_Month, 1),
+                    End = e.UntilNow ? null : (DateTime?)new DateTime(e.End_Year.Value, e.End_Month.Value, 1),
+                    Order = e.Order,
+                    Description = e.Description,
+                    Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode),
+                    CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
+                }).ToList().ForEach(a => curriculum.Abroads.Add(a));
                 curriculum.LastUpdated = DateTime.Now;
 
                 await vitaeContext.SaveChangesAsync();
@@ -143,10 +143,20 @@ namespace Vitae.Areas.Manage.Pages.Abroads
             return GetPartialViewResult(PAGE_ABROADS);
         }
 
-        public IActionResult OnPostDeleteAbroad(int order)
+        public async Task<IActionResult> OnPostDeleteAbroad(int order)
         {
             Delete(Abroads, order);
 
+            var curriculum = await repository.GetCurriculumAsync<Abroad>(curriculumID);
+
+            var item = curriculum.Abroads.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
+            if (item != null)
+            {
+                vitaeContext.Remove(item);
+                curriculum.Abroads.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
+
+                await vitaeContext.SaveChangesAsync();
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_ABROADS);

@@ -67,17 +67,17 @@ namespace Vitae.Areas.Manage.Pages.Courses
                 vitaeContext.RemoveRange(curriculum.Courses.Where(c => c.CurriculumLanguage.LanguageCode == CurriculumLanguageCode));
 
                 Courses.Select(c => new Poco.Course()
-                    {
-                        City = c.City,
-                        Start = new DateTime(c.Start_Year, c.Start_Month, c.Start_Day),
-                        End = c.SingleDay ? null : (DateTime?)new DateTime(c.End_Year.Value, c.End_Month.Value, c.End_Day.Value),
-                        Order = c.Order,
-                        Description = c.Description,
-                        Link = c.Link,
-                        SchoolName = c.SchoolName,
-                        Title = c.Title,
-                        Country = vitaeContext.Countries.Single(cc => cc.CountryCode == c.CountryCode),
-                        CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
+                {
+                    City = c.City,
+                    Start = new DateTime(c.Start_Year, c.Start_Month, c.Start_Day),
+                    End = c.SingleDay ? null : (DateTime?)new DateTime(c.End_Year.Value, c.End_Month.Value, c.End_Day.Value),
+                    Order = c.Order,
+                    Description = c.Description,
+                    Link = c.Link,
+                    SchoolName = c.SchoolName,
+                    Title = c.Title,
+                    Country = vitaeContext.Countries.Single(cc => cc.CountryCode == c.CountryCode),
+                    CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode)
                 }).ToList().ForEach(c => curriculum.Courses.Add(c));
                 curriculum.LastUpdated = DateTime.Now;
 
@@ -85,6 +85,7 @@ namespace Vitae.Areas.Manage.Pages.Courses
             }
 
             FillSelectionViewModel();
+
             return Page();
         }
         #endregion
@@ -146,10 +147,20 @@ namespace Vitae.Areas.Manage.Pages.Courses
             return GetPartialViewResult(PAGE_COURSES);
         }
 
-        public IActionResult OnPostDeleteCourse(int order)
+        public async Task<IActionResult> OnPostDeleteCourseAsync(int order)
         {
             Delete(Courses, order);
 
+            var curriculum = await repository.GetCurriculumAsync<Course>(curriculumID);
+
+            var item = curriculum.Courses.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
+            if (item != null)
+            {
+                vitaeContext.Remove(item);
+                curriculum.Courses.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
+
+                await vitaeContext.SaveChangesAsync();
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_COURSES);
