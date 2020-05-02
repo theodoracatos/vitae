@@ -149,7 +149,7 @@ namespace Vitae.Areas.Manage.Pages.Publications
             if (item != null)
             {
                 vitaeContext.Remove(item);
-                curriculum.Publications.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
+                curriculum.Publications.Where(e => e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
 
                 await vitaeContext.SaveChangesAsync();
             }

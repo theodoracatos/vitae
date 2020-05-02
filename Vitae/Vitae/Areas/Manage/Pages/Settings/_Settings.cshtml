@@ -23,7 +23,7 @@
                             <div class="form-group col">
                                 <label class="control-label mr-1">@(i + 1). @SharedResource.CurriculumLanguage</label>
                                 <div class="d-flex">
-                                    <select asp-for="@Model.Setting.CurriculumLanguages[i].LanguageCode" class="form-control selectpicker form-control flex-fill" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Languages.Where(l => l.LanguageCode == Model.Setting.CurriculumLanguages[i].LanguageCode || !Model.Setting.CurriculumLanguages.Select(c => c.LanguageCode).Contains(l.LanguageCode)), "LanguageCode", "Name"))">
+                                    <select asp-for="@Model.Setting.CurriculumLanguages[i].LanguageCode" asp-disabled="@Model.Setting.SettingItems[i].HasPublication" class="form-control selectpicker form-control flex-fill" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Languages.Where(l => l.LanguageCode == Model.Setting.CurriculumLanguages[i].LanguageCode || !Model.Setting.CurriculumLanguages.Select(c => c.LanguageCode).Contains(l.LanguageCode)), "LanguageCode", "Name"))">
                                         <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                                     </select>
                                     <div class="form-control w-auto flex-fill ml-2 @(i == 0 || !string.IsNullOrEmpty(Model.Setting.SettingItems[i].FormerLanguageCode) ? "d-none" : null)">
@@ -34,11 +34,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button asp-page-handler="DeleteCurriculumLanguage" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"{Model.Setting.SettingItems[i].NrOfItems} {(Model.Setting.SettingItems[i].NrOfItems == 1 ? SharedResource.Entry : SharedResource.Entries)}")" style="margin-top: 1px" class="btn btn-sm btn-danger cancel ml-2 form-control w-auto flex-fill @(Model.Setting.SettingItems[i].NrOfItems > 0 ? "confirmation" : null) @(i == 0 ? "d-none" : null)"><i class="far fa-trash-alt"></i></button>
+                                    <button asp-page-handler="DeleteCurriculumLanguage" asp-route-order="@i" asp-disabled="@Model.Setting.SettingItems[i].HasPublication" data-ajax="true" data-ajax-update="#panel" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"{Model.Setting.SettingItems[i].NrOfItems} {(Model.Setting.SettingItems[i].NrOfItems == 1 ? SharedResource.Entry : SharedResource.Entries)}")" style="margin-top: 1px" class="btn btn-sm btn-danger cancel dirty-ignore ml-2 form-control w-auto flex-fill @(Model.Setting.SettingItems[i].NrOfItems > 0 ? "confirmation" : null) @(i == 0 ? "d-none" : null)"><i class="far fa-trash-alt"></i></button>
                                     <input type="hidden" asp-for="@Model.Setting.CurriculumLanguages[i].Order" />
                                     <input type="hidden" asp-for="@Model.Setting.SettingItems[i].FormerLanguageCode" />
                                     <input type="hidden" asp-for="@Model.Setting.SettingItems[i].NrOfItems" />
+                                    <input type="hidden" asp-for="@Model.Setting.SettingItems[i].HasPublication" />
                                 </div>
+                                @if(Model.Setting.SettingItems[i].HasPublication)
+                                {
+                                    <input type="hidden" asp-for="@Model.Setting.CurriculumLanguages[i].LanguageCode" />
+                                    <small class="mt-1">Diese Sprache kann erst geändert werden, wenn sänmtliche Publikationen gelöscht werden.</small>
+                                }
                                 <span asp-validation-for="@Model.Setting.CurriculumLanguages[i].LanguageCode" class="text-danger"></span>
                             </div>
                         </div>

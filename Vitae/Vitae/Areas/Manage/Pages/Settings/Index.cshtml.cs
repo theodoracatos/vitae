@@ -63,7 +63,8 @@ namespace Vitae.Areas.Manage.Pages.Settings
                         {
                             Copy = false,
                             FormerLanguageCode = cl.LanguageCode,
-                            NrOfItems = (repository.CountItemsFromCurriculumLanguageAsync(curriculumID, cl.LanguageCode).Result).Sum(i => i.Value)
+                            NrOfItems = (repository.CountItemsFromCurriculumLanguageAsync(curriculumID, cl.LanguageCode).Result).Sum(i => i.Value),
+                            HasPublication = repository.GetPublications(curriculum, this.BaseUrl).Any(p => p.LanguageCode == cl.LanguageCode)
                         }).ToList()
                 };
 
@@ -76,18 +77,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
         {
             var existingCurriculumLanguages = vitaeContext.CurriculumLanguages.Include(c => c.Language).Include(c => c.Curriculum).Where(cl => cl.CurriculumID == curriculumID);
             var firstLanguage = existingCurriculumLanguages.Single(e => e.Order == 0).Language;
-            var deletedLanguageCodes = existingCurriculumLanguages.ToList().Select(e => e.Language.LanguageCode).Where(lc => !Setting.SettingItems.Any(s => s.FormerLanguageCode == lc));
             var ignoreOrder = new List<int>();
-
-            // Delete
-            await DeleteLanguagesAsync(existingCurriculumLanguages, deletedLanguageCodes);
-
-            // Order
-            for(int i = 0; i < vitaeContext.CurriculumLanguages.Count(cl => cl.CurriculumID == curriculumID); i++)
-            {
-                vitaeContext.CurriculumLanguages.Where(cl => cl.CurriculumID == curriculumID).OrderBy(c => c.Order).ToList()[i].Order = i;
-            }
-            await vitaeContext.SaveChangesAsync();
 
             existingCurriculumLanguages = vitaeContext.CurriculumLanguages.Include(c => c.Language).Include(c => c.Curriculum).Where(cl => cl.CurriculumID == curriculumID);
 
@@ -213,10 +203,21 @@ namespace Vitae.Areas.Manage.Pages.Settings
             return GetPartialViewResult(PAGE_SETTINGS);
         }
 
-        public IActionResult OnPostDeleteCurriculumLanguage(int order)
+        public async Task<IActionResult> OnPostDeleteCurriculumLanguageAsync(int order)
         {
+            var existingCurriculumLanguages = vitaeContext.CurriculumLanguages.Include(c => c.Language).Include(c => c.Curriculum).Where(cl => cl.CurriculumID == curriculumID && cl.Order == order);
             Remove(Setting.CurriculumLanguages, order);
             Setting.SettingItems.Remove(Setting.SettingItems[order]);
+
+            var deletedLanguageCodes = existingCurriculumLanguages.ToList().Select(e => e.Language.LanguageCode);
+
+            // Delete
+            await DeleteLanguagesAsync(existingCurriculumLanguages, deletedLanguageCodes);
+
+            // Order
+            await vitaeContext.CurriculumLanguages.Where(cl => cl.CurriculumID == curriculumID && cl.Order > order).ForEachAsync(c => c.Order = c.Order - 1);
+
+            await vitaeContext.SaveChangesAsync();
 
             FillSelectionViewModel();
 

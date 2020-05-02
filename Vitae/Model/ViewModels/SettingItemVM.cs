@@ -12,5 +12,7 @@ namespace Model.ViewModels
         public string FormerLanguageCode { get; set; }
 
         public int NrOfItems { get; set; }
+
+        public bool HasPublication { get; set; }
     }
 }
