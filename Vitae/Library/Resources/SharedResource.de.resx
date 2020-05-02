@@ -330,6 +330,9 @@
   <data name="CV" xml:space="preserve">
     <value>Lebenslauf</value>
   </data>
+  <data name="CVCompleteness" xml:space="preserve">
+    <value>CV Vollständigkeit</value>
+  </data>
   <data name="CVLanguage" xml:space="preserve">
     <value>CV Sprache</value>
   </data>

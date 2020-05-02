@@ -700,6 +700,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CV completeness.
+        /// </summary>
+        public static string CVCompleteness {
+            get {
+                return ResourceManager.GetString("CVCompleteness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CV language.
         /// </summary>
         public static string CVLanguage {

@@ -20,54 +20,62 @@
     var yValuesCvCompletenes = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.CvOverview.Item2);
 
 }
-<div class="card p-4">
-    <div class="row">
-        <div class="col-xl-6 mb-4">
-            <div class="grouping mb-0">
-                <div class="box-body">
-                    <div class="chart-container">
-                        <canvas id="chartHits" class="w-100 chart"></canvas>
+    <div id="panel">
+        <div class="card">
+            <div class="card-header">
+                <h1><i class="fas fa-chart-line mr-3"></i>@SharedResource.Dashboard</h1>
+                <p>Das Dashboard zeigt Ihnen die den zeitlichen Verlauf der Zugriffe auf Ihren CV sowie andere nützliche Statistiken.</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-6 mb-4">
+                        <div class="grouping mb-0">
+                            <div class="box-body">
+                                <div class="chart-container">
+                                    <canvas id="chartHits" class="w-100 chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 mb-4">
+                        <div class="grouping mb-0">
+                            <div class="box-body">
+                                <div class="chart-container">
+                                    <canvas id="chartLogins" class="w-100 chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-xl-6 mb-4">
-            <div class="grouping mb-0">
-                <div class="box-body">
-                    <div class="chart-container">
-                        <canvas id="chartLogins" class="w-100 chart"></canvas>
+                <div class="row">
+                    <div class="col-xl-6 mb-2">
+                        <div class="box-body">
+                            <div class="grouping">
+                                <canvas id="chartMaxHits" class="w-100 chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 mb-2">
+                        <div class="box-body">
+                            <div class="grouping">
+                                <canvas id="chartCvOverview" class="w-100 chart"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-6 mb-2">
-            <div class="box-body">
-                <div class="grouping">
-                    <canvas id="chartMaxHits" class="w-100 chart"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-6 mb-2">
-            <div class="box-body">
-                <div class="grouping">
-                    <canvas id="chartCvOverview" class="w-100 chart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-@section Scripts {
+        @section Scripts {
 
-    <script type="text/javascript">
+            <script type="text/javascript">
         $(function () {
             drawChart('chartHits', Resources.SharedResource.NrOfCVHits, @Html.Raw(xLabelsHits), @Html.Raw(yValuesHits),  @Html.Raw(yLabelsHits));
             drawChart('chartLogins', Resources.SharedResource.NrOfLogins, @Html.Raw(xLabelsLogins), @Html.Raw(yValuesLogins),  @Html.Raw(yLabelsLogins));
             drawChart('chartMaxHits', Resources.SharedResource.SumOfCVHits, @Html.Raw(xLabelsSumHits), @Html.Raw(yValuesSumHits),  @Html.Raw(yLabelsSumHits));
-            drawRadar('chartCvOverview', Resources.SharedResource.Overview, @Html.Raw(xLabelsCvCompletenes), @Html.Raw(yValuesCvCompletenes));
+            drawRadar('chartCvOverview', Resources.SharedResource.Completeness, @Html.Raw(xLabelsCvCompletenes), @Html.Raw(yValuesCvCompletenes));
 
         });
-    </script>
-}
+            </script>
+        }
