@@ -134,10 +134,20 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
             return GetPartialViewResult(PAGE_SOCIALLINKS);
         }
 
-        public IActionResult OnPostDeleteSocialLink(int order)
+        public async Task<IActionResult> OnPostDeleteSocialLinkAsync(int order)
         {
             Delete(SocialLinks, order);
 
+            var curriculum = await repository.GetCurriculumAsync<SocialLink>(curriculumID);
+
+            var item = curriculum.SocialLinks.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
+            if (item != null)
+            {
+                vitaeContext.Remove(item);
+                curriculum.SocialLinks.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
+
+                await vitaeContext.SaveChangesAsync();
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_SOCIALLINKS);

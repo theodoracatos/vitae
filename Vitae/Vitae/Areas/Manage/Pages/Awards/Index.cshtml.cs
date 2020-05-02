@@ -128,10 +128,20 @@ namespace Vitae.Areas.Manage.Pages.Awards
             return GetPartialViewResult(PAGE_AWARDS);
         }
 
-        public IActionResult OnPostDeleteAward(int order)
+        public async Task<IActionResult> OnPostDeleteAwardAsync(int order)
         {
             Delete(Awards, order);
 
+            var curriculum = await repository.GetCurriculumAsync<Award>(curriculumID);
+
+            var item = curriculum.Awards.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
+            if (item != null)
+            {
+                vitaeContext.Remove(item);
+                curriculum.Awards.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
+
+                await vitaeContext.SaveChangesAsync();
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_AWARDS);

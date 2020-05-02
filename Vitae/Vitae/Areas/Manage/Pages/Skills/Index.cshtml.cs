@@ -124,10 +124,20 @@ namespace Vitae.Areas.Manage.Pages.Skills
             return GetPartialViewResult(PAGE_SKILLS);
         }
 
-        public IActionResult OnPostDeleteSkill(int order)
+        public async Task<IActionResult> OnPostDeleteSkillAsync(int order)
         {
             Delete(Skills, order);
 
+            var curriculum = await repository.GetCurriculumAsync<Skill>(curriculumID);
+
+            var item = curriculum.Skills.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
+            if (item != null)
+            {
+                vitaeContext.Remove(item);
+                curriculum.Skills.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
+
+                await vitaeContext.SaveChangesAsync();
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_SKILLS);
