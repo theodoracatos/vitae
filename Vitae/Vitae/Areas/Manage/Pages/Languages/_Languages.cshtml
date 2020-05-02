@@ -33,7 +33,7 @@
             {
                 <div class="card @(i < Model.LanguageSkills.Count - 1 ? "mb-4" : "mb-2")">
                     <div class="card-header card-header-small">
-                        <div class="float-left">
+                        <div class="float-left line-height-2">
                             <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark">
                                 @(i + 1). @SharedResource.Language
                                 <input type="hidden" asp-for="@Model.LanguageSkills[i].Collapsed" />
@@ -43,7 +43,7 @@
                             <button asp-page-handler="UpLanguageSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
                             <button asp-page-handler="DownLanguageSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1 @(i == Model.LanguageSkills.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
                             <button asp-page-handler="CopyLanguageSkill" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1" disabled="@(Model.LanguageSkills.Count < Model.MaxLanguageSkills ? null: "disabled")"><i class="fas fa-copy"></i></button>
-                            <button asp-page-handler="DeleteLanguageSkill" asp-route-order="@i" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"\"{SharedResource.Language} {(i+1)}\"")" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel dirty-ignore confirmation ml-1" disabled="@(Model.Languages?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
+                            <button asp-page-handler="DeleteLanguageSkill" asp-route-order="@i" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"\"{SharedResource.Language} {(i+1)}\"")" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel dirty-ignore confirmation ml-1" disabled="@(Model.LanguageSkills?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
                     <div class="card-body collapse pb-0 @(Model.LanguageSkills[i].Collapsed ? null : "show")" id="collapse-@i">

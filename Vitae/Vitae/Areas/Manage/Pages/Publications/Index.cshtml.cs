@@ -139,10 +139,20 @@ namespace Vitae.Areas.Manage.Pages.Publications
             return GetPartialViewResult(PAGE_PUBLICATION);
         }
 
-        public IActionResult OnPostDeletePublication(int order)
+        public async Task<IActionResult> OnPostDeletePublicationAsync(int order)
         {
             Delete(Publications, order);
 
+            var curriculum = await repository.GetCurriculumAsync<Publication>(curriculumID);
+
+            var item = curriculum.Publications.SingleOrDefault(e => e.Order == order);
+            if (item != null)
+            {
+                vitaeContext.Remove(item);
+                curriculum.Publications.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
+
+                await vitaeContext.SaveChangesAsync();
+            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_PUBLICATION);

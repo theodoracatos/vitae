@@ -33,7 +33,7 @@
             {
                 <div class="card @(i < Model.Certificates.Count - 1 ? "mb-4" : "mb-2")">
                     <div class="card-header card-header-small">
-                        <div class="float-left">
+                        <div class="float-left line-height-2">
                             <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark">
                                 @(i + 1). @SharedResource.Certificate
                                 <input type="hidden" asp-for="@Model.Certificates[i].Collapsed" />

@@ -1,0 +1,27 @@
+﻿@model Vitae.Areas.CV.Pages.IndexModel
+
+<!-- Modal -->
+<!-- Button trigger modal -->
+<button id="btnShowPasswordModal" type="button" class="btn btn-primary cancel d-none" data-toggle="modal" data-target="#passwordModal"></button>
+<form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-key fa-fw mr-2"></i>@SharedResource.PasswordProtection</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label class="control-label font-weight-bold text-body" asp-for="@Model.Password"></label>
+                    <input type="password" class="form-control mb-1" asp-for="@Model.Password" autofocus />
+                    <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="@SharedResource.Submit" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

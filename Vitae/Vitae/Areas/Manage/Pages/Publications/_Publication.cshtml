@@ -26,11 +26,12 @@
             </div>
             @for (int i = 0; i < Model.Publications.Count; i++)
             {
+                var publicationIdentifier = $"({@Model.Publications[i].PublicationIdentifier.Substring(0, @Model.Publications[i].PublicationIdentifier.IndexOf("-"))})";
                 <div class="card @(i < Model.Publications.Count - 1 ? "mb-4" : "mb-2")">
                     <div class="card-header card-header-small">
                         <div class="float-left">
                             <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark">
-                                @(i + 1). @SharedResource.Publication @($"({@Model.Publications[i].PublicationIdentifier.Substring(0, @Model.Publications[i].PublicationIdentifier.IndexOf("-"))})")
+                                @(i + 1). @SharedResource.Publication @(publicationIdentifier)
                             </a>
                             <input type="hidden" asp-for="@Model.Publications[i].Order" />
                             <input type="hidden" asp-for="@Model.Publications[i].PublicationIdentifier" />
@@ -38,7 +39,7 @@
                         <div class="float-right">
                             <button asp-page-handler="UpPublication" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
                             <button asp-page-handler="DownPublication" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1 @(i == Model.Publications.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
-                            <button asp-page-handler="DeletePublication" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel ml-1" disabled="@(Model.Publications?.Count <= 0 ? "disabled" : null)"><i class="far fa-trash-alt"></i></button>
+                            <button asp-page-handler="DeletePublication" asp-route-order="@i" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"\"{SharedResource.Publication} {publicationIdentifier}\"")" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel dirty-ignore confirmation ml-1" disabled="@(Model.Publications?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
                     <div class="card-body collapse pb-0 @(Model.Publications[i].Collapsed ? null : "show")" id="collapse-@i">

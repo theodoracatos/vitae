@@ -1,0 +1,428 @@
+﻿@model Vitae.Areas.CV.Pages.IndexModel
+
+@{
+    var menuEntries = new List<Tuple<bool, string, string>>()
+{
+      new Tuple<bool, string, string>(Model.Abouts.Count > 0, nameof(About).ToLower(), SharedResource.AboutInfo),
+      new Tuple<bool, string, string>(Model.Experiences.Count > 0, nameof(Experience).ToLower(), SharedResource.Experiences),
+      new Tuple<bool, string, string>(Model.Educations.Count > 0, nameof(Education).ToLower(), SharedResource.Educations),
+      new Tuple<bool, string, string>(Model.Courses.Count > 0, nameof(Course).ToLower(), SharedResource.Courses),
+      new Tuple<bool, string, string>(Model.Abroads.Count > 0, nameof(Abroad).ToLower(), SharedResource.Abroads),
+      new Tuple<bool, string, string>(Model.LanguageSkills.Count > 0, nameof(Language).ToLower(), SharedResource.Languages),
+      new Tuple<bool, string, string>(Model.Interests.Count > 0, nameof(Interest).ToLower(), SharedResource.Interests),
+      new Tuple<bool, string, string>(Model.Awards.Count > 0, nameof(Award).ToLower(), SharedResource.Awards),
+      new Tuple<bool, string, string>(Model.Skills.Count > 0, nameof(Skill).ToLower(), SharedResource.Skills),
+      new Tuple<bool, string, string>(Model.Certificates.Count > 0, nameof(Certificate).ToLower(), SharedResource.Certificates),
+      new Tuple<bool, string, string>(Model.References.Count > 0, nameof(Reference).ToLower(), SharedResource.References),
+    };
+
+    var about = Model.Abouts.SingleOrDefault();
+}
+
+<!-- #region Menu -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="js-scroll-trigger mt-1 mb-1" href="#page-top">
+        <img src="~/img/Logo.png" class="" title="Vitae" />
+    </a>
+
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-none d-lg-block">
+            <img class="img-fluid img-profile rounded-circle mx-auto" src="@(string.IsNullOrEmpty(about?.Photo) ? (Model.PersonalDetail.Gender == null || Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : about.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
+        </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mt-2 mb-2">
+            @foreach (var menuEntry in menuEntries)
+            {
+                if (menuEntry.Item1)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#@menuEntry.Item2">@menuEntry.Item3</a>
+                    </li>
+                }
+            }
+            @if (Model.IsLoggedIn)
+            {
+                <li>
+                    <a class="btn btn-secondary mt-3" href="/Manage"><i class="fas fa-angle-left fa-fw"></i> @SharedResource.Back</a>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>
+
+<!-- #endregion -->
+
+<div class="container-fluid p-0">
+
+    <!-- #region About -->
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(About).ToLower()">
+        <div class="w-100">
+
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-lg-none d-xl-none">
+                    <img class="img-fluid img-profile greyborder rounded-circle mb-3" width="145" src="@(string.IsNullOrEmpty(about?.Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/NoUserFemale.png" : about.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
+                </span>
+            </a>
+
+            @if (Model.PersonalDetail.Gender != null)
+            {
+                <h1 class="headingTitle mb-0">
+                    @Model.PersonalDetail.Firstname
+                    <span class="text-primary">@Model.PersonalDetail.Lastname</span>
+                </h1>
+                <h2 class="subheadingBig mt-0">@about.AcademicTitle</h2>
+                <div class="subheading mb-4 pb-2">
+                    @{
+                        foreach (var nationality in Model.PersonalDetail.Nationalities.Where(n => n.CountryCode != null))
+                        {
+                            <span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(nationality.CountryCode.ToLower())" title="@($"{SharedResource.Nationality} {Model.PersonalDetail.Nationalities.IndexOf(nationality) + 1}: {Model.Countries.Single(c => c.CountryCode == nationality.CountryCode).Name}")"></span>
+                        }
+                        if (Model.PersonalDetail.Nationalities.Any())
+                        {
+                            @Html.Raw("&middot;")
+                        }
+                    }
+                    @{
+                        if (Model.PersonalDetail.Gender.HasValue)
+                            if (Model.PersonalDetail.Gender.Value)
+                            {
+                                <i class="fas fa-mars"></i><text> ·</text>
+                            }
+                            else
+                            {
+                                <i class="fas fa-venus"></i> <text> ·</text>
+                            }
+                    }
+                    @(CodeHelper.GetAge(new DateTime(Model.PersonalDetail.Birthday_Year, Model.PersonalDetail.Birthday_Month, Model.PersonalDetail.Birthday_Day))) @SharedResource.YearsOld &middot;
+                    @SharedResource.From @Model.PersonalDetail.Citizenship @(Model.PersonalDetail.MaritalStatusCode != 1 ? "· " + Model.MaritalStatuses.Single(m => m.MaritalStatusCode == Model.PersonalDetail.MaritalStatusCode).Name : string.Empty)
+                    @(Model.PersonalDetail.Children.Count > 0 ? $" · {Model.PersonalDetail.Children.Count} {(Model.PersonalDetail.Children.Count > 1 ? SharedResource.Children : SharedResource.Child)} ({Model.PersonalDetail.Children.Select(c => $"{c.Firstname}, {CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day))} {(CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day)) == 1 ? SharedResource.YearOld : SharedResource.YearsOld)}").Aggregate((i, j) => i + " & " + j) })" : string.Empty)
+                    <br />
+                    @Model.PersonalDetail.Street @Model.PersonalDetail.StreetNo &middot; @Model.PersonalDetail.ZipCode @Model.PersonalDetail.City / @Model.PersonalDetail.State &middot; <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber</a> &middot;
+                    <a href="mailto:@(Model.PersonalDetail.Email)">@Model.PersonalDetail.Email</a>
+                </div>
+                if (about.Slogan != null)
+                {
+                    <p class="lead">
+                        <div class="speech-bubble mb-4">
+                            <div class="font-italic">@about.Slogan</div>
+                        </div>
+                    </p>
+                }
+                <div class="social-icons">
+                    @if (about.Vfile?.FileName != null)
+                    {
+                        <a class="mt-2 mb-1" data-toggle="tooltip" asp-page-handler="OpenFile" asp-route-identifier="@about.Vfile?.Identifier" title="@about.Vfile?.FileName">
+                            <i class="far fa-file-pdf"></i>
+                        </a>
+                    }
+                    @foreach (var socialLink in Model.SocialLinks)
+                    {
+                        <a class="mt-2 mb-1" data-toggle="tooltip" href="@socialLink.Link" target="_blank" title="@socialLink.SocialPlatform">
+                            <i class="@socialLink.SocialPlatform.Description()"></i>
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+    </section>
+    <hr class="m-0">
+    <!-- #endregion -->
+    <!-- #region Experiences -->
+    @if (Model.Experiences.Count > 0)
+    {
+        <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="@nameof(Experience).ToLower()">
+            <div class="w-100">
+                <h2 class="mb-5"><i class="fas fa-briefcase mr-3"></i>@SharedResource.Experience</h2>
+                @foreach (var experience in Model.Experiences)
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                        <div class="resume-content">
+                            <h3 class="mb-0">@experience.JobTitle</h3>
+                            <div class="subheading mb-3">
+                                <a href="@experience.Link" target="_blank">@experience.CompanyName</a> &middot; @(Model.Industries.Single(i => i.IndustryCode == experience.IndustryCode).Name) &middot; @(Model.HierarchyLevels.Single(h => h.HierarchyLevelCode == experience.HierarchyLevelCode).Name) &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(experience.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == experience.CountryCode).Name)"></span> @experience.City
+                            </div>
+                            <p>@experience.Description</p>
+                        </div>
+                        <div class="resume-date text-md-right">
+                            <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(experience.Start_Year, experience.Start_Month, 1), experience.UntilNow ? (DateTime?)null : new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1), false)" />
+                        </div>
+                    </div>
+                    <hr class="mb-4 pb-2">
+                }
+            </div>
+        </section>
+        <hr class="m-0">
+    }
+
+    <!-- #endregion -->
+    <!-- #region Educations -->
+    @if (Model.Educations.Count > 0)
+    {
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Education).ToLower()">
+            <div class="w-100">
+                <h2 class="mb-5"><i class="fas fa-graduation-cap mr-3"></i>@SharedResource.Educations</h2>
+                @foreach (var education in Model.Educations)
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                        <div class="resume-content">
+                            <h3 class="mb-0">@education.Title, @education.Subject</h3>
+                            <div class="subheading mb-3"><a href="@education.Link" target="_blank">@education.SchoolName</a> &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(education.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == education.CountryCode).Name)"></span> @education.City</div>
+                            @if (education.Grade.HasValue)
+                            {
+                                <p>@SharedResource.Grade: @education.Grade</p>
+                            }
+                            <p>@education.Description</p>
+                        </div>
+                        <div class="resume-date text-md-right">
+                            <div class="resume-date text-md-right">
+                                <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(education.Start_Year, education.Start_Month, 1), education.UntilNow ? (DateTime?)null : new DateTime(education.End_Year.Value, education.End_Month.Value, 1), false)" />
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-4 pb-2">
+                }
+            </div>
+        </section>
+        <hr class="m-0">
+    }
+    <!-- #endregion -->
+    <!-- #region Courses -->
+    @if (Model.Courses.Count > 0)
+    {
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Course).ToLower()">
+            <div class="w-100">
+                <h2 class="mb-5"><i class="fas fa-book-reader mr-3"></i>@SharedResource.Courses</h2>
+                @foreach (var course in Model.Courses)
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                        <div class="resume-content">
+                            <h3 class="mb-0">@course.Title</h3>
+                            <div class="subheading mb-3"><a href="@course.Link" target="_blank">@course.SchoolName</a> &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(course.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == course.CountryCode).Name)"></span> @course.City</div>
+                            <p>@course.Description</p>
+                        </div>
+                        <div class="resume-date text-md-right">
+                            <div class="resume-date text-md-right">
+                                <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(course.Start_Year, course.Start_Month, course.Start_Day), course.SingleDay ? new DateTime(course.Start_Year, course.Start_Month, course.Start_Day) : new DateTime(course.End_Year.Value, course.End_Month.Value, course.End_Day.Value), true)" />
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-4 pb-2">
+                }
+            </div>
+        </section>
+        <hr class="m-0">
+    }
+    <!-- #endregion -->
+    <!-- #region Abroads -->
+    @if (Model.Abroads.Count > 0)
+    {
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Abroad).ToLower()">
+            <div class="w-100">
+                <h2 class="mb-5"><i class="fas fa-plane mr-3"></i>@SharedResource.Abroads</h2>
+                @foreach (var abroad in Model.Abroads)
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                        <div class="resume-content">
+                            <h3 class="mb-0">@(Model.Countries.Single(c => c.CountryCode == abroad.CountryCode).Name)</h3>
+                            <div class="subheading mb-3">
+                                <span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(abroad.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == abroad.CountryCode).Name)"></span> @abroad.City
+                            </div>
+                            <p class="mt-3">@abroad.Description</p>
+                        </div>
+                        <div class="resume-date text-md-right">
+                            <div class="resume-date text-md-right">
+                                <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(abroad.Start_Year, abroad.Start_Month, 1), abroad.UntilNow ? new DateTime(abroad.Start_Year, abroad.Start_Month, 1) : new DateTime(abroad.End_Year.Value, abroad.End_Month.Value, 1), false)" />
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-4 pb-2">
+                }
+            </div>
+        </section>
+        <hr class="m-0">
+    }
+    <!-- #endregion -->
+    <!-- #region Languages -->
+    @if (Model.LanguageSkills.Count > 0)
+    {
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Language).ToLower()">
+            <div class="w-100">
+                <h2 class="mb-5"><i class="fas fa-globe-americas mr-3"></i>@SharedResource.Languages</h2>
+                @foreach (var languageSkill in Model.LanguageSkills)
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-3 pb-3">
+                        <div class="resume-content">
+                            <h3 class=" mb-0">
+                                @Model.Languages.Single(l => l.LanguageCode == languageSkill.LanguageCode).Name
+                            </h3>
+                            <div class="subheading mb-0">
+                                @{
+                                    switch (languageSkill.Rate)
+                                    {
+                                        case 1:
+                                            { @SharedResource.KnowledgeBasic; break;
+                                        }
+                                    case 2:
+                                        { @SharedResource.KnowledgeBusinessFluent; break;
+                                    }
+                                case 3:
+                                    { @SharedResource.KnowledgeFluent; break;
+                                }
+                            case 4:
+                                { @SharedResource.KnowledgeNative; break;
+                            }
+                    }
+                                }
+
+                            </div>
+                            <input name="@languageSkill.Rate" type="hidden" class="ratingstar" value="@(languageSkill.Rate)" readonly />
+                        </div>
+                    </div>
+                    <hr class="mb-4 pb-2">
+                }
+            </div>
+        </section>
+        <hr class="m-0">
+    }
+    <!-- #endregion -->
+    <!-- #region Interests -->
+    @if (Model.Interests.Count > 0)
+    {
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Interest).ToLower()">
+            <div class="w-100">
+                <h2 class="mb-5"><i class="fas fa-volleyball-ball mr-3"></i>@SharedResource.Interests</h2>
+                @foreach (var interest in Model.Interests)
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                        <div class="resume-content">
+                            <h3 class="mb-0">@interest.InterestName</h3>
+                            <div class="subheading"><a href="@interest.Link" target="_blank">@interest.Association</a></div>
+                            <p class="mt-3">@interest.Description</p>
+                        </div>
+                    </div>
+                    <hr class="mb-4 pb-2">
+                }
+            </div>
+        </section>
+        <hr class="m-0">
+    }
+    <!-- #endregion -->
+    <!-- #region Awards -->
+    @if (Model.Awards.Count > 0)
+    {
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Award).ToLower()">
+            <div class="w-100">
+                <h2 class="mb-5"><i class="fas fa-trophy mr-3"></i>@SharedResource.Awards</h2>
+                @foreach (var award in Model.Awards)
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                        <div class="resume-content">
+                            <h3 class="mb-0">@award.Name</h3>
+                            <div class="subheading"><a href="@award.Link" target="_blank">@award.AwardedFrom</a></div>
+                            <p class="mt-3">@award.Description</p>
+                        </div>
+                        <div class="resume-date text-md-right">
+                            <span class="text-primary">@(new DateTime(award.Year, award.Month, 1).ToShortDateCultureString())</span>
+                        </div>
+                    </div>
+                    <hr class="mb-4 pb-2">
+                }
+            </div>
+        </section>
+        <hr class="m-0">
+    }
+    <!-- #endregion -->
+    <!-- #region Skills -->
+    @if (Model.Skills.Count > 0)
+    {
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Skill).ToLower()">
+            <div class="w-100">
+                <h2 class="mb-5"><i class="fas fa-tools mr-3"></i>@SharedResource.Skills</h2>
+                @foreach (var skill in Model.Skills)
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                        <div class="resume-content">
+                            <h3 class="mb-0">@skill.Category</h3>
+                            <p class="tagsreadonly">
+                                <input name="@skill.Skillset" class="tagsinput" value="@(skill.Skillset)" readonly />
+                            </p>
+                        </div>
+                    </div>
+                    <hr class="mb-4 pb-2">
+                }
+            </div>
+        </section>
+        <hr class="m-0">
+    }
+    <!-- #endregion -->
+    <!-- #region Certificates -->
+    @if (Model.Certificates.Count > 0)
+    {
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Certificate).ToLower()">
+            <div class="w-100">
+                <h2 class="mb-5"><i class="fas fa-certificate mr-3"></i>@SharedResource.Certificates</h2>
+                @foreach (var certificate in Model.Certificates)
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                        <div class="resume-content">
+                            <h3 class="mb-0">@certificate.Name</h3>
+                            <div class="subheading"><a href="@certificate.Link" target="_blank">@certificate.Issuer</a></div>
+                            <p class="mt-3">@certificate.Description</p>
+                        </div>
+                        <div class="resume-date text-md-right">
+                            <span class="text-primary">
+                                @(new DateTime(certificate.Start_Year, certificate.Start_Month, 1).ToShortDateCultureString())
+                                @{
+                                    if (!certificate.NeverExpires)
+                                    {
+                                        @($"- {new DateTime(certificate.End_Year.Value, certificate.End_Month.Value, 1).ToShortDateCultureString()}")
+                                    }
+                                }
+                            </span>
+                        </div>
+                    </div>
+                    <hr class="mb-4 pb-2">
+                }
+            </div>
+        </section>
+        <hr class="m-0">
+    }
+    <!-- #endregion -->
+    <!-- #region References -->
+    @if (Model.Certificates.Count > 0)
+    {
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Reference).ToLower()">
+            <div class="w-100">
+                <h2 class="mb-5"><i class="fas fa-user-tie mr-3"></i>@SharedResource.References</h2>
+                @foreach (var reference in Model.References.Where(r => !r.Hide))
+                {
+                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                        <div class="resume-content">
+                            <h3 class="mb-0">@(reference.Gender.Value ? SharedResource.Mr : SharedResource.Ms) @reference.Firstname @reference.Lastname</h3>
+                            <div class="subheading">
+                                @if (!string.IsNullOrEmpty(reference.Email))
+                                {
+                                    <a href="mailto:@(reference.Email)">@reference.Email</a> @Html.Raw("&middot;")
+                                }
+                                <span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(reference.CountryCode.ToLower())"></span> <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber</a>
+                            </div>
+                            <div class="subheading"><a href="@reference.Link" target="_blank">@reference.CompanyName</a></div>
+                            <p class="mt-3">@reference.Description</p>
+                        </div>
+                    </div>
+                    <hr class="mb-4 pb-2">
+                }
+                @if (Model.References.Count > 0 && Model.References.All(r => r.Hide))
+                {
+                    <div class="subheading">@SharedResource.OnRequest</div>
+                }
+            </div>
+        </section>
+        <hr class="m-0">
+    }
+    <!-- #endregion -->
+</div>

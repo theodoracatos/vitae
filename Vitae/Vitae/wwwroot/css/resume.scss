@@ -45,3 +45,11 @@
 .btn-primary:focus {
     box-shadow: 0 0 0 0.2rem rgba(208, 187, 149, 0.5) !important;
 }
+
+.bg-wallpaper {
+    background: url('../img/backgrounds/bg0.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
