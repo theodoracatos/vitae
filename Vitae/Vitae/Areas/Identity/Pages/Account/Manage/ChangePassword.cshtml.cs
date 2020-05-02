@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Library.Constants;
 using Library.Resources;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,7 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
+            [StringLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.PasswordErrorLength), MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CurrentPassword), Prompt = nameof(SharedResource.CurrentPassword))]
             public string OldPassword { get; set; }
@@ -46,6 +48,7 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
             [StringLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.PasswordErrorLength), MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.NewPassword), Prompt = nameof(SharedResource.NewPassword))]
+            [RegularExpression(Globals.REGEX_PASSWORD, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
@@ -99,7 +102,7 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
             StatusMessage = SharedResource.PasswordChanged;
             Success = true;
 
-            return Redirect("/Manage");
+            return Page();
         }
     }
 }

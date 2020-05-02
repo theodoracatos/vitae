@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>Additional info</value>
   </data>
+  <data name="AboutDetailsDescription" xml:space="preserve">
+    <value>Complete your personal information.</value>
+  </data>
   <data name="AboutInfo" xml:space="preserve">
     <value>About</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="Abroads" xml:space="preserve">
     <value>Abroad stays</value>
+  </data>
+  <data name="AbroadsDescription" xml:space="preserve">
+    <value>List longer stays abroad.</value>
   </data>
   <data name="AcademicTitle" xml:space="preserve">
     <value>Academic title</value>
@@ -192,6 +198,9 @@
   <data name="Awards" xml:space="preserve">
     <value>Awards</value>
   </data>
+  <data name="AwardsDescription" xml:space="preserve">
+    <value>List any achievements you have made in the course of your career.</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>Go back</value>
   </data>
@@ -213,6 +222,9 @@
   <data name="Certificates" xml:space="preserve">
     <value>Certificates</value>
   </data>
+  <data name="CertificatesDescription" xml:space="preserve">
+    <value>List language and further education certificates.</value>
+  </data>
   <data name="Change" xml:space="preserve">
     <value>Change</value>
   </data>
@@ -222,8 +234,14 @@
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Change language</value>
   </data>
+  <data name="ChangeLanguageDescription" xml:space="preserve">
+    <value>Change the language of the website here. Please make sure that you have accepted cookies.</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Change password</value>
+  </data>
+  <data name="ChangePasswordDescription" xml:space="preserve">
+    <value>Change your password here to log in to the site.</value>
   </data>
   <data name="CheckYourEmail" xml:space="preserve">
     <value>Please check your email to reset your password.</value>
@@ -244,7 +262,7 @@
     <value>file has been chosen</value>
   </data>
   <data name="Citizenship" xml:space="preserve">
-    <value>Bürgerort</value>
+    <value>Citizenship</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
@@ -315,6 +333,9 @@
   <data name="Courses" xml:space="preserve">
     <value>Courses</value>
   </data>
+  <data name="CoursesDescription" xml:space="preserve">
+    <value>List continuing education courses and small training courses.</value>
+  </data>
   <data name="CreateAccount" xml:space="preserve">
     <value>Create a new account.</value>
   </data>
@@ -331,13 +352,16 @@
     <value>CV</value>
   </data>
   <data name="CVCompleteness" xml:space="preserve">
-    <value>CV completeness</value>
+    <value>CV Completeness</value>
   </data>
   <data name="CVLanguage" xml:space="preserve">
     <value>CV language</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
+  </data>
+  <data name="DashboardDescription" xml:space="preserve">
+    <value>The dashboard shows you the access history of your CV and other useful statistics.</value>
   </data>
   <data name="DateCompareError" xml:space="preserve">
     <value>The start date can't be greater than the end date</value>
@@ -383,6 +407,9 @@
   </data>
   <data name="Educations" xml:space="preserve">
     <value>Educations</value>
+  </data>
+  <data name="EducationsDescription" xml:space="preserve">
+    <value>List the stages of your training.</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -432,17 +459,20 @@
   <data name="Experiences" xml:space="preserve">
     <value>Experiences</value>
   </data>
+  <data name="ExperiencesDescription" xml:space="preserve">
+    <value>List your previous employers.</value>
+  </data>
   <data name="ExpiresOn" xml:space="preserve">
     <value>Expires on</value>
   </data>
   <data name="FilesTooLarge" xml:space="preserve">
-    <value>Files you've choosed are too large</value>
+    <value>Files you've chosen are too large</value>
   </data>
   <data name="FileTooLarge" xml:space="preserve">
     <value>is too large - max filesize is</value>
   </data>
   <data name="Firstname" xml:space="preserve">
-    <value>Firstname</value>
+    <value>First name</value>
   </data>
   <data name="FolderUpload" xml:space="preserve">
     <value>You are not allowed to upload folders</value>
@@ -495,6 +525,9 @@
   <data name="Interests" xml:space="preserve">
     <value>Interests</value>
   </data>
+  <data name="InterestsDescription" xml:space="preserve">
+    <value>List your hobbies and secondary professional interests.</value>
+  </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Email '{0}' is invalid.</value>
   </data>
@@ -546,11 +579,14 @@
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
   </data>
+  <data name="LanguageSkillsDescription" xml:space="preserve">
+    <value>List the languages you can speak.</value>
+  </data>
   <data name="LanguageVersions" xml:space="preserve">
     <value>Language versions</value>
   </data>
   <data name="Lastname" xml:space="preserve">
-    <value>Lastname</value>
+    <value>Last name</value>
   </data>
   <data name="Level" xml:space="preserve">
     <value>Level</value>
@@ -616,10 +652,10 @@
     <value>Months</value>
   </data>
   <data name="Mr" xml:space="preserve">
-    <value>Mr</value>
+    <value>Mr.</value>
   </data>
   <data name="Ms" xml:space="preserve">
-    <value>Ms</value>
+    <value>Ms.</value>
   </data>
   <data name="MyVitae" xml:space="preserve">
     <value>My Vitae</value>
@@ -729,6 +765,9 @@
   <data name="PersonalDetails" xml:space="preserve">
     <value>Personal details</value>
   </data>
+  <data name="PersonalDetailsDescription" xml:space="preserve">
+    <value>Please enter your personal details here.</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone number</value>
   </data>
@@ -752,7 +791,6 @@
   </data>
   <data name="PrivacyPolicyText" xml:space="preserve">
     <value>When you visit this website, the web server will automatically record certain details of your visit (IP address, source website, destination website) using a tracking technology called "cookies". A cookie is a small piece of data that is stored by the website on the browser or mobile device. The cookie allows the website to save your settings or preferences for a certain period of time.
-
 This website requires cookies to optimize the content of its web pages and to provide information about the use of the website. No "third-party" cookies are used for this purpose. Cookies that are used cannot be used for user identification for QWM. You can accept the cookies or refuse the cookies at any time by changing the settings of your web browser. Please note, however, that if you refuse cookies, certain functionalities may be impaired. By continuing to use the website, you automatically accept the storage of cookies on your computer in accordance with the conditions described here.</value>
   </data>
   <data name="ProfileOverview" xml:space="preserve">
@@ -763,6 +801,9 @@ This website requires cookies to optimize the content of its web pages and to pr
   </data>
   <data name="Publication" xml:space="preserve">
     <value>Publication</value>
+  </data>
+  <data name="PublicationDescription" xml:space="preserve">
+    <value>Manage the publication of your CV here.</value>
   </data>
   <data name="PublicationIdentifier" xml:space="preserve">
     <value>ID</value>
@@ -781,6 +822,9 @@ This website requires cookies to optimize the content of its web pages and to pr
   </data>
   <data name="References" xml:space="preserve">
     <value>References</value>
+  </data>
+  <data name="ReferencesDescription" xml:space="preserve">
+    <value>List all references that you would like to share with your future employer. You can also choose to hide them.</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Create an account</value>
@@ -851,6 +895,18 @@ This website requires cookies to optimize the content of its web pages and to pr
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SettingsAccountHint" xml:space="preserve">
+    <value>Attention, this action cannot be undone!</value>
+  </data>
+  <data name="SettingsDescription" xml:space="preserve">
+    <value>Here you can select the different languages of your CV.</value>
+  </data>
+  <data name="SettingsLanguageHint" xml:space="preserve">
+    <value>This language can only be changed if all referenced publications are deleted.</value>
+  </data>
+  <data name="ShareLink" xml:space="preserve">
+    <value>Share this link / QR code with your future employer</value>
+  </data>
   <data name="ShortIdentifier" xml:space="preserve">
     <value>Short ID</value>
   </data>
@@ -869,6 +925,9 @@ This website requires cookies to optimize the content of its web pages and to pr
   <data name="Skills" xml:space="preserve">
     <value>Skills</value>
   </data>
+  <data name="SkillsDescription" xml:space="preserve">
+    <value>List all the social skills that you have acquired in the course of your career.</value>
+  </data>
   <data name="Skillset" xml:space="preserve">
     <value>Skillset</value>
   </data>
@@ -880,6 +939,9 @@ This website requires cookies to optimize the content of its web pages and to pr
   </data>
   <data name="SocialLinks" xml:space="preserve">
     <value>Social links</value>
+  </data>
+  <data name="SocialLinksDescription" xml:space="preserve">
+    <value>List all social connections to external websites.</value>
   </data>
   <data name="SocialPlatform" xml:space="preserve">
     <value>Social platform</value>

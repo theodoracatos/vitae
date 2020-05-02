@@ -2,7 +2,7 @@
 
 <div id="panel">
     <div class="card">
-        <partial name="_CardHeader" model="@(new Tuple<BasePageModel, string, string>(Model, "fas fa-certificate", SharedResource.Certificates))" />
+        <partial name="_CardHeader" model="@(new Tuple<BasePageModel, string, string, string>(Model, "fas fa-certificate", SharedResource.Certificates, SharedResource.CertificatesDescription))" />
 
         <div class="card-body">
             <div class="form-row">

@@ -70,6 +70,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complete your personal information..
+        /// </summary>
+        public static string AboutDetailsDescription {
+            get {
+                return ResourceManager.GetString("AboutDetailsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string AboutInfo {
@@ -93,6 +102,15 @@ namespace Library.Resources {
         public static string Abroads {
             get {
                 return ResourceManager.GetString("Abroads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List longer stays abroad..
+        /// </summary>
+        public static string AbroadsDescription {
+            get {
+                return ResourceManager.GetString("AbroadsDescription", resourceCulture);
             }
         }
         
@@ -286,6 +304,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List any achievements you have made in the course of your career..
+        /// </summary>
+        public static string AwardsDescription {
+            get {
+                return ResourceManager.GetString("AwardsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Go back.
         /// </summary>
         public static string Back {
@@ -349,6 +376,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List language and further education certificates..
+        /// </summary>
+        public static string CertificatesDescription {
+            get {
+                return ResourceManager.GetString("CertificatesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change.
         /// </summary>
         public static string Change {
@@ -376,11 +412,29 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change the language of the website here. Please make sure that you have accepted cookies..
+        /// </summary>
+        public static string ChangeLanguageDescription {
+            get {
+                return ResourceManager.GetString("ChangeLanguageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change password.
         /// </summary>
         public static string ChangePassword {
             get {
                 return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change your password here to log in to the site..
+        /// </summary>
+        public static string ChangePasswordDescription {
+            get {
+                return ResourceManager.GetString("ChangePasswordDescription", resourceCulture);
             }
         }
         
@@ -439,7 +493,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bürgerort.
+        ///   Looks up a localized string similar to Citizenship.
         /// </summary>
         public static string Citizenship {
             get {
@@ -655,6 +709,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List continuing education courses and small training courses..
+        /// </summary>
+        public static string CoursesDescription {
+            get {
+                return ResourceManager.GetString("CoursesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a new account..
         /// </summary>
         public static string CreateAccount {
@@ -700,7 +763,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CV completeness.
+        ///   Looks up a localized string similar to CV Completeness.
         /// </summary>
         public static string CVCompleteness {
             get {
@@ -723,6 +786,15 @@ namespace Library.Resources {
         public static string Dashboard {
             get {
                 return ResourceManager.GetString("Dashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The dashboard shows you the access history of your CV and other useful statistics..
+        /// </summary>
+        public static string DashboardDescription {
+            get {
+                return ResourceManager.GetString("DashboardDescription", resourceCulture);
             }
         }
         
@@ -858,6 +930,15 @@ namespace Library.Resources {
         public static string Educations {
             get {
                 return ResourceManager.GetString("Educations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List the stages of your training..
+        /// </summary>
+        public static string EducationsDescription {
+            get {
+                return ResourceManager.GetString("EducationsDescription", resourceCulture);
             }
         }
         
@@ -1006,6 +1087,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List your previous employers..
+        /// </summary>
+        public static string ExperiencesDescription {
+            get {
+                return ResourceManager.GetString("ExperiencesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expires on.
         /// </summary>
         public static string ExpiresOn {
@@ -1015,7 +1105,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Files you&apos;ve choosed are too large.
+        ///   Looks up a localized string similar to Files you&apos;ve chosen are too large.
         /// </summary>
         public static string FilesTooLarge {
             get {
@@ -1033,7 +1123,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Firstname.
+        ///   Looks up a localized string similar to First name.
         /// </summary>
         public static string Firstname {
             get {
@@ -1195,6 +1285,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List your hobbies and secondary professional interests..
+        /// </summary>
+        public static string InterestsDescription {
+            get {
+                return ResourceManager.GetString("InterestsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email &apos;{0}&apos; is invalid..
         /// </summary>
         public static string InvalidEmail {
@@ -1348,6 +1447,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List the languages you can speak..
+        /// </summary>
+        public static string LanguageSkillsDescription {
+            get {
+                return ResourceManager.GetString("LanguageSkillsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language versions.
         /// </summary>
         public static string LanguageVersions {
@@ -1357,7 +1465,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lastname.
+        ///   Looks up a localized string similar to Last name.
         /// </summary>
         public static string Lastname {
             get {
@@ -1555,7 +1663,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mr.
+        ///   Looks up a localized string similar to Mr..
         /// </summary>
         public static string Mr {
             get {
@@ -1564,7 +1672,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ms.
+        ///   Looks up a localized string similar to Ms..
         /// </summary>
         public static string Ms {
             get {
@@ -1897,6 +2005,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter your personal details here..
+        /// </summary>
+        public static string PersonalDetailsDescription {
+            get {
+                return ResourceManager.GetString("PersonalDetailsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone number.
         /// </summary>
         public static string PhoneNumber {
@@ -1961,8 +2078,7 @@ namespace Library.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to When you visit this website, the web server will automatically record certain details of your visit (IP address, source website, destination website) using a tracking technology called &quot;cookies&quot;. A cookie is a small piece of data that is stored by the website on the browser or mobile device. The cookie allows the website to save your settings or preferences for a certain period of time.
-        ///
-        ///This website requires cookies to optimize the content of its web pages and to provide information about the use of the  [rest of string was truncated]&quot;;.
+        ///This website requires cookies to optimize the content of its web pages and to provide information about the use of the web [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PrivacyPolicyText {
             get {
@@ -1994,6 +2110,15 @@ namespace Library.Resources {
         public static string Publication {
             get {
                 return ResourceManager.GetString("Publication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage the publication of your CV here..
+        /// </summary>
+        public static string PublicationDescription {
+            get {
+                return ResourceManager.GetString("PublicationDescription", resourceCulture);
             }
         }
         
@@ -2048,6 +2173,15 @@ namespace Library.Resources {
         public static string References {
             get {
                 return ResourceManager.GetString("References", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List all references that you would like to share with your future employer. You can also choose to hide them..
+        /// </summary>
+        public static string ReferencesDescription {
+            get {
+                return ResourceManager.GetString("ReferencesDescription", resourceCulture);
             }
         }
         
@@ -2259,6 +2393,42 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attention, this action cannot be undone!.
+        /// </summary>
+        public static string SettingsAccountHint {
+            get {
+                return ResourceManager.GetString("SettingsAccountHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you can select the different languages of your CV..
+        /// </summary>
+        public static string SettingsDescription {
+            get {
+                return ResourceManager.GetString("SettingsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This language can only be changed if all referenced publications are deleted..
+        /// </summary>
+        public static string SettingsLanguageHint {
+            get {
+                return ResourceManager.GetString("SettingsLanguageHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share this link / QR code with your future employer.
+        /// </summary>
+        public static string ShareLink {
+            get {
+                return ResourceManager.GetString("ShareLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Short ID.
         /// </summary>
         public static string ShortIdentifier {
@@ -2313,6 +2483,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List all the social skills that you have acquired in the course of your career..
+        /// </summary>
+        public static string SkillsDescription {
+            get {
+                return ResourceManager.GetString("SkillsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Skillset.
         /// </summary>
         public static string Skillset {
@@ -2345,6 +2524,15 @@ namespace Library.Resources {
         public static string SocialLinks {
             get {
                 return ResourceManager.GetString("SocialLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List all social connections to external websites..
+        /// </summary>
+        public static string SocialLinksDescription {
+            get {
+                return ResourceManager.GetString("SocialLinksDescription", resourceCulture);
             }
         }
         

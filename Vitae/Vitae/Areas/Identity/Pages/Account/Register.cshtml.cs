@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using System.Web;
+using Library.Constants;
 using Library.Helper;
 using Library.Resources;
 using Microsoft.AspNetCore.Authentication;
@@ -58,7 +59,8 @@ namespace Vitae.Areas.Identity.Pages.Account
             [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
             [StringLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.PasswordErrorLength), MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Password), Prompt = nameof(SharedResource.Password))]
+            [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.NewPassword), Prompt = nameof(SharedResource.NewPassword))]
+            [RegularExpression(Globals.REGEX_PASSWORD, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]

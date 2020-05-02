@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header">
             <h1><i class="fas fa-cogs fa-fw"></i>@SharedResource.Settings</h1>
-            <p>Legen Sie hier die verschiedenen Sprachen Ihres CV's fest</p>
+            <p>@SharedResource.SettingsDescription</p>
         </div>
         <div class="card-body">
             <div class="grouping">
@@ -43,7 +43,7 @@
                                 @if(Model.Setting.SettingItems[i].HasPublication)
                                 {
                                     <input type="hidden" asp-for="@Model.Setting.CurriculumLanguages[i].LanguageCode" />
-                                    <small class="mt-1">Diese Sprache kann erst geändert werden, wenn sänmtliche Publikationen gelöscht werden.</small>
+                                    <small class="mt-1">@SharedResource.SettingsLanguageHint</small>
                                 }
                                 <span asp-validation-for="@Model.Setting.CurriculumLanguages[i].LanguageCode" class="text-danger"></span>
                             </div>
@@ -60,7 +60,7 @@
                         <label class="control-label d-block">@SharedResource.DeleteAccount</label>
                         <div class="grouping">
                             <button asp-page-handler="DeleteAccount" data-confirm-text="@SharedResource.DeleteAccountConfirm" class="btn btn-sm btn-danger confirmation cancel"><i class="far fa-trash-alt fa-fw"></i>@SharedResource.Delete</button>
-                            <small class="d-block mt-1 text-danger">Achtung, diese Aktion kann nicht mehr rückgängig gemacht werden!</small>
+                            <small class="d-block mt-1 text-danger">@SharedResource.SettingsAccountHint</small>
                         </div>
                     </div>
                 </div>

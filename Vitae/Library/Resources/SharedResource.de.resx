@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>Erweiterte Angaben</value>
   </data>
+  <data name="AboutDetailsDescription" xml:space="preserve">
+    <value>Komplettieren Sie Ihre persönlichen Angaben.</value>
+  </data>
   <data name="AboutInfo" xml:space="preserve">
     <value>Über</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="Abroads" xml:space="preserve">
     <value>Auslandaufenthalte</value>
+  </data>
+  <data name="AbroadsDescription" xml:space="preserve">
+    <value>Listen Sie längere Auslandaufenthalte auf.</value>
   </data>
   <data name="AcademicTitle" xml:space="preserve">
     <value>Akademischer Titel</value>
@@ -192,6 +198,9 @@
   <data name="Awards" xml:space="preserve">
     <value>Errungenschaften</value>
   </data>
+  <data name="AwardsDescription" xml:space="preserve">
+    <value>Listen Sie allfällige Errungenschaften auf, die Sie im Laufe Ihrer Karriere erzielen konnten.</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>Zurück</value>
   </data>
@@ -213,6 +222,9 @@
   <data name="Certificates" xml:space="preserve">
     <value>Zertifikate</value>
   </data>
+  <data name="CertificatesDescription" xml:space="preserve">
+    <value>Listen Sie Sprach- und Weiterbildungszertifikate auf.</value>
+  </data>
   <data name="Change" xml:space="preserve">
     <value>Ändern</value>
   </data>
@@ -222,8 +234,14 @@
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Sprache wechseln</value>
   </data>
+  <data name="ChangeLanguageDescription" xml:space="preserve">
+    <value>Ändern Sie hier die Sprache der Webseite. Bitte stellen Sie sicher, dass Sie Cookies akzeptiert haben.</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Passwort ändern</value>
+  </data>
+  <data name="ChangePasswordDescription" xml:space="preserve">
+    <value>Ändern Sie hier Ihr Passwort um sich auf die Seite einzuloggen.</value>
   </data>
   <data name="CheckYourEmail" xml:space="preserve">
     <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Passwort zurückzusetzen.</value>
@@ -238,7 +256,7 @@
     <value>Kinder</value>
   </data>
   <data name="ChooseFile" xml:space="preserve">
-    <value>Datei zum upload auswählen</value>
+    <value>Datei zum heraufladen auswählen</value>
   </data>
   <data name="ChosenFile" xml:space="preserve">
     <value>Datei wurde ausgewählt</value>
@@ -315,6 +333,9 @@
   <data name="Courses" xml:space="preserve">
     <value>Kurse</value>
   </data>
+  <data name="CoursesDescription" xml:space="preserve">
+    <value>Listen Sie Weiterbildungskurse und kleine Ausbildungen auf.</value>
+  </data>
   <data name="CreateAccount" xml:space="preserve">
     <value>Ein neues Konto eröffnen.</value>
   </data>
@@ -331,13 +352,16 @@
     <value>Lebenslauf</value>
   </data>
   <data name="CVCompleteness" xml:space="preserve">
-    <value>CV Vollständigkeit</value>
+    <value>CV-Vollständigkeit</value>
   </data>
   <data name="CVLanguage" xml:space="preserve">
     <value>CV Sprache</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
+  </data>
+  <data name="DashboardDescription" xml:space="preserve">
+    <value>Das Dashboard zeigt Ihnen die den zeitlichen Verlauf der Zugriffe auf Ihren CV sowie andere nützliche Statistiken.</value>
   </data>
   <data name="DateCompareError" xml:space="preserve">
     <value>Das Start-Datum darf nicht grösser als das End-Datum sein</value>
@@ -383,6 +407,9 @@
   </data>
   <data name="Educations" xml:space="preserve">
     <value>Ausbildungen</value>
+  </data>
+  <data name="EducationsDescription" xml:space="preserve">
+    <value>Listen Sie die Stationen Ihrer Ausbildung auf.</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -431,6 +458,9 @@
   </data>
   <data name="Experiences" xml:space="preserve">
     <value>Erfahrungen</value>
+  </data>
+  <data name="ExperiencesDescription" xml:space="preserve">
+    <value>Listen Sie Ihre bisherigen Arbeitgeber auf.</value>
   </data>
   <data name="ExpiresOn" xml:space="preserve">
     <value>Verfällt am</value>
@@ -495,6 +525,9 @@
   <data name="Interests" xml:space="preserve">
     <value>Interessen</value>
   </data>
+  <data name="InterestsDescription" xml:space="preserve">
+    <value>Listen Sie sämtliche sozialen Kompetenzen auf, die Sie im Laufe ihrer Karriere sammeln konnten.</value>
+  </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>E-Mail '{0}' ist ungültig.</value>
   </data>
@@ -545,6 +578,9 @@
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Sprachen</value>
+  </data>
+  <data name="LanguageSkillsDescription" xml:space="preserve">
+    <value>Listen Sie die Sprachen auf die Sie sprechen können.</value>
   </data>
   <data name="LanguageVersions" xml:space="preserve">
     <value>Sprachversionen</value>
@@ -598,7 +634,7 @@
     <value>Verheiratet</value>
   </data>
   <data name="MissingBindRequiredValueAccessor" xml:space="preserve">
-    <value>Ein Wert für das '{0}' Feld wurde nicht angegben</value>
+    <value>Ein Wert für das '{0}' Feld wurde nicht angegeben</value>
   </data>
   <data name="MissingKeyOrValueAccessor" xml:space="preserve">
     <value>Ein Wert wird benötigt</value>
@@ -729,6 +765,9 @@
   <data name="PersonalDetails" xml:space="preserve">
     <value>Persönliche Angaben</value>
   </data>
+  <data name="PersonalDetailsDescription" xml:space="preserve">
+    <value>Geben Sie hier Ihre persönlichen Angaben an.</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Telefonnummer</value>
   </data>
@@ -752,7 +791,7 @@
   </data>
   <data name="PrivacyPolicyText" xml:space="preserve">
     <value>Wenn Sie diese Website besuchen, wird der Webserver automatisch gewisse Details Ihres Besuches (IP Adresse, Ursprungs-Webseite, Ziel-Webseite) mit einer Tracking-Technologie namens "Cookies" aufzeichnen. Ein Cookie ist ein kleines Datenstück, welches von der Webseite auf dem Browser oder mobilen Gerät gespeichert wird. Das Cookie erlaubt der Webseite Ihre Einstellungen oder Präferenzen in einer gewissen Zeitspanne zu speichern.
-Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und um Informationen über die Benutzung der Webseite zu liefern. Es werden dabei keine "third-party" Cookies eingesetzt. Cookies, welche eingesetzt werden, können nicht zur Benutzeridentifikation für QWM eingesetzt werden. Sie können die Cookies akzeptieren oder zu jeder Zeit durch Einstellungen ihres Webbrowsers die Cookies verweigern. Bitte beachten Sie jedoch, dass im Falle einer Ablehnung gewisse Funktionalitäten beeinträchtigt werden können. Durch die Weiternutzung der Website akzeptieren Sie automatisch die Speicherung von Cookies auf Ihrem Computer in übereinstimmung mit den hier beschriebenen Bedingungen.</value>
+Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und um Informationen über die Benutzung der Webseite zu liefern. Es werden dabei keine "third-party" Cookies eingesetzt. Cookies, welche eingesetzt werden, können nicht zur Benutzeridentifikation für QWM eingesetzt werden. Sie können die Cookies akzeptieren oder zu jeder Zeit durch Einstellungen ihres Webbrowsers die Cookies verweigern. Bitte beachten Sie jedoch, dass im Falle einer Ablehnung gewisse Funktionalitäten beeinträchtigt werden können. Durch die Weiternutzung der Website akzeptieren Sie automatisch die Speicherung von Cookies auf Ihrem Computer in Übereinstimmung mit den hier beschriebenen Bedingungen.</value>
   </data>
   <data name="ProfileOverview" xml:space="preserve">
     <value>Profilübersicht</value>
@@ -762,6 +801,9 @@ Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und
   </data>
   <data name="Publication" xml:space="preserve">
     <value>Veröffentlichung</value>
+  </data>
+  <data name="PublicationDescription" xml:space="preserve">
+    <value>Verwalten Sie hier die Veröffentlichung Ihres CV's.</value>
   </data>
   <data name="PublicationIdentifier" xml:space="preserve">
     <value>ID</value>
@@ -773,13 +815,16 @@ Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und
     <value>Veröffentlichen</value>
   </data>
   <data name="Rate" xml:space="preserve">
-    <value>Kenntniss</value>
+    <value>Kenntnis</value>
   </data>
   <data name="Reference" xml:space="preserve">
     <value>Referenz</value>
   </data>
   <data name="References" xml:space="preserve">
     <value>Referenzen</value>
+  </data>
+  <data name="ReferencesDescription" xml:space="preserve">
+    <value>Listen Sie sämtliche Referenzen auf, die sich mit Ihrem zukünftigen Arbeitgeber teilen möchten. Sie können diese wahlweise auch verstecken.</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Registrieren</value>
@@ -850,6 +895,18 @@ Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und
   <data name="Settings" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
+  <data name="SettingsAccountHint" xml:space="preserve">
+    <value>Achtung, diese Aktion kann nicht mehr rückgängig gemacht werden!</value>
+  </data>
+  <data name="SettingsDescription" xml:space="preserve">
+    <value>Legen Sie hier die verschiedenen Sprachen Ihres CV's fest.</value>
+  </data>
+  <data name="SettingsLanguageHint" xml:space="preserve">
+    <value>Diese Sprache kann erst geändert werden, wenn sämtliche darauf referenzierende Publikationen gelöscht werden.</value>
+  </data>
+  <data name="ShareLink" xml:space="preserve">
+    <value>Teilen Sie diesen Link / QR-Code mit Ihrem zukünftigen Arbeitgeber.</value>
+  </data>
   <data name="ShortIdentifier" xml:space="preserve">
     <value>Kurze ID</value>
   </data>
@@ -868,6 +925,9 @@ Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und
   <data name="Skills" xml:space="preserve">
     <value>Kompetenzen</value>
   </data>
+  <data name="SkillsDescription" xml:space="preserve">
+    <value>Listen Sie Ihre Hobbies und nebenberuflichen Interessen auf.</value>
+  </data>
   <data name="Skillset" xml:space="preserve">
     <value>Kernkompetenzen</value>
   </data>
@@ -879,6 +939,9 @@ Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und
   </data>
   <data name="SocialLinks" xml:space="preserve">
     <value>Soziale Verbindungen</value>
+  </data>
+  <data name="SocialLinksDescription" xml:space="preserve">
+    <value>Listen Sie sämtliche sozialen Verbindungen zu externen Webseiten auf.</value>
   </data>
   <data name="SocialPlatform" xml:space="preserve">
     <value>Soziale Plattform</value>
