@@ -37,7 +37,7 @@ namespace Vitae.Code.Mailing
                 PlainTextContent = message,
                 HtmlContent = message
             };
-            msg.AddAttachment("Logo.png", Convert.ToBase64String(File.ReadAllBytes($@"{CodeHelper.AssemblyDirectory}/MailTemplates/Logo.png")), "image/png", "inline", "logo");
+            msg.AddAttachment("logo.png", Convert.ToBase64String(File.ReadAllBytes($@"{CodeHelper.AssemblyDirectory}/MailTemplates/Logo.png")), "image/png", "inline", "logo");
             msg.AddTo(new EmailAddress(email));
 
             // Disable click tracking.

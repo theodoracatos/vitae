@@ -160,6 +160,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
                 var copy = SocialLinks[order].DeepClone();
                 copy.Order = SocialLinks.Count;
                 SocialLinks.Add(copy);
+                copy.SocialPlatform = 0;
                 SocialLinks = CheckOrdering(SocialLinks);
             }
             FillSelectionViewModel();

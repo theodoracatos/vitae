@@ -61,15 +61,32 @@ namespace Vitae.Areas.Manage.Pages
         private (IEnumerable<string> dates, List<List<int>> hits, IEnumerable<string> labels) GetLastLogins()
         {
             var lastLogins = repository.GetLogins(curriculumID, DAYS);
-            var lastLogins_Dates = lastLogins.Select(x => x.LogDate.ToString("dd.MM"));
+            var loginDates = new List<string>();
 
             // Hits
             var lastLoginsHits = new List<List<int>>();
-            lastLoginsHits.Add(lastLogins.Select(y => y.Hits).ToList());
+            var lastHits = new List<int>();
+            var startDate = DateTime.Now.Date.AddDays(-DAYS);
+            for (int i = 0; i < DAYS; i++)
+            {
+                var currentDate = startDate.AddDays(i + 1);
+                if(lastLogins.Select(l => l.LogDate.Date).Contains(currentDate))
+                {
+                    lastHits.Add(lastLogins.Where(l => l.LogDate.Date == currentDate).Sum(l => l.Hits));
+                }
+                else
+                {
+                    lastHits.Add(0);
+                }
+
+                // Dates
+                loginDates.Add(currentDate.ToString("dd.MM"));
+            }
+            lastLoginsHits.Add(lastHits);
 
             // Labels
             var labels = new List<string>() { "Login" }.AsEnumerable();
-            return (dates: lastLogins_Dates, lastLoginsHits, labels);
+            return (dates: loginDates, lastLoginsHits, labels);
         }
 
         private (IEnumerable<string> dates, List<List<int>> hits, IEnumerable<string> labels) GetLastHits(bool filterDays)

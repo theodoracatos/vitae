@@ -1,4 +1,8 @@
-﻿html, body {
+﻿@import 'scsslib/_fonts.scss';
+@import 'scsslib/_colors.scss';
+@import 'scsslib/_mobile.scss';
+
+html, body {
     height: 100%;
     width: 100%;
     padding: 0;
@@ -36,7 +40,8 @@ footer {
 }
 
 .jumbotron {
-    margin-top: 2rem !important;
+    padding-top: 3em !important;
+    padding-bottom: 2em !important;
     background-color: rgba(233,236,239, 0.95) !important;
     box-shadow: 0 2px 18px 1px rgba(49,53,72,.1);
     border: 1px solid rgba(0,0,0,.125);

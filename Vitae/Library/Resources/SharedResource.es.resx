@@ -1,0 +1,1066 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Información adicional</value>
+  </data>
+  <data name="AboutDetailsDescription" xml:space="preserve">
+    <value>Complete su información personal.</value>
+  </data>
+  <data name="AboutInfo" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="Abroad" xml:space="preserve">
+    <value>Estancia en el extranjero</value>
+  </data>
+  <data name="Abroads" xml:space="preserve">
+    <value>Las estancias en el extranjero</value>
+  </data>
+  <data name="AbroadsDescription" xml:space="preserve">
+    <value>Indique las estancias más largas en el extranjero.</value>
+  </data>
+  <data name="AcademicTitle" xml:space="preserve">
+    <value>Título académico</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Acepta</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Acceso denegado</value>
+  </data>
+  <data name="AccessDeniedMessage" xml:space="preserve">
+    <value>Por favor, rellene primero los datos personales.</value>
+  </data>
+  <data name="AccountLockedOut" xml:space="preserve">
+    <value>Cuenta de usuario bloqueada.</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Añadir</value>
+  </data>
+  <data name="AddToTop" xml:space="preserve">
+    <value>Añadir a la parte superior</value>
+  </data>
+  <data name="AdTextA0" xml:space="preserve">
+    <value>Da un impulso a tu carrera</value>
+  </data>
+  <data name="AdTextA1" xml:space="preserve">
+    <value>Preséntese con la mejor luz</value>
+  </data>
+  <data name="AdTextA2" xml:space="preserve">
+    <value>Presume de tus habilidades</value>
+  </data>
+  <data name="AdTextB0" xml:space="preserve">
+    <value>¿Quieres mejorar tu curriculum vitae? No hay problema, con VITAE te presentas de la mejor manera posible. Crea una cuenta gratis ahora!</value>
+  </data>
+  <data name="AllowedFiles" xml:space="preserve">
+    <value>se permite subir archivos</value>
+  </data>
+  <data name="Anonymize" xml:space="preserve">
+    <value>Anonimizar CV</value>
+  </data>
+  <data name="AnonymizeDescription" xml:space="preserve">
+    <value>Algunos detalles personales se ocultarán</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>¿Realmente quieres borrar este artículo?</value>
+  </data>
+  <data name="Association" xml:space="preserve">
+    <value>Asociación</value>
+  </data>
+  <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
+    <value>El valor "{0}" no es válido para</value>
+  </data>
+  <data name="Award" xml:space="preserve">
+    <value>Premio</value>
+  </data>
+  <data name="AwardedFrom" xml:space="preserve">
+    <value>Otorgado por</value>
+  </data>
+  <data name="AwardedOn" xml:space="preserve">
+    <value>Concedido el</value>
+  </data>
+  <data name="Awards" xml:space="preserve">
+    <value>Premios</value>
+  </data>
+  <data name="AwardsDescription" xml:space="preserve">
+    <value>Enumere los logros alcanzados en el curso de su carrera.</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Regresa.</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Cumpleaños</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Navegue por</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="Certificate" xml:space="preserve">
+    <value>Certificado</value>
+  </data>
+  <data name="Certificates" xml:space="preserve">
+    <value>Certificados</value>
+  </data>
+  <data name="CertificatesDescription" xml:space="preserve">
+    <value>Enumere los certificados de idiomas y de formación continua.</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Cambiar</value>
+  </data>
+  <data name="ChangeEmail" xml:space="preserve">
+    <value>Cambiar el correo electrónico</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>Cambiar el idioma</value>
+  </data>
+  <data name="ChangeLanguageDescription" xml:space="preserve">
+    <value>Cambie el idioma del sitio web aquí. Por favor, asegúrese de que ha aceptado las cookies.</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Cambiar la contraseña</value>
+  </data>
+  <data name="ChangePasswordDescription" xml:space="preserve">
+    <value>Cambie su contraseña aquí para acceder al sitio.</value>
+  </data>
+  <data name="CheckYourEmail" xml:space="preserve">
+    <value>Por favor, comprueba tu correo electrónico para restablecer tu contraseña.</value>
+  </data>
+  <data name="CheckYourEmailConfirm" xml:space="preserve">
+    <value>Por favor, comprueba tu correo electrónico para confirmar tu cuenta.</value>
+  </data>
+  <data name="Child" xml:space="preserve">
+    <value>Niño</value>
+  </data>
+  <data name="Children" xml:space="preserve">
+    <value>Niños</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>Elija un archivo para subir</value>
+  </data>
+  <data name="ChosenFile" xml:space="preserve">
+    <value>se ha elegido el archivo</value>
+  </data>
+  <data name="Citizenship" xml:space="preserve">
+    <value>Ciudadanía</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="ClickingHere" xml:space="preserve">
+    <value>haciendo clic aquí</value>
+  </data>
+  <data name="Collapse" xml:space="preserve">
+    <value>Colapsar los artículos</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Nombre de la empresa</value>
+  </data>
+  <data name="CompareFailed" xml:space="preserve">
+    <value>La contraseña y la contraseña de confirmación no coinciden.</value>
+  </data>
+  <data name="Concubinage" xml:space="preserve">
+    <value>Concubinato</value>
+  </data>
+  <data name="ConcurrencyFailure" xml:space="preserve">
+    <value>Fallo de concurrencia optimista, el objeto ha sido modificado.</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="ConfirmationEmailSent" xml:space="preserve">
+    <value>Enlace de confirmación para cambiar el correo electrónico enviado. Por favor, compruebe su correo electrónico.</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Está a punto de borrar {0}. ¿Quieres continuar?</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirme el correo electrónico</value>
+  </data>
+  <data name="ConfirmEmail1" xml:space="preserve">
+    <value>Confirma tu correo electrónico</value>
+  </data>
+  <data name="ConfirmEmailThankYou" xml:space="preserve">
+    <value>Gracias por confirmar su correo electrónico.</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirmar la contraseña</value>
+  </data>
+  <data name="CookiePolicy" xml:space="preserve">
+    <value>Al seguir visitando el sitio web, usted acepta el almacenamiento de cookies en su ordenador</value>
+  </data>
+  <data name="CookiePolicyLearnMore" xml:space="preserve">
+    <value>Aprende más.</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copia</value>
+  </data>
+  <data name="CopyValues" xml:space="preserve">
+    <value>Copiar valores</value>
+  </data>
+  <data name="CopyValuesDescription" xml:space="preserve">
+    <value>Copia todos los valores del primer idioma</value>
+  </data>
+  <data name="CountryCode" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="CountryName" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="Course" xml:space="preserve">
+    <value>Curso</value>
+  </data>
+  <data name="Courses" xml:space="preserve">
+    <value>Cursos</value>
+  </data>
+  <data name="CoursesDescription" xml:space="preserve">
+    <value>Enumere los cursos de formación continua y los pequeños cursos de formación.</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Crear una nueva cuenta.</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Contraseña actual</value>
+  </data>
+  <data name="CurriculumLanguage" xml:space="preserve">
+    <value>Lenguaje del plan de estudios</value>
+  </data>
+  <data name="CurriculumVitae" xml:space="preserve">
+    <value>Curriculum Vitae</value>
+  </data>
+  <data name="CV" xml:space="preserve">
+    <value>CV</value>
+  </data>
+  <data name="CVCompleteness" xml:space="preserve">
+    <value>CV Completo</value>
+  </data>
+  <data name="CVLanguage" xml:space="preserve">
+    <value>Idioma del CV</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Tablero de mandos</value>
+  </data>
+  <data name="DashboardDescription" xml:space="preserve">
+    <value>El tablero muestra el historial de acceso de tu currículum y otras estadísticas útiles.</value>
+  </data>
+  <data name="DateCompareError" xml:space="preserve">
+    <value>La fecha de inicio no puede ser mayor que la fecha de finalización</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Día</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Días</value>
+  </data>
+  <data name="DefaultError" xml:space="preserve">
+    <value>Se ha producido un fallo desconocido.</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DeleteAccount" xml:space="preserve">
+    <value>Eliminar la cuenta</value>
+  </data>
+  <data name="DeleteAccountConfirm" xml:space="preserve">
+    <value>¿Realmente quieres eliminar tu cuenta? Todos los datos serán borrados irrevocablemente.</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="Divorced" xml:space="preserve">
+    <value>Divorciado</value>
+  </data>
+  <data name="DropFile" xml:space="preserve">
+    <value>Suelta un archivo para subir</value>
+  </data>
+  <data name="DuplicateEmail" xml:space="preserve">
+    <value>El correo electrónico '{0}' ya está ocupado.</value>
+  </data>
+  <data name="DuplicateRoleName" xml:space="preserve">
+    <value>El nombre del rol '{0}' ya está ocupado.</value>
+  </data>
+  <data name="DuplicateUserName" xml:space="preserve">
+    <value>El nombre de usuario '{0}' ya está ocupado.</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Educación</value>
+  </data>
+  <data name="Educations" xml:space="preserve">
+    <value>Educación</value>
+  </data>
+  <data name="EducationsDescription" xml:space="preserve">
+    <value>Enumere las etapas de su formación.</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Correo electrónico</value>
+  </data>
+  <data name="EmailAlreadyConfirmed" xml:space="preserve">
+    <value>Su correo electrónico ya ha sido confirmado.</value>
+  </data>
+  <data name="EmailSent" xml:space="preserve">
+    <value>El E-Mail ha sido enviado</value>
+  </data>
+  <data name="EmailUnchanged" xml:space="preserve">
+    <value>Su correo electrónico no ha cambiado.</value>
+  </data>
+  <data name="EnablePassword" xml:space="preserve">
+    <value>Acceso con contraseña</value>
+  </data>
+  <data name="EnablePasswordDescription" xml:space="preserve">
+    <value>Asegura tu currículum con una contraseña adicional</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>Fin</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Introduzca la contraseña</value>
+  </data>
+  <data name="EnterSkill" xml:space="preserve">
+    <value>Por favor, presione Enter para insertar una nueva habilidad</value>
+  </data>
+  <data name="Entries" xml:space="preserve">
+    <value>entradas</value>
+  </data>
+  <data name="Entry" xml:space="preserve">
+    <value>entrada</value>
+  </data>
+  <data name="ErrorConfirmEmail" xml:space="preserve">
+    <value>Error al confirmar tu correo electrónico.</value>
+  </data>
+  <data name="Etc" xml:space="preserve">
+    <value>…</value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>Experiencia</value>
+  </data>
+  <data name="Experiences" xml:space="preserve">
+    <value>Experiencias</value>
+  </data>
+  <data name="ExperiencesDescription" xml:space="preserve">
+    <value>Enumere sus empleadores anteriores.</value>
+  </data>
+  <data name="ExpiresOn" xml:space="preserve">
+    <value>Expira el</value>
+  </data>
+  <data name="FilesTooLarge" xml:space="preserve">
+    <value>Los archivos que has elegido son demasiado grandes</value>
+  </data>
+  <data name="FileTooLarge" xml:space="preserve">
+    <value>es demasiado grande - el tamaño máximo de los archivos es</value>
+  </data>
+  <data name="Firstname" xml:space="preserve">
+    <value>Nombre de pila</value>
+  </data>
+  <data name="FolderUpload" xml:space="preserve">
+    <value>No se le permite subir carpetas</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Función</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Género</value>
+  </data>
+  <data name="German" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="Grade" xml:space="preserve">
+    <value>Grado</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Ocultar</value>
+  </data>
+  <data name="HideReference" xml:space="preserve">
+    <value>Ocultar referencia</value>
+  </data>
+  <data name="HierarchyLevel" xml:space="preserve">
+    <value>Nivel jerárquico</value>
+  </data>
+  <data name="HierarchyLevels" xml:space="preserve">
+    <value>Niveles de jerarquía</value>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Página web</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importación</value>
+  </data>
+  <data name="Industries" xml:space="preserve">
+    <value>Industrias</value>
+  </data>
+  <data name="Industry" xml:space="preserve">
+    <value>Industria</value>
+  </data>
+  <data name="Interest" xml:space="preserve">
+    <value>Interés</value>
+  </data>
+  <data name="Interests" xml:space="preserve">
+    <value>Intereses</value>
+  </data>
+  <data name="InterestsDescription" xml:space="preserve">
+    <value>Indique sus aficiones e intereses profesionales secundarios.</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>El correo electrónico '{0}' es inválido.</value>
+  </data>
+  <data name="InvalidLoginAttempt" xml:space="preserve">
+    <value>Intento de ingreso inválido.</value>
+  </data>
+  <data name="InvalidRoleName" xml:space="preserve">
+    <value>El nombre del rol '{0}' es inválido.</value>
+  </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>Ficha inválida.</value>
+  </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value>El nombre de usuario '{0}' es inválido, sólo puede contener letras o dígitos.</value>
+  </data>
+  <data name="IssuedOn" xml:space="preserve">
+    <value>Emitido el</value>
+  </data>
+  <data name="Issuer" xml:space="preserve">
+    <value>Emisor</value>
+  </data>
+  <data name="Italian" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="JobExperiences" xml:space="preserve">
+    <value>Experiencias de trabajo</value>
+  </data>
+  <data name="JobTitle" xml:space="preserve">
+    <value>Título del trabajo</value>
+  </data>
+  <data name="KnowledgeBasic" xml:space="preserve">
+    <value>Conocimientos básicos</value>
+  </data>
+  <data name="KnowledgeBusinessFluent" xml:space="preserve">
+    <value>Fluidez en los negocios.</value>
+  </data>
+  <data name="KnowledgeFluent" xml:space="preserve">
+    <value>Con fluidez</value>
+  </data>
+  <data name="KnowledgeNative" xml:space="preserve">
+    <value>Lengua nativa</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="LanguageDescription" xml:space="preserve">
+    <value>El idioma en el que se carga el CV</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Idiomas</value>
+  </data>
+  <data name="LanguageSkillsDescription" xml:space="preserve">
+    <value>Enumere los idiomas que puede hablar.</value>
+  </data>
+  <data name="LanguageVersions" xml:space="preserve">
+    <value>Versiones de idiomas</value>
+  </data>
+  <data name="Lastname" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Nivel</value>
+  </data>
+  <data name="LinkNotGenerated" xml:space="preserve">
+    <value>El enlace no se ha generado todavía</value>
+  </data>
+  <data name="LockedOut" xml:space="preserve">
+    <value>Bloqueado</value>
+  </data>
+  <data name="Lockout" xml:space="preserve">
+    <value>Bloqueo</value>
+  </data>
+  <data name="LockoutMessage" xml:space="preserve">
+    <value>Esta cuenta ha sido bloqueada, por favor, inténtelo de nuevo más tarde.</value>
+  </data>
+  <data name="LoggedInAs" xml:space="preserve">
+    <value>Ingresó como</value>
+  </data>
+  <data name="Loggedout" xml:space="preserve">
+    <value>Desconectado</value>
+  </data>
+  <data name="LoggedoutMessage" xml:space="preserve">
+    <value>Se ha desconectado con éxito de la aplicación.</value>
+  </data>
+  <data name="LoginAlreadyAssociated" xml:space="preserve">
+    <value>Ya existe un usuario con este inicio de sesión.</value>
+  </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>Utilice su cuenta local para iniciar la sesión.</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Salga de la aplicación</value>
+  </data>
+  <data name="LongIdentifier" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Gestione</value>
+  </data>
+  <data name="MaritalStatus" xml:space="preserve">
+    <value>Estado civil</value>
+  </data>
+  <data name="Married" xml:space="preserve">
+    <value>Casado</value>
+  </data>
+  <data name="MissingBindRequiredValueAccessor" xml:space="preserve">
+    <value>No se proporcionó un valor para la propiedad '{0}'.</value>
+  </data>
+  <data name="MissingKeyOrValueAccessor" xml:space="preserve">
+    <value>Se requiere un valor</value>
+  </data>
+  <data name="MissingRequestBodyRequiredValueAccessor" xml:space="preserve">
+    <value>Se requiere un cuerpo de solicitud no vacío</value>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>Número de móvil</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Mes</value>
+  </data>
+  <data name="Months" xml:space="preserve">
+    <value>Meses</value>
+  </data>
+  <data name="Mr" xml:space="preserve">
+    <value>El Sr.</value>
+  </data>
+  <data name="Ms" xml:space="preserve">
+    <value>Sra.</value>
+  </data>
+  <data name="MyVitae" xml:space="preserve">
+    <value>Mi Vitae</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Name1" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Nationalities" xml:space="preserve">
+    <value>Nacionalidades</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>Nacionalidad</value>
+  </data>
+  <data name="NeverExpires" xml:space="preserve">
+    <value>Nunca expira</value>
+  </data>
+  <data name="NewEmail" xml:space="preserve">
+    <value>Nuevo correo electrónico</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nueva contraseña</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoInformation" xml:space="preserve">
+    <value>No hay información</value>
+  </data>
+  <data name="NonPropertyAttemptedValueIsInvalidAccessor" xml:space="preserve">
+    <value>El valor '{0}' no es válido</value>
+  </data>
+  <data name="NonPropertyUnknownValueIsInvalidAccessor" xml:space="preserve">
+    <value>El valor suministrado es inválido</value>
+  </data>
+  <data name="NonPropertyValueMustBeANumberAccessor" xml:space="preserve">
+    <value>El campo debe ser un número</value>
+  </data>
+  <data name="NoResults" xml:space="preserve">
+    <value>No hay resultados para {0}</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notas</value>
+  </data>
+  <data name="NotesDescription" xml:space="preserve">
+    <value>Las notas son invisibles para los visitantes</value>
+  </data>
+  <data name="NrOfCVHits" xml:space="preserve">
+    <value>Llamadas de CV (últimos 30 días)</value>
+  </data>
+  <data name="NrOfLogins" xml:space="preserve">
+    <value>Logins (últimos 30 días)</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Only" xml:space="preserve">
+    <value>Sólo</value>
+  </data>
+  <data name="OnlyPdf" xml:space="preserve">
+    <value>Sólo se pueden subir archivos PDF</value>
+  </data>
+  <data name="OnRequest" xml:space="preserve">
+    <value>A petición.</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Visión general</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Su contraseña ha sido cambiada.</value>
+  </data>
+  <data name="PasswordErrorLength" xml:space="preserve">
+    <value>El {0} debe tener al menos {2} y como máximo {1} caracteres de longitud.</value>
+  </data>
+  <data name="PasswordForgot" xml:space="preserve">
+    <value>¿Olvidó su contraseña?</value>
+  </data>
+  <data name="PasswordMismatch" xml:space="preserve">
+    <value>Contraseña incorrecta.</value>
+  </data>
+  <data name="PasswordProtection" xml:space="preserve">
+    <value>Protección de la contraseña</value>
+  </data>
+  <data name="PasswordRequiresDigit" xml:space="preserve">
+    <value>Las contraseñas deben tener al menos un dígito ('0'-'9').</value>
+  </data>
+  <data name="PasswordRequiresLower" xml:space="preserve">
+    <value>Las contraseñas deben tener al menos una minúscula ('a'-'z').</value>
+  </data>
+  <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
+    <value>Las contraseñas deben tener al menos un carácter no alfanumérico.</value>
+  </data>
+  <data name="PasswordRequiresUpper" xml:space="preserve">
+    <value>Las contraseñas deben tener al menos una mayúscula ('A'-'Z').</value>
+  </data>
+  <data name="PasswordRules" xml:space="preserve">
+    <value>Por favor, elija una contraseña que consista en letras minúsculas y mayúsculas, números y al menos un carácter especial. Debe constar de al menos 6 caracteres.</value>
+  </data>
+  <data name="PasswordTooShort" xml:space="preserve">
+    <value>Las contraseñas deben tener al menos {0} caracteres.</value>
+  </data>
+  <data name="PersonalData" xml:space="preserve">
+    <value>Datos personales</value>
+  </data>
+  <data name="PersonalDetails" xml:space="preserve">
+    <value>Datos personales</value>
+  </data>
+  <data name="PersonalDetailsDescription" xml:space="preserve">
+    <value>Por favor, introduzca sus datos personales aquí.</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Número de teléfono</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Foto</value>
+  </data>
+  <data name="PleaseCheckEmail" xml:space="preserve">
+    <value>Por favor, compruebe su correo electrónico.</value>
+  </data>
+  <data name="PleaseClickHereToConfirm" xml:space="preserve">
+    <value>Por favor, confirme su cuenta de correo electrónico por</value>
+  </data>
+  <data name="PleaseConfirm" xml:space="preserve">
+    <value>Por favor, confirme</value>
+  </data>
+  <data name="PleaseUpload" xml:space="preserve">
+    <value>Por favor, suba los archivos hasta</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Política de privacidad</value>
+  </data>
+  <data name="PrivacyPolicyText" xml:space="preserve">
+    <value>Cuando visite este sitio web, el servidor web registrará automáticamente ciertos detalles de su visita (dirección IP, sitio web de origen, sitio web de destino) utilizando una tecnología de rastreo llamada "cookies". Una cookie es un pequeño fragmento de datos que el sitio web almacena en el navegador o en el dispositivo móvil. La cookie permite que el sitio web guarde sus configuraciones o preferencias durante un determinado período de tiempo.
+Este sitio web requiere cookies para optimizar el contenido de sus páginas web y para proporcionar información sobre el uso del sitio web. No se utilizan cookies de terceros" para este propósito. Las cookies que se utilizan no se pueden utilizar para la identificación del usuario para QWM. Usted puede aceptar o rechazar las cookies en cualquier momento cambiando la configuración de su navegador web. Sin embargo, tenga en cuenta que si rechaza las cookies, ciertas funcionalidades pueden verse afectadas. Al continuar utilizando el sitio web, usted acepta automáticamente el almacenamiento de cookies en su ordenador de acuerdo con las condiciones aquí descritas".</value>
+  </data>
+  <data name="ProfileOverview" xml:space="preserve">
+    <value>Resumen del perfil</value>
+  </data>
+  <data name="ProperValue" xml:space="preserve">
+    <value>Por favor, introduzca un valor adecuado</value>
+  </data>
+  <data name="Publication" xml:space="preserve">
+    <value>Publicación</value>
+  </data>
+  <data name="PublicationDescription" xml:space="preserve">
+    <value>Gestione la publicación de su CV aquí.</value>
+  </data>
+  <data name="PublicationIdentifier" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Publications" xml:space="preserve">
+    <value>Publicaciones</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publica</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Conocimiento</value>
+  </data>
+  <data name="Reference" xml:space="preserve">
+    <value>Referencia</value>
+  </data>
+  <data name="References" xml:space="preserve">
+    <value>Referencias</value>
+  </data>
+  <data name="ReferencesDescription" xml:space="preserve">
+    <value>Enumere todas las referencias que le gustaría compartir con su futuro empleador. También puede optar por ocultarlas.</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Crear una cuenta</value>
+  </data>
+  <data name="RegisterANewUser" xml:space="preserve">
+    <value>Registrar un nuevo usuario</value>
+  </data>
+  <data name="RegisterConfirmation" xml:space="preserve">
+    <value>Confirmación del registro</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>¿Me recuerdas?</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Retire</value>
+  </data>
+  <data name="RemoveFileConfirmation" xml:space="preserve">
+    <value>¿Estás seguro de que quieres eliminar este archivo</value>
+  </data>
+  <data name="RemovePicture" xml:space="preserve">
+    <value>Quita esta foto</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Solicite</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Por favor, añade un valor</value>
+  </data>
+  <data name="RequiredSelection" xml:space="preserve">
+    <value>Por favor, seleccione un valor</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Restablecer la contraseña</value>
+  </data>
+  <data name="ResetPasswordBy" xml:space="preserve">
+    <value>Por favor, restablezca su contraseña mediante</value>
+  </data>
+  <data name="ResetPasswordConfirmation" xml:space="preserve">
+    <value>Restablecer la confirmación de la contraseña</value>
+  </data>
+  <data name="ResetPasswordText1" xml:space="preserve">
+    <value>Su contraseña ha sido restablecida. Por favor,</value>
+  </data>
+  <data name="ResetPasswordText2" xml:space="preserve">
+    <value>haga clic aquí para iniciar sesión.</value>
+  </data>
+  <data name="ResetYourPassword" xml:space="preserve">
+    <value>Restablecer la contraseña</value>
+  </data>
+  <data name="Resumee" xml:space="preserve">
+    <value>Resumen</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="SchoolName" xml:space="preserve">
+    <value>Institución educativa</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="SendVerificationEmail" xml:space="preserve">
+    <value>Enviar correo electrónico de verificación</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Ajustes</value>
+  </data>
+  <data name="SettingsAccountHint" xml:space="preserve">
+    <value>Atención, esta acción no se puede deshacer!</value>
+  </data>
+  <data name="SettingsDescription" xml:space="preserve">
+    <value>Aquí puedes seleccionar los diferentes idiomas de tu currículum.</value>
+  </data>
+  <data name="SettingsLanguageHint" xml:space="preserve">
+    <value>Este idioma sólo puede cambiarse si se eliminan todas las publicaciones referenciadas.</value>
+  </data>
+  <data name="ShareLink" xml:space="preserve">
+    <value>Comparte este enlace / código QR con tu futuro empleador</value>
+  </data>
+  <data name="ShortIdentifier" xml:space="preserve">
+    <value>Identificación corta</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Firme en el registro.</value>
+  </data>
+  <data name="Single" xml:space="preserve">
+    <value>Soltero</value>
+  </data>
+  <data name="SingleDay" xml:space="preserve">
+    <value>Un solo día</value>
+  </data>
+  <data name="Skill" xml:space="preserve">
+    <value>Habilidad</value>
+  </data>
+  <data name="Skills" xml:space="preserve">
+    <value>Habilidades</value>
+  </data>
+  <data name="SkillsDescription" xml:space="preserve">
+    <value>Enumere todas las habilidades sociales que ha adquirido en el curso de su carrera.</value>
+  </data>
+  <data name="Skillset" xml:space="preserve">
+    <value>Skillset</value>
+  </data>
+  <data name="Slogan" xml:space="preserve">
+    <value>Eslogan</value>
+  </data>
+  <data name="SocialLink" xml:space="preserve">
+    <value>El vínculo social</value>
+  </data>
+  <data name="SocialLinks" xml:space="preserve">
+    <value>Los vínculos sociales</value>
+  </data>
+  <data name="SocialLinksDescription" xml:space="preserve">
+    <value>Enumere todas las conexiones sociales con sitios web externos.</value>
+  </data>
+  <data name="SocialPlatform" xml:space="preserve">
+    <value>Plataforma social</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Comienza</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="Status404" xml:space="preserve">
+    <value>No se pudo encontrar la página solicitada</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Calle</value>
+  </data>
+  <data name="StreetNo" xml:space="preserve">
+    <value>Número</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Tema de la educación</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Envíe</value>
+  </data>
+  <data name="SumOfCVHits" xml:space="preserve">
+    <value>Suma de las últimas llamadas de CV (las últimas 50)</value>
+  </data>
+  <data name="SupplyCode" xml:space="preserve">
+    <value>Se debe suministrar un código para el restablecimiento de la contraseña.</value>
+  </data>
+  <data name="TheLogout" xml:space="preserve">
+    <value>Cierre de sesión</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Título de la educación</value>
+  </data>
+  <data name="UnableToLoadUser" xml:space="preserve">
+    <value>No se puede cargar el usuario con el correo electrónico</value>
+  </data>
+  <data name="UnableToLoadUserID" xml:space="preserve">
+    <value>No se puede cargar el usuario con la identificación </value>
+  </data>
+  <data name="UnknownValueIsInvalidAccessor" xml:space="preserve">
+    <value>El valor suministrado es inválido para {0}</value>
+  </data>
+  <data name="UnsafedChanges" xml:space="preserve">
+    <value>Tienes cambios no guardados. ¿Quieres continuar?</value>
+  </data>
+  <data name="UntilNow" xml:space="preserve">
+    <value>Hasta ahora.</value>
+  </data>
+  <data name="URL" xml:space="preserve">
+    <value>Enlace</value>
+  </data>
+  <data name="UserAlreadyHasPassword" xml:space="preserve">
+    <value>El usuario ya tiene una contraseña establecida.</value>
+  </data>
+  <data name="UserAlreadyInRole" xml:space="preserve">
+    <value>El usuario ya está en el rol '{0}'.</value>
+  </data>
+  <data name="UserCreatedWithPassword" xml:space="preserve">
+    <value>El usuario ha creado una nueva cuenta con contraseña.</value>
+  </data>
+  <data name="UserLockoutNotEnabled" xml:space="preserve">
+    <value>El bloqueo no está habilitado para este usuario.</value>
+  </data>
+  <data name="UserLoggedIn" xml:space="preserve">
+    <value>Usuario conectado.</value>
+  </data>
+  <data name="UserNotInRole" xml:space="preserve">
+    <value>El usuario no tiene el rol '{0}'.</value>
+  </data>
+  <data name="ValueIsInvalidAccessor" xml:space="preserve">
+    <value>El valor '{0}' es inválido</value>
+  </data>
+  <data name="ValueMustBeANumberAccessor" xml:space="preserve">
+    <value>El campo {0} debe ser un número</value>
+  </data>
+  <data name="ValueMustNotBeNullAccessor" xml:space="preserve">
+    <value>El valor '{0}' es inválido</value>
+  </data>
+  <data name="VariousMaritalStatus" xml:space="preserve">
+    <value>Varios</value>
+  </data>
+  <data name="VerificationEmailSent" xml:space="preserve">
+    <value>Correo electrónico de verificación enviado.</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
+  <data name="WelcomeToVitae" xml:space="preserve">
+    <value>Bienvenido a VITAE</value>
+  </data>
+  <data name="Widowed" xml:space="preserve">
+    <value>Viudo</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Año</value>
+  </data>
+  <data name="YearOld" xml:space="preserve">
+    <value>Un año de edad</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>Años</value>
+  </data>
+  <data name="YearsOld" xml:space="preserve">
+    <value>años de edad</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Código postal</value>
+  </data>
+</root>

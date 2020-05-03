@@ -1,0 +1,11 @@
+﻿@media all and (max-width: 767px), all and (max-height: 767px) {
+    header, footer, .mainframe, .jumbotron, #cookieConsent {
+        zoom: 0.75;
+    }
+}
+
+@media all and (max-width: 480px), all and (max-height: 480px) {
+    header, footer, .mainframe, .jumbotron, #cookieConsent {
+        zoom: 0.5;
+    }
+}

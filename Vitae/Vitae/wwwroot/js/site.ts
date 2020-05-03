@@ -156,12 +156,12 @@ function drawChart(chartId, title, xLabels, yValues, yLabels) {
         let d = {
             label: yLabels[index],
             fill: true,
-            lineTension: 0.1,
+            lineTension: 0,
             backgroundColor: [
                 bgColor
             ],
             borderColor: bgColor,
-            borderWidth: 1,
+            borderWidth: 2,
             data: $(this)
         }
         datasets.push(d);
@@ -222,34 +222,34 @@ function drawChart(chartId, title, xLabels, yValues, yLabels) {
 function getColor(index) {
     switch (index % 10) {
         case 0: default: {
-            return 'rgba(63, 81, 181, 0.5)';
+            return 'rgba(63, 81, 181, 0.35)';
         }
         case 1: {
-            return 'rgba(76, 175, 80, 0.5)';
+            return 'rgba(76, 175, 80, 0.35)';
         }
         case 2: {
-            return 'rgba(255, 152, 0, 0.5)';
+            return 'rgba(255, 152, 0, 0.35)';
         }
         case 3: {
-            return 'rgba(244, 67, 54, 0.5)';
+            return 'rgba(244, 67, 54, 0.35)';
         }
         case 4: {
-            return 'rgba(255, 235, 59, 0.5)';
+            return 'rgba(255, 235, 59, 0.35)';
         }
         case 5: {
-            return 'rgba(103, 58, 183, 0.5)';
+            return 'rgba(103, 58, 183, 0.35)';
         }
         case 6: {
-            return 'rgba(233, 30, 99, 0.5)';
+            return 'rgba(233, 30, 99, 0.35)';
         }
         case 7: {
-            return 'rgba(0, 188, 212,0.5)';
+            return 'rgba(0, 188, 212, 0.35)';
         }
         case 8: {
-            return 'rgba(96, 125, 139,0.5)';
+            return 'rgba(96, 125, 139, 0.35)';
         }
         case 9: {
-            return 'rgba(121, 85, 72,0.5)';
+            return 'rgba(121, 85, 72, 0.35)';
         }
     }
 }

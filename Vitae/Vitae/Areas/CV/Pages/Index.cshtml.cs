@@ -91,7 +91,7 @@ namespace Vitae.Areas.CV.Pages
             }
             else
             {
-                return await LoadPageAsync(curriculumID.Value, id, culture, id.HasValue);
+                return await LoadPageAsync(curriculumID.Value, id, culture, id.HasValue && !IsLoggedIn);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Vitae.Areas.CV.Pages
 
                 if (AesHandler.Decrypt(password, curriculumID.ToString()) == Password)
                 {
-                    return await LoadPageAsync(curriculumID.Value, id, culture, id.HasValue);
+                    return await LoadPageAsync(curriculumID.Value, id, culture, id.HasValue && !IsLoggedIn);
                 }
                 else
                 {
