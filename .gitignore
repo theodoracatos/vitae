@@ -2,9 +2,15 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-#########
-# VITAE #
-#########
+##########
+# TEASER #
+##########
+/Vitae/Teaser/obj
+/Vitae/Teaser/bin
+
+##########
+# VITAE  #
+##########
 /.vs
 /Vitae/.vs
 /Vitae/Library/bin
@@ -48,9 +54,3 @@
 /Vitae/Vitae/wwwroot/css/account.css
 /Vitae/Vitae/wwwroot/js/jquery.unobtrusive-ajax.min.js
 
-#########
-# INFO  #
-#########
-/Info/Info/.vs/Info
-/Info/Info/Info/bin/Debug/netcoreapp3.1
-/Info/Info/Info/obj
