@@ -150,6 +150,9 @@
   <data name="AccountLockedOut" xml:space="preserve">
     <value>Cuenta de usuario bloqueada.</value>
   </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Activar</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Añadir</value>
   </data>
@@ -495,6 +498,9 @@
   <data name="Grade" xml:space="preserve">
     <value>Grado</value>
   </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hola</value>
+  </data>
   <data name="Hide" xml:space="preserve">
     <value>Ocultar</value>
   </data>
@@ -624,6 +630,33 @@
   <data name="LongIdentifier" xml:space="preserve">
     <value>ID</value>
   </data>
+  <data name="MailAdvert1" xml:space="preserve">
+    <value>Nunca ha sido tan fácil crear un currículum.</value>
+  </data>
+  <data name="MailAdvert2a" xml:space="preserve">
+    <value>Con</value>
+  </data>
+  <data name="MailAdvert2b" xml:space="preserve">
+    <value>ahora tienes la herramienta perfecta para esto. ¡Da grandes pasos hacia el trabajo de tus sueños!</value>
+  </data>
+  <data name="MailAdvert3" xml:space="preserve">
+    <value>Haz clic en el siguiente enlace para activar tu cuenta:</value>
+  </data>
+  <data name="MailAdvert4" xml:space="preserve">
+    <value>Te deseamos mucho éxito en tu búsqueda de trabajo con myvitae... ¡mantente en el baile!</value>
+  </data>
+  <data name="MailAdvert5" xml:space="preserve">
+    <value>Tu equipo de myvitae</value>
+  </data>
+  <data name="MailAdvert6" xml:space="preserve">
+    <value>Nunca ha sido tan fácil.</value>
+  </data>
+  <data name="MailFooter1" xml:space="preserve">
+    <value>Este correo electrónico fue enviado desde myvitae.ch a</value>
+  </data>
+  <data name="MailFooter2" xml:space="preserve">
+    <value>Por favor, borre su cuenta si no desea seguir recibiendo estos correos electrónicos.</value>
+  </data>
   <data name="Manage" xml:space="preserve">
     <value>Gestione</value>
   </data>
@@ -661,9 +694,6 @@
     <value>Mi Vitae</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Value</value>
-  </data>
-  <data name="Name1" xml:space="preserve">
     <value>Nombre</value>
   </data>
   <data name="Nationalities" xml:space="preserve">

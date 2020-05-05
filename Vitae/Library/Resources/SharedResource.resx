@@ -150,6 +150,9 @@
   <data name="AccountLockedOut" xml:space="preserve">
     <value>User account locked out.</value>
   </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Activate</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
@@ -495,6 +498,9 @@
   <data name="Grade" xml:space="preserve">
     <value>Grade</value>
   </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
   <data name="Hide" xml:space="preserve">
     <value>Hide</value>
   </data>
@@ -623,6 +629,33 @@
   </data>
   <data name="LongIdentifier" xml:space="preserve">
     <value>ID</value>
+  </data>
+  <data name="MailAdvert1" xml:space="preserve">
+    <value>It has never been so easy to create a resume.</value>
+  </data>
+  <data name="MailAdvert2a" xml:space="preserve">
+    <value>With</value>
+  </data>
+  <data name="MailAdvert2b" xml:space="preserve">
+    <value>you now have the perfect tool for this. Take big steps towards your dream job!</value>
+  </data>
+  <data name="MailAdvert3" xml:space="preserve">
+    <value>Click on the following link to activate your account:</value>
+  </data>
+  <data name="MailAdvert4" xml:space="preserve">
+    <value>We wish you every success in your job search with myvitae - stay on the ball!</value>
+  </data>
+  <data name="MailAdvert5" xml:space="preserve">
+    <value>Your myvitae team</value>
+  </data>
+  <data name="MailAdvert6" xml:space="preserve">
+    <value>It has never been so easy.</value>
+  </data>
+  <data name="MailFooter1" xml:space="preserve">
+    <value>This email was sent from myvitae.ch to</value>
+  </data>
+  <data name="MailFooter2" xml:space="preserve">
+    <value>Please delete your account if you no longer wish to receive these emails.</value>
   </data>
   <data name="Manage" xml:space="preserve">
     <value>Manage</value>

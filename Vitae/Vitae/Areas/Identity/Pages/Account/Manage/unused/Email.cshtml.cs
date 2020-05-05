@@ -106,11 +106,11 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
                     values: new { userId = userId, email = Input.NewEmail, code = code },
                     protocol: Request.Scheme);
 
-                var bodyText = await CodeHelper.GetMailBodyTextAsync(HttpUtility.HtmlEncode(SharedResource.ConfirmEmail), $"{HttpUtility.HtmlEncode(SharedResource.PleaseClickHereToConfirm)} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{HttpUtility.HtmlEncode(SharedResource.ClickingHere)}</a>.");
+                //var bodyText = await CodeHelper.GetMailBodyTextAsync(HttpUtility.HtmlEncode(SharedResource.ConfirmEmail), $"{HttpUtility.HtmlEncode(SharedResource.PleaseClickHereToConfirm)} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{HttpUtility.HtmlEncode(SharedResource.ClickingHere)}</a>.");
                 await _emailSender.SendEmailAsync(
                     Input.NewEmail,
                     SharedResource.ConfirmEmail,
-                    bodyText);
+                    "");
 
                 StatusMessage = $"{SharedResource.ConfirmationEmailSent} {SharedResource.PleaseCheckEmail}";
                 return RedirectToPage();
@@ -144,11 +144,11 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
                 values: new { area = "Identity", userId = userId, code = code },
                 protocol: Request.Scheme);
 
-            var bodyText = await CodeHelper.GetMailBodyTextAsync(HttpUtility.HtmlEncode(SharedResource.ConfirmEmail), $"{HttpUtility.HtmlEncode(SharedResource.PleaseClickHereToConfirm)} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{HttpUtility.HtmlEncode(SharedResource.ClickingHere)}</a>.");
+            //var bodyText = await CodeHelper.GetMailBodyTextAsync(HttpUtility.HtmlEncode(SharedResource.ConfirmEmail), $"{HttpUtility.HtmlEncode(SharedResource.PleaseClickHereToConfirm)} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{HttpUtility.HtmlEncode(SharedResource.ClickingHere)}</a>.");
             await _emailSender.SendEmailAsync(
                 email,
                 SharedResource.ConfirmEmail,
-                bodyText);
+                "");
 
             StatusMessage = $"{SharedResource.VerificationEmailSent} {SharedResource.PleaseCheckEmail}";
             return RedirectToPage();

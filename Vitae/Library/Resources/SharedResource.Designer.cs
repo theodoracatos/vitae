@@ -160,6 +160,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activate.
+        /// </summary>
+        public static string Activate {
+            get {
+                return ResourceManager.GetString("Activate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Add {
@@ -1195,6 +1204,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hello.
+        /// </summary>
+        public static string Hello {
+            get {
+                return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide.
         /// </summary>
         public static string Hide {
@@ -1578,6 +1596,87 @@ namespace Library.Resources {
         public static string LongIdentifier {
             get {
                 return ResourceManager.GetString("LongIdentifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It has never been so easy to create a resume..
+        /// </summary>
+        public static string MailAdvert1 {
+            get {
+                return ResourceManager.GetString("MailAdvert1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With.
+        /// </summary>
+        public static string MailAdvert2a {
+            get {
+                return ResourceManager.GetString("MailAdvert2a", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to you now have the perfect tool for this. Take big steps towards your dream job!.
+        /// </summary>
+        public static string MailAdvert2b {
+            get {
+                return ResourceManager.GetString("MailAdvert2b", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click on the following link to activate your account:.
+        /// </summary>
+        public static string MailAdvert3 {
+            get {
+                return ResourceManager.GetString("MailAdvert3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We wish you every success in your job search with myvitae - stay on the ball!.
+        /// </summary>
+        public static string MailAdvert4 {
+            get {
+                return ResourceManager.GetString("MailAdvert4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your myvitae team.
+        /// </summary>
+        public static string MailAdvert5 {
+            get {
+                return ResourceManager.GetString("MailAdvert5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It has never been so easy..
+        /// </summary>
+        public static string MailAdvert6 {
+            get {
+                return ResourceManager.GetString("MailAdvert6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This email was sent from myvitae.ch to.
+        /// </summary>
+        public static string MailFooter1 {
+            get {
+                return ResourceManager.GetString("MailFooter1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please delete your account if you no longer wish to receive these emails..
+        /// </summary>
+        public static string MailFooter2 {
+            get {
+                return ResourceManager.GetString("MailFooter2", resourceCulture);
             }
         }
         

@@ -150,6 +150,9 @@
   <data name="AccountLockedOut" xml:space="preserve">
     <value>Account utente bloccato.</value>
   </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Attivare</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Aggiungi</value>
   </data>
@@ -495,6 +498,9 @@
   <data name="Grade" xml:space="preserve">
     <value>Grado</value>
   </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Ciao</value>
+  </data>
   <data name="Hide" xml:space="preserve">
     <value>Nascondi</value>
   </data>
@@ -624,6 +630,33 @@
   <data name="LongIdentifier" xml:space="preserve">
     <value>ID</value>
   </data>
+  <data name="MailAdvert1" xml:space="preserve">
+    <value>Non è mai stato così facile creare un curriculum.</value>
+  </data>
+  <data name="MailAdvert2a" xml:space="preserve">
+    <value>Con</value>
+  </data>
+  <data name="MailAdvert2b" xml:space="preserve">
+    <value>ora avete lo strumento perfetto per questo. Fai grandi passi verso il lavoro dei tuoi sogni!</value>
+  </data>
+  <data name="MailAdvert3" xml:space="preserve">
+    <value>Cliccate sul seguente link per attivare il vostro conto:</value>
+  </data>
+  <data name="MailAdvert4" xml:space="preserve">
+    <value>Vi auguriamo ogni successo nella vostra ricerca di lavoro con myvitae - state all'erta!</value>
+  </data>
+  <data name="MailAdvert5" xml:space="preserve">
+    <value>Il tuo team myvitae</value>
+  </data>
+  <data name="MailAdvert6" xml:space="preserve">
+    <value>Non è mai stato così facile.</value>
+  </data>
+  <data name="MailFooter1" xml:space="preserve">
+    <value>Questa e-mail è stata inviata da myvitae.ch a</value>
+  </data>
+  <data name="MailFooter2" xml:space="preserve">
+    <value>Cancella il tuo account se non desideri più ricevere queste e-mail.</value>
+  </data>
   <data name="Manage" xml:space="preserve">
     <value>Gestisci</value>
   </data>
@@ -661,9 +694,6 @@
     <value>Il mio Vitae</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Value</value>
-  </data>
-  <data name="Name1" xml:space="preserve">
     <value>Nome</value>
   </data>
   <data name="Nationalities" xml:space="preserve">

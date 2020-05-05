@@ -1,5 +1,5 @@
 ﻿using Library.Constants;
-
+using Library.Resources;
 using Microsoft.AspNetCore.Http;
 using QRCoder;
 using System;
@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
 namespace Library.Helper
@@ -64,7 +65,7 @@ namespace Library.Helper
             return httpContext.Request.Headers.ContainsKey("User-Agent") ? httpContext.Request.Headers["User-Agent"].First() : string.Empty;
         }
 
-        public async static Task<string> GetMailBodyTextAsync(string title, string body, string mailtemplate = MAIL_TEMPLATE)
+        public async static Task<string> GetMailBodyTextAsync(string title, string email_to, Tuple<string, string, string> activationMessage, string mailtemplate = MAIL_TEMPLATE)
         {
             StringBuilder bodyText;
 
@@ -72,9 +73,25 @@ namespace Library.Helper
             {
                 bodyText = new StringBuilder(await reader.ReadToEndAsync());
             }
-            bodyText.Replace("${TITLE}", title);
-            bodyText.Replace("${BODY_TEXT}", body);
+
+            bodyText.Replace("${TITLE}", HtmlEncoder.Default.Encode(title));
+            bodyText.Replace("${HELLO}", HtmlEncoder.Default.Encode(SharedResource.Hello));
+            bodyText.Replace("${MAIL_ADVERT1}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert1));
+            bodyText.Replace("${MAIL_ADVERT2a}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert2a));
+            bodyText.Replace("${MAIL_ADVERT2b}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert2b));
+
+            bodyText.Replace("${MAIL_ADVERT3a}", HtmlEncoder.Default.Encode(activationMessage.Item1));
+            bodyText.Replace("${ACTIVATION_LINK}", HtmlEncoder.Default.Encode(activationMessage.Item2));
+            bodyText.Replace("${MAIL_ADVERT3b}", HtmlEncoder.Default.Encode(activationMessage.Item3));
+
+            bodyText.Replace("${MAIL_ADVERT4}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert4));
+            bodyText.Replace("${MAIL_ADVERT5}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert5));
+            bodyText.Replace("${MAIL_ADVERT6}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert6));
+
             bodyText.Replace("${YEAR}", DateTime.Now.Year.ToString());
+            bodyText.Replace("${MAIL_FOOTER1}", HtmlEncoder.Default.Encode(SharedResource.MailFooter1));
+            bodyText.Replace("${MAIL_TO}", HtmlEncoder.Default.Encode(email_to));
+            bodyText.Replace("${MAIL_FOOTER2}", HtmlEncoder.Default.Encode(SharedResource.MailFooter2));
 
             return bodyText.ToString();
         }

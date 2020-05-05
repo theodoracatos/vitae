@@ -14,6 +14,7 @@ using Library.Resources;
 using System.IO;
 using System.Web;
 using Library.Helper;
+using Library.Constants;
 
 namespace Vitae.Areas.Identity.Pages.Account
 {
@@ -62,7 +63,7 @@ namespace Vitae.Areas.Identity.Pages.Account
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
-                var bodyText = await CodeHelper.GetMailBodyTextAsync(HttpUtility.HtmlEncode(SharedResource.ResetPassword), $"{HttpUtility.HtmlEncode(SharedResource.ResetPasswordBy)} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{HttpUtility.HtmlEncode(SharedResource.ClickingHere)}</a>.");
+                var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.ResetPassword, Globals.SENDER_MAIL, new Tuple<string, string, string>(SharedResource.ResetPasswordBy, callbackUrl, SharedResource.ClickingHere));
                 await _emailSender.SendEmailAsync(Input.Email, SharedResource.ResetPassword, bodyText);
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
