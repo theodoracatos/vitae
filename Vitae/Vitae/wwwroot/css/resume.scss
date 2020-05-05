@@ -14,15 +14,12 @@
     font-size: 2.0rem;
 }
 
-.resume-section {
-    background-image: url('/img/mountain-transparent.png');
-    background-repeat: no-repeat;
+.resume-section, .bg-wallpaper {
+    background: url('../img/mountain-transparent.png') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    -msie-background-size: cover;
     background-size: cover;
-    background-attachment: fixed
 }
 
 .btn-primary {
@@ -46,10 +43,6 @@
     box-shadow: 0 0 0 0.2rem rgba(208, 187, 149, 0.5) !important;
 }
 
-.bg-wallpaper {
-    background: url('../img/mountain-transparent.png') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+#sideNav .navbar-toggler:focus {
+    outline-color: $qvs-gold-color;
 }

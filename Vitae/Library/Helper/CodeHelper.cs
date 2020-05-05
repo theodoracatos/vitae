@@ -65,6 +65,11 @@ namespace Library.Helper
             return httpContext.Request.Headers.ContainsKey("User-Agent") ? httpContext.Request.Headers["User-Agent"].First() : string.Empty;
         }
 
+        public static FileStream GetLogoStream(string name)
+        {
+            return File.OpenRead($@"{CodeHelper.AssemblyDirectory}/MailTemplates/{name}");
+        }
+
         public async static Task<string> GetMailBodyTextAsync(string title, string email_to, Tuple<string, string, string> activationMessage, string mailtemplate = MAIL_TEMPLATE)
         {
             StringBuilder bodyText;

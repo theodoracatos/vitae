@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Encodings.Web;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Library.Constants;
+using Library.Helper;
+using Library.Resources;
+
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Library.Resources;
-using System.IO;
-using System.Web;
-using Library.Helper;
-using Library.Constants;
+
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Threading.Tasks;
+
+using Vitae.Code.Mailing;
+
+using IEmailSender = Vitae.Code.Mailing.IEmailSender;
 
 namespace Vitae.Areas.Identity.Pages.Account
 {
@@ -64,7 +66,9 @@ namespace Vitae.Areas.Identity.Pages.Account
                     protocol: Request.Scheme);
 
                 var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.ResetPassword, Globals.SENDER_MAIL, new Tuple<string, string, string>(SharedResource.ResetPasswordBy, callbackUrl, SharedResource.ClickingHere));
-                await _emailSender.SendEmailAsync(Input.Email, SharedResource.ResetPassword, bodyText);
+                var logoStream = CodeHelper.GetLogoStream("Logo_ink.png");
+                var message = new Message(new string[] { Input.Email }, SharedResource.ConfirmEmail, bodyText, new FormFileCollection() { new FormFile(logoStream, 0, logoStream.Length, "image/png", "logo") });
+                await _emailSender.SendEmailAsync(message);
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

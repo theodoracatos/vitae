@@ -1,23 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using System.Web;
-using Library.Constants;
+﻿using Library.Constants;
 using Library.Helper;
 using Library.Resources;
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Vitae.Code.Mailing;
+
+using IEmailSender = Vitae.Code.Mailing.IEmailSender;
 
 namespace Vitae.Areas.Identity.Pages.Account
 {
@@ -95,8 +98,10 @@ namespace Vitae.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.ConfirmEmail, Globals.SENDER_MAIL, new Tuple<string, string, string>(SharedResource.MailAdvert3, callbackUrl, SharedResource.Activate));
-                    await _emailSender.SendEmailAsync(Input.Email, SharedResource.ConfirmEmail, bodyText);
+                    var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.ConfirmEmail, Globals.SENDER_MAIL, new Tuple<string, string, string>(SharedResource.MailAdvert3, callbackUrl, SharedResource.ClickingHere));
+                    var logoStream = CodeHelper.GetLogoStream("Logo_ink.png");
+                    var message = new Message(new string[] { Input.Email }, SharedResource.ConfirmEmail, bodyText, new FormFileCollection() { new FormFile(logoStream, 0, logoStream.Length, "image/png", "logo") });
+                    await _emailSender.SendEmailAsync(message);
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

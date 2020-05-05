@@ -1,3 +1,5 @@
+using Library.Constants;
+using Library.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model.Helper;
 using System;
@@ -41,6 +43,15 @@ namespace UnitTests
 
             Assert.IsTrue(dateDifference.Years == 1);
             Assert.IsTrue(dateDifference.Months == 0);
+        }
+
+        [TestMethod]
+        public void EncoderTest()
+        {
+            var passphrase = "test";
+            var salt = Globals.APPLICATION_NAME;
+
+            var message = AesHandler.Encrypt(passphrase, salt);
         }
     }
 }

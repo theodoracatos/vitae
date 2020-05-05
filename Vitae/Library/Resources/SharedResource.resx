@@ -169,7 +169,7 @@
     <value>Show off your skills</value>
   </data>
   <data name="AdTextB0" xml:space="preserve">
-    <value>Want to improve your curriculum vitae? No problem - with VITAE you present yourself in the best possible light. Create a free account now!</value>
+    <value>Want to improve your curriculum vitae? No problem - with myvitae.ch you present yourself in the best possible light. Create a free account now!</value>
   </data>
   <data name="AllowedFiles" xml:space="preserve">
     <value>files are allowed to be uploaded</value>
@@ -640,16 +640,16 @@
     <value>you now have the perfect tool for this. Take big steps towards your dream job!</value>
   </data>
   <data name="MailAdvert3" xml:space="preserve">
-    <value>Click on the following link to activate your account:</value>
+    <value>Please activate your account by</value>
   </data>
   <data name="MailAdvert4" xml:space="preserve">
-    <value>We wish you every success in your job search with myvitae - stay on the ball!</value>
+    <value>We wish you every success in your job search with myvitae.ch - stay on the ball!</value>
   </data>
   <data name="MailAdvert5" xml:space="preserve">
-    <value>Your myvitae team</value>
+    <value>Your myvitae.ch team</value>
   </data>
   <data name="MailAdvert6" xml:space="preserve">
-    <value>It has never been so easy.</value>
+    <value>It has never been easier.</value>
   </data>
   <data name="MailFooter1" xml:space="preserve">
     <value>This email was sent from myvitae.ch to</value>
@@ -1070,7 +1070,7 @@ This website requires cookies to optimize the content of its web pages and to pr
     <value>Warning</value>
   </data>
   <data name="WelcomeToVitae" xml:space="preserve">
-    <value>Welcome to VITAE</value>
+    <value>Welcome to myvitae.ch</value>
   </data>
   <data name="Widowed" xml:space="preserve">
     <value>Widowed</value>

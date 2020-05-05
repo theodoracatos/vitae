@@ -13,6 +13,8 @@ $(document).ready(function () {
             var target = $(this.hash);
             target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
             if (target.length) {
+
+                $('#copyright').fadeIn().delay(3000).fadeOut();
                 $('html, body').animate({
                     scrollTop: (target.offset().top)
                 }, 1250, "easeInOutExpo");

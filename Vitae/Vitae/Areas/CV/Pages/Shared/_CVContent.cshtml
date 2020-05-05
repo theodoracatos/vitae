@@ -21,8 +21,8 @@
 
 <!-- #region Menu -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-    <a class="js-scroll-trigger mt-1 mb-1" href="#page-top">
-        <img src="~/img/logo.png" class="" title="Vitae" />
+    <a class="js-scroll-trigger mt-2 mb-2" href="/">
+        <img src="~/img/logo.png" class="" title="myvitae.ch" />
     </a>
 
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -56,8 +56,7 @@
 
 <!-- #endregion -->
 
-<div class="container-fluid p-0">
-
+<div class="container-fluid p-0 resume-section2">
     <!-- #region About -->
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(About).ToLower()">
         <div class="w-100">
@@ -395,34 +394,39 @@
     <!-- #region References -->
     @if (Model.Certificates.Count > 0)
     {
-        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Reference).ToLower()">
-            <div class="w-100">
-                <h2 class="mb-5"><i class="fas fa-user-tie mr-3"></i>@SharedResource.References</h2>
-                @foreach (var reference in Model.References.Where(r => !r.Hide))
-                {
-                    <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
-                        <div class="resume-content">
-                            <h3 class="mb-0">@(reference.Gender.Value ? SharedResource.Mr : SharedResource.Ms) @reference.Firstname @reference.Lastname</h3>
-                            <div class="subheading">
-                                @if (!string.IsNullOrEmpty(reference.Email))
-                                {
-                                    <a href="mailto:@(reference.Email)">@reference.Email</a> @Html.Raw("&middot;")
-                                }
-                                <span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(reference.CountryCode.ToLower())"></span> <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber</a>
-                            </div>
-                            <div class="subheading"><a href="@reference.Link" target="_blank">@reference.CompanyName</a></div>
-                            <p class="mt-3">@reference.Description</p>
-                        </div>
+<section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(Reference).ToLower()">
+    <div class="w-100">
+        <h2 class="mb-5"><i class="fas fa-user-tie mr-3"></i>@SharedResource.References</h2>
+        @foreach (var reference in Model.References.Where(r => !r.Hide))
+        {
+            <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+                <div class="resume-content">
+                    <h3 class="mb-0">@(reference.Gender.Value ? SharedResource.Mr : SharedResource.Ms) @reference.Firstname @reference.Lastname</h3>
+                    <div class="subheading">
+                        @if (!string.IsNullOrEmpty(reference.Email))
+                        {
+                            <a href="mailto:@(reference.Email)">@reference.Email</a> @Html.Raw("&middot;")
+                        }
+                        <span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(reference.CountryCode.ToLower())"></span> <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber</a>
                     </div>
-                    <hr class="mb-4 pb-2">
-                }
-                @if (Model.References.Count > 0 && Model.References.All(r => r.Hide))
-                {
-                    <div class="subheading">@SharedResource.OnRequest</div>
-                }
+                    <div class="subheading"><a href="@reference.Link" target="_blank">@reference.CompanyName</a></div>
+                    <p class="mt-3">@reference.Description</p>
+                </div>
             </div>
-        </section>
+            <hr class="mb-4 pb-2">
+        }
+        @if (Model.References.Count > 0 && Model.References.All(r => r.Hide))
+        {
+            <div class="subheading">@SharedResource.OnRequest</div>
+        }
+    </div>
+    <footer id="copyright" class="mt-auto fixed-bottom" style="display: none">
+        <div class="d-flex align-items-center justify-content-end small">
+            <label class="bg-snowwhite shadow border-dark pl-2 pr-2 pt-1 pb-1 mb-0 mr-2" style="border-top-left-radius: 12px; border-top-right-radius: 12px">Copyright &copy; @DateTime.Now.Year, <a class="ml-1 mr-1" href="https://myvitae.ch">myvitae.ch</a> &middot; Made with <font class="d-inline" color="red">&nbsp;❤&nbsp;</font> in Switzerland</label>
+        </div>
+    </footer>
+</section>
         <hr class="m-0">
     }
-    <!-- #endregion -->
+
 </div>

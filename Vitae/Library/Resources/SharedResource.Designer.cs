@@ -214,7 +214,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Want to improve your curriculum vitae? No problem - with VITAE you present yourself in the best possible light. Create a free account now!.
+        ///   Looks up a localized string similar to Want to improve your curriculum vitae? No problem - with myvitae.ch you present yourself in the best possible light. Create a free account now!.
         /// </summary>
         public static string AdTextB0 {
             get {
@@ -1627,7 +1627,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click on the following link to activate your account:.
+        ///   Looks up a localized string similar to Please activate your account by.
         /// </summary>
         public static string MailAdvert3 {
             get {
@@ -1636,7 +1636,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We wish you every success in your job search with myvitae - stay on the ball!.
+        ///   Looks up a localized string similar to We wish you every success in your job search with myvitae.ch - stay on the ball!.
         /// </summary>
         public static string MailAdvert4 {
             get {
@@ -1645,7 +1645,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your myvitae team.
+        ///   Looks up a localized string similar to Your myvitae.ch team.
         /// </summary>
         public static string MailAdvert5 {
             get {
@@ -1654,7 +1654,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It has never been so easy..
+        ///   Looks up a localized string similar to It has never been easier..
         /// </summary>
         public static string MailAdvert6 {
             get {
@@ -2915,7 +2915,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to VITAE.
+        ///   Looks up a localized string similar to Welcome to myvitae.ch.
         /// </summary>
         public static string WelcomeToVitae {
             get {

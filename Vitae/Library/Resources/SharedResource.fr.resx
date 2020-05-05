@@ -169,7 +169,7 @@
     <value>Montrez vos compétences</value>
   </data>
   <data name="AdTextB0" xml:space="preserve">
-    <value>Vous souhaitez améliorer votre curriculum vitae ? Pas de problème - avec VITAE, vous vous présentez sous le meilleur jour possible. Créez un compte gratuit dès maintenant !</value>
+    <value>Vous souhaitez améliorer votre curriculum vitae ? Pas de problème - avec myvitae.ch, vous vous présentez sous le meilleur jour possible. Créez un compte gratuit dès maintenant !</value>
   </data>
   <data name="AllowedFiles" xml:space="preserve">
     <value>les fichiers peuvent être téléchargés</value>
@@ -640,13 +640,13 @@
     <value>vous avez maintenant l'outil parfait pour cela. Faites de grands pas vers l'emploi de vos rêves !</value>
   </data>
   <data name="MailAdvert3" xml:space="preserve">
-    <value>Cliquez sur le lien suivant pour activer votre compte :</value>
+    <value>Veuillez activer votre compte en</value>
   </data>
   <data name="MailAdvert4" xml:space="preserve">
-    <value>Nous vous souhaitons beaucoup de succès dans votre recherche d'emploi avec myvitae - restez dans le coup !</value>
+    <value>Nous vous souhaitons beaucoup de succès dans votre recherche d'emploi avec myvitae.ch - restez dans le coup !</value>
   </data>
   <data name="MailAdvert5" xml:space="preserve">
-    <value>Votre équipe myvitae</value>
+    <value>Votre équipe myvitae.ch</value>
   </data>
   <data name="MailAdvert6" xml:space="preserve">
     <value>Cela n'a jamais été aussi facile.</value>
@@ -691,7 +691,7 @@
     <value>Mme</value>
   </data>
   <data name="MyVitae" xml:space="preserve">
-    <value>Mon Vitae</value>
+    <value>My Vitae</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
@@ -1070,7 +1070,7 @@ Ce site web a besoin de cookies pour optimiser le contenu de ses pages web et po
     <value>Avertissement</value>
   </data>
   <data name="WelcomeToVitae" xml:space="preserve">
-    <value>Bienvenue à VITAE</value>
+    <value>Bienvenue à myvitae.ch</value>
   </data>
   <data name="Widowed" xml:space="preserve">
     <value>Veuf</value>

@@ -169,7 +169,7 @@
     <value>Zeigen Sie Ihr Können</value>
   </data>
   <data name="AdTextB0" xml:space="preserve">
-    <value>Möchten Sie Ihren Lebenslauf verbessern? Kein Problem - mit VITAE präsentieren Sie sich im bestmöglichen Licht. Erstellen Sie jetzt ein kostenloses Konto!</value>
+    <value>Möchten Sie Ihren Lebenslauf verbessern? Kein Problem - mit myvitae.ch präsentieren Sie sich im bestmöglichen Licht. Erstellen Sie jetzt ein kostenloses Konto!</value>
   </data>
   <data name="AllowedFiles" xml:space="preserve">
     <value>Dateien sind zum Hochladen erlaubt</value>
@@ -640,13 +640,13 @@
     <value>haben Sie jetzt das perfekte Werkzeug dafür. Machen Sie grosse Schritte in Richtung Ihres Traumberufs!</value>
   </data>
   <data name="MailAdvert3" xml:space="preserve">
-    <value>Klicken Sie auf den folgenden Link, um Ihr Konto zu aktivieren:</value>
+    <value>Bitte aktivieren Sie Ihr Konto in dem Sie</value>
   </data>
   <data name="MailAdvert4" xml:space="preserve">
-    <value>Wir wünschen Ihnen viel Erfolg bei Ihrer Stellensuche mit myvitae - bleiben Sie am Ball!</value>
+    <value>Wir wünschen Ihnen viel Erfolg bei Ihrer Stellensuche mit myvitae.ch - bleiben Sie am Ball!</value>
   </data>
   <data name="MailAdvert5" xml:space="preserve">
-    <value>Ihr myvitae Team</value>
+    <value>Ihr myvitae.ch Team</value>
   </data>
   <data name="MailAdvert6" xml:space="preserve">
     <value>Es war noch nie so einfach.</value>
@@ -691,7 +691,7 @@
     <value>Frau</value>
   </data>
   <data name="MyVitae" xml:space="preserve">
-    <value>Mein Vitae</value>
+    <value>My Vitae</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -1070,7 +1070,7 @@ Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und
     <value>Warnung</value>
   </data>
   <data name="WelcomeToVitae" xml:space="preserve">
-    <value>Willkommen bei VITAE</value>
+    <value>Willkommen auf myvitae.ch</value>
   </data>
   <data name="Widowed" xml:space="preserve">
     <value>Verwitwet</value>

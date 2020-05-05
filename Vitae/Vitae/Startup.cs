@@ -23,7 +23,7 @@ using Persistency.Data;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-
+using Vitae.Code.AppSettings;
 using Vitae.Code.Identity;
 using Vitae.Code.Mailing;
 
@@ -93,8 +93,9 @@ namespace Vitae
                 options.SlidingExpiration = true;
             });
 
-            services.AddTransient<IEmailSender, EmailSender>();
-            services.Configure<AuthMessageSenderOptions>(Configuration);
+            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+            services.AddTransient<Code.Mailing.IEmailSender, EmailSender>();
 
             var builder = services.AddRazorPages()
                 .AddRazorPagesOptions(options =>

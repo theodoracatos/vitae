@@ -3,6 +3,7 @@
     public static class Globals
     {
         public const int YEAR_START = 1900;
+        public const string APPLICATION_NAME = "myvitae.ch";
         public const string SENDER_MAIL = "admin@myvitae.ch";
         public const string DEFAULT_LANGUAGE = "de";
         public const string MIME_PDF = "application/pdf";

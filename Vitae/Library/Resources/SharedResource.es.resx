@@ -169,7 +169,7 @@
     <value>Presume de tus habilidades</value>
   </data>
   <data name="AdTextB0" xml:space="preserve">
-    <value>¿Quieres mejorar tu curriculum vitae? No hay problema, con VITAE te presentas de la mejor manera posible. Crea una cuenta gratis ahora!</value>
+    <value>¿Quieres mejorar tu curriculum vitae? No hay problema, con myvitae.ch te presentas de la mejor manera posible. Crea una cuenta gratis ahora!</value>
   </data>
   <data name="AllowedFiles" xml:space="preserve">
     <value>se permite subir archivos</value>
@@ -640,13 +640,13 @@
     <value>ahora tienes la herramienta perfecta para esto. ¡Da grandes pasos hacia el trabajo de tus sueños!</value>
   </data>
   <data name="MailAdvert3" xml:space="preserve">
-    <value>Haz clic en el siguiente enlace para activar tu cuenta:</value>
+    <value>Por favor, active su cuenta por</value>
   </data>
   <data name="MailAdvert4" xml:space="preserve">
-    <value>Te deseamos mucho éxito en tu búsqueda de trabajo con myvitae... ¡mantente en el baile!</value>
+    <value>Te deseamos mucho éxito en tu búsqueda de trabajo con myvitae.ch... ¡mantente en el baile!</value>
   </data>
   <data name="MailAdvert5" xml:space="preserve">
-    <value>Tu equipo de myvitae</value>
+    <value>Tu equipo de myvitae.ch</value>
   </data>
   <data name="MailAdvert6" xml:space="preserve">
     <value>Nunca ha sido tan fácil.</value>
@@ -691,7 +691,7 @@
     <value>Sra.</value>
   </data>
   <data name="MyVitae" xml:space="preserve">
-    <value>Mi Vitae</value>
+    <value>My Vitae</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nombre</value>
