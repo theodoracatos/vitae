@@ -646,13 +646,13 @@
     <value>We wish you every success in your job search with myvitae.ch - stay on the ball!</value>
   </data>
   <data name="MailAdvert5" xml:space="preserve">
-    <value>Your myvitae.ch team</value>
+    <value>Your myvitae team</value>
   </data>
   <data name="MailAdvert6" xml:space="preserve">
     <value>It has never been easier.</value>
   </data>
   <data name="MailFooter1" xml:space="preserve">
-    <value>This email was sent from myvitae.ch to</value>
+    <value>This email was sent from myvitae to</value>
   </data>
   <data name="MailFooter2" xml:space="preserve">
     <value>Please delete your account if you no longer wish to receive these emails.</value>

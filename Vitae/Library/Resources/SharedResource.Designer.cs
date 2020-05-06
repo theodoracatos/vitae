@@ -1645,7 +1645,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your myvitae.ch team.
+        ///   Looks up a localized string similar to Your myvitae team.
         /// </summary>
         public static string MailAdvert5 {
             get {
@@ -1663,7 +1663,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This email was sent from myvitae.ch to.
+        ///   Looks up a localized string similar to This email was sent from myvitae to.
         /// </summary>
         public static string MailFooter1 {
             get {
