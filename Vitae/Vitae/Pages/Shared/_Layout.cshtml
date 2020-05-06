@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - myvitae.ch</title>
+    <title>@ViewData["Title"] - @Globals.APPLICATION_NAME</title>
 
     <link rel="stylesheet" href="~/css/landingpage.min.css" />
     <partial name="_Styles" />
@@ -23,7 +23,7 @@
     </header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="/">
-            <img src="~/img/logo.png" class="ml-1" title="myvitae.ch" />
+            <img src="~/img/logo.png" class="ml-1" title="@Globals.APPLICATION_NAME" />
         </a>
         <div class="ml-auto">
             <ol class="carousel-indicators">
@@ -43,39 +43,38 @@
         @RenderBody()
     </div>
 
-    <footer class="bg-light">
-        <div class="w-100">
-            <div class="d-flex justify-content-end small mr-4">
-                <div>
-                    <a class="js-scroll-trigger" href="#privacy-policy">@SharedResource.PrivacyPolicy</a>
+    <div class="scrollbar">
+        <div class="w-100r">
+            <div class="row ml-0 mr-0">
+                <div class="col text-center">
+                    <img src="~/img/scroll.gif" class="scroll" alt="Scroll" />
                 </div>
-                <div class="ml-1 mr-1">&bull;</div>
-                <div class="text-muted">Copyright &copy; @DateTime.Now.Year, myvitae.ch &middot; Made with <font color="red">❤</font> in Switzerland</div>
             </div>
         </div>
-    </footer>
-
-    <div class="subframe">
-
-        <form class="form-horizontal nodirty" method="post" data-ajax-method="post" enctype="multipart/form-data">
-            <div id="privacy-policy" class="d-inline d-none">
-                <button asp-page-handler="LoadPartial" asp-route-id="1" data-ajax="true" data-ajax-update="#privacy-policy" data-ajax-loading="#loading1" class="btn btn-sm btn-outline-success cancel invisible partial"></button>
-                <i id="loading1" class="fas fa-sync fa-spin d-none m-2"></i>
-            </div>
-            <div id="partial2" class="d-inline">
-                <button asp-page-handler="LoadPartial" asp-route-id="2" data-ajax="true" data-ajax-update="#partial2" data-ajax-loading="#loading2" class="btn btn-sm btn-outline-success cancel invisible partial"></button>
-                <i id="loading2" class="fas fa-sync fa-spin d-none m-2"></i>
-            </div>
-        </form>
-
-
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
     </div>
+        <footer class="bg-light">
+            <div class="w-100">
+                <div class="d-flex justify-content-end small mr-4">
+                    <div>
+                        <a class="js-scroll-trigger" href="#privacy-policy">@SharedResource.PrivacyPolicy</a>
+                    </div>
+                    <div class="ml-1 mr-1">&bull;</div>
+                    <div class="text-muted">Copyright &copy; @DateTime.Now.Year, <a class="ml-1 mr-1" href="https://myvitae.ch">@Globals.APPLICATION_NAME</a> &middot; Made with <font color="red">❤</font> in Switzerland</div>
+                </div>
+            </div>
+        </footer>
 
-    <partial name="_Scripts" />
-    @RenderSection("Scripts", required: false)
+        <div class="subframe">
+
+            @RenderSection("Advertisment", required: false)
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+        </div>
+
+        <partial name="_Scripts" />
+        @RenderSection("Scripts", required: false)
 </body>
 </html>

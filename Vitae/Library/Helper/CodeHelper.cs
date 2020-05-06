@@ -79,6 +79,7 @@ namespace Library.Helper
                 bodyText = new StringBuilder(await reader.ReadToEndAsync());
             }
 
+            bodyText.Replace("${APP_NAME}", HtmlEncoder.Default.Encode(Globals.APPLICATION_NAME));
             bodyText.Replace("${TITLE}", HtmlEncoder.Default.Encode(title));
             bodyText.Replace("${HELLO}", HtmlEncoder.Default.Encode(SharedResource.Hello));
             bodyText.Replace("${MAIL_ADVERT1}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert1));

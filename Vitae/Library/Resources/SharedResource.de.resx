@@ -270,6 +270,9 @@
   <data name="City" xml:space="preserve">
     <value>Stadt</value>
   </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>Klicken Sie hier</value>
+  </data>
   <data name="ClickingHere" xml:space="preserve">
     <value>hier klicken</value>
   </data>

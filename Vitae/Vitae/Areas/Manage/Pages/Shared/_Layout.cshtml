@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - myvitae.ch</title>
+    <title>@ViewData["Title"] - @Globals.APPLICATION_NAME</title>
 
     <link rel="stylesheet" href="~/css/sbadmin.min.css" />
     <partial name="_Styles" />
@@ -21,7 +21,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="/Manage">
-            <img src="~/img/logo.png" class="ml-1" title="myvitae.ch" />
+            <img src="~/img/logo.png" class="ml-1" title="@Globals.APPLICATION_NAME" />
         </a><!-- Navbar Search-->
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-0 mr-3">
@@ -104,7 +104,7 @@
             <footer class="mt-auto fixed-bottom">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-end small mr-2">
-                        Copyright &copy; @DateTime.Now.Year, myvitae.ch &middot; Made with <font class="d-inline" color="red">&nbsp;❤&nbsp;</font> in Switzerland
+                        Copyright &copy; @DateTime.Now.Year, <a class="ml-1 mr-1" href="https://myvitae.ch">@Globals.APPLICATION_NAME</a> &middot; Made with <font class="d-inline" color="red">&nbsp;❤&nbsp;</font> in Switzerland
                     </div>
                 </div>
             </footer>

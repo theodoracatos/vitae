@@ -15,12 +15,10 @@
 /Vitae/.vs
 /Vitae/Library/bin
 /Vitae/Library/obj
+/Vitae/Library/Resources/~$SharedResource.xlsx
 
 /Vitae/Persistency/bin
 /Vitae/Persistency/obj
-
-/Vitae/Vitae/bin
-/Vitae/Vitae/obj
 
 /Vitae/Repository/obj
 /Vitae/Repository/bin
@@ -31,8 +29,9 @@
 /Vitae/UnitTests/obj
 /Vitae/UnitTests/bin
 
+/Vitae/Vitae/bin
+/Vitae/Vitae/obj
 /Vitae/Vitae/Vitae.csproj.user
-
 /Vitae/Vitae/wwwroot/js/site.min.js
 /Vitae/Vitae/wwwroot/js/site.js.map
 /Vitae/Vitae/wwwroot/js/site.js
@@ -53,4 +52,3 @@
 /Vitae/Vitae/wwwroot/css/account.min.css
 /Vitae/Vitae/wwwroot/css/account.css
 /Vitae/Vitae/wwwroot/js/jquery.unobtrusive-ajax.min.js
-

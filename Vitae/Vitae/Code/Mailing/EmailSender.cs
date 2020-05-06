@@ -83,28 +83,3 @@ namespace Vitae.Code.Mailing
         }
     }
 }
-
-/*
- * 
-        public Task Execute(string apiKey, string subject, string message, string email)
-        {
-            var client = new SendGridClient(apiKey);
-            var msg = new SendGridMessage()
-            {
-                From = new EmailAddress(Globals.SENDER_MAIL, Options.SendGridUser),
-                Subject = subject,
-                PlainTextContent = message,
-                HtmlContent = message
-            };
-            // <img alt="myvitae.ch" id="logo" style="vertical-align: middle;" src="cid:logo" />
-            msg.AddAttachment($"{CodeHelper.AssemblyDirectory}", Convert.ToBase64String(File.ReadAllBytes($@"{CodeHelper.AssemblyDirectory}/MailTemplates/Logo.png")), "image/png", "inline", "logo");
-            msg.AddTo(new EmailAddress(email));
-
-            // Disable click tracking.
-            // See https://sendgrid.com/docs/User_Guide/Settings/tracking.html
-            msg.SetClickTracking(false, false);
-
-            return client.SendEmailAsync(msg);
-        }
-
-    */
