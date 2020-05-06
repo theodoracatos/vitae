@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Library.Resources;
 using Library.Repository;
 using Model.Poco;
+using Microsoft.AspNetCore.Localization;
 
 namespace Vitae.Areas.Manage.Pages
 {
@@ -92,7 +93,7 @@ namespace Vitae.Areas.Manage.Pages
         private (IEnumerable<string> dates, List<List<int>> hits, IEnumerable<string> labels) GetLastHits(bool filterDays)
         {
             var lastHits = filterDays ? repository.GetHits(curriculumID, days: DAYS) : repository.GetHits(curriculumID, hits: HITS);
-            var lastHits_Dates = lastHits.OrderBy(l => l.LogDate).Select(l => l.LogDate.ToString("dd.MM")).Distinct();
+            var lastHits_Dates = filterDays ? GetDateRange(DateTime.Now.Date.AddDays(-DAYS), DAYS) : lastHits.OrderBy(l => l.LogDate).Select(l => l.LogDate.ToString("dd.MM")).Distinct();
             var lastHits_PublicationIds = lastHits.OrderByDescending(l => l.LogDate).Select(l => l.PublicationID).Distinct();
 
             // Hits
@@ -106,7 +107,25 @@ namespace Vitae.Areas.Manage.Pages
             // Labels
             var lastHitsLabels = lastHits_PublicationIds.Select(p => p.ToString().Substring(0, p.ToString().IndexOf("-")));
 
+            if (lastHitsHits.Count == 0)
+            {
+                lastHitsHits.Add(Enumerable.Range(1, 30).Select(n => 0).ToList());
+                lastHitsLabels = new List<string>() { SharedResource.NoHits };
+            }
+
             return (dates: lastHits_Dates, hits: lastHitsHits, labels: lastHitsLabels);
+        }
+
+        private List<string> GetDateRange(DateTime startDate, int days)
+        {
+            var dates = new List<string>();
+            for (int i = 0; i < days; i++)
+            {
+                var currentDate = startDate.AddDays(i + 1);
+                dates.Add(currentDate.ToString("dd.MM"));
+            }
+
+            return dates;
         }
 
         private List<int> GetHitsByPublicationID(IEnumerable<string> dates, IEnumerable<LogVM> hits, Guid publicationID)

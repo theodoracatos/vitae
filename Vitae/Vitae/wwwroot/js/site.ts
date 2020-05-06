@@ -123,6 +123,8 @@ function drawRadar(chartId, title, xLabels, yValues) {
     };
 
     let options = {
+        responsive: true,
+        maintainAspectRatio: false,
         legend: {
             position: 'top',
             display: false

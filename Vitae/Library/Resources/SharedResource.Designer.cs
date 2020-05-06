@@ -1636,7 +1636,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We wish you every success in your job search with myvitae.ch - stay on the ball!.
+        ///   Looks up a localized string similar to We wish you every success in your job search with myvitae - stay on the ball!.
         /// </summary>
         public static string MailAdvert4 {
             get {
@@ -1848,6 +1848,15 @@ namespace Library.Resources {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No hits.
+        /// </summary>
+        public static string NoHits {
+            get {
+                return ResourceManager.GetString("NoHits", resourceCulture);
             }
         }
         

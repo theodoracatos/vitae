@@ -652,7 +652,7 @@
     <value>Es war noch nie so einfach.</value>
   </data>
   <data name="MailFooter1" xml:space="preserve">
-    <value>Diese E-Mail wurde von myvitae.ch gesendet an</value>
+    <value>Diese E-Mail wurde von myvitae gesendet an</value>
   </data>
   <data name="MailFooter2" xml:space="preserve">
     <value>Bitte löschen Sie Ihr Konto, wenn Sie diese E-Mails nicht mehr erhalten möchten.</value>
@@ -713,6 +713,9 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>Nein</value>
+  </data>
+  <data name="NoHits" xml:space="preserve">
+    <value>Noch keine Aufrufe</value>
   </data>
   <data name="NoInformation" xml:space="preserve">
     <value>Keine Information</value>

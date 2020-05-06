@@ -643,7 +643,7 @@
     <value>Veuillez activer votre compte en</value>
   </data>
   <data name="MailAdvert4" xml:space="preserve">
-    <value>Nous vous souhaitons beaucoup de succès dans votre recherche d'emploi avec myvitae.ch - restez dans le coup !</value>
+    <value>Nous vous souhaitons beaucoup de succès dans votre recherche d'emploi avec myvitae - restez dans le coup !</value>
   </data>
   <data name="MailAdvert5" xml:space="preserve">
     <value>Votre équipe myvitae</value>
@@ -713,6 +713,9 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>Non</value>
+  </data>
+  <data name="NoHits" xml:space="preserve">
+    <value>Aucun résultat</value>
   </data>
   <data name="NoInformation" xml:space="preserve">
     <value>Aucune information</value>

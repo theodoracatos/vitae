@@ -98,7 +98,7 @@ namespace Vitae.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.ConfirmEmail, Globals.SENDER_MAIL, new Tuple<string, string, string>(SharedResource.MailAdvert3, callbackUrl, SharedResource.ClickingHere));
+                    var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.ConfirmEmail, Input.Email, new Tuple<string, string, string>(SharedResource.MailAdvert3, callbackUrl, SharedResource.ClickingHere));
                     var logoStream = CodeHelper.GetLogoStream("Logo_ink.png");
                     var message = new Message(new string[] { Input.Email }, SharedResource.ConfirmEmail, bodyText, new FormFileCollection() { new FormFile(logoStream, 0, logoStream.Length, "image/png", "logo") });
                     await _emailSender.SendEmailAsync(message);
