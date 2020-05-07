@@ -14,11 +14,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="MailTemplates\Logo_ink.png" />
+    <None Remove="MailTemplates\logo_ink.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="MailTemplates\Logo_ink.png">
+    <Content Include="MailTemplates\logo_ink.png">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

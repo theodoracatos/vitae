@@ -1,15 +1,17 @@
 using Library.Resources;
+
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 
 using System;
 using System.Diagnostics;
 
+using Vitae.Code.PageModels;
+
 namespace Vitae.Pages
 {
-    public class ErrorModel : PageModel
+    public class ErrorModel : LandingPageBaseModel
     {
         public string RequestId { get; set; }
         public string Message { get; set; }

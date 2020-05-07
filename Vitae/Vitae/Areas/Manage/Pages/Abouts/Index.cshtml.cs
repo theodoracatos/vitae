@@ -14,14 +14,11 @@ using Model.ViewModels;
 using Persistency.Data;
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Vitae.Code;
-
-using Poco = Model.Poco;
+using Vitae.Code.PageModels;
 
 namespace Vitae.Areas.Manage.Pages.Abouts
 {

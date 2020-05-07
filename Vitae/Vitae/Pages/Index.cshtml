@@ -25,56 +25,69 @@
     </div>
 </div>
 
-@section Advertisment{
-    @{ 
-        var rqf = Request.HttpContext.Features.Get<IRequestCultureFeature>();
-        var culture = rqf.RequestCulture.UICulture;
-
-        var languageCode = Enum.IsDefined(typeof(ApplicationLanguage), culture.TwoLetterISOLanguageName) ? culture.Name : ApplicationLanguage.en.ToString();
-    }
-
-<div class="container-fluid">
-    <div class="row p-5">
-        <div class="col-xl-12 text-center">
-            <h1>Warum myVitae?</h1>
-            <p>
-                Einen Lebenslauf zu erstellen und diesen stes auf den aktuellen Stand zu halten ist eine zeitaufwändige Sache. Gestalterisch kann man dabei schnell mal an seine Grenzen kommen. Dabei ist die Gestaltung für viele Arbeitgeber gar nicht so wichtig. Auf den Inhalt kommt es an und den gilt es übersichtlich und klar zu präsentieren. Hier kommt myVitae ins Spiel und nimmt Ihnen diese Last ab. Mit Leichtigkeit erstellen Sie Ihre persönliche Lebenslauf-Webseite.
-             </p>
-            <p>
-                <b>Testen Sie es aus - Sie werden begeistert sein!</b>
-            </p>
-            <p>
-                <a href="/CV/C5CD716B-9099-42C9-B657-4116B5BDFAF6?langCode=de" class="btn btn-lg btn-light mb-4"><img src="~/img/Logo_ink.png" alt="Logo" /></a>
-            </p>
+<div class="scrollbar">
+    <div class="w-100r">
+        <div class="row ml-0 mr-0">
+            <div class="col text-center">
+                <a class="js-scroll-trigger" href="#subframe"><img src="~/img/scroll.gif" class="scroll" alt="Scroll" /></a>
+            </div>
         </div>
     </div>
-
-    <div class="row p-5 bg-snowwhite animation-element slide-left">
-        <div class="col-xl-12 text-center">
-            <h1>Behalten Sie stets die volle Kontrolle</h1>
-            <p>Das Dashboard bietet Ihnen einen guten Überlick über Ihre publizierten Lebensläufe. Sie können Ihren Lebenslauf übrigens in bis zu vier Sprachen erfassen.</p>
-        </div>
-        <div class="col-xl-12">
-            <img src="~/img/advert/dashboard-@(languageCode).png" alt="Dashboard" class="fit-image-big pb-4" />
-        </div>
-    </div>
-
-    <div class="row p-5 animation-element slide-left">
-        <div class="col-xl-12 text-center">
-            <h1>Schützen Sie Ihre Publikationen</h1>
-            <p>Ihr myVitae-Lebenslauf wird durch einen eindeutigen Link geschützt. Vergeben Sie zusätzlich ein Passwort und anonymisieren Sie bei Bedarf sensitive Informationen.</p>
-        </div>
-        <div class="col-xl-12">
-            <img src="~/img/advert/publications-@(languageCode).png" alt="Dashboard" class="fit-image-big pb-4" />
-        </div>
-    </div>
-
-    @*<div id="privacy-policy" class="row p-5 bg-snowwhite">
-        <div class="col-xl-12 text-center">
-            <h1>@SharedResource.PrivacyPolicy</h1>
-            <p>@Html.Raw(@SharedResource.PrivacyPolicyText.Replace(Environment.NewLine, "<br />"))</p>
-        </div>
-    </div>*@
 </div>
 
+@section CookiePolicy{
+    <partial name="_CookieConsentPartial" />
+}
+
+@section Advertisment{
+
+    <div class="container-fluid">
+        <div class="row p-5">
+            <div class="col-xl-12 text-center">
+                <h1>@SharedResource.WhyMyVitae</h1>
+                <p>
+                    @SharedResource.WhyMyVitaeReason
+                </p>
+                <p>
+                    <b>@SharedResource.WhyMyVitaeTest</b>
+                </p>
+                <p>
+                    <a href="@string.Format(Globals.TEST_URL, Model.LanguageCode)" class="btn btn-lg btn-outline-light mb-4"><img src="~/img/logo_black.png" alt="Logo" /></a>
+                </p>
+            </div>
+        </div>
+
+        <div class="row p-5 bg-snowwhite animation-element slide-left">
+            <div class="col-xl-12 text-center">
+                <h1>@SharedResource.KeepControl</h1>
+                <p>
+                    @SharedResource.DashboardOverview
+                </p>
+            </div>
+            <div class="col-xl-12">
+                <img src="~/img/advert/dashboard-@(Model.LanguageCode).png" alt="Dashboard" class="fit-image-big pb-4" />
+            </div>
+        </div>
+
+        <div class="row p-5 animation-element slide-left">
+            <div class="col-xl-12 text-center">
+                <h1>@SharedResource.SavePublications</h1>
+                <p>@SharedResource.SavePublicationsDescription</p>
+            </div>
+            <div class="col-xl-12">
+                <img src="~/img/advert/publications-@(Model.LanguageCode).png" alt="Dashboard" class="fit-image-big pb-4" />
+            </div>
+        </div>
+
+        <div class="row p-5 bg-snowwhite animation-element slide-left">
+            <div class="col-xl-12 text-center">
+                <h1>@SharedResource.ShowYourStrengths</h1>
+                <p>@SharedResource.ShowYourStrengthsDescription</p>
+            </div>
+            <div class="col-xl-12">
+                @*TODO*@
+                <img src="~/img/advert/dashboard-@(Model.LanguageCode).png" alt="Dashboard" class="fit-image-big pb-4" />
+            </div>
+        </div>
+    </div>
 } 

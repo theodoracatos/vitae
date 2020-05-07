@@ -38,6 +38,7 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
         }
 
         [BindProperty]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Language), Prompt = nameof(SharedResource.Language))]
         public string ApplicationLanguage { get; set; }
 
         [TempData]

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+
 using Model.Poco;
 using Model.ViewModels;
 
@@ -17,7 +18,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Vitae.Code;
+using Vitae.Code.PageModels;
 
 using Poco = Model.Poco;
 

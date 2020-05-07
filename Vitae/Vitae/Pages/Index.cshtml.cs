@@ -6,11 +6,12 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 using Vitae.Code;
+using Vitae.Code.PageModels;
 
 namespace Vitae.Pages
 {
 
-    public class IndexModel : PageModel
+    public class IndexModel : LandingPageBaseModel
     {
         private const string PAGE_PARTIAL = "_Content{0}";
 

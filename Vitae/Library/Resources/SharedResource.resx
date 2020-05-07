@@ -169,13 +169,13 @@
     <value>Show off your skills</value>
   </data>
   <data name="AdTextB0" xml:space="preserve">
-    <value>Want to improve your curriculum vitae? No problem - with myvitae.ch you present yourself in the best possible light. Create a free account now!</value>
+    <value>Want to improve your curriculum vitae? No problem - with myVitae you present yourself in the best possible light. Create a free account now!</value>
   </data>
   <data name="AllowedFiles" xml:space="preserve">
     <value>files are allowed to be uploaded</value>
   </data>
   <data name="Anonymize" xml:space="preserve">
-    <value>Anonymize CV</value>
+    <value>Anonymize myVitae</value>
   </data>
   <data name="AnonymizeDescription" xml:space="preserve">
     <value>Some personal details will be hidden</value>
@@ -239,6 +239,9 @@
   </data>
   <data name="ChangeLanguageDescription" xml:space="preserve">
     <value>Change the language of the website here. Please make sure that you have accepted cookies.</value>
+  </data>
+  <data name="ChangeLanguageDescriptionSmall" xml:space="preserve">
+    <value>Please make sure that you have cookies accepted</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Change password</value>
@@ -313,6 +316,9 @@
     <value>Confirm password</value>
   </data>
   <data name="CookiePolicy" xml:space="preserve">
+    <value>Cookie policy</value>
+  </data>
+  <data name="CookiePolicyDescription" xml:space="preserve">
     <value>By continuing to visit the website, you accept the storage of cookies on your computer</value>
   </data>
   <data name="CookiePolicyLearnMore" xml:space="preserve">
@@ -355,19 +361,22 @@
     <value>Curriculum Vitae</value>
   </data>
   <data name="CV" xml:space="preserve">
-    <value>CV</value>
+    <value>Resume</value>
   </data>
   <data name="CVCompleteness" xml:space="preserve">
-    <value>CV Completeness</value>
+    <value>myVitae Completeness</value>
   </data>
   <data name="CVLanguage" xml:space="preserve">
-    <value>CV language</value>
+    <value>myVitae language</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
   <data name="DashboardDescription" xml:space="preserve">
-    <value>The dashboard shows you the access history of your CV and other useful statistics.</value>
+    <value>The dashboard shows you the access history of your myVitae and other useful statistics.</value>
+  </data>
+  <data name="DashboardOverview" xml:space="preserve">
+    <value>The dashboard gives you a good overview of your published CVs. You can enter your resume in up to four languages.</value>
   </data>
   <data name="DateCompareError" xml:space="preserve">
     <value>The start date can't be greater than the end date</value>
@@ -392,6 +401,9 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="Disclaimer" xml:space="preserve">
+    <value>Disclaimer</value>
   </data>
   <data name="Divorced" xml:space="preserve">
     <value>Divorced</value>
@@ -433,7 +445,7 @@
     <value>Access with password</value>
   </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
-    <value>Secures your CV with an additional password</value>
+    <value>Secures your myVitae with an additional password</value>
   </data>
   <data name="End" xml:space="preserve">
     <value>End</value>
@@ -567,6 +579,9 @@
   <data name="JobTitle" xml:space="preserve">
     <value>Job title</value>
   </data>
+  <data name="KeepControl" xml:space="preserve">
+    <value>Always keep full control</value>
+  </data>
   <data name="KnowledgeBasic" xml:space="preserve">
     <value>Basic knowledge</value>
   </data>
@@ -583,7 +598,7 @@
     <value>Language</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The language in which the CV is loaded</value>
+    <value>The language in which the myVitae is loaded</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
@@ -596,6 +611,9 @@
   </data>
   <data name="Lastname" xml:space="preserve">
     <value>Last name</value>
+  </data>
+  <data name="LegalNotice" xml:space="preserve">
+    <value>Legal notice</value>
   </data>
   <data name="Level" xml:space="preserve">
     <value>Level</value>
@@ -646,16 +664,16 @@
     <value>Please activate your account by</value>
   </data>
   <data name="MailAdvert4" xml:space="preserve">
-    <value>We wish you every success in your job search with myvitae - stay on the ball!</value>
+    <value>We wish you every success in your job search with myVitae - stay on the ball!</value>
   </data>
   <data name="MailAdvert5" xml:space="preserve">
-    <value>Your myvitae team</value>
+    <value>Your myVitae team</value>
   </data>
   <data name="MailAdvert6" xml:space="preserve">
     <value>It has never been easier.</value>
   </data>
   <data name="MailFooter1" xml:space="preserve">
-    <value>This email was sent from myvitae to</value>
+    <value>This email was sent from myVitae to</value>
   </data>
   <data name="MailFooter2" xml:space="preserve">
     <value>Please delete your account if you no longer wish to receive these emails.</value>
@@ -742,7 +760,7 @@
     <value>Notes are invisible for visitors</value>
   </data>
   <data name="NrOfCVHits" xml:space="preserve">
-    <value>CV calls (last 30 days)</value>
+    <value>myVitae calls (last 30 days)</value>
   </data>
   <data name="NrOfLogins" xml:space="preserve">
     <value>Logins (last 30 days)</value>
@@ -842,7 +860,7 @@ This website requires cookies to optimize the content of its web pages and to pr
     <value>Publication</value>
   </data>
   <data name="PublicationDescription" xml:space="preserve">
-    <value>Manage the publication of your CV here.</value>
+    <value>Manage the publication of your myVitae here.</value>
   </data>
   <data name="PublicationIdentifier" xml:space="preserve">
     <value>ID</value>
@@ -922,6 +940,12 @@ This website requires cookies to optimize the content of its web pages and to pr
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="SavePublications" xml:space="preserve">
+    <value>Protect your publications</value>
+  </data>
+  <data name="SavePublicationsDescription" xml:space="preserve">
+    <value>Your myVitae-CV is protected by a unique link. Additionally, assign a password and anonymise sensitive information if necessary.</value>
+  </data>
   <data name="SchoolName" xml:space="preserve">
     <value>Educational institution</value>
   </data>
@@ -938,7 +962,7 @@ This website requires cookies to optimize the content of its web pages and to pr
     <value>Attention, this action cannot be undone!</value>
   </data>
   <data name="SettingsDescription" xml:space="preserve">
-    <value>Here you can select the different languages of your CV.</value>
+    <value>Here you can select the different languages of your myVitae.</value>
   </data>
   <data name="SettingsLanguageHint" xml:space="preserve">
     <value>This language can only be changed if all referenced publications are deleted.</value>
@@ -948,6 +972,12 @@ This website requires cookies to optimize the content of its web pages and to pr
   </data>
   <data name="ShortIdentifier" xml:space="preserve">
     <value>Short ID</value>
+  </data>
+  <data name="ShowYourStrengths" xml:space="preserve">
+    <value>Show your strengths</value>
+  </data>
+  <data name="ShowYourStrengthsDescription" xml:space="preserve">
+    <value>With your myVitae website you can focus on the essentials and present yourself in the best possible light.</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign in</value>
@@ -1010,7 +1040,7 @@ This website requires cookies to optimize the content of its web pages and to pr
     <value>Submit</value>
   </data>
   <data name="SumOfCVHits" xml:space="preserve">
-    <value>Sum of last CV calls (last 50)</value>
+    <value>Sum of last myVitae calls (last 50)</value>
   </data>
   <data name="SupplyCode" xml:space="preserve">
     <value>A code must be supplied for password reset.</value>
@@ -1076,7 +1106,16 @@ This website requires cookies to optimize the content of its web pages and to pr
     <value>Warning</value>
   </data>
   <data name="WelcomeToVitae" xml:space="preserve">
-    <value>Welcome to myvitae.ch</value>
+    <value>Welcome to myVitae</value>
+  </data>
+  <data name="WhyMyVitae" xml:space="preserve">
+    <value>Why myVitae?</value>
+  </data>
+  <data name="WhyMyVitaeReason" xml:space="preserve">
+    <value>Creating a good CV and keeping it up to date is a very time-consuming process. Furthermore, with the design you can quickly reach your limits. However, design is not always so central for many employers. It's the content that counts and that needs to be presented clearly and concisely. This is where myVitae comes into play and focuses on clear content. With ease you can create your personal CV website.</value>
+  </data>
+  <data name="WhyMyVitaeTest" xml:space="preserve">
+    <value>Try it out for free - you will be thrilled!</value>
   </data>
   <data name="Widowed" xml:space="preserve">
     <value>Widowed</value>

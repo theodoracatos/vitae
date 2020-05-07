@@ -214,7 +214,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Want to improve your curriculum vitae? No problem - with myvitae.ch you present yourself in the best possible light. Create a free account now!.
+        ///   Looks up a localized string similar to Want to improve your curriculum vitae? No problem - with myVitae you present yourself in the best possible light. Create a free account now!.
         /// </summary>
         public static string AdTextB0 {
             get {
@@ -232,7 +232,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anonymize CV.
+        ///   Looks up a localized string similar to Anonymize myVitae.
         /// </summary>
         public static string Anonymize {
             get {
@@ -426,6 +426,15 @@ namespace Library.Resources {
         public static string ChangeLanguageDescription {
             get {
                 return ResourceManager.GetString("ChangeLanguageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please make sure that you have cookies accepted.
+        /// </summary>
+        public static string ChangeLanguageDescriptionSmall {
+            get {
+                return ResourceManager.GetString("ChangeLanguageDescriptionSmall", resourceCulture);
             }
         }
         
@@ -646,11 +655,20 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By continuing to visit the website, you accept the storage of cookies on your computer.
+        ///   Looks up a localized string similar to Cookie policy.
         /// </summary>
         public static string CookiePolicy {
             get {
                 return ResourceManager.GetString("CookiePolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By continuing to visit the website, you accept the storage of cookies on your computer.
+        /// </summary>
+        public static string CookiePolicyDescription {
+            get {
+                return ResourceManager.GetString("CookiePolicyDescription", resourceCulture);
             }
         }
         
@@ -772,7 +790,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CV.
+        ///   Looks up a localized string similar to Resume.
         /// </summary>
         public static string CV {
             get {
@@ -781,7 +799,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CV Completeness.
+        ///   Looks up a localized string similar to myVitae Completeness.
         /// </summary>
         public static string CVCompleteness {
             get {
@@ -790,7 +808,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CV language.
+        ///   Looks up a localized string similar to myVitae language.
         /// </summary>
         public static string CVLanguage {
             get {
@@ -808,11 +826,20 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The dashboard shows you the access history of your CV and other useful statistics..
+        ///   Looks up a localized string similar to The dashboard shows you the access history of your myVitae and other useful statistics..
         /// </summary>
         public static string DashboardDescription {
             get {
                 return ResourceManager.GetString("DashboardDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The dashboard gives you a good overview of your published CVs. You can enter your resume in up to four languages..
+        /// </summary>
+        public static string DashboardOverview {
+            get {
+                return ResourceManager.GetString("DashboardOverview", resourceCulture);
             }
         }
         
@@ -885,6 +912,15 @@ namespace Library.Resources {
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disclaimer.
+        /// </summary>
+        public static string Disclaimer {
+            get {
+                return ResourceManager.GetString("Disclaimer", resourceCulture);
             }
         }
         
@@ -1006,7 +1042,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secures your CV with an additional password.
+        ///   Looks up a localized string similar to Secures your myVitae with an additional password.
         /// </summary>
         public static string EnablePasswordDescription {
             get {
@@ -1411,6 +1447,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Always keep full control.
+        /// </summary>
+        public static string KeepControl {
+            get {
+                return ResourceManager.GetString("KeepControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic knowledge.
         /// </summary>
         public static string KnowledgeBasic {
@@ -1456,7 +1501,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The language in which the CV is loaded.
+        ///   Looks up a localized string similar to The language in which the myVitae is loaded.
         /// </summary>
         public static string LanguageDescription {
             get {
@@ -1497,6 +1542,15 @@ namespace Library.Resources {
         public static string Lastname {
             get {
                 return ResourceManager.GetString("Lastname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legal notice.
+        /// </summary>
+        public static string LegalNotice {
+            get {
+                return ResourceManager.GetString("LegalNotice", resourceCulture);
             }
         }
         
@@ -1645,7 +1699,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We wish you every success in your job search with myvitae - stay on the ball!.
+        ///   Looks up a localized string similar to We wish you every success in your job search with myVitae - stay on the ball!.
         /// </summary>
         public static string MailAdvert4 {
             get {
@@ -1654,7 +1708,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your myvitae team.
+        ///   Looks up a localized string similar to Your myVitae team.
         /// </summary>
         public static string MailAdvert5 {
             get {
@@ -1672,7 +1726,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This email was sent from myvitae to.
+        ///   Looks up a localized string similar to This email was sent from myVitae to.
         /// </summary>
         public static string MailFooter1 {
             get {
@@ -1933,7 +1987,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CV calls (last 30 days).
+        ///   Looks up a localized string similar to myVitae calls (last 30 days).
         /// </summary>
         public static string NrOfCVHits {
             get {
@@ -2231,7 +2285,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage the publication of your CV here..
+        ///   Looks up a localized string similar to Manage the publication of your myVitae here..
         /// </summary>
         public static string PublicationDescription {
             get {
@@ -2474,6 +2528,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Protect your publications.
+        /// </summary>
+        public static string SavePublications {
+            get {
+                return ResourceManager.GetString("SavePublications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your myVitae-CV is protected by a unique link. Additionally, assign a password and anonymise sensitive information if necessary..
+        /// </summary>
+        public static string SavePublicationsDescription {
+            get {
+                return ResourceManager.GetString("SavePublicationsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Educational institution.
         /// </summary>
         public static string SchoolName {
@@ -2519,7 +2591,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Here you can select the different languages of your CV..
+        ///   Looks up a localized string similar to Here you can select the different languages of your myVitae..
         /// </summary>
         public static string SettingsDescription {
             get {
@@ -2551,6 +2623,24 @@ namespace Library.Resources {
         public static string ShortIdentifier {
             get {
                 return ResourceManager.GetString("ShortIdentifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show your strengths.
+        /// </summary>
+        public static string ShowYourStrengths {
+            get {
+                return ResourceManager.GetString("ShowYourStrengths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With your myVitae website you can focus on the essentials and present yourself in the best possible light..
+        /// </summary>
+        public static string ShowYourStrengthsDescription {
+            get {
+                return ResourceManager.GetString("ShowYourStrengthsDescription", resourceCulture);
             }
         }
         
@@ -2735,7 +2825,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sum of last CV calls (last 50).
+        ///   Looks up a localized string similar to Sum of last myVitae calls (last 50).
         /// </summary>
         public static string SumOfCVHits {
             get {
@@ -2933,11 +3023,38 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to myvitae.ch.
+        ///   Looks up a localized string similar to Welcome to myVitae.
         /// </summary>
         public static string WelcomeToVitae {
             get {
                 return ResourceManager.GetString("WelcomeToVitae", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why myVitae?.
+        /// </summary>
+        public static string WhyMyVitae {
+            get {
+                return ResourceManager.GetString("WhyMyVitae", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating a good CV and keeping it up to date is a very time-consuming process. Furthermore, with the design you can quickly reach your limits. However, design is not always so central for many employers. It&apos;s the content that counts and that needs to be presented clearly and concisely. This is where myVitae comes into play and focuses on clear content. With ease you can create your personal CV website..
+        /// </summary>
+        public static string WhyMyVitaeReason {
+            get {
+                return ResourceManager.GetString("WhyMyVitaeReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try it out for free - you will be thrilled!.
+        /// </summary>
+        public static string WhyMyVitaeTest {
+            get {
+                return ResourceManager.GetString("WhyMyVitaeTest", resourceCulture);
             }
         }
         

@@ -18,9 +18,12 @@
                             @SharedResource.ChangeLanguage
                         </div>
                         <div class="card-body">
-                            <div class="form-group">
+                            <div class="form-group mb-0">
+                                <label class="control-label" asp-for="@Model.ApplicationLanguage"></label>
                                 <select asp-for="@Model.ApplicationLanguage" class="form-control" asp-items="@(new SelectList(Enum.GetValues(typeof(ApplicationLanguage)).Cast<ApplicationLanguage>().OrderBy(c => c.Description()).Select(ma => new SelectListItem { Text = ma.Description(), Value =  ma.ToString() }), "Value", "Text"))">
                                 </select>
+                                <small class="mt-1">
+                                    @SharedResource.ChangeLanguageDescriptionSmall</small>
                             </div>
                         </div>
                     </div>

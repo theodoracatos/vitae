@@ -20,7 +20,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Vitae.Code;
-
+using Vitae.Code.PageModels;
 using Poco = Model.Poco;
 
 namespace Vitae.Areas.Manage.Pages.Sociallinks

@@ -1,19 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿
+using Library.Repository;
+using Library.Resources;
 
-using Model.ViewModels.Reports;
-
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using Vitae.Code;
-using Microsoft.Extensions.Localization;
-using Persistency.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Library.Resources;
-using Library.Repository;
+using Microsoft.Extensions.Localization;
+
 using Model.Poco;
-using Microsoft.AspNetCore.Localization;
+using Model.ViewModels.Reports;
+
+using Persistency.Data;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using Vitae.Code.PageModels;
 
 namespace Vitae.Areas.Manage.Pages
 {
