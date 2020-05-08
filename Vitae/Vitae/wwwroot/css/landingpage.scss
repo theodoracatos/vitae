@@ -1,6 +1,5 @@
 ﻿@import 'scsslib/_fonts.scss';
 @import 'scsslib/_colors.scss';
-@import 'scsslib/_mobile.scss';
 
 ::-webkit-scrollbar-thumb {
     background-color: darkgrey;
@@ -203,3 +202,5 @@ footer {
     -ms-transform: translate(0px, 0px);
     transform: translate3d(0px, 0px, 0px);
 }
+
+@import 'scsslib/_mobile.scss';

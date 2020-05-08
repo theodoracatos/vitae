@@ -43,6 +43,8 @@
     <div class="mainframe">
         @RenderBody()
     </div>
+    @RenderSection("Scrollbar", false)
+
         <footer class="bg-light">
             <div class="w-100">
                 <div class="d-flex justify-content-end small mr-4">
@@ -57,10 +59,10 @@
                     <div>
                         <a class="js-scroll-trigger" href="/LegalNotice">@SharedResource.LegalNotice</a>
                     </div>
-                    <div class="ml-1 mr-1">&middot;</div>
-                    <div class="text-muted">Copyright &copy; @DateTime.Now.Year, <a class="ml-1" href="https://myvitae.ch">@Globals.APPLICATION_NAME</a></div>
-                    <div class="ml-1 mr-1">&middot;</div>
-                    <div>Made with <font color="red">❤</font> in Switzerland</div>
+                    <div class="ml-1 mr-1 d-none d-xs-block d-md-block">&middot;</div>
+                    <div class="text-muted d-none d-xs-block d-md-block">Copyright &copy; @DateTime.Now.Year, <a class="ml-1" href="https://myvitae.ch">@Globals.APPLICATION_NAME</a></div>
+                    <div class="ml-1 mr-1 d-none d-xs-block d-md-block">&middot;</div>
+                    <div class="d-none d-xs-block d-md-block">Made with <font color="red">❤</font> in Switzerland</div>
                 </div>
             </div>
         </footer>

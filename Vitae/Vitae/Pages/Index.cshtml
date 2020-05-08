@@ -7,7 +7,7 @@
 <div class="container-fluid h-100">
     <div class="row h-100">
         <div class="col-xl-6 text-left my-auto">
-            <div class="ml-5 mr-5">
+            <div class="ml-xl-5 mr-xl-5 ml-md-4 mr-md-4 ml-sm-3 mr-sm-3 ml-xs-2 mr-xs-2">
                 <div class="bg-white-opaque p-5 ml-xl-5 mr-xl-5 mb-xl-5 rounded shadow">
                     <h1>@(CodeHelper.GetStaticPropValue(typeof(SharedResource), $"AdTextA{new Random().Next() % 3}"))</h1>
                     <h2 class="mb-5">@SharedResource.AdTextB0</h2>
@@ -25,24 +25,26 @@
     </div>
 </div>
 
-<div class="scrollbar">
-    <div class="w-100r">
-        <div class="row ml-0 mr-0">
-            <div class="col text-center">
-                <a class="js-scroll-trigger" href="#subframe"><img src="~/img/scroll.gif" class="scroll" alt="Scroll" /></a>
+@section CookiePolicy{
+    <partial name="_CookieConsentPartial" />
+}
+
+@section Scrollbar{
+    <div class="scrollbar">
+        <div class="w-100r">
+            <div class="row ml-0 mr-0">
+                <div class="col text-center">
+                    <a class="js-scroll-trigger" href="#subframe"><img src="~/img/scroll.gif" class="scroll" alt="Scroll" /></a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-@section CookiePolicy{
-    <partial name="_CookieConsentPartial" />
 }
 
 @section Advertisment{
 
     <div class="container-fluid">
-        <div class="row p-5">
+        <div class="row p-xl-5 p-4">
             <div class="col-xl-12 text-center">
                 <h1>@SharedResource.WhyMyVitae</h1>
                 <p>
@@ -57,7 +59,7 @@
             </div>
         </div>
 
-        <div class="row p-5 bg-snowwhite animation-element slide-left">
+        <div class="row p-xl-5 p-4 bg-snowwhite animation-element slide-left">
             <div class="col-xl-12 text-center">
                 <h1>@SharedResource.KeepControl</h1>
                 <p>
@@ -69,7 +71,7 @@
             </div>
         </div>
 
-        <div class="row p-5 animation-element slide-left">
+        <div class="row p-xl-5 p-4 animation-element slide-left">
             <div class="col-xl-12 text-center">
                 <h1>@SharedResource.SavePublications</h1>
                 <p>@SharedResource.SavePublicationsDescription</p>
@@ -79,7 +81,7 @@
             </div>
         </div>
 
-        <div class="row p-5 bg-snowwhite animation-element slide-left">
+        <div class="row p-xl-5 p-4 bg-snowwhite animation-element slide-left">
             <div class="col-xl-12 text-center">
                 <h1>@SharedResource.ShowYourStrengths</h1>
                 <p>@SharedResource.ShowYourStrengthsDescription</p>
