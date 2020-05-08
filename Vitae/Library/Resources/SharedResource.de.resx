@@ -315,14 +315,35 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Passwort bestätigen</value>
   </data>
+  <data name="CookiePolicy" xml:space="preserve">
+    <value>Cookie-Richtlinie</value>
+  </data>
   <data name="CookiePolicyDescription" xml:space="preserve">
     <value>Mit dem weiteren Besuch der Website akzeptieren Sie das Speichern von Cookies auf Ihrem Computer</value>
   </data>
   <data name="CookiePolicyLearnMore" xml:space="preserve">
     <value>Mehr Infos</value>
   </data>
+  <data name="Cookies" xml:space="preserve">
+    <value>Cookies</value>
+  </data>
+  <data name="CookiesText1" xml:space="preserve">
+    <value>Wenn Sie diese Website besuchen, wird der Webserver automatisch gewisse Details Ihres Besuches (IP Adresse, Ursprungs-Webseite, Ziel-Webseite) mit einer Tracking-Technologie namens ""Cookies"" aufzeichnen. Ein Cookie ist ein kleines Datenstück, welches von der Webseite auf dem Browser oder mobilen Gerät gespeichert wird. Das Cookie erlaubt der Webseite Ihre Einstellungen oder Präferenzen in einer gewissen Zeitspanne zu speichern.</value>
+  </data>
+  <data name="CookiesText2" xml:space="preserve">
+    <value>Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und um Informationen über die Benutzung der Webseite zu liefern. Cookies, welche eingesetzt werden, können nicht zur Benutzeridentifikation eingesetzt werden. Sie können die Cookies akzeptieren oder zu jeder Zeit durch Einstellungen ihres Webbrowsers die Cookies verweigern. Bitte beachten Sie jedoch, dass im Falle einer Ablehnung gewisse Funktionalitäten beeinträchtigt werden können. Durch die Weiternutzung der Website akzeptieren Sie automatisch die Speicherung von Cookies auf Ihrem Computer.</value>
+  </data>
   <data name="Copy" xml:space="preserve">
     <value>Kopieren</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Das Copyright dieser Website liegt bei vitae.ch, Alexandros Theodoracatos.</value>
+  </data>
+  <data name="CopyrightLaw" xml:space="preserve">
+    <value>Urheberrecht</value>
+  </data>
+  <data name="CopyrightLawText" xml:space="preserve">
+    <value>Die Website ist das ausschliessliche Eigentum von Alexandros Theodoracatos und ist durch das schweizerische Urherberrechtsgesetz geschützt. Daher darf die Website in keiner Weise und ohne vorherige Genehmigung von Alexandros Theodoracatos vollständig oder teilweise reproduziert oder zur Verfügung gestellt oder anders als auf die genehmigte Art und Weise verwendet werden.</value>
   </data>
   <data name="CopyValues" xml:space="preserve">
     <value>Werte kopieren</value>
@@ -375,8 +396,17 @@
   <data name="DashboardOverview" xml:space="preserve">
     <value>Das Dashboard gibt Ihnen einen guten Überblick über Ihre veröffentlichten Lebensläufe. Sie können Ihren Lebenslauf in bis zu vier Sprachen eingeben.</value>
   </data>
+  <data name="DataProtection" xml:space="preserve">
+    <value>Datenschutz</value>
+  </data>
+  <data name="DataProtectionText" xml:space="preserve">
+    <value>Für die Sicherheit der Datenübertragung im Internet können wir keine Gewähr übernehmen, insbesondere besteht bei der Übertragung von Daten per E-Mail die Gefahr des Zugriffs durch Dritte. Einer Nutzung der im Impressum veröffentlichten Kontaktdaten durch Dritte zu Werbezwecken wird hiermit ausdrücklich widersprochen. Der Betreiber behält sich für den Fall unverlangt zugesandter Werbe- oder Informationsmaterialien ausdrücklich rechtliche Schritte vor. Sollten einzelne Regelungen oder Formulierungen dieses Haftungsausschlusses unwirksam sein oder werden, bleiben die übrigen Regelungen in ihrem Inhalt und ihrer Gültigkeit hiervon unberührt.</value>
+  </data>
   <data name="DateCompareError" xml:space="preserve">
     <value>Das Start-Datum darf nicht grösser als das End-Datum sein</value>
+  </data>
+  <data name="DateProtectionText" xml:space="preserve">
+    <value>Für die Sicherheit der Datenübertragung im Internet können wir keine Gewähr übernehmen, insbesondere besteht bei der Übertragung von Daten per E-Mail die Gefahr des Zugriffs durch Dritte. Einer Nutzung der im Impressum veröffentlichten Kontaktdaten durch Dritte zu Werbezwecken wird hiermit ausdrücklich widersprochen. Der Betreiber behält sich für den Fall unverlangt zugesandter Werbe- oder Informationsmaterialien ausdrücklich rechtliche Schritte vor. Sollten einzelne Regelungen oder Formulierungen dieses Haftungsausschlusses unwirksam sein oder werden, bleiben die übrigen Regelungen in ihrem Inhalt und ihrer Gültigkeit hiervon unberührt.</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>Tag</value>
@@ -398,6 +428,12 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>Beschreibung</value>
+  </data>
+  <data name="Disclaimer" xml:space="preserve">
+    <value>Haftungsausschluss</value>
+  </data>
+  <data name="DisclaimerText" xml:space="preserve">
+    <value>Alle Texte und Links wurden sorgfältig geprüft und werden laufend aktualisiert. Wir sind bemüht, richtige und vollständige Informationen auf dieser Website bereitzustellen, übernehmen aber keinerlei Verantwortung, Garantien oder Haftung dafür, dass die durch diese Website bereitgestellten Werkzeuge und Informationen, richtig, vollständig oder aktuell sind. Wir behalten uns das Recht vor, jederzeit und ohne Vorankündigung die Informationen auf dieser Website zu ändern und verpflichten uns auch nicht, die enthaltenen Informationen zu aktualisieren und gegebenenfalls abzuändern. Alle Links zu externen Anbietern wurden zum Zeitpunkt ihrer Aufnahme auf ihre Richtigkeit überprüft, dennoch haften wir nicht für Inhalte und Verfügbarkeit von Websites, die mittels Hyperlinks der Benutzer von myVitae zu erreichen sind. Für illegale, fehlerhafte oder unvollständige Inhalte und insbesondere für Schäden, die durch Inhalte verknüpfter Seiten entstehen, haftet allein der Anbieter der Seite, auf welche verwiesen wurde. Dabei ist es gleichgültig, ob der Schaden direkter, indirekter oder finanzieller Natur ist oder ein sonstiger Schaden vorliegt, der sich aus Datenverlust, Nutzungsausfall oder anderen Gründen aller Art ergeben könnte.</value>
   </data>
   <data name="Divorced" xml:space="preserve">
     <value>Geschieden</value>
@@ -504,6 +540,15 @@
   <data name="German" xml:space="preserve">
     <value>Deutsch</value>
   </data>
+  <data name="GoogleAnalytics" xml:space="preserve">
+    <value>Google analytics</value>
+  </data>
+  <data name="GoogleAnalyticsText1" xml:space="preserve">
+    <value>Diese Website benutzt Cookies von Google Analytics, einen Webanalysedienst der Google Inc. ("Google"). Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Im Falle der Aktivierung der IP-Anonymisierung auf dieser Webseite, wird Ihre IP-Adresse von Google jedoch innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum zuvor gekürzt. Nur in Ausnahmefällen wird die volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt. Im Auftrag des Betreibers dieser Website wird Google diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Websiteaktivitäten zusammenzustellen und um weitere mit der Websitenutzung und der Internetnutzung verbundene Dienstleistungen gegenüber dem Websitebetreiber zu erbringen. Die im Rahmen von Google Analytics von Ihrem Browser übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt.</value>
+  </data>
+  <data name="GoogleAnalyticsText2" xml:space="preserve">
+    <value>Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich werden nutzen können.  Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren. Der aktuelle Link ist:</value>
+  </data>
   <data name="Grade" xml:space="preserve">
     <value>Note</value>
   </data>
@@ -605,6 +650,12 @@
   </data>
   <data name="Lastname" xml:space="preserve">
     <value>Nachname</value>
+  </data>
+  <data name="LegalNotice" xml:space="preserve">
+    <value>Rechtlicher Hinweis</value>
+  </data>
+  <data name="LegalNoticeResponsible" xml:space="preserve">
+    <value>Verantwortlich für die myVitae Webapplikation</value>
   </data>
   <data name="Level" xml:space="preserve">
     <value>Niveau</value>
@@ -837,10 +888,6 @@
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Datenschutzerklärung</value>
   </data>
-  <data name="PrivacyPolicyText" xml:space="preserve">
-    <value>Wenn Sie diese Website besuchen, wird der Webserver automatisch gewisse Details Ihres Besuches (IP Adresse, Ursprungs-Webseite, Ziel-Webseite) mit einer Tracking-Technologie namens "Cookies" aufzeichnen. Ein Cookie ist ein kleines Datenstück, welches von der Webseite auf dem Browser oder mobilen Gerät gespeichert wird. Das Cookie erlaubt der Webseite Ihre Einstellungen oder Präferenzen in einer gewissen Zeitspanne zu speichern.
-Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und um Informationen über die Benutzung der Webseite zu liefern. Es werden dabei keine "third-party" Cookies eingesetzt. Cookies, welche eingesetzt werden, können nicht zur Benutzeridentifikation für QWM eingesetzt werden. Sie können die Cookies akzeptieren oder zu jeder Zeit durch Einstellungen ihres Webbrowsers die Cookies verweigern. Bitte beachten Sie jedoch, dass im Falle einer Ablehnung gewisse Funktionalitäten beeinträchtigt werden können. Durch die Weiternutzung der Website akzeptieren Sie automatisch die Speicherung von Cookies auf Ihrem Computer in Übereinstimmung mit den hier beschriebenen Bedingungen.</value>
-  </data>
   <data name="ProfileOverview" xml:space="preserve">
     <value>Profilübersicht</value>
   </data>
@@ -1036,6 +1083,9 @@ Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und
   <data name="SupplyCode" xml:space="preserve">
     <value>Für das Zurücksetzen des Passworts muss ein Code angegeben werden.</value>
   </data>
+  <data name="Switzerland" xml:space="preserve">
+    <value>Schweiz</value>
+  </data>
   <data name="TheLogout" xml:space="preserve">
     <value>Abmeldung</value>
   </data>
@@ -1106,7 +1156,7 @@ Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und
     <value>Einen guten Lebenslauf zu erstellen und stets auf dem neuesten Stand zu halten, ist ein sehr zeitaufwändiger Prozess. Zudem kann man bei der Gestaltung schnell an seine Grenzen stossen. Für viele Arbeitgeber ist die Gestaltung jedoch nicht immer so zentral. Es ist der Inhalt der zählt und welcher klar und prägnant präsentiert werden muss. An dieser Stelle sprint myVitae ein und setzt auf klare Inhalte. Mit Leichtigkeit können Sie Ihre persönliche Lebenslauf-Website erstellen.</value>
   </data>
   <data name="WhyMyVitaeTest" xml:space="preserve">
-    <value>Probieren Sie es kostenlos aus - Sie werden begeistert sein!</value>
+    <value>Schauen Sie es sich an - Sie werden begeistert sein!</value>
   </data>
   <data name="Widowed" xml:space="preserve">
     <value>Verwitwet</value>

@@ -682,11 +682,65 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cookies.
+        /// </summary>
+        public static string Cookies {
+            get {
+                return ResourceManager.GetString("Cookies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you visit this website, the web server will automatically record certain details of your visit (IP address, source website, destination website) using a tracking technology called &quot;&quot;cookies&quot;&quot;. A cookie is a small piece of data that is stored by the website on the browser or mobile device. The cookie allows the website to save your settings or preferences for a certain period of time..
+        /// </summary>
+        public static string CookiesText1 {
+            get {
+                return ResourceManager.GetString("CookiesText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This website requires cookies to optimize the content of its web pages and to provide information about the use of the website. Cookies, which are used, cannot be used for user identification. You can accept cookies or refuse cookies at any time by changing the settings on your web browser. Please note, however, that if you refuse cookies, certain functionalities may be impaired. By continuing to use the website, you automatically accept the storage of cookies on your computer..
+        /// </summary>
+        public static string CookiesText2 {
+            get {
+                return ResourceManager.GetString("CookiesText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string Copy {
             get {
                 return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The copyright of this website belongs to vitae.ch, Alexandros Theodoracatos..
+        /// </summary>
+        public static string Copyright {
+            get {
+                return ResourceManager.GetString("Copyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copyright.
+        /// </summary>
+        public static string CopyrightLaw {
+            get {
+                return ResourceManager.GetString("CopyrightLaw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The website is the exclusive property of Alexandros Theodoracatos and is protected by Swiss copyright law. Therefore, the Website may not be reproduced or made available in whole or in part, or used in any way other than as authorized, without the prior consent of Alexandros Theodoracatos..
+        /// </summary>
+        public static string CopyrightLawText {
+            get {
+                return ResourceManager.GetString("CopyrightLawText", resourceCulture);
             }
         }
         
@@ -844,11 +898,38 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data protection.
+        /// </summary>
+        public static string DataProtection {
+            get {
+                return ResourceManager.GetString("DataProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We cannot guarantee the security of data transmission on the Internet. In particular, there is a risk of access by third parties when data is transmitted by e-mail. We hereby expressly object to the use of the contact data published in the imprint by third parties for advertising purposes. The operator expressly reserves the right to take legal action in the event of unsolicited advertising or information material being sent. Should individual provisions or formulations of this disclaimer be or become inval [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DataProtectionText {
+            get {
+                return ResourceManager.GetString("DataProtectionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The start date can&apos;t be greater than the end date.
         /// </summary>
         public static string DateCompareError {
             get {
                 return ResourceManager.GetString("DateCompareError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We cannot guarantee the security of data transmission on the Internet. In particular, there is a risk of access by third parties when data is transmitted by e-mail. We hereby expressly object to the use of the contact data published in the imprint by third parties for advertising purposes. The operator expressly reserves the right to take legal action in the event of unsolicited advertising or information material being sent. Should individual provisions or formulations of this disclaimer be or become inval [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DateProtectionText {
+            get {
+                return ResourceManager.GetString("DateProtectionText", resourceCulture);
             }
         }
         
@@ -921,6 +1002,15 @@ namespace Library.Resources {
         public static string Disclaimer {
             get {
                 return ResourceManager.GetString("Disclaimer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All texts and links have been carefully checked and are continuously updated. We make every effort to provide correct and complete information on this website, but accept no responsibility, guarantee or liability whatsoever that the tools and information provided by this website are correct, complete or up-to-date. We reserve the right to change the information on this website at any time and without prior notice and do not undertake to update and, if necessary, modify the information contained herein. All  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DisclaimerText {
+            get {
+                return ResourceManager.GetString("DisclaimerText", resourceCulture);
             }
         }
         
@@ -1240,6 +1330,33 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Google analytics.
+        /// </summary>
+        public static string GoogleAnalytics {
+            get {
+                return ResourceManager.GetString("GoogleAnalytics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This website uses cookies from Google Analytics, a web analysis service of Google Inc. (&quot;Google&quot;). The information generated by the cookie about your use of this website is usually transferred to a Google server in the USA and stored there. However, in the event that IP anonymisation is activated on this website, your IP address will be shortened by Google within member states of the European Union or in other signatory states to the Agreement on the European Economic Area before this happens. Only in excep [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string GoogleAnalyticsText1 {
+            get {
+                return ResourceManager.GetString("GoogleAnalyticsText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You may refuse the use of cookies by selecting the appropriate settings on your browser, however please note that if you do this you may not be able to use the full functionality of this website.  You can also prevent the collection of data generated by the cookie and related to your use of the website (including your IP address) to Google and the processing of this data by Google by downloading and installing the browser plugin available at the following link. The current link is:.
+        /// </summary>
+        public static string GoogleAnalyticsText2 {
+            get {
+                return ResourceManager.GetString("GoogleAnalyticsText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grade.
         /// </summary>
         public static string Grade {
@@ -1551,6 +1668,15 @@ namespace Library.Resources {
         public static string LegalNotice {
             get {
                 return ResourceManager.GetString("LegalNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Responsible for the myVitae web application.
+        /// </summary>
+        public static string LegalNoticeResponsible {
+            get {
+                return ResourceManager.GetString("LegalNoticeResponsible", resourceCulture);
             }
         }
         
@@ -2248,16 +2374,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When you visit this website, the web server will automatically record certain details of your visit (IP address, source website, destination website) using a tracking technology called &quot;cookies&quot;. A cookie is a small piece of data that is stored by the website on the browser or mobile device. The cookie allows the website to save your settings or preferences for a certain period of time.
-        ///This website requires cookies to optimize the content of its web pages and to provide information about the use of the web [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string PrivacyPolicyText {
-            get {
-                return ResourceManager.GetString("PrivacyPolicyText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Profile overview.
         /// </summary>
         public static string ProfileOverview {
@@ -2843,6 +2959,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Switzerland.
+        /// </summary>
+        public static string Switzerland {
+            get {
+                return ResourceManager.GetString("Switzerland", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logout.
         /// </summary>
         public static string TheLogout {
@@ -3050,7 +3175,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Try it out for free - you will be thrilled!.
+        ///   Looks up a localized string similar to Check it out - you will be thrilled!.
         /// </summary>
         public static string WhyMyVitaeTest {
             get {

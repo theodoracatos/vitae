@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Vitae.Code.PageModels
 {
 
-    public class LandingPageBaseModel : PageModel
+    public abstract class LandingPageBaseModel : PageModel
     {
         public string LanguageCode { get { return GetLanguageCode(); } }
 
