@@ -9,10 +9,18 @@
 @if (showBanner)
 {
     <div id="cookieConsent" class="alert alert-info bg-white alert-dismissible fade show" role="alert">
-        @SharedResource.CookiePolicyDescription. <a class="js-scroll-trigger" href="/CookiePolicy">@SharedResource.CookiePolicyLearnMore</a>
-        <button type="button" class="btn-warning btn font-weight-bold float-right" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
-            <span aria-hidden="true">@SharedResource.Accept</span>
-        </button>
+        <div class="row">
+            <div class="col">
+                <div class="align-middle">
+                    @SharedResource.CookiePolicyDescription. <a class="js-scroll-trigger" href="/CookiePolicy">@SharedResource.CookiePolicyLearnMore</a>
+                </div>
+            </div>
+            <div class="col-0">
+                <button type="button" class="btn-warning btn font-weight-bold float-right mr-3" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
+                    <span aria-hidden="true">@SharedResource.Accept</span>
+                </button>
+            </div>
+        </div>
     </div>
     <script>
         (function () {

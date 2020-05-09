@@ -34,7 +34,7 @@
                 <div class="card @(i < Model.Courses.Count - 1 ? "mb-4" : "mb-2")">
                     <div class="card-header card-header-small">
                         <div class="float-left line-height-2">
-                            <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark">
+                            <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark mr-1">
                                 @(i + 1). @SharedResource.Course
                                 <input type="hidden" asp-for="@Model.Courses[i].Collapsed" />
                             </a>
@@ -90,56 +90,53 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="control-label" asp-for="@Model.Courses[i].Start_Day"></label>
-                                <div class="d-flex">
-                                    <select asp-for="@Model.Courses[i].Start_Day" class="form-control w-auto d-inline-flex mr-2" asp-items="@(new SelectList(Enumerable.Range(1, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeDate').trigger('click');"></select>
-                                    <select asp-for="@Model.Courses[i].Start_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
-                                    <select asp-for="@Model.Courses[i].Start_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <select asp-for="@Model.Courses[i].Start_Day" class="form-control" asp-items="@(new SelectList(Enumerable.Range(1, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                                    </div>
+                                    <select asp-for="@Model.Courses[i].Start_Month" class="form-control" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                                    <div class="input-group-append">
+                                        <select asp-for="@Model.Courses[i].Start_Year" class="form-control" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label class="control-label" asp-for="@Model.Courses[i].End_Day"></label>
-                                <div>
-                                    <div class="row">
-                                        <div class="col-0 mb-1 mb-sm-0 col-sm">
-                                            <div class="form-control  w-auto flex-fill">
-                                                <div class="pretty p-switch p-slim mr-0" onchange="$('#btnCheckSingleDay'+@i).trigger('click');">
-                                                    <input type="checkbox" name="@(nameof(Courses))[@i].@nameof(CourseVM.SingleDay)" value="true" checked="@(Model.Courses[i].SingleDay ? "checked" : null)" />
-                                                    <div class="state">
-                                                        <label asp-for="@Model.Courses[i].SingleDay"></label>
-                                                        <input type="hidden" asp-for="@Model.Courses[i].Order" />
-                                                    </div>
-                                                </div>
-                                                <button id="btnCheckSingleDay@(i)" asp-page-handler="ChangeSingleDay" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+                                <div class="input-group">
+                                    <div class="form-control flex-fill w-auto">
+                                        <div class="pretty p-switch p-slim mr-0" onchange="$('#btnCheckSingleDay'+@i).trigger('click');">
+                                            <input type="checkbox" name="@(nameof(Courses))[@i].@nameof(CourseVM.SingleDay)" value="true" checked="@(Model.Courses[i].SingleDay ? "checked" : null)" />
+                                            <div class="state">
+                                                <label asp-for="@Model.Courses[i].SingleDay"></label>
+                                                <input type="hidden" asp-for="@Model.Courses[i].Order" />
                                             </div>
                                         </div>
-
-                                        @if (!@Model.Courses[i].SingleDay)
-                                        {
-                                            <div class="col">
-                                                <div class="d-flex">
-                                                    <select asp-for="@Model.Courses[i].End_Day" class="form-control w-auto d-inline-flex mr-2" asp-items="@(new SelectList(Enumerable.Range(1, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeDate@(i)').trigger('click');"></select>
-                                                    <select asp-for="@Model.Courses[i].End_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate@(i)').trigger('click');"></select>
-                                                    <select asp-for="@Model.Courses[i].End_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeDate@(i)').trigger('click');"></select>
-
-                                                    <button id="btnChangeDate@(i)" asp-page-handler="ChangeDate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
-                                                </div>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <input asp-for="@Model.Courses[i].End_Day" type="hidden" />
-                                            <input asp-for="@Model.Courses[i].End_Month" type="hidden" />
-                                            <input asp-for="@Model.Courses[i].End_Year" type="hidden" />
-                                        }
-
+                                        <button id="btnCheckSingleDay@(i)" asp-page-handler="ChangeSingleDay" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                                     </div>
+                                    @if (!@Model.Courses[i].SingleDay)
+                                    {
+                                <div class="input-group-append">
+                                    <select asp-for="@Model.Courses[i].End_Day" class="form-control" asp-items="@(new SelectList(Enumerable.Range(1, 31).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeDate@(i)').trigger('click');"></select>
+                                    <button id="btnChangeDate@(i)" asp-page-handler="ChangeDate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
 
+                                </div>
+                                <div class="input-group-append">
+                                    <select asp-for="@Model.Courses[i].End_Month" class="form-control" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate@(i)').trigger('click');"></select>
+                                    <select asp-for="@Model.Courses[i].End_Year" class="form-control" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))" onchange="$('#btnChangeDate@(i)').trigger('click');"></select>
+                                </div>
+                                    }
+                                    else
+                                    {
+                                        <input asp-for="@Model.Courses[i].End_Day" type="hidden" />
+                                        <input asp-for="@Model.Courses[i].End_Month" type="hidden" />
+                                        <input asp-for="@Model.Courses[i].End_Year" type="hidden" />
+                                    }
                                 </div>
                                 <div>
-                                    <span asp-validation-for="@Model.Courses[i].End_Year" class="text-danger text-right mt-1 d-block"></span>
+                                        <span asp-validation-for="@Model.Courses[i].End_Year" class="text-danger text-right mt-1 d-block"></span>
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -29,7 +29,7 @@ namespace Model.ViewModels
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Anonymize), Prompt = nameof(SharedResource.Anonymize))]
         public bool Anonymize { get; set; }
 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.EnablePassword), Prompt = nameof(SharedResource.EnablePassword))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Activate), Prompt = nameof(SharedResource.Activate))]
         public bool EnablePassword { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Notes), Prompt = nameof(SharedResource.Notes))]

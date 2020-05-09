@@ -13,20 +13,20 @@
 <script src="~/lib/Chart.js/Chart.min.js"></script>
 <script src="~/lib/bootstrap-rating/bootstrap-rating.min.js"></script>
 <script src="~/lib/bootstrap4-tagsinput/tagsinput.js"></script>
-<script src="~/lib/jquery.dirtyforms/jquery.dirtyforms.min.js"></script>
 <script src="~/lib/autosize.js/autosize.min.js"></script>
-
-<resources names='new[] { "SharedResource" }'></resources>
 
 <environment include="Development">
     <script src="~/js/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/lib/jquery.dirtyforms/jquery.dirtyforms.js"></script>
     <script src="~/js/base.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 </environment>
 <environment exclude="Development">
     <partial name="_GoogleAnalytics" />
-
     <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/lib/jquery.dirtyforms/jquery.dirtyforms.min.js"></script>
     <script src="~/js/base.min.js"></script>
     <script src="~/js/site.min.js"></script>
 </environment>
+
+<resources names='new[] { "SharedResource" }'></resources>

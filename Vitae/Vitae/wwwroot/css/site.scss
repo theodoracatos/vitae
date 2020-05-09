@@ -57,7 +57,7 @@ a:hover {
 #panel .card {
     background-color: rgba(255,255,255, 1);
     box-shadow: 0 2px 18px 1px rgba(49,53,72,.1);
-
+    margin-bottom: 1em;
 }
 #panel .card .card-header {
     background-color: #E8E8E8;
@@ -262,16 +262,6 @@ span.field-validation-error {
     border-radius: 4px;
 }
 /* Filer */
-@media screen and (max-width: 768px) {
-    .jFiler-input{
-        width: 135px !important;
-    }
-
-    .jFiler-input-caption {
-        display: none !important;
-    }
-}
-
 .jFiler-input {
     margin-bottom: 0 !important;
     height: 40px !important;
@@ -318,13 +308,33 @@ span.field-validation-error {
     margin-bottom: 0;
 }
 
-@media screen and (max-width: 520px) 
-{
-    h1{
+@media all and (max-width: 768px) {
+    .jFiler-input {
+        width: 316px !important;
+    }
+}
+
+@media all and (max-width: 480px), all and (max-height: 480px) {
+    h1 {
         font-size: 24px;
     }
 
-    .cropper-container {
-        zoom: 0.5;
+    .cropper-container *:not(.cropper-drag-box.cropper-modal), .cropper-face.cropper-move {
+        transform: scale(0.7);
+        transform-origin: top left;
+    }
+
+    div.cropper-container.cropper-bg, div.cropper-crop-box {
+        height: 210px !important;
+        width: 210px !important;
+    }
+
+    .cropContainer img, .cropper-face.cropper-move, .cropper-view-box {
+        height: 210px !important;
+        width: 210px !important;
+    }
+
+    .jFiler-input {
+        width: 135px !important;
     }
 }

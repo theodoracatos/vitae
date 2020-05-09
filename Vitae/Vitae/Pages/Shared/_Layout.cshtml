@@ -11,7 +11,7 @@
 
 <body id="page-top">
     <header>
-        <div id="vitae-indicators" class="carousel slide carousel-fade" data-interval="5000" data-ride="carousel">
+        <div id="vitae-indicators" class="carousel slide carousel-fade" data-interval="6000" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active" style="background-image: url('/img/backgrounds/bg0.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('/img/backgrounds/bg1.jpg')"></div>
@@ -44,8 +44,8 @@
     <div class="container-fluid h-100">
         <div class="row h-100">
             <div class="col-xl-6 text-left my-auto">
-                <div class="ml-xl-5 mr-xl-5 ml-md-4 mr-md-4 ml-sm-3 mr-sm-3 ml-xs-2 mr-xs-2">
-                    <div class="bg-white-opaque p-5 ml-xl-5 mr-xl-5 mb-xl-5 rounded shadow">
+                <div class="ml-xl-5 mr-xl-5 ml-md-4 mr-md-4 ml-sm-3 mr-sm-3 ml-xs-2 mr-xs-2 ml-2 mr-2">
+                    <div id="adContainer" class="bg-white-opaque p-5 ml-xl-5 mr-xl-5 mb-xl-5 rounded shadow">
                         <h1>@(CodeHelper.GetStaticPropValue(typeof(SharedResource), $"AdTextA{new Random().Next() % 3}"))</h1>
                         <h2 class="mb-5">@SharedResource.AdTextB0</h2>
                         <div class="form-group mt-5">
@@ -79,7 +79,7 @@
                         <a class="js-scroll-trigger" href="/LegalNotice#legalnotice">@SharedResource.LegalNotice</a>
                     </div>
                     <div class="ml-1 mr-1 d-none d-xs-block d-md-block">&middot;</div>
-                    <div class="text-muted d-none d-xs-block d-md-block">Copyright &copy; @DateTime.Now.Year, <a class="ml-1" href="https://myvitae.ch">@Globals.APPLICATION_NAME</a></div>
+                    <div class="text-muted d-none d-xs-block d-md-block">&copy; @DateTime.Now.Year, <a class="ml-1" href="https://myvitae.ch">@Globals.APPLICATION_NAME</a></div>
                     <div class="ml-1 mr-1 d-none d-xs-block d-md-block">&middot;</div>
                     <div class="d-none d-xs-block d-md-block">Made with <font color="red">❤</font> in Switzerland</div>
                 </div>

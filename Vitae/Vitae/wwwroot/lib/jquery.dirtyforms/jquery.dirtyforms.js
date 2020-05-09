@@ -514,6 +514,7 @@ License MIT
             dirtylog('Returning to beforeunload browser handler with: ' + dirtyForms.message);
             return dirtyForms.message;
         }
+
         if (!dirtyForms.dialog) return;
 
         // Using the GUI dialog...

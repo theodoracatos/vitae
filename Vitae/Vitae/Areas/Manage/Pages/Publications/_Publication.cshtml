@@ -32,7 +32,7 @@
                 <div class="card @(i < Model.Publications.Count - 1 ? "mb-4" : "mb-2")">
                     <div class="card-header card-header-small">
                         <div class="float-left line-height-2">
-                            <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark">
+                            <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark mr-1">
                                 @(i + 1). @SharedResource.Publication @(publicationIdentifier)
                             </a>
                             <input type="hidden" asp-for="@Model.Publications[i].Order" />
@@ -56,27 +56,30 @@
 
                             <div class="form-group col-md-6">
                                 <label class="control-label" asp-for="@Model.Publications[i].Password"></label>
-                                <div class="d-flex">
-                                    <div class="form-control w-auto flex-fill">
-                                        <div class="pretty p-switch p-slim mr-0" onchange="$('#btnEnablePassword'+@i).trigger('click');">
+
+                                <div class="input-group">
+                                    <div class="form-control">
+                                        <div class="pretty p-switch p-slim" onchange="$('#btnEnablePassword'+@i).trigger('click');">
                                             <input type="checkbox" name="@(nameof(Publications))[@i].@nameof(PublicationVM.EnablePassword)" value="true" checked="@(Model.Publications[i].EnablePassword ? "checked" : null)" />
                                             <div class="state">
-                                                <label class="d-none d-sm-block" asp-for="@Model.Publications[i].EnablePassword"></label><label class="d-sm-none"></label>
+                                                <label class="d-none d-xs-block d-sm-block" asp-for="@Model.Publications[i].EnablePassword"></label><label class="d-sm-none"></label>
                                                 <input type="hidden" asp-for="@Model.Publications[i].Order" />
                                             </div>
                                         </div>
                                         <button id="btnEnablePassword@(i)" asp-page-handler="EnablePassword" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                                     </div>
-                                    @if (@Model.Publications[i].EnablePassword)
-                                    {
-                                        <input type="text" class="form-control ml-2" asp-for="@Model.Publications[i].Password" />
-                                    }
-                                    else
-                                    {
-                                        <input type="hidden" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Password)" value="-" />
-                                    }
+                                    <div class="input-group-append">
+                                        @if (@Model.Publications[i].EnablePassword)
+                                        {
+                                            <input type="text" class="form-control" asp-for="@Model.Publications[i].Password" />
+                                        }
+                                        else
+                                        {
+                                            <input type="hidden" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Password)" value="-" />
+                                        }
+                                    </div>
                                 </div>
-                                <div>
+                                <div class="d-block">
                                     <small class="muted mt-1 float-left">@SharedResource.EnablePasswordDescription</small>
                                     @if (@Model.Publications[i].EnablePassword)
                                     {
@@ -93,7 +96,7 @@
                                         <div class="pretty p-switch p-slim mr-0">
                                             <input type="checkbox" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Anonymize)" value="true" checked="@(Model.Publications[i].Anonymize ? "checked" : null)" />
                                             <div class="state">
-                                                <label class="d-none d-sm-block" asp-for="@Model.Publications[i].Anonymize"></label><label class="d-sm-none"></label>
+                                                <label class="d-none d-xs-block d-sm-block" asp-for="@Model.Publications[i].Anonymize"></label><label class="d-sm-none"></label>
                                             </div>
                                         </div>
                                     </div>

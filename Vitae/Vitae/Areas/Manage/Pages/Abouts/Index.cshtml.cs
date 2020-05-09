@@ -130,11 +130,22 @@ namespace Vitae.Areas.Manage.Pages.Abouts
 
         #region AJAX
 
-        public IActionResult OnPostRemoveFile()
+        public async Task<IActionResult> OnPostRemoveFileAsync()
         {
             About.Vfile.FileName = null;
 
+            var curriculum = await repository.GetCurriculumAsync<About>(curriculumID);
+
+            if(curriculum.Abouts.Any(a => a.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && a.Vfile != null))
+            {
+                var about = curriculum.Abouts.Single(a => a.CurriculumLanguage.LanguageCode == CurriculumLanguageCode);
+                about.Vfile = null;
+
+                await vitaeContext.SaveChangesAsync();
+            }
+
             FillSelectionViewModel();
+
             return GetPartialViewResult(PAGE_ABOUTS);
         }
 

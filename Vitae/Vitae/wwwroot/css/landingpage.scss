@@ -167,12 +167,14 @@ footer {
     top: 60px;
     width: 100%;
     padding-right: 22px;
-    line-height: 38px;
+    height: 60px;
+    line-height: 20px;
     z-index: 2;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
     border-radius: 0;
     background-color: rgba(255,255,255, 0.9) !important;
+    margin-bottom: 0;
 }
 
 .animation-element {
@@ -203,4 +205,75 @@ footer {
     transform: translate3d(0px, 0px, 0px);
 }
 
-@import 'scsslib/_mobile.scss';
+@media all and (max-width: 767px), all and (max-height: 767px) {
+
+    footer, nav.navbar {
+        min-height: 45px;
+        height: 45px;
+        line-height: 45px;
+        padding: 0 0.25em 0 0.25em;
+    }
+
+    .navbar-brand {
+        transform: scale(0.75);
+        transform-origin: top left;
+        display: inline;
+        width: 20%;
+    }
+
+    nav div.ml-auto {
+        transform: scale(0.75);
+        transform-origin: top right;
+    }
+
+    .scrollbar {
+        transform: scale(0.75);
+        transform-origin: bottom;
+    }
+
+    footer div.w-100 {
+        min-height: 45px;
+        height: 45px;
+        line-height: 45px;
+        transform: scale(0.9);
+        transform-origin: right;
+    }
+
+    #adContainer, div.jumbotron {
+        transform: scale(0.8);
+    }
+
+    h3 {
+        font-size: 1.5rem !important;
+    }
+
+    #cookieConsent {
+        top: 45px;
+        height: 45px;
+        line-height: 12px;
+        font-size: 10px;
+        margin: 0;
+        padding-top: 0.75em;
+    }
+
+    #cookieConsent button {
+        transform: scale(0.6);
+        transform-origin: top right;
+        margin-right: 0.25em !important;
+    }
+
+    .cropper-crop-box {
+        transform: scale(0.6);
+    }
+}
+
+@media all and (max-height: 480px) {
+    #adContainer, div.jumbotron {
+        transform: scale(0.5)
+    }
+
+    div.jumbotron {
+        transform-origin: top;
+        margin-top: 2.5em;
+    }
+}

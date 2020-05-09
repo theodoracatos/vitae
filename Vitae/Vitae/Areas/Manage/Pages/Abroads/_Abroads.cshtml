@@ -35,7 +35,7 @@
                 <div class="card @(i < Model.Abroads.Count - 1 ? "mb-4" : "mb-2")">
                     <div class="card-header card-header-small">
                         <div class="float-left line-height-2">
-                            <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark">
+                            <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark mr-1">
                                 @(i + 1). @SharedResource.Abroad
                                 <input type="hidden" asp-for="@Model.Abroads[i].Collapsed" />
                             </a>
@@ -72,36 +72,37 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="control-label" asp-for="@Model.Abroads[i].Start_Month"></label>
-                                <div class="d-flex">
-                                    <select asp-for="@Model.Abroads[i].Start_Month" class="form-control flex-fill mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
-                                    <select asp-for="@Model.Abroads[i].Start_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                                <div class="input-group">
+                                    <select asp-for="@Model.Abroads[i].Start_Month" class="form-control" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                                    <div class="input-group-append">
+                                        <select asp-for="@Model.Abroads[i].Start_Year" class="form-control" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="control-label" asp-for="@Model.Abroads[i].End_Month"></label>
-                                <div class="d-flex">
-                                    <div class="form-control w-auto flex-fill">
-                                        <div class="pretty p-switch p-slim mr-0" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
+                                <div class="input-group">
+                                    <div class="form-control">
+                                        <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
                                             <input type="checkbox" name="@(nameof(Abroads))[@i].@nameof(AbroadVM.UntilNow)" value="true" checked="@(Model.Abroads[i].UntilNow ? "checked" : null)" />
                                             <div class="state">
                                                 <label class="d-none d-sm-block" asp-for="@Model.Abroads[i].UntilNow"></label><label class="d-sm-none"></label>
                                             </div>
                                         </div>
-                                        <input type="hidden" asp-for="@Model.Abroads[i].Order" />
                                         <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeUntilNow" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                                     </div>
-                                    @if (!@Model.Abroads[i].UntilNow)
-                                    {
-
-                                        <select asp-for="@Model.Abroads[i].End_Month" class="form-control flex-fill ml-2 mr-2" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
-                                        <select asp-for="@Model.Abroads[i].End_Year" class="form-control w-auto flex-fill" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
-
-                                    }
-                                    else
-                                    {
-                                        <input asp-for="@Model.Abroads[i].End_Month" type="hidden" />
-                                        <input asp-for="@Model.Abroads[i].End_Year" type="hidden" />
-                                    }
+                                    <div class="input-group-append">
+                                        @if (!@Model.Abroads[i].UntilNow)
+                                        {
+                                            <select asp-for="@Model.Abroads[i].End_Month" class="form-control" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                                            <select asp-for="@Model.Abroads[i].End_Year" class="form-control" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                                        }
+                                        else
+                                        {
+                                            <input asp-for="@Model.Abroads[i].End_Month" type="hidden" />
+                                            <input asp-for="@Model.Abroads[i].End_Year" type="hidden" />
+                                        }
+                                    </div>
                                 </div>
                                 <div>
                                     <span asp-validation-for="@Model.Abroads[i].End_Year" class="text-danger text-right mt-1 d-block"></span>
