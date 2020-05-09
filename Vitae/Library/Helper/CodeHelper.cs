@@ -65,12 +65,26 @@ namespace Library.Helper
             return httpContext.Request.Headers.ContainsKey("User-Agent") ? httpContext.Request.Headers["User-Agent"].First() : string.Empty;
         }
 
-        public static FileStream GetLogoStream(string name)
+        public static MemoryStream GetLogoStream(string name)
         {
-            return File.OpenRead($@"{CodeHelper.AssemblyDirectory}/MailTemplates/{name}");
+            var outputStream = new MemoryStream();
+            using (var stream = File.OpenRead($@"{CodeHelper.AssemblyDirectory}/MailTemplates/{name}"))
+            {
+                byte[] buffer = new byte[0x1000];
+                while (true)
+                {
+                    int count = stream.Read(buffer, 0, 0x1000);
+                    if (count == 0)
+                    {
+                        outputStream.Position = 0;
+                        return outputStream;
+                    }
+                    outputStream.Write(buffer, 0, count);
+                }
+            }
         }
 
-        public async static Task<string> GetMailBodyTextAsync(string title, string email_to, Tuple<string, string, string> activationMessage, string mailtemplate = MAIL_TEMPLATE)
+        public async static Task<string> GetMailBodyTextAsync(string title, string email_to, Tuple<string, string, string> activationMessage, bool displayFirstline, string mailtemplate = MAIL_TEMPLATE)
         {
             StringBuilder bodyText;
 
@@ -82,6 +96,7 @@ namespace Library.Helper
             bodyText.Replace("${APP_NAME}", HtmlEncoder.Default.Encode(Globals.APPLICATION_NAME));
             bodyText.Replace("${TITLE}", HtmlEncoder.Default.Encode(title));
             bodyText.Replace("${HELLO}", HtmlEncoder.Default.Encode(SharedResource.Hello));
+            bodyText.Replace("${DISPLAY_FIRSTLINE}", displayFirstline ? "" : "display: none;");
             bodyText.Replace("${MAIL_ADVERT1}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert1));
             bodyText.Replace("${MAIL_ADVERT2a}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert2a));
             bodyText.Replace("${MAIL_ADVERT2b}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert2b));

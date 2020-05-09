@@ -1,21 +1,28 @@
+using Library.Constants;
+using Library.Helper;
 using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+
 using Model.Poco;
 using Model.ViewModels;
+
 using Persistency.Data;
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Vitae.Code;
+
+using Vitae.Code.Mailing;
 using Vitae.Code.PageModels;
 
 namespace Vitae.Areas.Manage.Pages.Settings
@@ -25,6 +32,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly IdentityContext identityContext;
         private readonly UserManager<IdentityUser> userManager;
+        private readonly IEmailSender emailSender;
 
         public const string PAGE_SETTINGS = "_Settings";
 
@@ -35,12 +43,13 @@ namespace Vitae.Areas.Manage.Pages.Settings
 
         public IEnumerable<LanguageVM> Languages { get; set; }
 
-        public IndexModel(SignInManager<IdentityUser> signInManager, IStringLocalizer<SharedResource> localizer, IdentityContext identityContext, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+        public IndexModel(SignInManager<IdentityUser> signInManager, IEmailSender emailSender, IStringLocalizer<SharedResource> localizer, IdentityContext identityContext, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
             : base(localizer, vitaeContext, httpContextAccessor, userManager, repository)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.identityContext = identityContext;
+            this.emailSender = emailSender;
         }
 
         #region SYNC
@@ -176,6 +185,13 @@ namespace Vitae.Areas.Manage.Pages.Settings
             identityContext.Users.Remove(identityContext.Users.Single(u => u.Id == user.Id));
 
             await identityContext.SaveChangesAsync();
+
+            // Send mail
+            var email = await userManager.GetEmailAsync(user);
+            var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.DeleteAccount, email, new Tuple<string, string, string>(SharedResource.MailBye3, Globals.APPLICATION_URL, SharedResource.ClickingHere), false);
+            var logoStream = CodeHelper.GetLogoStream("logo_ink.png");
+            var message = new Message(new string[] { email }, SharedResource.ConfirmEmail, bodyText, new FormFileCollection() { new FormFile(logoStream, 0, logoStream.Length, "image/png", "logo") });
+            await emailSender.SendEmailAsync(message);
 
             await signInManager.SignOutAsync();
 

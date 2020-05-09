@@ -147,6 +147,9 @@
   <data name="AccessDeniedMessage" xml:space="preserve">
     <value>Bitte füllen Sie zuerst die persönlichen Angaben aus.</value>
   </data>
+  <data name="AccountDeleted" xml:space="preserve">
+    <value>Konto erfolgreich gelöscht</value>
+  </data>
   <data name="AccountLockedOut" xml:space="preserve">
     <value>Benutzerkonto gesperrt.</value>
   </data>
@@ -713,6 +716,9 @@
   </data>
   <data name="MailAdvert6" xml:space="preserve">
     <value>Es war noch nie so einfach.</value>
+  </data>
+  <data name="MailBye3" xml:space="preserve">
+    <value>Ihr Konto wurde erfolgreich gelöscht. Wir bedauern, dass Sie gegangen sind. Sie können sich jedoch jederzeit mit dieser E-Mail-Adresse wieder neu registrieren</value>
   </data>
   <data name="MailFooter1" xml:space="preserve">
     <value>Diese E-Mail wurde von myVitae gesendet an</value>

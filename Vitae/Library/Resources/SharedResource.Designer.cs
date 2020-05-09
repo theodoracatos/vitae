@@ -151,6 +151,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account successfully deleted.
+        /// </summary>
+        public static string AccountDeleted {
+            get {
+                return ResourceManager.GetString("AccountDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User account locked out..
         /// </summary>
         public static string AccountLockedOut {
@@ -1848,6 +1857,15 @@ namespace Library.Resources {
         public static string MailAdvert6 {
             get {
                 return ResourceManager.GetString("MailAdvert6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account was successfully deleted. We regret that you have left. However, you can register again at any time with this e-mail address.
+        /// </summary>
+        public static string MailBye3 {
+            get {
+                return ResourceManager.GetString("MailBye3", resourceCulture);
             }
         }
         

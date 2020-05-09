@@ -3,6 +3,7 @@ using Library.Helper;
 using MailKit.Net.Smtp;
 
 using MimeKit;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -63,16 +64,17 @@ namespace Vitae.Code.Mailing
             {
                 try
                 {
-                    client.Connect(_emailConfig.SmtpServer, _emailConfig.Port, true);
+                    await client.ConnectAsync(_emailConfig.SmtpServer, _emailConfig.Port, true);
                     client.AuthenticationMechanisms.Remove("XOAUTH2");
-                    client.Authenticate(_emailConfig.UserName, AesHandler.Decrypt(_emailConfig.Password, Globals.APPLICATION_NAME));
-
+                    await client.AuthenticateAsync(_emailConfig.UserName, AesHandler.Decrypt(_emailConfig.Password, Globals.APPLICATION_NAME));
                     await client.SendAsync(mailMessage);
+
+                    await client.DisconnectAsync(true);
                 }
-                catch
+                catch (Exception e)
                 {
                     //log an error message or throw an exception or both.
-                    throw;
+                    throw e;
                 }
                 finally
                 {

@@ -7,24 +7,24 @@
             <p>@SharedResource.SettingsDescription</p>
         </div>
         <div class="card-body">
-            <div class="grouping">
-                <div class="form-row">
-                    <div class="form-group col">
-                        <label class="control-label" asp-for="@Model.Setting.CurriculumLanguages"></label>
-                        <div>
-                            <button asp-page-handler="AddCurriculumLanguage" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold mr-2" disabled="@(Model.Setting.CurriculumLanguages.Count < Model.MaxCurriculumLanguages ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
-                        </div>
+            <label class="control-label" asp-for="@Model.Setting.CurriculumLanguages"></label>
+            <div class="mb-3">
+                <button asp-page-handler="AddCurriculumLanguage" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold mr-2" disabled="@(Model.Setting.CurriculumLanguages.Count < Model.MaxCurriculumLanguages ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+            </div>
+
+            @for (int i = 0; i < Model.Setting.CurriculumLanguages.Count; i++)
+            {
+                <div class="card mb-4">
+                    <div class="card-header card-header-small">
+                        <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark mr-1">
+                            @(i + 1). @SharedResource.CurriculumLanguage
+                            <input type="hidden" class="dirty-ignore" asp-for="@Model.Setting.CurriculumLanguages[i].Collapsed" />
+                        </a>
                     </div>
-                </div>
-                <div class="grouping pb-0">
-                    @for (int i = 0; i < Model.Setting.CurriculumLanguages.Count; i++)
-                    {
+                    <div class="card-body">
                         <div class="form-row">
-                            <div class="form-group col">
-                                <label class="control-label mr-1">@(i + 1). @SharedResource.CurriculumLanguage</label>
-
-
-                                <div class="input-group mb-3">
+                            <div class="form-group col mb-0">
+                                <div class="input-group">
                                     <select asp-for="@Model.Setting.CurriculumLanguages[i].LanguageCode" asp-disabled="@Model.Setting.SettingItems[i].HasPublication" class="form-control selectpicker form-control flex-fill" style="width: 10px;" onchange="$('#btnSelectChange').trigger('click')" asp-items="@(new SelectList(@Model.Languages.Where(l => l.LanguageCode == Model.Setting.CurriculumLanguages[i].LanguageCode || !Model.Setting.CurriculumLanguages.Select(c => c.LanguageCode).Contains(l.LanguageCode)), "LanguageCode", "Name"))">
                                         <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                                     </select>
@@ -55,20 +55,16 @@
                                 <span asp-validation-for="@Model.Setting.CurriculumLanguages[i].LanguageCode" class="text-danger"></span>
                             </div>
                         </div>
-
-                        @if (i < Model.Setting.CurriculumLanguages.Count - 1)
-                        {<hr />}
-                    }
+                    </div>
                 </div>
-            </div>
-            <div class="grouping">
-                <div class="form-row">
-                    <div class="form-group col">
+            }
+            <hr />
+            <div class="form-row">
+                <div class="form-group col mb-0">
+                    <div class="grouping">
                         <label class="control-label d-block">@SharedResource.DeleteAccount</label>
-                        <div class="grouping">
-                            <button asp-page-handler="DeleteAccount" data-confirm-text="@SharedResource.DeleteAccountConfirm" class="btn btn-sm btn-danger confirmation cancel"><i class="far fa-trash-alt fa-fw"></i>@SharedResource.Delete</button>
-                            <small class="d-block mt-1 text-danger">@SharedResource.SettingsAccountHint</small>
-                        </div>
+                        <button asp-page-handler="DeleteAccount" data-confirm-text="@SharedResource.DeleteAccountConfirm" class="btn btn-sm btn-danger confirmation cancel"><i class="far fa-trash-alt fa-fw"></i>@SharedResource.Delete</button>
+                        <small class="d-block mt-1 text-danger">@SharedResource.SettingsAccountHint</small>
                     </div>
                 </div>
             </div>

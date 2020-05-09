@@ -147,6 +147,9 @@
   <data name="AccessDeniedMessage" xml:space="preserve">
     <value>Si prega di compilare prima i dati personali.</value>
   </data>
+  <data name="AccountDeleted" xml:space="preserve">
+    <value>Conto cancellato con successo</value>
+  </data>
   <data name="AccountLockedOut" xml:space="preserve">
     <value>Account utente bloccato.</value>
   </data>
@@ -713,6 +716,9 @@
   </data>
   <data name="MailAdvert6" xml:space="preserve">
     <value>Non è mai stato così facile.</value>
+  </data>
+  <data name="MailBye3" xml:space="preserve">
+    <value>Il tuo account è stato cancellato con successo. Ci dispiace che se ne sia andato. Tuttavia, è possibile registrarsi di nuovo in qualsiasi momento con questo indirizzo e-mail</value>
   </data>
   <data name="MailFooter1" xml:space="preserve">
     <value>Questa e-mail è stata inviata da myVitae a</value>
