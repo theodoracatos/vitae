@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
-
+using Microsoft.Extensions.Logging;
+using Model.Enumerations;
 using Model.Poco;
 using Model.ViewModels;
 
@@ -178,6 +179,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
                 curriculum.PersonalDetails.Remove(curriculum.PersonalDetails.Single());
             }
             vitaeContext.Curriculums.Remove(vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID));
+            await repository.LogAsync(curriculumID, null, LogArea.Delete, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
 
             await vitaeContext.SaveChangesAsync();
 
@@ -189,9 +191,9 @@ namespace Vitae.Areas.Manage.Pages.Settings
 
             // Send mail
             var email = await userManager.GetEmailAsync(user);
-            var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.DeleteAccount, email, new Tuple<string, string, string>(SharedResource.MailBye3, Globals.APPLICATION_URL, SharedResource.ClickingHere), false);
+            var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.DeleteAccount, email, new Tuple<string, string, string>(SharedResource.MailBye3, Globals.APPLICATION_URL, SharedResource.ClickingHere), false, SharedResource.Goodbye);
             var logoStream = CodeHelper.GetLogoStream(Globals.LOGO);
-            var message = new Message(new string[] { email }, SharedResource.ConfirmEmail, bodyText, new FormFileCollection() { new FormFile(logoStream, 0, logoStream.Length, "image/png", "logo") });
+            var message = new Message(new string[] { email }, SharedResource.DeleteAccount, bodyText, new FormFileCollection() { new FormFile(logoStream, 0, logoStream.Length, "image/png", "logo") });
             await emailSender.SendEmailAsync(message);
 
             await signInManager.SignOutAsync();

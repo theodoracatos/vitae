@@ -84,7 +84,7 @@ namespace Library.Helper
             }
         }
 
-        public async static Task<string> GetMailBodyTextAsync(string title, string email_to, Tuple<string, string, string> activationMessage, bool displayFirstline, string mailtemplate = MAIL_TEMPLATE)
+        public async static Task<string> GetMailBodyTextAsync(string title, string email_to, Tuple<string, string, string> activationMessage, bool displayFirstline, string welcome, string mailtemplate = MAIL_TEMPLATE)
         {
             StringBuilder bodyText;
 
@@ -95,8 +95,14 @@ namespace Library.Helper
 
             bodyText.Replace("${APP_NAME}", HtmlEncoder.Default.Encode(Globals.APPLICATION_NAME));
             bodyText.Replace("${TITLE}", HtmlEncoder.Default.Encode(title));
-            bodyText.Replace("${HELLO}", HtmlEncoder.Default.Encode(SharedResource.Hello));
-            bodyText.Replace("${DISPLAY_FIRSTLINE}", displayFirstline ? "" : "display: none;");
+            bodyText.Replace("${HELLO}", HtmlEncoder.Default.Encode(welcome));
+            if(!displayFirstline)
+            {
+                //<!--$1a-->
+                var a1 = bodyText.ToString().IndexOf("<!--$1a-->");
+                var b1 = bodyText.ToString().IndexOf("<!--$1b-->");
+                bodyText.Remove(a1, b1 - a1);
+            }
             bodyText.Replace("${MAIL_ADVERT1}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert1));
             bodyText.Replace("${MAIL_ADVERT2a}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert2a));
             bodyText.Replace("${MAIL_ADVERT2b}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert2b));

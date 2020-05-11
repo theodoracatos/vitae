@@ -546,6 +546,9 @@
   <data name="German" xml:space="preserve">
     <value>Deutsch</value>
   </data>
+  <data name="Goodbye" xml:space="preserve">
+    <value>Adiós</value>
+  </data>
   <data name="GoogleAnalytics" xml:space="preserve">
     <value>Google analytics</value>
   </data>

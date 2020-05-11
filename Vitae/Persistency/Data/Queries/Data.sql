@@ -41,7 +41,7 @@ INSERT INTO [About]
 VALUES(NEWID(), 0, @CurrLangId_de, GETDATE(), 'Dipl.-Ing. FH | MAS ZFH', '"Das Ganze ist mehr als die Summe seiner Teile." Aristoteles',  '', null, @CurriculumID)
 
 INSERT INTO [About]
-VALUES(NEWID(), 0, @CurrLangId_en, GETDATE(), 'Dipl.-Ing. FH | MAS ZFH', '"The whole is more than the sum of its parts." Aristotle',  '', null, @CurriculumID)
+VALUES(NEWID(), 0, @CurrLangId_en, GETDATE(), 'Bachelor of Science (B.Sc.) | MAS ZFH', '"The whole is more than the sum of its parts." Aristotle',  '', null, @CurriculumID)
 
 /* PERSONAL DETAIL */
 INSERT INTO [PersonalDetail]
@@ -51,9 +51,9 @@ VALUES ((SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT [Countr
 INSERT INTO [PersonCountry]
 VALUES ((SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gr'), 1, GETDATE())
 INSERT INTO [Child]
-VALUES(NEWID(), 'Marilena', '2014-08-14', 0, GETDATE(), (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]))
+VALUES(NEWID(), 'Marilena', '2014-08-14', 0, GETDATE(), (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID))
 INSERT INTO [Child]
-VALUES(NEWID(), 'Aris', '2017-08-13', 0, GETDATE(), (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail]))
+VALUES(NEWID(), 'Aris', '2017-08-13', 0, GETDATE(), (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID))
 
 /* SOCIAL LINK */
 INSERT INTO [SocialLink]

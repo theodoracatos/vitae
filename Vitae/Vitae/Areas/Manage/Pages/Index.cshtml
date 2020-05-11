@@ -18,6 +18,7 @@
 
     var xLabelsCvCompletenes = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.CvOverview.Item1);
     var yValuesCvCompletenes = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.CvOverview.Item2);
+    var yLabelsCvCompletenes = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.CvOverview.Item3);
 
 }
     <div id="panel">
@@ -74,7 +75,7 @@
             drawChart('chartHits', Resources.SharedResource.NrOfCVHits, @Html.Raw(xLabelsHits), @Html.Raw(yValuesHits),  @Html.Raw(yLabelsHits));
             drawChart('chartLogins', Resources.SharedResource.NrOfLogins, @Html.Raw(xLabelsLogins), @Html.Raw(yValuesLogins),  @Html.Raw(yLabelsLogins));
             drawChart('chartMaxHits', Resources.SharedResource.SumOfCVHits, @Html.Raw(xLabelsSumHits), @Html.Raw(yValuesSumHits),  @Html.Raw(yLabelsSumHits));
-            drawRadar('chartCvOverview', Resources.SharedResource.CVCompleteness, @Html.Raw(xLabelsCvCompletenes), @Html.Raw(yValuesCvCompletenes));
+            drawRadar('chartCvOverview', Resources.SharedResource.CVCompleteness, @Html.Raw(xLabelsCvCompletenes), @Html.Raw(yValuesCvCompletenes), @Html.Raw(yLabelsCvCompletenes));
 
         });
             </script>

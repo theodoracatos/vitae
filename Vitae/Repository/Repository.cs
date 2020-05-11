@@ -114,6 +114,9 @@ namespace Library.Repository
             var curriculum = await GetCurriculumAsync(curriculumID);
             var newLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == languageCodeTo);
 
+            curriculum.PersonalDetails.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+                 .ToList().ForEach(a => curriculum.PersonalDetails.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+
             curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
                 .ToList().ForEach(a => curriculum.Abouts.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 

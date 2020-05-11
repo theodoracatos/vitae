@@ -8,7 +8,7 @@ $(document).ready(function () {
     loadingProcedure();
     setupSbAdmin();
     displayScrollButton();
-    setupDirtyForms(false);
+    setupDirtyForms(false, false);
     animateItemsInView();
 });
 
@@ -18,13 +18,10 @@ function ajaxCompleted(dirtyignore) {
     startRating();
     showDynamicContent();
     resetFormValidator('form');
-    setupDirtyForms(dirtyignore === 'false');
-    if (dirtyignore === 'true') {
-        $('body').removeClass('mydirty');
-    }
+    setupDirtyForms(true, dirtyignore);
 }
 
-function setupDirtyForms(asyncCall) {
+function setupDirtyForms(asyncCall, dirtyignore) {
     if (asyncCall) {
         setDirty();
     }
@@ -46,16 +43,15 @@ function setupDirtyForms(asyncCall) {
     $('form').on('dirty.dirtyforms clean.dirtyforms', function (ev) {  
         let $submitResetButtons = $('form').find('[type="submit"]');
         let $languageSelect = $('form').find('#languageSelect select');
-        let $hasUnsafedChanges = $('form').find('#HasUnsafedChanges');
 
-        if (ev.type === 'dirty') {
+        if (ev.type === 'dirty' || asyncCall === 'true') {
             $submitResetButtons.removeAttr('disabled');
             $languageSelect.attr('disabled', 'disabled');
         }
-        //else if ($hasUnsafedChanges.val() != "True") {
-        //    $submitResetButtons.attr('disabled', 'disabled');
-        //    $languageSelect.removeAttr('disabled');
-        //}
+
+        if (dirtyignore === 'true') {
+            $('body').removeAttr('mydirty');
+        }
     });
 
     $(document).bind('dirty.dirtyforms', function (event) {
@@ -141,19 +137,26 @@ function setDirty() {
     $languageSelect.attr('disabled', 'disabled');
 }
 
-function drawRadar(chartId, title, xLabels, yValues) {
+function drawRadar(chartId, title, xLabels, yValues, yLabels) {
     let canvas: any = document.getElementById(chartId);
     let ctx = canvas.getContext("2d");
-    let bgColor = getColor(0);
 
-    var data = {
-        labels: xLabels,
-        datasets: [{
+    var datasets = [];
+    $(yValues).each(function (index) {
+        let bgColor = getColor(index);
+        let d = {
+            label: yLabels[index],
             backgroundColor: [
                 bgColor
             ],
-            data: yValues
-        }]
+            data: $(this)
+        }
+        datasets.push(d);
+    });
+
+    var data = {
+        labels: xLabels,
+        datasets: datasets
     };
 
     let options = {
@@ -161,7 +164,7 @@ function drawRadar(chartId, title, xLabels, yValues) {
         maintainAspectRatio: false,
         legend: {
             position: 'top',
-            display: false
+            display: true
         },
         title: {
             display: true,

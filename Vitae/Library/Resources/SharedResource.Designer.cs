@@ -1348,6 +1348,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adiós.
+        /// </summary>
+        public static string Goodbye {
+            get {
+                return ResourceManager.GetString("Goodbye", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Google analytics.
         /// </summary>
         public static string GoogleAnalytics {

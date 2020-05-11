@@ -10,6 +10,6 @@ namespace Model.ViewModels.Reports
         public (IEnumerable<string>, List<List<int>>, IEnumerable<string>) Logins { get; set; }
         public (IEnumerable<string>, List<List<int>>, IEnumerable<string>) SumHits { get; set; }
 
-        public (IEnumerable<string>, List<int>) CvOverview { get; set; }
+        public (IEnumerable<string>, List<List<int>>, IEnumerable<string>) CvOverview { get; set; }
     }
 }

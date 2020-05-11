@@ -45,20 +45,32 @@ namespace Vitae.Areas.Manage.Pages
             };
         }
 
-        private (List<string> labels, List<int> values) GetCvOverview()
+        private (List<string> labels, List<List<int>> values, IEnumerable<string> languageCodes) GetCvOverview()
         {
-            var curriculumLanguage = (repository.GetCurriculumAsync<PersonalDetail>(curriculumID).Result).CurriculumLanguages.First().Language.LanguageCode;
-            var curriculumItems = repository.CountItemsFromCurriculumLanguageAsync(curriculumID, curriculumLanguage).Result;
-            var labels = new List<string>();
-            var values = new List<int>();
+            var curriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
+            var curriculumItems = new List<List<int>>();
+            var curriculumLabels = new List<string>();
 
-            foreach (var item in curriculumItems.Where(i => i.Key != SharedResource.About && i.Key != SharedResource.PersonalDetails))
+            foreach (var curriculumLanguage in curriculumLanguages)
             {
-                labels.Add(item.Key);
-                values.Add(item.Value);
+                var curriculumItem = repository.CountItemsFromCurriculumLanguageAsync(curriculumID, curriculumLanguage.LanguageCode).Result;
+                var values = new List<int>();
+                var labels = new List<string>();
+
+                foreach (var item in curriculumItem.Where(i => i.Key != SharedResource.About && i.Key != SharedResource.PersonalDetails))
+                {
+                    labels.Add(item.Key);
+                    values.Add(item.Value);
+                }
+
+                if(curriculumLabels.Count == 0)
+                {
+                    curriculumLabels = labels;
+                }
+                curriculumItems.Add(values);
             }
 
-            return (labels, values);
+            return (curriculumLabels, curriculumItems, curriculumLanguages.Select(c => c.LanguageCode.ToUpper()));
         }
 
         private (IEnumerable<string> dates, List<List<int>> hits, IEnumerable<string> labels) GetLastLogins()
