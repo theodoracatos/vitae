@@ -19,6 +19,9 @@ function ajaxCompleted(dirtyignore) {
     showDynamicContent();
     resetFormValidator('form');
     setupDirtyForms(dirtyignore === 'false');
+    if (dirtyignore === 'true') {
+        $('body').removeClass('mydirty');
+    }
 }
 
 function setupDirtyForms(asyncCall) {

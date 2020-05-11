@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Persistency.Data;
 using System;
@@ -55,7 +56,8 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
                 return NotFound($"{SharedResource.UnableToLoadUserID} '{_userManager.GetUserId(User)}'.");
             }
 
-            ApplicationLanguageCode = vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID).Language.LanguageCode;
+            ApplicationLanguageCode = vitaeContext.Curriculums.Include(c => c.Language)
+                .Single(c => c.CurriculumID == curriculumID).Language.LanguageCode;
 
             return Page();
         }
