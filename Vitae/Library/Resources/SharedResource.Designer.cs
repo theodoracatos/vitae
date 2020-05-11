@@ -565,6 +565,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company description.
+        /// </summary>
+        public static string CompanyDescription {
+            get {
+                return ResourceManager.GetString("CompanyDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company name.
         /// </summary>
         public static string CompanyName {

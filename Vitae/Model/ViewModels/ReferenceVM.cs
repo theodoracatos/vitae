@@ -41,6 +41,11 @@ namespace Model.ViewModels
         public string Email { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
+        [MaxLength(6, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        [RegularExpression(@"^(\+|00)[0-9]{1,4}", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        public string PhonePrefix { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.PhoneNumber), Prompt = nameof(SharedResource.PhoneNumber))]
         [DataType(DataType.PhoneNumber, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
         [RegularExpression(@"^[1-9][0-9 ]{5,15}", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
@@ -53,7 +58,5 @@ namespace Model.ViewModels
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.HideReference), Prompt = nameof(SharedResource.HideReference))]
         public bool Hide { get; set; }
-
-        public string PhonePrefix { get; set; }
     }
 }

@@ -125,6 +125,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
                         ignoreOrder.Add(oldOrder);
 
                     }
+                    curriculum.LastUpdated = DateTime.Now;
                     await vitaeContext.SaveChangesAsync();
 
                     // Update View Model
@@ -189,7 +190,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
             // Send mail
             var email = await userManager.GetEmailAsync(user);
             var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.DeleteAccount, email, new Tuple<string, string, string>(SharedResource.MailBye3, Globals.APPLICATION_URL, SharedResource.ClickingHere), false);
-            var logoStream = CodeHelper.GetLogoStream("logo_ink.png");
+            var logoStream = CodeHelper.GetLogoStream(Globals.LOGO);
             var message = new Message(new string[] { email }, SharedResource.ConfirmEmail, bodyText, new FormFileCollection() { new FormFile(logoStream, 0, logoStream.Length, "image/png", "logo") });
             await emailSender.SendEmailAsync(message);
 
@@ -212,7 +213,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
         {
             if (Setting.CurriculumLanguages.Count < MaxCurriculumLanguages)
             {
-                Setting.CurriculumLanguages.Add(new LanguageVM() {  Order = Setting.CurriculumLanguages.Count });
+                Setting.CurriculumLanguages.Add(new CurriculumLanguageVM() {  Order = Setting.CurriculumLanguages.Count });
                 Setting.SettingItems.Add(new SettingItemVM());
             }
             FillSelectionViewModel();

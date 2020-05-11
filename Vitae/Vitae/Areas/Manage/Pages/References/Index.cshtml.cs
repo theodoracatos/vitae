@@ -49,7 +49,7 @@ namespace Vitae.Areas.Manage.Pages.References
             else
             {
                 var curriculum = await repository.GetCurriculumAsync<Reference>(curriculumID);
-                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
+                LoadLanguageCode(curriculum);
 
                 await LoadReferences(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
@@ -70,6 +70,7 @@ namespace Vitae.Areas.Manage.Pages.References
                     Email = r.Email,
                     Firstname = r.Firstname,
                     Lastname = r.Lastname,
+                    PhonePrefix = r.PhonePrefix,
                     PhoneNumber = r.PhoneNumber,
                     Order = r.Order,
                     Description = r.Description,
@@ -187,6 +188,8 @@ namespace Vitae.Areas.Manage.Pages.References
 
         public async Task<IActionResult> OnPostLanguageChangeAsync()
         {
+            await SaveLanguageChangeAsync();
+
             await LoadReferences(CurriculumLanguageCode);
 
             FillSelectionViewModel();
@@ -202,10 +205,6 @@ namespace Vitae.Areas.Manage.Pages.References
         {
             CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
-            foreach(var reference in References)
-            {
-                reference.PhonePrefix = repository.GetPhonePrefix(reference.CountryCode);
-            }
         }
 
         private async Task LoadReferences(string languageCode, Curriculum curr = null)

@@ -62,18 +62,16 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Experiences[i].CompanyDescription"></label>
+                                <textarea rows="1" asp-for="@Model.Experiences[i].CompanyDescription" class="form-control"></textarea>
+                                <span asp-validation-for="@Model.Experiences[i].CompanyDescription" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label class="control-label" asp-for="@Model.Experiences[i].IndustryCode"></label>
                                 <select asp-for="@Model.Experiences[i].IndustryCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.Industries, "IndustryCode", "Name"))">
                                     <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
                                 </select>
                                 <span asp-validation-for="@Model.Experiences[i].CountryCode" class="text-danger"></span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label class="control-label" asp-for="@Model.Experiences[i].HierarchyLevelCode"></label>
-                                <select asp-for="@Model.Experiences[i].HierarchyLevelCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.HierarchyLevels, "HierarchyLevelCode", "Name"))">
-                                    <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
-                                </select>
-                                <span asp-validation-for="@Model.Experiences[i].HierarchyLevelCode" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-row">
@@ -91,10 +89,17 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col">
+                            <div class="form-group col-md-6">
                                 <label class="control-label" asp-for="@Model.Experiences[i].JobTitle"></label>
                                 <input class="form-control" type="text" asp-for="@Model.Experiences[i].JobTitle" />
                                 <span asp-validation-for="@Model.Experiences[i].JobTitle" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Experiences[i].HierarchyLevelCode"></label>
+                                <select asp-for="@Model.Experiences[i].HierarchyLevelCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.HierarchyLevels, "HierarchyLevelCode", "Name"))">
+                                    <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
+                                </select>
+                                <span asp-validation-for="@Model.Experiences[i].HierarchyLevelCode" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-row">

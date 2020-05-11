@@ -11,5 +11,8 @@ namespace Model.Poco
         public Language Language { get; set; }
 
         public int Order { get; set; }
+        public bool IsSelected { get; set; }
+
+        public DateTime CreatedOn { get; private set; } = DateTime.Now;
     }
 }

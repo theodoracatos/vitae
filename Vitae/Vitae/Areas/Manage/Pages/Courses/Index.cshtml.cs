@@ -51,7 +51,7 @@ namespace Vitae.Areas.Manage.Pages.Courses
             else
             {
                 var curriculum = await repository.GetCurriculumAsync<Course>(curriculumID);
-                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
+                LoadLanguageCode(curriculum);
 
                 await LoadCourses(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
@@ -204,6 +204,8 @@ namespace Vitae.Areas.Manage.Pages.Courses
 
         public async Task<IActionResult> OnPostLanguageChangeAsync()
         {
+            await SaveLanguageChangeAsync();
+
             await LoadCourses(CurriculumLanguageCode);
 
             FillSelectionViewModel();

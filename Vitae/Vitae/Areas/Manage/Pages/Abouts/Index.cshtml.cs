@@ -43,7 +43,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             else
             {
                 var curriculum = await repository.GetCurriculumAsync<About>(curriculumID);
-                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
+                LoadLanguageCode(curriculum);
                 
                 await LoadAbouts(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
@@ -112,6 +112,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
 
                 curriculum.LastUpdated = DateTime.Now;
                 curriculum.Abouts.Add(about);
+
                 await vitaeContext.SaveChangesAsync();
 
                 // Update VM
@@ -151,6 +152,8 @@ namespace Vitae.Areas.Manage.Pages.Abouts
 
         public async Task<IActionResult> OnPostLanguageChangeAsync()
         {
+            await SaveLanguageChangeAsync();
+
             await LoadAbouts(CurriculumLanguageCode);
             FillSelectionViewModel();
 

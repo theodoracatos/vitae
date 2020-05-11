@@ -16,6 +16,9 @@ namespace Model.Poco
         [MaxLength(100)]
         public string CompanyName { get; set; }
 
+        [MaxLength(1000)]
+        public string CompanyDescription { get; set; }
+
         [MaxLength(255)]
         public string Link { get; set; }
 

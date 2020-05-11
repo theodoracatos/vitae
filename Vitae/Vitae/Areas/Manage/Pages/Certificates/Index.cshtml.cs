@@ -50,7 +50,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
             else
             {
                 var curriculum = await repository.GetCurriculumAsync<Certificate>(curriculumID);
-                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
+                LoadLanguageCode(curriculum);
 
                 await LoadCertificates(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
@@ -186,6 +186,8 @@ namespace Vitae.Areas.Manage.Pages.Certificates
 
         public async Task<IActionResult> OnPostLanguageChangeAsync()
         {
+            await SaveLanguageChangeAsync();
+
             await LoadCertificates(CurriculumLanguageCode);
 
             FillSelectionViewModel();

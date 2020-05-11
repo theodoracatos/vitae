@@ -5,6 +5,7 @@
         public const int YEAR_START = 1900;
         public const string APPLICATION_URL = "https://myvitae.ch";
         public const string APPLICATION_NAME = "myVitae";
+        public const string LOGO = "logo.png";
         public const string SENDER_MAIL = "info@myvitae.ch";
         public const string DEFAULT_LANGUAGE = "de";
         public const string MIME_PDF = "application/pdf";

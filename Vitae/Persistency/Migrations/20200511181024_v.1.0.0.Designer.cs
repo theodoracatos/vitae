@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200430181934_v.1.0.0")]
+    [Migration("20200511181024_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,9 @@ namespace Persistency.Migrations
                     b.Property<string>("AcademicTitle")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
@@ -76,6 +79,9 @@ namespace Persistency.Migrations
                     b.Property<Guid>("CountryID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
 
@@ -120,6 +126,9 @@ namespace Persistency.Migrations
                     b.Property<DateTime>("AwardedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
 
@@ -156,6 +165,9 @@ namespace Persistency.Migrations
                     b.Property<Guid>("CertificateID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
@@ -206,6 +218,9 @@ namespace Persistency.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Firstname")
@@ -289,6 +304,9 @@ namespace Persistency.Migrations
                     b.Property<Guid>("CountryID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
 
@@ -342,8 +360,8 @@ namespace Persistency.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Language")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("LanguageID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("datetime2");
@@ -352,6 +370,8 @@ namespace Persistency.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CurriculumID");
+
+                    b.HasIndex("LanguageID");
 
                     b.ToTable("Curriculum");
                 });
@@ -364,10 +384,18 @@ namespace Persistency.Migrations
                     b.Property<Guid>("LanguageID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsSelected")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
                     b.HasKey("CurriculumID", "LanguageID");
+
+                    b.HasIndex("CurriculumID");
 
                     b.HasIndex("LanguageID");
 
@@ -387,6 +415,9 @@ namespace Persistency.Migrations
 
                     b.Property<Guid>("CountryID")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
@@ -451,6 +482,10 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<string>("CompanyDescription")
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
+
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
@@ -458,6 +493,9 @@ namespace Persistency.Migrations
 
                     b.Property<Guid>("CountryID")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
@@ -592,6 +630,9 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
 
@@ -673,6 +714,9 @@ namespace Persistency.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
 
@@ -717,15 +761,14 @@ namespace Persistency.Migrations
                         .HasMaxLength(2000);
 
                     b.Property<int>("LogArea")
-                        .HasColumnType("int")
-                        .HasMaxLength(100);
+                        .HasColumnType("int");
 
                     b.Property<int>("LogLevel")
                         .HasColumnType("int");
 
                     b.Property<string>("Message")
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<Guid?>("PublicationID")
                         .HasColumnType("uniqueidentifier");
@@ -744,6 +787,8 @@ namespace Persistency.Migrations
                     b.HasKey("LogID");
 
                     b.HasIndex("CurriculumID");
+
+                    b.HasIndex("PublicationID");
 
                     b.ToTable("Log");
                 });
@@ -830,6 +875,9 @@ namespace Persistency.Migrations
                     b.Property<Guid>("CountryID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
@@ -860,6 +908,9 @@ namespace Persistency.Migrations
 
                     b.Property<Guid?>("CountryID")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
@@ -944,6 +995,9 @@ namespace Persistency.Migrations
                     b.Property<bool>("Anonymize")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
 
@@ -989,6 +1043,9 @@ namespace Persistency.Migrations
                     b.Property<Guid?>("CountryID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
 
@@ -1031,6 +1088,11 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(16)")
                         .HasMaxLength(16);
 
+                    b.Property<string>("PhonePrefix")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(6)")
+                        .HasMaxLength(6);
+
                     b.HasKey("ReferenceID");
 
                     b.HasIndex("CountryID");
@@ -1052,6 +1114,9 @@ namespace Persistency.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
@@ -1080,6 +1145,9 @@ namespace Persistency.Migrations
                     b.Property<Guid>("SocialLinkID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CurriculumID")
                         .HasColumnType("uniqueidentifier");
@@ -1116,12 +1184,17 @@ namespace Persistency.Migrations
                     b.Property<byte[]>("Content")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FileName")
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
                     b.Property<string>("MimeType")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.HasKey("VfileID");
 
@@ -1204,6 +1277,13 @@ namespace Persistency.Migrations
                     b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
                         .HasForeignKey("CurriculumLanguageLanguageID");
+                });
+
+            modelBuilder.Entity("Model.Poco.Curriculum", b =>
+                {
+                    b.HasOne("Model.Poco.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageID");
                 });
 
             modelBuilder.Entity("Model.Poco.CurriculumLanguage", b =>

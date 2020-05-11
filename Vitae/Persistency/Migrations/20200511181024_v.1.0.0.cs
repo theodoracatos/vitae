@@ -28,21 +28,6 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Curriculum",
-                columns: table => new
-                {
-                    CurriculumID = table.Column<Guid>(nullable: false),
-                    UserID = table.Column<Guid>(nullable: false),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    Language = table.Column<string>(nullable: true),
-                    LastUpdated = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Curriculum", x => x.CurriculumID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "HierarchyLevel",
                 columns: table => new
                 {
@@ -101,12 +86,12 @@ namespace Persistency.Migrations
                     CurriculumID = table.Column<Guid>(nullable: false),
                     PublicationID = table.Column<Guid>(nullable: true),
                     LogLevel = table.Column<int>(nullable: false),
-                    LogArea = table.Column<int>(maxLength: 100, nullable: false),
+                    LogArea = table.Column<int>(nullable: false),
                     Link = table.Column<string>(maxLength: 2000, nullable: true),
                     IpAddress = table.Column<string>(maxLength: 50, nullable: true),
                     UserAgent = table.Column<string>(maxLength: 1000, nullable: true),
                     UserLanguage = table.Column<string>(maxLength: 2, nullable: true),
-                    Message = table.Column<string>(maxLength: 1000, nullable: true),
+                    Message = table.Column<string>(maxLength: 200, nullable: true),
                     Timestamp = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -154,12 +139,71 @@ namespace Persistency.Migrations
                 {
                     VfileID = table.Column<Guid>(nullable: false),
                     Content = table.Column<byte[]>(nullable: true),
-                    MimeType = table.Column<string>(nullable: true),
-                    FileName = table.Column<string>(maxLength: 255, nullable: true)
+                    MimeType = table.Column<string>(maxLength: 100, nullable: false),
+                    FileName = table.Column<string>(maxLength: 255, nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vfile", x => x.VfileID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Curriculum",
+                columns: table => new
+                {
+                    CurriculumID = table.Column<Guid>(nullable: false),
+                    UserID = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    LastUpdated = table.Column<DateTime>(nullable: false),
+                    LanguageID = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Curriculum", x => x.CurriculumID);
+                    table.ForeignKey(
+                        name: "FK_Curriculum_Language_LanguageID",
+                        column: x => x.LanguageID,
+                        principalTable: "Language",
+                        principalColumn: "LanguageID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "About",
+                columns: table => new
+                {
+                    AboutID = table.Column<Guid>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    AcademicTitle = table.Column<string>(maxLength: 100, nullable: true),
+                    Slogan = table.Column<string>(maxLength: 4000, nullable: true),
+                    Photo = table.Column<string>(type: "varchar(max)", nullable: false),
+                    VfileID = table.Column<Guid>(nullable: true),
+                    CurriculumID = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_About", x => x.AboutID);
+                    table.ForeignKey(
+                        name: "FK_About_Curriculum_CurriculumID",
+                        column: x => x.CurriculumID,
+                        principalTable: "Curriculum",
+                        principalColumn: "CurriculumID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_About_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
+                        principalTable: "Language",
+                        principalColumn: "LanguageID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_About_Vfile_VfileID",
+                        column: x => x.VfileID,
+                        principalTable: "Vfile",
+                        principalColumn: "VfileID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -169,6 +213,7 @@ namespace Persistency.Migrations
                     AbroadID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
                     CountryID = table.Column<Guid>(nullable: false),
                     City = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
@@ -206,6 +251,7 @@ namespace Persistency.Migrations
                     AwardID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
                     AwardedFrom = table.Column<string>(maxLength: 100, nullable: false),
@@ -237,6 +283,7 @@ namespace Persistency.Migrations
                     CertificateID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
                     Issuer = table.Column<string>(maxLength: 100, nullable: false),
@@ -269,6 +316,7 @@ namespace Persistency.Migrations
                     CourseID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
                     SchoolName = table.Column<string>(maxLength: 100, nullable: false),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
                     Title = table.Column<string>(maxLength: 100, nullable: false),
@@ -308,7 +356,9 @@ namespace Persistency.Migrations
                 {
                     CurriculumID = table.Column<Guid>(nullable: false),
                     LanguageID = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false)
+                    Order = table.Column<int>(nullable: false),
+                    IsSelected = table.Column<bool>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -334,6 +384,7 @@ namespace Persistency.Migrations
                     EducationID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
                     SchoolName = table.Column<string>(maxLength: 100, nullable: false),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
                     CountryID = table.Column<Guid>(nullable: false),
@@ -376,8 +427,10 @@ namespace Persistency.Migrations
                     ExperienceID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
                     JobTitle = table.Column<string>(maxLength: 100, nullable: false),
                     CompanyName = table.Column<string>(maxLength: 100, nullable: false),
+                    CompanyDescription = table.Column<string>(maxLength: 1000, nullable: true),
                     Link = table.Column<string>(maxLength: 255, nullable: true),
                     HierarchyLevelID = table.Column<Guid>(nullable: false),
                     IndustryID = table.Column<Guid>(nullable: false),
@@ -430,6 +483,7 @@ namespace Persistency.Migrations
                     InterestID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
                     InterestName = table.Column<string>(maxLength: 100, nullable: false),
                     Association = table.Column<string>(maxLength: 100, nullable: true),
                     Description = table.Column<string>(maxLength: 1000, nullable: true),
@@ -460,6 +514,7 @@ namespace Persistency.Migrations
                     LanguageSkillID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
                     Rate = table.Column<float>(nullable: false),
                     SpokenLanguageID = table.Column<Guid>(nullable: true),
                     CurriculumID = table.Column<Guid>(nullable: true)
@@ -488,140 +543,13 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Publication",
-                columns: table => new
-                {
-                    PublicationID = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false),
-                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
-                    PublicationIdentifier = table.Column<Guid>(nullable: false),
-                    Anonymize = table.Column<bool>(nullable: false),
-                    Password = table.Column<string>(maxLength: 250, nullable: true),
-                    CurriculumID = table.Column<Guid>(nullable: true),
-                    Notes = table.Column<string>(maxLength: 1000, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Publication", x => x.PublicationID);
-                    table.ForeignKey(
-                        name: "FK_Publication_Curriculum_CurriculumID",
-                        column: x => x.CurriculumID,
-                        principalTable: "Curriculum",
-                        principalColumn: "CurriculumID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Publication_Language_CurriculumLanguageLanguageID",
-                        column: x => x.CurriculumLanguageLanguageID,
-                        principalTable: "Language",
-                        principalColumn: "LanguageID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Reference",
-                columns: table => new
-                {
-                    ReferenceID = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false),
-                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
-                    Firstname = table.Column<string>(maxLength: 100, nullable: false),
-                    Lastname = table.Column<string>(maxLength: 100, nullable: false),
-                    Gender = table.Column<bool>(nullable: false),
-                    CompanyName = table.Column<string>(maxLength: 100, nullable: true),
-                    Link = table.Column<string>(maxLength: 255, nullable: true),
-                    Description = table.Column<string>(maxLength: 1000, nullable: true),
-                    Email = table.Column<string>(maxLength: 100, nullable: true),
-                    PhoneNumber = table.Column<string>(maxLength: 16, nullable: false),
-                    CountryID = table.Column<Guid>(nullable: true),
-                    Hide = table.Column<bool>(nullable: false),
-                    CurriculumID = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Reference", x => x.ReferenceID);
-                    table.ForeignKey(
-                        name: "FK_Reference_Country_CountryID",
-                        column: x => x.CountryID,
-                        principalTable: "Country",
-                        principalColumn: "CountryID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Reference_Curriculum_CurriculumID",
-                        column: x => x.CurriculumID,
-                        principalTable: "Curriculum",
-                        principalColumn: "CurriculumID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Reference_Language_CurriculumLanguageLanguageID",
-                        column: x => x.CurriculumLanguageLanguageID,
-                        principalTable: "Language",
-                        principalColumn: "LanguageID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Skill",
-                columns: table => new
-                {
-                    SkillID = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false),
-                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
-                    Category = table.Column<string>(maxLength: 100, nullable: false),
-                    Skillset = table.Column<string>(maxLength: 1000, nullable: true),
-                    CurriculumID = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Skill", x => x.SkillID);
-                    table.ForeignKey(
-                        name: "FK_Skill_Curriculum_CurriculumID",
-                        column: x => x.CurriculumID,
-                        principalTable: "Curriculum",
-                        principalColumn: "CurriculumID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Skill_Language_CurriculumLanguageLanguageID",
-                        column: x => x.CurriculumLanguageLanguageID,
-                        principalTable: "Language",
-                        principalColumn: "LanguageID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SocialLink",
-                columns: table => new
-                {
-                    SocialLinkID = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false),
-                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
-                    SocialPlatform = table.Column<int>(nullable: false),
-                    Link = table.Column<string>(maxLength: 255, nullable: false),
-                    CurriculumID = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SocialLink", x => x.SocialLinkID);
-                    table.ForeignKey(
-                        name: "FK_SocialLink_Curriculum_CurriculumID",
-                        column: x => x.CurriculumID,
-                        principalTable: "Curriculum",
-                        principalColumn: "CurriculumID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_SocialLink_Language_CurriculumLanguageLanguageID",
-                        column: x => x.CurriculumLanguageLanguageID,
-                        principalTable: "Language",
-                        principalColumn: "LanguageID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PersonalDetail",
                 columns: table => new
                 {
                     PersonalDetailID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
                     Firstname = table.Column<string>(maxLength: 100, nullable: false),
                     Lastname = table.Column<string>(maxLength: 100, nullable: false),
                     Birthday = table.Column<DateTime>(nullable: false),
@@ -676,38 +604,135 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "About",
+                name: "Publication",
                 columns: table => new
                 {
-                    AboutID = table.Column<Guid>(nullable: false),
+                    PublicationID = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
-                    AcademicTitle = table.Column<string>(maxLength: 100, nullable: true),
-                    Slogan = table.Column<string>(maxLength: 4000, nullable: true),
-                    Photo = table.Column<string>(type: "varchar(max)", nullable: false),
-                    VfileID = table.Column<Guid>(nullable: true),
-                    CurriculumID = table.Column<Guid>(nullable: true)
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    PublicationIdentifier = table.Column<Guid>(nullable: false),
+                    Anonymize = table.Column<bool>(nullable: false),
+                    Password = table.Column<string>(maxLength: 250, nullable: true),
+                    CurriculumID = table.Column<Guid>(nullable: true),
+                    Notes = table.Column<string>(maxLength: 1000, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_About", x => x.AboutID);
+                    table.PrimaryKey("PK_Publication", x => x.PublicationID);
                     table.ForeignKey(
-                        name: "FK_About_Curriculum_CurriculumID",
+                        name: "FK_Publication_Curriculum_CurriculumID",
                         column: x => x.CurriculumID,
                         principalTable: "Curriculum",
                         principalColumn: "CurriculumID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_About_Language_CurriculumLanguageLanguageID",
+                        name: "FK_Publication_Language_CurriculumLanguageLanguageID",
                         column: x => x.CurriculumLanguageLanguageID,
                         principalTable: "Language",
                         principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reference",
+                columns: table => new
+                {
+                    ReferenceID = table.Column<Guid>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    Firstname = table.Column<string>(maxLength: 100, nullable: false),
+                    Lastname = table.Column<string>(maxLength: 100, nullable: false),
+                    Gender = table.Column<bool>(nullable: false),
+                    CompanyName = table.Column<string>(maxLength: 100, nullable: true),
+                    Link = table.Column<string>(maxLength: 255, nullable: true),
+                    Description = table.Column<string>(maxLength: 1000, nullable: true),
+                    Email = table.Column<string>(maxLength: 100, nullable: true),
+                    PhonePrefix = table.Column<string>(maxLength: 6, nullable: false),
+                    PhoneNumber = table.Column<string>(maxLength: 16, nullable: false),
+                    CountryID = table.Column<Guid>(nullable: true),
+                    Hide = table.Column<bool>(nullable: false),
+                    CurriculumID = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reference", x => x.ReferenceID);
                     table.ForeignKey(
-                        name: "FK_About_Vfile_VfileID",
-                        column: x => x.VfileID,
-                        principalTable: "Vfile",
-                        principalColumn: "VfileID",
+                        name: "FK_Reference_Country_CountryID",
+                        column: x => x.CountryID,
+                        principalTable: "Country",
+                        principalColumn: "CountryID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Reference_Curriculum_CurriculumID",
+                        column: x => x.CurriculumID,
+                        principalTable: "Curriculum",
+                        principalColumn: "CurriculumID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Reference_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
+                        principalTable: "Language",
+                        principalColumn: "LanguageID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Skill",
+                columns: table => new
+                {
+                    SkillID = table.Column<Guid>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    Category = table.Column<string>(maxLength: 100, nullable: false),
+                    Skillset = table.Column<string>(maxLength: 1000, nullable: true),
+                    CurriculumID = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Skill", x => x.SkillID);
+                    table.ForeignKey(
+                        name: "FK_Skill_Curriculum_CurriculumID",
+                        column: x => x.CurriculumID,
+                        principalTable: "Curriculum",
+                        principalColumn: "CurriculumID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Skill_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
+                        principalTable: "Language",
+                        principalColumn: "LanguageID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SocialLink",
+                columns: table => new
+                {
+                    SocialLinkID = table.Column<Guid>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
+                    CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    SocialPlatform = table.Column<int>(nullable: false),
+                    Link = table.Column<string>(maxLength: 255, nullable: false),
+                    CurriculumID = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SocialLink", x => x.SocialLinkID);
+                    table.ForeignKey(
+                        name: "FK_SocialLink_Curriculum_CurriculumID",
+                        column: x => x.CurriculumID,
+                        principalTable: "Curriculum",
+                        principalColumn: "CurriculumID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SocialLink_Language_CurriculumLanguageLanguageID",
+                        column: x => x.CurriculumLanguageLanguageID,
+                        principalTable: "Language",
+                        principalColumn: "LanguageID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -719,6 +744,7 @@ namespace Persistency.Migrations
                     Firstname = table.Column<string>(maxLength: 100, nullable: false),
                     Birthday = table.Column<DateTime>(nullable: false),
                     Order = table.Column<int>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
                     PersonalDetailID = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -738,7 +764,8 @@ namespace Persistency.Migrations
                 {
                     PersonalDetailID = table.Column<Guid>(nullable: false),
                     CountryID = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false)
+                    Order = table.Column<int>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -835,6 +862,16 @@ namespace Persistency.Migrations
                 column: "CurriculumLanguageLanguageID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Curriculum_LanguageID",
+                table: "Curriculum",
+                column: "LanguageID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CurriculumLanguage_CurriculumID",
+                table: "CurriculumLanguage",
+                column: "CurriculumID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CurriculumLanguage_LanguageID",
                 table: "CurriculumLanguage",
                 column: "LanguageID");
@@ -926,6 +963,11 @@ namespace Persistency.Migrations
                 name: "IX_Log_CurriculumID",
                 table: "Log",
                 column: "CurriculumID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Log_PublicationID",
+                table: "Log",
+                column: "PublicationID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MaritalStatus_MaritalStatusCode",
@@ -1096,10 +1138,10 @@ namespace Persistency.Migrations
                 name: "Curriculum");
 
             migrationBuilder.DropTable(
-                name: "Language");
+                name: "MaritalStatus");
 
             migrationBuilder.DropTable(
-                name: "MaritalStatus");
+                name: "Language");
         }
     }
 }

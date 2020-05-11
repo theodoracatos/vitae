@@ -11,5 +11,7 @@ namespace Model.Poco
         public Country Country { get; set; }
 
         public int Order { get; set; }
+
+        public DateTime CreatedOn { get; private set; } = DateTime.Now;
     }
 }

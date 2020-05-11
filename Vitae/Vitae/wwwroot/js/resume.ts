@@ -6,6 +6,7 @@ declare var Resources;
 
 $(document).ready(function () {
     startRating();
+    $('#copyright').fadeIn().delay(6000).fadeOut();
 
     // Smooth scrolling using jQuery easing
     $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
@@ -13,8 +14,6 @@ $(document).ready(function () {
             var target = $(this.hash);
             target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
             if (target.length) {
-
-                $('#copyright').fadeIn().delay(3000).fadeOut();
                 $('html, body').animate({
                     scrollTop: (target.offset().top)
                 }, 1250, "easeInOutExpo");

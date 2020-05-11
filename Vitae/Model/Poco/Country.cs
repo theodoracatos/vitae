@@ -13,7 +13,6 @@ namespace Model.Poco
         [MaxLength(2)]
         public string CountryCode { get; set; }
 
-
         [MaxLength(100)]
         public string Name { get; set; }
 

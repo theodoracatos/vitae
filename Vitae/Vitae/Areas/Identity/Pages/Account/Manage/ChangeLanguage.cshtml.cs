@@ -39,7 +39,7 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
 
         [BindProperty]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Language), Prompt = nameof(SharedResource.Language))]
-        public string ApplicationLanguage { get; set; }
+        public string ApplicationLanguageCode { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -55,7 +55,7 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
                 return NotFound($"{SharedResource.UnableToLoadUserID} '{_userManager.GetUserId(User)}'.");
             }
 
-            ApplicationLanguage = vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID).Language;
+            ApplicationLanguageCode = vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID).Language.LanguageCode;
 
             return Page();
         }
@@ -73,8 +73,8 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
                 return NotFound($"{SharedResource.UnableToLoadUserID} '{_userManager.GetUserId(User)}'.");
             }
 
-            vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID).Language = ApplicationLanguage;
-            var cultureInfo = new CultureInfo(ApplicationLanguage, false);
+            vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID).Language = vitaeContext.Languages.Single(l => l.LanguageCode == ApplicationLanguageCode);
+            var cultureInfo = new CultureInfo(ApplicationLanguageCode, false);
 
             // Set cookie value
             Response.Cookies.Append(

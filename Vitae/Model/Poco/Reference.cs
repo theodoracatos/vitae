@@ -31,6 +31,10 @@ namespace Model.Poco
         public string Email { get; set; }
 
         [Required]
+        [MaxLength(6)]
+        public string PhonePrefix { get; set; }
+
+        [Required]
         [MaxLength(16)]
         public string PhoneNumber { get; set; }
 

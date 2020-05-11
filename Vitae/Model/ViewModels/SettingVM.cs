@@ -7,7 +7,7 @@ namespace Model.ViewModels
     public class SettingVM
     {
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.LanguageVersions), Prompt = nameof(SharedResource.LanguageVersions))]
-        public IList<LanguageVM> CurriculumLanguages { get; set; }
+        public IList<CurriculumLanguageVM> CurriculumLanguages { get; set; }
 
         public IList<SettingItemVM> SettingItems { get; set; }
     }

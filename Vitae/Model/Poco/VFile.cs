@@ -10,9 +10,13 @@ namespace Model.Poco
 
         public byte[] Content { get; set; }
 
+        [Required]
+        [MaxLength(100)]
         public string MimeType { get; set; }
 
         [MaxLength(255)]
         public string FileName { get; set; }
+
+        public DateTime CreatedOn { get; private set; } = DateTime.Now;
     }
 }

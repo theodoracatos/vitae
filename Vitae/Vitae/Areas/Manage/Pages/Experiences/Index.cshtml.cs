@@ -56,7 +56,7 @@ namespace Vitae.Areas.Manage.Pages.Experiences
             else
             {
                 var curriculum = await repository.GetCurriculumAsync<Experience>(curriculumID);
-                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
+                LoadLanguageCode(curriculum);
 
                 await LoadExperiences(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
@@ -80,6 +80,7 @@ namespace Vitae.Areas.Manage.Pages.Experiences
                     Description = e.Description,
                     Link = e.Link,
                     CompanyName = e.CompanyName,
+                    CompanyDescription = e.CompanyDescription,
                     JobTitle = e.JobTitle,
                     Country = vitaeContext.Countries.Single(c => c.CountryCode == e.CountryCode),
                     CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == CurriculumLanguageCode),
@@ -197,6 +198,8 @@ namespace Vitae.Areas.Manage.Pages.Experiences
 
         public async Task<IActionResult> OnPostLanguageChangeAsync()
         {
+            await SaveLanguageChangeAsync();
+
             await LoadExperiences(CurriculumLanguageCode);
 
             FillSelectionViewModel();

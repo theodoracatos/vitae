@@ -9,8 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
-
+using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
@@ -19,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Vitae.Code.PageModels
 {
@@ -43,7 +45,7 @@ namespace Vitae.Code.PageModels
         [BindProperty]
         public string CurriculumLanguageCode { get; set; }
 
-        public IEnumerable<LanguageVM> CurriculumLanguages { get; set; }
+        public IEnumerable<CurriculumLanguageVM> CurriculumLanguages { get; set; }
 
         public string BaseUrl
         {
@@ -175,6 +177,18 @@ namespace Vitae.Code.PageModels
             {
                 item.Collapsed = Collapsed;
             }
+        }
+
+        protected void LoadLanguageCode(Curriculum curriculum)
+        {
+            CurriculumLanguageCode = CurriculumLanguageCode ?? (curriculum.CurriculumLanguages.Any(c => c.IsSelected) ? curriculum.CurriculumLanguages.Single(c => c.IsSelected).Language.LanguageCode : curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode);
+        }
+
+        protected async Task SaveLanguageChangeAsync()
+        {
+            await vitaeContext.CurriculumLanguages.Where(cl => cl.CurriculumID == curriculumID).ForEachAsync(c => c.IsSelected = false);
+            vitaeContext.CurriculumLanguages.Single(c => c.CurriculumID == curriculumID && c.Language.LanguageCode == CurriculumLanguageCode).IsSelected = true;
+            await vitaeContext.SaveChangesAsync();
         }
 
         protected abstract void FillSelectionViewModel();

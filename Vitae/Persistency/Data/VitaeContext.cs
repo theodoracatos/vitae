@@ -6,6 +6,7 @@ using Model.Poco;
 
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Persistency.Data
 {
@@ -35,12 +36,16 @@ namespace Persistency.Data
             /* Index, unique */
             modelBuilder.Entity<Country>().HasIndex(c => c.CountryCode).IsUnique();
             modelBuilder.Entity<Language>().HasIndex(c => c.LanguageCode).IsUnique();
+            modelBuilder.Entity<CurriculumLanguage>().HasIndex(c => c.CurriculumID);
+            modelBuilder.Entity<CurriculumLanguage>().HasIndex(c => c.LanguageID);
             modelBuilder.Entity<Industry>().HasIndex(c => c.IndustryCode).IsUnique();
             modelBuilder.Entity<HierarchyLevel>().HasIndex(c => c.HierarchyLevelCode).IsUnique();
+
             modelBuilder.Entity<Month>().HasIndex(c => c.MonthCode).IsUnique();
             modelBuilder.Entity<MaritalStatus>().HasIndex(c => c.MaritalStatusCode).IsUnique();
             modelBuilder.Entity<Publication>().HasIndex(p => p.PublicationIdentifier).IsUnique();
             modelBuilder.Entity<Log>().HasIndex(c => c.CurriculumID);
+            modelBuilder.Entity<Log>().HasIndex(c => c.PublicationID);
 
             /* N-M */
             modelBuilder.Entity<PersonCountry>()

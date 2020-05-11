@@ -17,7 +17,6 @@ namespace Model.Poco
 
         public LogLevel LogLevel { get; set; }
 
-        [MaxLength(100)]
         public LogArea LogArea { get; set; }
 
         [MaxLength(2000)]
@@ -32,9 +31,9 @@ namespace Model.Poco
         [MaxLength(2)]
         public string UserLanguage { get; set; }
 
-        [MaxLength(1000)]
+        [MaxLength(200)]
         public string Message { get; set; }
 
-        public DateTime Timestamp { get; set; }
+        public DateTime Timestamp { get; private set; } = DateTime.Now;
     }
 }

@@ -49,7 +49,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
             else
             {
                 var curriculum = await repository.GetCurriculumAsync<SocialLink>(curriculumID);
-                CurriculumLanguageCode = CurriculumLanguageCode ?? curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode;
+                LoadLanguageCode(curriculum);
 
                 await LoadSocialLinks(CurriculumLanguageCode, curriculum);
                 FillSelectionViewModel();
@@ -179,6 +179,8 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
 
         public async Task<IActionResult> OnPostLanguageChangeAsync()
         {
+            await SaveLanguageChangeAsync();
+
             await LoadSocialLinks(CurriculumLanguageCode);
 
             FillSelectionViewModel();

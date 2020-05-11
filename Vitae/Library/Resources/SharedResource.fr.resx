@@ -285,6 +285,9 @@
   <data name="Collapse" xml:space="preserve">
     <value>Effondrement d'objets</value>
   </data>
+  <data name="CompanyDescription" xml:space="preserve">
+    <value>Description de l'entreprise</value>
+  </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Nom de la société</value>
   </data>

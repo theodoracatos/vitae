@@ -20,6 +20,10 @@ namespace Model.ViewModels
         [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string CompanyName { get; set; }
 
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CompanyDescription), Prompt = nameof(SharedResource.CompanyDescription))]
+        [MaxLength(1000, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        public string CompanyDescription { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Industry), Prompt = nameof(SharedResource.Industry))]
         public int IndustryCode { get; set; }

@@ -285,6 +285,9 @@
   <data name="Collapse" xml:space="preserve">
     <value>Elemente zuklappen</value>
   </data>
+  <data name="CompanyDescription" xml:space="preserve">
+    <value>Firmenbeschreibung</value>
+  </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Firmenname</value>
   </data>

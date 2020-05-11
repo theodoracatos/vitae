@@ -42,8 +42,7 @@ namespace Library.Repository
                 Link = link,
                 UserAgent = userAgent,
                 UserLanguage = userLanguage,
-                Message = message,
-                Timestamp = DateTime.Now,
+                Message = message
             });
 
             await vitaeContext.SaveChangesAsync();
@@ -51,14 +50,14 @@ namespace Library.Repository
 
         public async Task<Guid> AddCurriculumAsync(Guid userid, string language)
         {
+            var languagePoco = vitaeContext.Languages.SingleOrDefault(l => l.LanguageCode == language.ToLower()) ?? vitaeContext.Languages.Single(l => l.LanguageCode == Globals.DEFAULT_LANGUAGE);
+
             var curriculum = new Curriculum()
             {
                 UserID = userid,
-                CreatedOn = DateTime.Now,
                 LastUpdated = DateTime.Now,
-                Language = language
+                Language = languagePoco
             };
-            var languagePoco = vitaeContext.Languages.SingleOrDefault(l => l.LanguageCode == language.ToLower()) ?? vitaeContext.Languages.Single(l => l.LanguageCode == Globals.DEFAULT_LANGUAGE);
             curriculum.CurriculumLanguages = new List<CurriculumLanguage>() { new CurriculumLanguage() { Curriculum = curriculum, CurriculumID = curriculum.CurriculumID, Language = languagePoco, LanguageID = languagePoco.LanguageID } };
             vitaeContext.Curriculums.Add(curriculum);
 
@@ -362,12 +361,12 @@ namespace Library.Repository
             return languagesVM;
         }
 
-        public IEnumerable<LanguageVM> GetCurriculumLanguages(Guid curriculumID, string uiCulture)
+        public IEnumerable<CurriculumLanguageVM> GetCurriculumLanguages(Guid curriculumID, string uiCulture)
         {
             var languagesVM = vitaeContext.CurriculumLanguages.Include(cl => cl.Language)
                                     .Where(cl => cl.Curriculum.CurriculumID == curriculumID)
                                     .ToList()
-                                    .Select(cl => new LanguageVM
+                                    .Select(cl => new CurriculumLanguageVM
                                     {
                                         LanguageCode = cl.Language.LanguageCode,
                                         Name = uiCulture == $"{ApplicationLanguage.de}" ? cl.Language.Name_de :
@@ -375,7 +374,8 @@ namespace Library.Repository
                                            uiCulture == $"{ApplicationLanguage.it}" ? cl.Language.Name_it :
                                            uiCulture == $"{ApplicationLanguage.es}" ? cl.Language.Name_es :
                                         cl.Language.Name,
-                                        Order = cl.Order
+                                        Order = cl.Order,
+                                        IsSelected = cl.IsSelected
                                     }).OrderBy(l => l.Order);
             return languagesVM;
         }
@@ -552,6 +552,7 @@ namespace Library.Repository
                         Description = e.Description,
                         Link = e.Link,
                         CompanyName = e.CompanyName,
+                        CompanyDescription = e.CompanyDescription,
                         JobTitle = e.JobTitle,
                         CountryCode = e.Country.CountryCode,
                         IndustryCode= e.Industry.IndustryCode,
@@ -641,6 +642,7 @@ namespace Library.Repository
                     Order = r.Order,
                     Link = r.Link,
                     Hide = r.Hide,
+                    PhonePrefix = r.PhonePrefix,
                     PhoneNumber = r.PhoneNumber
                 }).ToList();
 

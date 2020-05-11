@@ -22,7 +22,7 @@
 <!-- #region Menu -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="js-scroll-trigger mt-2 mb-2" href="/">
-        <img src="~/img/logo.png" class="" title="@Globals.APPLICATION_NAME" />
+        <img src="~/img/logo.png" title="@Globals.APPLICATION_NAME" />
     </a>
 
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -63,7 +63,7 @@
 
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-lg-none d-xl-none">
-                    <img class="img-fluid img-profile greyborder rounded-circle mb-3" width="145" src="@(string.IsNullOrEmpty(about?.Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/NoUserMale.png" : "/img/nouser-male.png" : about.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
+                    <img class="img-fluid img-profile greyborder rounded-circle mb-3" width="145" src="@(string.IsNullOrEmpty(about?.Photo) ? (Model.PersonalDetail.Gender != null && Model.PersonalDetail.Gender.Value) ? "/img/nouser-male.png" : "/img/nouser-male.png" : about.Photo)" alt="@Model.PersonalDetail?.Firstname @Model.PersonalDetail?.Lastname">
                 </span>
             </a>
 
@@ -144,6 +144,10 @@
                             <div class="subheading mb-3">
                                 <a href="@experience.Link" target="_blank">@experience.CompanyName</a> &middot; @(Model.Industries.Single(i => i.IndustryCode == experience.IndustryCode).Name) &middot; @(Model.HierarchyLevels.Single(h => h.HierarchyLevelCode == experience.HierarchyLevelCode).Name) &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(experience.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == experience.CountryCode).Name)"></span> @experience.City
                             </div>
+                            @if(!string.IsNullOrEmpty(experience.CompanyDescription))
+                            {
+                                <p><b>@experience.CompanyDescription</b></p>
+                            }
                             <p>@experience.Description</p>
                         </div>
                         <div class="resume-date text-md-right">
@@ -172,7 +176,7 @@
                             <div class="subheading mb-3"><a href="@education.Link" target="_blank">@education.SchoolName</a> &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(education.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == education.CountryCode).Name)"></span> @education.City</div>
                             @if (education.Grade.HasValue)
                             {
-                                <p>@SharedResource.Grade: @education.Grade</p>
+                                <p><b>@SharedResource.Grade: @education.Grade</b></p>
                             }
                             <p>@education.Description</p>
                         </div>
@@ -299,8 +303,14 @@
                     <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
                         <div class="resume-content">
                             <h3 class="mb-0">@interest.InterestName</h3>
-                            <div class="subheading"><a href="@interest.Link" target="_blank">@interest.Association</a></div>
-                            <p class="mt-3">@interest.Description</p>
+                            @if (!string.IsNullOrEmpty(interest.Link) || !string.IsNullOrEmpty(interest.Association))
+                            {
+                                <div class="subheading"><a href="@interest.Link" target="_blank">@interest.Association</a></div>
+                            }
+                            @if (!string.IsNullOrEmpty(interest.Description))
+                            {
+                                <p class="mt-3">@interest.Description</p>
+                            }
                         </div>
                     </div>
                     <hr class="mb-4 pb-2">

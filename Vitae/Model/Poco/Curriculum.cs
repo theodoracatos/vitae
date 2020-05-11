@@ -11,11 +11,11 @@ namespace Model.Poco
 
         public Guid UserID { get; set; }
 
-        public DateTime CreatedOn { get; set; }
-
-        public string Language { get; set; }
+        public DateTime CreatedOn { get; private set; } = DateTime.Now;
 
         public DateTime LastUpdated { get; set; }
+
+        public Language Language { get; set; }
 
         public virtual ICollection<PersonalDetail> PersonalDetails { get; set; }
         public virtual ICollection<About> Abouts { get; set; }
