@@ -62,7 +62,20 @@ namespace Vitae.Areas.Manage.Pages.Publications
         {
             if (ModelState.IsValid)
             {
+                // Delete
                 var curriculum = await repository.GetCurriculumAsync<Publication>(curriculumID);
+                var publicationIds = Publications.Select(pu => pu.PublicationIdentifier).ToList();
+                var deletedPublications = curriculum.Publications.Where(p => !publicationIds.Contains(p.PublicationIdentifier.ToString())).ToList();
+
+                foreach (var publication in deletedPublications)
+                {
+                    var item = curriculum.Publications.Single(e => e.PublicationIdentifier == publication.PublicationIdentifier);
+                    vitaeContext.Remove(item);
+
+                    await vitaeContext.SaveChangesAsync();
+                }
+
+                // Add
                 vitaeContext.RemoveRange(curriculum.Publications);
 
                 Publications.Select(p => new Poco.Publication()
@@ -139,20 +152,10 @@ namespace Vitae.Areas.Manage.Pages.Publications
             return GetPartialViewResult(PAGE_PUBLICATION);
         }
 
-        public async Task<IActionResult> OnPostDeletePublicationAsync(int order)
+        public IActionResult OnPostDeletePublication(int order)
         {
             Delete(Publications, order);
 
-            var curriculum = await repository.GetCurriculumAsync<Publication>(curriculumID);
-
-            var item = curriculum.Publications.SingleOrDefault(e => e.Order == order);
-            if (item != null)
-            {
-                vitaeContext.Remove(item);
-                curriculum.Publications.Where(e => e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
-
-                await vitaeContext.SaveChangesAsync();
-            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_PUBLICATION);

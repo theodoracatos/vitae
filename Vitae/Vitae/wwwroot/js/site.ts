@@ -276,7 +276,7 @@ function getColor(index) {
             return 'rgba(255, 235, 59, 0.35)';
         }
         case 5: {
-            return 'rgba(103, 58, 183, 0.35)';
+            return 'rgba(163, 58, 163, 0.35)';
         }
         case 6: {
             return 'rgba(233, 30, 99, 0.35)';
