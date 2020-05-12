@@ -39,6 +39,8 @@ namespace Vitae.Pages
             Exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
 
             Message = GetCustomizedMessage(statusCode) ?? ReasonPhrases.GetReasonPhrase(statusCode); // https://httpstatuses.com/
+
+
         }
 
         private string GetCustomizedMessage(int statusCode)

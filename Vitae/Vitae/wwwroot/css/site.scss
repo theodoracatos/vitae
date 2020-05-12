@@ -251,12 +251,13 @@ span.field-validation-error {
 
 .corner-ribbon {
     width: 200px;
-    background: #202020;
+    background: $qvs-error-color;
     color: #fff;
     position: absolute;
     text-align: center;
     top: 85px;
     line-height: 40px;
+    font-family: Lato-Light;
 }
 
 .corner-ribbon.right {

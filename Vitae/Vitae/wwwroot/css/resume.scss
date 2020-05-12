@@ -47,14 +47,21 @@
     outline-color: $qvs-gold-color;
 }
 
-.logo-big {
-    width: 200px;
-    height: 200px;
+.cvlogo {
+  position: relative;
+  top: -58px;
+  left: 12px;
+  height: 30px;
+}
+
+.cvlogo img {
+    width: 150px; 
+    height: 150px;
 }
 
 .corner-ribbon {
     width: 200px;
-    background: #212529;
+    background: $qvs-error-color;
     color: #fff;
     position: fixed;
     text-align: center;

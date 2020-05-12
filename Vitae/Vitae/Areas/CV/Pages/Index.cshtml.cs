@@ -35,13 +35,12 @@ namespace Vitae.Areas.CV.Pages
         private string language;
 
         public bool CheckPassword { get; set; }
+        public bool HasPublicationID { get; set; }
 
         [BindProperty]
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Password), Prompt = nameof(SharedResource.Password))]
         public string Password { get; set; }
-
-        public Guid CurriculumID { get { return curriculumID; } }
 
         public PersonalDetailVM PersonalDetail { get; set; } = new PersonalDetailVM();
 
@@ -153,6 +152,7 @@ namespace Vitae.Areas.CV.Pages
             {
                 Anonymize();
             }
+            HasPublicationID = publicationID.HasValue;
 
             // Log
             if (log)

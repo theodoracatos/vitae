@@ -5,6 +5,7 @@ using Library.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Localization;
 
 using Model.Poco;
@@ -15,6 +16,7 @@ using Persistency.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -97,7 +99,14 @@ namespace Vitae.Areas.Manage.Pages.Publications
                 {
                     p.Link = $"{this.BaseUrl}/CV/{p.PublicationIdentifier}?culture={p.LanguageCode.ToLower()}";
                     p.QrCode = CodeHelper.CreateQRCode($"{this.BaseUrl}/CV/{p.PublicationIdentifier}?culture={p.LanguageCode.ToLower()}");
-                 });
+
+                    // Update ModelState too
+                    ModelState.SetModelValue($"{nameof(IndexModel.Publications)}[{Publications.IndexOf(p)}].{nameof(PublicationVM.Link)}", new ValueProviderResult(p.Link, CultureInfo.InvariantCulture));
+                    ModelState.SetModelValue($"{nameof(IndexModel.Publications)}[{Publications.IndexOf(p)}].{nameof(PublicationVM.QrCode)}", new ValueProviderResult(p.QrCode, CultureInfo.InvariantCulture));
+                });
+
+                // Update View Model
+
             }
 
             FillSelectionViewModel();
@@ -173,6 +182,7 @@ namespace Vitae.Areas.Manage.Pages.Publications
         public IActionResult OnPostEnablePassword(int order)
         {
             Publications[order].Password = string.Empty;
+
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_PUBLICATION);
