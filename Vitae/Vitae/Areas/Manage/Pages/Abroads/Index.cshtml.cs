@@ -144,20 +144,10 @@ namespace Vitae.Areas.Manage.Pages.Abroads
             return GetPartialViewResult(PAGE_ABROADS);
         }
 
-        public async Task<IActionResult> OnPostDeleteAbroad(int order)
+        public IActionResult OnPostDeleteAbroad(int order)
         {
             Delete(Abroads, order);
 
-            var curriculum = await repository.GetCurriculumAsync<Abroad>(curriculumID);
-
-            var item = curriculum.Abroads.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
-            if (item != null)
-            {
-                vitaeContext.Remove(item);
-                curriculum.Abroads.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
-
-                await vitaeContext.SaveChangesAsync();
-            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_ABROADS);

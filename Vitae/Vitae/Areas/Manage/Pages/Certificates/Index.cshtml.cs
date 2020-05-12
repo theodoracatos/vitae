@@ -142,20 +142,10 @@ namespace Vitae.Areas.Manage.Pages.Certificates
             return GetPartialViewResult(PAGE_CERTIFICATES);
         }
 
-        public async Task<IActionResult> OnPostDeleteCertificateAsync(int order)
+        public IActionResult OnPostDeleteCertificate(int order)
         {
             Delete(Certificates, order);
 
-            var curriculum = await repository.GetCurriculumAsync<Certificate>(curriculumID);
-
-            var item = curriculum.Certificates.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
-            if (item != null)
-            {
-                vitaeContext.Remove(item);
-                curriculum.Certificates.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
-
-                await vitaeContext.SaveChangesAsync();
-            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_CERTIFICATES);

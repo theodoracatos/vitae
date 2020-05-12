@@ -148,16 +148,6 @@ namespace Vitae.Areas.Manage.Pages.References
         {
             Delete(References, order);
 
-            var curriculum = await repository.GetCurriculumAsync<Reference>(curriculumID);
-
-            var item = curriculum.References.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
-            if (item != null)
-            {
-                vitaeContext.Remove(item);
-                curriculum.References.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
-
-                await vitaeContext.SaveChangesAsync();
-            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_REFERENCES);

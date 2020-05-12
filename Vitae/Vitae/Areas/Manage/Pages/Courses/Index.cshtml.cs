@@ -147,20 +147,10 @@ namespace Vitae.Areas.Manage.Pages.Courses
             return GetPartialViewResult(PAGE_COURSES);
         }
 
-        public async Task<IActionResult> OnPostDeleteCourseAsync(int order)
+        public IActionResult OnPostDeleteCourse(int order)
         {
             Delete(Courses, order);
 
-            var curriculum = await repository.GetCurriculumAsync<Course>(curriculumID);
-
-            var item = curriculum.Courses.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
-            if (item != null)
-            {
-                vitaeContext.Remove(item);
-                curriculum.Courses.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
-
-                await vitaeContext.SaveChangesAsync();
-            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_COURSES);

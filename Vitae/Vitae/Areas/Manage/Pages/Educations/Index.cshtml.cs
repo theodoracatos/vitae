@@ -150,20 +150,10 @@ namespace Vitae.Areas.Manage.Pages.Educations
             return GetPartialViewResult(PAGE_EDUCATIONS);
         }
 
-        public async Task<IActionResult> OnPostDeleteEducationAsync(int order)
+        public IActionResult OnPostDeleteEducation(int order)
         {
             Delete(Educations, order);
 
-            var curriculum = await repository.GetCurriculumAsync<Education>(curriculumID);
-
-            var item = curriculum.Educations.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
-            if (item != null)
-            {
-                vitaeContext.Remove(item);
-                curriculum.Educations.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
-
-                await vitaeContext.SaveChangesAsync();
-            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EDUCATIONS);

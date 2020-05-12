@@ -154,20 +154,10 @@ namespace Vitae.Areas.Manage.Pages.Experiences
             return GetPartialViewResult(PAGE_EXPERIENCES);
         }
 
-        public async Task<IActionResult> OnPostDeleteExperienceAsync(int order)
+        public IActionResult OnPostDeleteExperience(int order)
         {
             Delete(Experiences, order);
 
-            var curriculum = await repository.GetCurriculumAsync<Experience>(curriculumID);
-
-            var item = curriculum.Experiences.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
-            if (item != null)
-            {
-                vitaeContext.Remove(item);
-                curriculum.Experiences.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
-
-                await vitaeContext.SaveChangesAsync();
-            }
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EXPERIENCES);

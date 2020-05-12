@@ -134,20 +134,9 @@ namespace Vitae.Areas.Manage.Pages.Languages
             return GetPartialViewResult(PAGE_LANGUAGES);
         }
 
-        public async Task<IActionResult> OnPostDeleteLanguageSkillAsync(int order)
+        public IActionResult OnPostDeleteLanguageSkill(int order)
         {
             Delete(LanguageSkills, order);
-
-            var curriculum = await repository.GetCurriculumAsync<LanguageSkill>(curriculumID);
-
-            var item = curriculum.LanguageSkills.SingleOrDefault(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order == order);
-            if (item != null)
-            {
-                vitaeContext.Remove(item);
-                curriculum.LanguageSkills.Where(e => e.CurriculumLanguage.LanguageCode == CurriculumLanguageCode && e.Order > order).ToList().ForEach(e => e.Order = e.Order - 1);
-
-                await vitaeContext.SaveChangesAsync();
-            }
 
             FillSelectionViewModel();
 
