@@ -9,7 +9,7 @@ namespace Model.Poco
 {
     public class Log
     {
-        public Guid LogID { get; set; }
+        public long LogID { get; set; }
 
         public Guid CurriculumID { get; set; }
 
