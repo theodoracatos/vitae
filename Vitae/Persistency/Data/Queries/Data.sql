@@ -16,6 +16,10 @@ INSERT INTO [dbo].[AspNetUserClaims](Id, UserId, ClaimType, ClaimValue)
 SET IDENTITY_INSERT [dbo].[AspNetUserClaims] OFF
 END
 
+DECLARE @UserRole uniqueidentifier = (SELECT [Id] FROM [AspNetRoles] WHERE [Name] = 'User')
+INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId])
+	VALUES ('a7e161f0-0ff5-45f8-851f-9b041f565abb', @UserRole)
+
 -- VitaeContext
 DECLARE @LanguageCode_de varchar(2) = 'de'
 DECLARE @LanguageCode_en varchar(2) = 'en'

@@ -68,6 +68,7 @@
     top: 25px;
     line-height: 40px;
     font-family: Lato-Light;
+    font-weight: bold;
 }
 
 .corner-ribbon.right {
@@ -87,4 +88,19 @@
     #sideNav {
         height: 60px !important;
     }
+}
+
+
+@media all and (max-width: 480px), all and (max-height: 480px) {
+
+    .corner-ribbon {
+        top: 85px;
+        line-height: 30px !important;
+        font-size: 12px !important;
+    }
+
+    .corner-ribbon.right {
+        right: -65px;
+    }
+
 }

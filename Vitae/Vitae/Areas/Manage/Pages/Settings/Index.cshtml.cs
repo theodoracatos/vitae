@@ -189,13 +189,15 @@ namespace Vitae.Areas.Manage.Pages.Settings
             vitaeContext.Publications.RemoveRange(vitaeContext.Publications.Include(p => p.Curriculum).Where(p => p.Curriculum.CurriculumID == curriculumID));
             var curriculum = await repository.GetCurriculumAsync<PersonalDetail>(curriculumID);
 
+            // Remove core values
             if (curriculum.PersonalDetails.Count == 1)
             {
-                curriculum.PersonalDetails.Single().Children.ToList().ForEach(c => curriculum.PersonalDetails.Single().Children.Remove(c));
-                curriculum.PersonalDetails.Single().PersonCountries.ToList().ForEach(p => curriculum.PersonalDetails.Single().PersonCountries.Remove(p));
-                curriculum.PersonalDetails.Remove(curriculum.PersonalDetails.Single());
+                curriculum.PersonalDetails.Single().Children.ToList().ForEach(c => vitaeContext.Entry(c).State = EntityState.Deleted);
+                curriculum.PersonalDetails.Single().PersonCountries.ToList().ForEach(p => vitaeContext.Entry(p).State = EntityState.Deleted);
+                vitaeContext.Entry(curriculum.PersonalDetails.Single()).State = EntityState.Deleted;
             }
-            vitaeContext.Curriculums.Remove(vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID));
+            vitaeContext.Entry(vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID)).State = EntityState.Deleted;
+
             await repository.LogAsync(curriculumID, null, LogArea.Delete, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
 
             await vitaeContext.SaveChangesAsync();

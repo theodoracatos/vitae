@@ -60,6 +60,23 @@ a:hover {
     background-color: #202020 !important
 }
 
+.bg-screen {
+    background-image: url('../img/backgrounds/bg0.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover
+}
+
+.jumbotron {
+    padding-top: 3em !important;
+    padding-bottom: 2em !important;
+    background-color: rgba(255,255,255, 0.95) !important;
+    box-shadow: 0 2px 18px 1px rgba(49,53,72,.1);
+    border: 1px solid rgba(0,0,0,.125);
+    margin-bottom: 0px !important;
+}
+
 #panel .card {
     background-color: rgba(255,255,255, 1);
     box-shadow: 0 2px 18px 1px rgba(49,53,72,.1);
@@ -258,6 +275,7 @@ span.field-validation-error {
     top: 85px;
     line-height: 40px;
     font-family: Lato-Light;
+    font-weight: bold;
 }
 
 .corner-ribbon.right {
@@ -366,4 +384,14 @@ span.field-validation-error {
     .jFiler-input {
         width: 135px !important;
     }
-}
+
+    .corner-ribbon {
+        top: 75px;
+        line-height: 30px !important;
+        font-size: 12px !important;
+    }
+
+    .corner-ribbon.right {
+        left: -65px;
+    }
+ }
