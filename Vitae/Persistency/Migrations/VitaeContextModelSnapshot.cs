@@ -743,9 +743,10 @@ namespace Persistency.Migrations
 
             modelBuilder.Entity("Model.Poco.Log", b =>
                 {
-                    b.Property<Guid>("LogID")
+                    b.Property<long>("LogID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<Guid>("CurriculumID")
                         .HasColumnType("uniqueidentifier");

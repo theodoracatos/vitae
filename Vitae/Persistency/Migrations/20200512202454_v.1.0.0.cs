@@ -82,7 +82,8 @@ namespace Persistency.Migrations
                 name: "Log",
                 columns: table => new
                 {
-                    LogID = table.Column<Guid>(nullable: false),
+                    LogID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CurriculumID = table.Column<Guid>(nullable: false),
                     PublicationID = table.Column<Guid>(nullable: true),
                     LogLevel = table.Column<int>(nullable: false),
