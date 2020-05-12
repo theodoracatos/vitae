@@ -249,6 +249,24 @@ span.field-validation-error {
     max-width: 140px;
 }
 
+.corner-ribbon {
+    width: 200px;
+    background: #202020;
+    color: #fff;
+    position: absolute;
+    text-align: center;
+    top: 85px;
+    line-height: 40px;
+}
+
+.corner-ribbon.right {
+    left: -50px;
+    right: auto;
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
 /* Datetimepicker */
 .datetimepicker[readonly] {
 }

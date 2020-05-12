@@ -547,7 +547,7 @@
     <value>Deutsch</value>
   </data>
   <data name="Goodbye" xml:space="preserve">
-    <value>Adiós</value>
+    <value>Goodbye</value>
   </data>
   <data name="GoogleAnalytics" xml:space="preserve">
     <value>Google analytics</value>
@@ -724,7 +724,7 @@
     <value>It has never been easier.</value>
   </data>
   <data name="MailBye3" xml:space="preserve">
-    <value>Your account was successfully deleted. We regret that you have left. However, you can register again at any time with this e-mail address</value>
+    <value>Your account was successfully deleted. We regret that you have left. However, you can register again at any time with this e-mail address by</value>
   </data>
   <data name="MailFooter1" xml:space="preserve">
     <value>This email was sent from myVitae to</value>
@@ -896,6 +896,9 @@
   </data>
   <data name="PleaseUpload" xml:space="preserve">
     <value>Please upload files up to</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Preview only</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacy policy</value>

@@ -535,7 +535,7 @@
     <value>Français</value>
   </data>
   <data name="From" xml:space="preserve">
-    <value>Tiré de</value>
+    <value>De</value>
   </data>
   <data name="Function" xml:space="preserve">
     <value>Fonction</value>
@@ -545,6 +545,9 @@
   </data>
   <data name="German" xml:space="preserve">
     <value>Deutsch</value>
+  </data>
+  <data name="Goodbye" xml:space="preserve">
+    <value>Au revoir</value>
   </data>
   <data name="GoogleAnalytics" xml:space="preserve">
     <value>Google Analytics</value>
@@ -721,7 +724,7 @@
     <value>Cela n'a jamais été aussi facile.</value>
   </data>
   <data name="MailBye3" xml:space="preserve">
-    <value>Votre compte a été supprimé avec succès. Nous regrettons que vous soyez parti. Cependant, vous pouvez vous réenregistrer à tout moment à l'aide de cette adresse électronique</value>
+    <value>Votre compte a été supprimé avec succès. Nous regrettons que vous soyez parti. Cependant, vous pouvez vous réenregistrer à tout moment avec cette adresse électronique en</value>
   </data>
   <data name="MailFooter1" xml:space="preserve">
     <value>Cet e-mail a été envoyé de myVitae à</value>
@@ -893,6 +896,9 @@
   </data>
   <data name="PleaseUpload" xml:space="preserve">
     <value>Veuillez télécharger les fichiers jusqu'à</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Aperçu</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Politique de confidentialité</value>

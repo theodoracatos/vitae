@@ -546,6 +546,9 @@
   <data name="German" xml:space="preserve">
     <value>Deutsch</value>
   </data>
+  <data name="Goodbye" xml:space="preserve">
+    <value>Auf Wiedersehen</value>
+  </data>
   <data name="GoogleAnalytics" xml:space="preserve">
     <value>Google analytics</value>
   </data>
@@ -893,6 +896,9 @@
   </data>
   <data name="PleaseUpload" xml:space="preserve">
     <value>Bitte beachten Sie die Dateigrösse von</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Vorschau</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Datenschutzerklärung</value>
