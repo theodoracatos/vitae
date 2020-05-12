@@ -2410,7 +2410,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preview only.
+        ///   Looks up a localized string similar to Preview.
         /// </summary>
         public static string Preview {
             get {

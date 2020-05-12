@@ -501,6 +501,9 @@
   <data name="Entry" xml:space="preserve">
     <value>voce</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Errore</value>
+  </data>
   <data name="ErrorConfirmEmail" xml:space="preserve">
     <value>Errore nella conferma dell'e-mail.</value>
   </data>

@@ -501,6 +501,9 @@
   <data name="Entry" xml:space="preserve">
     <value>Eintrag</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
   <data name="ErrorConfirmEmail" xml:space="preserve">
     <value>Fehler bei der Bestätigung Ihrer E-Mail.</value>
   </data>
@@ -1018,7 +1021,7 @@
     <value>Legen Sie hier die verschiedenen Sprachen Ihres myVitae's fest.</value>
   </data>
   <data name="SettingsLanguageHint" xml:space="preserve">
-    <value>Diese Sprache kann erst geändert werden, wenn sämtliche darauf referenzierende Publikationen gelöscht werden.</value>
+    <value>Diese Sprache kann erst geändert werden, wenn sämtliche darauf referenzierende Veröffentlichungen gelöscht werden.</value>
   </data>
   <data name="ShareLink" xml:space="preserve">
     <value>Teilen Sie diesen Link / QR-Code mit Ihrem zukünftigen Arbeitgeber.</value>
