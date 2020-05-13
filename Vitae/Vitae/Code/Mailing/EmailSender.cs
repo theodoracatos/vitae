@@ -60,27 +60,25 @@ namespace Vitae.Code.Mailing
 
         private async Task SendAsync(MimeMessage mailMessage)
         {
-            using (var client = new SmtpClient())
+            using var client = new SmtpClient();
+            try
             {
-                try
-                {
-                    await client.ConnectAsync(_emailConfig.SmtpServer, _emailConfig.Port, true);
-                    client.AuthenticationMechanisms.Remove("XOAUTH2");
-                    await client.AuthenticateAsync(_emailConfig.UserName, AesHandler.Decrypt(_emailConfig.Password, Globals.APPLICATION_NAME));
-                    await client.SendAsync(mailMessage);
+                await client.ConnectAsync(_emailConfig.SmtpServer, _emailConfig.Port, true);
+                client.AuthenticationMechanisms.Remove("XOAUTH2");
+                await client.AuthenticateAsync(_emailConfig.UserName, AesHandler.Decrypt(_emailConfig.Password, Globals.APPLICATION_NAME));
+                await client.SendAsync(mailMessage);
 
-                    await client.DisconnectAsync(true);
-                }
-                catch (Exception e)
-                {
-                    //log an error message or throw an exception or both.
-                    throw e;
-                }
-                finally
-                {
-                    client.Disconnect(true);
-                    client.Dispose();
-                }
+                await client.DisconnectAsync(true);
+            }
+            catch (Exception e)
+            {
+                //log an error message or throw an exception or both.
+                throw e;
+            }
+            finally
+            {
+                client.Disconnect(true);
+                client.Dispose();
             }
         }
     }

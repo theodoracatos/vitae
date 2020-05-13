@@ -112,7 +112,7 @@
                                                 <input type="hidden" asp-for="@Model.Courses[i].Order" />
                                             </div>
                                         </div>
-                                        <button id="btnCheckSingleDay@(i)" asp-page-handler="ChangeSingleDay" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+                                        <button id="btnCheckSingleDay@(i)" asp-page-handler="ChangeSingleDay" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                                     </div>
                                     @if (!@Model.Courses[i].SingleDay)
                                     {

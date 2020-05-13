@@ -89,7 +89,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
 
         #region AJAX
 
-        public IActionResult OnPostChangeNeverExpires(int order)
+        public IActionResult OnPostChangeNeverExpires()
         {
             FillSelectionViewModel();
 

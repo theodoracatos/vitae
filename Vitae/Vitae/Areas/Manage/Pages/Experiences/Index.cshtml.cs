@@ -100,7 +100,7 @@ namespace Vitae.Areas.Manage.Pages.Experiences
 
         #region AJAX
 
-        public IActionResult OnPostChangeUntilNow(int order)
+        public IActionResult OnPostChangeUntilNow()
         {
             FillSelectionViewModel();
 

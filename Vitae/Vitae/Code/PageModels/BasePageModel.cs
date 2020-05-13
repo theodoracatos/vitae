@@ -33,6 +33,7 @@ namespace Vitae.Code.PageModels
         protected readonly ClaimsIdentity identity;
         protected readonly Repository repository;
         protected readonly HttpContext httpContext;
+        protected readonly UserManager<IdentityUser> userManager;
 
         public bool IsLoggedIn { get { return this.curriculumID != Guid.Empty; } }
 
@@ -64,6 +65,7 @@ namespace Vitae.Code.PageModels
             this.curriculumID = CodeHelper.GetCurriculumID(httpContextAccessor.HttpContext);
             this.repository = repository;
             this.httpContext = httpContextAccessor.HttpContext;
+            this.userManager = userManager;
         }
 
         protected PartialViewResult GetPartialViewResult(string viewName, string modelName = "IndexModel")
@@ -181,7 +183,7 @@ namespace Vitae.Code.PageModels
 
         protected void LoadLanguageCode(Curriculum curriculum)
         {
-            CurriculumLanguageCode = CurriculumLanguageCode ?? (curriculum.CurriculumLanguages.Any(c => c.IsSelected) ? curriculum.CurriculumLanguages.Single(c => c.IsSelected).Language.LanguageCode : curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode);
+            CurriculumLanguageCode ??= (curriculum.CurriculumLanguages.Any(c => c.IsSelected) ? curriculum.CurriculumLanguages.Single(c => c.IsSelected).Language.LanguageCode : curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode);
         }
 
         protected async Task SaveLanguageChangeAsync()

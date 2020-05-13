@@ -90,7 +90,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
 
         #region AJAX
 
-        public IActionResult OnPostChangeUntilNow(int order)
+        public IActionResult OnPostChangeUntilNow()
         {
             FillSelectionViewModel();
 

@@ -32,8 +32,8 @@ namespace Vitae
     public class Startup
     {
         private readonly IWebHostEnvironment hostingEnvironment;
-        private CultureInfo[] SupportedCultures = new[] { new CultureInfo($"{ApplicationLanguage.de}-CH") };
-        private CultureInfo[] SupportedUiCultures = new[] { new CultureInfo($"{ApplicationLanguage.en}"), new CultureInfo($"{ApplicationLanguage.de}"), new CultureInfo($"{ApplicationLanguage.fr}"), new CultureInfo($"{ApplicationLanguage.it}"), new CultureInfo($"{ApplicationLanguage.es}") };
+        private readonly CultureInfo[] SupportedCultures = new[] { new CultureInfo($"{ApplicationLanguage.de}-CH") };
+        private readonly CultureInfo[] SupportedUiCultures = new[] { new CultureInfo($"{ApplicationLanguage.en}"), new CultureInfo($"{ApplicationLanguage.de}"), new CultureInfo($"{ApplicationLanguage.fr}"), new CultureInfo($"{ApplicationLanguage.it}"), new CultureInfo($"{ApplicationLanguage.es}") };
 
         public IConfiguration Configuration { get; }
 

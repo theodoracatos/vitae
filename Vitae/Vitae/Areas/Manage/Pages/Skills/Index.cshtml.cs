@@ -124,7 +124,7 @@ namespace Vitae.Areas.Manage.Pages.Skills
             return GetPartialViewResult(PAGE_SKILLS);
         }
 
-        public async Task<IActionResult> OnPostDeleteSkillAsync(int order)
+        public IActionResult OnPostDeleteSkill(int order)
         {
             Delete(Skills, order);
 

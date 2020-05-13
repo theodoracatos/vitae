@@ -25,13 +25,6 @@ header {
     padding-bottom: 3.5rem;
 }
 
-main {
-    flex: auto;
-    margin-bottom: 60px;
-}
-
-
-
 footer {
     height: 60px;
     line-height: 60px;
@@ -39,6 +32,10 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
+}
+
+.mainframe {
+    height: 100%;
 }
 
 .jumbotron {
@@ -64,22 +61,19 @@ footer {
 }
 
 @media all and (max-width: 767px), all and (max-height: 767px) {
-
-    footer, nav.navbar {
-        min-height: 45px;
-        height: 45px;
-        line-height: 45px;
-        padding: 0 0.25em 0 0.25em;
+    nav {
+        height: 45px !important;
+        min-height: 45px !important;
+        line-height: 45px !important;
+        padding: 0 0.5em 0 0.5em !important;
     }
 
     .navbar-brand {
         transform: scale(0.75);
         transform-origin: top left;
-        display: inline;
-        width: 20%;
     }
 
-    nav div.ml-auto {
+    .buttonbar {
         transform: scale(0.75);
         transform-origin: top right;
     }
@@ -90,15 +84,11 @@ footer {
     }
 
     footer div.w-100 {
-        min-height: 45px;
-        height: 45px;
-        line-height: 45px;
-        transform: scale(0.9);
-        transform-origin: right;
+        font-size: 12px;
     }
 
     #adContainer, div.jumbotron {
-        transform: scale(0.8);
+        transform: scale(0.7);
     }
 
     h3 {
@@ -112,6 +102,10 @@ footer {
         font-size: 10px;
         margin: 0;
         padding-top: 0.75em;
+    }
+
+    #cookieConsent .col {
+        padding-left: 0.25em;
     }
 
     #cookieConsent button {

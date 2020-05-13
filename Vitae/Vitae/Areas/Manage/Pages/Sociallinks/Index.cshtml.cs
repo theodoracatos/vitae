@@ -134,7 +134,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
             return GetPartialViewResult(PAGE_SOCIALLINKS);
         }
 
-        public async Task<IActionResult> OnPostDeleteSocialLinkAsync(int order)
+        public IActionResult OnPostDeleteSocialLink(int order)
         {
             Delete(SocialLinks, order);
 

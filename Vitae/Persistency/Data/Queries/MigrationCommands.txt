@@ -6,6 +6,7 @@ EntityFrameworkCore\add-migration -startupproject Vitae -project Persistency -co
 
 // UPDATE
 EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context VitaeContext
+Script-Migration -startupproject Vitae -project Persistency -context VitaeContext
 
 // REMOVE
 EntityFrameworkCore\remove-migration -startupproject Vitae -project Persistency -context VitaeContext
@@ -13,8 +14,15 @@ EntityFrameworkCore\remove-migration -startupproject Vitae -project Persistency 
 // REVERT ALL
 EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context VitaeContext –migration 0
 
+// SCRIPT
+dotnet ef migrations script -s Vitae -p Persistency -c VitaeContext 
 
 /*************************/
 /*** IDENTITY CONTEXT ****/
 /*************************/
+// UPDATE
 EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context IdentityContext
+Script-Migration -startupproject Vitae -project Persistency -context IdentityContext
+
+// REMOVE
+Script-Migration -From CreateIdentitySchema -To 0 -startupproject Vitae -project Persistency -context IdentityContext

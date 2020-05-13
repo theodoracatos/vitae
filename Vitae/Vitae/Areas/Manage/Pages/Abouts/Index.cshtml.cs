@@ -79,25 +79,23 @@ namespace Vitae.Areas.Manage.Pages.Abouts
 
                 if (About.Vfile?.Content != null)
                 {
-                    using (var stream = About.Vfile.Content.OpenReadStream())
+                    using var stream = About.Vfile.Content.OpenReadStream();
+                    if (CodeHelper.IsPdf(stream))
                     {
-                        if (CodeHelper.IsPdf(stream))
+                        using (var reader = new BinaryReader(stream))
                         {
-                            using (var reader = new BinaryReader(stream))
+                            var identifier = Guid.NewGuid();
+                            byte[] bytes = reader.ReadBytes((int)About.Vfile.Content.Length);
+                            about.Vfile = new Vfile()
                             {
-                                var identifier = Guid.NewGuid();
-                                byte[] bytes = reader.ReadBytes((int)About.Vfile.Content.Length);
-                                about.Vfile = new Vfile()
-                                {
-                                    Content = bytes,
-                                    FileName = About.Vfile.Content.FileName,
-                                    MimeType = Globals.MIME_PDF
-                                };
-                            }
-
-                            // UpdateVM
-                            About.Vfile.FileName = About.Vfile.Content.FileName;
+                                Content = bytes,
+                                FileName = About.Vfile.Content.FileName,
+                                MimeType = Globals.MIME_PDF
+                            };
                         }
+
+                        // UpdateVM
+                        About.Vfile.FileName = About.Vfile.Content.FileName;
                     }
                 }
                 else if (About.Vfile?.FileName == null && About.Vfile.Identifier != Guid.Empty)

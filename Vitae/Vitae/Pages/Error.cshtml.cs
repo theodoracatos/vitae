@@ -38,14 +38,12 @@ namespace Vitae.Pages
         public async Task OnGetAsync(int statusCode) => await HandleStatusCodeAsync(statusCode);
         public async Task OnPostAsync(int statusCode) => await HandleStatusCodeAsync(statusCode);
 
-        private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _emailSender;
         private readonly HttpContext _httpContext;
         private readonly IRequestCultureFeature requestCulture;
 
-        public ErrorModel(UserManager<IdentityUser> userManager, IEmailSender emailSender, IHttpContextAccessor httpContextAccessor)
+        public ErrorModel(IEmailSender emailSender, IHttpContextAccessor httpContextAccessor)
         {
-            _userManager = userManager;
             _emailSender = emailSender;
             _httpContext = httpContextAccessor.HttpContext;
             requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
@@ -62,8 +60,6 @@ namespace Vitae.Pages
             Message = GetCustomizedMessage(statusCode) ?? ReasonPhrases.GetReasonPhrase(statusCode); // https://httpstatuses.com/
 
             // Send mail...
-           // await repository.LogAsync(curriculumID, null, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
-
             var message = new Message(new string[] { Globals.ADMIN_VITAE_MAIL }, $"{SharedResource.Error} {(Code)}", GetHtmlMessage(), null);
             await _emailSender.SendEmailAsync(message);
         }

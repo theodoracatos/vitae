@@ -144,7 +144,7 @@ namespace Vitae.Areas.Manage.Pages.References
             return GetPartialViewResult(PAGE_REFERENCES);
         }
 
-        public async Task<IActionResult> OnPostDeleteReferenceAsync(int order)
+        public IActionResult OnPostDeleteReference(int order)
         {
             Delete(References, order);
 

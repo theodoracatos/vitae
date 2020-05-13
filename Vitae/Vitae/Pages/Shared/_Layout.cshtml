@@ -26,17 +26,21 @@
             <img src="~/img/logo.png" class="ml-1" title="@Globals.APPLICATION_NAME" />
         </a>
         <div class="ml-auto">
-            <ol class="carousel-indicators">
+            <ol class="carousel-indicators d-none">
                 <li data-target="#vitae-indicators" data-slide-to="0"></li>
                 <li data-target="#vitae-indicators" data-slide-to="1"></li>
                 <li data-target="#vitae-indicators" data-slide-to="2"></li>
                 <li data-target="#vitae-indicators" data-slide-to="3"></li>
                 <li data-target="#vitae-indicators" data-slide-to="4"></li>
             </ol>
-            <a href="/Identity/Account/Login" class="text-white mr-4 align-baseline">@SharedResource.SignIn</a>
-            <a href="/Identity/Account/Register" class="btn btn-success ml-2 mr-2 align-baseline">@SharedResource.Register</a>
+            <div class="buttonbar">
+                <a href="/Identity/Account/Login" class="text-white mr-xl-4 mr-md-4 mr-sm-4 mr-2 align-baseline">@SharedResource.SignIn</a>
+                <a href="/Identity/Account/Register" class="btn btn-success ml-2 mr-2 align-baseline">@SharedResource.Register</a>
+            </div>
         </div>
     </nav>
+
+    <div class="corner-ribbon left">BETA</div>
 
     @RenderSection("CookiePolicy", false)
 
@@ -64,11 +68,9 @@
     </div>
     @RenderSection("Scrollbar", false)
 
-    <div class="corner-ribbon right">BETA</div>
-
     <footer class="bg-light">
         <div class="w-100">
-            <div class="d-flex justify-content-end small mr-4">
+            <div class="d-flex justify-content-end small mr-xl-4 mr-md-4 mr-sm-4 mr-2">
                 <div>
                     <a class="js-scroll-trigger" href="/Disclaimer#disclaimer">@SharedResource.Disclaimer</a>
                 </div>

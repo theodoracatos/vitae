@@ -28,11 +28,6 @@ h2 {
     font-size: 1.25em !important;
 }
 
-nav.navbar {
-    position: absolute;
-    z-index: 22;
-}
-
 header {
     position: absolute;
     width: 100%;
@@ -166,7 +161,6 @@ footer {
     top: 60px;
     width: 100%;
     padding-right: 22px;
-    height: 60px;
     line-height: 20px;
     z-index: 2;
     -moz-border-radius: 0;
@@ -204,23 +198,41 @@ footer {
     transform: translate3d(0px, 0px, 0px);
 }
 
+.corner-ribbon {
+    width: 200px;
+    background: $qvs-error-color;
+    color: #fff;
+    position: absolute;
+    text-align: center;
+    top: 85px;
+    line-height: 40px;
+    font-family: Lato-Light;
+    font-weight: bold;
+}
+
+.corner-ribbon.left {
+    left: -50px;
+    right: auto;
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
 @media all and (max-width: 767px), all and (max-height: 767px) {
 
-    footer, nav.navbar {
-        min-height: 45px;
-        height: 45px;
-        line-height: 45px;
-        padding: 0 0.5em 0 0.5em;
+    nav {
+        height: 45px !important;
+        min-height: 45px !important;
+        line-height: 45px !important;
+        padding: 0 0.5em 0 0.5em !important;
     }
 
     .navbar-brand {
         transform: scale(0.75);
         transform-origin: top left;
-        display: inline;
-        width: 20%;
     }
 
-    nav div.ml-auto {
+    .buttonbar {
         transform: scale(0.75);
         transform-origin: top right;
     }
@@ -231,15 +243,7 @@ footer {
     }
 
     footer div.w-100 {
-        min-height: 45px;
-        height: 45px;
-        line-height: 45px;
-        transform: scale(0.9);
-        transform-origin: right;
-    }
-
-    #adContainer, div.jumbotron {
-        transform: scale(0.8);
+        font-size: 12px;
     }
 
     h3 {
@@ -255,15 +259,34 @@ footer {
         padding-top: 0.75em;
     }
 
+    #cookieConsent .col{
+        padding-left: 0.25em;
+    }
+
     #cookieConsent button {
         transform: scale(0.6);
         transform-origin: top right;
-        margin-right: 0.25em !important;
+        margin-right: 6px !important;
     }
 
-    .cropper-crop-box {
-        transform: scale(0.6);
+    #adContainer, div.jumbotron {
+        transform: scale(0.7)
     }
+
+    .corner-ribbon {
+        top: 50px !important;
+        line-height: 30px !important;
+        font-size: 12px !important;
+    }
+
+    .corner-ribbon.left {
+        left: -75px;
+        right: auto;
+        -ms-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
 }
 
 @media all and (max-height: 480px) {

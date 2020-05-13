@@ -202,19 +202,6 @@ namespace Vitae.Areas.CV.Pages
             return curriculumID;
         }
 
-        private string GetPassword(Guid? id)
-        {
-            var password = string.Empty;
-
-            if (id.HasValue)
-            {
-                var publication = vitaeContext.Publications.Include(p => p.Curriculum).Include(p => p.CurriculumLanguage).SingleOrDefault(p => p.PublicationIdentifier == id);
-                password = publication.Password;
-            }
-
-            return password;
-        }
-
         #endregion
     }
 }

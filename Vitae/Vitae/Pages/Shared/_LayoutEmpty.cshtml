@@ -18,6 +18,30 @@
     </header>
     @RenderBody()
 
+
+    <footer class="bg-light">
+        <div class="w-100">
+            <div class="d-flex justify-content-end small mr-xl-4 mr-md-3 mr-sm-2 mr-2">
+                <div>
+                    <a class="js-scroll-trigger" href="/Disclaimer#disclaimer">@SharedResource.Disclaimer</a>
+                </div>
+                <div class="ml-1 mr-1">&middot;</div>
+                <div>
+                    <a class="js-scroll-trigger" href="/CookiePolicy#cookiepolicy">@SharedResource.CookiePolicy</a>
+                </div>
+                <div class="ml-1 mr-1">&middot;</div>
+                <div>
+                    <a class="js-scroll-trigger" href="/LegalNotice#legalnotice">@SharedResource.LegalNotice</a>
+                </div>
+                <div class="ml-1 mr-1 d-none d-xs-block d-md-block">&middot;</div>
+                <div class="text-muted d-none d-xs-block d-md-block">&copy; @DateTime.Now.Year, <a class="ml-1" href="https://myvitae.ch">@Globals.APPLICATION_NAME</a></div>
+                <div class="ml-1 mr-1 d-none d-xs-block d-md-block">&middot;</div>
+                <div class="d-none d-xs-block d-md-block">Made with <font color="red">❤</font> in Switzerland</div>
+            </div>
+        </div>
+    </footer>
+
+
     <partial name="_Scripts" />
     @RenderSection("Scripts", required: false)
 </body>

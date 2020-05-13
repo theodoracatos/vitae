@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-using Persistency.Extensions;
 using Model.Poco;
+
+using Persistency.Extensions;
 
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace Persistency.Data
 {
@@ -29,6 +29,7 @@ namespace Persistency.Data
         {
 
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.RemovePluralizingTableNameConvention();

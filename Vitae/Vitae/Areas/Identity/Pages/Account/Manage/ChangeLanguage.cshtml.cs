@@ -20,22 +20,16 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
     {
         private readonly VitaeContext vitaeContext;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly ILogger<ChangePasswordModel> _logger;
         private readonly Guid curriculumID;
 
         public ChangeLanguageModel(
             VitaeContext vitaeContext,
             IHttpContextAccessor httpContextAccessor,
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
-            ILogger<ChangePasswordModel> logger)
+            UserManager<IdentityUser> userManager)
         {
             this.vitaeContext = vitaeContext;
             this.curriculumID = CodeHelper.GetCurriculumID(httpContextAccessor.HttpContext);
             _userManager = userManager;
-            _signInManager = signInManager;
-            _logger = logger;
         }
 
         [BindProperty]

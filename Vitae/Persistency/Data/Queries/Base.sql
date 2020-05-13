@@ -1,18 +1,17 @@
-﻿USE Vitae
-GO
+﻿--ALTER USER dbadmin WITH DEFAULT_SCHEMA = dbo;
 
 BEGIN TRY
     BEGIN TRANSACTION
 	
 -- Roles
-IF NOT EXISTS(SELECT 1 FROM [dbo].[AspNetRoles])
+IF NOT EXISTS(SELECT 1 FROM [AspNetRoles])
 BEGIN
-    INSERT INTO [dbo].[AspNetRoles]([Id], [Name], [NormalizedName]) VALUES (NEWID(), 'Admin', 'ADMIN')
-    INSERT INTO [dbo].[AspNetRoles]([Id], [Name], [NormalizedName]) VALUES (NEWID(), 'User', 'USER')
+    INSERT INTO [AspNetRoles]([Id], [Name], [NormalizedName]) VALUES (NEWID(), 'Admin', 'ADMIN')
+    INSERT INTO [AspNetRoles]([Id], [Name], [NormalizedName]) VALUES (NEWID(), 'User', 'USER')
 END
 
 -- Country
-IF NOT EXISTS(SELECT 1 FROM [dbo].[Country])
+IF NOT EXISTS(SELECT 1 FROM [Country])
 BEGIN
 INSERT INTO [Country] ([CountryID], [CountryCode], [Name_de], [Name_fr], [Name_it], [Name_es], [Name], [Iso3], [NumCode], [PhoneCode]) VALUES (NEWID(), 'AF', 'Afghanistan', 'Afghanistan', 'Afghanistan', 'Afganistán', 'Afghanistan', 'AFG', 4, 93)
 INSERT INTO [Country] ([CountryID], [CountryCode], [Name_de], [Name_fr], [Name_it], [Name_es], [Name], [Iso3], [NumCode], [PhoneCode]) VALUES (NEWID(), 'AL', 'Albanien', 'Albanie', 'Albania', 'Albania', 'Albania', 'ALB', 8, 355)
@@ -270,7 +269,7 @@ END
 
 -- Language
 
-IF NOT EXISTS(SELECT 1 FROM [dbo].[Language])
+IF NOT EXISTS(SELECT 1 FROM [Language])
 BEGIN
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'ab', 'Abkhazian', 'Abchasisch', 'Abkhazie', 'Abkhazia', 'Abjasia')
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'aa', 'Afar', 'Afar', 'Afar', 'Afar', 'Afar')
@@ -410,7 +409,7 @@ INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_f
 INSERT INTO [Language] ([LanguageID], [LanguageCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 'zu', 'Zulu', 'Zulu', 'Zulu', 'Zulu', 'Zulú')
 END
 
-IF NOT EXISTS(SELECT 1 FROM [dbo].[Month])
+IF NOT EXISTS(SELECT 1 FROM [Month])
 BEGIN
 INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 1, 'January', 'Januar', 'Janvier', 'Gennaio', 'Enero');
 INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 2, 'February', 'Februar', 'Février', 'Febbraio', 'Febrero');
@@ -427,7 +426,7 @@ INSERT INTO [Month] ([MonthID], [MonthCode], [Name], [Name_de], [Name_fr], [Name
 END
 
 -- Martial status
-IF NOT EXISTS(SELECT 1 FROM [dbo].[MaritalStatus])
+IF NOT EXISTS(SELECT 1 FROM [MaritalStatus])
 BEGIN
 INSERT INTO [MaritalStatus] ([MaritalStatusID], [MaritalStatusCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 1, 'No information', 'Keine Information', 'Aucune information', 'Nessuna informazione', 'No hay información');
 INSERT INTO [MaritalStatus] ([MaritalStatusID], [MaritalStatusCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 2, 'Single', 'Single', 'Célibataire', 'Single', 'Soltero');
@@ -438,14 +437,14 @@ INSERT INTO [MaritalStatus] ([MaritalStatusID], [MaritalStatusCode], [Name], [Na
 INSERT INTO [MaritalStatus] ([MaritalStatusID], [MaritalStatusCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), 7, 'Other', 'Sonstiges', 'Autres', 'Altro', 'Otros');
 END
 
-IF NOT EXISTS(SELECT 1 FROM [dbo].[HierarchyLevel])
+IF NOT EXISTS(SELECT 1 FROM [HierarchyLevel])
 BEGIN
 INSERT INTO [HierarchyLevel] ([HierarchyLevelID], [HierarchyLevelCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '1', 'Without management function', 'Ohne Kaderfunktion', 'Sans fonction de cadre', 'Senza funzione di quadro', 'Sin la función de gestión');
 INSERT INTO [HierarchyLevel] ([HierarchyLevelID], [HierarchyLevelCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '2', 'Lower management', 'Unteres Kader', 'Cadre inférieur', 'Quadro inferiore', 'La dirección inferior');
 INSERT INTO [HierarchyLevel] ([HierarchyLevelID], [HierarchyLevelCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '3', 'Upper and middle management', 'Oberes und mittleres Kader', 'Cadre supérieur et moyen', 'Quadro superiore', 'Dirección superior e intermedia');
 END
 
-IF NOT EXISTS(SELECT 1 FROM [dbo].[Industry])
+IF NOT EXISTS(SELECT 1 FROM [Industry])
 BEGIN
 INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '1', 'Mining and quarrying', 'Bergbau / Gewinnung von Steinen und Erden', 'Industries extractives', 'Attività estrattiva', 'La minería y la cantera');
 INSERT INTO [Industry] ([IndustryID], [IndustryCode], [Name], [Name_de], [Name_fr], [Name_it], [Name_es]) VALUES (NEWID(), '2', 'Production of goods', 'Herstellung von Waren', 'Industrie manufacturière', 'Attività manifatturiere', 'Producción de bienes');

@@ -92,7 +92,7 @@ namespace Vitae.Areas.Manage.Pages.Courses
 
         #region AJAX
 
-        public IActionResult OnPostChangeSingleDay(int order)
+        public IActionResult OnPostChangeSingleDay()
         {
             FillSelectionViewModel();
 

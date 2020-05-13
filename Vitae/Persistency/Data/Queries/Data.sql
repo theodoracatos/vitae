@@ -1,23 +1,21 @@
-﻿USE Vitae
-GO
-
+﻿
 BEGIN TRY
     BEGIN TRANSACTION
 
 -- IdentityContext
-IF NOT EXISTS(SELECT 1 FROM [dbo].[AspNetUsers] WHERE [Id] = 'a7e161f0-0ff5-45f8-851f-9b041f565abb')
+IF NOT EXISTS(SELECT 1 FROM [AspNetUsers] WHERE [Id] = 'a7e161f0-0ff5-45f8-851f-9b041f565abb')
 BEGIN
-INSERT INTO [dbo].[AspNetUsers] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount])
+INSERT INTO [AspNetUsers] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount])
      VALUES ('a7e161f0-0ff5-45f8-851f-9b041f565abb' ,'theodoracatos@gmail.com' ,'THEODORACATOS@GMAIL.COM' ,'theodoracatos@gmail.com' ,'THEODORACATOS@GMAIL.COM' ,1 ,'AQAAAAEAACcQAAAAEM9xHq/I11jR504N4mFC+CcEdvencdlc8gfAmRwzeBLLnYuyB8QqWiDsQSyJ1XMiTw==','X7RKCA5QCJYUU3FS6G7UIG7PC2YRECYC','5fbfc0d8-2a6d-4875-8869-c332974e3cf3',null,0,0,null,1,0)
 
-SET IDENTITY_INSERT [dbo].[AspNetUserClaims] ON
-INSERT INTO [dbo].[AspNetUserClaims](Id, UserId, ClaimType, ClaimValue)
+SET IDENTITY_INSERT [AspNetUserClaims] ON
+INSERT INTO [AspNetUserClaims](Id, UserId, ClaimType, ClaimValue)
 	 VALUES (8, 'a7e161f0-0ff5-45f8-851f-9b041f565abb', 'CurriculumID', 'a7e161f0-0ff5-45f8-851f-9b041f565abb')
-SET IDENTITY_INSERT [dbo].[AspNetUserClaims] OFF
+SET IDENTITY_INSERT [AspNetUserClaims] OFF
 END
 
 DECLARE @UserRole uniqueidentifier = (SELECT [Id] FROM [AspNetRoles] WHERE [Name] = 'User')
-INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId])
+INSERT INTO [AspNetUserRoles] ([UserId], [RoleId])
 	VALUES ('a7e161f0-0ff5-45f8-851f-9b041f565abb', @UserRole)
 
 -- VitaeContext

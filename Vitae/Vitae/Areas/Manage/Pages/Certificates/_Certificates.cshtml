@@ -95,7 +95,7 @@
                                                 <label class="d-none d-sm-block" asp-for="@Model.Certificates[i].NeverExpires"></label><label class="d-sm-none"></label>
                                             </div>
                                         </div>
-                                        <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeNeverExpires" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+                                        <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeNeverExpires" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                                     </div>
                                     <div class="input-group-append">
                                         @if (!@Model.Certificates[i].NeverExpires)

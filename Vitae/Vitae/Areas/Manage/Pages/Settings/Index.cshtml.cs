@@ -32,7 +32,6 @@ namespace Vitae.Areas.Manage.Pages.Settings
     {
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly IdentityContext identityContext;
-        private readonly UserManager<IdentityUser> userManager;
         private readonly IEmailSender emailSender;
 
         public const string PAGE_SETTINGS = "_Settings";
@@ -48,7 +47,6 @@ namespace Vitae.Areas.Manage.Pages.Settings
             : base(localizer, vitaeContext, httpContextAccessor, userManager, repository)
         {
             this.signInManager = signInManager;
-            this.userManager = userManager;
             this.identityContext = identityContext;
             this.emailSender = emailSender;
         }

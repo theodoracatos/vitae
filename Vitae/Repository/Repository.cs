@@ -162,21 +162,21 @@ namespace Library.Repository
         public async Task RemoveCurriculumLanguageItemsAsync(Guid curriculumID, string languageCode)
         {
             var curriculum = await GetCurriculumAsync(curriculumID);
-            Func<Base, bool> removeQuery = x => x.CurriculumLanguage.LanguageCode == languageCode;
+            bool removeQuery(Base x) => x.CurriculumLanguage.LanguageCode == languageCode;
 
-            vitaeContext.RemoveRange(curriculum.PersonalDetails.Where(removeQuery));
-            vitaeContext.RemoveRange(curriculum.Abouts.Where(removeQuery));
-            vitaeContext.RemoveRange(curriculum.Abroads.Where(removeQuery));
-            vitaeContext.RemoveRange(curriculum.Awards.Where(removeQuery));
-            vitaeContext.RemoveRange(curriculum.Courses.Where(removeQuery));
-            vitaeContext.RemoveRange(curriculum.Certificates.Where(removeQuery));
-            vitaeContext.RemoveRange(curriculum.Educations.Where(removeQuery));
-            vitaeContext.RemoveRange(curriculum.Experiences.Where(removeQuery));
-            vitaeContext.RemoveRange(curriculum.Interests.Where(removeQuery));
-            vitaeContext.RemoveRange(curriculum.LanguageSkills.Where(removeQuery));
-            vitaeContext.RemoveRange(curriculum.Skills.Where(removeQuery));
-            vitaeContext.RemoveRange(curriculum.SocialLinks.Where(removeQuery));
-            vitaeContext.RemoveRange(curriculum.References.Where(removeQuery));
+            vitaeContext.RemoveRange(curriculum.PersonalDetails.Where((Func<Base, bool>)removeQuery));
+            vitaeContext.RemoveRange(curriculum.Abouts.Where((Func<Base, bool>)removeQuery));
+            vitaeContext.RemoveRange(curriculum.Abroads.Where((Func<Base, bool>)removeQuery));
+            vitaeContext.RemoveRange(curriculum.Awards.Where((Func<Base, bool>)removeQuery));
+            vitaeContext.RemoveRange(curriculum.Courses.Where((Func<Base, bool>)removeQuery));
+            vitaeContext.RemoveRange(curriculum.Certificates.Where((Func<Base, bool>)removeQuery));
+            vitaeContext.RemoveRange(curriculum.Educations.Where((Func<Base, bool>)removeQuery));
+            vitaeContext.RemoveRange(curriculum.Experiences.Where((Func<Base, bool>)removeQuery));
+            vitaeContext.RemoveRange(curriculum.Interests.Where((Func<Base, bool>)removeQuery));
+            vitaeContext.RemoveRange(curriculum.LanguageSkills.Where((Func<Base, bool>)removeQuery));
+            vitaeContext.RemoveRange(curriculum.Skills.Where((Func<Base, bool>)removeQuery));
+            vitaeContext.RemoveRange(curriculum.SocialLinks.Where((Func<Base, bool>)removeQuery));
+            vitaeContext.RemoveRange(curriculum.References.Where((Func<Base, bool>)removeQuery));
 
             await vitaeContext.SaveChangesAsync();
         }
