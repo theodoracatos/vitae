@@ -3,24 +3,29 @@
 @{
 }
 
-<div id="legalnotice" class="row p-xl-5 p-4 animation-element slide-left">
-    <div class="col-xl-12 text-center">
-        <h1>@SharedResource.LegalNotice</h1>
-        <p>@SharedResource.LegalNoticeResponsible:</p>
-        <p>
-            <b>myvitae.ch</b><br />
-            Alexandros Theodoracatos<br />
-            Zwischenbächen 143<br />
-            8048 Zürich<br />
-            @SharedResource.Switzerland<br />
-            <a href="mailto:alexandros.theodoracatos@myvitae.ch">alexandros.theodoracatos@myvitae.ch</a>
-        </p>
-    </div>
-</div>
+<partial name="_Advertisment" />
 
-<div class="row p-xl-5 p-4 bg-snowwhite animation-element slide-left">
-    <div class="col-xl-12 text-center">
-        <h1>@SharedResource.CopyrightLaw</h1>
-        <p>@SharedResource.CopyrightLawText</p>
+@section Subframe{
+
+    <div id="legalnotice" class="row p-xl-5 p-4 animation-element slide-left">
+        <div class="col-xl-12 text-center">
+            <h1>@SharedResource.LegalNotice</h1>
+            <p>@SharedResource.LegalNoticeResponsible:</p>
+            <p>
+                <b>myvitae.ch</b><br />
+                Alexandros Theodoracatos<br />
+                Zwischenbächen 143<br />
+                8048 Zürich<br />
+                @SharedResource.Switzerland<br />
+                <a href="mailto:alexandros.theodoracatos@myvitae.ch">alexandros.theodoracatos@myvitae.ch</a>
+            </p>
+        </div>
     </div>
-</div>
+
+    <div class="row p-xl-5 p-4 bg-snowwhite animation-element slide-left">
+        <div class="col-xl-12 text-center">
+            <h1>@SharedResource.CopyrightLaw</h1>
+            <p>@SharedResource.CopyrightLawText</p>
+        </div>
+    </div>
+}

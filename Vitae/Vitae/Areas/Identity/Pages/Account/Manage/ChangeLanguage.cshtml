@@ -4,37 +4,38 @@
     ViewData["Title"] = SharedResource.ChangeLanguage;
 }
 
-    <div id="panel">
-        <form id="change-password-form" method="post">
-            <div class="card">
-                <div class="card-header">
-                    <h1><i class="fas fa-globe-americas fa-fw"></i>@SharedResource.ChangeLanguage</h1>
-                    <p>@SharedResource.ChangeLanguageDescription</p>
-                </div>
-                <div class="card-body">
+<div id="panel">
+    <form id="change-password-form" method="post">
+        <div class="card">
+            <div class="card-header">
+                <h1><i class="fas fa-globe-americas fa-fw"></i>@SharedResource.ChangeLanguage</h1>
+                <p>@SharedResource.ChangeLanguageDescription</p>
+            </div>
+            <div class="card-body">
 
-                    <div class="card">
-                        <div class="card-header font-weight-bold">
-                            @SharedResource.ChangeLanguage
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group mb-0">
-                                <label class="control-label" asp-for="@Model.ApplicationLanguageCode"></label>
-                                <select asp-for="@Model.ApplicationLanguageCode" class="form-control" asp-items="@(new SelectList(Enum.GetValues(typeof(ApplicationLanguage)).Cast<ApplicationLanguage>().OrderBy(c => c.Description()).Select(ma => new SelectListItem { Text = ma.Description(), Value =  ma.ToString() }), "Value", "Text"))">
-                                </select>
-                                <small class="mt-1">
-                                    @SharedResource.ChangeLanguageDescriptionSmall</small>
-                            </div>
-                        </div>
+                <div class="card">
+                    <div class="card-header font-weight-bold">
+                        @SharedResource.ChangeLanguage
                     </div>
-                </div>
-                <div class="card-footer">
-                    <div class="form-row">
-                        <div class="form-group col mb-0 text-right">
-                            <button type="submit" class="btn btn-primary float-right"><i class="fas fa-save fa-fw"></i>@SharedResource.Save</button>
+                    <div class="card-body">
+                        <div class="form-group mb-0">
+                            <label class="control-label" asp-for="@Model.ApplicationLanguageCode"></label>
+                            <select asp-for="@Model.ApplicationLanguageCode" class="form-control" asp-items="@(new SelectList(Enum.GetValues(typeof(ApplicationLanguage)).Cast<ApplicationLanguage>().OrderBy(c => c.Description()).Select(ma => new SelectListItem { Text = ma.Description(), Value =  ma.ToString() }), "Value", "Text"))">
+                            </select>
+                            <small class="mt-1">
+                                @SharedResource.ChangeLanguageDescriptionSmall
+                            </small>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
+            <div class="card-footer">
+                <div class="form-row">
+                    <div class="form-group col mb-0 text-right">
+                        <button type="submit" class="btn btn-primary float-right"><i class="fas fa-save fa-fw"></i>@SharedResource.Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

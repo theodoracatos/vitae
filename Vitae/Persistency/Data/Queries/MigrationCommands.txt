@@ -20,6 +20,9 @@ dotnet ef migrations script -s Vitae -p Persistency -c VitaeContext
 /*************************/
 /*** IDENTITY CONTEXT ****/
 /*************************/
+// ADD
+EntityFrameworkCore\add-migration -startupproject Vitae -project Persistency -context IdentityContext v.1.0.0
+
 // UPDATE
 EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context IdentityContext
 Script-Migration -startupproject Vitae -project Persistency -context IdentityContext

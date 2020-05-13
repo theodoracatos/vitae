@@ -3,20 +3,24 @@
 @{
 }
 
-<div id="cookiepolicy" class="row p-xl-5 p-4 animation-element slide-left">
-    <div class="col-xl-12 text-center">
-        <h1>@SharedResource.CookiePolicy</h1>
-        <p>@SharedResource.CookiesText1</p>
-        <p>@SharedResource.CookiesText2</p>
-    </div>
-</div>
+<partial name="_Advertisment" />
 
-<div class="row p-xl-5 p-4 bg-snowwhite animation-element slide-left">
-    <div class="col-xl-12 text-center">
-        <h1>@SharedResource.GoogleAnalytics</h1>
-        <p>@SharedResource.GoogleAnalyticsText1</p>
-        <p>
-            @SharedResource.GoogleAnalyticsText2 <a class="text-nowrap" target="_blank" href="https://tools.google.com/dlpage/gaoptout?hl=@Model.LanguageCode">https://tools.google.com/dlpage/gaoptout?hl=@Model.LanguageCode</a>.
-        </p>
+@section Subframe{
+    <div id="cookiepolicy" class="row p-xl-5 p-4 animation-element slide-left">
+        <div class="col-xl-12 text-center">
+            <h1>@SharedResource.CookiePolicy</h1>
+            <p>@SharedResource.CookiesText1</p>
+            <p>@SharedResource.CookiesText2</p>
+        </div>
     </div>
-</div>
+
+    <div class="row p-xl-5 p-4 bg-snowwhite animation-element slide-left">
+        <div class="col-xl-12 text-center">
+            <h1>@SharedResource.GoogleAnalytics</h1>
+            <p>@SharedResource.GoogleAnalyticsText1</p>
+            <p>
+                @SharedResource.GoogleAnalyticsText2 <a class="text-nowrap" target="_blank" href="https://tools.google.com/dlpage/gaoptout?hl=@Model.LanguageCode">https://tools.google.com/dlpage/gaoptout?hl=@Model.LanguageCode</a>.
+            </p>
+        </div>
+    </div>
+}

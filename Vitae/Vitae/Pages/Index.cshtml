@@ -4,6 +4,28 @@
     ViewData["Title"] = SharedResource.Homepage;
 }
 
+@{
+    var rqf = HttpContext.Features.Get<IRequestCultureFeature>();
+    var culture = rqf.RequestCulture.UICulture;
+
+    var languageCode = Enum.IsDefined(typeof(ApplicationLanguage), culture.TwoLetterISOLanguageName) ? culture.Name : ApplicationLanguage.en.ToString();
+}
+
+<partial name="_Advertisment" />
+
+@section Scrollbar{
+    <div class="scrollbar">
+        <div class="w-100r">
+            <div class="row ml-0 mr-0">
+                <div class="col text-center">
+                    <a class="js-scroll-trigger" href="#subframe"><img src="~/img/scroll.gif" class="scroll" alt="Scroll" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Subframe{
     <div class="container-fluid">
         <div class="row p-xl-5 p-4">
             <div class="col-xl-12 text-center">
@@ -15,7 +37,7 @@
                     <b>@SharedResource.WhyMyVitaeTest</b>
                 </p>
                 <p>
-                    <a href="@string.Format(Globals.TEST_URL, Model.LanguageCode)" class="btn btn-lg btn-dark mb-4"><img src="~/img/@Globals.LOGO" alt="Logo" /></a>
+                    <a href="@string.Format(Globals.TEST_URL, languageCode)" class="btn btn-lg btn-dark mb-4"><img src="~/img/@Globals.LOGO" alt="Logo" /></a>
                 </p>
             </div>
         </div>
@@ -28,7 +50,7 @@
                 </p>
             </div>
             <div class="col-xl-12">
-                <img src="~/img/advert/dashboard-@(Model.LanguageCode).png" alt="Dashboard" class="fit-image-big pb-4" />
+                <img src="~/img/advert/dashboard-@(languageCode).png" alt="Dashboard" class="fit-image-big pb-4" />
             </div>
         </div>
 
@@ -38,7 +60,7 @@
                 <p>@SharedResource.SavePublicationsDescription</p>
             </div>
             <div class="col-xl-12">
-                <img src="~/img/advert/publications-@(Model.LanguageCode).png" alt="Dashboard" class="fit-image-big pb-4" />
+                <img src="~/img/advert/publications-@(languageCode).png" alt="Dashboard" class="fit-image-big pb-4" />
             </div>
         </div>
 
@@ -49,22 +71,7 @@
             </div>
             <div class="col-xl-12">
                 @*TODO*@
-                <img src="~/img/advert/curriculum-@(Model.LanguageCode).png" alt="Dashboard" class="fit-image-big pb-4" />
-            </div>
-        </div>
-    </div>
-
-@section CookiePolicy{
-    <partial name="_CookieConsentPartial" />
-}
-
-@section Scrollbar{
-    <div class="scrollbar">
-        <div class="w-100r">
-            <div class="row ml-0 mr-0">
-                <div class="col text-center">
-                    <a class="js-scroll-trigger" href="#subframe"><img src="~/img/scroll.gif" class="scroll" alt="Scroll" /></a>
-                </div>
+                <img src="~/img/advert/curriculum-@(languageCode).png" alt="Dashboard" class="fit-image-big pb-4" />
             </div>
         </div>
     </div>
