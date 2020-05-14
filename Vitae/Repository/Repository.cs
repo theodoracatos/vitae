@@ -299,7 +299,7 @@ namespace Library.Repository
                 uiCulture == $"{ApplicationLanguage.es}" ? c.Name_es :
                 c.Name,
                 PhoneCode = c.PhoneCode
-            }).OrderBy(c => c.Name);
+            }).OrderByDescending(c => c.Order).ThenBy(c => c.Name);
 
             return countriesVM;
         }
@@ -354,12 +354,13 @@ namespace Library.Repository
             var languagesVM = vitaeContext.Languages.Select(c => new LanguageVM()
             {
                 LanguageCode = c.LanguageCode,
+                Order = c.Order,
                 Name = uiCulture == $"{ApplicationLanguage.de}" ? c.Name_de :
                 uiCulture == $"{ApplicationLanguage.fr}" ? c.Name_fr :
                 uiCulture == $"{ApplicationLanguage.it}" ? c.Name_it :
                 uiCulture == $"{ApplicationLanguage.es}" ? c.Name_es :
                         c.Name
-            }).OrderBy(c => c.Name);
+            }).OrderByDescending(c => c.Order).ThenBy(c => c.Name);
 
             return languagesVM;
         }

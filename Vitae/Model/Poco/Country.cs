@@ -36,6 +36,8 @@ namespace Model.Poco
 
         public int PhoneCode { get; set; }
 
+        public int Order { get; set; }
+
         public virtual ICollection<PersonCountry> PersonCountries { get; set; }
     }
 }

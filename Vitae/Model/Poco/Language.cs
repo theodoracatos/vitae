@@ -33,6 +33,8 @@ namespace Model.Poco
         [MaxLength(100)]
         public string Name_es { get; set; }
 
+        public int Order { get; set; }
+
         public virtual ICollection<CurriculumLanguage> CurriculumLanguages { get; set; }
     }
 }
