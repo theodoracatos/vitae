@@ -39,12 +39,9 @@
                                 <input type="hidden" asp-for="@Model.Awards[i].Collapsed" />
                             </a>
                         </div>
-                        <div class="float-right">
-                            <button asp-page-handler="UpAward" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
-                            <button asp-page-handler="DownAward" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1 @(i == Model.Awards.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
-                            <button asp-page-handler="CopyAward" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1" disabled="@(Model.Awards.Count < Model.MaxAwards ? null: "disabled")"><i class="fas fa-copy"></i></button>
-                            <button asp-page-handler="DeleteAward" asp-route-order="@i" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"\"{SharedResource.Award} {(i+1)}\"")" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel dirty-ignore confirmation ml-1" disabled="@(Model.Awards?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
-                        </div>
+
+                        <partial name="_CardButtonbar" model="new Tuple<int, int, IList<BaseVM>, string, string>(i, Model.MaxAwards, Model.Awards.Cast<BaseVM>().ToList(), SharedResource.Abroad, nameof(Abroad))" />
+
                     </div>
                     <div class="card-body collapse pb-0 @(Model.Awards[i].Collapsed ? null : "show")" id="collapse-@i">
                         <div class="form-row">

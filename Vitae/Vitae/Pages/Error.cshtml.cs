@@ -107,7 +107,6 @@ namespace Vitae.Pages
                 message.Append($"<tr><td><b>{order++}. Stacktrace</b></td><td>{ e.StackTrace }</td></tr>");
                 e = e.InnerException;
             }
-
             message.Append("</table></body></html>");
 
             return message.ToString();

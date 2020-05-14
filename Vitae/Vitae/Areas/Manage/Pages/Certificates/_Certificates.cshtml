@@ -39,12 +39,9 @@
                                 <input type="hidden" asp-for="@Model.Certificates[i].Collapsed" />
                             </a>
                         </div>
-                        <div class="float-right">
-                            <button asp-page-handler="UpCertificate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
-                            <button asp-page-handler="DownCertificate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1 @(i == Model.Certificates.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
-                            <button asp-page-handler="CopyCertificate" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1" disabled="@(Model.Certificates.Count < Model.MaxCertificates ? null: "disabled")"><i class="fas fa-copy"></i></button>
-                            <button asp-page-handler="DeleteCertificate" asp-route-order="@i" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"\"{SharedResource.Certificate} {(i+1)}\"")" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel dirty-ignore confirmation ml-1" disabled="@(Model.Certificates?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
-                        </div>
+
+                        <partial name="_CardButtonbar" model="new Tuple<int, int, IList<BaseVM>, string, string>(i, Model.MaxCertificates, Model.Certificates.Cast<BaseVM>().ToList(), SharedResource.Certificate, nameof(Certificate))" />
+
                     </div>
                     <div class="card-body collapse pb-0 @(Model.Certificates[i].Collapsed ? null : "show")" id="collapse-@i">
                         <div class="form-row">
@@ -88,26 +85,28 @@
                             <div class="form-group col-md-6">
                                 <label class="control-label" asp-for="@Model.Certificates[i].End_Month"></label>
                                 <div class="input-group">
-                                    <div class="form-control">
-                                        <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
-                                            <input type="checkbox" name="@(nameof(Certificates))[@i].@nameof(CertificateVM.NeverExpires)" value="true" checked="@(Model.Certificates[i].NeverExpires ? "checked" : null)" />
-                                            <div class="state">
-                                                <label class="d-none d-sm-block" asp-for="@Model.Certificates[i].NeverExpires"></label><label class="d-sm-none"></label>
-                                            </div>
-                                        </div>
-                                        <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeNeverExpires" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
-                                    </div>
-                                    <div class="input-group-append">
-                                        @if (!@Model.Certificates[i].NeverExpires)
-                                        {
+                                    @if (!@Model.Certificates[i].NeverExpires)
+                                    {
+                                        <div class="input-group-prepend">
                                             <select asp-for="@Model.Certificates[i].End_Month" class="form-control" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
-                                            <select asp-for="@Model.Certificates[i].End_Year" class="form-control" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
-                                        }
-                                        else
-                                        {
-                                            <input asp-for="@Model.Certificates[i].End_Month" type="hidden" />
-                                            <input asp-for="@Model.Certificates[i].End_Year" type="hidden" />
-                                        }
+                                        </div>
+                                        <select asp-for="@Model.Certificates[i].End_Year" class="form-control" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                                    }
+                                    else
+                                    {
+                                        <input asp-for="@Model.Certificates[i].End_Month" type="hidden" />
+                                        <input asp-for="@Model.Certificates[i].End_Year" type="hidden" />
+                                    }
+                                    <div class="@(!@Model.Certificates[i].NeverExpires ? "input-group-append" : " w-auto flex-fill")">
+                                        <div class="form-control">
+                                            <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
+                                                <input type="checkbox" name="@(nameof(Certificates))[@i].@nameof(CertificateVM.NeverExpires)" value="true" checked="@(Model.Certificates[i].NeverExpires ? "checked" : null)" />
+                                                <div class="state">
+                                                    <label class="d-none d-sm-block" asp-for="@Model.Certificates[i].NeverExpires"></label><label class="d-sm-none"></label>
+                                                </div>
+                                            </div>
+                                            <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeNeverExpires" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div>

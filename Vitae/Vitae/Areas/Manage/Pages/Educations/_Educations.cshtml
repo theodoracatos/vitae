@@ -39,12 +39,9 @@
                                 <input type="hidden" asp-for="@Model.Educations[i].Collapsed" />
                             </a>
                         </div>
-                        <div class="float-right">
-                            <button asp-page-handler="UpEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel @(i > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
-                            <button asp-page-handler="DownEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1 @(i == Model.Educations.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
-                            <button asp-page-handler="CopyEducation" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1" disabled="@(Model.Educations.Count < Model.MaxEducations ? null: "disabled")"><i class="fas fa-copy"></i></button>
-                            <button asp-page-handler="DeleteEducation" asp-route-order="@i" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"\"{SharedResource.Education} {(i+1)}\"")" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel dirty-ignore confirmation ml-1" disabled="@(Model.Educations?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
-                        </div>
+
+                        <partial name="_CardButtonbar" model="new Tuple<int, int, IList<BaseVM>, string, string>(i, Model.MaxEducations, Model.Educations.Cast<BaseVM>().ToList(), SharedResource.Education, nameof(Education))" />
+
                     </div>
                     <div class="card-body collapse pb-0 @(Model.Educations[i].Collapsed ? null : "show")" id="collapse-@i">
                         <div class="form-row">
@@ -110,6 +107,19 @@
                             <div class="form-group col-md-6">
                                 <label class="control-label" asp-for="@Model.Educations[i].End_Month"></label>
                                 <div class="input-group">
+                                    @if (!@Model.Educations[i].UntilNow)
+                                    {
+                                        <select asp-for="@Model.Educations[i].End_Month" class="form-control" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                                        <div class="input-group-prepend">
+                                            <select asp-for="@Model.Educations[i].End_Year" class="form-control" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <input asp-for="@Model.Educations[i].End_Month" type="hidden" />
+                                        <input asp-for="@Model.Educations[i].End_Year" type="hidden" />
+                                    }
+                                <div class="@(!@Model.Educations[i].UntilNow ? "input-group-append" : " w-auto flex-fill")">
                                     <div class="form-control">
                                         <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
                                             <input type="checkbox" name="@(nameof(Educations))[@i].@nameof(EducationVM.UntilNow)" value="true" checked="@(Model.Educations[i].UntilNow ? "checked" : null)" />
@@ -119,18 +129,8 @@
                                         </div>
                                         <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeUntilNow" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                                     </div>
-                                    <div class="input-group-append">
-                                        @if (!@Model.Educations[i].UntilNow)
-                                        {
-                                            <select asp-for="@Model.Educations[i].End_Month" class="form-control" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
-                                            <select asp-for="@Model.Educations[i].End_Year" class="form-control" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
-                                        }
-                                        else
-                                        {
-                                            <input asp-for="@Model.Educations[i].End_Month" type="hidden" />
-                                            <input asp-for="@Model.Educations[i].End_Year" type="hidden" />
-                                        }
-                                    </div>
+                                </div>
+
                                 </div>
                                 <div>
                                     <span asp-validation-for="@Model.Educations[i].End_Year" class="text-danger text-right mt-1 d-block"></span>

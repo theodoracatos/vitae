@@ -1051,6 +1051,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Down.
+        /// </summary>
+        public static string Down {
+            get {
+                return ResourceManager.GetString("Down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drop a file to upload.
         /// </summary>
         public static string DropFile {
@@ -3090,6 +3099,15 @@ namespace Library.Resources {
         public static string UntilNow {
             get {
                 return ResourceManager.GetString("UntilNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Up.
+        /// </summary>
+        public static string Up {
+            get {
+                return ResourceManager.GetString("Up", resourceCulture);
             }
         }
         

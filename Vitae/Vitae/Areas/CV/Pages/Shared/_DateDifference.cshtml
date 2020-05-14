@@ -4,24 +4,27 @@
     @(Model.Item1.ToShortDateCultureString()) - @(!Model.Item2.HasValue ? SharedResource.UntilNow : Model.Item2.Value.ToShortDateCultureString())
 </span>
 @{
-    var dateDifference = new DateDifference(Model.Item1, new DateTime(Model.Item2.HasValue ? Model.Item2.Value.Year : DateTime.Now.Year, Model.Item2.HasValue ? Model.Item2.Value.Month : DateTime.Now.Month, Model.Item2.HasValue ? Model.Item2.Value.Day : 1));
-    var text = new StringBuilder();
-    if (dateDifference.Years > 0)
+    if (Model.Item1 < DateTime.Now.Date || Model.Item2.HasValue)
     {
-        text.Append($"{dateDifference.Years} {(dateDifference.Years == 1 ? SharedResource.Year : SharedResource.Years)}");
-    }
-    if (dateDifference.Months > 0)
-    {
-        if (text.Length > 0) { text.Append(", "); }
-        text.Append($"{dateDifference.Months} {(dateDifference.Months == 1 ? SharedResource.Month : SharedResource.Months)}");
-    }
-    if(Model.Item3)
-    {
-        if (text.Length > 0) { text.Append(", "); }
-        var days = dateDifference.Days + 1;
-        text.Append($"{days} {(days == 1 ? SharedResource.Day : SharedResource.Days)}");
-    }
+        var dateDifference = new DateDifference(Model.Item1, new DateTime(Model.Item2.HasValue ? Model.Item2.Value.Year : DateTime.Now.Year, Model.Item2.HasValue ? Model.Item2.Value.Month : DateTime.Now.Month, Model.Item2.HasValue ? Model.Item2.Value.Day : 1));
+        var text = new StringBuilder();
+        if (dateDifference.Years > 0)
+        {
+            text.Append($"{dateDifference.Years} {(dateDifference.Years == 1 ? SharedResource.Year : SharedResource.Years)}");
+        }
+        if (dateDifference.Months > 0)
+        {
+            if (text.Length > 0) { text.Append(", "); }
+            text.Append($"{dateDifference.Months} {(dateDifference.Months == 1 ? SharedResource.Month : SharedResource.Months)}");
+        }
+        if (Model.Item3)
+        {
+            if (text.Length > 0) { text.Append(", "); }
+            var days = dateDifference.Days + 1;
+            text.Append($"{days} {(days == 1 ? SharedResource.Day : SharedResource.Days)}");
+        }
     <span class="text-primary d-block">
         @text.ToString()
     </span>
-}
+        }
+    }
