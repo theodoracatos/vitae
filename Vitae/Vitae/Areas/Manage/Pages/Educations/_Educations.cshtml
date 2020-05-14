@@ -119,7 +119,7 @@
                                         <input asp-for="@Model.Educations[i].End_Month" type="hidden" />
                                         <input asp-for="@Model.Educations[i].End_Year" type="hidden" />
                                     }
-                                <div class="@(!@Model.Educations[i].UntilNow ? "input-group-append" : " w-auto flex-fill")">
+                                <div class="@(!@Model.Educations[i].UntilNow ? "input-group-append" : "w-auto flex-fill")">
                                     <div class="form-control">
                                         <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
                                             <input type="checkbox" name="@(nameof(Educations))[@i].@nameof(EducationVM.UntilNow)" value="true" checked="@(Model.Educations[i].UntilNow ? "checked" : null)" />

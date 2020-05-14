@@ -2293,6 +2293,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This resume is password protected. Please enter the password to open the view..
+        /// </summary>
+        public static string PasswordProtectionDesc {
+            get {
+                return ResourceManager.GetString("PasswordProtectionDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passwords must have at least one digit (&apos;0&apos;-&apos;9&apos;)..
         /// </summary>
         public static string PasswordRequiresDigit {

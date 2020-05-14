@@ -861,6 +861,9 @@
   <data name="PasswordProtection" xml:space="preserve">
     <value>Passwortschutz</value>
   </data>
+  <data name="PasswordProtectionDesc" xml:space="preserve">
+    <value>Dieser Lebenslauf ist Passwortgeschützt. Bitte geben Sie das Kennwort ein um die Ansicht zu öffnen.</value>
+  </data>
   <data name="PasswordRequiresDigit" xml:space="preserve">
     <value>Passwörter müssen mindestens eine Ziffer ('0'-'9') haben.</value>
   </data>

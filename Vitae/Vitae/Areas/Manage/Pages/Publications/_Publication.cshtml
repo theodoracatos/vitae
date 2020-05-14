@@ -59,28 +59,27 @@
 
                             <div class="form-group col-md-6">
                                 <label class="control-label" asp-for="@Model.Publications[i].Password"></label>
-
                                 <div class="input-group">
-                                    <div class="form-control">
-                                        <div class="pretty p-switch p-slim" onchange="$('#btnEnablePassword'+@i).trigger('click');">
-                                            <input type="checkbox" name="@(nameof(Publications))[@i].@nameof(PublicationVM.EnablePassword)" value="true" checked="@(Model.Publications[i].EnablePassword ? "checked" : null)" />
-                                            <div class="state">
-                                                <label class="d-none d-xs-block d-sm-block" asp-for="@Model.Publications[i].EnablePassword"></label><label class="d-sm-none"></label>
-                                                <input type="hidden" asp-for="@Model.Publications[i].Order" />
+                                    <div class="@(Model.Publications[i].EnablePassword ? "input-group-prepend" : "w-auto flex-fill")">
+                                        <div class="form-control"  style="min-width: 160px;">
+                                            <div class="pretty p-switch p-slim" onchange="$('#btnEnablePassword'+@i).trigger('click');">
+                                                <input type="checkbox" name="@(nameof(Publications))[@i].@nameof(PublicationVM.EnablePassword)" value="true" checked="@(Model.Publications[i].EnablePassword ? "checked" : null)" />
+                                                <div class="state">
+                                                    <label class="d-none d-xs-block d-sm-block" asp-for="@Model.Publications[i].EnablePassword"></label><label class="d-sm-none"></label>
+                                                    <input type="hidden" asp-for="@Model.Publications[i].Order" />
+                                                </div>
                                             </div>
+                                            <button id="btnEnablePassword@(i)" asp-page-handler="EnablePassword" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                                         </div>
-                                        <button id="btnEnablePassword@(i)" asp-page-handler="EnablePassword" asp-route-order="@i" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                                     </div>
-                                    <div class="input-group-append">
-                                        @if (@Model.Publications[i].EnablePassword)
-                                        {
-                                            <input type="text" class="form-control" asp-for="@Model.Publications[i].Password" />
-                                        }
-                                        else
-                                        {
-                                            <input type="hidden" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Password)" value="-" />
-                                        }
-                                    </div>
+                                    @if (@Model.Publications[i].EnablePassword)
+                                    {
+                                        <input type="text" class="form-control" asp-for="@Model.Publications[i].Password" />
+                                    }
+                                    else
+                                    {
+                                        <input type="hidden" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Password)" value="-" />
+                                    }
                                 </div>
                                 <div class="d-block">
                                     <small class="muted mt-1 float-left">@SharedResource.EnablePasswordDescription</small>

@@ -408,10 +408,10 @@
   <data name="DataProtectionText" xml:space="preserve">
     <value>Nous ne pouvons pas garantir la sécurité de la transmission des données sur Internet. En particulier, il existe un risque d'accès par des tiers lorsque les données sont transmises par courrier électronique. Par la présente, nous nous opposons expressément à l'utilisation des données de contact publiées dans les mentions légales par des tiers à des fins publicitaires. L'exploitant se réserve expressément le droit d'engager des poursuites judiciaires en cas d'envoi non sollicité de publicité ou de matériel d'information. Si certaines dispositions ou formulations de cette exclusion de responsabilité devaient être ou devenir invalides, le contenu et la validité des autres dispositions n'en seraient pas affectés.</value>
   </data>
-  <data name="DataProtectionText1" xml:space="preserve">
+  <data name="DateCompareError" xml:space="preserve">
     <value>Nous ne pouvons pas garantir la sécurité de la transmission des données sur Internet. En particulier, il existe un risque d'accès par des tiers lorsque les données sont transmises par courrier électronique. Par la présente, nous nous opposons expressément à l'utilisation des données de contact publiées dans les mentions légales par des tiers à des fins publicitaires. L'exploitant se réserve expressément le droit d'engager des poursuites judiciaires en cas d'envoi non sollicité de publicité ou de matériel d'information. Si certaines dispositions ou formulations de cette exclusion de responsabilité devaient être ou devenir invalides, le contenu et la validité des autres dispositions n'en seraient pas affectés.</value>
   </data>
-  <data name="DateCompareError" xml:space="preserve">
+  <data name="DateProtectionText" xml:space="preserve">
     <value>La date de début ne peut pas être supérieure à la date de fin</value>
   </data>
   <data name="Day" xml:space="preserve">
@@ -860,6 +860,9 @@
   </data>
   <data name="PasswordProtection" xml:space="preserve">
     <value>Protection par mot de passe</value>
+  </data>
+  <data name="PasswordProtectionDesc" xml:space="preserve">
+    <value>Ce CV est protégé par un mot de passe. Veuillez entrer le mot de passe pour ouvrir la vue.</value>
   </data>
   <data name="PasswordRequiresDigit" xml:space="preserve">
     <value>Les mots de passe doivent comporter au moins un chiffre ("0" - "9").</value>
