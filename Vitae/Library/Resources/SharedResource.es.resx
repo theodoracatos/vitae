@@ -447,6 +447,9 @@
   <data name="Divorced" xml:space="preserve">
     <value>Divorciado</value>
   </data>
+  <data name="Down" xml:space="preserve">
+    <value>Abajo</value>
+  </data>
   <data name="DropFile" xml:space="preserve">
     <value>Suelta un archivo para subir</value>
   </data>
@@ -1127,6 +1130,9 @@
   </data>
   <data name="UntilNow" xml:space="preserve">
     <value>Hasta ahora.</value>
+  </data>
+  <data name="Up" xml:space="preserve">
+    <value>Arriba</value>
   </data>
   <data name="URL" xml:space="preserve">
     <value>Enlace</value>

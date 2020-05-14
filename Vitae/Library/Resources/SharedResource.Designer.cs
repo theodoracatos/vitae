@@ -709,7 +709,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When you visit this website, the web server will automatically record certain details of your visit (IP address, source website, destination website) using a tracking technology called &quot;&quot;cookies&quot;&quot;. A cookie is a small piece of data that is stored by the website on the browser or mobile device. The cookie allows the website to save your settings or preferences for a certain period of time..
+        ///   Looks up a localized string similar to When you visit this website, the web server will automatically record certain details of your visit (IP address, source website, destination website) using a tracking technology called &quot;cookies&quot;. A cookie is a small piece of data that is stored by the website on the browser or mobile device. The cookie allows the website to save your settings or preferences for a certain period of time..
         /// </summary>
         public static string CookiesText1 {
             get {

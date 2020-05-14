@@ -334,7 +334,7 @@
     <value>Cookies</value>
   </data>
   <data name="CookiesText1" xml:space="preserve">
-    <value>When you visit this website, the web server will automatically record certain details of your visit (IP address, source website, destination website) using a tracking technology called ""cookies"". A cookie is a small piece of data that is stored by the website on the browser or mobile device. The cookie allows the website to save your settings or preferences for a certain period of time.</value>
+    <value>When you visit this website, the web server will automatically record certain details of your visit (IP address, source website, destination website) using a tracking technology called "cookies". A cookie is a small piece of data that is stored by the website on the browser or mobile device. The cookie allows the website to save your settings or preferences for a certain period of time.</value>
   </data>
   <data name="CookiesText2" xml:space="preserve">
     <value>This website requires cookies to optimize the content of its web pages and to provide information about the use of the website. Cookies, which are used, cannot be used for user identification. You can accept cookies or refuse cookies at any time by changing the settings on your web browser. Please note, however, that if you refuse cookies, certain functionalities may be impaired. By continuing to use the website, you automatically accept the storage of cookies on your computer.</value>

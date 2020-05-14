@@ -334,7 +334,7 @@
     <value>Biscotti</value>
   </data>
   <data name="CookiesText1" xml:space="preserve">
-    <value>Quando visitate questo sito web, il server web registrerà automaticamente alcuni dettagli della vostra visita (indirizzo IP, sito web di origine, sito web di destinazione) utilizzando una tecnologia di tracciamento chiamata ""cookies"". Un cookie è un piccolo dato che viene memorizzato dal sito web sul browser o sul dispositivo mobile. Il cookie consente al sito web di salvare le impostazioni o le preferenze dell'utente per un certo periodo di tempo.</value>
+    <value>Quando visitate questo sito web, il server web registrerà automaticamente alcuni dettagli della vostra visita (indirizzo IP, sito web di origine, sito web di destinazione) utilizzando una tecnologia di tracciamento chiamata "cookies". Un cookie è un piccolo dato che viene memorizzato dal sito web sul browser o sul dispositivo mobile. Il cookie consente al sito web di salvare le impostazioni o le preferenze dell'utente per un certo periodo di tempo.</value>
   </data>
   <data name="CookiesText2" xml:space="preserve">
     <value>Questo sito web richiede i cookie per ottimizzare il contenuto delle sue pagine web e per fornire informazioni sull'utilizzo del sito. I cookie utilizzati non possono essere utilizzati per l'identificazione dell'utente. Potete accettare o rifiutare i cookies in qualsiasi momento modificando le impostazioni del vostro browser. Si prega di notare, tuttavia, che se si rifiutano i cookies, alcune funzionalità potrebbero essere compromesse. Continuando a utilizzare il sito web, accettate automaticamente la memorizzazione dei cookie sul vostro computer.</value>
@@ -446,6 +446,9 @@
   </data>
   <data name="Divorced" xml:space="preserve">
     <value>Divorziato</value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value>Giù</value>
   </data>
   <data name="DropFile" xml:space="preserve">
     <value>Lasciare un file da caricare</value>
@@ -1127,6 +1130,9 @@
   </data>
   <data name="UntilNow" xml:space="preserve">
     <value>Fino ad ora</value>
+  </data>
+  <data name="Up" xml:space="preserve">
+    <value>Su</value>
   </data>
   <data name="URL" xml:space="preserve">
     <value>Link</value>

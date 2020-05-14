@@ -163,7 +163,7 @@
     <value>Nach oben erweitern</value>
   </data>
   <data name="AdTextA0" xml:space="preserve">
-    <value>Geben Sie Ihrer Karriere einen Boost</value>
+    <value>Geben Sie Ihrer Karriere einen neuen Schub</value>
   </data>
   <data name="AdTextA1" xml:space="preserve">
     <value>Präsentieren Sie sich im besten Licht</value>
@@ -334,7 +334,7 @@
     <value>Cookies</value>
   </data>
   <data name="CookiesText1" xml:space="preserve">
-    <value>Wenn Sie diese Website besuchen, wird der Webserver automatisch gewisse Details Ihres Besuches (IP Adresse, Ursprungs-Webseite, Ziel-Webseite) mit einer Tracking-Technologie namens ""Cookies"" aufzeichnen. Ein Cookie ist ein kleines Datenstück, welches von der Webseite auf dem Browser oder mobilen Gerät gespeichert wird. Das Cookie erlaubt der Webseite Ihre Einstellungen oder Präferenzen in einer gewissen Zeitspanne zu speichern.</value>
+    <value>Wenn Sie diese Website besuchen, wird der Webserver automatisch gewisse Details Ihres Besuches (IP Adresse, Ursprungs-Webseite, Ziel-Webseite) mit einer Tracking-Technologie namens "Cookies" aufzeichnen. Ein Cookie ist ein kleines Datenstück, welches von der Webseite auf dem Browser oder mobilen Gerät gespeichert wird. Das Cookie erlaubt der Webseite Ihre Einstellungen oder Präferenzen in einer gewissen Zeitspanne zu speichern.</value>
   </data>
   <data name="CookiesText2" xml:space="preserve">
     <value>Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und um Informationen über die Benutzung der Webseite zu liefern. Cookies, welche eingesetzt werden, können nicht zur Benutzeridentifikation eingesetzt werden. Sie können die Cookies akzeptieren oder zu jeder Zeit durch Einstellungen ihres Webbrowsers die Cookies verweigern. Bitte beachten Sie jedoch, dass im Falle einer Ablehnung gewisse Funktionalitäten beeinträchtigt werden können. Durch die Weiternutzung der Website akzeptieren Sie automatisch die Speicherung von Cookies auf Ihrem Computer.</value>
@@ -370,7 +370,7 @@
     <value>Kurse</value>
   </data>
   <data name="CoursesDescription" xml:space="preserve">
-    <value>Listen Sie Weiterbildungskurse und kleine Ausbildungen auf.</value>
+    <value>Listen Sie Weiterbildungskurse und kleinere Ausbildungen auf.</value>
   </data>
   <data name="CreateAccount" xml:space="preserve">
     <value>Ein neues Konto eröffnen.</value>
@@ -446,6 +446,9 @@
   </data>
   <data name="Divorced" xml:space="preserve">
     <value>Geschieden</value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value>Nach unten</value>
   </data>
   <data name="DropFile" xml:space="preserve">
     <value>Legen Sie eine Datei zum Hochladen ab</value>
@@ -1127,6 +1130,9 @@
   </data>
   <data name="UntilNow" xml:space="preserve">
     <value>Bis jetzt</value>
+  </data>
+  <data name="Up" xml:space="preserve">
+    <value>Nach oben</value>
   </data>
   <data name="URL" xml:space="preserve">
     <value>Link</value>
