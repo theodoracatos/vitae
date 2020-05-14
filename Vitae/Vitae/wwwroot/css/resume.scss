@@ -4,8 +4,8 @@
 @import 'scsslib/_global.scss';
 @import 'scsslib/_nav.scss';
 @import 'scsslib/_resume-item.scss';
-@import 'scsslib/_bootstrap-overrides.scss';
 @import 'scsslib/_base.scss';
+@import 'scsslib/_bootstrap-overrides.scss';
 
 .subheadingBig {
     text-transform: uppercase;
@@ -47,16 +47,8 @@
     outline-color: $qvs-gold-color;
 }
 
-.cvlogo {
-  position: relative;
-  top: -58px;
-  left: 12px;
-  height: 30px;
-}
-
-.cvlogo img {
-    width: 150px; 
-    height: 150px;
+.logo{
+    height: 30px;
 }
 
 .corner-ribbon {
@@ -79,19 +71,18 @@
     transform: rotate(45deg);
 }
 
+a.nav-link{
+    font-weight: 600 !important;
+}
+
 @media all and (max-width: 991px) {
-    .corner-ribbon
-    {
+    .corner-ribbon {
         top: 85px;
     }
-
-    /*#sideNav {
-        height: 60px !important;
-    }*/
 }
 
 
-@media all and (max-width: 480px), all and (max-height: 480px) {
+@media all and (max-width: 480px) {
 
     .corner-ribbon {
         top: 85px;
