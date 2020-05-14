@@ -11,10 +11,6 @@
       "destination": "wwwroot/lib/jquery-confirm/"
     },
     {
-      "library": "twitter-bootstrap@4.4.1",
-      "destination": "wwwroot/lib/twitter-bootstrap/"
-    },
-    {
       "library": "jquery@3.4.1",
       "destination": "wwwroot/lib/jquery/"
     },
@@ -25,11 +21,6 @@
     {
       "library": "jquery-validation-unobtrusive@3.2.11",
       "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
-    },
-    {
-      "provider": "unpkg",
-      "library": "@chenfengyuan/datepicker@1.0.9",
-      "destination": "wwwroot/lib/@chenfengyuan/datepicker/"
     },
     {
       "library": "cropper@4.1.0",
@@ -84,6 +75,11 @@
     {
       "library": "jquery-visible@1.2.0",
       "destination": "wwwroot/lib/jquery-visible/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "bootstrap@4.5.0",
+      "destination": "wwwroot/lib/bootstrap/"
     }
   ]
 }

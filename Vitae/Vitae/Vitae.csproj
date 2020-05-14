@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\twitter-bootstrap\**" />
+    <Content Remove="wwwroot\lib\twitter-bootstrap\**" />
+    <EmbeddedResource Remove="wwwroot\lib\twitter-bootstrap\**" />
+    <None Remove="wwwroot\lib\twitter-bootstrap\**" />
+    <TypeScriptCompile Remove="wwwroot\lib\twitter-bootstrap\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="bundleconfig.json" />
     <Content Remove="compilerconfig.json" />
     <Content Remove="wwwroot\js\resume.ts" />

@@ -432,6 +432,9 @@
   <data name="DeleteAccountConfirm" xml:space="preserve">
     <value>¿Realmente quieres eliminar tu cuenta? Todos los datos serán borrados irrevocablemente.</value>
   </data>
+  <data name="Demo" xml:space="preserve">
+    <value>Demo</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Descripción</value>
   </data>

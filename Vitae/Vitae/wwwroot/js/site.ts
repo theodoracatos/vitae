@@ -4,12 +4,17 @@ declare let Chart;
 declare let autosize;
 
 $(document).ready(function () {
+    setupCarousel();
     addJQueryValidators();
     loadingProcedure();
     setupSbAdmin();
     displayScrollButton();
     setupDirtyForms(false, false);
     animateItemsInView();
+});
+
+$(window).on('load', function () {
+    fixAnchorPosition();
 });
 
 function ajaxCompleted(dirtyignore) {
@@ -19,6 +24,29 @@ function ajaxCompleted(dirtyignore) {
     showDynamicContent();
     resetFormValidator('form');
     setupDirtyForms(true, dirtyignore);
+}
+
+function setupCarousel() {
+    var $item = $('.carousel-item');
+    var $wHeight = $(window).height();
+
+    $item.height($wHeight);
+    $item.addClass('full-screen');
+
+    $('.carousel img').each(function () {
+        var $src = $(this).attr('src');
+        var $color = $(this).attr('data-color');
+        $(this).parent().css({
+            'background-image': 'url(' + $src + ')',
+            'background-color': $color
+        });
+        $(this).remove();
+    });
+
+    $(window).on('resize', function () {
+        $wHeight = $(window).height();
+        $item.height($wHeight);
+    });
 }
 
 function setupDirtyForms(asyncCall, dirtyignore) {
@@ -103,7 +131,7 @@ function displayScrollButton() {
             target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
             if (target.length) {
                 $('html, body').animate({
-                    scrollTop: target.offset().top
+                    scrollTop: Math.max(0, target.offset().top - $('.navbar').height())
                 }, 1000, "easeInOutExpo");
                 return false;
             }
@@ -356,7 +384,6 @@ function initSelectPicker() {
 }
 
 function loadingProcedure() {
-    setupDatepicker();
     setupAutosize();
     configureConfirmationModal();
     setRequiredLabel();
@@ -368,6 +395,17 @@ function loadingProcedure() {
     loadDisabledLinkMessage();
     assignCollapser();
     loadDynamicContent();
+}
+
+function fixAnchorPosition() {
+    var anchorLink = $(window.location.hash);
+    // test to see if the link is a anchor link, if not the length will have no value, this is done to avoid js errors on non anchor links
+    if (anchorLink.length) {
+        // set an element as the fixed entity, header in this case and get its height
+        var offsetSize = $(".navbar").innerHeight();
+        // fire the animation from the top of the page to the anchor link offsetting by the fixed elements height, the number is the speed of the animation
+        $("html, body").animate({ scrollTop: anchorLink.offset().top - offsetSize }, 500);
+    }
 }
 
 function setupAutosize() {
@@ -421,16 +459,6 @@ function resetFormValidator(formId) {
 function initializeTooltips() {
     /* Tooltips */
     $("body").tooltip({ selector: '[data-toggle=tooltip]', container: 'body' });
-}
-
-function setupDatepicker() {
-    $('.datetimepicker').datepicker(
-        {
-            format: 'dd.mm.yyyy',
-            autoHide: true,
-            endDate: new Date()
-        }
-    );
 }
 
 function setRequiredLabel() {

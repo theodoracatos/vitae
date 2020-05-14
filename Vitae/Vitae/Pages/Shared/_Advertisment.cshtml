@@ -4,7 +4,7 @@
             <h1>@(CodeHelper.GetStaticPropValue(typeof(SharedResource), $"AdTextA{new Random().Next() % 3}"))</h1>
             <h2 class="mb-5">@SharedResource.AdTextB0</h2>
             <div class="form-group mt-5">
-                <a href="/Identity/Account/Register" class="btn btn-lg btn-success">@SharedResource.Register</a>
+                <a href="/Identity/Account/Register" class="btn btn-lg btn-success notransition">@SharedResource.Register</a>
             </div>
         </div>
     </div>

@@ -1,5 +1,13 @@
 ﻿@import '_fonts.scss';
 @import '_colors.scss';
+@import '../../lib/bootstrap/scss/bootstrap.scss';
+
+/* change all .btn to .btn-sm size on xs */
+@include media-breakpoint-between(xs,sm) {
+    .btn:not(.notransition) {
+        @include button-size($input-btn-padding-y-sm, $input-btn-padding-x-sm, $font-size-sm, $line-height-sm, $btn-border-radius-sm);
+    }
+}
 
 /* Scrollbar */
 body::-webkit-scrollbar, .sb-sidenav-menu::-webkit-scrollbar {
@@ -163,4 +171,33 @@ h2 {
 
 .fullcard {
     padding: 90px 46px;
+}
+
+
+.form-label-group > input,
+.form-label-group > label {
+    padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+.form-label-group > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin-bottom: 0; /* Override default `<label>` margin */
+    line-height: 1.5;
+    color: #495057;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: all .1s ease-in-out;
+}
+
+.notransition {
+    -webkit-transition-property: none;
+    -moz-transition-property: none;
+    -o-transition-property: none;
+    transition-property: none;
+    -webkit-transform: none;
+    transform: none;
 }

@@ -12,10 +12,6 @@
     "inputFile": "wwwroot/css/landingpage.scss"
   },
   {
-    "outputFile": "wwwroot/css/account.css",
-    "inputFile": "wwwroot/css/account.scss"
-  },
-  {
     "outputFile": "wwwroot/css/sbadmin.css",
     "inputFile": "wwwroot/css/sbadmin.scss"
   }

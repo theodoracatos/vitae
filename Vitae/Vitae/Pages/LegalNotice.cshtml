@@ -3,11 +3,15 @@
 @{
 }
 
+@section Buttonbar
+{
+    <partial name="_Buttonbar" />
+}
 <partial name="_Advertisment" />
 
 @section Subframe{
 
-    <div id="legalnotice" class="row p-xl-5 p-4 animation-element slide-left">
+    <div id="legalnotice" class="row p-xl-5 p-4">
         <div class="col-xl-12 text-center">
             <h1>@SharedResource.LegalNotice</h1>
             <p>@SharedResource.LegalNoticeResponsible:</p>
@@ -22,7 +26,7 @@
         </div>
     </div>
 
-    <div class="row p-xl-5 p-4 bg-snowwhite animation-element slide-left">
+    <div class="row p-xl-5 p-4 bg-snowwhite">
         <div class="col-xl-12 text-center">
             <h1>@SharedResource.CopyrightLaw</h1>
             <p>@SharedResource.CopyrightLawText</p>

@@ -11,11 +11,17 @@
     var languageCode = Enum.IsDefined(typeof(ApplicationLanguage), culture.TwoLetterISOLanguageName) ? culture.Name : ApplicationLanguage.en.ToString();
 }
 
+@section Buttonbar
+{
+    <partial name="_Buttonbar" />
+}
+
 <partial name="_Advertisment" />
 
-@section Scrollbar{
+@section Scrollbar
+{
     <div class="scrollbar">
-        <div class="w-100r">
+        <div class="w-100">
             <div class="row ml-0 mr-0">
                 <div class="col text-center">
                     <a class="js-scroll-trigger" href="#subframe"><img src="~/img/scroll.gif" class="scroll" alt="Scroll" /></a>
@@ -25,7 +31,8 @@
     </div>
 }
 
-@section Subframe{
+@section Subframe
+{
     <div class="container-fluid">
         <div class="row p-xl-5 p-4">
             <div class="col-xl-12 text-center">
@@ -37,7 +44,7 @@
                     <b>@SharedResource.WhyMyVitaeTest</b>
                 </p>
                 <p>
-                    <a href="@string.Format(Globals.TEST_URL, languageCode)" class="btn btn-lg btn-dark mb-4"><img src="~/img/@Globals.LOGO" alt="Logo" /></a>
+                    <a href="@string.Format(Globals.TEST_URL, languageCode)" class="btn btn-secondary mb-4"><i class="fas fa-desktop fa-fw"></i>@SharedResource.Demo</a>
                 </p>
             </div>
         </div>

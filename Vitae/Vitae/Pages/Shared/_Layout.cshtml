@@ -17,13 +17,14 @@
                 <div class="carousel-item" style="background-image: url('/img/backgrounds/bg1.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('/img/backgrounds/bg2.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('/img/backgrounds/bg3.jpg')"></div>
-                <div class="carousel-item" style="background-image: url('/img/backgrounds/bg4.jpg')"></div>
             </div>
         </div>
     </header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="/">
-            <img src="~/img/logo.png" class="ml-1" title="@Globals.APPLICATION_NAME" />
+            <img src="~/img/logo.png" class="ml-1 d-none d-md-block" title="@Globals.APPLICATION_NAME" />
+            <img src="~/img/logo.png" class="ml-1 d-block d-md-none" style="height: 23px" title="@Globals.APPLICATION_NAME" />
+
         </a>
         <div class="ml-auto">
             <ol class="carousel-indicators d-none">
@@ -31,12 +32,8 @@
                 <li data-target="#vitae-indicators" data-slide-to="1"></li>
                 <li data-target="#vitae-indicators" data-slide-to="2"></li>
                 <li data-target="#vitae-indicators" data-slide-to="3"></li>
-                <li data-target="#vitae-indicators" data-slide-to="4"></li>
             </ol>
-            <div class="buttonbar">
-                <a href="/Identity/Account/Login" class="text-white mr-xl-4 mr-md-4 mr-sm-4 mr-2 align-baseline">@SharedResource.SignIn</a>
-                <a href="/Identity/Account/Register" class="btn btn-success ml-2 mr-2 align-baseline">@SharedResource.Register</a>
-            </div>
+            @RenderSection("Buttonbar", false)
         </div>
     </nav>
 

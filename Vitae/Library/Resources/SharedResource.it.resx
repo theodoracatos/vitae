@@ -432,6 +432,9 @@
   <data name="DeleteAccountConfirm" xml:space="preserve">
     <value>Volete davvero cancellare il vostro account? Tutti i dati saranno irrevocabilmente cancellati.</value>
   </data>
+  <data name="Demo" xml:space="preserve">
+    <value>Demo</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>Descrizione</value>
   </data>

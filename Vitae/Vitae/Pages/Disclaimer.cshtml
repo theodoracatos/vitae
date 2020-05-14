@@ -3,17 +3,22 @@
 @{
 }
 
+@section Buttonbar
+{
+    <partial name="_Buttonbar" />
+}
+
 <partial name="_Advertisment" />
 
 @section Subframe{
-    <div id="disclaimer" class="row p-xl-5 p-4 animation-element slide-left">
+    <div id="disclaimer" class="row p-xl-5 p-4">
         <div class="col-xl-12 text-center">
             <h1>@SharedResource.Disclaimer</h1>
             <p>@SharedResource.DisclaimerText</p>
         </div>
     </div>
 
-    <div class="row p-xl-5 p-4 bg-snowwhite animation-element slide-left">
+    <div class="row p-xl-5 p-4 bg-snowwhite">
         <div class="col-xl-12 text-center">
             <h1>@SharedResource.DataProtection</h1>
             <p>@SharedResource.DataProtectionText</p>
