@@ -19,7 +19,7 @@ namespace Model.Poco
 
         public LogArea LogArea { get; set; }
 
-        [MaxLength(2000)]
+        [MaxLength(1000)]
         public string Link { get; set; }
 
         [MaxLength(50)]

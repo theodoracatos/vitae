@@ -36,7 +36,13 @@ namespace Persistency.Data
 
             /* Index, unique */
             modelBuilder.Entity<Country>().HasIndex(c => c.CountryCode).IsUnique();
+            modelBuilder.Entity<Country>().HasIndex(c => c.Name);
+            modelBuilder.Entity<Country>().HasIndex(c => c.Order);
+
             modelBuilder.Entity<Language>().HasIndex(c => c.LanguageCode).IsUnique();
+            modelBuilder.Entity<Language>().HasIndex(c => c.Name).IsUnique();
+            modelBuilder.Entity<Language>().HasIndex(c => c.Order).IsUnique();
+
             modelBuilder.Entity<CurriculumLanguage>().HasIndex(c => c.CurriculumID);
             modelBuilder.Entity<CurriculumLanguage>().HasIndex(c => c.LanguageID);
             modelBuilder.Entity<Industry>().HasIndex(c => c.IndustryCode).IsUnique();
@@ -45,8 +51,10 @@ namespace Persistency.Data
             modelBuilder.Entity<Month>().HasIndex(c => c.MonthCode).IsUnique();
             modelBuilder.Entity<MaritalStatus>().HasIndex(c => c.MaritalStatusCode).IsUnique();
             modelBuilder.Entity<Publication>().HasIndex(p => p.PublicationIdentifier).IsUnique();
+
             modelBuilder.Entity<Log>().HasIndex(c => c.CurriculumID);
             modelBuilder.Entity<Log>().HasIndex(c => c.PublicationID);
+            modelBuilder.Entity<Log>().HasIndex(c => c.Timestamp);
 
             /* N-M */
             modelBuilder.Entity<PersonCountry>()
