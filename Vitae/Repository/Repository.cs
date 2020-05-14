@@ -298,7 +298,8 @@ namespace Library.Repository
                 uiCulture == $"{ApplicationLanguage.it}" ? c.Name_it :
                 uiCulture == $"{ApplicationLanguage.es}" ? c.Name_es :
                 c.Name,
-                PhoneCode = c.PhoneCode
+                PhoneCode = c.PhoneCode,
+                Order = c.Order
             }).OrderByDescending(c => c.Order).ThenBy(c => c.Name);
 
             return countriesVM;
@@ -359,7 +360,7 @@ namespace Library.Repository
                 uiCulture == $"{ApplicationLanguage.fr}" ? c.Name_fr :
                 uiCulture == $"{ApplicationLanguage.it}" ? c.Name_it :
                 uiCulture == $"{ApplicationLanguage.es}" ? c.Name_es :
-                        c.Name
+                 c.Name,
             }).OrderByDescending(c => c.Order).ThenBy(c => c.Name);
 
             return languagesVM;

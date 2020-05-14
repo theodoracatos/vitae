@@ -20,7 +20,8 @@ namespace Persistency.Migrations
                     Name_es = table.Column<string>(maxLength: 100, nullable: true),
                     Iso3 = table.Column<string>(maxLength: 3, nullable: true),
                     NumCode = table.Column<int>(nullable: true),
-                    PhoneCode = table.Column<int>(nullable: false)
+                    PhoneCode = table.Column<int>(nullable: false),
+                    Order = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,7 +72,8 @@ namespace Persistency.Migrations
                     Name_de = table.Column<string>(maxLength: 100, nullable: false),
                     Name_fr = table.Column<string>(maxLength: 100, nullable: false),
                     Name_it = table.Column<string>(maxLength: 100, nullable: false),
-                    Name_es = table.Column<string>(maxLength: 100, nullable: false)
+                    Name_es = table.Column<string>(maxLength: 100, nullable: false),
+                    Order = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,7 +90,7 @@ namespace Persistency.Migrations
                     PublicationID = table.Column<Guid>(nullable: true),
                     LogLevel = table.Column<int>(nullable: false),
                     LogArea = table.Column<int>(nullable: false),
-                    Link = table.Column<string>(maxLength: 2000, nullable: true),
+                    Link = table.Column<string>(maxLength: 1000, nullable: true),
                     IpAddress = table.Column<string>(maxLength: 50, nullable: true),
                     UserAgent = table.Column<string>(maxLength: 1000, nullable: true),
                     UserLanguage = table.Column<string>(maxLength: 2, nullable: true),
@@ -848,6 +850,16 @@ namespace Persistency.Migrations
                 filter: "[CountryCode] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Country_Name",
+                table: "Country",
+                column: "Name");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Country_Order",
+                table: "Country",
+                column: "Order");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Course_CountryID",
                 table: "Course",
                 column: "CountryID");
@@ -946,6 +958,17 @@ namespace Persistency.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Language_Name",
+                table: "Language",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Language_Order",
+                table: "Language",
+                column: "Order");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_LanguageSkill_CurriculumID",
                 table: "LanguageSkill",
                 column: "CurriculumID");
@@ -969,6 +992,11 @@ namespace Persistency.Migrations
                 name: "IX_Log_PublicationID",
                 table: "Log",
                 column: "PublicationID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Log_Timestamp",
+                table: "Log",
+                column: "Timestamp");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MaritalStatus_MaritalStatusCode",

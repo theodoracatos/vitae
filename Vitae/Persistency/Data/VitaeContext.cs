@@ -41,7 +41,7 @@ namespace Persistency.Data
 
             modelBuilder.Entity<Language>().HasIndex(c => c.LanguageCode).IsUnique();
             modelBuilder.Entity<Language>().HasIndex(c => c.Name).IsUnique();
-            modelBuilder.Entity<Language>().HasIndex(c => c.Order).IsUnique();
+            modelBuilder.Entity<Language>().HasIndex(c => c.Order);
 
             modelBuilder.Entity<CurriculumLanguage>().HasIndex(c => c.CurriculumID);
             modelBuilder.Entity<CurriculumLanguage>().HasIndex(c => c.LanguageID);

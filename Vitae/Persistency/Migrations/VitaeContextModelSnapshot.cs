@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistency.Data;
 
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200513122134_v.1.0.0")]
-    partial class v100
+    partial class VitaeContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -278,6 +276,9 @@ namespace Persistency.Migrations
                     b.Property<int?>("NumCode")
                         .HasColumnType("int");
 
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
                     b.Property<int>("PhoneCode")
                         .HasColumnType("int");
 
@@ -286,6 +287,10 @@ namespace Persistency.Migrations
                     b.HasIndex("CountryCode")
                         .IsUnique()
                         .HasFilter("[CountryCode] IS NOT NULL");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("Order");
 
                     b.ToTable("Country");
                 });
@@ -700,10 +705,18 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
                     b.HasKey("LanguageID");
 
                     b.HasIndex("LanguageCode")
                         .IsUnique();
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.HasIndex("Order");
 
                     b.ToTable("Language");
                 });
@@ -758,8 +771,8 @@ namespace Persistency.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("Link")
-                        .HasColumnType("nvarchar(2000)")
-                        .HasMaxLength(2000);
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
 
                     b.Property<int>("LogArea")
                         .HasColumnType("int");
@@ -790,6 +803,8 @@ namespace Persistency.Migrations
                     b.HasIndex("CurriculumID");
 
                     b.HasIndex("PublicationID");
+
+                    b.HasIndex("Timestamp");
 
                     b.ToTable("Log");
                 });
