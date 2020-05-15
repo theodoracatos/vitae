@@ -1,3 +1,4 @@
+using Library.Constants;
 using Library.Helper;
 using Library.Repository;
 using Library.Resources;
@@ -7,11 +8,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 
 using Model.Enumerations;
 using Model.ViewModels;
+
+using Newtonsoft.Json.Linq;
 
 using Persistency.Data;
 
@@ -20,6 +24,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 using Vitae.Code.PageModels;
@@ -30,17 +35,16 @@ namespace Vitae.Areas.CV.Pages
     public class IndexModel : BasePageModel
     {
         private readonly IHttpContextAccessor httpContextAccessor;
-        private bool anonymize;
-        private string password;
-        private string language;
-
-        public bool CheckPassword { get; set; }
-        public bool HasPublicationID { get; set; }
+        private readonly IConfiguration configuration;
+        private readonly IHttpClientFactory clientFactory;
 
         [BindProperty]
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Password), Prompt = nameof(SharedResource.Password))]
         public string Password { get; set; }
+
+        [BindProperty]
+        public CheckVM CheckVM { get; set; }
 
         public PersonalDetailVM PersonalDetail { get; set; } = new PersonalDetailVM();
 
@@ -63,9 +67,11 @@ namespace Vitae.Areas.CV.Pages
         public IEnumerable<IndustryVM> Industries { get; set; }
         public IEnumerable<HierarchyLevelVM> HierarchyLevels { get; set; }
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+        public IndexModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
     : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) 
         {
+            this.configuration = configuration;
+            this.clientFactory = clientFactory;
             this.httpContextAccessor = httpContextAccessor;
         }
 
@@ -73,42 +79,54 @@ namespace Vitae.Areas.CV.Pages
 
         public async Task<IActionResult> OnGetAsync(Guid? id, string culture)
         {
-            var curriculumID = LoadCurriculumID(id, ref culture);
+            CheckVM = LoadCheckModel(id, culture);
 
-            if (curriculumID == Guid.Empty)
+            if (CheckVM.HasValidCurriculumID)
             {
-                return NotFound();
-            }
-            else if (!string.IsNullOrEmpty(password))
-            {
-                CheckPassword = true;
-                FillSelectionViewModel();
+                if(!CheckVM.Challenge)
+                {
+                    await LoadPageAsync();
+                }
 
                 return Page();
             }
             else
             {
-                return await LoadPageAsync(curriculumID.Value, id, culture, id.HasValue && !IsLoggedIn);
+                return StatusCode(StatusCodes.Status404NotFound);
             }
         }
 
-        public async Task<IActionResult> OnPostAsync(Guid? id, string culture)
+        public async Task<IActionResult> OnPostAsync(Guid id, string culture)
         {
-            if (ModelState.IsValid)
-            {
-                var curriculumID = LoadCurriculumID(id, ref culture);
+            var success = await CheckCaptcha();
+            CheckVM = LoadCheckModel(id, culture);
 
-                if (AesHandler.Decrypt(password, curriculumID.ToString()) == Password)
+            if (ModelState.IsValid && success)
+            {
+                if (CheckVM.HasValidCurriculumID)
                 {
-                    return await LoadPageAsync(curriculumID.Value, id, culture, id.HasValue && !IsLoggedIn);
+                    if (!CheckVM.MustCheckPassword || AesHandler.Decrypt(CheckVM.Secret, CheckVM.CurriculumID.ToString()) == Password)
+                    {
+                        CheckVM.Challenge = false;
+                        return await LoadPageAsync();
+                    }
+                    else
+                    {
+                        // Wrong password
+                        return StatusCode(StatusCodes.Status403Forbidden);
+                    }
                 }
                 else
                 {
-                    return NotFound();
+                    // Someone modified the id
+                    return StatusCode(StatusCodes.Status404NotFound);
                 }
             }
-
-            return Page();
+            else
+            {
+                // Retry
+                return Page();
+            }
         }
 
         public IActionResult OnGetOpenFile(Guid identifier)
@@ -129,35 +147,67 @@ namespace Vitae.Areas.CV.Pages
 
         #region Helper
 
-        private async Task<PageResult> LoadPageAsync(Guid curriculumID, Guid? publicationID, string lang, bool log)
+        private async Task<bool> CheckCaptcha()
         {
-            var curriculum = await repository.GetCurriculumAsync(curriculumID);
-            language = string.IsNullOrEmpty(lang) ? curriculum.CurriculumLanguages.OrderBy(c => c.Order).First().Language.LanguageCode : lang;
+            bool success;
+            string recaptchaResponse = this.Request.Form["g-recaptcha-response"];
+            var client = clientFactory.CreateClient();
+            try
+            {
+                var parameters = new Dictionary<string, string>
+             {
+                {"secret", this.configuration["reCAPTCHA:SecretKey"]},
+                {"response", recaptchaResponse},
+                {"remoteip", this.HttpContext.Connection.RemoteIpAddress.ToString()}
+                };
+
+                HttpResponseMessage response = await client.PostAsync(Globals.GOOGLE_CAPCHA, new FormUrlEncodedContent(parameters));
+                response.EnsureSuccessStatusCode();
+
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                dynamic apiJson = JObject.Parse(apiResponse);
+                success = apiJson.success;
+                if (apiJson.success != true)
+                {
+                    this.ModelState.AddModelError(string.Empty, "There was an unexpected problem processing this request. Please try again.");
+                }
+            }
+            catch (HttpRequestException)
+            {
+                // Something went wrong with the API. Let the request through.
+                success = true;
+            }
+
+            return success;
+        }
+
+        private async Task<PageResult> LoadPageAsync()
+        {
+            var curriculum = await repository.GetCurriculumAsync(CheckVM.CurriculumID.Value);
 
             PersonalDetail = repository.GetPersonalDetail(curriculum);
-            Abouts = repository.GetAbouts(curriculum, language);
-            SocialLinks = repository.GetSocialLinks(curriculum, language);
-            Educations = repository.GetEducations(curriculum, language);
-            Experiences = repository.GetExperiences(curriculum, language);
-            Courses = repository.GetCourses(curriculum, language);
-            Abroads = repository.GetAbroads(curriculum, language);
-            LanguageSkills = repository.GetLanguageSkills(curriculum, language);
-            Interests = repository.GetInterests(curriculum, language);
-            Awards = repository.GetAwards(curriculum, language);
-            Skills = repository.GetSkills(curriculum, language);
-            Certificates = repository.GetCertificates(curriculum, language);
-            References = repository.GetReferences(curriculum, language);
+            Abouts = repository.GetAbouts(curriculum, CheckVM.LanguageCode);
+            SocialLinks = repository.GetSocialLinks(curriculum, CheckVM.LanguageCode);
+            Educations = repository.GetEducations(curriculum, CheckVM.LanguageCode);
+            Experiences = repository.GetExperiences(curriculum, CheckVM.LanguageCode);
+            Courses = repository.GetCourses(curriculum, CheckVM.LanguageCode);
+            Abroads = repository.GetAbroads(curriculum, CheckVM.LanguageCode);
+            LanguageSkills = repository.GetLanguageSkills(curriculum, CheckVM.LanguageCode);
+            Interests = repository.GetInterests(curriculum, CheckVM.LanguageCode);
+            Awards = repository.GetAwards(curriculum, CheckVM.LanguageCode);
+            Skills = repository.GetSkills(curriculum, CheckVM.LanguageCode);
+            Certificates = repository.GetCertificates(curriculum, CheckVM.LanguageCode);
+            References = repository.GetReferences(curriculum, CheckVM.LanguageCode);
 
-            if (anonymize)
+            if (CheckVM.Anonymize)
             {
                 Anonymize();
             }
-            HasPublicationID = publicationID.HasValue;
 
             // Log
-            if (log)
+            if (!CheckVM.IsPreview)
             {
-                await repository.LogAsync(curriculum.CurriculumID, publicationID, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
+                await repository.LogAsync(curriculum.CurriculumID, CheckVM.PublicationID.Value, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
             }
 
             FillSelectionViewModel();
@@ -167,39 +217,54 @@ namespace Vitae.Areas.CV.Pages
 
         private void Anonymize()
         {
-            PersonalDetail.Firstname = "X";
-            PersonalDetail.Lastname = "Y";
+            PersonalDetail.Firstname = "---";
+            PersonalDetail.Lastname = "---";
             PersonalDetail.Nationalities.Clear();
             Abouts.ToList().ForEach(a => a.Photo = string.Empty);
         }
 
         protected override void FillSelectionViewModel() 
         {
-            Languages = repository.GetLanguages(language);
-            Countries = repository.GetCountries(language);
-            MaritalStatuses = repository.GetMaritalStatuses(language);
-            Industries = repository.GetIndustries(language);
-            HierarchyLevels = repository.GetHierarchyLevels(language);
+            Languages = repository.GetLanguages(CheckVM.LanguageCode);
+            Countries = repository.GetCountries(CheckVM.LanguageCode);
+            MaritalStatuses = repository.GetMaritalStatuses(CheckVM.LanguageCode);
+            Industries = repository.GetIndustries(CheckVM.LanguageCode);
+            HierarchyLevels = repository.GetHierarchyLevels(CheckVM.LanguageCode);
         }
 
-        private Guid? LoadCurriculumID(Guid? id, ref string lang)
+        private CheckVM LoadCheckModel(Guid? id, string lang)
         {
-            Guid? curriculumID = Guid.Empty;
+            var checkVM = new CheckVM()
+            {
+                IsLoggedIn = curriculumID != Guid.Empty
+            };
 
             if (id.HasValue)
             {
+                // External or internal?
                 var publication = vitaeContext.Publications.Include(p => p.Curriculum).Include(p => p.CurriculumLanguage).SingleOrDefault(p => p.PublicationIdentifier == id);
-                curriculumID = publication?.Curriculum.CurriculumID ?? Guid.Empty;
-                lang = publication?.CurriculumLanguage.LanguageCode;
-                password = publication?.Password;
-                anonymize = publication?.Anonymize ?? false;
+
+                if(publication != null)
+                {
+                    // Found a publication
+                    checkVM.CurriculumID = publication.Curriculum.CurriculumID;
+                    checkVM.PublicationID = publication.PublicationID;
+                    checkVM.Secret = publication.Password;
+                    checkVM.Anonymize = publication.Anonymize;
+                    checkVM.LanguageCode = publication.CurriculumLanguage.LanguageCode;
+                    checkVM.IsPreview = curriculumID != Guid.Empty;
+                    checkVM.Challenge = true;
+                }
             }
-            else if (CodeHelper.GetCurriculumID(httpContextAccessor.HttpContext) != Guid.Empty)
+            else if(curriculumID != Guid.Empty)
             {
-                curriculumID = CodeHelper.GetCurriculumID(httpContextAccessor.HttpContext);
+                // Preview...
+                checkVM.IsPreview = true;
+                checkVM.CurriculumID = curriculumID;
+                checkVM.LanguageCode = lang;
             }
 
-            return curriculumID;
+            return checkVM;
         }
 
         #endregion

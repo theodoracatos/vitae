@@ -2752,6 +2752,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Security check.
+        /// </summary>
+        public static string SecurityCheck {
+            get {
+                return ResourceManager.GetString("SecurityCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In order to open this page you have to proof that you are human..
+        /// </summary>
+        public static string SecurityCheckDesc {
+            get {
+                return ResourceManager.GetString("SecurityCheckDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select.
         /// </summary>
         public static string Select {
@@ -2977,11 +2995,29 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your access to this page has been denied..
+        /// </summary>
+        public static string Status403 {
+            get {
+                return ResourceManager.GetString("Status403", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The requested page could not be found.
         /// </summary>
         public static string Status404 {
             get {
                 return ResourceManager.GetString("Status404", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An internal error has occured. Please send an e-mail to &quot;admin@vitae.ch&quot; if this error persists..
+        /// </summary>
+        public static string Status500 {
+            get {
+                return ResourceManager.GetString("Status500", resourceCulture);
             }
         }
         

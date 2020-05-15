@@ -6,10 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
-using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +21,7 @@ using Persistency.Data;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+
 using Vitae.Code.AppSettings;
 using Vitae.Code.Identity;
 using Vitae.Code.Mailing;
@@ -54,6 +53,7 @@ namespace Vitae
                 .AddClaimsPrincipalFactory<CurriculumClaimFactory>()
                 .AddErrorDescriber<CustomIdentityErrorDescriber>();
             services.AddTransient<Repository, Repository>();
+            services.AddHttpClient();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -139,7 +139,7 @@ namespace Vitae
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (!env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }

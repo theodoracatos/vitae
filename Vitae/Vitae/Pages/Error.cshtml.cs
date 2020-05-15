@@ -75,6 +75,16 @@ namespace Vitae.Pages
                         message = SharedResource.Status404;
                         break;
                     }
+                case 403:
+                    {
+                        message = SharedResource.Status403;
+                        break;
+                    }
+                case 500:
+                    {
+                        message = SharedResource.Status500;
+                        break;
+                    }
             }
 
             return message;

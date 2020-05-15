@@ -39,3 +39,6 @@ $(document).ready(function () {
 });
 //# sourceMappingURL=resume.js.map
 
+function enableSubmit() {
+    $('#submitCaptcha').removeAttr('disabled');
+}

@@ -9,17 +9,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="robots" content="noindex">
 
-    <title>@Globals.APPLICATION_NAME - @Model.PersonalDetail.Firstname @Model.PersonalDetail.Lastname</title>
+    @if (Model.CheckVM.Challenge)
+    {
+        <title>@Globals.APPLICATION_NAME - @SharedResource.SecurityCheck</title>
+    }
+    else
+    {
+        <title>@Globals.APPLICATION_NAME - @Model.PersonalDetail.Firstname @Model.PersonalDetail.Lastname</title>
+    }
     <link rel="shortcut icon" type="image/x-icon" href="~/favicon/favicon.ico" />
 
     <partial name="_Styles" />
 </head>
 
-<body id="page-top" class="@(Model.CheckPassword ? "bg-wallpaper" : null)">
+<body id="page-top" class="@(Model.CheckVM.Challenge ? "bg-wallpaper" : null)">
 
-    @if (Model.CheckPassword)
+    @if (Model.CheckVM.Challenge)
     {
-        <partial name="_CheckPassword" model="Model" />
+        <partial name="_CheckSecurity" model="Model" />
     }
     else
     {
@@ -29,5 +36,9 @@
     <!-- #endregion -->
     <partial name="_Scripts" />
 
+    @if (Model.CheckVM.Challenge)
+    {
+        <script src="@Globals.GOOGLE_CAPTCHA_API" async defer></script>
+    }
 </body>
 </html>

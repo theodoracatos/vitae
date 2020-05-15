@@ -1014,6 +1014,12 @@
   <data name="SchoolName" xml:space="preserve">
     <value>Educational institution</value>
   </data>
+  <data name="SecurityCheck" xml:space="preserve">
+    <value>Security check</value>
+  </data>
+  <data name="SecurityCheckDesc" xml:space="preserve">
+    <value>In order to open this page you have to proof that you are human.</value>
+  </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
   </data>
@@ -1089,8 +1095,14 @@
   <data name="State" xml:space="preserve">
     <value>State</value>
   </data>
+  <data name="Status403" xml:space="preserve">
+    <value>Your access to this page has been denied.</value>
+  </data>
   <data name="Status404" xml:space="preserve">
     <value>The requested page could not be found</value>
+  </data>
+  <data name="Status500" xml:space="preserve">
+    <value>An internal error has occured. Please send an e-mail to "admin@vitae.ch" if this error persists.</value>
   </data>
   <data name="Street" xml:space="preserve">
     <value>Street</value>

@@ -1014,6 +1014,9 @@
   <data name="SchoolName" xml:space="preserve">
     <value>Ausbildungsstätte</value>
   </data>
+  <data name="SecurityCheckDesc" xml:space="preserve">
+    <value>Um diese Seite zu öffnen, müssen Sie beweisen, dass Sie ein Mensch sind.</value>
+  </data>
   <data name="Select" xml:space="preserve">
     <value>Auswählen</value>
   </data>

@@ -32,20 +32,18 @@ namespace Library.Helper
         public static byte[] ReadFully(Stream input)
         {
             byte[] buffer = new byte[16 * 1024];
-            using (MemoryStream ms = new MemoryStream())
+            using MemoryStream ms = new MemoryStream();
+            int read;
+            while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
             {
-                int read;
-                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
-                }
-                return ms.ToArray();
+                ms.Write(buffer, 0, read);
             }
+            return ms.ToArray();
         }
 
         public static Guid GetCurriculumID(HttpContext httpContext)
         {
-            Guid curriculumID = new Guid();
+            Guid curriculumID = Guid.Empty;
             var identity = httpContext.User.Identities.Single();
             if(identity.Claims.Count() > 0)
             {
@@ -68,19 +66,17 @@ namespace Library.Helper
         public static MemoryStream GetLogoStream(string name)
         {
             var outputStream = new MemoryStream();
-            using (var stream = File.OpenRead($@"{CodeHelper.AssemblyDirectory}/MailTemplates/{name}"))
+            using var stream = File.OpenRead($@"{CodeHelper.AssemblyDirectory}/MailTemplates/{name}");
+            byte[] buffer = new byte[0x1000];
+            while (true)
             {
-                byte[] buffer = new byte[0x1000];
-                while (true)
+                int count = stream.Read(buffer, 0, 0x1000);
+                if (count == 0)
                 {
-                    int count = stream.Read(buffer, 0, 0x1000);
-                    if (count == 0)
-                    {
-                        outputStream.Position = 0;
-                        return outputStream;
-                    }
-                    outputStream.Write(buffer, 0, count);
+                    outputStream.Position = 0;
+                    return outputStream;
                 }
+                outputStream.Write(buffer, 0, count);
             }
         }
 
@@ -215,23 +211,19 @@ namespace Library.Helper
 
         public static string CreateQRCode(string uri, string prefix = "data:image/jpg;base64,")
         {
-            using (var qrGenerator = new QRCodeGenerator())
-            {
-                var qrCodeData = qrGenerator.CreateQrCode(uri, QRCodeGenerator.ECCLevel.Q);
-                var qrCode = new QRCode(qrCodeData);
-                var bitmap = qrCode.GetGraphic(3);
-                var imageBytes = BitmapToBytes(bitmap);
-                return $"{prefix}{Convert.ToBase64String(imageBytes)}";
-            }
+            using var qrGenerator = new QRCodeGenerator();
+            var qrCodeData = qrGenerator.CreateQrCode(uri, QRCodeGenerator.ECCLevel.Q);
+            var qrCode = new QRCode(qrCodeData);
+            var bitmap = qrCode.GetGraphic(3);
+            var imageBytes = BitmapToBytes(bitmap);
+            return $"{prefix}{Convert.ToBase64String(imageBytes)}";
         }
 
         private static Byte[] BitmapToBytes(Bitmap img)
         {
-            using (MemoryStream stream = new MemoryStream())
-            {
-                img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-                return stream.ToArray();
-            }
+            using MemoryStream stream = new MemoryStream();
+            img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+            return stream.ToArray();
         }
     }
 }

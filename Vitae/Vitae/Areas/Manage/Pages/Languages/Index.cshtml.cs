@@ -43,7 +43,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
         {
             if (curriculumID == Guid.Empty || !vitaeContext.Curriculums.Any(c => c.CurriculumID == curriculumID))
             {
-                return NotFound();
+                return StatusCode(StatusCodes.Status404NotFound);
             }
             else
             {

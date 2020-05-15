@@ -1014,6 +1014,9 @@
   <data name="SchoolName" xml:space="preserve">
     <value>Istituzione educativa</value>
   </data>
+  <data name="SecurityCheck" xml:space="preserve">
+    <value>Controllo di sicurezza</value>
+  </data>
   <data name="Select" xml:space="preserve">
     <value>Selezionare</value>
   </data>
