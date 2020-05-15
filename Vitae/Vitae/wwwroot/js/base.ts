@@ -8,11 +8,16 @@ $(document).ready(function () {
     startTooltips();
     startRating();
     initializeTagsinput();
+    animateLogo();
 });
 
 function startTooltips() {
     /* Tooltips */
     $("body").tooltip({ selector: '[data-toggle=tooltip]', container: 'body' });
+}
+
+function animateLogo() {
+    //$(".logo").animate({left: '250px'});
 }
 
 function startRating() {

@@ -29,7 +29,9 @@
 <!-- #region Menu -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="js-scroll-trigger mt-2 mb-2" href="@(isPreview ? "/Manage/" : "/")">
-        <img src="~/img/logo.png" class="logo ml-0" title="@Globals.APPLICATION_NAME" />
+        <div class="logo-container">
+            <img src="~/img/logo.png" class="logo ml-0" title="@Globals.APPLICATION_NAME" />
+        </div>
     </a>
 
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -265,30 +267,32 @@
                 {
                     <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-3 pb-3">
                         <div class="resume-content">
-                            <h3 class=" mb-0">
+                            <h3 class="mb-3">
                                 @Model.Languages.Single(l => l.LanguageCode == languageSkill.LanguageCode).Name
                             </h3>
-                            <div class="subheading mb-0">
-                                @{
-                                    switch (languageSkill.Rate)
-                                    {
-                                        case 1:
-                                            { @SharedResource.KnowledgeBasic; break;
-                                        }
-                                    case 2:
-                                        { @SharedResource.KnowledgeBusinessFluent; break;
-                                    }
-                                case 3:
-                                    { @SharedResource.KnowledgeFluent; break;
-                                }
-                            case 4:
-                                { @SharedResource.KnowledgeNative; break;
-                            }
-                    }
-                                }
-
-                            </div>
                             <input name="@languageSkill.Rate" type="hidden" class="ratingstar" value="@(languageSkill.Rate)" readonly />
+                            <p class="mt-2 mb-0">
+                                <b>
+                                    @{
+                                        switch (languageSkill.Rate)
+                                        {
+                                            case 1:
+                                                { @SharedResource.KnowledgeBasic; break;
+                                            }
+                                        case 2:
+                                            { @SharedResource.KnowledgeBusinessFluent; break;
+                                        }
+                                    case 3:
+                                        { @SharedResource.KnowledgeFluent; break;
+                                    }
+                                case 4:
+                                    { @SharedResource.KnowledgeNative; break;
+                                }
+                        }
+                                    }
+
+                                </b>
+                            </p>
                         </div>
                     </div>
                     <hr class="mb-4 pb-2">
