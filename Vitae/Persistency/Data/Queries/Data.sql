@@ -94,7 +94,7 @@ VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'Dozent', 'IFA Weiterbildung AG',
 INSERT INTO [Experience]           
 VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), 'Senior Softwareingenieur', 'Quilvest (Switzerland) Ltd.', 'Multi-Family Office (Private Banking)', 'http://quilvest.com', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Architektur und Fullstack-Entwicklung elektronischer Businessprozesse, realisiert mit neuesten .NET Web-Technologien. Technischer Lead und Project Owner eigenentwickelter .NET Applikationssysteme. Technische Projektleitung für interne und externe Projekte. Regelmässige Schulung und Coaching von Mitarbeitern (auf Deutsch und Englisch).', '2012-02-01', null, @CurriculumID)
 INSERT INTO [Experience]          
-VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 'Software Ingenieur', 'Ruf Telematik AG', 'Anbieter von Fahrgastinformationssystemen', 'http://ruf.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 9), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Architektur, Spezifikation, Design, Implementation, Test und Dokumentation von Softwarekomponenten und Multimediaapplikationen. Projektarbeit: Anforderungsspezifikation, Umsetzung, Engineering, Test und Projektleitung mit direktem Kundenkontakt.', '2008-11-01', '2012-01-31', @CurriculumID)
+VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 'Software Ingenieur', 'Ruf Telematik AG', 'Anbieter von Fahrgastinformationssystemen', 'http://ruf.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 9), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Architektur, Spezifikation, Design, Implementation, Test und Dokumentation von Softwarekomponenten und Multimediaapplikationen. Projektarbeit: Anforderungsspezifikation, Umsetzung, Engineering, Test und Projektleitung mit direktem Kundenkontakt.', '2008-11-01', '2012-01-01', @CurriculumID)
 INSERT INTO [Experience]           
 VALUES (NEWID(), 3, @CurrLangId_de, GETDATE(), 'Freelancer', 'Ruf Telematik AG', 'Anbieter von Fahrgastinformationssystemen', 'http://ruf.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 9), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Entwicklung von Tools und Diagnoseprogrammen für Embedded-Geräte.', '2005-09-01', '2008-10-01', @CurriculumID)
 INSERT INTO [Experience]          
@@ -105,7 +105,7 @@ VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Lecturer', 'IFA Weiterbildung AG
 INSERT INTO [Experience]           
 VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 'Senior Software Engineer', 'Quilvest (Switzerland) Ltd.', 'Multi-Family Office (Private Banking)', 'http://quilvest.com', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Architecture and full-stack development of electronic business processes, realized with the latest .NET web technologies. Technical lead and project owner of self-developed .NET application systems. Technical project management for internal and external projects. Regular training and coaching of employees (in German and English).', '2012-02-01', null, @CurriculumID)
 INSERT INTO [Experience]          
-VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 'Software Engineer', 'Ruf Telematik AG', 'Provider of passenger information systems', 'http://ruf.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 9), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Architecture, specification, design, implementation, test and documentation of software components and multimedia applications. Project management: Requirement speci-fication, implementation, engineering and test with direct contact with customers.', '2008-11-01', '2012-01-31', @CurriculumID)
+VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 'Software Engineer', 'Ruf Telematik AG', 'Provider of passenger information systems', 'http://ruf.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 9), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Architecture, specification, design, implementation, test and documentation of software components and multimedia applications. Project management: Requirement specification, implementation, engineering and test with direct contact with customers.', '2008-11-01', '2012-01-01', @CurriculumID)
 INSERT INTO [Experience]          
 VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 'Freelancer', 'Ruf Telematik AG', 'Provider of passenger information systems', 'http://ruf.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 9), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Development of tools and diagnostic programs for embedded devices.', '2005-09-01', '2008-10-01', @CurriculumID)
 INSERT INTO [Experience]          
@@ -124,11 +124,11 @@ VALUES (NEWID(), 3, @CurrLangId_de, GETDATE(), 'Kantonsschule SH', 'https://kant
 INSERT INTO [Education]            
 VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'ZHAW School of Engineering', 'https://zhaw.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Master of Advances Studies (MAS)', 'Business Information Technology',  'Post-graduate study with focus on: Business Administration, Software Engineering, Project Management and Coaching.', '5.4', '2010-02-01', '2011-11-01', @CurriculumID)
 INSERT INTO [Education]            
-VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 'ZHAW School of Engineering', 'https://zhaw.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Diplomstudium (Dipl. Ing. FH)', 'Information Technology', 'Diploma study with focus on: Softwarearchitecture / modeling and software development. Diploma thesis: "Multi-agent platform for the simulation of financial markets".', '5.3', '2005-09-01', '2008-10-01', @CurriculumID)
+VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 'ZHAW School of Engineering', 'https://zhaw.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Diploma studies (Dipl. Ing. FH)', 'Information Technology', 'Diploma study with focus on: Softwarearchitecture / modeling and software development. Diploma thesis: "Multi-agent platform for the simulation of financial markets".', '5.3', '2005-09-01', '2008-10-01', @CurriculumID)
 INSERT INTO [Education]          
 VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 'GIBB', 'https://gibb.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Bern', 'Apprenticeship', 'Application development', 'The apprenticeship in application development for high school graduates (wayup.ch) offered a two-year practical experience in various companies and paved the way for the University of Applied Sciences.', '5.5', '2003-08-01', '2005-08-01', @CurriculumID)
 INSERT INTO [Education]           
-VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 'Kantonsschule SH', 'https://kanti.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schaffhausen', 'Matura', 'Naturwissenschaften (Profil N)', 'Profile N (scientific and mathematical) with focus on chemistry and biology. Matura thesis: "Are the high school students of Schaffhausen fit?".', '4.5', '1998-08-01', '2002-07-01', @CurriculumID)
+VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 'Kantonsschule SH', 'https://kanti.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schaffhausen', 'Matura', 'Natural sciences (Profile N)', 'Profile N (scientific and mathematical) with focus on chemistry and biology. Matura thesis: "Are the high school students of Schaffhausen fit?".', '4.5', '1998-08-01', '2002-07-01', @CurriculumID)
 
 
 /* LANGUAGE SKILL */
@@ -224,20 +224,20 @@ VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Wolfgang', 'Schmidt', 1, 'ABB (S
 
 /* CERTIFICATE */
 INSERT INTO [Certificate]
-VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'Cambridge English Level 2 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
+VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'Cambridge English Level 4 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
 INSERT INTO [Certificate]         
 VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, @CurriculumID)
 INSERT INTO [Certificate]         
-VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 'Professional Scrum Master I (PSM I)', 'Microsoft Specialist: Programming in C#', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
+VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 'Scrum Master', 'Professional Scrum Master I (PSM 1)', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
 INSERT INTO [Certificate]        
 VALUES (NEWID(), 3, @CurrLangId_de, GETDATE(), 'SVEB Kursleiter Stufe 1', 'Lernveranstaltungen mit Erwachsenen durchführen / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, @CurriculumID)
                                  
 INSERT INTO [Certificate]        
-VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Cambridge English Level 2 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
+VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Cambridge English Level 4 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
 INSERT INTO [Certificate]        
 VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, @CurriculumID)
 INSERT INTO [Certificate]         
-VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 'Professional Scrum Master I (PSM I)', 'Microsoft Specialist: Programming in C#', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
+VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 'Scrum Master', 'Professional Scrum Master I (PSM 1)', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
 INSERT INTO [Certificate]         
 VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 'SVEB instructor level 1', 'Conduct learning events with adults / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, @CurriculumID)
 
@@ -253,7 +253,7 @@ VALUES(NEWID(), 3, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://ww
 INSERT INTO [Course]            
 VALUES(NEWID(), 4, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Application Lifecycle Management Basis', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2017-10-31', null, @CurriculumID)
 INSERT INTO [Course]           
-VALUES(NEWID(), 5, @CurrLangId_de, GETDATE(),'Digicomp Academy AG', 'https://www.digicomp.ch', 'Sichere Websites entwickeln', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-01-17', null, @CurriculumID)
+VALUES(NEWID(), 5, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Sichere Websites entwickeln', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-01-17', null, @CurriculumID)
 INSERT INTO [Course]              
 VALUES(NEWID(), 6, @CurrLangId_de, GETDATE(),'Digicomp Academy AG', 'https://www.digicomp.ch', 'Entwicklung von Webapplikationen mit ASP.NET Core 3.0', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
 INSERT INTO [Course]              
