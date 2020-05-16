@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200514125731_v.1.0.0")]
+    [Migration("20200515224619_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1035,6 +1035,9 @@ namespace Persistency.Migrations
 
                     b.Property<Guid>("PublicationIdentifier")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Secure")
+                        .HasColumnType("bit");
 
                     b.HasKey("PublicationID");
 

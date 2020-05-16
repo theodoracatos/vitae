@@ -115,7 +115,7 @@ namespace Vitae.Areas.Manage.Pages
             foreach (var pubId in lastHits_PublicationIds)
             {
                 var filteredHits = lastHits.Where(l => l.PublicationID == pubId);
-                lastHitsHits.Add(GetHitsByPublicationID(lastHits_Dates, filteredHits, pubId));
+                lastHitsHits.Add(GetHitsByFilteredPublication(lastHits_Dates, filteredHits));
             }
 
             // Labels
@@ -142,7 +142,7 @@ namespace Vitae.Areas.Manage.Pages
             return dates;
         }
 
-        private List<int> GetHitsByPublicationID(IEnumerable<string> dates, IEnumerable<LogVM> hits, Guid publicationID)
+        private List<int> GetHitsByFilteredPublication(IEnumerable<string> dates, IEnumerable<LogVM> hits)
         {
             var hitlist = new List<int>(); 
 

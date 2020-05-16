@@ -12,6 +12,7 @@ namespace Model.ViewModels
         public bool IsPreview { get; set; }
         public bool Challenge { get; set; }
         public bool IsLoggedIn { get; set; }
+        public bool MustCheckCaptcha { get; set; }
 
         public bool MustCheckPassword { get { return !string.IsNullOrEmpty(Secret); } }
         public bool HasValidCurriculumID { get { return CurriculumID.HasValue && CurriculumID != Guid.Empty; } }

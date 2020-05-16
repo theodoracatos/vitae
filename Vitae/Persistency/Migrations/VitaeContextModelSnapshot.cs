@@ -1034,6 +1034,9 @@ namespace Persistency.Migrations
                     b.Property<Guid>("PublicationIdentifier")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("Secure")
+                        .HasColumnType("bit");
+
                     b.HasKey("PublicationID");
 
                     b.HasIndex("CurriculumID");

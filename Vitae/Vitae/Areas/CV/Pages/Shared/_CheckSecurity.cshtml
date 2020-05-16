@@ -21,22 +21,26 @@
                             <span asp-validation-for="@Model.Password" class="text-danger"></span>
                         </div>
                     }
-                    <div class="form-group mb-0">
-                        <label class="control-label font-weight-bold text-body">@SharedResource.SecurityCheck</label>
-                        <div class="g-recaptcha" data-sitekey="@configuration["reCAPTCHA:SiteKey"]" data-callback="enableSubmit" hl="@Model.CheckVM.LanguageCode"></div>
-                    </div>
+                    @if (Model.CheckVM.MustCheckCaptcha)
+                    {
+                        <p>@SharedResource.SecurityCheckDesc</p>
+                        <div class="form-group mb-0">
+                            <label class="control-label font-weight-bold text-body">@SharedResource.SecurityCheck</label>
+                            <div class="g-recaptcha" data-sitekey="@configuration["reCAPTCHA:SiteKey"]" data-callback="enableSubmit" hl="@Model.CheckVM.LanguageCode"></div>
+                        </div>
+                    }
 
                     @if (Model.ModelState.ErrorCount > 0)
                     {
                         <div class="form-group mb-0 mt-3">
-                            <div class="alert alert-danger mb-0" role="alert">
-                                <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="alert alert-danger mb-0 pb-0" role="alert">
+                                <div asp-validation-summary="All" class="text-danger pb-0"></div>
                             </div>
                         </div>
                     }
                 </div>
                 <div class="modal-footer">
-                    <input id="submitCaptcha" type="submit" class="btn btn-primary" value="@SharedResource.Submit" disabled />
+                    <input id="submitCaptcha" type="submit" class="btn btn-primary" value="@SharedResource.Submit" asp-disabled="@Model.CheckVM.MustCheckCaptcha" />
                 </div>
             </div>
         </div>

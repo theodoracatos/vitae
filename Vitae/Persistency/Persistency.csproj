@@ -110,6 +110,10 @@
     <Compile Remove="Migrations\20200511181024_v.1.0.0.Designer.cs" />
     <Compile Remove="Migrations\20200512202454_v.1.0.0.cs" />
     <Compile Remove="Migrations\20200512202454_v.1.0.0.Designer.cs" />
+    <Compile Remove="Migrations\20200514125731_v.1.0.0.cs" />
+    <Compile Remove="Migrations\20200514125731_v.1.0.0.Designer.cs" />
+    <Compile Remove="Migrations\20200515224430_v.1.0.0.cs" />
+    <Compile Remove="Migrations\20200515224430_v.1.0.0.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

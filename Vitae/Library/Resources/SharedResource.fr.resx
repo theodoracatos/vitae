@@ -321,6 +321,9 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirmer le mot de passe</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contactez</value>
+  </data>
   <data name="CookiePolicy" xml:space="preserve">
     <value>Politique en matière de cookies</value>
   </data>
@@ -401,6 +404,12 @@
   </data>
   <data name="DashboardOverview" xml:space="preserve">
     <value>Le tableau de bord vous donne un bon aperçu des CV publiés. Vous pouvez saisir votre CV dans quatre langues au maximum.</value>
+  </data>
+  <data name="DataCollection" xml:space="preserve">
+    <value>Collecte de données</value>
+  </data>
+  <data name="DataCollectionDesc" xml:space="preserve">
+    <value>Lorsque vous vous inscrivez à myVitae, vous nous fournissez volontairement des informations sensibles. Il s'agit notamment de votre nom, de votre sexe, de votre adresse électronique, de votre numéro de téléphone, de la photo de votre profil, de votre adresse, de votre situation familiale et d'autres informations sensibles figurant sur votre CV. Ces données ne sont pas transmises à des tiers et sont utilisées exclusivement pour l'application myVitae. En outre, les données suivantes seront collectées sans votre intervention et stockées jusqu'à leur suppression automatique : l'adresse IP de l'ordinateur demandeur, ainsi que l'identifiant de l'appareil ou l'identifiant individuel de l'appareil et le type d'appareil, la description du type de navigateur internet utilisé et, le cas échéant, le système d'exploitation de votre terminal et le nom de votre fournisseur d'accès. Notre intérêt légitime, conformément à l'ODRSG, pour la collecte de données se fonde sur les objectifs suivants : Garantir une utilisation confortable du site web, évaluer la sécurité et la stabilité du système ainsi que son utilisation à des fins administratives ultérieures. En aucun cas nous n'utilisons les données collectées dans le but de tirer des conclusions à votre sujet. Sur demande, nous vous informerons volontiers si et quelles données clairement personnelles vous concernant sont stockées (GDPR).</value>
   </data>
   <data name="DataProtection" xml:space="preserve">
     <value>Protection des données</value>
@@ -567,6 +576,12 @@
   <data name="GoogleAnalyticsText2" xml:space="preserve">
     <value>Vous pouvez refuser l'utilisation de cookies en sélectionnant les paramètres appropriés de votre navigateur, mais veuillez noter que si vous le faites, vous risquez de ne pas pouvoir utiliser toutes les fonctionnalités de ce site web.  Vous pouvez également empêcher la collecte des données générées par le cookie et liées à votre utilisation du site web (y compris votre adresse IP) par Google et le traitement de ces données par Google en téléchargeant et en installant le plugin du navigateur disponible sur le lien suivant. Le lien actuel est :</value>
   </data>
+  <data name="GoogleCaptcha" xml:space="preserve">
+    <value>Google Captcha</value>
+  </data>
+  <data name="GoogleCaptchaDesc" xml:space="preserve">
+    <value>En utilisant le Site, vous consentez à ce que nous utilisions Google reCAPTCHA. Google tronquera votre adresse IP dans les États membres de l'Union européenne ou dans d'autres États parties à l'accord sur l'Espace économique européen et votre adresse IP sera ainsi rendue anonyme. Ce n'est que dans des circonstances exceptionnelles qu'une adresse IP complète est transmise à un serveur de Google aux États-Unis et y est tronquée. L'utilisation du reCAPTCHA est soumise aux règles de confidentialité et aux conditions d'utilisation de Google.</value>
+  </data>
   <data name="Grade" xml:space="preserve">
     <value>Grade</value>
   </data>
@@ -590,6 +605,9 @@
   </data>
   <data name="Import" xml:space="preserve">
     <value>Importer</value>
+  </data>
+  <data name="Imprint" xml:space="preserve">
+    <value>Informations légales</value>
   </data>
   <data name="Industries" xml:space="preserve">
     <value>Industries</value>
@@ -1009,13 +1027,22 @@
     <value>Protégez vos publications</value>
   </data>
   <data name="SavePublicationsDescription" xml:space="preserve">
-    <value>Votre myVitae-CV est protégé par un lien unique. En outre, attribuez un mot de passe et anonymisez les informations sensibles si nécessaire.</value>
+    <value>Votre myVitae-CV est protégé par un lien unique et un captcha. En outre, vous devez attribuer un mot de passe et anonymiser les informations sensibles si nécessaire.</value>
   </data>
   <data name="SchoolName" xml:space="preserve">
     <value>Établissement d'enseignement</value>
   </data>
+  <data name="Secure" xml:space="preserve">
+    <value>Sécurisé</value>
+  </data>
+  <data name="SecureDescription" xml:space="preserve">
+    <value>Sécurisez également votre myVitae avec un captcha (blocage des robots)</value>
+  </data>
   <data name="SecurityCheck" xml:space="preserve">
     <value>Contrôle de sécurité</value>
+  </data>
+  <data name="SecurityCheckDesc" xml:space="preserve">
+    <value>Avant de passer au CV, veuillez remplir le captcha ci-dessous.</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Sélectionnez</value>
@@ -1092,8 +1119,14 @@
   <data name="State" xml:space="preserve">
     <value>État</value>
   </data>
+  <data name="Status403" xml:space="preserve">
+    <value>Votre accès à cette page vous a été refusé.</value>
+  </data>
   <data name="Status404" xml:space="preserve">
     <value>La page demandée n'a pas été trouvée</value>
+  </data>
+  <data name="Status500" xml:space="preserve">
+    <value>Une erreur interne s'est produite. Veuillez envoyer un e-mail à "admin@vitae.ch" si cette erreur persiste.</value>
   </data>
   <data name="Street" xml:space="preserve">
     <value>Rue</value>

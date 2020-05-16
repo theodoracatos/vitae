@@ -36,7 +36,7 @@
     <!-- #endregion -->
     <partial name="_Scripts" />
 
-    @if (Model.CheckVM.Challenge)
+    @if (Model.CheckVM.Challenge && Model.CheckVM.MustCheckCaptcha)
     {
         <script src="@Globals.GOOGLE_CAPTCHA_API" async defer></script>
     }

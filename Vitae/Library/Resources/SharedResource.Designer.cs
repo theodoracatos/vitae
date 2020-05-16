@@ -673,6 +673,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        public static string Contact {
+            get {
+                return ResourceManager.GetString("Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cookie policy.
         /// </summary>
         public static string CookiePolicy {
@@ -912,6 +921,24 @@ namespace Library.Resources {
         public static string DashboardOverview {
             get {
                 return ResourceManager.GetString("DashboardOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data collection.
+        /// </summary>
+        public static string DataCollection {
+            get {
+                return ResourceManager.GetString("DataCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you sign up for myVitae, you give us sensitive information voluntarily. This includes your name, gender, email address, phone number, profile photo, address, family status and other sensitive resume information. This data is not passed on to third parties and is used exclusively for the myVitae application. Additionally, the following data will be collected without your intervention and stored until automated deletion: IP address of the requesting computer, as well as device ID or individual device ide [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DataCollectionDesc {
+            get {
+                return ResourceManager.GetString("DataCollectionDesc", resourceCulture);
             }
         }
         
@@ -1411,6 +1438,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Google Captcha.
+        /// </summary>
+        public static string GoogleCaptcha {
+            get {
+                return ResourceManager.GetString("GoogleCaptcha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By using the Site, you consent to our use of Google reCAPTCHA. Google will truncate your IP address within member states of the European Union or in other states which are party to the agreement on the European Economic Area and your IP address, is therefore anonymized. Only in exceptional circumstances is a full IP address transmitted to a Google server in the United States and truncated there. The use of reCAPTCHA is subject to Google&apos;s Privacy Policy and Terms of Service..
+        /// </summary>
+        public static string GoogleCaptchaDesc {
+            get {
+                return ResourceManager.GetString("GoogleCaptchaDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grade.
         /// </summary>
         public static string Grade {
@@ -1479,6 +1524,15 @@ namespace Library.Resources {
         public static string Import {
             get {
                 return ResourceManager.GetString("Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imprint.
+        /// </summary>
+        public static string Imprint {
+            get {
+                return ResourceManager.GetString("Imprint", resourceCulture);
             }
         }
         
@@ -2293,7 +2347,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This resume is password protected. Please enter the password to open the view..
+        ///   Looks up a localized string similar to This resume is also password protected. Please enter the password to open the view..
         /// </summary>
         public static string PasswordProtectionDesc {
             get {
@@ -2734,7 +2788,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your myVitae-CV is protected by a unique link. Additionally, assign a password and anonymise sensitive information if necessary..
+        ///   Looks up a localized string similar to Your myVitae-CV is protected by a unique link and a captcha. Additionally, assign a password and anonymise sensitive information if necessary..
         /// </summary>
         public static string SavePublicationsDescription {
             get {
@@ -2752,6 +2806,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Secure.
+        /// </summary>
+        public static string Secure {
+            get {
+                return ResourceManager.GetString("Secure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additionally secure your myVitae with a captcha (blocking bots).
+        /// </summary>
+        public static string SecureDescription {
+            get {
+                return ResourceManager.GetString("SecureDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Security check.
         /// </summary>
         public static string SecurityCheck {
@@ -2761,7 +2833,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In order to open this page you have to proof that you are human..
+        ///   Looks up a localized string similar to Before you proceed to the resume, please complete the captcha below..
         /// </summary>
         public static string SecurityCheckDesc {
             get {
@@ -3004,7 +3076,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The requested page could not be found.
+        ///   Looks up a localized string similar to The requested page could not be found..
         /// </summary>
         public static string Status404 {
             get {

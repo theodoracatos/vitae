@@ -108,11 +108,31 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label class="control-label" asp-for="@Model.Publications[i].Notes"></label>
-                                <textarea rows="1" asp-for="@Model.Publications[i].Notes" class="form-control"></textarea>
-                                <small class="muted mt-1 float-left">@SharedResource.NotesDescription</small>
-                                <span asp-validation-for="@Model.Publications[i].Notes" class="text-danger"></span>
+                                <label class="control-label" asp-for="@Model.Publications[i].Secure"></label>
+                                <div class="d-flex">
+                                    <div class="form-control w-auto flex-fill">
+                                        <div class="pretty p-switch p-slim mr-0">
+                                            <input type="checkbox" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Secure)" value="true" checked="@(Model.Publications[i].Secure ? "checked" : null)" />
+                                            <div class="state">
+                                                <label class="d-none d-xs-block d-sm-block" asp-for="@Model.Publications[i].Secure"></label><label class="d-sm-none"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <small class="muted mt-1 float-left">@SharedResource.SecureDescription</small>
+                                </div>
                             </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label class="control-label" asp-for="@Model.Publications[i].Notes"></label>
+                                    <textarea rows="1" asp-for="@Model.Publications[i].Notes" class="form-control"></textarea>
+                                    <small class="muted mt-1 float-left">@SharedResource.NotesDescription</small>
+                                    <span asp-validation-for="@Model.Publications[i].Notes" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group col">
                                     <label class="control-label" asp-for="@Model.Publications[i].Link"></label>
                                     @if (string.IsNullOrEmpty(Model.Publications[i].Link))

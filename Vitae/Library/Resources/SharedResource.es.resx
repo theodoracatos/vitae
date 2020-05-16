@@ -321,6 +321,9 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirmar la contraseña</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contacte con</value>
+  </data>
   <data name="CookiePolicy" xml:space="preserve">
     <value>Política de galletas</value>
   </data>
@@ -401,6 +404,12 @@
   </data>
   <data name="DashboardOverview" xml:space="preserve">
     <value>El tablero de mandos te da una buena visión general de tus currículums publicados. Puedes introducir tu currículum en hasta cuatro idiomas.</value>
+  </data>
+  <data name="DataCollection" xml:space="preserve">
+    <value>Recolección de datos</value>
+  </data>
+  <data name="DataCollectionDesc" xml:space="preserve">
+    <value>Cuando te inscribes en myVitae, nos das información sensible voluntariamente. Esto incluye su nombre, sexo, dirección de correo electrónico, número de teléfono, foto de perfil, dirección, estado familiar y otra información confidencial del currículum. Estos datos no se transmiten a terceros y se utilizan exclusivamente para la aplicación de myVitae. Además, los siguientes datos serán recopilados sin su intervención y almacenados hasta su eliminación automática: Dirección IP de la computadora solicitante, así como el identificador del dispositivo o el identificador del dispositivo individual y el tipo de dispositivo, descripción del tipo de navegador de Internet utilizado y, si procede, el sistema operativo de su terminal y el nombre de su proveedor de acceso. Nuestro interés legítimo de acuerdo con la DSGVO para la recopilación de datos se basa en los siguientes propósitos: Garantizar un uso cómodo del sitio web, la evaluación de la seguridad y estabilidad del sistema, así como el uso para fines administrativos adicionales. n ningún caso utilizamos los datos recogidos con el fin de sacar conclusiones sobre usted. Si lo desea, le informaremos con mucho gusto si se almacenan datos claramente personales sobre usted (GDPR) y cuáles.</value>
   </data>
   <data name="DataProtection" xml:space="preserve">
     <value>Protección de datos</value>
@@ -567,6 +576,12 @@
   <data name="GoogleAnalyticsText2" xml:space="preserve">
     <value>Usted puede rechazar el uso de cookies seleccionando la configuración apropiada de su navegador, sin embargo, tenga en cuenta que si lo hace es posible que no pueda utilizar toda la funcionalidad de este sitio web.  También puede impedir la recopilación de datos generados por la cookie y relacionados con su uso del sitio web (incluyendo su dirección IP) a Google y el procesamiento de estos datos por parte de Google, descargando e instalando el plugin del navegador disponible en el siguiente enlace. El enlace actual es:</value>
   </data>
+  <data name="GoogleCaptcha" xml:space="preserve">
+    <value>Google Captcha</value>
+  </data>
+  <data name="GoogleCaptchaDesc" xml:space="preserve">
+    <value>Al usar el sitio, usted acepta que usemos Google reCAPTCHA. Google truncará su dirección IP dentro de los estados miembros de la Unión Europea o en otros estados que forman parte del acuerdo del Área Económica Europea y, por lo tanto, su dirección IP queda anonimizada. Sólo en circunstancias excepcionales se transmite una dirección IP completa a un servidor de Google en los Estados Unidos y se trunca allí. El uso de reCAPTCHA está sujeto a la Política de privacidad y a las Condiciones del servicio de Google.</value>
+  </data>
   <data name="Grade" xml:space="preserve">
     <value>Grado</value>
   </data>
@@ -590,6 +605,9 @@
   </data>
   <data name="Import" xml:space="preserve">
     <value>Importación</value>
+  </data>
+  <data name="Imprint" xml:space="preserve">
+    <value>Imprimir</value>
   </data>
   <data name="Industries" xml:space="preserve">
     <value>Industrias</value>
@@ -1009,13 +1027,22 @@
     <value>Proteja sus publicaciones</value>
   </data>
   <data name="SavePublicationsDescription" xml:space="preserve">
-    <value>Tu myVitae-CV está protegido por un enlace único. Además, asigna una contraseña y anonimiza la información sensible si es necesario.</value>
+    <value>Su myVitae-CV está protegido por un enlace único y un captcha. Además, asigna una contraseña y anonimiza la información sensible si es necesario.</value>
   </data>
   <data name="SchoolName" xml:space="preserve">
     <value>Institución educativa</value>
   </data>
+  <data name="Secure" xml:space="preserve">
+    <value>Asegure</value>
+  </data>
+  <data name="SecureDescription" xml:space="preserve">
+    <value>Además, asegure su myVitae con un captcha (bots bloqueadores)</value>
+  </data>
   <data name="SecurityCheck" xml:space="preserve">
     <value>Comprobación de seguridad</value>
+  </data>
+  <data name="SecurityCheckDesc" xml:space="preserve">
+    <value>Antes de proceder a la reanudación, por favor complete el captcha de abajo.</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Seleccione</value>
@@ -1092,8 +1119,14 @@
   <data name="State" xml:space="preserve">
     <value>Estado</value>
   </data>
+  <data name="Status403" xml:space="preserve">
+    <value>Su acceso a esta página ha sido denegado.</value>
+  </data>
   <data name="Status404" xml:space="preserve">
     <value>No se pudo encontrar la página solicitada</value>
+  </data>
+  <data name="Status500" xml:space="preserve">
+    <value>Ha ocurrido un error interno. Por favor, envíe un e-mail a "admin@vitae.ch" si este error persiste.</value>
   </data>
   <data name="Street" xml:space="preserve">
     <value>Calle</value>

@@ -12,6 +12,8 @@ namespace Model.Poco
 
         public bool Anonymize { get; set; }
 
+        public bool Secure { get; set; }
+
         [MaxLength(250)]
         public string Password { get; set; }
 

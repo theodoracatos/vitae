@@ -1,4 +1,5 @@
-﻿BEGIN TRY
+﻿
+BEGIN TRY
     BEGIN TRANSACTION
 
 DECLARE @ID uniqueidentifier = 'a7e161f0-0ff5-45f8-851f-9b041f565abb'
@@ -277,9 +278,9 @@ VALUES(NEWID(), 7, @CurrLangId_en, GETDATE(),' IFA Weiterbildung AG', 'https://w
 
 /* PUBLICATION */
 INSERT INTO [Publication]
-VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), GETDATE(), NEWID(), 0, null, @CurriculumID, '')
+VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), GETDATE(), NEWID(), 0, 1, null, @CurriculumID, '')
 INSERT INTO [Publication]
-VALUES(NEWID(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), GETDATE(), NEWID(), 0, null, @CurriculumID, '')
+VALUES(NEWID(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), GETDATE(), NEWID(), 0, 1, null, @CurriculumID, '')
 
 --------------------------------
 

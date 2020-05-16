@@ -84,6 +84,7 @@ namespace Vitae.Areas.Manage.Pages.Publications
                 {
                     Order = p.Order,
                     Anonymize = p.Anonymize,
+                    Secure = p.Secure,
                     Curriculum = curriculum,
                     Password = p.EnablePassword ? AesHandler.Encrypt(p.Password, p.PublicationIdentifier) : null,
                     PublicationIdentifier = Guid.Parse(p.PublicationIdentifier),

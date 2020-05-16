@@ -321,6 +321,9 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Passwort bestätigen</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
   <data name="CookiePolicy" xml:space="preserve">
     <value>Cookie-Richtlinie</value>
   </data>
@@ -401,6 +404,12 @@
   </data>
   <data name="DashboardOverview" xml:space="preserve">
     <value>Das Dashboard gibt Ihnen einen guten Überblick über Ihre veröffentlichten Lebensläufe. Sie können Ihren Lebenslauf in bis zu vier Sprachen eingeben.</value>
+  </data>
+  <data name="DataCollection" xml:space="preserve">
+    <value>Datenerfassung</value>
+  </data>
+  <data name="DataCollectionDesc" xml:space="preserve">
+    <value>Wenn Sie sich für myVitae anmelden, geben Sie uns freiwillig sensible Informationen. Dazu gehören Ihr Name, Ihr Geschlecht, Ihre E-Mail-Adresse, Ihre Telefonnummer, Ihr Profilfoto, Ihre Adresse, Ihr Familienstand und andere sensible Lebenslaufdaten. Diese Daten werden nicht an Dritte weitergegeben und ausschliesslich für die myVitae-Bewerbung verwendet. Zusätzlich werden die folgenden Daten ohne Ihr Zutun erhoben und bis zur automatisierten Löschung gespeichert: IP-Adresse des anfragenden Rechners sowie Geräte-ID bzw. individuelle Gerätekennung und Gerätetyp, Beschreibung des Typs des verwendeten Internet-Browsers und ggf. des Betriebssystems Ihres Endgerätes sowie der Name Ihres Zugangsproviders. Unser berechtigtes Interesse im Sinne des DSGVO an der Datenerhebung beruht auf den folgenden Zwecken: Die Sicherstellung einer komfortablen Nutzung der Website, die Bewertung der Systemsicherheit und -stabilität sowie die Nutzung für weitere administrative Zwecke. n Keinesfalls verwenden wir die erhobenen Daten, um Rückschlüsse auf Sie zu ziehen. Auf Anfrage teilen wir Ihnen gerne mit, ob und welche eindeutig personenbezogenen Daten über Sie gespeichert sind (GDPR).</value>
   </data>
   <data name="DataProtection" xml:space="preserve">
     <value>Datenschutz</value>
@@ -567,6 +576,12 @@
   <data name="GoogleAnalyticsText2" xml:space="preserve">
     <value>Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich werden nutzen können.  Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren. Der aktuelle Link ist:</value>
   </data>
+  <data name="GoogleCaptcha" xml:space="preserve">
+    <value>Google Captcha</value>
+  </data>
+  <data name="GoogleCaptchaDesc" xml:space="preserve">
+    <value>Durch die Nutzung der Website erklären Sie sich mit der Verwendung von Google reCAPTCHA durch uns einverstanden. Google wird Ihre IP-Adresse innerhalb der Mitgliedsstaaten der Europäischen Union oder in anderen Staaten, die dem Abkommen über den Europäischen Wirtschaftsraum angehören, kürzen und Ihre IP-Adresse wird somit anonymisiert. Nur in Ausnahmefällen wird eine vollständige IP-Adresse an einen Google-Server in den Vereinigten Staaten übermittelt und dort abgeschnitten. Die Verwendung von reCAPTCHA unterliegt den Datenschutzbestimmungen und Nutzungsbedingungen von Google.</value>
+  </data>
   <data name="Grade" xml:space="preserve">
     <value>Note</value>
   </data>
@@ -590,6 +605,9 @@
   </data>
   <data name="Import" xml:space="preserve">
     <value>Importieren</value>
+  </data>
+  <data name="Imprint" xml:space="preserve">
+    <value>Impressum</value>
   </data>
   <data name="Industries" xml:space="preserve">
     <value>Industrien</value>
@@ -862,7 +880,7 @@
     <value>Passwortschutz</value>
   </data>
   <data name="PasswordProtectionDesc" xml:space="preserve">
-    <value>Dieser Lebenslauf ist Passwortgeschützt. Bitte geben Sie das Kennwort ein um die Ansicht zu öffnen.</value>
+    <value>Dieser Lebenslauf ist zusätzlich mit einem Passwort geschützt. Bitte geben Sie das Kennwort ein um die Ansicht zu öffnen.</value>
   </data>
   <data name="PasswordRequiresDigit" xml:space="preserve">
     <value>Passwörter müssen mindestens eine Ziffer ('0'-'9') haben.</value>
@@ -1009,13 +1027,22 @@
     <value>Schützen Sie Ihre Veröffentlichungen</value>
   </data>
   <data name="SavePublicationsDescription" xml:space="preserve">
-    <value>Ihr myVitae-CV ist durch einen einzigartigen Link geschützt. Vergeben Sie zusätzlich ein Passwort und anonymisieren Sie sensible Informationen, falls nötig.</value>
+    <value>Ihr myVitae-CV ist durch einen einzigartigen Link und ein captcha geschützt. Vergeben Sie zusätzlich ein Passwort und anonymisieren Sie sensible Informationen, falls erforderlich.</value>
   </data>
   <data name="SchoolName" xml:space="preserve">
     <value>Ausbildungsstätte</value>
   </data>
+  <data name="Secure" xml:space="preserve">
+    <value>Sichern</value>
+  </data>
+  <data name="SecureDescription" xml:space="preserve">
+    <value>Sichern Sie Ihr myVitae zusätzlich mit einem Captcha (blockiert Bots)</value>
+  </data>
+  <data name="SecurityCheck" xml:space="preserve">
+    <value>Sicherheitsabfrage</value>
+  </data>
   <data name="SecurityCheckDesc" xml:space="preserve">
-    <value>Um diese Seite zu öffnen, müssen Sie beweisen, dass Sie ein Mensch sind.</value>
+    <value>Bevor Sie mit dem Lebenslauf fortfahren, füllen Sie bitte das unten stehende Captcha aus.</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Auswählen</value>
@@ -1092,8 +1119,14 @@
   <data name="State" xml:space="preserve">
     <value>Kanton / Bundesland</value>
   </data>
+  <data name="Status403" xml:space="preserve">
+    <value>Ihr Zugang zu dieser Seite wurde Ihnen verweigert.</value>
+  </data>
   <data name="Status404" xml:space="preserve">
     <value>Die gesuchte Seite konnte nicht gefunden werden</value>
+  </data>
+  <data name="Status500" xml:space="preserve">
+    <value>Es ist ein interner Fehler aufgetreten. Bitte senden Sie eine E-Mail an "admin@vitae.ch", wenn dieser Fehler weiterhin besteht.</value>
   </data>
   <data name="Street" xml:space="preserve">
     <value>Strasse</value>

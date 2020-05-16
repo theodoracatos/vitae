@@ -9,6 +9,17 @@
     }
 }
 
+hr.thin {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.05));
+    margin-bottom: 24px;
+}
+
+.preline {
+    white-space: pre-line;
+}
+
 /* Scrollbar */
 body::-webkit-scrollbar, .sb-sidenav-menu::-webkit-scrollbar {
     width: 0.75em;

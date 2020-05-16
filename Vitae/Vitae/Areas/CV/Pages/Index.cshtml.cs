@@ -98,10 +98,11 @@ namespace Vitae.Areas.CV.Pages
 
         public async Task<IActionResult> OnPostAsync(Guid id, string culture)
         {
-            var success = await CheckCaptcha();
             CheckVM = LoadCheckModel(id, culture);
+            var isCaptchaOk = CheckVM.MustCheckCaptcha ? await CheckCaptcha() : true;
+            var isPasswordOk = CheckVM.MustCheckPassword ? ModelState.IsValid : true;
 
-            if (ModelState.IsValid && success)
+            if (isCaptchaOk && isPasswordOk)
             {
                 if (CheckVM.HasValidCurriculumID)
                 {
@@ -253,7 +254,8 @@ namespace Vitae.Areas.CV.Pages
                     checkVM.Anonymize = publication.Anonymize;
                     checkVM.LanguageCode = publication.CurriculumLanguage.LanguageCode;
                     checkVM.IsPreview = curriculumID != Guid.Empty;
-                    checkVM.Challenge = true;
+                    checkVM.MustCheckCaptcha = publication.Secure;
+                    checkVM.Challenge = checkVM.MustCheckCaptcha || checkVM.MustCheckPassword;
                 }
             }
             else if(curriculumID != Guid.Empty)

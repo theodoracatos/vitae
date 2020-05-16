@@ -7,9 +7,15 @@
                 <h1><i class="fas fa-address-book fa-fw"></i>@SharedResource.PersonalDetails</h1>
                 <p>@SharedResource.PersonalDetailsDescription</p>
             </div>
+            <div id="languageSelect" class="float-right mt-2 mt-xs-3 mt-sm-3 mt-md-3 mt-xl-3">
+                <label class="control-label float-right mr-1" for="lang">@SharedResource.CVLanguage</label>
+                <select class="form-control dirty-ignore cancel" disabled>
+                    <option selected="selected" disabled></option>
+                </select>
+            </div>
         </div>
         <div class="card-body">
-            <div class="grouping pb-0">
+            <div class="">
                 <div class="form-row">
                     <div class="col">
                         <label class="control-label" asp-for="@Model.PersonalDetail.Gender"></label>

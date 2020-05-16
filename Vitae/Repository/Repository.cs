@@ -683,6 +683,7 @@ namespace Library.Repository
                 {
                     Order = p.Order,
                     Anonymize = p.Anonymize,
+                    Secure = p.Secure,
                     EnablePassword = !string.IsNullOrEmpty(p.Password),
                     LanguageCode = p.CurriculumLanguage.LanguageCode,
                     Password = string.IsNullOrEmpty(p.Password) ? null : AesHandler.Decrypt(p.Password, p.PublicationIdentifier.ToString()),
