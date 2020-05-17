@@ -193,13 +193,8 @@ namespace Vitae.Areas.Manage.Pages.References
 
         protected override void FillSelectionViewModel()
         {
-            List<Task> tasks = new List<Task>
-            {
-                Task.Factory.StartNew(() => Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name)),
-                Task.Factory.StartNew(() => CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name))
-            };
-
-            Task.WaitAll(tasks.ToArray());
+            Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
         }
 
         private async Task LoadReferences(string languageCode, Curriculum curr = null)

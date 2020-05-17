@@ -203,16 +203,11 @@ namespace Vitae.Areas.Manage.Pages.Experiences
 
         protected override void FillSelectionViewModel()
         {
-            List<Task> tasks = new List<Task>
-            {
-                Task.Factory.StartNew(() => Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name)),
-                Task.Factory.StartNew(() => Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name)),
-                Task.Factory.StartNew(() => CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name)),
-                Task.Factory.StartNew(() => HierarchyLevels = repository.GetHierarchyLevels(requestCulture.RequestCulture.UICulture.Name)),
-                Task.Factory.StartNew(() => Industries = repository.GetIndustries(requestCulture.RequestCulture.UICulture.Name)),
-            };
-
-            Task.WaitAll(tasks.ToArray());
+            Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
+            Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
+            HierarchyLevels = repository.GetHierarchyLevels(requestCulture.RequestCulture.UICulture.Name);
+            Industries = repository.GetIndustries(requestCulture.RequestCulture.UICulture.Name);
         }
 
         private async Task LoadExperiences(string languageCode, Curriculum curr = null)

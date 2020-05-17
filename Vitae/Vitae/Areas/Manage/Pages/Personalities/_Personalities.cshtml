@@ -177,14 +177,14 @@
                 @for (int i = 0; i < Model.PersonalDetail.Children?.Count; i++)
                 {
                     <div class="form-row">
-                        <div class="form-group col-md-8 mb-0">
+                        <div class="form-group col-md-6 mb-0">
                             <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.PersonalDetail.Children[i].Firstname"></label>
                             <div class="form-group">
                                 <input class="form-control" type="text" asp-for="@Model.PersonalDetail.Children[i].Firstname" />
                                 <span asp-validation-for="@Model.PersonalDetail.Children[i].Firstname" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label class="control-label" asp-for="@Model.PersonalDetail.Birthday_Day"></label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
