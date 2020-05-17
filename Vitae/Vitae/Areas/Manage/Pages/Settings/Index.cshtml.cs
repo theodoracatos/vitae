@@ -210,9 +210,9 @@ namespace Vitae.Areas.Manage.Pages.Settings
 
             // Send mail
             var email = await userManager.GetEmailAsync(user);
-            var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.DeleteAccount, email, new Tuple<string, string, string>(SharedResource.MailBye3, Globals.APPLICATION_URL, SharedResource.ClickingHere), false, SharedResource.Goodbye);
+            var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.AccountDeleted, email, new Tuple<string, string, string>(SharedResource.MailBye3, Globals.APPLICATION_URL, SharedResource.ClickingHere), false, SharedResource.Goodbye);
             var logoStream = CodeHelper.GetLogoStream(Globals.LOGO);
-            var message = new Message(new string[] { email }, SharedResource.DeleteAccount, bodyText, new FormFileCollection() { new FormFile(logoStream, 0, logoStream.Length, "image/png", "logo") });
+            var message = new Message(new string[] { email }, SharedResource.AccountDeleted, bodyText, new FormFileCollection() { new FormFile(logoStream, 0, logoStream.Length, "image/png", "logo") });
             await emailSender.SendEmailAsync(message);
 
             await signInManager.SignOutAsync();

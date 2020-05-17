@@ -191,8 +191,13 @@ namespace Vitae.Areas.Manage.Pages.Certificates
 
         protected override void FillSelectionViewModel()
         {
-            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
-            Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
+            List<Task> tasks = new List<Task>
+            {
+                Task.Factory.StartNew(() => Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name)),
+                Task.Factory.StartNew(() => CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name)),
+            };
+
+            Task.WaitAll(tasks.ToArray());
         }
 
         private async Task LoadCertificates(string languageCode, Curriculum curr = null)

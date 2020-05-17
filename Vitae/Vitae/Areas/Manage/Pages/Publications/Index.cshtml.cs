@@ -202,8 +202,13 @@ namespace Vitae.Areas.Manage.Pages.Publications
 
         protected override void FillSelectionViewModel()
         {
-            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
-            Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
+            List<Task> tasks = new List<Task>
+            {
+                Task.Factory.StartNew(() => Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name)),
+                Task.Factory.StartNew(() => CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name)),
+            };
+
+            Task.WaitAll(tasks.ToArray());
         }
 
         #endregion
