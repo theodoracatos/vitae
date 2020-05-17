@@ -186,19 +186,24 @@ namespace Vitae.Areas.CV.Pages
         {
             var curriculum = await repository.GetCurriculumAsync(CheckVM.CurriculumID.Value);
 
-            PersonalDetail = repository.GetPersonalDetail(curriculum);
-            Abouts = repository.GetAbouts(curriculum, CheckVM.LanguageCode);
-            SocialLinks = repository.GetSocialLinks(curriculum, CheckVM.LanguageCode);
-            Educations = repository.GetEducations(curriculum, CheckVM.LanguageCode);
-            Experiences = repository.GetExperiences(curriculum, CheckVM.LanguageCode);
-            Courses = repository.GetCourses(curriculum, CheckVM.LanguageCode);
-            Abroads = repository.GetAbroads(curriculum, CheckVM.LanguageCode);
-            LanguageSkills = repository.GetLanguageSkills(curriculum, CheckVM.LanguageCode);
-            Interests = repository.GetInterests(curriculum, CheckVM.LanguageCode);
-            Awards = repository.GetAwards(curriculum, CheckVM.LanguageCode);
-            Skills = repository.GetSkills(curriculum, CheckVM.LanguageCode);
-            Certificates = repository.GetCertificates(curriculum, CheckVM.LanguageCode);
-            References = repository.GetReferences(curriculum, CheckVM.LanguageCode);
+            List<Task> tasks = new List<Task>
+            {
+                Task.Factory.StartNew(() => PersonalDetail = repository.GetPersonalDetail(curriculum)),
+                Task.Factory.StartNew(() => Abouts = repository.GetAbouts(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => SocialLinks = repository.GetSocialLinks(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Educations = repository.GetEducations(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Experiences = repository.GetExperiences(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Courses = repository.GetCourses(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Abroads = repository.GetAbroads(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => LanguageSkills = repository.GetLanguageSkills(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Interests = repository.GetInterests(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Awards = repository.GetAwards(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Skills = repository.GetSkills(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Certificates = repository.GetCertificates(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => References = repository.GetReferences(curriculum, CheckVM.LanguageCode))
+            };
+
+            Task.WaitAll(tasks.ToArray());
 
             if (CheckVM.Anonymize)
             {
@@ -206,7 +211,7 @@ namespace Vitae.Areas.CV.Pages
             }
 
             // Log
-            if (!CheckVM.IsPreview)
+            if (!CheckVM.IsPreview && CheckVM.PublicationID.Value.ToString() != Globals.DEMO_PUBLICATIONID)
             {
                 await repository.LogAsync(curriculum.CurriculumID, CheckVM.PublicationID.Value, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
             }

@@ -36,7 +36,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
 
         public const string PAGE_SETTINGS = "_Settings";
 
-        public int MaxCurriculumLanguages { get; } = 4;
+        public int MaxCurriculumLanguages { get; } = 5;
 
         [BindProperty]
         public SettingVM Setting { get; set; }
@@ -61,8 +61,10 @@ namespace Vitae.Areas.Manage.Pages.Settings
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync(curriculumID);
                 var curriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
+                var curriculum = await repository.GetCurriculumAsync<Publication>(curriculumID);
+
+                var numberOfItems = 
 
                 Setting = new SettingVM()
                 {
@@ -72,8 +74,8 @@ namespace Vitae.Areas.Manage.Pages.Settings
                         {
                             Copy = false,
                             FormerLanguageCode = cl.LanguageCode,
-                            NrOfItems = (repository.CountItemsFromCurriculumLanguageAsync(curriculumID, cl.LanguageCode).Result).Sum(i => i.Value),
-                            HasPublication = repository.GetPublications(curriculum, this.BaseUrl).Any(p => p.LanguageCode == cl.LanguageCode)
+                            NrOfItems = (repository.CountItemsFromCurriculumAsync(curriculumID, cl.LanguageCode).Result).Single().Value.Sum(i => i.Value),
+                                HasPublication = repository.GetPublications(curriculum, this.BaseUrl).Any(p => p.LanguageCode == cl.LanguageCode)
                         }).ToList()
                 };
 
@@ -162,7 +164,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
                     }
 
                     // Update View Model
-                    var nrOfItems = (await repository.CountItemsFromCurriculumLanguageAsync(curriculumID, newLanguage.LanguageCode)).Sum(i => i.Value);
+                    var nrOfItems = (await repository.CountItemsFromCurriculumAsync(curriculumID, newLanguage.LanguageCode)).Single().Value.Sum(i => i.Value);
                     Setting.SettingItems[i].Copy = false;
                     Setting.SettingItems[i].FormerLanguageCode = newLanguage.LanguageCode;
                     Setting.SettingItems[i].NrOfItems = nrOfItems;

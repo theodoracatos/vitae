@@ -73,7 +73,7 @@ namespace Vitae.Code.Mailing
             catch (Exception e)
             {
                 //log an error message or throw an exception or both.
-                throw e;
+                
             }
             finally
             {

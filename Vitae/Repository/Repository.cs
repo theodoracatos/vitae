@@ -1,6 +1,7 @@
 ﻿using Library.Constants;
 using Library.Helper;
 using Library.Resources;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -13,7 +14,6 @@ using Persistency.Data;
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -66,26 +66,49 @@ namespace Library.Repository
             return curriculum.CurriculumID;
         }
 
-        public async Task<Dictionary<string, int>> CountItemsFromCurriculumLanguageAsync(Guid curriculumID, string languageToCheck)
+        public async Task<Dictionary<string, Dictionary<string, int>>> CountItemsFromCurriculumAsync(Guid curriculumID, string languageToCheck = null)
         {
-            var categoryCount = new Dictionary<string, int>();
-            var curriculum = await GetCurriculumAsync(curriculumID);
+            var categoryCounts = new Dictionary<string, Dictionary<string, int>>();
 
-            categoryCount.Add(SharedResource.PersonalDetails, curriculum.PersonalDetails.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
-            categoryCount.Add(SharedResource.About, curriculum.Abouts.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
-            categoryCount.Add(SharedResource.Abroads, curriculum.Abroads.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
-            categoryCount.Add(SharedResource.Awards, curriculum.Awards.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
-            categoryCount.Add(SharedResource.Courses, curriculum.Courses.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
-            categoryCount.Add(SharedResource.Certificates, curriculum.Certificates.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
-            categoryCount.Add(SharedResource.Educations, curriculum.Educations.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
-            categoryCount.Add(SharedResource.Experiences, curriculum.Experiences.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
-            categoryCount.Add(SharedResource.Interests, curriculum.Interests.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
-            categoryCount.Add(SharedResource.Languages, curriculum.LanguageSkills.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
-            categoryCount.Add(SharedResource.Skills, curriculum.Skills.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
-            categoryCount.Add(SharedResource.SocialLinks, curriculum.SocialLinks.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
-            categoryCount.Add(SharedResource.References, curriculum.References.Count(a => languageToCheck == null || a.CurriculumLanguage.LanguageCode == languageToCheck));
+            var curriculumLanguages = vitaeContext.CurriculumLanguages.Where(c => c.CurriculumID == curriculumID).Include(c => c.Language).ToList();
 
-            return categoryCount;
+            var curriculumQuery = vitaeContext.Curriculums.Where(c => c.CurriculumID == curriculumID).Take(1);
+            await curriculumQuery.Include(c => c.Abroads).LoadAsync();
+            await curriculumQuery.Include(c => c.Awards).LoadAsync();
+            await curriculumQuery.Include(c => c.Courses).LoadAsync();
+            await curriculumQuery.Include(c => c.Certificates).LoadAsync();
+            await curriculumQuery.Include(c => c.Educations).LoadAsync();
+            await curriculumQuery.Include(c => c.Experiences).LoadAsync();
+            await curriculumQuery.Include(c => c.Interests).LoadAsync();
+            await curriculumQuery.Include(c => c.LanguageSkills).LoadAsync();
+            await curriculumQuery.Include(c => c.Skills).LoadAsync();
+            await curriculumQuery.Include(c => c.SocialLinks).LoadAsync();
+            await curriculumQuery.Include(c => c.References).LoadAsync();
+
+            var curriculum = curriculumQuery.Single();
+
+            foreach (var curriculumLanguage in curriculumLanguages.Where(c => string.IsNullOrEmpty(languageToCheck) || c.Language.LanguageCode == languageToCheck))
+            {
+                var categoryCount = new Dictionary<string, int>
+                {
+                    { SharedResource.Abroads, curriculum.Abroads.Count(a => a.CurriculumLanguage.LanguageCode == curriculumLanguage.Language.LanguageCode) },
+                    { SharedResource.Awards, curriculum.Awards.Count(a => a.CurriculumLanguage.LanguageCode == curriculumLanguage.Language.LanguageCode) },
+                    { SharedResource.Courses, curriculum.Courses.Count(a => a.CurriculumLanguage.LanguageCode == curriculumLanguage.Language.LanguageCode) },
+                    { SharedResource.Certificates, curriculum.Certificates.Count(a => a.CurriculumLanguage.LanguageCode == curriculumLanguage.Language.LanguageCode) },
+                    { SharedResource.Educations, curriculum.Educations.Count(a => a.CurriculumLanguage.LanguageCode == curriculumLanguage.Language.LanguageCode) },
+                    { SharedResource.Experiences, curriculum.Experiences.Count(a => a.CurriculumLanguage.LanguageCode == curriculumLanguage.Language.LanguageCode) },
+                    { SharedResource.Interests, curriculum.Interests.Count(a => a.CurriculumLanguage.LanguageCode == curriculumLanguage.Language.LanguageCode) },
+                    { SharedResource.Languages, curriculum.LanguageSkills.Count(a => a.CurriculumLanguage.LanguageCode == curriculumLanguage.Language.LanguageCode) },
+                    { SharedResource.Skills, curriculum.Skills.Count(a => a.CurriculumLanguage.LanguageCode == curriculumLanguage.Language.LanguageCode) },
+                    { SharedResource.SocialLinks, curriculum.SocialLinks.Count(a => a.CurriculumLanguage.LanguageCode == curriculumLanguage.Language.LanguageCode) },
+                    { SharedResource.References, curriculum.References.Count(a => a.CurriculumLanguage.LanguageCode == curriculumLanguage.Language.LanguageCode) }
+                };
+
+                // Add to list
+                categoryCounts.Add(curriculumLanguage.Language.LanguageCode, categoryCount);
+            }
+
+            return categoryCounts;
         }
 
         public async Task DeleteItemsFromCurriculumLanguageAsync(Guid curriculumID, string languageCodeToDelete)
@@ -701,14 +724,14 @@ namespace Library.Repository
             return !string.IsNullOrEmpty(countryCode) ? "+" + vitaeContext.Countries.Where(c => c.CountryCode == countryCode).Select(c => c.PhoneCode).Single().ToString() : string.Empty;
         }
 
-        public IList<LogVM> GetHits(Guid curriculumID, int? days = null, int hits = 10000)
+        public IEnumerable<LogVM> GetHits(Guid curriculumID, int? days = null, int hits = 10000)
         {
             var lastHits = vitaeContext.Logs
                 .Where(l => l.CurriculumID == curriculumID && l.LogArea == LogArea.Access)
                 .Where(l => !days.HasValue || l.Timestamp > DateTime.Now.Date.AddDays(-days.Value))
                 .OrderByDescending(l => l.Timestamp)
                 .Take(hits)
-                .GroupBy(l => new { l.Timestamp.Date, l.PublicationID } )
+                .GroupBy(l => new { l.Timestamp.Date, l.PublicationID })
                 .Select(l => new LogVM()
                 {
                     Hits = l.Count(),
@@ -719,7 +742,7 @@ namespace Library.Repository
             return lastHits;
         }
 
-        public IList<LogVM> GetLogins(Guid curriculumID, int? days = null)
+        public IEnumerable<LogVM> GetLogins(Guid curriculumID, int? days = null)
         {
             var lastHits = vitaeContext.Logs
                 .Where(l => l.CurriculumID == curriculumID && l.LogArea == LogArea.Login)

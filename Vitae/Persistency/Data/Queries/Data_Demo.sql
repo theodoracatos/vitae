@@ -2,17 +2,23 @@
 BEGIN TRY
     BEGIN TRANSACTION
 
-DECLARE @ID uniqueidentifier = 'a7e161f0-0ff5-45f8-851f-9b041f565abb'
+DECLARE @ID uniqueidentifier = 'dd54d9cd-2437-4e9e-9451-34fb67ebfcfb'
+
+DECLARE @PUBID_EN uniqueidentifier = 'f87f0d20-e0ee-48a1-97fc-917b524869f3'
+DECLARE @PUBID_DE uniqueidentifier = '3ddc167c-0cc0-4316-a891-3f91f0d361e7'
+DECLARE @PUBID_FR uniqueidentifier = '42ee1d28-e605-4d85-ad65-1eb4ee83e840'
+DECLARE @PUBID_IT uniqueidentifier = '80f2fbdf-42c6-45f2-b586-bd7c9afed02f'
+DECLARE @PUBID_ES uniqueidentifier = '9273d56e-29d3-49c8-adbc-5d4fd3e4b2f5'
 
 -- IdentityContext
 IF NOT EXISTS(SELECT 1 FROM [AspNetUsers] WHERE [Id] = @ID)
 BEGIN
 INSERT INTO [AspNetUsers] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount])
-     VALUES (@ID ,'theodoracatos@gmail.com' ,'THEODORACATOS@GMAIL.COM' ,'theodoracatos@gmail.com' ,'THEODORACATOS@GMAIL.COM' ,1 ,'AQAAAAEAACcQAAAAEM9xHq/I11jR504N4mFC+CcEdvencdlc8gfAmRwzeBLLnYuyB8QqWiDsQSyJ1XMiTw==','X7RKCA5QCJYUU3FS6G7UIG7PC2YRECYC','5fbfc0d8-2a6d-4875-8869-c332974e3cf3',null,0,0,null,1,0)
+     VALUES (@ID ,'petefrancis.mitchell@myvitae.ch' ,'PETEFRANCIS.MITCHELL@MYVITAE.CH' ,'petefrancis.mitchell@myvitae.ch' ,'PETEFRANCIS.MITCHELL@MYVITAE.CH' ,1 ,'AQAAAAEAACcQAAAAEM9xHq/I11jR504N4mFC+CcEdvencdlc8gfAmRwzeBLLnYuyB8QqWiDsQSyJ1XMiTw==','X7RKCA5QCJYUU3FS6G7UIG7PC2YRECYC','5fbfc0d8-2a6d-4875-8869-c332974e3cf3',null,0,0,null,1,0)
 
 SET IDENTITY_INSERT [AspNetUserClaims] ON
 INSERT INTO [AspNetUserClaims](Id, UserId, ClaimType, ClaimValue)
-	 VALUES (1, @ID, 'CurriculumID', @ID)
+	 VALUES (2, @ID, 'CurriculumID', @ID)
 SET IDENTITY_INSERT [AspNetUserClaims] OFF
 END
 
@@ -23,186 +29,360 @@ BEGIN
 		VALUES (@ID, @UserRole)
 END
 -- VitaeContext
-DECLARE @LanguageCode_de varchar(2) = 'de'
 DECLARE @LanguageCode_en varchar(2) = 'en'
-DECLARE @Email varchar(50) = 'theodoracatos@gmail.com'
+DECLARE @LanguageCode_de varchar(2) = 'de'
+DECLARE @LanguageCode_fr varchar(2) = 'fr'
+DECLARE @LanguageCode_it varchar(2) = 'it'
+DECLARE @LanguageCode_es varchar(2) = 'es'
+
+DECLARE @Email varchar(50) = 'petefrancis.mitchell@myvitae.ch'
 DECLARE @CurriculumID uniqueidentifier = (SELECT [cla].[ClaimValue] FROM [AspNetUsers] [usr] INNER JOIN [AspNetUserClaims] [cla] ON [cla].[UserId] = [usr].[Id] WHERE [usr].[Email] = @Email)
 DECLARE @UserID uniqueidentifier = (SELECT [cla].[UserId] FROM [AspNetUsers] [usr] INNER JOIN [AspNetUserClaims] [cla] ON [cla].[UserId] = [usr].[Id] WHERE [usr].[Email] = @Email)
-DECLARE @LanguageID uniqueidentifier = (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de)
+DECLARE @LanguageID uniqueidentifier = (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en)
 
 IF NOT EXISTS(SELECT 1 FROM [Curriculum] WHERE [CurriculumID] = @CurriculumID)
 BEGIN
 INSERT INTO [Curriculum]
 VALUES (@CurriculumID, @UserID, GETDATE(), GETDATE(), @LanguageID)
 
-INSERT INTO [CurriculumLanguage] VALUES (@CurriculumID, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), 0, 0, GETDATE())
-INSERT INTO [CurriculumLanguage] VALUES (@CurriculumID, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), 1, 0, GETDATE())
+INSERT INTO [CurriculumLanguage] VALUES (@CurriculumID, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), 0, 0, GETDATE())
+INSERT INTO [CurriculumLanguage] VALUES (@CurriculumID, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), 1, 0, GETDATE())
+INSERT INTO [CurriculumLanguage] VALUES (@CurriculumID, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_fr), 2, 0, GETDATE())
+INSERT INTO [CurriculumLanguage] VALUES (@CurriculumID, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_it), 3, 0, GETDATE())
+INSERT INTO [CurriculumLanguage] VALUES (@CurriculumID, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_es), 4, 0, GETDATE())
 END
 
-DECLARE @CurrLangId_de uniqueidentifier = (SELECT [LanguageID] FROM [CurriculumLanguage] WHERE [CurriculumID] = @CurriculumID AND [Order] = 0)
-DECLARE @CurrLangId_en uniqueidentifier = (SELECT [LanguageID] FROM [CurriculumLanguage] WHERE [CurriculumID] = @CurriculumID AND [Order] = 1)
+DECLARE @CurrLangId_en uniqueidentifier = (SELECT [LanguageID] FROM [CurriculumLanguage] WHERE [CurriculumID] = @CurriculumID AND [Order] = 0)
+DECLARE @CurrLangId_de uniqueidentifier = (SELECT [LanguageID] FROM [CurriculumLanguage] WHERE [CurriculumID] = @CurriculumID AND [Order] = 1)
+DECLARE @CurrLangId_fr uniqueidentifier = (SELECT [LanguageID] FROM [CurriculumLanguage] WHERE [CurriculumID] = @CurriculumID AND [Order] = 2)
+DECLARE @CurrLangId_it uniqueidentifier = (SELECT [LanguageID] FROM [CurriculumLanguage] WHERE [CurriculumID] = @CurriculumID AND [Order] = 3)
+DECLARE @CurrLangId_es uniqueidentifier = (SELECT [LanguageID] FROM [CurriculumLanguage] WHERE [CurriculumID] = @CurriculumID AND [Order] = 4)
 
 /* ABOUT */
 INSERT INTO [About]
-VALUES(NEWID(), 0, @CurrLangId_de, GETDATE(), 'Dipl.-Ing. FH | MAS ZFH', '"Das Ganze ist mehr als die Summe seiner Teile." Aristoteles',  '', null, @CurriculumID)
-
+VALUES(NEWID(), 0, @CurrLangId_en, GETDATE(), 'Master of Science (M.Sc.)', '"The greatest glory in living lies not in never falling, but in rising every time we fall." -Nelson Mandela',  '', null, @CurriculumID)
 INSERT INTO [About]
-VALUES(NEWID(), 0, @CurrLangId_en, GETDATE(), 'Bachelor of Science (B.Sc.) | MAS ZFH', '"The whole is more than the sum of its parts." Aristotle',  '', null, @CurriculumID)
+VALUES(NEWID(), 0, @CurrLangId_de, GETDATE(), 'Master of Science (M.Sc.)', '"Der grösste Ruhm des Lebens liegt nicht darin, niemals zu fallen, sondern jedes Mal, wenn wir fallen, wieder aufzustehen". -Nelson Mandela',  '', null, @CurriculumID)
+INSERT INTO [About]
+VALUES(NEWID(), 0, @CurrLangId_fr, GETDATE(), 'Master of Science (M.Sc.)', '"La plus grande gloire de la vie n''est pas de ne jamais tomber, mais de se relever chaque fois que l''on tombe". -Nelson Mandela',  '', null, @CurriculumID)
+INSERT INTO [About]
+VALUES(NEWID(), 0, @CurrLangId_it, GETDATE(), 'Master of Science (M.Sc.)', '"La più grande gloria del vivere non sta nel non cadere mai, ma nel risalire ogni volta che cadiamo". -Nelson Mandela',  '', null, @CurriculumID)
+INSERT INTO [About]
+VALUES(NEWID(), 0, @CurrLangId_es, GETDATE(), 'Master of Science (M.Sc.)', '"La mayor gloria de la vida no está en no caer nunca, sino en levantarse cada vez que caemos". -Nelson Mandela',  '', null, @CurriculumID)
 
 /* PERSONAL DETAIL */
 INSERT INTO [PersonalDetail]
-VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'Alexandros', 'Theodoracatos', '1983-06-23', 1, 'Zwischenbächen', 143, 'Zürich', 'Zürich', '8048', 'theodoracatos@gmail.com', '+41', '787044438', 'Zürich ZH, Eschenbach SG', (SELECT [MaritalStatusID] FROM [MaritalStatus] WHERE [MaritalStatusCode] = 3), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), @CurriculumID)
+VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Pete Francis', 'Mitchell', '1976-06-23', 1, 'Friedensgasse', 12, 'Zürich', 'Zürich', '8003', 'petefrancis.mitchell@myvitae.ch', '+41', '791234567', 'New York (USA)', (SELECT [MaritalStatusID] FROM [MaritalStatus] WHERE [MaritalStatusCode] = 3), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), @CurriculumID)
 INSERT INTO [PersonCountry]
 VALUES ((SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 0, GETDATE())
 INSERT INTO [PersonCountry]
-VALUES ((SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gr'), 1, GETDATE())
+VALUES ((SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'us'), 1, GETDATE())
 INSERT INTO [Child]
-VALUES(NEWID(), 'Marilena', '2014-08-14', 0, GETDATE(), (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID))
+VALUES(NEWID(), 'Anna', '2009-02-14', 0, GETDATE(), (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID))
 INSERT INTO [Child]
-VALUES(NEWID(), 'Aris', '2017-08-13', 0, GETDATE(), (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID))
+VALUES(NEWID(), 'Pete', '2012-05-13', 0, GETDATE(), (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID))
 
 /* SOCIAL LINK */
 INSERT INTO [SocialLink]
-VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 1, 'https://www.facebook.com/theodoracatos', @CurriculumID)
+VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 1, 'https://www.facebook.com/petefrancismitchell', @CurriculumID)
 INSERT INTO [SocialLink]         
-VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), 2, 'https://twitter.com/theodoracatos', @CurriculumID)
+VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 2, 'https://twitter.com/petefrancismitchell', @CurriculumID)
 INSERT INTO [SocialLink]           
-VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 3, 'https://www.linkedin.com/in/theodoracatos', @CurriculumID)
+VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 3, 'https://www.linkedin.com/in/petefrancismitchell', @CurriculumID)
 INSERT INTO [SocialLink]         
-VALUES (NEWID(), 3, @CurrLangId_de, GETDATE(), 4, 'https://github.com/theodoracatos', @CurriculumID)
+VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 4, 'https://github.com/petefrancismitchell', @CurriculumID)
 INSERT INTO [SocialLink]          
-VALUES (NEWID(), 4, @CurrLangId_de, GETDATE(), 5, 'https://www.xing.com/profile/Alexandros_Theodoracatos/cv', @CurriculumID)
+VALUES (NEWID(), 4, @CurrLangId_en, GETDATE(), 5, 'https://www.xing.com/profile/petefrancis_mitchell/cv', @CurriculumID)
 INSERT INTO [SocialLink]           
-VALUES (NEWID(), 5, @CurrLangId_de, GETDATE(), 7, 'https://stackoverflow.com/users/4369275/grecool', @CurriculumID)
-        
-INSERT INTO [SocialLink]                             
-VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 1, 'https://www.facebook.com/theodoracatos', @CurriculumID)
-INSERT INTO [SocialLink]    
-VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 2, 'https://twitter.com/theodoracatos', @CurriculumID)
-INSERT INTO [SocialLink]      
-VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 3, 'https://www.linkedin.com/in/theodoracatos', @CurriculumID)
-INSERT INTO [SocialLink]        
-VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 4, 'https://github.com/theodoracatos', @CurriculumID)
-INSERT INTO [SocialLink]      
-VALUES (NEWID(), 4, @CurrLangId_en, GETDATE(), 5, 'https://www.xing.com/profile/Alexandros_Theodoracatos/cv', @CurriculumID)
-INSERT INTO [SocialLink]       
-VALUES (NEWID(), 5, @CurrLangId_en, GETDATE(), 7, 'https://stackoverflow.com/users/4369275/grecool', @CurriculumID)
+VALUES (NEWID(), 5, @CurrLangId_en, GETDATE(), 7, 'https://stackoverflow.com/users/1/petefrancismitchell', @CurriculumID)
 
-/* EXPERIENCE */
-INSERT INTO [Experience]
-VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'Dozent', 'IFA Weiterbildung AG', 'Anbieterin höherer Berufsbildung in den Bereich Wirtschaft und Informatik', 'https://www.ifa.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 14), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Teilzeit-Dozent auf Mandatsbasis.', '2019-10-01', null, @CurriculumID)
-INSERT INTO [Experience]           
-VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), 'Senior Softwareingenieur', 'Quilvest (Switzerland) Ltd.', 'Multi-Family Office (Private Banking)', 'http://quilvest.com', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Architektur und Fullstack-Entwicklung elektronischer Businessprozesse, realisiert mit neuesten .NET Web-Technologien. Technischer Lead und Project Owner eigenentwickelter .NET Applikationssysteme. Technische Projektleitung für interne und externe Projekte. Regelmässige Schulung und Coaching von Mitarbeitern (auf Deutsch und Englisch).', '2012-02-01', null, @CurriculumID)
-INSERT INTO [Experience]          
-VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 'Software Ingenieur', 'Ruf Telematik AG', 'Anbieter von Fahrgastinformationssystemen', 'http://ruf.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 9), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Architektur, Spezifikation, Design, Implementation, Test und Dokumentation von Softwarekomponenten und Multimediaapplikationen. Projektarbeit: Anforderungsspezifikation, Umsetzung, Engineering, Test und Projektleitung mit direktem Kundenkontakt.', '2008-11-01', '2012-01-01', @CurriculumID)
-INSERT INTO [Experience]           
-VALUES (NEWID(), 3, @CurrLangId_de, GETDATE(), 'Freelancer', 'Ruf Telematik AG', 'Anbieter von Fahrgastinformationssystemen', 'http://ruf.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 9), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Entwicklung von Tools und Diagnoseprogrammen für Embedded-Geräte.', '2005-09-01', '2008-10-01', @CurriculumID)
-INSERT INTO [Experience]          
-VALUES (NEWID(), 4, @CurrLangId_de, GETDATE(), 'Trainee', 'ABB Schweiz AG', 'Lösungen für Schutz und Kontrolle in elektronischen Schaltanlagen', 'http://abb.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 3), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Entwicklung von Systemtools für elektrische Schaltanlagen (IEC 61850). Entwicklung von diversen Multimediaapplikationen für Firmenpräsentationen (Demos).', '2003-08-01', '2005-08-01', @CurriculumID)
-                                   
+INSERT INTO [SocialLink]
+VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 1, 'https://www.facebook.com/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]         
+VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), 2, 'https://twitter.com/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]           
+VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 3, 'https://www.linkedin.com/in/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]         
+VALUES (NEWID(), 3, @CurrLangId_de, GETDATE(), 4, 'https://github.com/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]          
+VALUES (NEWID(), 4, @CurrLangId_de, GETDATE(), 5, 'https://www.xing.com/profile/petefrancis_mitchell/cv', @CurriculumID)
+INSERT INTO [SocialLink]           
+VALUES (NEWID(), 5, @CurrLangId_de, GETDATE(), 7, 'https://stackoverflow.com/users/1/petefrancismitchell', @CurriculumID)
+
+INSERT INTO [SocialLink]
+VALUES (NEWID(), 0, @CurrLangId_fr, GETDATE(), 1, 'https://www.facebook.com/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]         
+VALUES (NEWID(), 1, @CurrLangId_fr, GETDATE(), 2, 'https://twitter.com/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]           
+VALUES (NEWID(), 2, @CurrLangId_fr, GETDATE(), 3, 'https://www.linkedin.com/in/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]         
+VALUES (NEWID(), 3, @CurrLangId_fr, GETDATE(), 4, 'https://github.com/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]          
+VALUES (NEWID(), 4, @CurrLangId_fr, GETDATE(), 5, 'https://www.xing.com/profile/petefrancis_mitchell/cv', @CurriculumID)
+INSERT INTO [SocialLink]           
+VALUES (NEWID(), 5, @CurrLangId_fr, GETDATE(), 7, 'https://stackoverflow.com/users/1/petefrancismitchell', @CurriculumID)
+
+INSERT INTO [SocialLink]
+VALUES (NEWID(), 0, @CurrLangId_it, GETDATE(), 1, 'https://www.facebook.com/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]         
+VALUES (NEWID(), 1, @CurrLangId_it, GETDATE(), 2, 'https://twitter.com/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]           
+VALUES (NEWID(), 2, @CurrLangId_it, GETDATE(), 3, 'https://www.linkedin.com/in/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]         
+VALUES (NEWID(), 3, @CurrLangId_it, GETDATE(), 4, 'https://github.com/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]          
+VALUES (NEWID(), 4, @CurrLangId_it, GETDATE(), 5, 'https://www.xing.com/profile/petefrancis_mitchell/cv', @CurriculumID)
+INSERT INTO [SocialLink]           
+VALUES (NEWID(), 5, @CurrLangId_it, GETDATE(), 7, 'https://stackoverflow.com/users/1/petefrancismitchell', @CurriculumID)
+
+INSERT INTO [SocialLink]
+VALUES (NEWID(), 0, @CurrLangId_es, GETDATE(), 1, 'https://www.facebook.com/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]         
+VALUES (NEWID(), 1, @CurrLangId_es, GETDATE(), 2, 'https://twitter.com/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]           
+VALUES (NEWID(), 2, @CurrLangId_es, GETDATE(), 3, 'https://www.linkedin.com/in/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]         
+VALUES (NEWID(), 3, @CurrLangId_es, GETDATE(), 4, 'https://github.com/petefrancismitchell', @CurriculumID)
+INSERT INTO [SocialLink]          
+VALUES (NEWID(), 4, @CurrLangId_es, GETDATE(), 5, 'https://www.xing.com/profile/petefrancis_mitchell/cv', @CurriculumID)
+INSERT INTO [SocialLink]           
+VALUES (NEWID(), 5, @CurrLangId_es, GETDATE(), 7, 'https://stackoverflow.com/users/1/petefrancismitchell', @CurriculumID)
+        
+/* EXPERIENCE */                       
 INSERT INTO [Experience]            
-VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Lecturer', 'IFA Weiterbildung AG', 'Provider of higher vocational training in the field of economics and computer science', 'https://www.ifa.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 14), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Part-time lecturer, based on mandates.', '2019-10-01', null, @CurriculumID)
+VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Lecturer', 'Vocational trainers', 'Provider of higher vocational training in the field of economics and computer science', 'https://www.vocationaltrainers.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 14), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Part-time lecturer, based on mandates.', '2017-09-01', null, @CurriculumID)
 INSERT INTO [Experience]           
-VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 'Senior Software Engineer', 'Quilvest (Switzerland) Ltd.', 'Multi-Family Office (Private Banking)', 'http://quilvest.com', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Architecture and full-stack development of electronic business processes, realized with the latest .NET web technologies. Technical lead and project owner of self-developed .NET application systems. Technical project management for internal and external projects. Regular training and coaching of employees (in German and English).', '2012-02-01', null, @CurriculumID)
+VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 'Senior Software Engineer', 'Arando Technologies', 'Software service provider', 'https://arando.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zurich', 'Architecture and full-stack development of new beta application, realized with various web technologies. Project owner of some experimental Arando labs projects. Technical project management for internal and external projects. Regular training and coaching of employees.', '2009-05-01', null, @CurriculumID)
 INSERT INTO [Experience]          
-VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 'Software Engineer', 'Ruf Telematik AG', 'Provider of passenger information systems', 'http://ruf.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 9), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Architecture, specification, design, implementation, test and documentation of software components and multimedia applications. Project management: Requirement specification, implementation, engineering and test with direct contact with customers.', '2008-11-01', '2012-01-01', @CurriculumID)
+VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 'Software Engineer', 'Acme International', 'Security service provider', 'https://acme.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Bern', 'Architecture, specification, design, implementation, test and documentation of software components and multimedia applications. Project management: Requirement specification, implementation, engineering and test with direct contact with customers.', '2007-11-01', '2009-04-01', @CurriculumID)
 INSERT INTO [Experience]          
-VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 'Freelancer', 'Ruf Telematik AG', 'Provider of passenger information systems', 'http://ruf.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 9), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schlieren', 'Development of tools and diagnostic programs for embedded devices.', '2005-09-01', '2008-10-01', @CurriculumID)
+VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 'Freelancer', 'Johndoe and sons', 'Security service provider', 'https://jondueandsons.at', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 1), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'at'), 'Salzburg', 'Development of tools and diagnostic services.', '2006-11-01', '2007-10-01', @CurriculumID)
 INSERT INTO [Experience]          
-VALUES (NEWID(), 4, @CurrLangId_en, GETDATE(), 'Trainee', 'ABB Schweiz AG', 'Solutions for protection and control in electronic switchgear', 'http://abb.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 3), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Development of system tools for electrical switchgear (IEC 61850). Development of various multimedia applications for company presentations.', '2003-08-01', '2005-08-01', @CurriculumID)
-                                  
-/* EDUCATION */                    
+VALUES (NEWID(), 4, @CurrLangId_en, GETDATE(), 'Trainee', 'Sonacare', 'Healthcare', 'http://sonacare.de', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 15), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 'Stuttgart', 'Development of system tools for HL7 applications.', '2004-04-01', '2005-09-01', @CurriculumID)
+
+INSERT INTO [Experience]            
+VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'Dozent', 'Vocational trainers', 'Anbieter von höherer Berufsbildung im Bereich Wirtschaft und Informatik', 'https://www.vocationaltrainers.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  2), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 14), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Nebenberuflicher Dozent, auf Mandatsbasis.', '2017-09-01', null, @CurriculumID)
+INSERT INTO [Experience]           
+VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), 'Leitender Software-Ingenieur', 'Arando Technologies', 'Software-Dienstleister', 'https://arando.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  2), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Architektur und Full-Stack-Entwicklung einer neuen Beta-Anwendung, realisiert mit verschiedenen Web-Technologien. Projektinhaber einiger experimenteller Arando-Laborprojekte. Technische Projektleitung für interne und externe Projekte. Regelmäßige Schulung und Coaching von Mitarbeitern.', '2009-05-01', null, @CurriculumID)
+INSERT INTO [Experience]          
+VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 'Softwareentwickler', 'Acme International', 'Sicherheitsdienstleister', 'https://acme.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Bern', 'Architektur, Spezifikation, Design, Implementierung, Test und Dokumentation von Softwarekomponenten und Multimedia-Anwendungen. Projektleitung: Anforderungsspezifikation, Implementierung, Engineering und Test mit direktem Kontakt zum Kunden.', '2007-11-01', '2009-04-01', @CurriculumID)
+INSERT INTO [Experience]          
+VALUES (NEWID(), 3, @CurrLangId_de, GETDATE(), 'Freelancer', 'Johndoe and sons', 'Sicherheitsdienstleister', 'https://jondueandsons.at', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 1), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'at'), 'Salzburg', 'Entwicklung von Werkzeugen und diagnostischen Dienstleistungen.', '2006-11-01', '2007-10-01', @CurriculumID)
+INSERT INTO [Experience]          
+VALUES (NEWID(), 4, @CurrLangId_de, GETDATE(), 'Trainee', 'Sonacare', 'Gesundheitswesen', 'http://sonacare.de', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 15), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 'Stuttgart', 'Entwicklung von Systemwerkzeugen für HL7-Anwendungen.', '2004-04-01', '2005-09-01', @CurriculumID)
+
+INSERT INTO [Experience]            
+VALUES (NEWID(), 0, @CurrLangId_fr, GETDATE(), 'Enseignant', 'Vocational trainers', 'Prestataire de formation professionnelle supérieure dans le domaine de l''économie et de l''informatique', 'https://www.vocationaltrainers.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  2), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 14), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Conférencier à temps partiel, sur la base de mandats.', '2017-09-01', null, @CurriculumID)
+INSERT INTO [Experience]           
+VALUES (NEWID(), 1, @CurrLangId_fr, GETDATE(), 'Ingénieur logiciel senior', 'Arando Technologies', 'Fournisseur de services logiciels', 'https://arando.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  2), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Architecture et développement complet d''une nouvelle application bêta, réalisée avec diverses technologies web. Maîtrise d''ouvrage de certains projets expérimentaux des laboratoires Arando. Gestion technique de projets internes et externes. Formation et coaching réguliers des employés.', '2009-05-01', null, @CurriculumID)
+INSERT INTO [Experience]          
+VALUES (NEWID(), 2, @CurrLangId_fr, GETDATE(), 'Ingénieur logiciel', 'Acme International', 'Fournisseur de services de sécurité', 'https://acme.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Berne', 'Architecture, spécification, conception, mise en œuvre, test et documentation des composants logiciels et des applications multimédias. Gestion de projets : Spécification des besoins, mise en œuvre, ingénierie et test en contact direct avec les clients.', '2007-11-01', '2009-04-01', @CurriculumID)
+INSERT INTO [Experience]          
+VALUES (NEWID(), 3, @CurrLangId_fr, GETDATE(), 'Freelancer', 'Johndoe and sons', 'Fournisseur de services de sécurité', 'https://jondueandsons.at', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 1), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'at'), 'Salzbourg', 'Développement d''outils et de services de diagnostic.', '2006-11-01', '2007-10-01', @CurriculumID)
+INSERT INTO [Experience]          
+VALUES (NEWID(), 4, @CurrLangId_fr, GETDATE(), 'Stagiaire', 'Sonacare', 'Soins de santé', 'http://sonacare.de', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 15), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 'Stuttgart', 'Développement d''outils système pour les applications HL7.', '2004-04-01', '2005-09-01', @CurriculumID)
+
+INSERT INTO [Experience]            
+VALUES (NEWID(), 0, @CurrLangId_it, GETDATE(), 'Docente', 'Vocational trainers', 'Fornitore di formazione professionale superiore nel campo dell''economia e dell''informatica', 'https://www.vocationaltrainers.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  2), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 14), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Docente a tempo parziale, in base ai mandati.', '2017-09-01', null, @CurriculumID)
+INSERT INTO [Experience]           
+VALUES (NEWID(), 1, @CurrLangId_it, GETDATE(), 'Ingegnere software senior', 'Arando Technologies', 'Fornitore di servizi software', 'https://arando.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  2), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zurigo', 'Architettura e sviluppo full-stack di nuove applicazioni beta, realizzate con varie tecnologie web. Proprietario di alcuni progetti sperimentali dei laboratori Arando. Gestione tecnica di progetti interni ed esterni. Formazione e coaching periodico dei dipendenti.', '2009-05-01', null, @CurriculumID)
+INSERT INTO [Experience]          
+VALUES (NEWID(), 2, @CurrLangId_it, GETDATE(), 'Ingegnere del software', 'Acme International', 'Fornitore di servizi di sicurezza', 'https://acme.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Berna', 'Architettura, specifiche, progettazione, implementazione, test e documentazione di componenti software e applicazioni multimediali. Gestione del progetto: Specifiche dei requisiti, implementazione, ingegneria e test con contatto diretto con i clienti.', '2007-11-01', '2009-04-01', @CurriculumID)
+INSERT INTO [Experience]          
+VALUES (NEWID(), 3, @CurrLangId_it, GETDATE(), 'Freelancer', 'Johndoe and sons', 'Fornitore di servizi di sicurezza', 'https://jondueandsons.at', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 1), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'at'), 'Salisburgo', 'Sviluppo di strumenti e servizi diagnostici.', '2006-11-01', '2007-10-01', @CurriculumID)
+INSERT INTO [Experience]          
+VALUES (NEWID(), 4, @CurrLangId_it, GETDATE(), 'Apprendista', 'Sonacare', 'Assistenza sanitaria', 'http://sonacare.de', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 15), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 'Stoccarda', 'Sviluppo di strumenti di sistema per applicazioni HL7.', '2004-04-01', '2005-09-01', @CurriculumID)
+
+INSERT INTO [Experience]            
+VALUES (NEWID(), 0, @CurrLangId_es, GETDATE(), 'Profesor', 'Vocational trainers', 'Proveedor de formación profesional superior en el campo de la economía y la informática', 'https://www.vocationaltrainers.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  2), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 14), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Conferenciante a tiempo parcial, basado en mandatos.', '2017-09-01', null, @CurriculumID)
+INSERT INTO [Experience]         
+VALUES (NEWID(), 1, @CurrLangId_es, GETDATE(), 'Ingeniero de Software Senior', 'Arando Technologies', 'Proveedor de servicios de software', 'https://arando.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  2), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Arquitectura y desarrollo de la pila completa de la nueva aplicación beta, realizada con varias tecnologías web. Propietario de algunos proyectos de laboratorios experimentales de Arando. Gestión técnica de proyectos internos y externos. Formación y entrenamiento regular de los empleados.', '2009-05-01', null, @CurriculumID)
+INSERT INTO [Experience]        
+VALUES (NEWID(), 2, @CurrLangId_es, GETDATE(), 'Ingeniero de Software', 'Acme International', 'Proveedor de servicios de seguridad', 'https://acme.ch', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 10), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Berna', 'Arquitectura, especificación, diseño, implementación, prueba y documentación de componentes de software y aplicaciones multimedia. Gestión de proyectos: Especificación de requisitos, implementación, ingeniería y pruebas con contacto directo con los clientes.', '2007-11-01', '2009-04-01', @CurriculumID)
+INSERT INTO [Experience]        
+VALUES (NEWID(), 3, @CurrLangId_es, GETDATE(), 'Freelancer', 'Johndoe and sons', 'Proveedor de servicios de seguridad', 'https://jondueandsons.at', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 1), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'at'), 'Salzburgo', 'Desarrollo de herramientas y servicios de diagnóstico.', '2006-11-01', '2007-10-01', @CurriculumID)
+INSERT INTO [Experience]        
+VALUES (NEWID(), 4, @CurrLangId_es, GETDATE(), 'Aprendiz', 'Sonacare', 'Atención médica', 'http://sonacare.de', (SELECT [HierarchyLevelID] FROM [HierarchyLevel] WHERE [HierarchyLevelCode] =  1), (SELECT [IndustryID] FROM [Industry] WHERE [IndustryCode] = 15), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 'Stuttgart', 'Desarrollo de herramientas de sistema para aplicaciones HL7.', '2004-04-01', '2005-09-01', @CurriculumID)
+
+
+/* EDUCATION */                   
 INSERT INTO [Education]            
-VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'ZHAW School of Engineering', 'https://zhaw.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Master of Advances Studies (MAS)', 'Wirtschaftsinformatik',  'Berufsbegleitendes Nachdiplomstudium mit Schwerpunkten in: Betriebswirtschaft, Software Engineering, Projektmanagement und Coaching. Masterarbeit: "Wissenstransfer beim Stellenwechsel".', '5.4', '2010-02-01', '2011-11-01', @CurriculumID)
+VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'ETH Zurich', 'https://eth.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zurich', 'MTEC', 'Master Management, Technology, and Economics',  'Study with focus on: Business Administration, Software Engineering, Project Management and Coaching.', '5.4', '2008-11-01', '2010-3-01', @CurriculumID)
 INSERT INTO [Education]            
-VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), 'ZHAW School of Engineering', 'https://zhaw.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Diplomstudium (Dipl. Ing. FH)', 'Informationstechnologie', 'Vollzeit Diplomstudium mit Schwerpunkten in: Software Architekturen / Modellierung und Softwareentwicklung. Diplomarbeit: "Multi-Agenten-Plattform für die Simulation von Finanzmärkten".', '5.3', '2005-09-01', '2008-10-01', @CurriculumID)
-INSERT INTO [Education]             
-VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 'GIBB', 'https://gibb.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Bern', 'Fachausweis (FA)', 'Applikationsentwicklung', 'Die Lehre zum Applikationsentwickler für Maturanden (way-up.ch) bot eine zweijährige Praxiserfahrung in verschiedenen Firmen und ebnete den Weg zur Fachhochschule. Abschlussarbeit: "Dynamisch generierte Fahrplantabelle unter Verwendung von .Net und XSLT".', '5.5', '2003-08-01', '2005-08-01', @CurriculumID)
-INSERT INTO [Education]            
-VALUES (NEWID(), 3, @CurrLangId_de, GETDATE(), 'Kantonsschule SH', 'https://kanti.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schaffhausen', 'Matura', 'Naturwissenschaften (Profil N)', 'Naturwissenschaftlich–mathematische Matura mit Schwerpunkten in Chemie / Biologie. Maturaarbeit: "Sind die Schaffhauser Kantischüler fit?".', '4.5', '1998-08-01', '2002-07-01', @CurriculumID)
-                                   
-INSERT INTO [Education]            
-VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'ZHAW School of Engineering', 'https://zhaw.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Master of Advances Studies (MAS)', 'Business Information Technology',  'Post-graduate study with focus on: Business Administration, Software Engineering, Project Management and Coaching.', '5.4', '2010-02-01', '2011-11-01', @CurriculumID)
-INSERT INTO [Education]            
-VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 'ZHAW School of Engineering', 'https://zhaw.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Diploma studies (Dipl. Ing. FH)', 'Information Technology', 'Diploma study with focus on: Softwarearchitecture / modeling and software development. Diploma thesis: "Multi-agent platform for the simulation of financial markets".', '5.3', '2005-09-01', '2008-10-01', @CurriculumID)
-INSERT INTO [Education]          
-VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 'GIBB', 'https://gibb.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Bern', 'Apprenticeship', 'Application development', 'The apprenticeship in application development for high school graduates (wayup.ch) offered a two-year practical experience in various companies and paved the way for the University of Applied Sciences.', '5.5', '2003-08-01', '2005-08-01', @CurriculumID)
+VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 'ZHW Zürcher Hochschule Winterthur', 'https://zhw.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Master of Science', 'Information Technology', 'Diploma study with focus on: Softwarearchitecture / modeling and software development. Diploma thesis: "A new way to communicate in the web".', '5.3', '2002-08-01', '2006-10-01', @CurriculumID)
 INSERT INTO [Education]           
-VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 'Kantonsschule SH', 'https://kanti.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Schaffhausen', 'Matura', 'Natural sciences (Profile N)', 'Profile N (scientific and mathematical) with focus on chemistry and biology. Matura thesis: "Are the high school students of Schaffhausen fit?".', '4.5', '1998-08-01', '2002-07-01', @CurriculumID)
+VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 'Kantonsschule Rämibühl', 'https://www.rgzh.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zurich', 'Matura', 'Natural Science (Profile N)', 'Profile N (scientific and mathematical) with focus on astrophysics. Matura thesis: "A new way to beat a chess computer".', '5', '1995-08-01', '2000-07-01', @CurriculumID)
+
+INSERT INTO [Education]            
+VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'ETH Zurich', 'https://eth.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'MTEC', 'Master Management, Technologie und Wirtschaft',  'Studium mit Schwerpunkt auf: Betriebswirtschaft, Softwaretechnik, Projektmanagement und Coaching.', '5.4', '2008-11-01', '2010-3-01', @CurriculumID)
+INSERT INTO [Education]            
+VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), 'ZHW Zürcher Hochschule Winterthur', 'https://zhw.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Master of Science', 'Informationstechnologie', 'Diplomstudium mit Schwerpunkt auf: Softwarearchitektur / Modellierung und Softwareentwicklung. Diplomarbeit: "Eine neue Art der Kommunikation im Web".', '5.3', '2002-08-01', '2006-10-01', @CurriculumID)
+INSERT INTO [Education]           
+VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 'Kantonsschule Rämibühl', 'https://www.rgzh.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Matura', 'Naturwissenschaften (Profil N)', 'Profil N (wissenschaftlich und mathematisch) mit Schwerpunkt Astrophysik. Maturaarbeit: "Eine neue Art, einen Schachcomputer zu schlagen".', '5', '1995-08-01', '2000-07-01', @CurriculumID)
+
+
+INSERT INTO [Education]            
+VALUES (NEWID(), 0, @CurrLangId_fr, GETDATE(), 'ETH Zurich', 'https://eth.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'MTEC', 'Master en gestion, technologie et économie',  'Study with focus on: Business Administration, Software Engineering, Project Management and Coaching.', '5.4', '2008-11-01', '2010-3-01', @CurriculumID)
+INSERT INTO [Education]            
+VALUES (NEWID(), 1, @CurrLangId_fr, GETDATE(), 'ZHW Zürcher Hochschule Winterthur', 'https://zhw.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Master of Science', 'Technologie de l''information', 'Étude de diplôme avec accent sur : Architecture logicielle / modélisation et développement de logiciels. Thèse de diplôme : "Une nouvelle façon de communiquer sur le web".', '5.3', '2002-08-01', '2006-10-01', @CurriculumID)
+INSERT INTO [Education]           
+VALUES (NEWID(), 2, @CurrLangId_fr, GETDATE(), 'Kantonsschule Rämibühl', 'https://www.rgzh.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Matura', 'Sciences naturelles (Profil N)', 'Profil N (scientifique et mathématique) avec accent sur l''astrophysique. Thèse de maturité : "Une nouvelle façon de battre un ordinateur d''échecs".', '5', '1995-08-01', '2000-07-01', @CurriculumID)
+
+
+INSERT INTO [Education]            
+VALUES (NEWID(), 0, @CurrLangId_it, GETDATE(), 'ETH Zurich', 'https://eth.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zurigo', 'MTEC', 'Master di gestione, tecnologia ed economia',  'Studiare con attenzione: Amministrazione aziendale, Ingegneria del software, Project Management e Coaching.', '5.4', '2008-11-01', '2010-3-01', @CurriculumID)
+INSERT INTO [Education]            
+VALUES (NEWID(), 1, @CurrLangId_it, GETDATE(), 'ZHW Zürcher Hochschule Winterthur', 'https://zhw.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Master of Science', 'Tecnologia dell''informazione', 'Diploma di studio con focus su: Softwarearchitettura / modellazione e sviluppo di software. Tesi di laurea: "Un nuovo modo di comunicare nel web".', '5.3', '2002-08-01', '2006-10-01', @CurriculumID)
+INSERT INTO [Education]           
+VALUES (NEWID(), 2, @CurrLangId_it, GETDATE(), 'Kantonsschule Rämibühl', 'https://www.rgzh.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zurigo', 'Matura', 'Scienze naturali (Profilo N)', 'Profilo N (scientifico e matematico) con particolare attenzione all''astrofisica. Tesi di laurea: "Un nuovo modo di battere un computer per gli scacchi".', '5', '1995-08-01', '2000-07-01', @CurriculumID)
+
+
+INSERT INTO [Education]            
+VALUES (NEWID(), 0, @CurrLangId_es, GETDATE(), 'ETH Zurich', 'https://eth.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'MTEC', 'Master Gestión, tecnología y economía',  'Estudio con enfoque en: Administración de Empresas, Ingeniería de Software, Gestión de Proyectos y Coaching.', '5.4', '2008-11-01', '2010-3-01', @CurriculumID)
+INSERT INTO [Education]            
+VALUES (NEWID(), 1, @CurrLangId_es, GETDATE(), 'ZHW Zürcher Hochschule Winterthur', 'https://zhw.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Winterthur', 'Master of Science', 'Tecnología de la información', 'Estudio de diploma con enfoque en: Arquitectura de software / modelado y desarrollo de software. Tesis de diploma: "Una nueva forma de comunicarse en la web".', '5.3', '2002-08-01', '2006-10-01', @CurriculumID)
+INSERT INTO [Education]           
+VALUES (NEWID(), 2, @CurrLangId_es, GETDATE(), 'Kantonsschule Rämibühl', 'https://www.rgzh.ch', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', 'Matura', 'Ciencias Naturales (Perfil N)', 'Perfil N (científico y matemático) con enfoque en la astrofísica. Tesis de madurez: "Una nueva forma de vencer a un ordenador de ajedrez".', '5', '1995-08-01', '2000-07-01', @CurriculumID)
+
 
 
 /* LANGUAGE SKILL */
-INSERT INTO [LanguageSkill] 
-VALUES(NEWID(), 0, @CurrLangId_de , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), @CurriculumID)
-INSERT INTO [LanguageSkill]      
-VALUES(NEWID(), 1, @CurrLangId_de , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'en'), @CurriculumID)
-INSERT INTO [LanguageSkill]                                                                                      
-VALUES(NEWID(), 2, @CurrLangId_de , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'el'), @CurriculumID)
-INSERT INTO [LanguageSkill]                                                                                        
-VALUES(NEWID(), 3, @CurrLangId_de , GETDATE(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
 INSERT INTO [LanguageSkill]                                                                                                       
 VALUES(NEWID(), 0, @CurrLangId_en , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), @CurriculumID)
 INSERT INTO [LanguageSkill]                                                                                   
-VALUES(NEWID(), 1, @CurrLangId_en , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'en'), @CurriculumID)
-INSERT INTO [LanguageSkill]                                                                                    
-VALUES(NEWID(), 2, @CurrLangId_en , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'el'), @CurriculumID)
+VALUES(NEWID(), 1, @CurrLangId_en , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'en'), @CurriculumID)
 INSERT INTO [LanguageSkill]                                                                                      
-VALUES(NEWID(), 3, @CurrLangId_en , GETDATE(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
+VALUES(NEWID(), 2, @CurrLangId_en , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 3, @CurrLangId_en , GETDATE(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'ru'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 4, @CurrLangId_en , GETDATE(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'zh'), @CurriculumID)
 
-/* AWARD */
-INSERT INTO [Award]
-VALUES(NEWID(), 0, @CurrLangId_de, GETDATE(), 'ZHAW Alumni Award', 'Bestnote im Studiengang MAS Wirtschaftsinformatik', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'https://www.zhaw.ch', '2012-01-01', @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                                       
+VALUES(NEWID(), 0, @CurrLangId_de , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                   
+VALUES(NEWID(), 1, @CurrLangId_de , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'en'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 2, @CurrLangId_de , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 3, @CurrLangId_de , GETDATE(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'ru'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 4, @CurrLangId_de , GETDATE(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'zh'), @CurriculumID)
+
+INSERT INTO [LanguageSkill]                                                                                                       
+VALUES(NEWID(), 0, @CurrLangId_fr , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                   
+VALUES(NEWID(), 1, @CurrLangId_fr , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'en'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 2, @CurrLangId_fr , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 3, @CurrLangId_fr , GETDATE(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'ru'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 4, @CurrLangId_fr , GETDATE(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'zh'), @CurriculumID)
+
+INSERT INTO [LanguageSkill]                                                                                                       
+VALUES(NEWID(), 0, @CurrLangId_it , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                   
+VALUES(NEWID(), 1, @CurrLangId_it , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'en'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 2, @CurrLangId_it , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 3, @CurrLangId_it , GETDATE(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'ru'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 4, @CurrLangId_it , GETDATE(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'zh'), @CurriculumID)
+
+INSERT INTO [LanguageSkill]                                                                                                       
+VALUES(NEWID(), 0, @CurrLangId_es , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                   
+VALUES(NEWID(), 1, @CurrLangId_es , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'en'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 2, @CurrLangId_es , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 3, @CurrLangId_es , GETDATE(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'ru'), @CurriculumID)
+INSERT INTO [LanguageSkill]                                                                                      
+VALUES(NEWID(), 4, @CurrLangId_es , GETDATE(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'zh'), @CurriculumID)
+
+/* AWARD */                        
 INSERT INTO [Award]             
-VALUES(NEWID(), 1, @CurrLangId_de, GETDATE(), 'ZHAW Alumni Award', 'Beste Masterarbeit im Studiengang MAS Wirtschaftsinformatik', 'Zürcher Hochschule für Angewandte Wissenschaften (ZHAW)', 'https://www.zhaw.ch', '2012-01-01', @CurriculumID)
-                                
-INSERT INTO [Award]             
-VALUES(NEWID(), 0, @CurrLangId_en, GETDATE(), 'ZHAW Alumni Award', 'Best grade in MAS Business Information Management program', 'ZHAW School of Engineering', 'https://www.zhaw.ch', '2012-01-01', @CurriculumID)
+VALUES(NEWID(), 0, @CurrLangId_en, GETDATE(), 'MTEC Award', 'Best grade in MTEC program', 'ETH Zurich', 'https://www.zhaw.ch', '2010-03-01', @CurriculumID)
 INSERT INTO [Award]              
-VALUES(NEWID(), 1, @CurrLangId_en, GETDATE(), 'ZHAW Alumni Award', 'Best grade in MAS Business Information Management Master Thesis', 'ZHAW School of Engineering', 'https://www.zhaw.ch', '2012-01-01', @CurriculumID)
+VALUES(NEWID(), 1, @CurrLangId_en, GETDATE(), 'ZHW Alumni Award', 'Best diploma Thesis', 'ZHW Zürcher Hochschule Winterthur', 'https://www.zhw.ch', '2006-10-01', @CurriculumID)
+
+INSERT INTO [Award]             
+VALUES(NEWID(), 0, @CurrLangId_de, GETDATE(), 'MTEC Award', 'Beste Note im MTEC-Programm', 'ETH Zurich', 'https://www.zhaw.ch', '2010-03-01', @CurriculumID)
+INSERT INTO [Award]              
+VALUES(NEWID(), 1, @CurrLangId_de, GETDATE(), 'ZHW Alumni Award', 'Beste Diplomarbeit', 'ZHW Zürcher Hochschule Winterthur', 'https://www.zhw.ch', '2006-10-01', @CurriculumID)
+
+INSERT INTO [Award]             
+VALUES(NEWID(), 0, @CurrLangId_fr, GETDATE(), 'MTEC Award', 'Meilleure note dans le programme MTEC', 'ETH Zurich', 'https://www.zhaw.ch', '2010-03-01', @CurriculumID)
+INSERT INTO [Award]              
+VALUES(NEWID(), 1, @CurrLangId_fr, GETDATE(), 'ZHW Alumni Award', 'Meilleur mémoire de diplôme', 'ZHW Zürcher Hochschule Winterthur', 'https://www.zhw.ch', '2006-10-01', @CurriculumID)
+
+INSERT INTO [Award]             
+VALUES(NEWID(), 0, @CurrLangId_it, GETDATE(), 'MTEC Award', 'Miglior voto nel programma MTEC', 'ETH Zurich', 'https://www.zhaw.ch', '2010-03-01', @CurriculumID)
+INSERT INTO [Award]              
+VALUES(NEWID(), 1, @CurrLangId_it, GETDATE(), 'ZHW Alumni Award', 'Migliore tesi di laurea', 'ZHW Zürcher Hochschule Winterthur', 'https://www.zhw.ch', '2006-10-01', @CurriculumID)
+
+INSERT INTO [Award]             
+VALUES(NEWID(), 0, @CurrLangId_es, GETDATE(), 'MTEC Award', 'La mejor nota en el programa MTEC', 'ETH Zurich', 'https://www.zhaw.ch', '2010-03-01', @CurriculumID)
+INSERT INTO [Award]              
+VALUES(NEWID(), 1, @CurrLangId_es, GETDATE(), 'ZHW Alumni Award', 'La mejor tesis de diploma', 'ZHW Zürcher Hochschule Winterthur', 'https://www.zhw.ch', '2006-10-01', @CurriculumID)
                                 
-/* INTEREST */                  
+/* INTEREST */                               
 INSERT INTO [Interest]          
-VALUES(NEWID(), 0, @CurrLangId_de, GETDATE(), 'Sport', null, 'Schwimmen, Tennis und Badminton', null, @CurriculumID)
-INSERT INTO [Interest]           
-VALUES(NEWID(), 1, @CurrLangId_de, GETDATE(), 'Kochen', null, 'Beim Kochen kann die Kreativität auf die Probe gestellt werden', null, @CurriculumID)
-INSERT INTO [Interest]          
-VALUES(NEWID(), 2, @CurrLangId_de, GETDATE(), 'Reisen', null, 'Reisen, neue Länder und Kulturen haben mich seit jeher fasziniert', null, @CurriculumID)
-INSERT INTO [Interest]           
-VALUES(NEWID(), 3, @CurrLangId_de, GETDATE(), 'Kinder', null, 'Meine beiden Kinder halten mich stets auf Trab', null, @CurriculumID)
-                                
-INSERT INTO [Interest]          
-VALUES(NEWID(), 0, @CurrLangId_en, GETDATE(), 'Sports', null, 'Swimming, tennis and badminton', null, @CurriculumID)
+VALUES(NEWID(), 0, @CurrLangId_en, GETDATE(), 'Sports', null, 'Swimming, squash and bowling', null, @CurriculumID)
 INSERT INTO [Interest]          
 VALUES(NEWID(), 1, @CurrLangId_en, GETDATE(), 'Cooking', null, 'Cooking can be a test of creativity', null, @CurriculumID)
 INSERT INTO [Interest]         
 VALUES(NEWID(), 2, @CurrLangId_en, GETDATE(), 'Travelling', null, 'Travel, new countries and cultures have always fascinated me', null, @CurriculumID)
 INSERT INTO [Interest]         
-VALUES(NEWID(), 3, @CurrLangId_en, GETDATE(), 'Children', null, 'My two children always keep me on my toes', null, @CurriculumID)
+VALUES(NEWID(), 3, @CurrLangId_en, GETDATE(), 'Watersports', null, 'Kitesurfing is my favorite', null, @CurriculumID)
+
+INSERT INTO [Interest]          
+VALUES(NEWID(), 0,  @CurrLangId_de, GETDATE(), 'Sport', null, 'Schwimmen, Squash und Bowling', null, @CurriculumID)
+INSERT INTO [Interest]          
+VALUES(NEWID(), 1,  @CurrLangId_de, GETDATE(), 'Kochen', null, 'Kochen kann ein Test für Kreativität sein', null, @CurriculumID)
+INSERT INTO [Interest]         
+VALUES(NEWID(), 2,  @CurrLangId_de, GETDATE(), 'Reisen', null, 'Reisen, neue Länder und Kulturen haben mich schon immer fasziniert', null, @CurriculumID)
+INSERT INTO [Interest]         
+VALUES(NEWID(), 3,  @CurrLangId_de, GETDATE(), 'Wassersport', null, 'Von Kitesurfing kann ich nicht genug kriegen', null, @CurriculumID)
+
+INSERT INTO [Interest]          
+VALUES(NEWID(), 0, @CurrLangId_fr, GETDATE(), 'Sports', null, 'Natation, squash et bowling', null, @CurriculumID)
+INSERT INTO [Interest]          
+VALUES(NEWID(), 1, @CurrLangId_fr, GETDATE(), 'Cuisiner', null, 'La cuisine peut être un test de créativité', null, @CurriculumID)
+INSERT INTO [Interest]         
+VALUES(NEWID(), 2, @CurrLangId_fr, GETDATE(), 'Voyager', null, 'Les voyages, les nouveaux pays et les nouvelles cultures m''ont toujours fasciné', null, @CurriculumID)
+INSERT INTO [Interest]         
+VALUES(NEWID(), 3, @CurrLangId_fr, GETDATE(), 'Sports nautiques', null, 'Le kitesurf est mon sport préféré', null, @CurriculumID)
+
+INSERT INTO [Interest]          
+VALUES(NEWID(), 0, @CurrLangId_it, GETDATE(), 'Sport', null, 'Nuoto, squash e bowling', null, @CurriculumID)
+INSERT INTO [Interest]          
+VALUES(NEWID(), 1, @CurrLangId_it, GETDATE(), 'Cucinare', null, 'La cucina può essere una prova di creatività', null, @CurriculumID)
+INSERT INTO [Interest]         
+VALUES(NEWID(), 2, @CurrLangId_it, GETDATE(), 'Viaggiare', null, 'I viaggi, i nuovi paesi e le nuove culture mi hanno sempre affascinato', null, @CurriculumID)
+INSERT INTO [Interest]         
+VALUES(NEWID(), 3, @CurrLangId_it, GETDATE(), 'Sport acquatici', null, 'Il kitesurf è il mio preferito', null, @CurriculumID)
+
+INSERT INTO [Interest]          
+VALUES(NEWID(), 0, @CurrLangId_es, GETDATE(), 'Deportes', null, 'Natación, squash y bolos', null, @CurriculumID)
+INSERT INTO [Interest]          
+VALUES(NEWID(), 1, @CurrLangId_es, GETDATE(), 'Cocinar', null, 'La cocina puede ser una prueba de creatividad', null, @CurriculumID)
+INSERT INTO [Interest]         
+VALUES(NEWID(), 2, @CurrLangId_es, GETDATE(), 'Viajando', null, 'Los viajes, los nuevos países y culturas siempre me han fascinado', null, @CurriculumID)
+INSERT INTO [Interest]         
+VALUES(NEWID(), 3, @CurrLangId_es, GETDATE(), 'Deportes acuáticos', null, 'El kitesurf es mi favorito', null, @CurriculumID)
 
 /* SKILL */
-INSERT INTO [Skill]
-VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'Programmiersprachen', 'C#, Java, Visual Basic, TypeScript / JavaScript, VB', @CurriculumID)
-INSERT INTO [Skill]              
-VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), 'Frameworks', '.NET Framework (v4.8), .NET Core (v3.1), Entity Framework (v6.4), Entity Framework Core (v3.1), ADO.Net, WinForms', @CurriculumID)
-INSERT INTO [Skill]              
-VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 'Webtechnologien', 'ASP.NET Core, ASP.NET Web API, ASP.NET MVC, ASP.NET WebForms, TypeScript, HTML, XML, SASS', @CurriculumID)
-INSERT INTO [Skill]              
-VALUES (NEWID(), 3, @CurrLangId_de, GETDATE(), 'Datenbanktechnologien', 'Microsoft SQL Server, Oracle, T-SQL, PL/SQL', @CurriculumID)
-INSERT INTO [Skill]             
-VALUES (NEWID(), 4, @CurrLangId_de, GETDATE(), 'IDE/Tools', 'Visual Studio, Eclipse, Azure DevOps, Git, Subversion (SVN)', @CurriculumID)
-INSERT INTO [Skill]              
-VALUES (NEWID(), 5, @CurrLangId_de, GETDATE(), 'Projektmethoden', 'Agile, Scrum, RUP', @CurriculumID)
-INSERT INTO [Skill]             
-VALUES (NEWID(), 6, @CurrLangId_de, GETDATE(), 'Entwicklungsmethoden', 'Domain driven Development, Prototyping', @CurriculumID)
-                                  
 INSERT INTO [Skill]               
-VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Programming languages', 'C#, Java, Visual Basic, TypeScript / JavaScript, VB', @CurriculumID)
+VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Programming languages', 'C#, Java, Python, Rust, C++', @CurriculumID)
 INSERT INTO [Skill]              
-VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 'Frameworks', '.NET Framework (v4.8), .NET Core (v3.1), Entity Framework (v6.4), Entity Framework Core (v3.1), ADO.Net, WinForms', @CurriculumID)
+VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 'Frameworks', 'Java SE Development Kit 13, .NET Framework (v4.8), .NET Core (v3.1), Entity Framework (v6.4), Entity Framework Core (v3.1)', @CurriculumID)
 INSERT INTO [Skill]               
 VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 'Web technologies', 'ASP.NET Core, ASP.NET Web API, ASP.NET MVC, ASP.NET WebForms, TypeScript, HTML, XML, SASS', @CurriculumID)
 INSERT INTO [Skill]               
-VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 'Database technlogies', 'Microsoft SQL Server, Oracle, T-SQL, PL/SQL', @CurriculumID)
+VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 'Database technlogies', 'NoSQL, Microsoft SQL Server, Oracle, T-SQL, PL/SQL', @CurriculumID)
 INSERT INTO [Skill]           
 VALUES (NEWID(), 4, @CurrLangId_en, GETDATE(), 'IDE/Tools', 'Visual Studio, Eclipse, Azure DevOps, Git, Subversion (SVN)', @CurriculumID)
 INSERT INTO [Skill]           
@@ -210,77 +390,255 @@ VALUES (NEWID(), 5, @CurrLangId_en, GETDATE(), 'Project methods', 'Agile, Scrum,
 INSERT INTO [Skill]               
 VALUES (NEWID(), 6, @CurrLangId_en, GETDATE(), 'Development methods', 'Domain driven Development, Prototyping', @CurriculumID)
 
+INSERT INTO [Skill]               
+VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'Programmiersprachen', 'C#, Java, Python, Rust, C++', @CurriculumID)
+INSERT INTO [Skill]              
+VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), 'Frameworks', 'Java SE Development Kit 13, .NET Framework (v4.8), .NET Core (v3.1), Entity Framework (v6.4), Entity Framework Core (v3.1)', @CurriculumID)
+INSERT INTO [Skill]               
+VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 'Web-Technologien', 'ASP.NET Core, ASP.NET Web API, ASP.NET MVC, ASP.NET WebForms, TypeScript, HTML, XML, SASS', @CurriculumID)
+INSERT INTO [Skill]               
+VALUES (NEWID(), 3, @CurrLangId_de, GETDATE(), 'Datenbank-Technlogien', 'NoSQL, Microsoft SQL Server, Oracle, T-SQL, PL/SQL', @CurriculumID)
+INSERT INTO [Skill]           
+VALUES (NEWID(), 4, @CurrLangId_de, GETDATE(), 'IDE/Tools', 'Visual Studio, Eclipse, Azure DevOps, Git, Subversion (SVN)', @CurriculumID)
+INSERT INTO [Skill]           
+VALUES (NEWID(), 5, @CurrLangId_de, GETDATE(), 'Projekt-Methoden', 'Agile, Scrum, RUP', @CurriculumID)
+INSERT INTO [Skill]               
+VALUES (NEWID(), 6, @CurrLangId_de, GETDATE(), 'Entwicklungsmethoden', 'Domain driven Development, Prototyping', @CurriculumID)
+
+
+INSERT INTO [Skill]               
+VALUES (NEWID(), 0, @CurrLangId_fr, GETDATE(), 'Langages de programmation', 'C#, Java, Python, Rust, C++', @CurriculumID)
+INSERT INTO [Skill]              
+VALUES (NEWID(), 1, @CurrLangId_fr, GETDATE(), 'Frameworks', 'Java SE Development Kit 13, .NET Framework (v4.8), .NET Core (v3.1), Entity Framework (v6.4), Entity Framework Core (v3.1)', @CurriculumID)
+INSERT INTO [Skill]               
+VALUES (NEWID(), 2, @CurrLangId_fr, GETDATE(), 'Technologies du web', 'ASP.NET Core, ASP.NET Web API, ASP.NET MVC, ASP.NET WebForms, TypeScript, HTML, XML, SASS', @CurriculumID)
+INSERT INTO [Skill]               
+VALUES (NEWID(), 3, @CurrLangId_fr, GETDATE(), 'Techniques de base de données', 'NoSQL, Microsoft SQL Server, Oracle, T-SQL, PL/SQL', @CurriculumID)
+INSERT INTO [Skill]           
+VALUES (NEWID(), 4, @CurrLangId_fr, GETDATE(), 'IDE/Tools', 'Visual Studio, Eclipse, Azure DevOps, Git, Subversion (SVN)', @CurriculumID)
+INSERT INTO [Skill]           
+VALUES (NEWID(), 5, @CurrLangId_fr, GETDATE(), 'Méthodes de projet', 'Agile, Scrum, RUP', @CurriculumID)
+INSERT INTO [Skill]
+VALUES (NEWID(), 6, @CurrLangId_fr, GETDATE(), 'Méthodes de développement', 'Domain driven Development, Prototyping', @CurriculumID)
+
+
+INSERT INTO [Skill]               
+VALUES (NEWID(), 0, @CurrLangId_it, GETDATE(), 'Linguaggi di programmazione', 'C#, Java, Python, Rust, C++', @CurriculumID)
+INSERT INTO [Skill]              
+VALUES (NEWID(), 1, @CurrLangId_it, GETDATE(), 'Frameworks', 'Java SE Development Kit 13, .NET Framework (v4.8), .NET Core (v3.1), Entity Framework (v6.4), Entity Framework Core (v3.1)', @CurriculumID)
+INSERT INTO [Skill]               
+VALUES (NEWID(), 2, @CurrLangId_it, GETDATE(), 'Tecnologie web', 'ASP.NET Core, ASP.NET Web API, ASP.NET MVC, ASP.NET WebForms, TypeScript, HTML, XML, SASS', @CurriculumID)
+INSERT INTO [Skill]               
+VALUES (NEWID(), 3, @CurrLangId_it, GETDATE(), 'Tecnologie di database', 'NoSQL, Microsoft SQL Server, Oracle, T-SQL, PL/SQL', @CurriculumID)
+INSERT INTO [Skill]           
+VALUES (NEWID(), 4, @CurrLangId_it, GETDATE(), 'IDE/Tools', 'Visual Studio, Eclipse, Azure DevOps, Git, Subversion (SVN)', @CurriculumID)
+INSERT INTO [Skill]           
+VALUES (NEWID(), 5, @CurrLangId_it, GETDATE(), 'Metodi di progetto', 'Agile, Scrum, RUP', @CurriculumID)
+INSERT INTO [Skill]               
+VALUES (NEWID(), 6, @CurrLangId_it, GETDATE(), 'Metodi di sviluppo', 'Domain driven Development, Prototyping', @CurriculumID)
+
+
+INSERT INTO [Skill]               
+VALUES (NEWID(), 0, @CurrLangId_es, GETDATE(), 'Lenguajes de programación', 'C#, Java, Python, Rust, C++', @CurriculumID)
+INSERT INTO [Skill]              
+VALUES (NEWID(), 1, @CurrLangId_es, GETDATE(), 'Frameworks', 'Java SE Development Kit 13, .NET Framework (v4.8), .NET Core (v3.1), Entity Framework (v6.4), Entity Framework Core (v3.1)', @CurriculumID)
+INSERT INTO [Skill]               
+VALUES (NEWID(), 2, @CurrLangId_es, GETDATE(), 'Tecnologías de la Web', 'ASP.NET Core, ASP.NET Web API, ASP.NET MVC, ASP.NET WebForms, TypeScript, HTML, XML, SASS', @CurriculumID)
+INSERT INTO [Skill]               
+VALUES (NEWID(), 3, @CurrLangId_es, GETDATE(), 'Tecnologias de la base de datos', 'NoSQL, Microsoft SQL Server, Oracle, T-SQL, PL/SQL', @CurriculumID)
+INSERT INTO [Skill]           
+VALUES (NEWID(), 4, @CurrLangId_es, GETDATE(), 'IDE/Tools', 'Visual Studio, Eclipse, Azure DevOps, Git, Subversion (SVN)', @CurriculumID)
+INSERT INTO [Skill]           
+VALUES (NEWID(), 5, @CurrLangId_es, GETDATE(), 'Métodos de proyecto', 'Agile, Scrum, RUP', @CurriculumID)
+INSERT INTO [Skill]               
+VALUES (NEWID(), 6, @CurrLangId_es, GETDATE(), 'Métodos de desarrollo', 'Domain driven Development, Prototyping', @CurriculumID)
+
+
 /* ABROAD */
 INSERT INTO [Abroad]
-VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'Bath', 'Dreiwöchiger Sprachaufenthalt in einer EF-Sprachschule mit Unterkunft in einer Gastfamilie.', '2001-04-01', '2001-04-01', @CurriculumID)
+VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'London', 'Two years living abroad with host family accommodation.', '2000-08-01', '2002-07-01', @CurriculumID)
 INSERT INTO [Abroad]
-VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'Bath', 'Three weeks of study in an EF language school with host family accommodation.', '2001-04-01', '2001-04-01', @CurriculumID)
+VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'sg'), 'Singapore', 'One year working abroad for a secret IT project at Arando International Ltd.', '2012-08-01', '2012-09-01', @CurriculumID)
+
+INSERT INTO [Abroad]
+VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'London', 'Zwei Jahre Auslandsaufenthalt mit Unterkunft in einer Gastfamilie.', '2000-08-01', '2002-07-01', @CurriculumID)
+INSERT INTO [Abroad]
+VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'sg'), 'Singapur', 'Ein Jahr Arbeit im Ausland für ein geheimes IT-Projekt bei Arando International Ltd.', '2012-08-01', '2012-09-01', @CurriculumID)
+
+INSERT INTO [Abroad]
+VALUES (NEWID(), 0, @CurrLangId_fr, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'Londres', 'Deux ans de vie à l''étranger avec un logement en famille d''accueil.', '2000-08-01', '2002-07-01', @CurriculumID)
+INSERT INTO [Abroad]
+VALUES (NEWID(), 1, @CurrLangId_fr, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'sg'), 'Singapour', 'One année de travail à l''étranger pour un projet informatique secret chez Arando International Ltd.', '2012-08-01', '2012-09-01', @CurriculumID)
+
+INSERT INTO [Abroad]
+VALUES (NEWID(), 0, @CurrLangId_it, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'Londra', 'Due anni di vita all''estero con alloggio in famiglia.', '2000-08-01', '2002-07-01', @CurriculumID)
+INSERT INTO [Abroad]
+VALUES (NEWID(), 1, @CurrLangId_it, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'sg'), 'Singapore', 'Un anno di lavoro all''estero per un progetto informatico segreto presso Arando International Ltd.', '2012-08-01', '2012-09-01', @CurriculumID)
+
+INSERT INTO [Abroad]
+VALUES (NEWID(), 0, @CurrLangId_es, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'Londres', 'Dos años viviendo en el extranjero con una familia de acogida.', '2000-08-01', '2002-07-01', @CurriculumID)
+INSERT INTO [Abroad]
+VALUES (NEWID(), 1, @CurrLangId_es, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'sg'), 'Singapur', 'Un año trabajando en el extranjero para un proyecto secreto de IT en Arando International Ltd.', '2012-08-01', '2012-09-01', @CurriculumID)
+
 
 /* REFERENCE */
 INSERT INTO [Reference]
-VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'Wolfgang', 'Schmidt', 1, 'ABB (Schweiz) AG', 'https://abb.ch', 'Ehemaliger Vorgesetzter bei der Ruf Telematik AG', 'wolfgang.schmidt@abb.ch', '+41', '58 585 00 00', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 0, @CurriculumID)
+VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'John', 'Goose', 1, 'Acme International', 'https://abb.ch', 'Former supervisor at Acme International', 'john.goose@acme.ch', '+41', '44 000 00 00', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 0, @CurriculumID)
 INSERT INTO [Reference]
-VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Wolfgang', 'Schmidt', 1, 'ABB (Schweiz) AG', 'https://abb.ch', 'Former supervisor at Ruf Telematik AG', 'wolfgang.schmidt@abb.ch', '+41', '58 585 00 00', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 0, @CurriculumID)
+VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Hanspeter', 'Brupbacher', 1, 'Vocational trainers', 'https://vocationaltrainers.ch', 'Colleague at Vocational trainers', 'hanspeter.brupbacher@vocationaltrainers.ch', '+41', '44 000 00 01', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 0, @CurriculumID)
+
+INSERT INTO [Reference]
+VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'John', 'Goose', 1, 'Acme International', 'https://abb.ch', 'Ehemaliger Vorgesetzter bei Acme International', 'john.goose@acme.ch', '+41', '44 000 00 00', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 0, @CurriculumID)
+INSERT INTO [Reference]
+VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'Hanspeter', 'Brupbacher', 1, 'Vocational trainers', 'https://vocationaltrainers.ch', 'Arbeitskollege bei Vocational trainers', 'hanspeter.brupbacher@vocationaltrainers.ch', '+41', '44 000 00 01', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 0, @CurriculumID)
+
+INSERT INTO [Reference]
+VALUES (NEWID(), 0, @CurrLangId_fr, GETDATE(), 'John', 'Goose', 1, 'Acme International', 'https://abb.ch', 'Ancien superviseur à l''Acme International', 'john.goose@acme.ch', '+41', '44 000 00 00', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 0, @CurriculumID)
+INSERT INTO [Reference]
+VALUES (NEWID(), 0, @CurrLangId_fr, GETDATE(), 'Hanspeter', 'Brupbacher', 1, 'Vocational trainers', 'https://vocationaltrainers.ch', 'Collègue à Vocational trainers', 'hanspeter.brupbacher@vocationaltrainers.ch', '+41', '44 000 00 01', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 0, @CurriculumID)
+
+INSERT INTO [Reference]
+VALUES (NEWID(), 0, @CurrLangId_it, GETDATE(), 'John', 'Goose', 1, 'Acme International', 'https://abb.ch', 'Ex supervisore presso Acme International', 'john.goose@acme.ch', '+41', '44 000 00 00', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 0, @CurriculumID)
+INSERT INTO [Reference]
+VALUES (NEWID(), 0, @CurrLangId_it, GETDATE(), 'Hanspeter', 'Brupbacher', 1, 'Vocational trainers', 'https://vocationaltrainers.ch', 'Collega a Vocational trainers', 'hanspeter.brupbacher@vocationaltrainers.ch', '+41', '44 000 00 01', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 0, @CurriculumID)
+
+INSERT INTO [Reference]
+VALUES (NEWID(), 0, @CurrLangId_es, GETDATE(), 'John', 'Goose', 1, 'Acme International', 'https://abb.ch', 'Ex supervisor de Acme International', 'john.goose@acme.ch', '+41', '44 000 00 00', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 0, @CurriculumID)
+INSERT INTO [Reference]
+VALUES (NEWID(), 0, @CurrLangId_es, GETDATE(), 'Hanspeter', 'Brupbacher', 1, 'Vocational trainers', 'https://vocationaltrainers.ch', 'Colega en Vocational trainers', 'hanspeter.brupbacher@vocationaltrainers.ch', '+41', '44 000 00 01', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 0, @CurriculumID)
+
 
 /* CERTIFICATE */
-INSERT INTO [Certificate]
-VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'Cambridge English Level 4 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
-INSERT INTO [Certificate]         
-VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, @CurriculumID)
-INSERT INTO [Certificate]         
-VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 'Scrum Master', 'Professional Scrum Master I (PSM 1)', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
 INSERT INTO [Certificate]        
-VALUES (NEWID(), 3, @CurrLangId_de, GETDATE(), 'SVEB Kursleiter Stufe 1', 'Lernveranstaltungen mit Erwachsenen durchführen / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, @CurriculumID)
-                                 
+VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Cambridge English Level 5 Certificate in ESOL International', 'Certificate of Proficiency in English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
 INSERT INTO [Certificate]        
-VALUES (NEWID(), 0, @CurrLangId_en, GETDATE(), 'Cambridge English Level 4 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
+VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-02-13', null, @CurriculumID)
+INSERT INTO [Certificate]         
+VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 'Professional Scrum Master I (PSM I)', 'Microsoft Specialist: Programming in C#', 'Scrum.org', 'https://www.scrum.org/certificates', '2016-10-04', null, @CurriculumID)
+INSERT INTO [Certificate]         
+VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 'SVEB instructor level 1', 'Conduct learning events with adults / AdA FA-M 1', 'SVEB AG', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2017-02-16', null, @CurriculumID)
+
 INSERT INTO [Certificate]        
-VALUES (NEWID(), 1, @CurrLangId_en, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, @CurriculumID)
+VALUES (NEWID(), 0, @CurrLangId_de, GETDATE(), 'Cambridge English Level 5 Certificate in ESOL International', 'Certificate of Proficiency in English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
+INSERT INTO [Certificate]        
+VALUES (NEWID(), 1, @CurrLangId_de, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-02-13', null, @CurriculumID)
 INSERT INTO [Certificate]         
-VALUES (NEWID(), 2, @CurrLangId_en, GETDATE(), 'Scrum Master', 'Professional Scrum Master I (PSM 1)', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
+VALUES (NEWID(), 2, @CurrLangId_de, GETDATE(), 'Professional Scrum Master I (PSM I)', 'Microsoft Specialist: Programming in C#', 'Scrum.org', 'https://www.scrum.org/certificates', '2016-10-04', null, @CurriculumID)
 INSERT INTO [Certificate]         
-VALUES (NEWID(), 3, @CurrLangId_en, GETDATE(), 'SVEB instructor level 1', 'Conduct learning events with adults / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, @CurriculumID)
+VALUES (NEWID(), 3, @CurrLangId_de, GETDATE(), 'SVEB instructor level 1', 'Lernveranstaltungen mit Erwachsenen durchführen / AdA FA-M 1', 'SVEB AG', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2017-02-16', null, @CurriculumID)
+
+
+INSERT INTO [Certificate]        
+VALUES (NEWID(), 0, @CurrLangId_fr, GETDATE(), 'Cambridge English Level 5 Certificate in ESOL International', 'Certificate of Proficiency in English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
+INSERT INTO [Certificate]        
+VALUES (NEWID(), 1, @CurrLangId_fr, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-02-13', null, @CurriculumID)
+INSERT INTO [Certificate]         
+VALUES (NEWID(), 2, @CurrLangId_fr, GETDATE(), 'Professional Scrum Master I (PSM I)', 'Microsoft Specialist: Programming in C#', 'Scrum.org', 'https://www.scrum.org/certificates', '2016-10-04', null, @CurriculumID)
+INSERT INTO [Certificate]         
+VALUES (NEWID(), 3, @CurrLangId_fr, GETDATE(), 'SVEB instructor level 1', 'Organiser des événements d''apprentissage avec des adultes / AdA FA-M 1', 'SVEB AG', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2017-02-16', null, @CurriculumID)
+
+
+INSERT INTO [Certificate]        
+VALUES (NEWID(), 0, @CurrLangId_it, GETDATE(), 'Cambridge English Level 5 Certificate in ESOL International', 'Certificate of Proficiency in English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
+INSERT INTO [Certificate]        
+VALUES (NEWID(), 1, @CurrLangId_it, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-02-13', null, @CurriculumID)
+INSERT INTO [Certificate]         
+VALUES (NEWID(), 2, @CurrLangId_it, GETDATE(), 'Professional Scrum Master I (PSM I)', 'Microsoft Specialist: Programming in C#', 'Scrum.org', 'https://www.scrum.org/certificates', '2016-10-04', null, @CurriculumID)
+INSERT INTO [Certificate]         
+VALUES (NEWID(), 3, @CurrLangId_it, GETDATE(), 'SVEB instructor level 1', 'Condurre eventi di apprendimento con adulti / AdA FA-M 1', 'SVEB AG', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2017-02-16', null, @CurriculumID)
+
+
+INSERT INTO [Certificate]        
+VALUES (NEWID(), 0, @CurrLangId_es, GETDATE(), 'Cambridge English Level 5 Certificate in ESOL International', 'Certificate of Proficiency in English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
+INSERT INTO [Certificate]        
+VALUES (NEWID(), 1, @CurrLangId_es, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-02-13', null, @CurriculumID)
+INSERT INTO [Certificate]         
+VALUES (NEWID(), 2, @CurrLangId_es, GETDATE(), 'Professional Scrum Master I (PSM I)', 'Microsoft Specialist: Programming in C#', 'Scrum.org', 'https://www.scrum.org/certificates', '2016-10-04', null, @CurriculumID)
+INSERT INTO [Certificate]         
+VALUES (NEWID(), 3, @CurrLangId_es, GETDATE(), 'SVEB instructor level 1', 'Realizar eventos de aprendizaje con adultos / AdA FA-M 1', 'SVEB AG', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2017-02-16', null, @CurriculumID)
+
 
 /* COURSE */
-INSERT INTO [Course]
-VALUES(NEWID(), 0, @CurrLangId_de, GETDATE(), 'ETH Zürich', 'https://ethz.ch', 'XSLT - Einführung mit Übungen', 'Herkunft und Anwendungsgebiet von XSLT', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2004-09-20', '2004-09-21', @CurriculumID)
-INSERT INTO [Course]             
-VALUES(NEWID(), 1, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Neues in .NET 4.5 und Visual Studio 2013', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2014-11-03', '2014-11-04', @CurriculumID)
-INSERT INTO [Course]              
-VALUES(NEWID(), 2, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Entwicklung von Webapplikationen mit MVC 5', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2015-11-12', '2015-11-13', @CurriculumID)
 INSERT INTO [Course]            
-VALUES(NEWID(), 3, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Datenzugriff in .NET mit dem Entity Framework und ADO.NET', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2016-02-24', '2016-02-26', @CurriculumID)
-INSERT INTO [Course]            
-VALUES(NEWID(), 4, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Application Lifecycle Management Basis', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2017-10-31', null, @CurriculumID)
+VALUES(NEWID(), 1, @CurrLangId_en, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'What''s new in .NET 4.5 and Visual Studio 2013', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Lucerne', '2011-11-03', '2011-11-06', @CurriculumID)
 INSERT INTO [Course]           
-VALUES(NEWID(), 5, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Sichere Websites entwickeln', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-01-17', null, @CurriculumID)
-INSERT INTO [Course]              
-VALUES(NEWID(), 6, @CurrLangId_de, GETDATE(),'Digicomp Academy AG', 'https://www.digicomp.ch', 'Entwicklung von Webapplikationen mit ASP.NET Core 3.0', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
-INSERT INTO [Course]              
-VALUES(NEWID(), 7, @CurrLangId_de, GETDATE(),' IFA Weiterbildung AG', 'https://www.ifa.ch', 'Einsatz digitaler Medien im Unterricht', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
-                                  
-INSERT INTO [Course]              
-VALUES(NEWID(), 0, @CurrLangId_en, GETDATE(), 'ETH Zürich', 'https://ethz.ch', 'XSLT - Introduction with exercises', 'Origin and application area from XSLT', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2004-09-20', '2004-09-21', @CurriculumID)
-INSERT INTO [Course]            
-VALUES(NEWID(), 1, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'What''s new in .NET 4.5 and Visual Studio 2013', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2014-11-03', '2014-11-04', @CurriculumID)
-INSERT INTO [Course]           
-VALUES(NEWID(), 2, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Web application development with MVC 5', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2015-11-12', '2015-11-13', @CurriculumID)
+VALUES(NEWID(), 2, @CurrLangId_en, GETDATE(), 'Trainingcenter Germany', 'https://www.traningcentergermany.de', 'Web application development with MVC 5', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 'Munich', '2014-10-12', '2014-10-20', @CurriculumID)
 INSERT INTO [Course]             
-VALUES(NEWID(), 3, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Data Access in .NET with the Entity Framework and ADO.NET', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2016-02-24', '2016-02-26', @CurriculumID)
+VALUES(NEWID(), 3, @CurrLangId_en, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Data Access with Java Spring Framework', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Bern', '2016-02-24', '2016-02-26', @CurriculumID)
 INSERT INTO [Course]              
-VALUES(NEWID(), 4, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Application Lifecycle Management Basis', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2017-10-31', null, @CurriculumID)
+VALUES(NEWID(), 4, @CurrLangId_en, GETDATE(), 'Trainingcenter Italy', 'https://www.traningcenteritaly.it', 'Application Lifecycle Management Basis', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'it'), 'Milano', '2018-10-31', null, @CurriculumID)
 INSERT INTO [Course]               
-VALUES(NEWID(), 5, @CurrLangId_en, GETDATE(),'Digicomp Academy AG', 'https://www.digicomp.ch', 'Develop secure websites', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-01-17', null, @CurriculumID)
+VALUES(NEWID(), 5, @CurrLangId_en, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Develop secure websites', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zurich', '2019-01-17', null, @CurriculumID)
 INSERT INTO [Course]              
-VALUES(NEWID(), 6, @CurrLangId_en, GETDATE(),'Digicomp Academy AG', 'https://www.digicomp.ch', 'Web application development with ASP.NET Core 3.0', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
+VALUES(NEWID(), 6, @CurrLangId_en, GETDATE(), 'Trainingcenter Greece', 'https://www.traningcentergreece.gr', 'Web application development with ASP.NET Core 3.0', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gr'), 'Athens', '2019-11-07', '2019-11-08', @CurriculumID)
+
+INSERT INTO [Course]            
+VALUES(NEWID(), 1, @CurrLangId_de, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Was ist neu in .NET 4.5 und Visual Studio 2013?', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Luzern', '2011-11-03', '2011-11-06', @CurriculumID)
+INSERT INTO [Course]           
+VALUES(NEWID(), 2, @CurrLangId_de, GETDATE(), 'Trainingcenter Germany', 'https://www.traningcentergermany.de', 'Webanwendungsentwicklung mit MVC 5', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 'München', '2014-10-12', '2014-10-20', @CurriculumID)
+INSERT INTO [Course]             
+VALUES(NEWID(), 3, @CurrLangId_de, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Datenzugriff mit Java Spring Framework', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Bern', '2016-02-24', '2016-02-26', @CurriculumID)
+INSERT INTO [Course]              
+VALUES(NEWID(), 4, @CurrLangId_de, GETDATE(), 'Trainingcenter Italy', 'https://www.traningcenteritaly.it', 'Application Lifecycle Management Basis', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'it'), 'Mailand', '2018-10-31', null, @CurriculumID)
 INSERT INTO [Course]               
-VALUES(NEWID(), 7, @CurrLangId_en, GETDATE(),' IFA Weiterbildung AG', 'https://www.ifa.ch', 'Use of digital media in education', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
+VALUES(NEWID(), 5, @CurrLangId_de, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Sichere Websites entwickeln', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-01-17', null, @CurriculumID)
+INSERT INTO [Course]              
+VALUES(NEWID(), 6, @CurrLangId_de, GETDATE(), 'Trainingcenter Greece', 'https://www.traningcentergreece.gr', 'Webanwendungsentwicklung mit ASP.NET Core 3.0', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gr'), 'Athen', '2019-11-07', '2019-11-08', @CurriculumID)
+
+
+INSERT INTO [Course]            
+VALUES(NEWID(), 1, @CurrLangId_fr, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Quoi de neuf dans .NET 4.5 et Visual Studio 2013', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Lucerne', '2011-11-03', '2011-11-06', @CurriculumID)
+INSERT INTO [Course]           
+VALUES(NEWID(), 2, @CurrLangId_fr, GETDATE(), 'Trainingcenter Germany', 'https://www.traningcentergermany.de', 'Développement d''applications web avec MVC 5', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 'München', '2014-10-12', '2014-10-20', @CurriculumID)
+INSERT INTO [Course]             
+VALUES(NEWID(), 3, @CurrLangId_fr, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Accès aux données avec le Java Spring Framework', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Berne', '2016-02-24', '2016-02-26', @CurriculumID)
+INSERT INTO [Course]              
+VALUES(NEWID(), 4, @CurrLangId_fr, GETDATE(), 'Trainingcenter Italy', 'https://www.traningcenteritaly.it', 'Base de la gestion du cycle de vie des applications', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'it'), 'Milano', '2018-10-31', null, @CurriculumID)
+INSERT INTO [Course]               
+VALUES(NEWID(), 5, @CurrLangId_fr, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Développer des sites web sécurisés', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-01-17', null, @CurriculumID)
+INSERT INTO [Course]              
+VALUES(NEWID(), 6, @CurrLangId_fr, GETDATE(), 'Trainingcenter Greece', 'https://www.traningcentergreece.gr', 'Développement d''applications web avec ASP.NET Core 3.0', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gr'), 'Athènes', '2019-11-07', '2019-11-08', @CurriculumID)
+
+
+INSERT INTO [Course]            
+VALUES(NEWID(), 1, @CurrLangId_it, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Cosa c''è di nuovo in .NET 4.5 e Visual Studio 2013', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Lucerna', '2011-11-03', '2011-11-06', @CurriculumID)
+INSERT INTO [Course]           
+VALUES(NEWID(), 2, @CurrLangId_it, GETDATE(), 'Trainingcenter Germany', 'https://www.traningcentergermany.de', 'Sviluppo di applicazioni web con MVC 5', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 'München', '2014-10-12', '2014-10-20', @CurriculumID)
+INSERT INTO [Course]             
+VALUES(NEWID(), 3, @CurrLangId_it, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Accesso ai dati con Java Spring Framework', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Berna', '2016-02-24', '2016-02-26', @CurriculumID)
+INSERT INTO [Course]              
+VALUES(NEWID(), 4, @CurrLangId_it, GETDATE(), 'Trainingcenter Italy', 'https://www.traningcenteritaly.it', 'Base della gestione del ciclo di vita dell''applicazione', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'it'), 'Milano', '2018-10-31', null, @CurriculumID)
+INSERT INTO [Course]               
+VALUES(NEWID(), 5, @CurrLangId_it, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Sviluppare siti web sicuri', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zurigo', '2019-01-17', null, @CurriculumID)
+INSERT INTO [Course]              
+VALUES(NEWID(), 6, @CurrLangId_it, GETDATE(), 'Trainingcenter Greece', 'https://www.traningcentergreece.gr', 'Sviluppo di applicazioni web con ASP.NET Core 3.0', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gr'), 'Atene', '2019-11-07', '2019-11-08', @CurriculumID)
+
+
+INSERT INTO [Course]            
+VALUES(NEWID(), 1, @CurrLangId_es, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', '¿Qué hay de nuevo en .NET 4.5 y Visual Studio 2013?', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Luzern', '2011-11-03', '2011-11-06', @CurriculumID)
+INSERT INTO [Course]           
+VALUES(NEWID(), 2, @CurrLangId_es, GETDATE(), 'Trainingcenter Germany', 'https://www.traningcentergermany.de', 'Desarrollo de aplicaciones web con MVC 5', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 'Múnich', '2014-10-12', '2014-10-20', @CurriculumID)
+INSERT INTO [Course]             
+VALUES(NEWID(), 3, @CurrLangId_es, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Acceso a los datos con Java Spring Framework', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Berna', '2016-02-24', '2016-02-26', @CurriculumID)
+INSERT INTO [Course]              
+VALUES(NEWID(), 4, @CurrLangId_es, GETDATE(), 'Trainingcenter Italy', 'https://www.traningcenteritaly.it', 'Base de la gestión del ciclo de vida de las aplicaciones', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'it'), 'Milán', '2018-10-31', null, @CurriculumID)
+INSERT INTO [Course]               
+VALUES(NEWID(), 5, @CurrLangId_es, GETDATE(), 'Trainingcenter Switzerland', 'https://www.traningcenterswitzerland.ch', 'Desarrollar sitios web seguros', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-01-17', null, @CurriculumID)
+INSERT INTO [Course]              
+VALUES(NEWID(), 6, @CurrLangId_es, GETDATE(), 'Trainingcenter Greece', 'https://www.traningcentergreece.gr', 'Desarrollo de aplicaciones web con ASP.NET Core 3.0', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gr'), 'Atenas', '2019-11-07', '2019-11-08', @CurriculumID)
+
 
 /* PUBLICATION */
 INSERT INTO [Publication]
-VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), GETDATE(), NEWID(), 0, 1, null, @CurriculumID, '')
+VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), GETDATE(), @PUBID_EN, 0, 0, null, @CurriculumID, '')
 INSERT INTO [Publication]
-VALUES(NEWID(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), GETDATE(), NEWID(), 0, 1, null, @CurriculumID, '')
+VALUES(NEWID(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), GETDATE(), @PUBID_DE, 0, 0, null, @CurriculumID, '')
+INSERT INTO [Publication]
+VALUES(NEWID(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_fr), GETDATE(), @PUBID_FR, 0, 0, null, @CurriculumID, '')
+INSERT INTO [Publication]
+VALUES(NEWID(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_it), GETDATE(), @PUBID_IT, 0, 0, null, @CurriculumID, '')
+INSERT INTO [Publication]
+VALUES(NEWID(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_es), GETDATE(), @PUBID_ES, 0, 0, null, @CurriculumID, '')
 
 /* PHOTO */
 UPDATE [About]

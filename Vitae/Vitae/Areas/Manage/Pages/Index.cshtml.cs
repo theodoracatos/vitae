@@ -51,19 +51,20 @@ namespace Vitae.Areas.Manage.Pages
             var curriculumItems = new List<List<int>>();
             var curriculumLabels = new List<string>();
 
-            foreach (var curriculumLanguage in curriculumLanguages)
+            var countPerLanguages = repository.CountItemsFromCurriculumAsync(curriculumID).Result;
+
+            foreach (var languageCount in countPerLanguages)
             {
-                var curriculumItem = repository.CountItemsFromCurriculumLanguageAsync(curriculumID, curriculumLanguage.LanguageCode).Result;
                 var values = new List<int>();
                 var labels = new List<string>();
 
-                foreach (var item in curriculumItem.Where(i => i.Key != SharedResource.About && i.Key != SharedResource.PersonalDetails))
+                foreach (var item in countPerLanguages[languageCount.Key])
                 {
                     labels.Add(item.Key);
                     values.Add(item.Value);
                 }
 
-                if(curriculumLabels.Count == 0)
+                if (curriculumLabels.Count == 0)
                 {
                     curriculumLabels = labels;
                 }
