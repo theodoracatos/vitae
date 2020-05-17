@@ -4,6 +4,7 @@ using Library.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 using Model.Poco;
@@ -65,10 +66,9 @@ namespace Vitae.Areas.Manage.Pages.Personalities
             {
                 var curriculum = await repository.GetCurriculumAsync<PersonalDetail>(curriculumID);
                 var curriculumLanguage = curriculum.CurriculumLanguages.Single(cl => cl.Order == 0).Language; // Always take 1st language!
-                vitaeContext.RemoveRange(curriculum.PersonalDetails.Where(p => p.CurriculumLanguage.LanguageCode == curriculumLanguage.LanguageCode));
 
                 // Add new
-                var personalDetail = new PersonalDetail() { PersonCountries = new List<PersonCountry>(), Children = new List<Child>() };
+                var personalDetail = curriculum.PersonalDetails.SingleOrDefault() ?? new PersonalDetail() { PersonCountries = new List<PersonCountry>(), Children = new List<Child>() };
                 personalDetail.Birthday = new DateTime(PersonalDetail.Birthday_Year, PersonalDetail.Birthday_Month, PersonalDetail.Birthday_Day);
                 personalDetail.City = PersonalDetail.City;
                 personalDetail.Country = vitaeContext.Countries.Single(c => c.CountryCode == PersonalDetail.CountryCode);
@@ -88,34 +88,29 @@ namespace Vitae.Areas.Manage.Pages.Personalities
                 personalDetail.CurriculumLanguage = curriculumLanguage;
 
                 // Nationality
-                personalDetail.PersonCountries.Clear();
-                foreach (var nationality in PersonalDetail.Nationalities)
-                {
-                    var personCountry = new PersonCountry()
+                personalDetail.PersonCountries =
+                    PersonalDetail.Nationalities.Select(n => new PersonCountry()
                     {
-                        Country = vitaeContext.Countries.Single(c => c.CountryCode == nationality.CountryCode),
-                        CountryID = vitaeContext.Countries.Single(c => c.CountryCode == nationality.CountryCode).CountryID,
+                        Country = vitaeContext.Countries.Single(c => c.CountryCode == n.CountryCode),
+                        CountryID = vitaeContext.Countries.Single(c => c.CountryCode == n.CountryCode).CountryID,
                         PersonalDetail = personalDetail,
                         PersonalDetailID = personalDetail.PersonalDetailID,
-                        Order = PersonalDetail.Nationalities.IndexOf(nationality)
-                    };
-                    personalDetail.PersonCountries.Add(personCountry);
-                }
+                        Order = PersonalDetail.Nationalities.IndexOf(n)
+                    }).ToList();
 
                 // Children
-                if (PersonalDetail.Children != null)
-                {
-                    vitaeContext.RemoveRange(personalDetail.Children);
-                    personalDetail.Children =
-                        PersonalDetail.Children?.Select(c => new Child()
-                        {
-                            Firstname = c.Firstname,
-                            Birthday = new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day),
-                            Order = c.Order
-                        }).ToList();
-                }
+                personalDetail.Children.ToList().ForEach(c => vitaeContext.Entry(c).State = EntityState.Deleted);
+                personalDetail.Children =
+                    PersonalDetail.Children.Select(c => new Child()
+                    {
+                        Firstname = c.Firstname,
+                        Birthday = new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day),
+                        Order = c.Order
+                    }).ToList();
+
                 curriculum.LastUpdated = DateTime.Now;
-                curriculum.PersonalDetails.Add(personalDetail);
+
+                //vitaeContext.Entry(personalDetail).State = curriculum.PersonalDetails == null ? EntityState.Added : EntityState.Modified;
 
                 await vitaeContext.SaveChangesAsync();
             }

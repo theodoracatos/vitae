@@ -182,7 +182,7 @@ namespace Persistency.Migrations
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     AcademicTitle = table.Column<string>(maxLength: 100, nullable: true),
                     Slogan = table.Column<string>(maxLength: 4000, nullable: true),
-                    Photo = table.Column<string>(type: "varchar(max)", nullable: false),
+                    Photo = table.Column<string>(type: "varchar(max)", nullable: true),
                     VfileID = table.Column<Guid>(nullable: true),
                     CurriculumID = table.Column<Guid>(nullable: true)
                 },

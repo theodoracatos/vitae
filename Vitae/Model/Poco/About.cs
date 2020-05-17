@@ -15,7 +15,6 @@ namespace Model.Poco
         [MaxLength(4000)]
         public string Slogan { get; set; }
 
-        [Required]
         [Column(TypeName = "varchar(max)")]
         public string Photo { get; set; }
 

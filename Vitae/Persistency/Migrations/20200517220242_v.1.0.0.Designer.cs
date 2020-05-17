@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200515224619_v.1.0.0")]
+    [Migration("20200517220242_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,7 +44,6 @@ namespace Persistency.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Photo")
-                        .IsRequired()
                         .HasColumnType("varchar(max)");
 
                     b.Property<string>("Slogan")

@@ -4,11 +4,18 @@ BEGIN TRY
 
 DECLARE @ID uniqueidentifier = 'a7e161f0-0ff5-45f8-851f-9b041f565abb'
 
+DECLARE @PUBID_DE uniqueidentifier = 'd920b8ae-28f2-4022-85ae-9056ccea6ff7'
+DECLARE @PUBID_EN uniqueidentifier = 'eaf68ef2-12ee-4ba0-b08b-5f1fc603147d'
+
+DECLARE @LanguageCode_de varchar(2) = 'de'
+DECLARE @LanguageCode_en varchar(2) = 'en'
+DECLARE @Email varchar(50) = 'theodoracatos@gmail.com'
+
 -- IdentityContext
 IF NOT EXISTS(SELECT 1 FROM [AspNetUsers] WHERE [Id] = @ID)
 BEGIN
 INSERT INTO [AspNetUsers] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount])
-     VALUES (@ID ,'theodoracatos@gmail.com' ,'THEODORACATOS@GMAIL.COM' ,'theodoracatos@gmail.com' ,'THEODORACATOS@GMAIL.COM' ,1 ,'AQAAAAEAACcQAAAAEM9xHq/I11jR504N4mFC+CcEdvencdlc8gfAmRwzeBLLnYuyB8QqWiDsQSyJ1XMiTw==','X7RKCA5QCJYUU3FS6G7UIG7PC2YRECYC','5fbfc0d8-2a6d-4875-8869-c332974e3cf3',null,0,0,null,1,0)
+     VALUES (@ID ,@Email , UPPER(@Email) , @Email , UPPER(@Email) ,1 ,'AQAAAAEAACcQAAAAEM9xHq/I11jR504N4mFC+CcEdvencdlc8gfAmRwzeBLLnYuyB8QqWiDsQSyJ1XMiTw==','X7RKCA5QCJYUU3FS6G7UIG7PC2YRECYC','5fbfc0d8-2a6d-4875-8869-c332974e3cf3',null,0,0,null,1,0)
 
 SET IDENTITY_INSERT [AspNetUserClaims] ON
 INSERT INTO [AspNetUserClaims](Id, UserId, ClaimType, ClaimValue)
@@ -23,9 +30,6 @@ BEGIN
 		VALUES (@ID, @UserRole)
 END
 -- VitaeContext
-DECLARE @LanguageCode_de varchar(2) = 'de'
-DECLARE @LanguageCode_en varchar(2) = 'en'
-DECLARE @Email varchar(50) = 'theodoracatos@gmail.com'
 DECLARE @CurriculumID uniqueidentifier = (SELECT [cla].[ClaimValue] FROM [AspNetUsers] [usr] INNER JOIN [AspNetUserClaims] [cla] ON [cla].[UserId] = [usr].[Id] WHERE [usr].[Email] = @Email)
 DECLARE @UserID uniqueidentifier = (SELECT [cla].[UserId] FROM [AspNetUsers] [usr] INNER JOIN [AspNetUserClaims] [cla] ON [cla].[UserId] = [usr].[Id] WHERE [usr].[Email] = @Email)
 DECLARE @LanguageID uniqueidentifier = (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de)
@@ -278,9 +282,9 @@ VALUES(NEWID(), 7, @CurrLangId_en, GETDATE(),' IFA Weiterbildung AG', 'https://w
 
 /* PUBLICATION */
 INSERT INTO [Publication]
-VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), GETDATE(), NEWID(), 0, 1, null, @CurriculumID, '')
+VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), GETDATE(), @PUBID_DE, 0, 1, null, @CurriculumID, '')
 INSERT INTO [Publication]
-VALUES(NEWID(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), GETDATE(), NEWID(), 0, 1, null, @CurriculumID, '')
+VALUES(NEWID(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), GETDATE(), @PUBID_EN, 0, 1, null, @CurriculumID, '')
 
 /* PHOTO */
 UPDATE [About]

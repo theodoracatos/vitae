@@ -201,7 +201,7 @@ namespace Vitae.Areas.Manage.Pages.Educations
         {
             Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
             Months = repository.GetMonths(requestCulture.RequestCulture.UICulture.Name);
-            repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
         }
 
         private async Task LoadEducations(string languageCode, Curriculum curr = null)

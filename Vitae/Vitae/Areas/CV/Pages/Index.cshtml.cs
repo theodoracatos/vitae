@@ -231,14 +231,12 @@ namespace Vitae.Areas.CV.Pages
 
         protected override void FillSelectionViewModel() 
         {
-            List<Task> tasks = new List<Task>
-            {
-                Task.Factory.StartNew(() => Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name)),
-                Task.Factory.StartNew(() => Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name)),
-                Task.Factory.StartNew(() => MaritalStatuses = repository.GetMaritalStatuses(requestCulture.RequestCulture.UICulture.Name)),
-                Task.Factory.StartNew(() => CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name)),
-                Task.Factory.StartNew(() => HierarchyLevels = repository.GetHierarchyLevels(CheckVM.LanguageCode)),
-            };
+            Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
+            Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
+            MaritalStatuses = repository.GetMaritalStatuses(requestCulture.RequestCulture.UICulture.Name);
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
+            Industries = repository.GetIndustries(requestCulture.RequestCulture.UICulture.Name);
+            HierarchyLevels = repository.GetHierarchyLevels(requestCulture.RequestCulture.UICulture.Name);
         }
 
         private CheckVM LoadCheckModel(Guid? id, string lang)

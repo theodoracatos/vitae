@@ -188,9 +188,12 @@ namespace Vitae.Code.PageModels
 
         protected async Task SaveLanguageChangeAsync()
         {
-            await vitaeContext.CurriculumLanguages.Where(cl => cl.CurriculumID == curriculumID).ForEachAsync(c => c.IsSelected = false);
-            vitaeContext.CurriculumLanguages.Single(c => c.CurriculumID == curriculumID && c.Language.LanguageCode == CurriculumLanguageCode).IsSelected = true;
-            await vitaeContext.SaveChangesAsync();
+            if (ModelState.IsValid)
+            {
+                await vitaeContext.CurriculumLanguages.Where(cl => cl.CurriculumID == curriculumID).ForEachAsync(c => c.IsSelected = false);
+                vitaeContext.CurriculumLanguages.Single(c => c.CurriculumID == curriculumID && c.Language.LanguageCode == CurriculumLanguageCode).IsSelected = true;
+                await vitaeContext.SaveChangesAsync();
+            }
         }
 
         protected abstract void FillSelectionViewModel();

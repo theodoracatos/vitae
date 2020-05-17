@@ -522,6 +522,9 @@
   <data name="ErrorConfirmEmail" xml:space="preserve">
     <value>Error confirming your email.</value>
   </data>
+  <data name="ErrorInfoMail" xml:space="preserve">
+    <value>Please send an e-mail to the following address, in case this error persists</value>
+  </data>
   <data name="Etc" xml:space="preserve">
     <value>…</value>
   </data>
@@ -751,7 +754,7 @@
     <value>It has never been easier.</value>
   </data>
   <data name="MailBye3" xml:space="preserve">
-    <value>Your account was successfully deleted. We regret that you have left. However, you can register again at any time with this e-mail address by</value>
+    <value>Your account has been successfully deleted. We regret that you have left. However, you can register again at any time with this e-mail address by</value>
   </data>
   <data name="MailFooter1" xml:space="preserve">
     <value>This email was sent from myVitae to</value>

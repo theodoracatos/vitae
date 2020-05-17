@@ -1276,6 +1276,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please send an e-mail to the following address, in case this error persists.
+        /// </summary>
+        public static string ErrorInfoMail {
+            get {
+                return ResourceManager.GetString("ErrorInfoMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ….
         /// </summary>
         public static string Etc {
@@ -1960,7 +1969,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your account was successfully deleted. We regret that you have left. However, you can register again at any time with this e-mail address by.
+        ///   Looks up a localized string similar to Your account has been successfully deleted. We regret that you have left. However, you can register again at any time with this e-mail address by.
         /// </summary>
         public static string MailBye3 {
             get {

@@ -522,6 +522,9 @@
   <data name="ErrorConfirmEmail" xml:space="preserve">
     <value>Fehler bei der Bestätigung Ihrer E-Mail.</value>
   </data>
+  <data name="ErrorInfoMail" xml:space="preserve">
+    <value>Bitte senden Sie eine E-Mail an die folgende Adresse, falls dieser Fehler weiterhin besteht</value>
+  </data>
   <data name="Etc" xml:space="preserve">
     <value>…</value>
   </data>

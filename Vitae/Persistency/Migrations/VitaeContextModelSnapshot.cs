@@ -42,7 +42,6 @@ namespace Persistency.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Photo")
-                        .IsRequired()
                         .HasColumnType("varchar(max)");
 
                     b.Property<string>("Slogan")
