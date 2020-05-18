@@ -81,7 +81,7 @@ namespace Vitae.Areas.CV.Pages
         {
             CheckVM = LoadCheckModel(id, culture);
 
-            if (CheckVM.HasValidCurriculumID)
+            if (CheckVM.HasValidCurriculumID) // Valid
             {
                 if(!CheckVM.Challenge)
                 {
@@ -90,7 +90,11 @@ namespace Vitae.Areas.CV.Pages
 
                 return Page();
             }
-            else
+            else if(CheckVM.Challenge) // Bot?
+            {
+                return Page();
+            }
+            else // No parameter
             {
                 return StatusCode(StatusCodes.Status404NotFound);
             }
@@ -100,9 +104,9 @@ namespace Vitae.Areas.CV.Pages
         {
             CheckVM = LoadCheckModel(id, culture);
             var isCaptchaOk = CheckVM.MustCheckCaptcha ? await CheckCaptcha() : true;
-            var isPasswordOk = CheckVM.MustCheckPassword ? ModelState.IsValid : true;
+            var isPasswordEntered = CheckVM.MustCheckPassword ? ModelState.IsValid : true;
 
-            if (isCaptchaOk && isPasswordOk)
+            if (isCaptchaOk && isPasswordEntered)
             {
                 if (CheckVM.HasValidCurriculumID)
                 {
@@ -119,7 +123,7 @@ namespace Vitae.Areas.CV.Pages
                 }
                 else
                 {
-                    // Someone modified the id
+                    // Someone modified the id or a bot is bruteforcing
                     return StatusCode(StatusCodes.Status404NotFound);
                 }
             }
@@ -262,6 +266,12 @@ namespace Vitae.Areas.CV.Pages
                     checkVM.IsPreview = curriculumID != Guid.Empty;
                     checkVM.MustCheckCaptcha = publication.Secure;
                     checkVM.Challenge = checkVM.MustCheckCaptcha || checkVM.MustCheckPassword;
+                }
+                else
+                {
+                    // Could be a bot, bruteforcing URL's
+                    checkVM.MustCheckCaptcha = true;
+                    checkVM.Challenge = true;
                 }
             }
             else if(curriculumID != Guid.Empty)
