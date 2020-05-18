@@ -88,7 +88,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
         {
             if (ModelState.IsValid)
             {
-                var existingCurriculumLanguages = vitaeContext.CurriculumLanguages.Include(c => c.Language).Include(c => c.Curriculum).Where(cl => cl.CurriculumID == curriculumID);
+                var existingCurriculumLanguages = vitaeContext.CurriculumLanguages.Include(c => c.Language).Include(c => c.Curriculum).Where(cl => cl.CurriculumID == curriculumID).OrderBy(c => c.Order);
                 var firstLanguage = existingCurriculumLanguages.Single(e => e.Order == 0).Language;
                 var deletedLanguageCodes = existingCurriculumLanguages.ToList().Select(e => e.Language.LanguageCode).Where(lc => !Setting.SettingItems.Any(s => s.FormerLanguageCode == lc));
                 var ignoreOrder = new List<int>();
@@ -96,20 +96,22 @@ namespace Vitae.Areas.Manage.Pages.Settings
                 // Delete
                 foreach (var deletedLanguageCode in deletedLanguageCodes)
                 {
-                    vitaeContext.CurriculumLanguages.Remove(existingCurriculumLanguages.Single(e => e.Language.LanguageCode == deletedLanguageCode));
-                    await vitaeContext.SaveChangesAsync();
+                    vitaeContext.Entry(existingCurriculumLanguages.Single(e => e.Language.LanguageCode == deletedLanguageCode)).State = EntityState.Deleted;
 
+                    await vitaeContext.SaveChangesAsync();
                     await repository.DeleteItemsFromCurriculumLanguageAsync(curriculumID, deletedLanguageCode);
                 }
 
-                // Order
-                for (int i = 0; i < vitaeContext.CurriculumLanguages.Count(cl => cl.CurriculumID == curriculumID); i++)
+                // Order if gaps available
+                if (deletedLanguageCodes.Count() > 0)
                 {
-                    vitaeContext.CurriculumLanguages.Where(cl => cl.CurriculumID == curriculumID).OrderBy(c => c.Order).ToList()[i].Order = i;
+                    var order = 0;
+                    foreach (var curriculumLanguage in existingCurriculumLanguages)
+                    {
+                        curriculumLanguage.Order = order++;
+                    }
+                    await vitaeContext.SaveChangesAsync();
                 }
-                await vitaeContext.SaveChangesAsync();
-
-                existingCurriculumLanguages = vitaeContext.CurriculumLanguages.Include(c => c.Language).Include(c => c.Curriculum).Where(cl => cl.CurriculumID == curriculumID);
 
                 // Change / Add
                 for (int i = 0; i < Setting.CurriculumLanguages.Count; i++)
@@ -122,21 +124,22 @@ namespace Vitae.Areas.Manage.Pages.Settings
                     {
                         var curriculum = existingCurriculumLanguages.Single(e => e.Order == i).Curriculum;
 
-                        if (!vitaeContext.CurriculumLanguages.Any(c => c.Language.LanguageCode == newLanguage.LanguageCode))
+                        if (!existingCurriculumLanguages.Any(c => c.Language.LanguageCode == newLanguage.LanguageCode))
                         {
                             // The language code has changed
-                            vitaeContext.CurriculumLanguages.Remove(existingCurriculumLanguages.Single(o => o.Order == i));
+                            vitaeContext.Entry(existingCurriculumLanguages.Single(o => o.Order == i)).State = EntityState.Deleted;
                             AddCurriculumLanguage(curriculum, vitaeContext.Languages.Single(l => l.LanguageCode == newLanguage.LanguageCode), i);
 
-                            // Change items
-                            if (Setting.SettingItems[i].NrOfItems > 0)
-                            {
-                                await repository.MoveItemsFromCurriculumLanguageAsync(curriculumID, existingLanguage.LanguageCode, newLanguage.LanguageCode, copy: false);
-                            }
+                            // Change language
+                            await repository.MoveItemsFromCurriculumLanguageAsync(curriculumID, existingLanguage.LanguageCode, newLanguage.LanguageCode, copy: false);
                         }
                         else if (!ignoreOrder.Contains(i))
                         {
-                            // Language switch occured
+                            if(i == 0)
+                            {
+                                // Language switch occured (1 <=> 2)
+                                await repository.MoveSingleItemsFromCurriculumLanguageAsync(curriculumID, existingLanguage.LanguageCode, newLanguage.LanguageCode);
+                            }
                             var newOrder = Setting.CurriculumLanguages.Single(c => c.LanguageCode == newLanguage.LanguageCode).Order;
                             var oldOrder = existingCurriculumLanguages.Single(c => c.Language.LanguageCode == newLanguage.LanguageCode).Order;
                             existingCurriculumLanguages.Single(c => c.Order == newOrder).Order = oldOrder;
@@ -233,7 +236,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
         #endregion
 
         #region AJAX
-        public IActionResult OnPostSelectChange()
+        public IActionResult OnPostLanguageChange()
         {
             FillSelectionViewModel();
 

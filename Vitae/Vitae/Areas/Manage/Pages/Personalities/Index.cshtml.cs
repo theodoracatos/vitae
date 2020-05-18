@@ -101,7 +101,7 @@ namespace Vitae.Areas.Manage.Pages.Personalities
                 // Children
                 personalDetail.Children.ToList().ForEach(c => vitaeContext.Entry(c).State = EntityState.Deleted);
                 personalDetail.Children =
-                    PersonalDetail.Children.Select(c => new Child()
+                    PersonalDetail.Children?.Select(c => new Child()
                     {
                         Firstname = c.Firstname,
                         Birthday = new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day),
@@ -110,7 +110,10 @@ namespace Vitae.Areas.Manage.Pages.Personalities
 
                 curriculum.LastUpdated = DateTime.Now;
 
-                //vitaeContext.Entry(personalDetail).State = curriculum.PersonalDetails == null ? EntityState.Added : EntityState.Modified;
+                if(curriculum.PersonalDetails.Count == 0)
+                {
+                    curriculum.PersonalDetails.Add(personalDetail);
+                }
 
                 await vitaeContext.SaveChangesAsync();
             }

@@ -103,10 +103,10 @@ header {
 footer {
     height: 60px;
     line-height: 60px;
-    opacity: 0.9;
     position: absolute;
     bottom: 0;
     width: 100%;
+    background-color: rgba(255,255,255,0.95) !important;
 }
 
 nav.navbar{
@@ -114,7 +114,6 @@ nav.navbar{
 }
 
 .footer-content {
-    background-color: $text-white;
     box-shadow: 0 2px 18px 1px $qvs-box-shadow-form;
     margin: 2em;
     padding: 1em;

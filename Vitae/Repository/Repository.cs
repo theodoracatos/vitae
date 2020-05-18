@@ -132,13 +132,27 @@ namespace Library.Repository
             await vitaeContext.SaveChangesAsync();
         }
 
+        public async Task MoveSingleItemsFromCurriculumLanguageAsync(Guid curriculumID, string languageCodeFrom, string languageCodeTo)
+        {
+            var curriculum = await GetCurriculumAsync<PersonalDetail>(curriculumID);
+            var newLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == languageCodeTo);
+
+            curriculum.PersonalDetails.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
+            .ToList().ForEach(a => curriculum.PersonalDetails.Add(SetKeys(a, newLanguage)));
+
+            await vitaeContext.SaveChangesAsync();
+        }
+
         public async Task MoveItemsFromCurriculumLanguageAsync(Guid curriculumID, string languageCodeFrom, string languageCodeTo, bool copy = false)
         {
             var curriculum = await GetCurriculumAsync(curriculumID);
             var newLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == languageCodeTo);
 
-            curriculum.PersonalDetails.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-                 .ToList().ForEach(a => curriculum.PersonalDetails.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
+            if(!copy)
+            {   
+                // Move personal details specific (1 for every language)
+                await MoveSingleItemsFromCurriculumLanguageAsync(curriculumID, languageCodeFrom, languageCodeTo);
+            }
 
             curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
                 .ToList().ForEach(a => curriculum.Abouts.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
