@@ -395,6 +395,17 @@ function loadingProcedure() {
     loadDisabledLinkMessage();
     assignCollapser();
     loadDynamicContent();
+    disableSubmitOnButton();
+}
+
+function disableSubmitOnButton() {
+    $(document).ready(function () {
+        $('#panel input[type="text"], input[type="password"]').keypress(function (e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+            }
+        });
+    });
 }
 
 function fixAnchorPosition() {

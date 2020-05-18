@@ -7,10 +7,6 @@
                 <h1><i class="fas fa-address-book fa-fw"></i>@SharedResource.PersonalDetails</h1>
                 <p>@SharedResource.PersonalDetailsDescription</p>
             </div>
-            <div id="languageSelect" class="float-right mt-2 mt-xs-3 mt-sm-3 mt-md-3 mt-xl-3">
-                <label class="control-label float-right mr-1" for="lang">@SharedResource.CVLanguage</label>
-                <select asp-for="@Model.CurriculumLanguageCode" class="form-control dirty-ignore cancel" asp-items="@(new SelectList(Model.CurriculumLanguages, "LanguageCode", "Name"))" disabled></select>
-            </div>
         </div>
         <div class="card-body">
             <div class="">
