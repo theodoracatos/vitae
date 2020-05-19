@@ -39,6 +39,7 @@ namespace Model.ViewModels
         public string Notes { get; set; }
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Color), Prompt = nameof(SharedResource.Color))]
+        [RegularExpression(@"^rgba\(((25[0-5]|2[0-4]\d|1\d{1,2}|\d\d?)\s*,\s*?){2}(25[0-5]|2[0-4]\d|1\d{1,2}|\d\d?)\s*,?\s*([01]\.?\d*?)?\)", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string Color { get; set; }
     }
 }

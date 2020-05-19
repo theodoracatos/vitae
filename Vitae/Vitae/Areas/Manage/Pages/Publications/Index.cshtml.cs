@@ -129,7 +129,7 @@ namespace Vitae.Areas.Manage.Pages.Publications
                     Order = Publications.Count,
                     Collapsed = base.Collapsed,
                     PublicationIdentifier = Guid.NewGuid().ToString(),
-                    Color = Globals.DEFAULT_VITAE_COLOR
+                    Color = Globals.DEFAULT_BACKGROUND_COLOR
                 });
                 Publications = CheckOrdering(Publications);
             }
