@@ -18,5 +18,7 @@
         public const string GOOGLE_CAPCHA = "https://www.google.com/recaptcha/api/siteverify";
         public const string GOOGLE_CAPTCHA_API = "https://www.google.com/recaptcha/api.js";
         public const string GOOGLE_ANALYTICS_DEACTIVATOR = "https://tools.google.com/dlpage/gaoptout?hl={0}";
+        public const string DEFAULT_BACKGROUND_COLOR = "rgba(0,0,0,0.9)";
+        public const string DEFAULT_FOREGROUND_COLOR = "rgba(255,255,255,255,0.8)";
     }
 }

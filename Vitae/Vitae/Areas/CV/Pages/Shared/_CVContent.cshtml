@@ -20,14 +20,14 @@
 }
 
 <!-- #region Ribbon -->
-@if (Model.CheckVM.IsPreview)
+@if (Model.CheckVM.IsDraftPreview)
 {
-    <div class="corner-ribbon right">@SharedResource.Preview</div>
+    <div class="corner-ribbon right d-none d-lg-block">@SharedResource.Preview</div>
 }
 <!-- #endregion -->
 <!-- #region Menu -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-    <a class="js-scroll-trigger mt-2 mb-2" href="@(Model.CheckVM.IsPreview ? "/Manage/" : "/")">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: @Model.CheckVM.BackgroundColor;" id="sideNav">
+    <a class="js-scroll-trigger mt-2 mb-2" href="@(Model.CheckVM.IsDraftPreview ? "/Manage/" : "/")">
         <div class="logo-container">
             <img src="~/img/logo.png" class="logo ml-0" title="@Globals.APPLICATION_NAME" />
         </div>
@@ -48,11 +48,11 @@
                 if (menuEntry.Item1)
                 {
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#@menuEntry.Item2">@menuEntry.Item3</a>
+                        <a class="nav-link js-scroll-trigger" style="color: @Model.CheckVM.ForegroundColor" href="#@menuEntry.Item2">@menuEntry.Item3</a>
                     </li>
                 }
             }
-            @if (Model.IsLoggedIn)
+            @if (Model.IsLoggedIn && !Model.CheckVM.HasPublicationID)
             {
                 <li>
                     <a class="btn btn-secondary mt-3" href="/Manage"><i class="fas fa-angle-left fa-fw"></i> @SharedResource.Back</a>
@@ -63,7 +63,6 @@
 </nav>
 
 <!-- #endregion -->
-
 <div class="container-fluid p-0 resume-section2">
     <!-- #region About -->
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(About).ToLower()">

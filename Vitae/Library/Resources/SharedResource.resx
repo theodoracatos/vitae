@@ -285,6 +285,12 @@
   <data name="Collapse" xml:space="preserve">
     <value>Collapse items</value>
   </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ColorDescription" xml:space="preserve">
+    <value>Ändern Sie die Farbe Ihres myVitae</value>
+  </data>
   <data name="CompanyDescription" xml:space="preserve">
     <value>Company description</value>
   </data>

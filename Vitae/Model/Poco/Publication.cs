@@ -21,5 +21,9 @@ namespace Model.Poco
 
         [MaxLength(1000)]
         public string Notes { get; set; }
+
+        [MaxLength(100)]
+        [Required]
+        public string Color { get; set; }
     }
 }

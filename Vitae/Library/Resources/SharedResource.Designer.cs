@@ -565,6 +565,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        public static string Color {
+            get {
+                return ResourceManager.GetString("Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ändern Sie die Farbe Ihres myVitae.
+        /// </summary>
+        public static string ColorDescription {
+            get {
+                return ResourceManager.GetString("ColorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company description.
         /// </summary>
         public static string CompanyDescription {

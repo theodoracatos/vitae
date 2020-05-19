@@ -396,6 +396,13 @@ function loadingProcedure() {
     assignCollapser();
     loadDynamicContent();
     disableSubmitOnButton();
+    loadColorPicker();
+}
+
+function loadColorPicker() {
+    $('.colorpicker').colorpicker({
+        format: "rgb"
+    });
 }
 
 function disableSubmitOnButton() {

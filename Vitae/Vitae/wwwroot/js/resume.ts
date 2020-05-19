@@ -37,7 +37,6 @@ $(document).ready(function () {
 
     initializeTagsinput();
 });
-//# sourceMappingURL=resume.js.map
 
 function enableSubmit() {
     $('#submitCaptcha').removeAttr('disabled');

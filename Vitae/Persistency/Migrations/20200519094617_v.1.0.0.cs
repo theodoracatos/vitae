@@ -619,7 +619,8 @@ namespace Persistency.Migrations
                     Secure = table.Column<bool>(nullable: false),
                     Password = table.Column<string>(maxLength: 250, nullable: true),
                     CurriculumID = table.Column<Guid>(nullable: true),
-                    Notes = table.Column<string>(maxLength: 1000, nullable: true)
+                    Notes = table.Column<string>(maxLength: 1000, nullable: true),
+                    Color = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {

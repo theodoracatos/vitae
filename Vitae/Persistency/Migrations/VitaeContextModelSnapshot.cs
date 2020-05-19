@@ -1010,6 +1010,11 @@ namespace Persistency.Migrations
                     b.Property<bool>("Anonymize")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 

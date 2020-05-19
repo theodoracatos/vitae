@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Library.Helper
@@ -217,6 +218,35 @@ namespace Library.Helper
             var bitmap = qrCode.GetGraphic(3);
             var imageBytes = BitmapToBytes(bitmap);
             return $"{prefix}{Convert.ToBase64String(imageBytes)}";
+        }
+
+        public static string InvertColor(string rgba, string defaultColor)
+        {
+            var color = defaultColor;
+
+            try
+            {
+                var matches = Regex.Matches(rgba, @"\d+");
+                var invertedColor = new StringBuilder("rgba(");
+
+                for (int i = 0; i < matches.Count - 1; i++)
+                {
+                    int value = Int32.Parse(matches[i].Value);
+                    if (i < 3)
+                    {
+                        invertedColor.Append($"{255 - value},");
+                    }
+                    else
+                    {
+                        invertedColor.Append($"0.8)");
+                    }
+                }
+
+                color = invertedColor.ToString();
+            }
+            catch { }
+
+            return color;
         }
 
         private static Byte[] BitmapToBytes(Bitmap img)

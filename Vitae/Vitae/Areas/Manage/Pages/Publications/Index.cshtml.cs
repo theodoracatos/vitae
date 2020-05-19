@@ -1,3 +1,4 @@
+using Library.Constants;
 using Library.Helper;
 using Library.Repository;
 using Library.Resources;
@@ -90,6 +91,7 @@ namespace Vitae.Areas.Manage.Pages.Publications
                     PublicationIdentifier = Guid.Parse(p.PublicationIdentifier),
                     Notes = p.Notes,
                     CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == p.LanguageCode),
+                    Color = p.Color
                 }).ToList().ForEach(p => curriculum.Publications.Add(p));
                 curriculum.LastUpdated = DateTime.Now;
 
@@ -126,7 +128,8 @@ namespace Vitae.Areas.Manage.Pages.Publications
                 {
                     Order = Publications.Count,
                     Collapsed = base.Collapsed,
-                    PublicationIdentifier = Guid.NewGuid().ToString()
+                    PublicationIdentifier = Guid.NewGuid().ToString(),
+                    Color = Globals.DEFAULT_VITAE_COLOR
                 });
                 Publications = CheckOrdering(Publications);
             }

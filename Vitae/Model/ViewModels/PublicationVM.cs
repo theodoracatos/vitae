@@ -37,5 +37,8 @@ namespace Model.ViewModels
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Notes), Prompt = nameof(SharedResource.Notes))]
         public string Notes { get; set; }
+
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Color), Prompt = nameof(SharedResource.Color))]
+        public string Color { get; set; }
     }
 }

@@ -12,14 +12,18 @@
     font-weight: 500;
     @include heading-font;
     font-size: 2.0rem;
-}
+} 
 
-.resume-section, .bg-wallpaper {
+body {
     background: url('../img/mountain-transparent.png') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.resume-section{
+    background-color: transparent !important;
 }
 
 .btn-primary {
@@ -75,8 +79,16 @@
     transform: rotate(45deg);
 }
 
-a.nav-link{
+a.nav-link {
     font-weight: 600 !important;
+}
+
+a.nav-link:hover {
+    color: $qvs-gold-border-color !important;
+}
+
+a.nav-link.active {
+    color: $qvs-gold-color !important;
 }
 
 @media all and (max-width: 991px) {

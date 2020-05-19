@@ -1,2 +1,6 @@
+-invert in c
+- ribbon prev only
+- checkvnm dist. in extern
+
 - TEST TEST TEST (MULTIUSER DELETION COUNT - THE SAME?)
 - DEPLOY ON LIVE

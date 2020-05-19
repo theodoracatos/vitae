@@ -727,7 +727,8 @@ namespace Library.Repository
                     PublicationIdentifier = p.PublicationIdentifier.ToString(),
                     Link = $"{baseUrl}/CV/{p.PublicationIdentifier}?culture={p.CurriculumLanguage.LanguageCode.ToLower()}",
                     Notes = p.Notes,
-                    QrCode = CodeHelper.CreateQRCode($"{baseUrl}/CV/{p.PublicationIdentifier}")
+                    QrCode = CodeHelper.CreateQRCode($"{baseUrl}/CV/{p.PublicationIdentifier}"),
+                    Color = p.Color
                 }).ToList();
 
             return publicationsVM;

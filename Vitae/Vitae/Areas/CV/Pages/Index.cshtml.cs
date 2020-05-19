@@ -215,7 +215,7 @@ namespace Vitae.Areas.CV.Pages
             }
 
             // Log
-            if (!CheckVM.IsPreview && CheckVM.PublicationID.Value.ToString() != Globals.DEMO_PUBLICATIONID)
+            if (!CheckVM.IsLoggedIn && CheckVM.PublicationID.Value.ToString() != Globals.DEMO_PUBLICATIONID)
             {
                 await repository.LogAsync(curriculum.CurriculumID, CheckVM.PublicationID.Value, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
             }
@@ -263,9 +263,9 @@ namespace Vitae.Areas.CV.Pages
                     checkVM.Secret = publication.Password;
                     checkVM.Anonymize = publication.Anonymize;
                     checkVM.LanguageCode = publication.CurriculumLanguage.LanguageCode;
-                    checkVM.IsPreview = curriculumID != Guid.Empty;
                     checkVM.MustCheckCaptcha = publication.Secure;
                     checkVM.Challenge = checkVM.MustCheckCaptcha || checkVM.MustCheckPassword;
+                    checkVM.BackgroundColor = publication.Color;
                 }
                 else
                 {
@@ -277,7 +277,6 @@ namespace Vitae.Areas.CV.Pages
             else if(curriculumID != Guid.Empty)
             {
                 // Preview...
-                checkVM.IsPreview = true;
                 checkVM.CurriculumID = curriculumID;
                 checkVM.LanguageCode = lang;
             }

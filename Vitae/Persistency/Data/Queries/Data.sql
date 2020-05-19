@@ -282,9 +282,9 @@ VALUES(NEWID(), 7, @CurrLangId_en, GETDATE(),' IFA Weiterbildung AG', 'https://w
 
 /* PUBLICATION */
 INSERT INTO [Publication]
-VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), GETDATE(), @PUBID_DE, 0, 1, null, @CurriculumID, '')
+VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), GETDATE(), @PUBID_DE, 0, 1, null, @CurriculumID, '', 'rgba(0, 0, 0, 0.9)')
 INSERT INTO [Publication]
-VALUES(NEWID(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), GETDATE(), @PUBID_EN, 0, 1, null, @CurriculumID, '')
+VALUES(NEWID(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), GETDATE(), @PUBID_EN, 0, 1, null, @CurriculumID, '', 'rgba(0, 0, 0, 0.9)')
 
 /* PHOTO */
 UPDATE [About]

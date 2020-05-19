@@ -125,14 +125,25 @@
                                 </div>
                             </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col">
-                                    <label class="control-label" asp-for="@Model.Publications[i].Notes"></label>
-                                    <textarea rows="1" asp-for="@Model.Publications[i].Notes" class="form-control"></textarea>
-                                    <small class="muted mt-1 float-left">@SharedResource.NotesDescription</small>
-                                    <span asp-validation-for="@Model.Publications[i].Notes" class="text-danger"></span>
-                                </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Publications[i].Notes"></label>
+                                <input type="text" asp-for="@Model.Publications[i].Notes" class="form-control" />
+                                <small class="muted mt-1 float-left">@SharedResource.NotesDescription</small>
+                                <span asp-validation-for="@Model.Publications[i].Notes" class="text-danger"></span>
                             </div>
+                            <div class="col-md-6">
+                                <label class="control-label" asp-for="@Model.Publications[i].Color"></label>
+                                <div class="input-group colorpicker p-0 border-0">
+                                    <input type="text" asp-for="@Model.Publications[i].Color" class="form-control" readonly />
+                                    <span class="input-group-append">
+                                        <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                                    </span>
+                                </div>
+                                <small class="muted mt-1 float-left">@SharedResource.ColorDescription</small>
+                                <span asp-validation-for="@Model.Publications[i].Color" class="text-danger"></span>
+                            </div>
+                        </div>
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label class="control-label" asp-for="@Model.Publications[i].Link"></label>
@@ -148,8 +159,9 @@
                                     {
                                         <div class="d-flex">
                                             <div class="form-control w-auto h-auto flex-fill bg-light">
-                                                <img class="rounded border border-light shadow mt-1" src="@Model.Publications[i].QrCode" />
-                                                <a target="_blank" class="text-break ml-1 mt-1 d-block" alt="@Model.Publications[i].Link" href="@Model.Publications[i].Link">
+                                                <img class="rounded border border-light shadow mt-1 mb-1" src="@Model.Publications[i].QrCode" />
+                                                <br />
+                                                <a target="_blank" class="text-break ml-1" alt="@Model.Publications[i].Link" href="@Model.Publications[i].Link">
                                                     @Model.Publications[i].Link
                                                 </a>
                                             </div>
