@@ -247,8 +247,12 @@ namespace Vitae.Areas.Manage.Pages.Settings
         {
             if (Setting.CurriculumLanguages.Count < MaxCurriculumLanguages)
             {
-                Setting.CurriculumLanguages.Add(new CurriculumLanguageVM() {  Order = Setting.CurriculumLanguages.Count });
                 Setting.SettingItems.Add(new SettingItemVM());
+                Setting.CurriculumLanguages.Add(new CurriculumLanguageVM()
+                {
+                    Order = Setting.CurriculumLanguages.Count,
+                    Collapsed = base.Collapsed
+                });
             }
             FillSelectionViewModel();
 
@@ -259,6 +263,15 @@ namespace Vitae.Areas.Manage.Pages.Settings
         {
             Remove(Setting.CurriculumLanguages, order);
             Setting.SettingItems.Remove(Setting.SettingItems[order]);
+
+            FillSelectionViewModel();
+
+            return GetPartialViewResult(PAGE_SETTINGS);
+        }
+
+        public IActionResult OnPostCollapse()
+        {
+            Collapse(Setting.CurriculumLanguages);
 
             FillSelectionViewModel();
 

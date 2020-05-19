@@ -393,6 +393,9 @@
   <data name="CVCompleteness" xml:space="preserve">
     <value>myVitae Completo</value>
   </data>
+  <data name="CVData" xml:space="preserve">
+    <value>Datos</value>
+  </data>
   <data name="CVLanguage" xml:space="preserve">
     <value>Idioma del myVitae</value>
   </data>
@@ -764,6 +767,9 @@
   </data>
   <data name="Manage" xml:space="preserve">
     <value>Gestione</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Gestión</value>
   </data>
   <data name="MaritalStatus" xml:space="preserve">
     <value>Estado civil</value>

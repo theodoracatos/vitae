@@ -405,6 +405,9 @@
   <data name="DashboardOverview" xml:space="preserve">
     <value>Le tableau de bord vous donne un bon aperçu des CV publiés. Vous pouvez saisir votre CV dans quatre langues au maximum.</value>
   </data>
+  <data name="Data" xml:space="preserve">
+    <value>Données</value>
+  </data>
   <data name="DataCollection" xml:space="preserve">
     <value>Collecte de données</value>
   </data>
@@ -764,6 +767,9 @@
   </data>
   <data name="Manage" xml:space="preserve">
     <value>Gérer</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Gestion</value>
   </data>
   <data name="MaritalStatus" xml:space="preserve">
     <value>État civil</value>

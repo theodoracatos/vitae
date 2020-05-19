@@ -14,7 +14,7 @@
                 <div class="form-group col">
                     <label class="control-label" asp-for="@Model.Publications"></label>
                     <div>
-                        <button asp-page-handler="AddPublication" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold mr-2" disabled="@(Model.Publications?.Count < Model.MaxPublications ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                        <button asp-page-handler="AddPublication" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-success cancel font-weight-bold mr-2" disabled="@(Model.Publications?.Count < Model.MaxPublications ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
                         <div class="form-control d-sm-block d-md-inline mt-2">
                             <div class="pretty p-switch p-slim mr-0 mr-0">
                                 <input type="checkbox" name="@nameof(Model.Collapsed)" class="dirty-ignore cancel" value="true" onclick="$('#btnCollapse').click()" checked="@(Model.Collapsed ? "checked" : null)" />
@@ -34,6 +34,7 @@
                         <div class="float-left line-height-2">
                             <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark mr-1">
                                 @(i + 1). @SharedResource.Publication @(publicationIdentifier)
+                                <input type="hidden" asp-for="@Model.Publications[i].Collapsed" />
                             </a>
                             <input type="hidden" asp-for="@Model.Publications[i].Order" />
                             <input type="hidden" asp-for="@Model.Publications[i].PublicationIdentifier" />

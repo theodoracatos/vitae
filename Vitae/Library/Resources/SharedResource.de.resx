@@ -405,6 +405,9 @@
   <data name="DashboardOverview" xml:space="preserve">
     <value>Das Dashboard gibt Ihnen einen guten Überblick über Ihre veröffentlichten Lebensläufe. Sie können Ihren Lebenslauf in bis zu vier Sprachen eingeben.</value>
   </data>
+  <data name="Data" xml:space="preserve">
+    <value>Daten</value>
+  </data>
   <data name="DataCollection" xml:space="preserve">
     <value>Datenerfassung</value>
   </data>
@@ -764,6 +767,9 @@
   </data>
   <data name="Manage" xml:space="preserve">
     <value>Ändern</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Verwaltung</value>
   </data>
   <data name="MaritalStatus" xml:space="preserve">
     <value>Zivilstand</value>

@@ -405,6 +405,9 @@
   <data name="DashboardOverview" xml:space="preserve">
     <value>The dashboard gives you a good overview of your published CVs. You can enter your resume in up to four languages.</value>
   </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
   <data name="DataCollection" xml:space="preserve">
     <value>Data collection</value>
   </data>
@@ -764,6 +767,9 @@
   </data>
   <data name="Manage" xml:space="preserve">
     <value>Manage</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Management</value>
   </data>
   <data name="MaritalStatus" xml:space="preserve">
     <value>Marital status</value>

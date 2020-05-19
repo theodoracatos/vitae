@@ -9,7 +9,15 @@
             <div class="card-body">
                 <label class="control-label" asp-for="@Model.Setting.CurriculumLanguages"></label>
                 <div class="mb-3">
-                    <button asp-page-handler="AddCurriculumLanguage" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-success cancel font-weight-bold mr-2" disabled="@(Model.Setting.CurriculumLanguages.Count < Model.MaxCurriculumLanguages ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                    <button asp-page-handler="AddCurriculumLanguage" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-success cancel font-weight-bold mr-2" disabled="@(Model.Setting.CurriculumLanguages.Count < Model.MaxCurriculumLanguages ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                    <div class="form-control d-sm-block d-md-inline mt-2">
+                        <div class="pretty p-switch p-slim mr-0 mr-0">
+                            <input type="checkbox" name="@nameof(Model.Collapsed)" class="dirty-ignore cancel" value="true" onclick="$('#btnCollapse').click()" checked="@(Model.Collapsed ? "checked" : null)" />
+                            <div class="state">
+                                <label asp-for="@Model.Collapsed">@SharedResource.Collapse</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 @for (int i = 0; i < Model.Setting.CurriculumLanguages.Count; i++)
@@ -19,15 +27,15 @@
                             <div class="float-left line-height-2">
                                 <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark mr-1">
                                     @(i + 1). @SharedResource.CurriculumLanguage
-                                    <input type="hidden" class="dirty-ignore" asp-for="@Model.Setting.CurriculumLanguages[i].Collapsed" />
-                                    <input type="hidden" class="dirty-ignore" asp-for="@Model.Setting.CurriculumLanguages[i].Name" value="-" />
+                                    <input type="hidden" asp-for="@Model.Setting.CurriculumLanguages[i].Collapsed" />
+                                    <input type="hidden" asp-for="@Model.Setting.CurriculumLanguages[i].Name" value="-" />
                                 </a>
                             </div>
                             <div class="float-right">
                                 <button asp-page-handler="DeleteCurriculumLanguage" asp-route-order="@i" asp-disabled="@Model.Setting.SettingItems[i].HasPublication" data-ajax="true" data-ajax-update="#panel" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"{Model.Setting.SettingItems[i].NrOfItems} {(Model.Setting.SettingItems[i].NrOfItems == 1 ? SharedResource.Entry : SharedResource.Entries)}")" class="btn btn-sm btn-danger ml-1 cancel dirty-ignore form-control @(Model.Setting.SettingItems[i].NrOfItems > 0 ? "confirmation" : null) @(i == 0 ? "d-none" : null)"><i class="far fa-trash-alt"></i></button>
                             </div>
                         </div>
-                        <div class="card-body collapse show" id="collapse-@i">
+                        <div class="card-body collapse @(Model.Setting.CurriculumLanguages[i].Collapsed ? null : "show")" id="collapse-@i">
                             <div class="form-row">
                                 <div class="form-group col mb-0">
                                     <div class="input-group">

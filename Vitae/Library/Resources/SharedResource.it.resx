@@ -405,6 +405,9 @@
   <data name="DashboardOverview" xml:space="preserve">
     <value>Il cruscotto vi offre una buona panoramica dei vostri CV pubblicati. Puoi inserire il tuo curriculum vitae in un massimo di quattro lingue.</value>
   </data>
+  <data name="Data" xml:space="preserve">
+    <value>Dati</value>
+  </data>
   <data name="DataCollection" xml:space="preserve">
     <value>Raccolta dei dati</value>
   </data>
@@ -764,6 +767,9 @@
   </data>
   <data name="Manage" xml:space="preserve">
     <value>Gestisci</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Direzione</value>
   </data>
   <data name="MaritalStatus" xml:space="preserve">
     <value>Stato civile</value>
