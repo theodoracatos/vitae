@@ -53,9 +53,9 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="control-label" asp-for="@Model.Skills[i].Skillset"></label>
-                                <input class="form-control tagsinput" data-role="tagsinput" type="text" asp-for="@Model.Skills[i].Skillset" />
-                                <span asp-validation-for="@Model.Skills[i].Skillset" class="text-danger"></span>
+                                <input class="form-control mytags" type="text" asp-for="@Model.Skills[i].Skillset" />
                                 <small class="d-block">@SharedResource.EnterSkill</small>
+                                <span asp-validation-for="@Model.Skills[i].Skillset" class="text-danger"></span>
                             </div>
                         </div>
                     </div>

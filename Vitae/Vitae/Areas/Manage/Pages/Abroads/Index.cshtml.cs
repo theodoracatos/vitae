@@ -34,7 +34,7 @@ namespace Vitae.Areas.Manage.Pages.Abroads
 
         public IEnumerable<CountryVM> Countries { get; set; }
 
-        public int MaxAbroads { get; } = 10;
+        public int MaxAbroads { get; } = 20;
 
         public IEnumerable<MonthVM> Months { get; set; }
 

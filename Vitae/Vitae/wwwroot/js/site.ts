@@ -322,6 +322,8 @@ function getColor(index) {
 }
 
 function addJQueryValidators() {
+    $.validator.setDefaults({ ignore: ".ignoreValidation" }); // Do not ignore hidden fields (problem on collapsed items)
+
     $.validator.unobtrusive.adapters.add('dategreaterthan', [], function (options) {
         options.rules['dategreaterthan'] = {};
         options.messages['dategreaterthan'] = options.message;

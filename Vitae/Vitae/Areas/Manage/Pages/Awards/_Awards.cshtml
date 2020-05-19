@@ -40,7 +40,7 @@
                             </a>
                         </div>
 
-                        <partial name="_CardButtonbar" model="new Tuple<int, int, IList<BaseVM>, string, string>(i, Model.MaxAwards, Model.Awards.Cast<BaseVM>().ToList(), SharedResource.Abroad, nameof(Abroad))" />
+                        <partial name="_CardButtonbar" model="new Tuple<int, int, IList<BaseVM>, string, string>(i, Model.MaxAwards, Model.Awards.Cast<BaseVM>().ToList(), SharedResource.Award, nameof(Award))" />
 
                     </div>
                     <div class="card-body collapse pb-0 @(Model.Awards[i].Collapsed ? null : "show")" id="collapse-@i">

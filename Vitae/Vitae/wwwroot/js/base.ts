@@ -59,10 +59,10 @@ function startRating() {
     }
 
  function initializeTagsinput() {
-        $('.tagsinput').tagsinput(
-            {
-                trimValue: true,
-                maxChars: 50
-            }
-        );
+     $('.tagsinput, .mytags').tagsinput(
+         {
+             trimValue: true,
+             maxChars: 20
+         }
+     );
     } 

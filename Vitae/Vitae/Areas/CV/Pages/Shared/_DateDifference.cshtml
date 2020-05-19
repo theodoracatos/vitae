@@ -1,8 +1,8 @@
 ﻿@model Tuple<DateTime, DateTime?, bool>
 
-<span class="text-primary">
-    @(Model.Item1.ToShortDateCultureString()) - @(!Model.Item2.HasValue ? SharedResource.UntilNow : Model.Item2.Value.ToShortDateCultureString())
-</span>
+    <span class="text-primary">
+        @(Model.Item1.ToShortDateCultureString())@(!Model.Item2.HasValue ? (Model.Item1 < DateTime.Now ? $" - {SharedResource.UntilNow}" : string.Empty) : $" - {Model.Item2.Value.ToShortDateCultureString()}")
+    </span>
 @{
     if (Model.Item1 < DateTime.Now.Date || Model.Item2.HasValue)
     {

@@ -31,7 +31,7 @@ namespace Vitae.Areas.Manage.Pages.Skills
         [BindProperty]
         public IList<SkillVM> Skills { get; set; }
 
-        public int MaxSkills { get; } = 10;
+        public int MaxSkills { get; } = 20;
 
         public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
             : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
