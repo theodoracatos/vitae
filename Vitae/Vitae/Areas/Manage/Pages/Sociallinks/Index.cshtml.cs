@@ -5,6 +5,7 @@ using Library.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 
 using Model.Enumerations;
@@ -17,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 using Vitae.Code;
@@ -35,8 +37,8 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
 
         public int MaxSocialLinks { get; } = Enum.GetNames(typeof(SocialPlatform)).Length;
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
-            : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
+        public IndexModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+        : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
 
         #region SYNC
 

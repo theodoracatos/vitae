@@ -942,6 +942,9 @@
   <data name="PleaseUpload" xml:space="preserve">
     <value>Si prega di caricare i file fino a</value>
   </data>
+  <data name="Prefix" xml:space="preserve">
+    <value>Prefisso</value>
+  </data>
   <data name="Preview" xml:space="preserve">
     <value>Anteprima</value>
   </data>

@@ -1,5 +1,4 @@
 ﻿/* eslint-disable */
-
 declare let Chart;
 declare let autosize;
 

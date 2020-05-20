@@ -1,4 +1,5 @@
-﻿using Library.Helper;
+﻿using Library.Constants;
+using Library.Helper;
 using Library.Repository;
 using Library.Resources;
 using Microsoft.AspNetCore.Authentication;
@@ -10,15 +11,17 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Model.Poco;
 using Model.ViewModels;
-
+using Newtonsoft.Json.Linq;
 using Persistency.Data;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -26,6 +29,9 @@ namespace Vitae.Code.PageModels
 {
     public abstract class BasePageModel : PageModel
     {
+        protected readonly IHttpContextAccessor httpContextAccessor;
+        protected readonly IConfiguration configuration;
+        protected readonly IHttpClientFactory clientFactory;
         protected readonly IStringLocalizer<SharedResource> localizer;
         protected readonly VitaeContext vitaeContext;
         protected readonly IRequestCultureFeature requestCulture;
@@ -56,8 +62,10 @@ namespace Vitae.Code.PageModels
             }
         }
 
-        public BasePageModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+        public BasePageModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
         {
+            this.clientFactory = clientFactory;
+            this.configuration = configuration;
             this.localizer = localizer;
             this.vitaeContext = vitaeContext;
             this.requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
@@ -194,6 +202,40 @@ namespace Vitae.Code.PageModels
                 vitaeContext.CurriculumLanguages.Single(c => c.CurriculumID == curriculumID && c.Language.LanguageCode == CurriculumLanguageCode).IsSelected = true;
                 await vitaeContext.SaveChangesAsync();
             }
+        }
+
+        protected async Task<bool> CheckCaptcha()
+        {
+            bool success;
+            string recaptchaResponse = this.Request.Form["g-recaptcha-response"];
+            var client = clientFactory.CreateClient();
+            try
+            {
+                var parameters = new Dictionary<string, string>
+             {
+                {"secret", this.configuration["reCAPTCHA:SecretKey"]},
+                {"response", recaptchaResponse},
+                {"remoteip", this.HttpContext.Connection.RemoteIpAddress.ToString()}
+                };
+
+                var response = await client.PostAsync(Globals.GOOGLE_CAPCHA, new FormUrlEncodedContent(parameters));
+                response.EnsureSuccessStatusCode();
+
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                dynamic apiJson = JObject.Parse(apiResponse);
+                success = apiJson.success;
+                if (apiJson.success != true)
+                {
+                    this.ModelState.AddModelError(string.Empty, "There was an unexpected problem processing this request. Please try again.");
+                }
+            }
+            catch (HttpRequestException)
+            {
+                // Something went wrong with the API. Let the request through.
+                success = true;
+            }
+
+            return success;
         }
 
         protected abstract void FillSelectionViewModel();

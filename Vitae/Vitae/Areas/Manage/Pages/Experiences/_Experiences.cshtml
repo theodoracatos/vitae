@@ -129,8 +129,8 @@
                                     }
                                     else
                                     {
-                                        <input asp-for="@Model.Experiences[i].End_Year" type="hidden" />
-                                        <input asp-for="@Model.Experiences[i].End_Month" type="hidden" />
+                                        <input asp-for="@Model.Experiences[i].End_Year" class="ignoreValidation" type="hidden" />
+                                        <input asp-for="@Model.Experiences[i].End_Month" class="ignoreValidation" type="hidden" />
                                     }
                                     <div class="@(!@Model.Experiences[i].UntilNow ? "input-group-append" : " w-auto flex-fill")">
                                         <div class="form-control">

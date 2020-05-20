@@ -37,7 +37,3 @@ $(document).ready(function () {
 
     initializeTagsinput();
 });
-
-function enableSubmit() {
-    $('#submitCaptcha').removeAttr('disabled');
-}

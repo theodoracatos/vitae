@@ -64,7 +64,7 @@
 
 <!-- #endregion -->
 <div class="container-fluid p-0 resume-section2">
-    <!-- #region About -->
+    <!-- #region PersonalDetail & About -->
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="@nameof(About).ToLower()">
         <div class="w-100">
 
@@ -104,7 +104,7 @@
                             }
                     }
                     @(CodeHelper.GetAge(new DateTime(Model.PersonalDetail.Birthday_Year, Model.PersonalDetail.Birthday_Month, Model.PersonalDetail.Birthday_Day))) @SharedResource.YearsOld &middot; @SharedResource.From @Model.PersonalDetail.Citizenship <br />
-                    @(Model.MaritalStatuses.Where(m => m.MaritalStatusCode > (int)Marital.NO_INFO && m.MaritalStatusCode < (int)Marital.OTHER).SingleOrDefault(m => m.MaritalStatusCode == Model.PersonalDetail.MaritalStatusCode)?.Name)@(Model.PersonalDetail.MaritalStatusCode > (int)Marital.NO_INFO && Model.PersonalDetail.MaritalStatusCode < (int)Marital.OTHER ? " · " : null)@(Model.PersonalDetail.Children.Count > 0 ? $"{Model.PersonalDetail.Children.Count} {(Model.PersonalDetail.Children.Count > 1 ? SharedResource.Children : SharedResource.Child)} ({Model.PersonalDetail.Children.Select(c => $"{c.Firstname}, {CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day))} {(CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day)) == 1 ? SharedResource.YearOld : SharedResource.YearsOld)}").Aggregate((i, j) => i + " & " + j) })" : string.Empty)
+                    @(Model.MaritalStatuses.Where(m => m.MaritalStatusCode > (int)Marital.NO_INFO && m.MaritalStatusCode < (int)Marital.OTHER).SingleOrDefault(m => m.MaritalStatusCode == Model.PersonalDetail.MaritalStatusCode)?.Name)@(Model.PersonalDetail.MaritalStatusCode > (int)Marital.NO_INFO && Model.PersonalDetail.MaritalStatusCode < (int)Marital.OTHER && Model.PersonalDetail.Children.Count > 0 ? " · " : null)@(Model.PersonalDetail.Children.Count > 0 ? $"{Model.PersonalDetail.Children.Count} {(Model.PersonalDetail.Children.Count > 1 ? SharedResource.Children : SharedResource.Child)} ({Model.PersonalDetail.Children.Select(c => $"{c.Firstname}, {CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day))} {(CodeHelper.GetAge(new DateTime(c.Birthday_Year, c.Birthday_Month, c.Birthday_Day)) == 1 ? SharedResource.YearOld : SharedResource.YearsOld)}").Aggregate((i, j) => i + " & " + j) })" : string.Empty)
                     @(Model.PersonalDetail.MaritalStatusCode > (int)Marital.NO_INFO && Model.PersonalDetail.MaritalStatusCode < (int)Marital.OTHER || Model.PersonalDetail.Children.Count > 0 ? @Html.Raw("<br />") : null)
                     @Model.PersonalDetail.Street @Model.PersonalDetail.StreetNo &middot; @Model.PersonalDetail.ZipCode @Model.PersonalDetail.City / @Model.PersonalDetail.State &middot; <a href="tel:@Model.PersonalDetail.PhonePrefix @Model.PersonalDetail.MobileNumber">@Model.PersonalDetail.PhonePrefix@Html.Raw("&nbsp;")@Html.Raw(Model.PersonalDetail.MobileNumber.Replace(" ", "&nbsp;"))</a> &middot;
                     <a href="mailto:@(Model.PersonalDetail.Email)">@Model.PersonalDetail.Email</a>

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 
 using Model.Poco;
@@ -15,6 +16,7 @@ using Persistency.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 using Vitae.Code.PageModels;
@@ -37,10 +39,10 @@ namespace Vitae.Areas.Manage.Pages.Personalities
 
         public int MaxChildren { get; } = 10;
 
-        public int MaxNationalities { get; } = 3;
+        public int MaxNationalities { get; } = 4;
 
-        public IndexModel(IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
-            : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
+        public IndexModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+    : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
 
         #region SYNC
 

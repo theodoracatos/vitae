@@ -70,7 +70,7 @@ namespace Vitae.Code.Mailing
 
                 await client.DisconnectAsync(true);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //log an error message or throw an exception or both.
                 

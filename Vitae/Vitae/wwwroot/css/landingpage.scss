@@ -178,6 +178,10 @@ nav.navbar{
     border-bottom-color: #f8f8f8 !important;
 }
 
+.mainframe .container-fluid{
+
+}
+
 #cookieConsent {
     position: absolute;
     top: 60px;
@@ -245,10 +249,14 @@ nav.navbar{
             font-size: 13px;
         }
 
-        #adContainer, .jumbotron {
+        /*#adContainer, .jumbotron {
             transform: scale(0.6)
-        }
+        }*/
 
+        .g-recaptcha {
+            transform: scale(0.8);
+            transform-origin: left;
+        }
 
         .corner-ribbon {
             top: 50px !important;
@@ -275,11 +283,14 @@ nav.navbar{
     }
 
     @media all and (max-height: 480px) {
-        #adContainer, div.jumbotron {
+        .jumbotron {
+            transform: scale(0.4)
+        }
+        /*#adContainer, div.jumbotron {
             transform: scale(0.4)
         }
 
         div.jumbotron:not(.btn) {
-            transform-origin: center;
-        }
+            transform-origin: top;
+        }*/
     }

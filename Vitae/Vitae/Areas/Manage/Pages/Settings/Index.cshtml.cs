@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Model.Enumerations;
@@ -21,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 using Vitae.Code.Mailing;
@@ -43,8 +45,8 @@ namespace Vitae.Areas.Manage.Pages.Settings
 
         public IEnumerable<LanguageVM> Languages { get; set; }
 
-        public IndexModel(SignInManager<IdentityUser> signInManager, IEmailSender emailSender, IStringLocalizer<SharedResource> localizer, IdentityContext identityContext, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
-            : base(localizer, vitaeContext, httpContextAccessor, userManager, repository)
+        public IndexModel(IHttpClientFactory clientFactory, IConfiguration configuration, SignInManager<IdentityUser> signInManager, IEmailSender emailSender, IStringLocalizer<SharedResource> localizer, IdentityContext identityContext, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+            : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository)
         {
             this.signInManager = signInManager;
             this.identityContext = identityContext;

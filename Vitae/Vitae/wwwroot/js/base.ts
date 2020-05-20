@@ -65,4 +65,8 @@ function startRating() {
              maxChars: 20
          }
      );
-    } 
+} 
+
+function enableSubmit() {
+    $('#submitCaptcha').removeAttr('disabled');
+}

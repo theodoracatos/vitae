@@ -34,10 +34,6 @@ namespace Vitae.Areas.CV.Pages
     [Area("CV")]
     public class IndexModel : BasePageModel
     {
-        private readonly IHttpContextAccessor httpContextAccessor;
-        private readonly IConfiguration configuration;
-        private readonly IHttpClientFactory clientFactory;
-
         [BindProperty]
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Password), Prompt = nameof(SharedResource.Password))]
@@ -68,12 +64,7 @@ namespace Vitae.Areas.CV.Pages
         public IEnumerable<HierarchyLevelVM> HierarchyLevels { get; set; }
 
         public IndexModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
-    : base(localizer, vitaeContext, httpContextAccessor, userManager, repository) 
-        {
-            this.configuration = configuration;
-            this.clientFactory = clientFactory;
-            this.httpContextAccessor = httpContextAccessor;
-        }
+    : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
 
         #region SYNC
 
@@ -151,40 +142,6 @@ namespace Vitae.Areas.CV.Pages
         #endregion
 
         #region Helper
-
-        private async Task<bool> CheckCaptcha()
-        {
-            bool success;
-            string recaptchaResponse = this.Request.Form["g-recaptcha-response"];
-            var client = clientFactory.CreateClient();
-            try
-            {
-                var parameters = new Dictionary<string, string>
-             {
-                {"secret", this.configuration["reCAPTCHA:SecretKey"]},
-                {"response", recaptchaResponse},
-                {"remoteip", this.HttpContext.Connection.RemoteIpAddress.ToString()}
-                };
-
-                HttpResponseMessage response = await client.PostAsync(Globals.GOOGLE_CAPCHA, new FormUrlEncodedContent(parameters));
-                response.EnsureSuccessStatusCode();
-
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                dynamic apiJson = JObject.Parse(apiResponse);
-                success = apiJson.success;
-                if (apiJson.success != true)
-                {
-                    this.ModelState.AddModelError(string.Empty, "There was an unexpected problem processing this request. Please try again.");
-                }
-            }
-            catch (HttpRequestException)
-            {
-                // Something went wrong with the API. Let the request through.
-                success = true;
-            }
-
-            return success;
-        }
 
         private async Task<PageResult> LoadPageAsync()
         {

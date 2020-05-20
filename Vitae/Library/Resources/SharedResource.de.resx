@@ -942,6 +942,9 @@
   <data name="PleaseUpload" xml:space="preserve">
     <value>Bitte beachten Sie die Dateigrösse von</value>
   </data>
+  <data name="Prefix" xml:space="preserve">
+    <value>Präfix</value>
+  </data>
   <data name="Preview" xml:space="preserve">
     <value>Vorschau</value>
   </data>
