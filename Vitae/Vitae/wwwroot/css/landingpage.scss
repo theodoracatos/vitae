@@ -258,7 +258,7 @@ nav.navbar{
         }
 
         #adContainer {
-            transform: scale(0.75)
+            transform: scale(0.8)
         }
 
         .g-recaptcha {
@@ -291,10 +291,26 @@ nav.navbar{
 
     }
 
-    @media all and (max-height: 480px) {
-        #adContainer {
-            transform: scale(0.6)
-        }
-
-
+@media all and (max-height: 767px) {
+    #adContainer, .fit-image {
+        transform: scale(0.85)
     }
+}
+
+@media all and (max-height: 640px) {
+    #adContainer, .fit-image {
+        transform: scale(0.75)
+    }
+}
+
+@media all and (max-height: 480px) {
+        #adContainer .fit-image {
+            transform: scale(0.4)
+        }
+    }
+
+@media all and (max-height: 420px) {
+    #advertsment {
+        display: none !important;
+    }
+}

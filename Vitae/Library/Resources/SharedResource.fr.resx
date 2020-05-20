@@ -172,7 +172,7 @@
     <value>Montrez vos compétences</value>
   </data>
   <data name="AdTextB0" xml:space="preserve">
-    <value>Vous souhaitez améliorer votre curriculum vitae ? Pas de problème - avec myVitae, vous vous présentez sous le meilleur jour possible. Créez un compte gratuit dès maintenant !</value>
+    <value>Vous souhaitez améliorer vos chances sur le marché du travail ? Pas de problème, car avec myVitae, vous pouvez créer votre site web de CV personnel en un rien de temps. Créez un compte gratuit maintenant et commencez !</value>
   </data>
   <data name="AllowedFiles" xml:space="preserve">
     <value>les fichiers peuvent être téléchargés</value>
@@ -415,7 +415,7 @@
     <value>Le tableau de bord vous montre l'historique d'accès à votre myVitae et d'autres statistiques utiles.</value>
   </data>
   <data name="DashboardOverview" xml:space="preserve">
-    <value>Le tableau de bord vous donne un bon aperçu des CV publiés. Vous pouvez saisir votre CV dans quatre langues au maximum.</value>
+    <value>Pour que votre CV soit publié, un lien de publication aléatoire est créé par l'application web myVitae. Vous pouvez ensuite utiliser ce lien pour un ou plusieurs postes vacants et le supprimer complètement après avoir postulé avec succès. Le tableau de bord vous indique le succès de vos CV publiés en affichant le nombre de clics sur le lien de publication envoyé. Vous pouvez également saisir votre CV dans cinq langues au maximum.</value>
   </data>
   <data name="Data" xml:space="preserve">
     <value>Données</value>
@@ -473,6 +473,9 @@
   </data>
   <data name="Down" xml:space="preserve">
     <value>En bas</value>
+  </data>
+  <data name="DownloadQR" xml:space="preserve">
+    <value>Télécharger le code QR</value>
   </data>
   <data name="DropFile" xml:space="preserve">
     <value>Déposer un fichier à télécharger</value>
@@ -834,6 +837,9 @@
   <data name="MyVitae" xml:space="preserve">
     <value>My Vitae</value>
   </data>
+  <data name="MyVitaeSlogan" xml:space="preserve">
+    <value>MyVitae - Votre CV en ligne</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
   </data>
@@ -896,6 +902,9 @@
   </data>
   <data name="OnRequest" xml:space="preserve">
     <value>Sur demande</value>
+  </data>
+  <data name="OptionalInformation" xml:space="preserve">
+    <value>Informations facultatives</value>
   </data>
   <data name="Overview" xml:space="preserve">
     <value>Vue d'ensemble</value>
@@ -1069,7 +1078,7 @@
     <value>Protégez vos publications</value>
   </data>
   <data name="SavePublicationsDescription" xml:space="preserve">
-    <value>Votre myVitae-CV est protégé par un lien unique et un captcha. En outre, vous devez attribuer un mot de passe et anonymiser les informations sensibles si nécessaire.</value>
+    <value>Le lien de publication est initialement connu de vous seul et peut également être protégé par un mot de passe. En outre, un Google Catcha peut être utilisé pour fournir une protection supplémentaire contre les robots. Pour les applications en aveugle, la fonction d'anonymisation, qui permet de cacher certaines informations sensibles, est également adaptée.</value>
   </data>
   <data name="SchoolName" xml:space="preserve">
     <value>Établissement d'enseignement</value>
@@ -1114,7 +1123,7 @@
     <value>Montrez vos points forts</value>
   </data>
   <data name="ShowYourStrengthsDescription" xml:space="preserve">
-    <value>Avec votre site web myVitae, vous pouvez vous concentrer sur l'essentiel et vous présenter sous le meilleur jour possible.</value>
+    <value>Grâce à votre site web de CV personnel, vous pouvez tenir vos données à jour et postuler pour le prochain emploi en quelques clics. Vous pouvez vous concentrer sur l'essentiel dès le début et vous présenter sous le meilleur jour possible. Ainsi, rien ne s'oppose à votre nouvel emploi de rêve. Nous vous souhaitons beaucoup de succès !</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>S'identifier</value>
@@ -1261,7 +1270,7 @@
     <value>Pourquoi myVitae ?</value>
   </data>
   <data name="WhyMyVitaeReason" xml:space="preserve">
-    <value>Créer un bon CV et le tenir à jour est un processus qui prend beaucoup de temps. De plus, avec la conception, vous pouvez rapidement atteindre vos limites. Cependant, le design n'est pas toujours aussi central pour de nombreux employeurs. C'est le contenu qui compte et qui doit être présenté de manière claire et concise. C'est là que myVitae entre en jeu et se concentre sur un contenu clair. Vous pouvez facilement créer votre site web de CV personnel.</value>
+    <value>Créer un bon CV et le tenir à jour est un processus qui prend beaucoup de temps. En outre, vous pouvez rapidement atteindre vos limites lors de la conception. Cependant, un candidat doit tout mettre sur la balance, car "il n'y a pas de seconde chance pour une première impression" (Mark Twain). C'est là que myVitae intervient et se concentre sur un design clair et concis. Vous pouvez facilement créer votre site web de CV personnel - et surtout, c'est gratuit ! Ainsi, rien ne s'oppose à ce que votre candidature soit retenue.</value>
   </data>
   <data name="WhyMyVitaeTest" xml:space="preserve">
     <value>Découvrez-les - vous serez ravis !</value>

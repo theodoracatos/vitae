@@ -18,7 +18,9 @@ using Persistency.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -61,6 +63,17 @@ namespace Vitae.Areas.Manage.Pages.Publications
                 FillSelectionViewModel();
                 return Page();
             }
+        }
+
+        public async Task<IActionResult> OnGetDownloadQrCodeAsync(int index)
+        {
+            var curriculum = await repository.GetCurriculumAsync<Publication>(curriculumID);
+            await LoadPublications(curriculum);
+
+            var base64 = Publications[index].QrCode.Substring(22, Publications[index].QrCode.Length - 22);
+            byte[] bytes = Convert.FromBase64String(base64);
+
+            return File(bytes, "application/octet-stream", $"QrCode_{Publications[index].PublicationIdentifier.Substring(0, Publications[index].PublicationIdentifier.IndexOf("-"))}.png");
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -118,11 +131,12 @@ namespace Vitae.Areas.Manage.Pages.Publications
 
             return Page();
         }
-        #endregion
 
-        #region ASYNC
+            #endregion
 
-        public IActionResult OnPostAddPublication()
+            #region ASYNC
+
+            public IActionResult OnPostAddPublication()
         {
             if (Publications.Count < MaxPublications)
             {

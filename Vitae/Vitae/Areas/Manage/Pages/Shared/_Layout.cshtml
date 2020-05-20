@@ -41,7 +41,7 @@
        var menuEntries = new List<Tuple<string, string, string>>()
        {
           new Tuple<string, string,string>(nameof(Personalities), "fa-address-book", SharedResource.PersonalDetails),
-          new Tuple<string, string,string>(nameof(Abouts), "fa-user-edit", SharedResource.About),
+          new Tuple<string, string,string>(nameof(Abouts), "fa-user-edit", SharedResource.OptionalInformation),
           new Tuple<string, string,string>(nameof(Experiences), "fa-briefcase", SharedResource.Experiences),
           new Tuple<string, string,string>(nameof(Educations), "fa-graduation-cap", SharedResource.Educations),
           new Tuple<string, string,string>(nameof(Courses), "fa-book-reader", SharedResource.Courses),
@@ -61,7 +61,7 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav mb-4">
-                        <div class="sb-sidenav-menu-heading">@SharedResource.Management</div>
+                        <div class="sb-sidenav-menu-heading">I. @SharedResource.Management</div>
                         <a class="nav-link" href="/Manage">
                             <i class="fas sideIcon fa-chart-line"></i>
                             @SharedResource.Dashboard
@@ -74,7 +74,7 @@
                             <i class="fas sideIcon fa-share-alt"></i>
                             @SharedResource.Publications
                         </a>
-                        <div class="sb-sidenav-menu-heading">@SharedResource.PersonalData</div>
+                        <div class="sb-sidenav-menu-heading">II. @SharedResource.PersonalData</div>
                         @foreach (var menuEntry in menuEntries)
                         {
                             <a class="nav-link" href="/Manage/@menuEntry.Item1">
@@ -83,7 +83,7 @@
                             </a>
                         }
 
-                        <div class="sb-sidenav-menu-heading">@SharedResource.Preview</div>
+                        <div class="sb-sidenav-menu-heading">III. @SharedResource.Preview</div>
                         <vc:vitae-link-generator></vc:vitae-link-generator>
                     </div>
                 </div>

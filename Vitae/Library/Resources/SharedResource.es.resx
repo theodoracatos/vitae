@@ -172,7 +172,7 @@
     <value>Presume de tus habilidades</value>
   </data>
   <data name="AdTextB0" xml:space="preserve">
-    <value>¿Quieres mejorar tu curriculum vitae? No hay problema, con myVitae te presentas de la mejor manera posible. Crea una cuenta gratis ahora!</value>
+    <value>¿Te gustaría mejorar tus posibilidades en el mercado laboral? No hay problema, porque con myVitae puede crear su sitio web de currículum personal en poco tiempo. Cree una cuenta gratuita ahora y empiece a trabajar!</value>
   </data>
   <data name="AllowedFiles" xml:space="preserve">
     <value>se permite subir archivos</value>
@@ -415,7 +415,7 @@
     <value>El tablero muestra el historial de acceso de tu currículum y otras estadísticas útiles.</value>
   </data>
   <data name="DashboardOverview" xml:space="preserve">
-    <value>El tablero de mandos te da una buena visión general de tus currículums publicados. Puedes introducir tu currículum en hasta cuatro idiomas.</value>
+    <value>Para que su CV sea publicado, la aplicación web myVitae crea un enlace de publicación aleatorio. A continuación, puedes utilizar este enlace para una o más vacantes y eliminarlo completamente después de haber presentado tu solicitud con éxito. El panel de control le muestra el éxito de sus CVs publicados mostrando el número de clics en el enlace de publicación enviado. También puedes introducir tu currículum en un máximo de cinco idiomas.</value>
   </data>
   <data name="Data" xml:space="preserve">
     <value>Datos</value>
@@ -473,6 +473,9 @@
   </data>
   <data name="Down" xml:space="preserve">
     <value>Abajo</value>
+  </data>
+  <data name="DownloadQR" xml:space="preserve">
+    <value>Descargar el código QR</value>
   </data>
   <data name="DropFile" xml:space="preserve">
     <value>Suelta un archivo para subir</value>
@@ -834,6 +837,9 @@
   <data name="MyVitae" xml:space="preserve">
     <value>My Vitae</value>
   </data>
+  <data name="MyVitaeSlogan" xml:space="preserve">
+    <value>MyVitae - Su CV en línea</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Nombre</value>
   </data>
@@ -896,6 +902,9 @@
   </data>
   <data name="OnRequest" xml:space="preserve">
     <value>A petición.</value>
+  </data>
+  <data name="OptionalInformation" xml:space="preserve">
+    <value>Información opcional</value>
   </data>
   <data name="Overview" xml:space="preserve">
     <value>Visión general</value>
@@ -1069,7 +1078,7 @@
     <value>Proteja sus publicaciones</value>
   </data>
   <data name="SavePublicationsDescription" xml:space="preserve">
-    <value>Su myVitae-CV está protegido por un enlace único y un captcha. Además, asigna una contraseña y anonimiza la información sensible si es necesario.</value>
+    <value>El enlace de publicación es conocido inicialmente sólo por usted y también puede ser protegido con una contraseña. Además, un Google Catcha puede ser usado para proveer protección adicional contra los bots. Para aplicaciones ciegas, la función de anonimización, que oculta alguna información sensible, también es adecuada.</value>
   </data>
   <data name="SchoolName" xml:space="preserve">
     <value>Institución educativa</value>
@@ -1114,7 +1123,7 @@
     <value>Muestra tus puntos fuertes</value>
   </data>
   <data name="ShowYourStrengthsDescription" xml:space="preserve">
-    <value>Con tu página web myVitae puedes concentrarte en lo esencial y presentarte de la mejor manera posible.</value>
+    <value>Con tu página web de currículums personales puedes mantener tus datos actualizados y solicitar el siguiente trabajo con sólo unos pocos clics. Puedes concentrarte en lo esencial desde el principio y presentarte de la mejor manera posible. Así que nada se interpone en el camino de tu nuevo trabajo soñado. Le deseamos mucho éxito!</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Firme en el registro.</value>
@@ -1261,7 +1270,7 @@
     <value>¿Por qué miVitae?</value>
   </data>
   <data name="WhyMyVitaeReason" xml:space="preserve">
-    <value>Crear un buen currículum y mantenerlo actualizado es un proceso que lleva mucho tiempo. Además, con el diseño puedes alcanzar rápidamente tus límites. Sin embargo, el diseño no siempre es tan central para muchos empleadores. Es el contenido lo que cuenta y que debe ser presentado de forma clara y concisa. Aquí es donde entra en juego myVitae y se centra en un contenido claro. Con facilidad puedes crear tu página web de currículums personales.</value>
+    <value>Crear un buen currículum y mantenerlo actualizado es un proceso que lleva mucho tiempo. Además, puede llegar rápidamente a sus límites durante el proceso de diseño. Sin embargo, un candidato debe poner todo en la balanza, porque "no hay una segunda oportunidad para una primera impresión" (Mark Twain). Aquí es donde entra myVitae y se centra en un diseño claro y conciso. Puedes crear fácilmente tu propio sitio web de currículums personales, y sobre todo, ¡es gratis! Así que nada se interpone en el camino del éxito de su solicitud.</value>
   </data>
   <data name="WhyMyVitaeTest" xml:space="preserve">
     <value>Compruébalo, ¡te encantará!</value>

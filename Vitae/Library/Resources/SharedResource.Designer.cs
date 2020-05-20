@@ -223,7 +223,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Want to improve your curriculum vitae? No problem - with myVitae you present yourself in the best possible light. Create a free account now!.
+        ///   Looks up a localized string similar to Would you like to improve your chances on the job market? No problem, because with myVitae you can create your personal resume website in no time at all. Create a free account now and get started!.
         /// </summary>
         public static string AdTextB0 {
             get {
@@ -952,7 +952,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The dashboard gives you a good overview of your published CVs. You can enter your resume in up to four languages..
+        ///   Looks up a localized string similar to In order for your CV to be published, a random publication link is created by the myVitae web application. You can then use this link for one or more vacancies and delete it completely after you have successfully applied. The dashboard shows you the success of your published CVs by displaying the number of clicks on the sent publication link. You can also enter your resume in up to five languages..
         /// </summary>
         public static string DashboardOverview {
             get {
@@ -1128,6 +1128,15 @@ namespace Library.Resources {
         public static string Down {
             get {
                 return ResourceManager.GetString("Down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download QR code.
+        /// </summary>
+        public static string DownloadQR {
+            get {
+                return ResourceManager.GetString("DownloadQR", resourceCulture);
             }
         }
         
@@ -2212,6 +2221,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MyVitae - Your online CV.
+        /// </summary>
+        public static string MyVitaeSlogan {
+            get {
+                return ResourceManager.GetString("MyVitaeSlogan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -2397,6 +2415,15 @@ namespace Library.Resources {
         public static string OnRequest {
             get {
                 return ResourceManager.GetString("OnRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optional information.
+        /// </summary>
+        public static string OptionalInformation {
+            get {
+                return ResourceManager.GetString("OptionalInformation", resourceCulture);
             }
         }
         
@@ -2914,7 +2941,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your myVitae-CV is protected by a unique link and a captcha. Additionally, assign a password and anonymise sensitive information if necessary..
+        ///   Looks up a localized string similar to The publication link is initially known only to you and can also be protected with a password. Furthermore, a Google Catcha can be used to provide additional protection against bots. For blind applications, the anonymization function, which hides some sensitive information, is also suitable..
         /// </summary>
         public static string SavePublicationsDescription {
             get {
@@ -3049,7 +3076,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With your myVitae website you can focus on the essentials and present yourself in the best possible light..
+        ///   Looks up a localized string similar to With your personal CV website you can keep your data up to date and apply for the next job with just a few clicks. You can focus on the essentials from the very beginning and present yourself in the best possible light. So nothing stands in the way of your new dream job. We wish you much success!.
         /// </summary>
         public static string ShowYourStrengthsDescription {
             get {
@@ -3490,7 +3517,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Creating a good CV and keeping it up to date is a very time-consuming process. Furthermore, with the design you can quickly reach your limits. However, design is not always so central for many employers. It&apos;s the content that counts and that needs to be presented clearly and concisely. This is where myVitae comes into play and focuses on clear content. With ease you can create your personal CV website..
+        ///   Looks up a localized string similar to Creating a good CV and keeping it up to date is a very time-consuming process. In addition, you can quickly reach your limits when designing. However, an applicant has to put everything on the scales, because &quot;there is no second chance for a first impression&quot; (Mark Twain). This is where myVitae steps in and focuses on a clear and concise design. With ease you can create your secure personal resume website - and best of all, it&apos;s free! So nothing stands in the way of your successful application..
         /// </summary>
         public static string WhyMyVitaeReason {
             get {

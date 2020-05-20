@@ -172,7 +172,7 @@
     <value>Zeigen Sie Ihr Können</value>
   </data>
   <data name="AdTextB0" xml:space="preserve">
-    <value>Möchten Sie Ihren Lebenslauf verbessern? Kein Problem - mit myVitae präsentieren Sie sich im bestmöglichen Licht. Erstellen Sie jetzt ein kostenloses Konto!</value>
+    <value>Möchten Sie Ihre Chancen auf dem Arbeitsmarkt verbessern? Kein Problem, denn mit myVitae können Sie im Handumdrehen Ihre persönliche Lebenslauf-Website erstellen. Eröffnen Sie jetzt ein kostenloses Konto und starten Sie durch!</value>
   </data>
   <data name="AllowedFiles" xml:space="preserve">
     <value>Dateien sind zum Hochladen erlaubt</value>
@@ -415,7 +415,7 @@
     <value>Das Dashboard zeigt Ihnen die den zeitlichen Verlauf der Zugriffe auf Ihren myVitae sowie andere nützliche Statistiken.</value>
   </data>
   <data name="DashboardOverview" xml:space="preserve">
-    <value>Das Dashboard gibt Ihnen einen guten Überblick über Ihre veröffentlichten Lebensläufe. Sie können Ihren Lebenslauf in bis zu vier Sprachen eingeben.</value>
+    <value>Damit Ihr Lebenslauf veröffentlicht werden kann, wird von der myVitae Webapplikation ein zufälliger Publikationslink erstellt. Diesen können Sie dann für eine oder mehrere Vakanzen verwenden und, nach erfolgreicher Bewerbung, wieder komplett löschen. Das Dashboard zeigt Ihnen dabei den Erfolgsverlauf Ihrer veröffentlichten Lebensläufe auf, in dem die Anzahl Klicks auf den versendeten Publikationslink aufgezeigt werden. Sie können Ihren Lebenslauf zudem in bis zu fünf Sprachen erfassen.</value>
   </data>
   <data name="Data" xml:space="preserve">
     <value>Daten</value>
@@ -473,6 +473,9 @@
   </data>
   <data name="Down" xml:space="preserve">
     <value>Nach unten</value>
+  </data>
+  <data name="DownloadQR" xml:space="preserve">
+    <value>QR-Code herunterladen</value>
   </data>
   <data name="DropFile" xml:space="preserve">
     <value>Legen Sie eine Datei zum Hochladen ab</value>
@@ -834,6 +837,9 @@
   <data name="MyVitae" xml:space="preserve">
     <value>My Vitae</value>
   </data>
+  <data name="MyVitaeSlogan" xml:space="preserve">
+    <value>MyVitae - Ihr online Lebenslauf</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -896,6 +902,9 @@
   </data>
   <data name="OnRequest" xml:space="preserve">
     <value>Auf Anfrage</value>
+  </data>
+  <data name="OptionalInformation" xml:space="preserve">
+    <value>Optionale Angaben</value>
   </data>
   <data name="Overview" xml:space="preserve">
     <value>Übersicht</value>
@@ -1069,7 +1078,7 @@
     <value>Schützen Sie Ihre Veröffentlichungen</value>
   </data>
   <data name="SavePublicationsDescription" xml:space="preserve">
-    <value>Ihr myVitae-CV ist durch einen einzigartigen Link und ein captcha geschützt. Vergeben Sie zusätzlich ein Passwort und anonymisieren Sie sensible Informationen, falls erforderlich.</value>
+    <value>Der Publikationslink ist anfänglich nur Ihnen bekannt und kann zusätzlich mit einem Passwort geschützt werden. Ausserdem kann mit einem Google Catcha ein weiterer Zusatzschutz gegen Bots eingesetzt werden. Für Blindbewerbungen eignet sich zudem die Anonymisierungsfunktion, welche einige sensible Informationen ausblendet.</value>
   </data>
   <data name="SchoolName" xml:space="preserve">
     <value>Ausbildungsstätte</value>
@@ -1114,7 +1123,7 @@
     <value>Zeigen Sie Ihre Stärken</value>
   </data>
   <data name="ShowYourStrengthsDescription" xml:space="preserve">
-    <value>Mit Ihrer myVitae Website können Sie sich auf das Wesentliche konzentrieren und sich im bestmöglichen Licht präsentieren.</value>
+    <value>Mit Ihrer persönlichen Lebenslauf-Webseite halten Sie Ihre Daten stets aktuell und können sich mit ein paar wenigen Klicks auf die nächste Stelle bewerben. Dabei können Sie sich von Anfang an auf Wesentliche konzentrieren und sich im bestmöglichen Licht präsentieren. Der neuen Traumstelle steht also nichts mehr im Weg. Wir wünschen viel Erfolg!</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Einloggen</value>
@@ -1261,7 +1270,7 @@
     <value>Warum myVitae?</value>
   </data>
   <data name="WhyMyVitaeReason" xml:space="preserve">
-    <value>Einen guten Lebenslauf zu erstellen und stets auf dem neuesten Stand zu halten, ist ein sehr zeitaufwändiger Prozess. Zudem kann man bei der Gestaltung schnell an seine Grenzen stossen. Für viele Arbeitgeber ist die Gestaltung jedoch nicht immer so zentral. Es ist der Inhalt der zählt und welcher klar und prägnant präsentiert werden muss. An dieser Stelle sprint myVitae ein und setzt auf klare Inhalte. Mit Leichtigkeit können Sie Ihre persönliche Lebenslauf-Website erstellen.</value>
+    <value>Einen guten Lebenslauf zu erstellen und diesen stets auf dem neuesten Stand zu halten, ist ein sehr zeitaufwändiger Prozess. Zudem kann man bei der Gestaltung schnell an seine Grenzen stossen. Ein Bewerber muss jedoch alles in eine Waagschale werfen, denn "es gibt keine zweite Chance für den ersten Eindruck" (Mark Twain). An dieser Stelle springt myVitae ein und setzt auf ein klares und übersichtliches Design. Mit Leichtigkeit können Sie Ihre persönliche passwortgeschützte Lebenslauf-Website erstellen – und dies erst noch kostenlos! Ihrer erfolgreichen Bewerbung steht also nichts mehr im Wege.</value>
   </data>
   <data name="WhyMyVitaeTest" xml:space="preserve">
     <value>Schauen Sie es sich an - Sie werden begeistert sein!</value>

@@ -110,7 +110,7 @@ namespace Library.Helper
 
             bodyText.Replace("${MAIL_ADVERT4}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert4));
             bodyText.Replace("${MAIL_ADVERT5}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert5));
-            bodyText.Replace("${MAIL_ADVERT6}", HtmlEncoder.Default.Encode(SharedResource.MailAdvert6));
+            bodyText.Replace("${MAIL_ADVERT6}", HtmlEncoder.Default.Encode(SharedResource.MyVitaeSlogan));
 
             bodyText.Replace("${YEAR}", DateTime.Now.Year.ToString());
             bodyText.Replace("${MAIL_FOOTER1}", HtmlEncoder.Default.Encode(SharedResource.MailFooter1));
