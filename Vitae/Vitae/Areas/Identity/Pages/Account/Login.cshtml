@@ -5,35 +5,39 @@
     ViewData["Title"] = @SharedResource.SignIn;
 }
 
-    <div class="col-auto mx-auto my-auto">
-        <div class="container">
-            <div class="jumbotron">
-                <form id="account" method="post">
-                    <h3><i class="fas fa-user-circle fa-fw"></i>@SharedResource.LoginTitle</h3>
-                    <hr />
-                    <div class="form-group">
-                        <label asp-for="Input.Email"></label>
-                        <input asp-for="Input.Email" class="form-control dirty-ignore" />
-                        <span asp-validation-for="Input.Email" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Input.Password"></label>
-                        <input asp-for="Input.Password" class="form-control dirty-ignore" />
-                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                    </div>
-                    <partial name="_StatusMessage" model="new KeyValuePair<bool, string>(ViewData.ModelState.IsValid, string.Empty)" />
-                    <div class="form-group mb-0 text-right">
-                        <button type="submit" class="btn btn-success">@SharedResource.SignIn</button>
-                    </div>
-                    <div class="form-group">
-                        <p>
-                            <div class="d-block">
-                                <a id="forgot-password" class="" asp-page="./ForgotPassword">@SharedResource.PasswordForgot</a>
-                            </div>
-                            <a asp-page="./Register" class="" asp-route-returnUrl="@Model.ReturnUrl">@SharedResource.RegisterANewUser</a>
-                        </p>
-                    </div>
-                </form>
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-md8-auto mx-auto my-auto">
+            <div class="container">
+                <div class="jumbotron">
+                    <form id="account" method="post">
+                        <h3><i class="fas fa-user-circle fa-fw"></i>@SharedResource.LoginTitle</h3>
+                        <hr />
+                        <div class="form-group">
+                            <label asp-for="Input.Email"></label>
+                            <input asp-for="Input.Email" class="form-control dirty-ignore" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.Password"></label>
+                            <input asp-for="Input.Password" class="form-control dirty-ignore" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <partial name="_StatusMessage" model="new KeyValuePair<bool, string>(ViewData.ModelState.IsValid, string.Empty)" />
+                        <div class="form-group mb-0 text-right">
+                            <button type="submit" class="btn btn-success">@SharedResource.SignIn</button>
+                        </div>
+                        <div class="form-group">
+                            <p>
+                                <div class="d-block">
+                                    <a id="forgot-password" class="" asp-page="./ForgotPassword">@SharedResource.PasswordForgot</a>
+                                </div>
+                                <a asp-page="./Register" class="" asp-route-returnUrl="@Model.ReturnUrl">@SharedResource.RegisterANewUser</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+</div>

@@ -270,6 +270,12 @@
   <data name="ChosenFile" xml:space="preserve">
     <value>il file è stato scelto</value>
   </data>
+  <data name="ChronologicalAsc" xml:space="preserve">
+    <value>Si raccomanda un ordine cronologico ascendente.</value>
+  </data>
+  <data name="ChronologicalDesc" xml:space="preserve">
+    <value>Si raccomanda un ordine cronologico decrescente.</value>
+  </data>
   <data name="Citizenship" xml:space="preserve">
     <value>Cittadinanza</value>
   </data>
@@ -708,8 +714,26 @@
   <data name="Level" xml:space="preserve">
     <value>Livello</value>
   </data>
+  <data name="LinkAwards" xml:space="preserve">
+    <value>Sito web dell'autorità aggiudicatrice</value>
+  </data>
+  <data name="LinkCertificate" xml:space="preserve">
+    <value>Sito web dell'autorità di certificazione</value>
+  </data>
+  <data name="LinkEducation" xml:space="preserve">
+    <value>Sito web del centro di formazione</value>
+  </data>
+  <data name="LinkExperience" xml:space="preserve">
+    <value>Sito web del datore di lavoro</value>
+  </data>
+  <data name="LinkInterest" xml:space="preserve">
+    <value>Sito web dell'associazione</value>
+  </data>
   <data name="LinkNotGenerated" xml:space="preserve">
     <value>Il link non è stato ancora generato</value>
+  </data>
+  <data name="LinkReference" xml:space="preserve">
+    <value>Sito web dell'azienda</value>
   </data>
   <data name="LockedOut" xml:space="preserve">
     <value>Chiuso fuori</value>

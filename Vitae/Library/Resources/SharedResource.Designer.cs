@@ -520,6 +520,24 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An ascending chronological order is recommended..
+        /// </summary>
+        public static string ChronologicalAsc {
+            get {
+                return ResourceManager.GetString("ChronologicalAsc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A descending chronological order is recommended..
+        /// </summary>
+        public static string ChronologicalDesc {
+            get {
+                return ResourceManager.GetString("ChronologicalDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Citizenship.
         /// </summary>
         public static string Citizenship {
@@ -574,7 +592,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ändern Sie die Farbe Ihres myVitae.
+        ///   Looks up a localized string similar to Change the color of your myVitae.
         /// </summary>
         public static string ColorDescription {
             get {
@@ -1834,11 +1852,65 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Website of the awarding authority.
+        /// </summary>
+        public static string LinkAwards {
+            get {
+                return ResourceManager.GetString("LinkAwards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website of the certificate authority.
+        /// </summary>
+        public static string LinkCertificate {
+            get {
+                return ResourceManager.GetString("LinkCertificate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website of the training centre.
+        /// </summary>
+        public static string LinkEducation {
+            get {
+                return ResourceManager.GetString("LinkEducation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website of the employer.
+        /// </summary>
+        public static string LinkExperience {
+            get {
+                return ResourceManager.GetString("LinkExperience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website of the association.
+        /// </summary>
+        public static string LinkInterest {
+            get {
+                return ResourceManager.GetString("LinkInterest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The link has not been generated yet.
         /// </summary>
         public static string LinkNotGenerated {
             get {
                 return ResourceManager.GetString("LinkNotGenerated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website of the company.
+        /// </summary>
+        public static string LinkReference {
+            get {
+                return ResourceManager.GetString("LinkReference", resourceCulture);
             }
         }
         

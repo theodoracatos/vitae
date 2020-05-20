@@ -2,7 +2,7 @@
 
 <div id="panel">
     <div class="card">
-        <partial name="_CardHeader" model="@(new Tuple<BasePageModel, string, string, string>(Model, "fas fa-book-reader", SharedResource.Courses, SharedResource.CoursesDescription))" />
+        <partial name="_CardHeader" model="@(new Tuple<BasePageModel, string, string, string>(Model, " fas fa-book-reader", SharedResource.Courses, $"{SharedResource.CoursesDescription} {SharedResource.ChronologicalDesc}"))" />
 
         <div class="card-body">
             <div class="form-row">

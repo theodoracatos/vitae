@@ -83,7 +83,8 @@ VALUES ((SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [Curriculum
 INSERT INTO [Child]
 VALUES(NEWID(), 'Anna', '2009-02-14', 0, GETDATE(), (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID))
 INSERT INTO [Child]
-VALUES(NEWID(), 'Pete', '2012-05-13', 0, GETDATE(), (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID))
+VALUES(NEWID(), 'Pete', '2012-05-13', 1, GETDATE(), (SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID))
+
 
 /* SOCIAL LINK */
 INSERT INTO [SocialLink]

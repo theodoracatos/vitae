@@ -270,6 +270,12 @@
   <data name="ChosenFile" xml:space="preserve">
     <value>file has been chosen</value>
   </data>
+  <data name="ChronologicalAsc" xml:space="preserve">
+    <value>An ascending chronological order is recommended.</value>
+  </data>
+  <data name="ChronologicalDesc" xml:space="preserve">
+    <value>A descending chronological order is recommended.</value>
+  </data>
   <data name="Citizenship" xml:space="preserve">
     <value>Citizenship</value>
   </data>
@@ -289,7 +295,7 @@
     <value>Color</value>
   </data>
   <data name="ColorDescription" xml:space="preserve">
-    <value>Ändern Sie die Farbe Ihres myVitae</value>
+    <value>Change the color of your myVitae</value>
   </data>
   <data name="CompanyDescription" xml:space="preserve">
     <value>Company description</value>
@@ -708,8 +714,26 @@
   <data name="Level" xml:space="preserve">
     <value>Level</value>
   </data>
+  <data name="LinkAwards" xml:space="preserve">
+    <value>Website of the awarding authority</value>
+  </data>
+  <data name="LinkCertificate" xml:space="preserve">
+    <value>Website of the certificate authority</value>
+  </data>
+  <data name="LinkEducation" xml:space="preserve">
+    <value>Website of the training centre</value>
+  </data>
+  <data name="LinkExperience" xml:space="preserve">
+    <value>Website of the employer</value>
+  </data>
+  <data name="LinkInterest" xml:space="preserve">
+    <value>Website of the association</value>
+  </data>
   <data name="LinkNotGenerated" xml:space="preserve">
     <value>The link has not been generated yet</value>
+  </data>
+  <data name="LinkReference" xml:space="preserve">
+    <value>Website of the company</value>
   </data>
   <data name="LockedOut" xml:space="preserve">
     <value>Locked out</value>

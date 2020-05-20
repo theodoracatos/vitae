@@ -32,7 +32,7 @@ namespace Model.ViewModels
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.HierarchyLevel), Prompt = nameof(SharedResource.HierarchyLevel))]
         public int HierarchyLevelCode { get; set; }
 
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.URL), Prompt = nameof(SharedResource.URL))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.LinkExperience), Prompt = nameof(SharedResource.LinkExperience))]
         [Url(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         [MaxLength(255, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string Link { get; set; }

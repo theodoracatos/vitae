@@ -121,7 +121,7 @@
     <value>Erweiterte Angaben</value>
   </data>
   <data name="AboutDetailsDescription" xml:space="preserve">
-    <value>Komplettieren Sie Ihre persönlichen Angaben.</value>
+    <value>Vervollständigen Sie Ihre persönlichen Angaben.</value>
   </data>
   <data name="AboutInfo" xml:space="preserve">
     <value>Über</value>
@@ -265,10 +265,16 @@
     <value>Kinder</value>
   </data>
   <data name="ChooseFile" xml:space="preserve">
-    <value>Datei zum heraufladen auswählen</value>
+    <value>Datei zum Heraufladen auswählen</value>
   </data>
   <data name="ChosenFile" xml:space="preserve">
     <value>Datei wurde ausgewählt</value>
+  </data>
+  <data name="ChronologicalAsc" xml:space="preserve">
+    <value>Eine aufsteigende chronologische Reihenfolge wird empfohlen.</value>
+  </data>
+  <data name="ChronologicalDesc" xml:space="preserve">
+    <value>Eine absteigende chronologische Reihenfolge wird empfohlen.</value>
   </data>
   <data name="Citizenship" xml:space="preserve">
     <value>Bürgerort</value>
@@ -708,8 +714,26 @@
   <data name="Level" xml:space="preserve">
     <value>Niveau</value>
   </data>
+  <data name="LinkAwards" xml:space="preserve">
+    <value>Website der Vergabebehörde</value>
+  </data>
+  <data name="LinkCertificate" xml:space="preserve">
+    <value>Website der Zertifizierungsstelle</value>
+  </data>
+  <data name="LinkEducation" xml:space="preserve">
+    <value>Website des Ausbildungszentrums</value>
+  </data>
+  <data name="LinkExperience" xml:space="preserve">
+    <value>Website des Arbeitgebers</value>
+  </data>
+  <data name="LinkInterest" xml:space="preserve">
+    <value>Website der Vereinigung</value>
+  </data>
   <data name="LinkNotGenerated" xml:space="preserve">
     <value>Der Link wurde noch nicht generiert</value>
+  </data>
+  <data name="LinkReference" xml:space="preserve">
+    <value>Website des Unternehmens</value>
   </data>
   <data name="LockedOut" xml:space="preserve">
     <value>Ausgesperrt</value>

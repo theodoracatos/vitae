@@ -270,6 +270,12 @@
   <data name="ChosenFile" xml:space="preserve">
     <value>se ha elegido el archivo</value>
   </data>
+  <data name="ChronologicalAsc" xml:space="preserve">
+    <value>Se recomienda un orden cronológico ascendente.</value>
+  </data>
+  <data name="ChronologicalDesc" xml:space="preserve">
+    <value>Se recomienda un orden cronológico descendente.</value>
+  </data>
   <data name="Citizenship" xml:space="preserve">
     <value>Ciudadanía</value>
   </data>
@@ -399,9 +405,6 @@
   <data name="CVCompleteness" xml:space="preserve">
     <value>myVitae Completo</value>
   </data>
-  <data name="CVData" xml:space="preserve">
-    <value>Datos</value>
-  </data>
   <data name="CVLanguage" xml:space="preserve">
     <value>Idioma del myVitae</value>
   </data>
@@ -413,6 +416,9 @@
   </data>
   <data name="DashboardOverview" xml:space="preserve">
     <value>El tablero de mandos te da una buena visión general de tus currículums publicados. Puedes introducir tu currículum en hasta cuatro idiomas.</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Datos</value>
   </data>
   <data name="DataCollection" xml:space="preserve">
     <value>Recolección de datos</value>
@@ -708,8 +714,26 @@
   <data name="Level" xml:space="preserve">
     <value>Nivel</value>
   </data>
+  <data name="LinkAwards" xml:space="preserve">
+    <value>Página web de la autoridad adjudicadora</value>
+  </data>
+  <data name="LinkCertificate" xml:space="preserve">
+    <value>Página web de la autoridad de certificación</value>
+  </data>
+  <data name="LinkEducation" xml:space="preserve">
+    <value>Página web del centro de formación</value>
+  </data>
+  <data name="LinkExperience" xml:space="preserve">
+    <value>La página web del empleador</value>
+  </data>
+  <data name="LinkInterest" xml:space="preserve">
+    <value>Página web de la asociación</value>
+  </data>
   <data name="LinkNotGenerated" xml:space="preserve">
     <value>El enlace no se ha generado todavía</value>
+  </data>
+  <data name="LinkReference" xml:space="preserve">
+    <value>Página web de la compañía</value>
   </data>
   <data name="LockedOut" xml:space="preserve">
     <value>Bloqueado</value>
