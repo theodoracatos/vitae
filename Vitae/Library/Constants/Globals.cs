@@ -8,6 +8,7 @@
         public const string APPLICATION_URL = "https://myvitae.ch";
         public const string APPLICATION_NAME = "myVitae";
         public const string LOGO = "logo.png";
+        public const string VITAE_URL = "https://myvitae.ch";
         public const string INFO_VITAE_MAIL = "info@myvitae.ch";
         public const string ADMIN_VITAE_MAIL = "admin@myvitae.ch";
         public const string ATH_VITAE_MAIL = "alexandros.theodoracatos@myvitae.ch";

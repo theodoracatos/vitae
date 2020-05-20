@@ -109,6 +109,10 @@ footer {
     background-color: rgba(255,255,255,0.95) !important;
 }
 
+footer.account{
+    position: fixed;
+}
+
 nav.navbar{
     height: 60px;
 }
@@ -161,7 +165,6 @@ nav.navbar{
 
 .scroll{
     width: 50px;
-
 }
 
 .tabborder {
@@ -215,6 +218,15 @@ nav.navbar{
         transform: translate3d(0px, 0px, 0px);
     }
 
+.bg-screen {
+    background: url('../img/backgrounds/bg0.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover
+}
+
+    /* RESIZING*/
     @media all and (max-width: 767px) {
 
         nav {

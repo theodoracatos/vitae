@@ -54,20 +54,12 @@ a:hover {
     background-color: #202020 !important
 }
 
-.bg-screen {
-    background-image: url('../img/backgrounds/bg0.jpg');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover
-}
-
 .jumbotron {
-    padding: 3em 3em 2em 3em !important;
+    padding: 3em !important;
     background-color: rgba(255,255,255, 0.95) !important;
     box-shadow: 0 2px 18px 1px rgba(49,53,72,.1);
     border: 1px solid rgba(0,0,0,.125);
-    margin-bottom: 0px !important;
+    margin: 70px 0;
 }
 
 #panel .card {
@@ -341,6 +333,7 @@ span.field-validation-error {
     margin-bottom: 0;
 }
 
+/* RESIZING */
 @media all and (max-width: 768px) {
     .jFiler-input {
         width: 316px !important;
