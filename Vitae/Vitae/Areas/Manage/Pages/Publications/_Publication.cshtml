@@ -79,7 +79,7 @@
                                     }
                                     else
                                     {
-                                        <input type="hidden" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Password)" value="-" />
+                                        <input type="hidden" class="ignoreValidation" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Password)" value="-" />
                                     }
                                 </div>
                                 <div class="d-block">
@@ -168,8 +168,8 @@
                                             </div>
                                         </div>
                                     }
-                                    <input type="hidden" asp-for="@Model.Publications[i].QrCode" />
-                                    <input type="hidden" asp-for="@Model.Publications[i].Link" />
+                                    <input type="hidden" class="ignoreValidation"  asp-for="@Model.Publications[i].QrCode" />
+                                    <input type="hidden" class="ignoreValidation"  asp-for="@Model.Publications[i].Link" />
                                     <small class="mt-1">@SharedResource.ShareLink</small>
                                 </div>
                             </div>

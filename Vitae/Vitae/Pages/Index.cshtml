@@ -24,7 +24,7 @@
 @section Subframe
 {
     <div class="container-fluid">
-        <div class="row p-xl-5 p-4">
+        <div class="row p-xl-5 p-4 transparentLightGrey">
             <div class="col-xl-12 text-center">
                 <h1>@SharedResource.MyVitaeSlogan</h1>
                 <p>
@@ -35,11 +35,12 @@
                 </p>
                 <p>
                     <a href="@string.Format(Globals.TEST_URL, Publications.PublicationSet[languageCode], languageCode)" class="btn btn-secondary mb-1"><i class="fas fa-desktop fa-fw"></i>@SharedResource.Demo</a>
+                    <small class="d-block">@SharedResource.Password: <label class="font-weight-bold">Demo</label></small>
                 </p>
             </div>
         </div>
 
-        <div class="row p-xl-5 p-4 bg-snowwhite animation-element slide-left">
+        <div class="row p-xl-5 p-4 transparentLightWhite animation-element slide-left">
             <div class="col-xl-12 text-center">
                 <h1>@SharedResource.KeepControl</h1>
                 <p>
@@ -51,7 +52,7 @@
             </div>
         </div>
 
-        <div class="row p-xl-5 p-4 animation-element slide-left">
+        <div class="row p-xl-5 p-4 transparentLightGrey animation-element slide-left">
             <div class="col-xl-12 text-center">
                 <h1>@SharedResource.SavePublications</h1>
                 <p>@SharedResource.SavePublicationsDescription</p>
@@ -61,7 +62,7 @@
             </div>
         </div>
 
-        <div class="row p-xl-5 p-4 bg-snowwhite animation-element slide-left">
+        <div class="row p-xl-5 p-4 transparentLightWhite animation-element slide-left">
             <div class="col-xl-12 text-center">
                 <h1>@SharedResource.ShowYourStrengths</h1>
                 <p>@SharedResource.ShowYourStrengthsDescription</p>

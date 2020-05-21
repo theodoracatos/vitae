@@ -1177,7 +1177,7 @@
     <value>The requested page could not be found.</value>
   </data>
   <data name="Status500" xml:space="preserve">
-    <value>An internal error has occured. Please send an e-mail to "admin@vitae.ch" if this error persists.</value>
+    <value>An internal error has occured.</value>
   </data>
   <data name="Street" xml:space="preserve">
     <value>Street</value>

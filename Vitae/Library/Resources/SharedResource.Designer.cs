@@ -3238,7 +3238,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An internal error has occured. Please send an e-mail to &quot;admin@vitae.ch&quot; if this error persists..
+        ///   Looks up a localized string similar to An internal error has occured..
         /// </summary>
         public static string Status500 {
             get {

@@ -634,15 +634,16 @@ VALUES(NEWID(), 6, @CurrLangId_es, GETDATE(), 'Trainingcenter Greece', 'https://
 
 /* PUBLICATION */
 INSERT INTO [Publication]
-VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), GETDATE(), @PUBID_EN, 0, 0, null, @CurriculumID, '', 'rgba(0, 0, 0, 0.9)')
+VALUES(NEWID(), 0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), GETDATE(), @PUBID_EN, 0, 1, '/U9MomNJQMMPlraAidrJJstOWLAY/f2Tn9T1NB9ZB/F6lv4FVrevsE5cHX06vTdy', @CurriculumID, null, 'rgba(0, 0, 0, 0.9)')
 INSERT INTO [Publication]																															
-VALUES(NEWID(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), GETDATE(), @PUBID_DE, 0, 0, null, @CurriculumID, '', 'rgba(0, 0, 0, 0.9)')
-INSERT INTO [Publication]																															 
-VALUES(NEWID(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_fr), GETDATE(), @PUBID_FR, 0, 0, null, @CurriculumID, '', 'rgba(0, 0, 0, 0.9)')
+VALUES(NEWID(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), GETDATE(), @PUBID_DE, 0, 1, '/U9MomNJQMMPlraAidrJJstOWLAY/f2Tn9T1NB9ZB/F6lv4FVrevsE5cHX06vTdy', @CurriculumID, null, 'rgba(0, 0, 0, 0.9)')
 INSERT INTO [Publication]																															
-VALUES(NEWID(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_it), GETDATE(), @PUBID_IT, 0, 0, null, @CurriculumID, '', 'rgba(0, 0, 0, 0.9)')
-INSERT INTO [Publication]																															 
-VALUES(NEWID(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_es), GETDATE(), @PUBID_ES, 0, 0, null, @CurriculumID, '', 'rgba(0, 0, 0, 0.9)')
+VALUES(NEWID(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_fr), GETDATE(), @PUBID_FR, 0, 1, '/U9MomNJQMMPlraAidrJJstOWLAY/f2Tn9T1NB9ZB/F6lv4FVrevsE5cHX06vTdy', @CurriculumID, null, 'rgba(0, 0, 0, 0.9)')
+INSERT INTO [Publication]																															
+VALUES(NEWID(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_it), GETDATE(), @PUBID_IT, 0, 1, '/U9MomNJQMMPlraAidrJJstOWLAY/f2Tn9T1NB9ZB/F6lv4FVrevsE5cHX06vTdy', @CurriculumID, null, 'rgba(0, 0, 0, 0.9)')
+INSERT INTO [Publication]																															
+VALUES(NEWID(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_es), GETDATE(), @PUBID_ES, 0, 1, '/U9MomNJQMMPlraAidrJJstOWLAY/f2Tn9T1NB9ZB/F6lv4FVrevsE5cHX06vTdy', @CurriculumID, null, 'rgba(0, 0, 0, 0.9)')
+
 
 /* PHOTO */
 UPDATE [About]

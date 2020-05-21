@@ -48,7 +48,7 @@ namespace UnitTests
         [TestMethod]
         public void EncoderTest()
         {
-            var passphrase = "pass!";
+            var passphrase = "Demo";
             var salt = Globals.APPLICATION_NAME;
 
             var message = AesHandler.Encrypt(passphrase, salt);

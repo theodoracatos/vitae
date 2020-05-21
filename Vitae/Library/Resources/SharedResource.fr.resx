@@ -1177,7 +1177,7 @@
     <value>La page demandée n'a pas été trouvée</value>
   </data>
   <data name="Status500" xml:space="preserve">
-    <value>Une erreur interne s'est produite. Veuillez envoyer un e-mail à "admin@vitae.ch" si cette erreur persiste.</value>
+    <value>Une erreur interne s'est produite.</value>
   </data>
   <data name="Street" xml:space="preserve">
     <value>Rue</value>

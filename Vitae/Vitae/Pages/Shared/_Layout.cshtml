@@ -9,16 +9,16 @@
     <partial name="_Styles" />
 </head>
 
-<body id="page-top" class="@(ViewBag.ShowSlideshow ?? false ? "" : "bg-screen")">
+<body id="page-top" class="@(ViewBag.ShowSlideshow ?? false ? "normal-screen" : "bg-screen")">
     <header>
         @if (ViewBag.ShowSlideshow ?? false)
         {
             <div id="vitae-indicators" class="carousel slide carousel-fade" data-interval="6000" data-ride="carousel">
                 <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active" style="background: url('/img/backgrounds/bg0.jpg') no-repeat center center fixed;"></div>
-                    <div class="carousel-item" style="background: url('/img/backgrounds/bg1.jpg') no-repeat center center fixed;"></div>
-                    <div class="carousel-item" style="background: url('/img/backgrounds/bg2.jpg') no-repeat center center fixed;"></div>
-                    <div class="carousel-item" style="background: url('/img/backgrounds/bg3.jpg') no-repeat center center fixed;"></div>
+                    <div class="carousel-item active" style="background-image: url('/img/backgrounds/bg0.jpg')"></div>
+                    <div class="carousel-item" style="background-image: url('/img/backgrounds/bg1.jpg')"></div>
+                    <div class="carousel-item" style="background-image: url('/img/backgrounds/bg2.jpg')"></div>
+                    <div class="carousel-item" style="background-image: url('/img/backgrounds/bg3.jpg')"></div>
                 </div>
             </div>
         }
@@ -32,7 +32,10 @@
         <div class="ml-auto">
             @if (ViewBag.StartPage ?? false)
             {
-                <partial name="_Buttonbar" />
+            <div class="buttonbar">
+                <a href="/Identity/Account/Login" class="btn btn-outline-secondary text-white align-baseline mr-1">@SharedResource.SignIn</a>
+                <a href="/Identity/Account/Register" class="btn btn-success ml-2 mr-2 align-baseline">@SharedResource.Register</a>
+            </div>
             }
         </div>
     </nav>

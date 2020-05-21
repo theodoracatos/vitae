@@ -1,35 +1,40 @@
 ﻿@page  "{StatusCode?}"
 @model ErrorModel
 @{
-    Layout = "_Layout";
+    Layout = "/Pages/Shared/_Layout.cshtml";
     ViewData["Title"] = SharedResource.Error;
 }
 
-<div class="col-auto mx-auto my-auto">
-    <div class="container">
-        <div class="jumbotron">
-            <form method="post">
-                <h4><i class="fa fa-heart-broken fa-fw"></i>@SharedResource.Error @Model.Code</h4>
-                <hr />
-                <div class="form-row">
-                    <div class="form-group col">
-                        <p class="text-danger">
-                            @Model.Message
-                            <br />
-                            <code>@Model.Method @Model.Origin</code>
-                        </p>
-                        <p>@SharedResource.ErrorInfoMail:
-                            <br />
-                            <a href="mailto:@(Globals.ADMIN_VITAE_MAIL)">@Globals.ADMIN_VITAE_MAIL</a>
-                        </p>
+    <div class="container h-100">
+        <div class="row align-items-center h-100">
+            <div class="col-sm-12 col-md-8 mx-auto my-auto">
+                <div class="container">
+                    <div class="jumbotron">
+                        <form method="post">
+                            <h4><i class="fa fa-heart-broken fa-fw"></i>@SharedResource.Error @Model.Code</h4>
+                            <hr />
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <p class="text-danger">
+                                        @Model.Message
+                                        <br />
+                                        <code>@Model.Method @Model.Origin</code>
+                                    </p>
+                                    <p>
+                                        @SharedResource.ErrorInfoMail:
+                                        <br />
+                                        <a href="mailto:@(Globals.ADMIN_VITAE_MAIL)">@Globals.ADMIN_VITAE_MAIL</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col mb-0 text-right">
+                                    <a id="forgot-password" class="btn btn-danger" href="javascript:history.back()">@SharedResource.Back</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col mb-0 text-right">
-                        <a id="forgot-password" class="btn btn-danger" href="javascript:history.back()">@SharedResource.Back</a>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
