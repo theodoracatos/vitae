@@ -13,11 +13,6 @@
     var languageCode = Enum.IsDefined(typeof(ApplicationLanguage), culture.TwoLetterISOLanguageName) ? culture.Name : ApplicationLanguage.en.ToString();
 }
 
-@section Buttonbar
-{
-    <partial name="_Buttonbar" />
-}
-
 <!-- #region Main -->
 <div class="container-fluid h-100">
     <div id="advertsment" class="row h-100">

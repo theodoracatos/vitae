@@ -131,6 +131,22 @@ h1 svg {
     background-size: cover;
 }
 
+.sb-sidenav-menu-heading.collapsed > .down {
+    display: inline-block;
+}
+
+.sb-sidenav-menu-heading.collapsed > .up {
+    display: none;
+}
+
+.sb-sidenav-menu-heading > .down {
+    display: none;
+}
+
+.sb-sidenav-menu-heading > .up {
+    display: inline-block;
+}
+
 a.nav-link.disabled {
     cursor: not-allowed;
     pointer-events: all !important;

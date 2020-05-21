@@ -799,7 +799,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The website is the exclusive property of Alexandros Theodoracatos and is protected by Swiss copyright law. Therefore, the Website may not be reproduced or made available in whole or in part, or used in any way other than as authorized, without the prior consent of Alexandros Theodoracatos..
+        ///   Looks up a localized string similar to The myVitae web application is the exclusive property of Alexandros Theodoracatos and is protected by Swiss copyright law. Therefore, the website may not be reproduced or made available in whole or in part in any manner whatsoever, nor may it be used in any way other than that authorized, without the prior consent of Alexandros Theodoracatos..
         /// </summary>
         public static string CopyrightLawText {
             get {
@@ -979,7 +979,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When you sign up for myVitae, you give us sensitive information voluntarily. This includes your name, gender, email address, phone number, profile photo, address, family status and other sensitive resume information. This data is not passed on to third parties and is used exclusively for the myVitae application. Additionally, the following data will be collected without your intervention and stored until automated deletion: IP address of the requesting computer, as well as device ID or individual device ide [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to When you register for myVitae and create a resume, you voluntarily give us sensitive information. This includes (non-exhaustive list): your name, your gender, your e-mail address, your telephone number, your profile photo, your address, your marital status and other sensitive personal data. This data will not be passed on to third parties but will be used exclusively for the myVitae-application. In addition, the following data is collected without your intervention and stored until it is automatically delet [rest of string was truncated]&quot;;.
         /// </summary>
         public static string DataCollectionDesc {
             get {
@@ -3517,7 +3517,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Creating a good CV and keeping it up to date is a very time-consuming process. In addition, you can quickly reach your limits when designing. However, an applicant has to put everything on the scales, because &quot;there is no second chance for a first impression&quot; (Mark Twain). This is where myVitae steps in and focuses on a clear and concise design. With ease you can create your secure personal resume website - and best of all, it&apos;s free! So nothing stands in the way of your successful application..
+        ///   Looks up a localized string similar to Creating a good CV and keeping it up to date is a very time-consuming process. In addition, you can quickly reach your limits when designing. However, an applicant has to put everything on the scales, because &quot;there is no second chance for a first impression&quot; (Mark Twain). This is where myVitae steps in and focuses on a clear and concise design. With ease you can create your secure personal resume website - and best of all, it&apos;s free!.
         /// </summary>
         public static string WhyMyVitaeReason {
             get {

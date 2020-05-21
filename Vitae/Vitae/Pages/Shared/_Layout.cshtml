@@ -30,7 +30,10 @@
 
         </a>
         <div class="ml-auto">
-            @RenderSection("Buttonbar", false)
+            @if (ViewBag.StartPage ?? false)
+            {
+                <partial name="_Buttonbar" />
+            }
         </div>
     </nav>
 

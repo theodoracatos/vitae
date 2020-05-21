@@ -364,7 +364,7 @@
     <value>Copyright</value>
   </data>
   <data name="CopyrightLawText" xml:space="preserve">
-    <value>Le site web est la propriété exclusive d'Alexandros Theodoracatos et est protégé par la loi suisse sur le droit d'auteur. Par conséquent, le site web ne peut être reproduit ou mis à disposition, en tout ou en partie, ou utilisé de toute autre manière que celle autorisée, sans le consentement préalable de Alexandros Theodoracatos.</value>
+    <value>L'application web myVitae est la propriété exclusive d'Alexandros Theodoracatos et est protégée par la loi suisse sur le droit d'auteur. Par conséquent, le site web ne peut être reproduit ou mis à disposition, en tout ou en partie, de quelque manière que ce soit, ni être utilisé d'une manière autre que celle autorisée, sans le consentement préalable de Alexandros Theodoracatos.</value>
   </data>
   <data name="CopyValues" xml:space="preserve">
     <value>Copier les valeurs</value>
@@ -424,7 +424,7 @@
     <value>Collecte de données</value>
   </data>
   <data name="DataCollectionDesc" xml:space="preserve">
-    <value>Lorsque vous vous inscrivez à myVitae, vous nous fournissez volontairement des informations sensibles. Il s'agit notamment de votre nom, de votre sexe, de votre adresse électronique, de votre numéro de téléphone, de la photo de votre profil, de votre adresse, de votre situation familiale et d'autres informations sensibles figurant sur votre CV. Ces données ne sont pas transmises à des tiers et sont utilisées exclusivement pour l'application myVitae. En outre, les données suivantes seront collectées sans votre intervention et stockées jusqu'à leur suppression automatique : l'adresse IP de l'ordinateur demandeur, ainsi que l'identifiant de l'appareil ou l'identifiant individuel de l'appareil et le type d'appareil, la description du type de navigateur internet utilisé et, le cas échéant, le système d'exploitation de votre terminal et le nom de votre fournisseur d'accès. Notre intérêt légitime, conformément à l'ODRSG, pour la collecte de données se fonde sur les objectifs suivants : Garantir une utilisation confortable du site web, évaluer la sécurité et la stabilité du système ainsi que son utilisation à des fins administratives ultérieures. En aucun cas nous n'utilisons les données collectées dans le but de tirer des conclusions à votre sujet. Sur demande, nous vous informerons volontiers si et quelles données clairement personnelles vous concernant sont stockées (GDPR).</value>
+    <value>Lorsque vous vous inscrivez à myVitae et que vous créez un CV, vous nous fournissez volontairement des informations sensibles. Cela comprend (liste non exhaustive) : votre nom, votre sexe, votre adresse électronique, votre numéro de téléphone, votre photo de profil, votre adresse, votre état civil et d'autres données personnelles sensibles. Ces données ne seront pas transmises à des tiers mais seront utilisées exclusivement pour l'application myVitae. En outre, les données suivantes sont collectées sans votre intervention et stockées jusqu'à ce qu'elles soient automatiquement supprimées : l'adresse IP de l'ordinateur demandeur et la "chaîne de l'agent utilisateur (UA)" du navigateur Internet utilisé. Notre intérêt légitime au sens de la DSGVO dans la collecte de données repose sur l'objectif suivant : garantir une utilisation pratique de l'application du site web, évaluer la sécurité et la stabilité du système et utiliser les données à d'autres fins administratives. En aucun cas, nous n'utilisons les données collectées pour tirer des conclusions à votre sujet. Sur demande, nous vous informerons volontiers si et quelles données clairement personnelles vous concernant sont stockées (GDPR).</value>
   </data>
   <data name="DataProtection" xml:space="preserve">
     <value>Protection des données</value>
@@ -1270,7 +1270,7 @@
     <value>Pourquoi myVitae ?</value>
   </data>
   <data name="WhyMyVitaeReason" xml:space="preserve">
-    <value>Créer un bon CV et le tenir à jour est un processus qui prend beaucoup de temps. En outre, vous pouvez rapidement atteindre vos limites lors de la conception. Cependant, un candidat doit tout mettre sur la balance, car "il n'y a pas de seconde chance pour une première impression" (Mark Twain). C'est là que myVitae intervient et se concentre sur un design clair et concis. Vous pouvez facilement créer votre site web de CV personnel - et surtout, c'est gratuit ! Ainsi, rien ne s'oppose à ce que votre candidature soit retenue.</value>
+    <value>Créer un bon CV et le tenir à jour est un processus qui prend beaucoup de temps. En outre, vous pouvez rapidement atteindre vos limites lors de la conception. Cependant, un candidat doit tout mettre sur la balance, car "il n'y a pas de seconde chance pour une première impression" (Mark Twain). C'est là que myVitae intervient et se concentre sur un design clair et concis. Vous pouvez facilement créer votre site web de CV personnel - et surtout, c'est gratuit !</value>
   </data>
   <data name="WhyMyVitaeTest" xml:space="preserve">
     <value>Découvrez-les - vous serez ravis !</value>

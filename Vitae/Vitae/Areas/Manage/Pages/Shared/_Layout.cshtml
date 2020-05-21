@@ -61,30 +61,51 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav mb-4">
-                        <div class="sb-sidenav-menu-heading">I. @SharedResource.Management</div>
-                        <a class="nav-link" href="/Manage">
-                            <i class="fas sideIcon fa-chart-line"></i>
-                            @SharedResource.Dashboard
-                        </a>
-                        <a class="nav-link" href="/Manage/@nameof(Settings)">
-                            <i class="fas sideIcon fa-cogs"></i>
-                            @SharedResource.Settings
-                        </a>
-                        <a class="nav-link" href="/Manage/@nameof(Publications)">
-                            <i class="fas sideIcon fa-share-alt"></i>
-                            @SharedResource.Publications
-                        </a>
-                        <div class="sb-sidenav-menu-heading">II. @SharedResource.PersonalData</div>
-                        @foreach (var menuEntry in menuEntries)
-                        {
-                            <a class="nav-link" href="/Manage/@menuEntry.Item1">
-                                <i class="fas sideIcon @menuEntry.Item2"></i>
-                                @menuEntry.Item3
-                            </a>
-                        }
+                        <div class="sb-sidenav-menu-heading cursor-pointer collapsed" data-toggle="collapse" data-target="#management">
+                            <label>I.&nbsp;&nbsp;</label>@SharedResource.Management
+                            <small class="down"><i class="fas fa-chevron-down ml-2"></i></small>
+                            <small class="up"><i class="fas fa-chevron-up ml-2"></i></small>
+                        </div>
 
-                        <div class="sb-sidenav-menu-heading">III. @SharedResource.Preview</div>
-                        <vc:vitae-link-generator></vc:vitae-link-generator>
+                        <div id="management" class="collapse">
+                            <a class="nav-link" href="/Manage">
+                                <i class="fas sideIcon fa-chart-line"></i>
+                                @SharedResource.Dashboard
+                            </a>
+                            <a class="nav-link" href="/Manage/@nameof(Settings)">
+                                <i class="fas sideIcon fa-cogs"></i>
+                                @SharedResource.Settings
+                            </a>
+                            <a class="nav-link" href="/Manage/@nameof(Publications)">
+                                <i class="fas sideIcon fa-share-alt"></i>
+                                @SharedResource.Publications
+                            </a>
+                        </div>
+
+                        <div class="sb-sidenav-menu-heading cursor-pointer collapsed" data-toggle="collapse" data-target="#content">
+                            <label>II.&nbsp;</label>@SharedResource.PersonalData
+                            <small class="down"><i class="fas fa-chevron-down ml-2"></i></small>
+                            <small class="up"><i class="fas fa-chevron-up ml-2"></i></small>
+                        </div>
+                        <div id="content" class="collapse">
+
+                            @foreach (var menuEntry in menuEntries)
+                            {
+                                <a class="nav-link" href="/Manage/@menuEntry.Item1">
+                                    <i class="fas sideIcon @menuEntry.Item2"></i>
+                                    @menuEntry.Item3
+                                </a>
+                            }
+                        </div>
+
+                        <div class="sb-sidenav-menu-heading cursor-pointer collapsed" data-toggle="collapse" data-target="#preview">
+                            <label class="mr-0">III.</label> @SharedResource.Preview
+                            <small class="down"><i class="fas fa-chevron-down ml-2"></i></small>
+                            <small class="up"><i class="fas fa-chevron-up ml-2"></i></small>
+                        </div>
+                        <div id="preview" class="collapse">
+                            <vc:vitae-link-generator></vc:vitae-link-generator>
+                        </div>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">

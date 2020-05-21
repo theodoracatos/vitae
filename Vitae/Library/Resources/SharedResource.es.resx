@@ -364,7 +364,7 @@
     <value>Derechos de autor</value>
   </data>
   <data name="CopyrightLawText" xml:space="preserve">
-    <value>El sitio web es propiedad exclusiva de Alexandros Theodoracatos y está protegido por la ley suiza de derechos de autor. Por lo tanto, el sitio web no puede ser reproducido o puesto a disposición en su totalidad o en parte, o utilizado de cualquier otra manera que no sea la autorizada, sin el consentimiento previo de Alexandros Theodoracatos.</value>
+    <value>La aplicación web myVitae es propiedad exclusiva de Alexandros Theodoracatos y está protegida por la ley suiza de derechos de autor. Por lo tanto, el sitio web no puede ser reproducido o puesto a disposición en su totalidad o en parte de ninguna manera, ni puede ser utilizado de ninguna otra manera que la autorizada, sin el consentimiento previo de Alexandros Theodoracatos.</value>
   </data>
   <data name="CopyValues" xml:space="preserve">
     <value>Copiar valores</value>
@@ -424,7 +424,7 @@
     <value>Recolección de datos</value>
   </data>
   <data name="DataCollectionDesc" xml:space="preserve">
-    <value>Cuando te inscribes en myVitae, nos das información sensible voluntariamente. Esto incluye su nombre, sexo, dirección de correo electrónico, número de teléfono, foto de perfil, dirección, estado familiar y otra información confidencial del currículum. Estos datos no se transmiten a terceros y se utilizan exclusivamente para la aplicación de myVitae. Además, los siguientes datos serán recopilados sin su intervención y almacenados hasta su eliminación automática: Dirección IP de la computadora solicitante, así como el identificador del dispositivo o el identificador del dispositivo individual y el tipo de dispositivo, descripción del tipo de navegador de Internet utilizado y, si procede, el sistema operativo de su terminal y el nombre de su proveedor de acceso. Nuestro interés legítimo de acuerdo con la DSGVO para la recopilación de datos se basa en los siguientes propósitos: Garantizar un uso cómodo del sitio web, la evaluación de la seguridad y estabilidad del sistema, así como el uso para fines administrativos adicionales. n ningún caso utilizamos los datos recogidos con el fin de sacar conclusiones sobre usted. Si lo desea, le informaremos con mucho gusto si se almacenan datos claramente personales sobre usted (GDPR) y cuáles.</value>
+    <value>Cuando te registras en myVitae y creas un currículum, nos das voluntariamente información sensible. Esto incluye (lista no exhaustiva): su nombre, su sexo, su dirección de correo electrónico, su número de teléfono, su foto de perfil, su dirección, su estado civil y otros datos personales sensibles. Estos datos no se transmitirán a terceros, sino que se utilizarán exclusivamente para la aplicación de myVitae-. Además, los siguientes datos se recogen sin su intervención y se almacenan hasta que se eliminan automáticamente: La dirección IP del ordenador solicitante y la "cadena de agente de usuario (UA)" del navegador de Internet utilizado. Nuestro interés legítimo, en el sentido de la DSGVO, en la recopilación de datos se basa en el siguiente propósito: garantizar el uso conveniente de la aplicación del sitio web, evaluar la seguridad y estabilidad del sistema y utilizar los datos para otros fines administrativos. Bajo ninguna circunstancia utilizamos los datos recopilados para sacar conclusiones sobre usted. Si lo solicita, le informaremos con mucho gusto si se almacenan datos claramente personales sobre usted (GDPR) y cuáles.</value>
   </data>
   <data name="DataProtection" xml:space="preserve">
     <value>Protección de datos</value>
@@ -1270,7 +1270,7 @@
     <value>¿Por qué miVitae?</value>
   </data>
   <data name="WhyMyVitaeReason" xml:space="preserve">
-    <value>Crear un buen currículum y mantenerlo actualizado es un proceso que lleva mucho tiempo. Además, puede llegar rápidamente a sus límites durante el proceso de diseño. Sin embargo, un candidato debe poner todo en la balanza, porque "no hay una segunda oportunidad para una primera impresión" (Mark Twain). Aquí es donde entra myVitae y se centra en un diseño claro y conciso. Puedes crear fácilmente tu propio sitio web de currículums personales, y sobre todo, ¡es gratis! Así que nada se interpone en el camino del éxito de su solicitud.</value>
+    <value>Crear un buen currículum y mantenerlo actualizado es un proceso que lleva mucho tiempo. Además, puede llegar rápidamente a sus límites durante el proceso de diseño. Sin embargo, un candidato debe poner todo en la balanza, porque "no hay una segunda oportunidad para una primera impresión" (Mark Twain). Aquí es donde entra myVitae y se centra en un diseño claro y conciso. Puedes crear fácilmente tu propio sitio web de currículums personales, y sobre todo, ¡es gratis!</value>
   </data>
   <data name="WhyMyVitaeTest" xml:space="preserve">
     <value>Compruébalo, ¡te encantará!</value>
