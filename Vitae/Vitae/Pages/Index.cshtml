@@ -2,10 +2,12 @@
 @model IndexModel
 @{
     ViewData["Title"] = SharedResource.Homepage;
+    ViewBag.ShowSlideshow = true;
+    ViewBag.StartPage = true;
 }
 
 @{
-    var rqf = HttpContext.Features.Get<IRequestCultureFeature>();
+            var rqf = HttpContext.Features.Get<IRequestCultureFeature>();
     var culture = rqf.RequestCulture.UICulture;
 
     var languageCode = Enum.IsDefined(typeof(ApplicationLanguage), culture.TwoLetterISOLanguageName) ? culture.Name : ApplicationLanguage.en.ToString();
@@ -23,20 +25,6 @@
     </div>
 </div>
 <!-- #endregion -->
-
-
-@section Scrollbar
-{
-    <div class="scrollbar">
-        <div class="w-100">
-            <div class="row ml-0 mr-0">
-                <div class="col text-center">
-                    <a class="js-scroll-trigger" href="#subframe"><img src="~/img/scroll.gif" class="scroll" alt="Scroll" /></a>
-                </div>
-            </div>
-        </div>
-    </div>
-}
 
 @section Subframe
 {

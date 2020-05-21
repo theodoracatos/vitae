@@ -9,16 +9,19 @@
     <partial name="_Styles" />
 </head>
 
-<body id="page-top">
+<body id="page-top" class="@(ViewBag.ShowSlideshow ?? false ? "" : "bg-screen")">
     <header>
-        <div id="vitae-indicators" class="carousel slide carousel-fade" data-interval="6000" data-ride="carousel">
-            <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active" style="background-image: url('/img/backgrounds/bg0.jpg')"></div>
-                <div class="carousel-item" style="background-image: url('/img/backgrounds/bg1.jpg')"></div>
-                <div class="carousel-item" style="background-image: url('/img/backgrounds/bg2.jpg')"></div>
-                <div class="carousel-item" style="background-image: url('/img/backgrounds/bg3.jpg')"></div>
+        @if (ViewBag.ShowSlideshow ?? false)
+        {
+            <div id="vitae-indicators" class="carousel slide carousel-fade" data-interval="6000" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active" style="background: url('/img/backgrounds/bg0.jpg') no-repeat center center fixed;"></div>
+                    <div class="carousel-item" style="background: url('/img/backgrounds/bg1.jpg') no-repeat center center fixed;"></div>
+                    <div class="carousel-item" style="background: url('/img/backgrounds/bg2.jpg') no-repeat center center fixed;"></div>
+                    <div class="carousel-item" style="background: url('/img/backgrounds/bg3.jpg') no-repeat center center fixed;"></div>
+                </div>
             </div>
-        </div>
+        }
     </header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="/">
@@ -36,9 +39,21 @@
     <div class="mainframe">
         @RenderBody()
     </div>
-    @RenderSection("Scrollbar", false)
 
-    <footer @RenderSection("FooterCssClass", false)>
+    @if (ViewBag.StartPage ?? false)
+    {
+        <div class="scrollbar">
+            <div class="w-100">
+                <div class="row ml-0 mr-0">
+                    <div class="col text-center">
+                        <a class="js-scroll-trigger" href="#subframe"><img src="~/img/scroll.gif" class="scroll" alt="Scroll" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <footer class="@(ViewBag.StartPage ?? false ? "" : "account")">
         <div class="w-100">
             <div class="d-flex justify-content-end small mr-xl-4 mr-md-4 mr-sm-4 mr-2">
                 <a class="js-scroll-trigger" href="/Imprint#imprint">@SharedResource.Imprint</a>
