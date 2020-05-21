@@ -2,15 +2,12 @@
 @model Vitae.Pages.ImprintModel
 @{
     ViewData["Title"] = SharedResource.Homepage;
+    ViewBag.StartPage = true;
 }
 
 @section Buttonbar
 {
     <partial name="_Buttonbar" />
-}
-
-@section ShowSlideshow{
-    true
 }
 
 <!-- #region Main -->

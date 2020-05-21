@@ -32,7 +32,7 @@
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label class="text-body">@SharedResource.SecurityCheck</label>
+                            <label class="text-body required">@SharedResource.SecurityCheck</label>
                             <div class="g-recaptcha" data-sitekey="@configuration["reCAPTCHA:SiteKey"]" data-callback="enableSubmit"></div>
                         </div>
                         <partial name="_StatusMessage" model="new KeyValuePair<bool, string>(ViewData.ModelState.IsValid, string.Empty)" />

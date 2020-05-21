@@ -16,7 +16,7 @@
                     {
                         <p>@SharedResource.PasswordProtectionDesc</p>
                         <div class="form-group">
-                            <label class="control-label font-weight-bold text-body" asp-for="@Model.Password"></label>
+                            <label class="control-label text-body" asp-for="@Model.Password"></label>
                             <input type="password" class="form-control mb-1" asp-for="@Model.Password" autofocus />
                             <span asp-validation-for="@Model.Password" class="text-danger"></span>
                         </div>
@@ -25,7 +25,7 @@
                     {
                         <p>@SharedResource.SecurityCheckDesc</p>
                         <div class="form-group mb-0">
-                            <label class="control-label font-weight-bold text-body">@SharedResource.SecurityCheck</label>
+                            <label class="control-label text-body required">@SharedResource.SecurityCheck</label>
                             <div class="g-recaptcha" data-sitekey="@configuration["reCAPTCHA:SiteKey"]" data-callback="enableSubmit"></div>
                         </div>
                     }
