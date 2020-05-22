@@ -98,6 +98,7 @@ namespace Vitae.Pages
             message.Append($"<tr><td style='width: 120px'><b>Method</b></td><td>{Method}</td></tr>");
             message.Append($"<tr><td><b>Origin</b></td><td>{Origin}</td></tr>");
             message.Append($"<tr><td><b>Ip</b></td><td>{_httpContext.Connection.RemoteIpAddress}</td></tr>");
+            message.Append($"<tr><td><b>Agent</b></td><td>{CodeHelper.GetUserAgent(_httpContext)}</td></tr>");
             message.Append($"<tr><td><b>Uri</b></td><td>{CodeHelper.GetCalledUri(_httpContext)}</td></tr>");
             message.Append($"<tr><td><b>Culture</b></td><td>{requestCulture.RequestCulture.UICulture.Name}</td></tr>");
 

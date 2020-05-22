@@ -159,7 +159,7 @@
                                     {
                                         <div class="d-flex">
                                             <div class="form-control w-auto h-auto flex-fill bg-light">
-                                                <img class="rounded border border-light shadow mt-1 mb-1" src="@Model.Publications[i].QrCode" />
+                                                <img alt="QR code" class="rounded border border-light shadow mt-1 mb-1" src="@Model.Publications[i].QrCode" />
                                                 <a target="_blank" class="btn btn-outline-secondary ml-1 cancel" asp-page-handler="DownloadQrCode" asp-route-index="@i" data-toggle="tooltip" title="@SharedResource.DownloadQR"><i class="fas fa-download"></i></a>
                                                 <br />
                                                 <a target="_blank" class="text-break ml-1" alt="@Model.Publications[i].Link" href="@Model.Publications[i].Link">
