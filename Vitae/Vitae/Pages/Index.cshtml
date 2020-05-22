@@ -7,7 +7,7 @@
 }
 
 @{
-            var rqf = HttpContext.Features.Get<IRequestCultureFeature>();
+    var rqf = HttpContext.Features.Get<IRequestCultureFeature>();
     var culture = rqf.RequestCulture.UICulture;
 
     var languageCode = Enum.IsDefined(typeof(ApplicationLanguage), culture.TwoLetterISOLanguageName) ? culture.Name : ApplicationLanguage.en.ToString();

@@ -1,6 +1,8 @@
 ﻿@inject UserManager<IdentityUser> UserManager
 
-@{ 
+@{
+    var pageMatch = Regex.Matches(ViewContext.RouteData.Values["page"].ToString(), @"(?<=\/)(.*?)(?=\/)", RegexOptions.Singleline);
+    var page = pageMatch.Any() ? pageMatch.First().ToString() : null;
     var curriculumID = Guid.Parse(User.Claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value);
 }
 
@@ -37,9 +39,9 @@
         </ul>
     </nav>
 
-    @{ 
-       var menuEntries = new List<Tuple<string, string, string>>()
-       {
+    @{
+        var menuEntries = new List<Tuple<string, string, string>>()
+   {
           new Tuple<string, string,string>(nameof(Personalities), "fa-address-book", SharedResource.PersonalDetails),
           new Tuple<string, string,string>(nameof(Abouts), "fa-user-edit", SharedResource.OptionalInformation),
           new Tuple<string, string,string>(nameof(Experiences), "fa-briefcase", SharedResource.Experiences),
@@ -54,20 +56,21 @@
           new Tuple<string, string,string>(nameof(Certificates), "fa-certificate", SharedResource.Certificates),
           new Tuple<string, string,string>(nameof(References), "fa-user-tie", SharedResource.References),
        };
-     }
+    }
 
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav mb-4">
-                        <div class="sb-sidenav-menu-heading cursor-pointer collapsed" data-toggle="collapse" data-target="#management">
+                        @{var inManagement = page == null || page == nameof(Settings) || page == nameof(Publications);}
+                        <div class="sb-sidenav-menu-heading cursor-pointer @(inManagement ? null : "collapsed")" data-toggle="collapse" data-target="#management">
                             <label>I.&nbsp;&nbsp;</label>@SharedResource.Management
                             <small class="down"><i class="fas fa-chevron-down ml-2"></i></small>
                             <small class="up"><i class="fas fa-chevron-up ml-2"></i></small>
                         </div>
 
-                        <div id="management" class="collapse">
+                        <div id="management" class="collapse @(inManagement ? "show" : null)">
                             <a class="nav-link" href="/Manage">
                                 <i class="fas sideIcon fa-chart-line"></i>
                                 @SharedResource.Dashboard
@@ -82,12 +85,13 @@
                             </a>
                         </div>
 
-                        <div class="sb-sidenav-menu-heading cursor-pointer collapsed" data-toggle="collapse" data-target="#content">
+                        @{var inPersonalData = menuEntries.Any(e => e.Item1 == page);}
+                        <div class="sb-sidenav-menu-heading cursor-pointer @(inPersonalData ? null : "collapsed")" data-toggle="collapse" data-target="#personalData">
                             <label>II.&nbsp;</label>@SharedResource.PersonalData
                             <small class="down"><i class="fas fa-chevron-down ml-2"></i></small>
                             <small class="up"><i class="fas fa-chevron-up ml-2"></i></small>
                         </div>
-                        <div id="content" class="collapse">
+                        <div id="personalData" class="collapse @(inPersonalData ? "show" : null)">
 
                             @foreach (var menuEntry in menuEntries)
                             {

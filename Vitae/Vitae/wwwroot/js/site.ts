@@ -360,8 +360,6 @@ function setupSbAdmin() {
     $("#layoutSidenav_nav .sb-sidenav a.nav-link").each(function () {
         if (this.href === path) {
             $(this).addClass("active");
-            $(this).parent(".collapse").addClass("show");
-            $(this).parent(".collapse").prev().removeClass("collapsed");
         }
     });
 
