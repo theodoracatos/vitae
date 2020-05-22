@@ -1,6 +1,5 @@
 ﻿using Library.Constants;
 using Library.Helper;
-using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Authentication;
@@ -8,12 +7,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+
 using Persistency.Data;
+using Persistency.Repository;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,6 +25,7 @@ using System.Threading.Tasks;
 
 using Vitae.Code.Mailing;
 using Vitae.Code.PageModels;
+
 using IEmailSender = Vitae.Code.Mailing.IEmailSender;
 
 namespace Vitae.Areas.Identity.Pages.Account

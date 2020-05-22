@@ -1,6 +1,5 @@
 ﻿using Library.Constants;
 using Library.Helper;
-using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Authentication;
@@ -13,6 +12,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 using Model.Enumerations;
+
+using Persistency.Repository;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

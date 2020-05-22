@@ -1,30 +1,31 @@
 ﻿using Library.Constants;
 using Library.Helper;
-using Library.Repository;
 using Library.Resources;
-using Microsoft.AspNetCore.Authentication;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
+
 using Model.Poco;
 using Model.ViewModels;
+
 using Newtonsoft.Json.Linq;
+
 using Persistency.Data;
+using Persistency.Repository;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Vitae.Code.PageModels

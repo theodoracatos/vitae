@@ -1,5 +1,4 @@
 ﻿using Library.Extensions;
-using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -13,6 +12,7 @@ using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
+using Persistency.Repository;
 
 using System;
 using System.Collections.Generic;
@@ -21,8 +21,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-using Vitae.Code;
 using Vitae.Code.PageModels;
+
 using Poco = Model.Poco;
 
 namespace Vitae.Areas.Manage.Pages.Sociallinks

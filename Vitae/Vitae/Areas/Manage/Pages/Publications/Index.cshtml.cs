@@ -1,6 +1,5 @@
 using Library.Constants;
 using Library.Helper;
-using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -14,19 +13,18 @@ using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
+using Persistency.Repository;
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-using Vitae.Code;
 using Vitae.Code.PageModels;
+
 using Poco = Model.Poco;
 
 namespace Vitae.Areas.Manage.Pages.Publications

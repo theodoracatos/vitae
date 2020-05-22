@@ -1,6 +1,5 @@
 using Library.Constants;
 using Library.Helper;
-using Library.Repository;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
@@ -15,9 +14,8 @@ using Microsoft.Extensions.Logging;
 using Model.Enumerations;
 using Model.ViewModels;
 
-using Newtonsoft.Json.Linq;
-
 using Persistency.Data;
+using Persistency.Repository;
 
 using System;
 using System.Collections.Generic;

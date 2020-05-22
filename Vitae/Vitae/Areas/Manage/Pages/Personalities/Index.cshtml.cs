@@ -1,5 +1,4 @@
-﻿using Library.Repository;
-using Library.Resources;
+﻿using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +11,7 @@ using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
+using Persistency.Repository;
 
 using System;
 using System.Collections.Generic;

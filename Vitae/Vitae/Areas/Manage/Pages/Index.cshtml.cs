@@ -1,22 +1,20 @@
-﻿
-using Library.Repository;
-using Library.Resources;
+﻿using Library.Resources;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 
-using Model.Poco;
 using Model.ViewModels.Reports;
 
 using Persistency.Data;
+using Persistency.Repository;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
+
 using Vitae.Code.PageModels;
 
 namespace Vitae.Areas.Manage.Pages
