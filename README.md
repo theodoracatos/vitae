@@ -1,1 +1,3 @@
 # vitae
+
+The myVitae page allows job seekers to enter their CV online. In doing so, people only have to worry about the content and no longer about the design. Afterwards, the created CV can be sent to potential employers via a protected link and password. Although there are already various job portals such as Xing or LinkedIn, these are rather elitist and only suitable for concrete applications to a limited extent. The site would have the potential to help people who are not so experienced with Office products. Due to the Corona crisis there will be some unemployed people in the future who would be glad to get such help.
