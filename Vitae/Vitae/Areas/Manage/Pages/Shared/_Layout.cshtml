@@ -65,9 +65,9 @@
                     <div class="nav mb-4">
                         @{var inManagement = page == null || page == nameof(Settings) || page == nameof(Publications);}
                         <div class="sb-sidenav-menu-heading cursor-pointer @(inManagement ? null : "collapsed")" data-toggle="collapse" data-target="#management">
-                            <label>I.&nbsp;&nbsp;</label>@SharedResource.Management
-                            <small class="down"><i class="fas fa-chevron-down ml-2"></i></small>
-                            <small class="up"><i class="fas fa-chevron-up ml-2"></i></small>
+                            <small class="down"><i class="fas fa-chevron-down mr-1"></i></small>
+                            <small class="up"><i class="fas fa-chevron-up mr-1"></i></small>
+                            @SharedResource.Management
                         </div>
 
                         <div id="management" class="collapse @(inManagement ? "show" : null)">
@@ -87,9 +87,9 @@
 
                         @{var inPersonalData = menuEntries.Any(e => e.Item1 == page);}
                         <div class="sb-sidenav-menu-heading cursor-pointer @(inPersonalData ? null : "collapsed")" data-toggle="collapse" data-target="#personalData">
-                            <label>II.&nbsp;</label>@SharedResource.PersonalData
-                            <small class="down"><i class="fas fa-chevron-down ml-2"></i></small>
-                            <small class="up"><i class="fas fa-chevron-up ml-2"></i></small>
+                            <small class="down"><i class="fas fa-chevron-down mr-1"></i></small>
+                            <small class="up"><i class="fas fa-chevron-up mr-1"></i></small>
+                            @SharedResource.PersonalData
                         </div>
                         <div id="personalData" class="collapse @(inPersonalData ? "show" : null)">
 
@@ -103,9 +103,9 @@
                         </div>
 
                         <div class="sb-sidenav-menu-heading cursor-pointer collapsed" data-toggle="collapse" data-target="#preview">
-                            <label class="mr-0">III.</label> @SharedResource.Preview
-                            <small class="down"><i class="fas fa-chevron-down ml-2"></i></small>
-                            <small class="up"><i class="fas fa-chevron-up ml-2"></i></small>
+                            <small class="down"><i class="fas fa-chevron-down mr-1"></i></small>
+                            <small class="up"><i class="fas fa-chevron-up mr-1"></i></small>
+                            @SharedResource.Preview
                         </div>
                         <div id="preview" class="collapse">
                             <vc:vitae-link-generator></vc:vitae-link-generator>

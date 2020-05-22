@@ -943,7 +943,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The dashboard shows you the access history of your myVitae and other useful statistics..
+        ///   Looks up a localized string similar to The dashboard shows you the chronological course of access to your myVitae resumes and other useful statistics on your login behavior..
         /// </summary>
         public static string DashboardDescription {
             get {
@@ -1249,7 +1249,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secures your myVitae with an additional password.
+        ///   Looks up a localized string similar to Secures your myVitae curriculum with an additional password.
         /// </summary>
         public static string EnablePasswordDescription {
             get {
@@ -1789,7 +1789,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The language in which the myVitae is loaded.
+        ///   Looks up a localized string similar to The language in which the myVitae website is loaded.
         /// </summary>
         public static string LanguageDescription {
             get {
@@ -2221,7 +2221,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MyVitae - Your online CV.
+        ///   Looks up a localized string similar to myVitae - Your online CV.
         /// </summary>
         public static string MyVitaeSlogan {
             get {

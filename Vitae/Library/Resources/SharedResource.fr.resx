@@ -412,7 +412,7 @@
     <value>Tableau de bord</value>
   </data>
   <data name="DashboardDescription" xml:space="preserve">
-    <value>Le tableau de bord vous montre l'historique d'accès à votre myVitae et d'autres statistiques utiles.</value>
+    <value>Le tableau de bord vous montre le déroulement chronologique de l'accès à vos CV myVitae et d'autres statistiques utiles sur votre comportement de connexion.</value>
   </data>
   <data name="DashboardOverview" xml:space="preserve">
     <value>Pour que votre CV soit publié, un lien de publication aléatoire est créé par l'application web myVitae. Vous pouvez ensuite utiliser ce lien pour un ou plusieurs postes vacants et le supprimer complètement après avoir postulé avec succès. Le tableau de bord vous indique le succès de vos CV publiés en affichant le nombre de clics sur le lien de publication envoyé. Vous pouvez également saisir votre CV dans cinq langues au maximum.</value>
@@ -514,7 +514,7 @@
     <value>Accès avec mot de passe</value>
   </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
-    <value>Sécurise votre myVitae grâce à un mot de passe supplémentaire</value>
+    <value>Sécurisez votre curriculum myVitae avec un mot de passe supplémentaire</value>
   </data>
   <data name="End" xml:space="preserve">
     <value>Fin</value>
@@ -694,7 +694,7 @@
     <value>Langue</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>La langue dans laquelle le myVitae est chargé</value>
+    <value>La langue dans laquelle le site web myVitae est chargé</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Langues</value>
@@ -838,7 +838,7 @@
     <value>My Vitae</value>
   </data>
   <data name="MyVitaeSlogan" xml:space="preserve">
-    <value>MyVitae - Votre CV en ligne</value>
+    <value>myVitae - Votre CV en ligne</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>

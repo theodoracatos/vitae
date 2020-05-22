@@ -412,7 +412,7 @@
     <value>Cruscotto</value>
   </data>
   <data name="DashboardDescription" xml:space="preserve">
-    <value>Il cruscotto mostra la cronologia degli accessi al vostro myVitae e altre statistiche utili.</value>
+    <value>Il cruscotto vi mostra l'andamento cronologico dell'accesso ai vostri CV myVitae e altre statistiche utili sul vostro comportamento di login.</value>
   </data>
   <data name="DashboardOverview" xml:space="preserve">
     <value>Affinché il vostro CV venga pubblicato, l'applicazione web myVitae crea un link di pubblicazione casuale. Potete quindi utilizzare questo link per uno o più posti vacanti e cancellarlo completamente dopo aver presentato la vostra candidatura con successo. Il cruscotto mostra il successo dei vostri CV pubblicati visualizzando il numero di clic sul link di pubblicazione inviato. Potete anche inserire il vostro curriculum vitae in un massimo di cinque lingue.</value>
@@ -514,7 +514,7 @@
     <value>Accesso con password</value>
   </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
-    <value>Assicura il tuo myVitae con una password aggiuntiva</value>
+    <value>Assicura il vostro curriculum myVitae con una password aggiuntiva</value>
   </data>
   <data name="End" xml:space="preserve">
     <value>Fine</value>
@@ -694,7 +694,7 @@
     <value>Lingua</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>La lingua in cui viene caricato il myVitae</value>
+    <value>La lingua in cui è caricato il sito myVitae</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Lingue</value>
@@ -838,7 +838,7 @@
     <value>My Vitae</value>
   </data>
   <data name="MyVitaeSlogan" xml:space="preserve">
-    <value>MyVitae - Il tuo CV online</value>
+    <value>myVitae - Il tuo CV online</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nome</value>

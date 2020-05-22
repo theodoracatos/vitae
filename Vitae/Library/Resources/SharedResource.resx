@@ -412,7 +412,7 @@
     <value>Dashboard</value>
   </data>
   <data name="DashboardDescription" xml:space="preserve">
-    <value>The dashboard shows you the access history of your myVitae and other useful statistics.</value>
+    <value>The dashboard shows you the chronological course of access to your myVitae resumes and other useful statistics on your login behavior.</value>
   </data>
   <data name="DashboardOverview" xml:space="preserve">
     <value>In order for your CV to be published, a random publication link is created by the myVitae web application. You can then use this link for one or more vacancies and delete it completely after you have successfully applied. The dashboard shows you the success of your published CVs by displaying the number of clicks on the sent publication link. You can also enter your resume in up to five languages.</value>
@@ -514,7 +514,7 @@
     <value>Access with password</value>
   </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
-    <value>Secures your myVitae with an additional password</value>
+    <value>Secures your myVitae curriculum with an additional password</value>
   </data>
   <data name="End" xml:space="preserve">
     <value>End</value>
@@ -694,7 +694,7 @@
     <value>Language</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The language in which the myVitae is loaded</value>
+    <value>The language in which the myVitae website is loaded</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
@@ -838,7 +838,7 @@
     <value>My Vitae</value>
   </data>
   <data name="MyVitaeSlogan" xml:space="preserve">
-    <value>MyVitae - Your online CV</value>
+    <value>myVitae - Your online CV</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
