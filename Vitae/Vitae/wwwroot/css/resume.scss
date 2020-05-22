@@ -37,11 +37,6 @@ footer {
     background-color: transparent !important;
 }
 
-.btn-primary {
-    background-color: $qvs-gold-color !important;
-    border-color: transparent;
-}
-
 .btn-primary[disabled] {
     background-color: $qvs-lightgold-color !important;
     border-color: transparent !important;
@@ -62,11 +57,7 @@ footer {
     outline-color: $qvs-gold-color;
 }
 
-.logo-container {
-    height: 34px;
-}
-
-.logo {
+.logo-container, .logo {
     height: 34px;
 }
 
@@ -102,6 +93,11 @@ a.nav-link.active {
     color: $qvs-gold-color !important;
 }
 
+.btn-primary {
+    background-color: $qvs-gold-color !important;
+    border-color: transparent;
+}
+
 /* RESIZING */
 @media all and (max-width: 991px) {
     .corner-ribbon {
@@ -109,7 +105,19 @@ a.nav-link.active {
     }
 }
 
-@media all and (max-width: 767px) {
+@media all and (max-height: 767px) {
+    .navbar-toggler {
+        padding: .2rem .7rem;
+    }
+
+    .navbar {
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+
+    .logo-container, .logo {
+        height: 30px;
+    }
 
     footer {
         height: 45px !important;
@@ -117,7 +125,6 @@ a.nav-link.active {
         line-height: 45px !important;
         font-size: 13px;
     }
-
 }
 
 @media all and (max-width: 480px) {

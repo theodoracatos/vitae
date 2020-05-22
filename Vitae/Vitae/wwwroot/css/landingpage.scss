@@ -189,10 +189,6 @@ nav.navbar{
     width: 50px;
 }
 
-.tabborder {
-    border-color: #dee2e6 #16191b #fff;
-}
-
 .nav-item a{
     font-size: 18px !important;
 }
@@ -200,7 +196,6 @@ nav.navbar{
 .nav-link.active {
     font-weight: bold;
     background-color: rgba(255,255,255,0.5) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.8) !important;
 }
 
 #cookieConsent {
