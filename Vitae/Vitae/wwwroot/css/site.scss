@@ -119,10 +119,6 @@ h1 svg {
     margin-left: 0.5em;
 }
 
-.sb-sidenav-dark{
-    background-color: rgba(0,0,0,0.9) !important;
-}
-
 #layoutSidenav_content {
     background: rgb(240,243,248) url('../img/mountain-transparent.png') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -130,6 +126,7 @@ h1 svg {
     -o-background-size: cover;
     background-size: cover;
 }
+
 
 .sb-sidenav-menu-heading.collapsed > .down {
     display: inline-block;

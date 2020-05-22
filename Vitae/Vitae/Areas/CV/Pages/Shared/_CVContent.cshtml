@@ -113,7 +113,7 @@
                 {
                     <p class="lead">
                         <div class="speech-bubble mb-4">
-                            <div class="font-italic">@about.Slogan</div>
+                            <div class="font-italic preline">@about.Slogan</div>
                         </div>
                     </p>
                 }
@@ -154,7 +154,7 @@
                             {
                                 <p><b>@experience.CompanyDescription</b></p>
                             }
-                            <p>@experience.Description</p>
+                            <p class="preline">@experience.Description</p>
                         </div>
                         <div class="resume-date text-md-right">
                             <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(experience.Start_Year, experience.Start_Month, 1), experience.UntilNow ? (DateTime?)null : new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1), false)" />
@@ -184,7 +184,7 @@
                             {
                                 <p><b>@SharedResource.Grade: @education.Grade</b></p>
                             }
-                            <p>@education.Description</p>
+                            <p class="preline">@education.Description</p>
                         </div>
                         <div class="resume-date text-md-right">
                             <div class="resume-date text-md-right">
@@ -211,7 +211,7 @@
                         <div class="resume-content">
                             <h3 class="mb-0">@course.Title</h3>
                             <div class="subheading mb-3"><a href="@course.Link" target="_blank">@course.SchoolName</a> &middot;<span data-toggle="tooltip" class="greyimage flag-icon flag-icon-@(course.CountryCode.ToLower())" title="@(Model.Countries.Single(c => c.CountryCode == course.CountryCode).Name)"></span> @course.City</div>
-                            <p>@course.Description</p>
+                            <p class="preline">@course.Description</p>
                         </div>
                         <div class="resume-date text-md-right">
                             <div class="resume-date text-md-right">
@@ -310,7 +310,7 @@
                 {
                     <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
                         <div class="resume-content">
-                            <h3 class="mb-0">@interest.InterestName</h3>
+                            <h3 class="mb-0 @(string.IsNullOrEmpty(interest.Description) ? "mb-3" : null)">@interest.InterestName</h3>
                             @if (!string.IsNullOrEmpty(interest.Link) || !string.IsNullOrEmpty(interest.Association))
                             {
                                 <div class="subheading"><a href="@interest.Link" target="_blank">@interest.Association</a></div>
