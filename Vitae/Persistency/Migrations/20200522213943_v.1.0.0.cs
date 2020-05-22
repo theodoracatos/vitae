@@ -181,7 +181,7 @@ namespace Persistency.Migrations
                     CurriculumLanguageLanguageID = table.Column<Guid>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     AcademicTitle = table.Column<string>(maxLength: 100, nullable: true),
-                    Slogan = table.Column<string>(maxLength: 4000, nullable: true),
+                    Slogan = table.Column<string>(maxLength: 1000, nullable: true),
                     Photo = table.Column<string>(type: "varchar(max)", nullable: true),
                     VfileID = table.Column<Guid>(nullable: true),
                     CurriculumID = table.Column<Guid>(nullable: true)

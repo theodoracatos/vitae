@@ -12,7 +12,7 @@ namespace Model.Poco
         [MaxLength(100)]
         public string AcademicTitle { get; set; }
 
-        [MaxLength(4000)]
+        [MaxLength(1000)]
         public string Slogan { get; set; }
 
         [Column(TypeName = "varchar(max)")]

@@ -368,8 +368,6 @@ function setupSbAdmin() {
         e.preventDefault();
         $("body").toggleClass("sb-sidenav-toggled");
     });
-
-    $('#dataTable').DataTable();
 }
 
 function initSelectPicker() {
@@ -395,7 +393,6 @@ function loadingProcedure() {
     initializeTagsinput();
     loadDisabledLinkMessage();
     assignCollapser();
-    loadDynamicContent();
     disableSubmitOnButton();
     loadColorPicker();
 }
@@ -429,29 +426,6 @@ function fixAnchorPosition() {
 
 function setupAutosize() {
     autosize($('textarea'));
-}
-
-function loadDynamicContent() {
-    let lastScrollTop = 0;
-    $(window).scroll(function (event) {
-        let st = $(this).scrollTop();
-
-        if (st > lastScrollTop) {
-            // downscroll code
-            $(".partial").each(function (index) {
-                if (index == 0 && !$(this).hasClass('clicked')) {
-                    if ($(this).visible()) {
-                        $(this).trigger('click');
-                        $(this).addClass('clicked');
-                    }
-                }
-            });
-
-        } else {
-            // upscroll code
-        }
-        lastScrollTop = st;
-    });
 }
 
 function assignCollapser() {

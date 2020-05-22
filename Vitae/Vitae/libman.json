@@ -3,7 +3,7 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "font-awesome@5.11.2",
+      "library": "font-awesome@5.13.0",
       "destination": "wwwroot/lib/font-awesome/"
     },
     {
@@ -11,7 +11,7 @@
       "destination": "wwwroot/lib/jquery-confirm/"
     },
     {
-      "library": "jquery@3.4.1",
+      "library": "jquery@3.5.1",
       "destination": "wwwroot/lib/jquery/"
     },
     {
@@ -32,10 +32,6 @@
       "destination": "wwwroot/lib/jquery.filer/"
     },
     {
-      "library": "datatables@1.10.19",
-      "destination": "wwwroot/lib/datatables/"
-    },
-    {
       "library": "Chart.js@2.9.3",
       "destination": "wwwroot/lib/Chart.js/"
     },
@@ -44,17 +40,13 @@
       "destination": "wwwroot/lib/bootstrap-rating/"
     },
     {
-      "provider": "unpkg",
+      "provider": "jsdelivr",
       "library": "bootstrap4-tagsinput@4.1.3",
       "destination": "wwwroot/lib/bootstrap4-tagsinput/"
     },
     {
-      "library": "pretty-checkbox@3.0.0",
+      "library": "pretty-checkbox@3.0.3",
       "destination": "wwwroot/lib/pretty-checkbox/"
-    },
-    {
-      "library": "bootstrap-select@1.13.12",
-      "destination": "wwwroot/lib/bootstrap-select/"
     },
     {
       "library": "flag-icon-css@3.4.6",
@@ -71,10 +63,6 @@
     {
       "library": "jquery-easing@1.4.1",
       "destination": "wwwroot/lib/jquery-easing/"
-    },
-    {
-      "library": "jquery-visible@1.2.0",
-      "destination": "wwwroot/lib/jquery-visible/"
     },
     {
       "provider": "jsdelivr",
