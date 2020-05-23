@@ -344,6 +344,18 @@ function addJQueryValidators() {
         return startDate <= endDate;
     });
 
+    // Checkboxes
+    var defaultRangeValidator = $.validator.methods.range;
+    $.validator.methods.range = function (value, element, param) {
+        if (element.type === 'checkbox') {
+            // if it's a checkbox return true if it is checked
+            return element.checked;
+        } else {
+            // otherwise run the default validation function
+            return defaultRangeValidator.call(this, value, element, param);
+        }
+    }
+
     var $form = $("form");
     $form.unbind();
     $form.data("validator", null);

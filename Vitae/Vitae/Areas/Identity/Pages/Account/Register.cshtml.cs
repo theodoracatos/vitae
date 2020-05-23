@@ -71,6 +71,10 @@ namespace Vitae.Areas.Identity.Pages.Account
             [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.ConfirmPassword), Prompt = nameof(SharedResource.ConfirmPassword))]
             [Compare("Password", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.CompareFailed))]
             public string ConfirmPassword { get; set; }
+
+            [Range(typeof(bool), "true", "true", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.TermsAndConditionsError))]
+            [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.TermsAndConditions), Prompt = nameof(SharedResource.TermsAndConditions))]
+            public bool ConfirmAgreements { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)

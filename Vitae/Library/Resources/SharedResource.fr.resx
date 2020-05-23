@@ -1200,6 +1200,15 @@
   <data name="Switzerland" xml:space="preserve">
     <value>Suisse</value>
   </data>
+  <data name="TermsAndConditions" xml:space="preserve">
+    <value>Conditions générales</value>
+  </data>
+  <data name="TermsAndConditionsDesc" xml:space="preserve">
+    <value>J'accepte les termes et conditions</value>
+  </data>
+  <data name="TermsAndConditionsError" xml:space="preserve">
+    <value>Vous devez accepter les termes et conditions</value>
+  </data>
   <data name="TheLogout" xml:space="preserve">
     <value>Déconnexion</value>
   </data>

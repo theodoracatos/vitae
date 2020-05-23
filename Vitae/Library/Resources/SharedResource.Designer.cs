@@ -3310,6 +3310,33 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Terms &amp; conditions.
+        /// </summary>
+        public static string TermsAndConditions {
+            get {
+                return ResourceManager.GetString("TermsAndConditions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I accept the terms &amp; conditions.
+        /// </summary>
+        public static string TermsAndConditionsDesc {
+            get {
+                return ResourceManager.GetString("TermsAndConditionsDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have to accept the terms &amp; conditions.
+        /// </summary>
+        public static string TermsAndConditionsError {
+            get {
+                return ResourceManager.GetString("TermsAndConditionsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logout.
         /// </summary>
         public static string TheLogout {
