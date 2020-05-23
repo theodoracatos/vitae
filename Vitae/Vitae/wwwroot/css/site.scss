@@ -348,6 +348,37 @@ span.field-validation-error {
 }
 
 /* RESIZING */
+@media all and (max-height: 767px) {
+
+    .navbar {
+        min-height: 46px;
+        height: 46px !important;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+    }
+
+    .sb-nav-fixed #layoutSidenav #layoutSidenav_content {
+        top: 46px;
+        padding-bottom: 4em;
+    }
+
+    .logo-container, .logo {
+        height: 30px;
+    }
+
+    footer {
+        height: 46px !important;
+        min-height: 46px !important;
+        line-height: 46px !important;
+        font-size: 13px;
+    }
+}
+
 @media all and (max-width: 768px) {
     .jFiler-input {
         width: 316px !important;
