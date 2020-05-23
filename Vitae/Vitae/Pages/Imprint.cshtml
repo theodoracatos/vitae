@@ -32,7 +32,7 @@
                         <a class="nav-link pl-4 pr-4 pt-3 pb-3" id="legalnotice-tab" data-toggle="tab" href="#legalnotice" role="tab" aria-controls="legalnotice" aria-selected="false">@SharedResource.LegalNotice</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-4 pr-4 pt-3 pb-3" id="qanda-tab" data-toggle="tab" href="#qanda" role="tab" aria-controls="qanda" aria-selected="false">Q&amp;A</a>
+                        <a class="nav-link pl-4 pr-4 pt-3 pb-3" id="qanda-tab" data-toggle="tab" href="#qanda" role="tab" aria-controls="qanda" aria-selected="false">FAQ</a>
                     </li>
                 </ul>
                 <div class="tab-content transparentWhite pl-4 pr-4 pt-2 pb-2 border-left border-bottom border-right tabborder" id="myTabContent">
@@ -126,12 +126,15 @@
 
                         <div class="row">
                             <div class="col text-left">
-                                <h1>@SharedResource.QandA</h1>
-                                @for (int i = 0; i < 6; i++)
+                                <h1>@SharedResource.FAQ</h1>
+                                @for (int i = 0; i < ImprintModel.MAX_FAQ; i++)
                                 {
                                     <p class="font-weight-bold">@CodeHelper.GetStaticPropValue(typeof(SharedResource), $"QandA_Q{i}")</p>
                                     <p>@CodeHelper.GetStaticPropValue(typeof(SharedResource), $"QandA_A{i}")</p>
+                                    if (i + 1 < ImprintModel.MAX_FAQ)
+                                    {
                                     <hr class="thin" />
+                                    }
                                 }
                             </div>
                         </div>

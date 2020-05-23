@@ -943,7 +943,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The dashboard shows you the chronological course of access to your myVitae resumes and other useful statistics on your login behavior..
+        ///   Looks up a localized string similar to The dashboard shows you the chronological course of access to your myVitae resumes and other useful statistics on your login behaviour..
         /// </summary>
         public static string DashboardDescription {
             get {
@@ -1384,6 +1384,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Famous asked questions.
+        /// </summary>
+        public static string FAQ {
+            get {
+                return ResourceManager.GetString("FAQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Files you&apos;ve chosen are too large.
         /// </summary>
         public static string FilesTooLarge {
@@ -1393,7 +1402,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to is too large - max filesize is.
+        ///   Looks up a localized string similar to is too large - max file size is.
         /// </summary>
         public static string FileTooLarge {
             get {
@@ -1578,6 +1587,15 @@ namespace Library.Resources {
         public static string Homepage {
             get {
                 return ResourceManager.GetString("Homepage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I accept.
+        /// </summary>
+        public static string Iaccept {
+            get {
+                return ResourceManager.GetString("Iaccept", resourceCulture);
             }
         }
         
@@ -2698,7 +2716,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage the publication of your myVitae here..
+        ///   Looks up a localized string similar to Manage the publication of your resume here..
         /// </summary>
         public static string PublicationDescription {
             get {
@@ -3166,7 +3184,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Here you can select the different languages of your myVitae..
+        ///   Looks up a localized string similar to Here you can select the different languages of your resume..
         /// </summary>
         public static string SettingsDescription {
             get {
@@ -3373,7 +3391,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An internal error has occured..
+        ///   Looks up a localized string similar to An internal error has occurred..
         /// </summary>
         public static string Status500 {
             get {

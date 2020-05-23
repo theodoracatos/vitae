@@ -430,10 +430,10 @@
     <value>Protezione dei dati</value>
   </data>
   <data name="DataProtectionText" xml:space="preserve">
-    <value>Non possiamo garantire la sicurezza della trasmissione dei dati su Internet. In particolare, vi è il rischio di accesso da parte di terzi quando i dati vengono trasmessi via e-mail. Ci opponiamo espressamente all'utilizzo dei dati di contatto pubblicati nell'imprint da parte di terzi per scopi pubblicitari. Il gestore si riserva espressamente il diritto di intraprendere azioni legali in caso di invio di materiale pubblicitario o informativo non richiesto. Qualora singole disposizioni o formulazioni della presente clausola di esclusione di responsabilità siano o diventino invalide, il contenuto e la validità delle restanti disposizioni rimangono invariati.</value>
+    <value>Non possiamo garantire la sicurezza della trasmissione dei dati su Internet. In particolare, vi è il rischio di accesso da parte di terzi quando i dati vengono trasmessi via e-mail. Ci opponiamo espressamente all'utilizzo dei dati di contatto pubblicati nell'impronta da parte di terzi per scopi pubblicitari. Il gestore si riserva espressamente il diritto di intraprendere azioni legali in caso di invio di materiale pubblicitario o informativo non richiesto. Qualora singole disposizioni o formulazioni della presente clausola di esclusione di responsabilità siano o diventino invalide, il contenuto e la validità delle restanti disposizioni rimangono invariati.</value>
   </data>
   <data name="DateCompareError" xml:space="preserve">
-    <value>Non possiamo garantire la sicurezza della trasmissione dei dati su Internet. In particolare, vi è il rischio di accesso da parte di terzi quando i dati vengono trasmessi via e-mail. Ci opponiamo espressamente all'utilizzo dei dati di contatto pubblicati nell'imprint da parte di terzi per scopi pubblicitari. Il gestore si riserva espressamente il diritto di intraprendere azioni legali in caso di invio di materiale pubblicitario o informativo non richiesto. Qualora singole disposizioni o formulazioni della presente clausola di esclusione di responsabilità siano o diventino invalide, il contenuto e la validità delle restanti disposizioni rimangono invariati.</value>
+    <value>Non possiamo garantire la sicurezza della trasmissione dei dati su Internet. In particolare, vi è il rischio di accesso da parte di terzi quando i dati vengono trasmessi via e-mail. Ci opponiamo espressamente all'utilizzo dei dati di contatto pubblicati nell'impronta da parte di terzi per scopi pubblicitari. Il gestore si riserva espressamente il diritto di intraprendere azioni legali in caso di invio di materiale pubblicitario o informativo non richiesto. Qualora singole disposizioni o formulazioni della presente clausola di esclusione di responsabilità siano o diventino invalide, il contenuto e la validità delle restanti disposizioni rimangono invariati.</value>
   </data>
   <data name="DateProtectionText" xml:space="preserve">
     <value>La data di inizio non può essere superiore alla data di fine</value>
@@ -558,6 +558,9 @@
   <data name="ExpiresOn" xml:space="preserve">
     <value>Scade il</value>
   </data>
+  <data name="FAQ" xml:space="preserve">
+    <value>Domande poste frequentemente</value>
+  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>I file scelti sono troppo grandi</value>
   </data>
@@ -623,6 +626,9 @@
   </data>
   <data name="Homepage" xml:space="preserve">
     <value>Homepage</value>
+  </data>
+  <data name="Iaccept" xml:space="preserve">
+    <value>Accetto</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>Importazione</value>
@@ -763,7 +769,7 @@
     <value>Utilizzate il vostro account locale per effettuare il login.</value>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
+    <value>Esci</value>
   </data>
   <data name="LongIdentifier" xml:space="preserve">
     <value>ID</value>
@@ -997,7 +1003,7 @@
     <value>Pubblicazione</value>
   </data>
   <data name="PublicationDescription" xml:space="preserve">
-    <value>Gestisci qui la pubblicazione del tuo myVitae.</value>
+    <value>Gestisci qui la pubblicazione del tuo CV.</value>
   </data>
   <data name="PublicationIdentifier" xml:space="preserve">
     <value>ID</value>
@@ -1153,7 +1159,7 @@
     <value>Attenzione, questa azione non può essere annullata!</value>
   </data>
   <data name="SettingsDescription" xml:space="preserve">
-    <value>Qui potete selezionare le diverse lingue del vostro myVitae.</value>
+    <value>Qui potete selezionare le diverse lingue del vostro curriculum.</value>
   </data>
   <data name="SettingsLanguageHint" xml:space="preserve">
     <value>Questa lingua può essere modificata solo se tutte le pubblicazioni di riferimento vengono cancellate.</value>
@@ -1189,7 +1195,7 @@
     <value>Elenca tutte le competenze sociali che hai acquisito nel corso della tua carriera.</value>
   </data>
   <data name="Skillset" xml:space="preserve">
-    <value>Skillset</value>
+    <value>Competenze</value>
   </data>
   <data name="Slogan" xml:space="preserve">
     <value>Slogan</value>
@@ -1255,7 +1261,7 @@
     <value>Devi accettare i termini e le condizioni</value>
   </data>
   <data name="TheLogout" xml:space="preserve">
-    <value>Logout</value>
+    <value>Esci</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Titolo di studio</value>

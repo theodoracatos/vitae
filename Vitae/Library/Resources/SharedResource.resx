@@ -412,7 +412,7 @@
     <value>Dashboard</value>
   </data>
   <data name="DashboardDescription" xml:space="preserve">
-    <value>The dashboard shows you the chronological course of access to your myVitae resumes and other useful statistics on your login behavior.</value>
+    <value>The dashboard shows you the chronological course of access to your myVitae resumes and other useful statistics on your login behaviour.</value>
   </data>
   <data name="DashboardOverview" xml:space="preserve">
     <value>In order for your CV to be published, a random publication link is created by the myVitae web application. You can then use this link for one or more vacancies and delete it completely after you have successfully applied. The dashboard shows you the success of your published CVs by displaying the number of clicks on the sent publication link. You can also enter your resume in up to five languages.</value>
@@ -558,11 +558,14 @@
   <data name="ExpiresOn" xml:space="preserve">
     <value>Expires on</value>
   </data>
+  <data name="FAQ" xml:space="preserve">
+    <value>Famous asked questions</value>
+  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Files you've chosen are too large</value>
   </data>
   <data name="FileTooLarge" xml:space="preserve">
-    <value>is too large - max filesize is</value>
+    <value>is too large - max file size is</value>
   </data>
   <data name="Firstname" xml:space="preserve">
     <value>First name</value>
@@ -623,6 +626,9 @@
   </data>
   <data name="Homepage" xml:space="preserve">
     <value>Homepage</value>
+  </data>
+  <data name="Iaccept" xml:space="preserve">
+    <value>I accept</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>Import</value>
@@ -997,7 +1003,7 @@
     <value>Publication</value>
   </data>
   <data name="PublicationDescription" xml:space="preserve">
-    <value>Manage the publication of your myVitae here.</value>
+    <value>Manage the publication of your resume here.</value>
   </data>
   <data name="PublicationIdentifier" xml:space="preserve">
     <value>ID</value>
@@ -1153,7 +1159,7 @@
     <value>Attention, this action cannot be undone!</value>
   </data>
   <data name="SettingsDescription" xml:space="preserve">
-    <value>Here you can select the different languages of your myVitae.</value>
+    <value>Here you can select the different languages of your resume.</value>
   </data>
   <data name="SettingsLanguageHint" xml:space="preserve">
     <value>This language can only be changed if all referenced publications are deleted.</value>
@@ -1222,7 +1228,7 @@
     <value>The requested page could not be found.</value>
   </data>
   <data name="Status500" xml:space="preserve">
-    <value>An internal error has occured.</value>
+    <value>An internal error has occurred.</value>
   </data>
   <data name="Street" xml:space="preserve">
     <value>Street</value>

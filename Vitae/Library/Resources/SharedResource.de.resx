@@ -412,7 +412,7 @@
     <value>Dashboard</value>
   </data>
   <data name="DashboardDescription" xml:space="preserve">
-    <value>Das Dashboard zeigt Ihnen die den zeitlichen Verlauf der Zugriffe auf Ihre myVitae Lebensläufe sowie weitere nützliche Statistiken zu Ihrem Loginverhalten.</value>
+    <value>Das Dashboard zeigt Ihnen die den zeitlichen Verlauf der Zugriffe auf Ihre myVitae Lebensläufe sowie weitere nützliche Statistiken zu Ihrem Login verhalten.</value>
   </data>
   <data name="DashboardOverview" xml:space="preserve">
     <value>Damit Ihr Lebenslauf veröffentlicht werden kann, wird von der myVitae Webapplikation ein zufälliger Publikationslink erstellt. Diesen können Sie dann für eine oder mehrere Vakanzen verwenden und, nach erfolgreicher Bewerbung, wieder komplett löschen. Das Dashboard zeigt Ihnen dabei den Erfolgsverlauf Ihrer veröffentlichten Lebensläufe auf, in dem die Anzahl Klicks auf den versendeten Publikationslink aufgezeigt werden. Sie können Ihren Lebenslauf zudem in bis zu fünf Sprachen erfassen.</value>
@@ -424,7 +424,7 @@
     <value>Datenerfassung</value>
   </data>
   <data name="DataCollectionDesc" xml:space="preserve">
-    <value>Wenn Sie sich für myVitae anmelden und einen Lebenslauf erstellen, geben Sie uns freiwillig sensible Informationen. Dazu gehören (nicht abschliessende Aufzählung): Ihr Name, Ihr Geschlecht, Ihre E-Mail-Adresse, Ihre Telefonnummer, Ihr Profilfoto, Ihre Adresse, Ihr Familienstand sowie weitere sensible Persönlichkeitsdaten. Diese Daten werden nicht an Dritte weitergegeben sondern werden ausschliesslich für die myVitae-Bewerbung verwendet. Zusätzlich werden die folgenden Daten ohne Ihr Zutun erhoben und bis zur automatisierten Löschung gespeichert: IP-Adresse des anfragenden Rechners sowie der "user agent string (UA)" des verwendeten Internet-Browserss. Unser berechtigtes Interesse im Sinne des DSGVO an der Datenerhebung beruht zum folgenden Zweck: Die Sicherstellung einer komfortablen Nutzung der Webseitenapplikation, die Bewertung der Systemsicherheit und -stabilität sowie die Nutzung für weitere administrative Zwecke. Keinesfalls verwenden wir die erhobenen Daten, um Rückschlüsse auf Sie zu ziehen. Auf Anfrage teilen wir Ihnen gerne mit, ob und welche eindeutig personenbezogenen Daten über Sie gespeichert sind (GDPR).</value>
+    <value>Wenn Sie sich für myVitae anmelden und einen Lebenslauf erstellen, geben Sie uns freiwillig sensible Informationen. Dazu gehören (nicht abschliessende Aufzählung): Ihr Name, Ihr Geschlecht, Ihre E-Mail-Adresse, Ihre Telefonnummer, Ihr Profilfoto, Ihre Adresse, Ihr Familienstand sowie weitere sensible Persönlichkeitsdaten. Diese Daten werden nicht an Dritte weitergegeben sondern werden ausschliesslich für die myVitae-Bewerbung verwendet. Zusätzlich werden die folgenden Daten ohne Ihr Zutun erhoben und bis zur automatisierten Löschung gespeichert: IP-Adresse des anfragenden Rechners sowie der "user agent string (UA)" des verwendeten Internet-Browsers. Unser berechtigtes Interesse im Sinne des DSGVO an der Datenerhebung beruht zum folgenden Zweck: Die Sicherstellung einer komfortablen Nutzung der Webseitenapplikation, die Bewertung der Systemsicherheit und -stabilität sowie die Nutzung für weitere administrative Zwecke. Keinesfalls verwenden wir die erhobenen Daten, um Rückschlüsse auf Sie zu ziehen. Auf Anfrage teilen wir Ihnen gerne mit, ob und welche eindeutig personenbezogenen Daten über Sie gespeichert sind (GDPR).</value>
   </data>
   <data name="DataProtection" xml:space="preserve">
     <value>Datenschutz</value>
@@ -558,6 +558,9 @@
   <data name="ExpiresOn" xml:space="preserve">
     <value>Verfällt am</value>
   </data>
+  <data name="FAQ" xml:space="preserve">
+    <value>Häufig gestellte Fragen</value>
+  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Die Dateien sind zu gross</value>
   </data>
@@ -623,6 +626,9 @@
   </data>
   <data name="Homepage" xml:space="preserve">
     <value>Startseite</value>
+  </data>
+  <data name="Iaccept" xml:space="preserve">
+    <value>Ich akzeptiere</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>Importieren</value>
@@ -997,7 +1003,7 @@
     <value>Veröffentlichung</value>
   </data>
   <data name="PublicationDescription" xml:space="preserve">
-    <value>Verwalten Sie hier die Veröffentlichung Ihres myVitae's.</value>
+    <value>Verwalten Sie hier die Veröffentlichung Ihres Lebenslaufes.</value>
   </data>
   <data name="PublicationIdentifier" xml:space="preserve">
     <value>ID</value>
@@ -1042,7 +1048,7 @@
     <value>Ist myVitae kostenpflichtig?</value>
   </data>
   <data name="QandA_Q4" xml:space="preserve">
-    <value>Wie und wo werden die Daten gesichtert?</value>
+    <value>Wie und wo werden die Daten gesichert?</value>
   </data>
   <data name="QandA_Q5" xml:space="preserve">
     <value>Was wird für die Registration benötigt?</value>
@@ -1153,7 +1159,7 @@
     <value>Achtung, diese Aktion kann nicht mehr rückgängig gemacht werden!</value>
   </data>
   <data name="SettingsDescription" xml:space="preserve">
-    <value>Legen Sie hier die verschiedenen Sprachen Ihres myVitae's fest.</value>
+    <value>Legen Sie hier die verschiedenen Sprachen Ihres Lebenslaufes fest.</value>
   </data>
   <data name="SettingsLanguageHint" xml:space="preserve">
     <value>Diese Sprache kann erst geändert werden, wenn sämtliche darauf referenzierende Veröffentlichungen gelöscht werden.</value>

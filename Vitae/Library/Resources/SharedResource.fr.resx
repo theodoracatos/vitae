@@ -558,6 +558,9 @@
   <data name="ExpiresOn" xml:space="preserve">
     <value>Expire le</value>
   </data>
+  <data name="FAQ" xml:space="preserve">
+    <value>Foire aux questions</value>
+  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Les fichiers que vous avez choisis sont trop volumineux</value>
   </data>
@@ -623,6 +626,9 @@
   </data>
   <data name="Homepage" xml:space="preserve">
     <value>Page d'accueil</value>
+  </data>
+  <data name="Iaccept" xml:space="preserve">
+    <value>J'accepte</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>Importer</value>
@@ -997,7 +1003,7 @@
     <value>Publication</value>
   </data>
   <data name="PublicationDescription" xml:space="preserve">
-    <value>Gérez la publication de votre myVitae ici.</value>
+    <value>Gérez la publication de votre CV ici.</value>
   </data>
   <data name="PublicationIdentifier" xml:space="preserve">
     <value>ID</value>
@@ -1153,7 +1159,7 @@
     <value>Attention, cette action ne peut être annulée !</value>
   </data>
   <data name="SettingsDescription" xml:space="preserve">
-    <value>Vous pouvez y sélectionner les différentes langues de votre myVitae.</value>
+    <value>Ici, vous pouvez sélectionner les différentes langues de votre CV.</value>
   </data>
   <data name="SettingsLanguageHint" xml:space="preserve">
     <value>Cette langue ne peut être modifiée que si toutes les publications référencées sont supprimées.</value>
@@ -1189,7 +1195,7 @@
     <value>Indiquez toutes les compétences sociales que vous avez acquises au cours de votre carrière.</value>
   </data>
   <data name="Skillset" xml:space="preserve">
-    <value>Skillset</value>
+    <value>Compétences</value>
   </data>
   <data name="Slogan" xml:space="preserve">
     <value>Slogan</value>

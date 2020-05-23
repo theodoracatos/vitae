@@ -558,6 +558,9 @@
   <data name="ExpiresOn" xml:space="preserve">
     <value>Expira el</value>
   </data>
+  <data name="FAQ" xml:space="preserve">
+    <value>Preguntas frecuentes</value>
+  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Los archivos que has elegido son demasiado grandes</value>
   </data>
@@ -623,6 +626,9 @@
   </data>
   <data name="Homepage" xml:space="preserve">
     <value>Página web</value>
+  </data>
+  <data name="Iaccept" xml:space="preserve">
+    <value>Acepto</value>
   </data>
   <data name="Import" xml:space="preserve">
     <value>Importación</value>
@@ -997,7 +1003,7 @@
     <value>Publicación</value>
   </data>
   <data name="PublicationDescription" xml:space="preserve">
-    <value>Gestione la publicación de su myVitae aquí.</value>
+    <value>Gestione la publicación de su currículum aquí.</value>
   </data>
   <data name="PublicationIdentifier" xml:space="preserve">
     <value>ID</value>
@@ -1189,7 +1195,7 @@
     <value>Enumere todas las habilidades sociales que ha adquirido en el curso de su carrera.</value>
   </data>
   <data name="Skillset" xml:space="preserve">
-    <value>Skillset</value>
+    <value>Competencias</value>
   </data>
   <data name="Slogan" xml:space="preserve">
     <value>Eslogan</value>
