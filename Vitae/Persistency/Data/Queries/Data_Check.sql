@@ -1,6 +1,6 @@
 --361 NO AT3, 366 REGISTERED
 
-DECLARE @SHOWALL bit = 0
+DECLARE @SHOWALL bit = 1
 DECLARE @MAIL varchar(30) = 'at3@gmx.ch'
 DECLARE @ID uniqueidentifier = (select id from dbo.aspnetusers where email = @MAIL)
 DECLARE @CID uniqueidentifier = (select claimvalue from dbo.AspNetUserClaims where userid = @ID)
