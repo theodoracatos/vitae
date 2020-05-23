@@ -915,6 +915,9 @@
   <data name="PasswordChanged" xml:space="preserve">
     <value>Das Passwort wurde geändert.</value>
   </data>
+  <data name="PasswordCheckError" xml:space="preserve">
+    <value>Bitte wählen Sie ein Passwort, das den Passwort-Richtlinien entspricht</value>
+  </data>
   <data name="PasswordErrorLength" xml:space="preserve">
     <value>Das {0} muss mindestens {2} und höchstens {1} Zeichen lang sein.</value>
   </data>

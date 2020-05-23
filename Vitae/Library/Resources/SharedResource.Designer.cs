@@ -2455,6 +2455,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please choose a password that complies with the password guidelines.
+        /// </summary>
+        public static string PasswordCheckError {
+            get {
+                return ResourceManager.GetString("PasswordCheckError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The {0} must be at least {2} and at max {1} characters long..
         /// </summary>
         public static string PasswordErrorLength {

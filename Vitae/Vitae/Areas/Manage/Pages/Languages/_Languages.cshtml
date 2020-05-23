@@ -10,22 +10,7 @@
                     <label class="control-label" asp-for="@Model.LanguageSkills"></label>
                     <div>
                         <button asp-page-handler="AddLanguageSkill" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-success cancel font-weight-bold mr-2" disabled="@(Model.LanguageSkills?.Count < Model.MaxLanguageSkills ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
-                        <div class="form-control d-sm-block d-md-inline mt-2 mr-2">
-                            <div class="pretty p-switch p-slim mr-0">
-                                <input type="checkbox" name="@nameof(Model.AddToTop)" class="dirty-ignore cancel" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
-                                <div class="state">
-                                    <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-control d-sm-block d-md-inline mt-2">
-                            <div class="pretty p-switch p-slim mr-0 mr-0">
-                                <input type="checkbox" name="@nameof(Model.Collapsed)" class="dirty-ignore cancel" value="true" onclick="$('#btnCollapse').click()" checked="@(Model.Collapsed ? "checked" : null)" />
-                                <div class="state">
-                                    <label asp-for="@Model.Collapsed">@SharedResource.Collapse</label>
-                                </div>
-                            </div>
-                        </div>
+                        <partial name="_CardCollapsebar" model="Model">
                     </div>
                 </div>
             </div>

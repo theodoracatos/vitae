@@ -12,9 +12,9 @@
                 <button asp-page-handler="AddCurriculumLanguage" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-success cancel font-weight-bold mr-2" disabled="@(Model.Setting.CurriculumLanguages.Count < Model.MaxCurriculumLanguages ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
                 <div class="form-control d-sm-block d-md-inline mt-2">
                     <div class="pretty p-switch p-slim mr-0 mr-0">
-                        <input type="checkbox" name="@nameof(Model.Collapsed)" class="dirty-ignore cancel" value="true" onclick="$('#btnCollapse').click()" checked="@(Model.Collapsed ? "checked" : null)" />
+                        <input type="checkbox" id="@nameof(Model.Collapsed)" name="@nameof(Model.Collapsed)" class="dirty-ignore cancel" value="true" onclick="$('#btnCollapse').click()" checked="@(Model.Collapsed ? "checked" : null)" />
                         <div class="state">
-                            <label asp-for="@Model.Collapsed">@SharedResource.Collapse</label>
+                            <label class="cursor-pointer" asp-for="@Model.Collapsed">@SharedResource.Collapse</label>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                     <div class="pretty p-switch p-slim" id="showDeleteContainer" onchange="setTimeout(function(){ $('#showDeleteContainer').hide(); $('#deleteButton').removeClass('d-none'); }, 500);">
                         <input type="checkbox" id="showDelete" value="true" />
                         <div class="state">
-                            <label class="d-none d-sm-block">@SharedResource.Delete</label>
+                            <label class="d-none d-sm-block cursor-pointer" for="showDelete">@SharedResource.Delete</label>
                         </div>
                     </div>
 

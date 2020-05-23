@@ -10,22 +10,7 @@
                     <label class="control-label" asp-for="@Model.References"></label>
                     <div>
                         <button asp-page-handler="AddReference" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-success cancel font-weight-bold mr-2" disabled="@(Model.References?.Count < Model.MaxReferences ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
-                        <div class="form-control d-sm-block d-md-inline mt-2 mr-2">
-                            <div class="pretty p-switch p-slim mr-0">
-                                <input type="checkbox" name="@nameof(Model.AddToTop)" class="dirty-ignore cancel" value="true" checked="@(Model.AddToTop ? "checked" : null)" />
-                                <div class="state">
-                                    <label asp-for="@Model.AddToTop">@SharedResource.AddToTop</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-control d-sm-block d-md-inline mt-2">
-                            <div class="pretty p-switch p-slim mr-0 mr-0">
-                                <input type="checkbox" name="@nameof(Model.Collapsed)" class="dirty-ignore cancel" value="true" onclick="$('#btnCollapse').click()" checked="@(Model.Collapsed ? "checked" : null)" />
-                                <div class="state">
-                                    <label asp-for="@Model.Collapsed">@SharedResource.Collapse</label>
-                                </div>
-                            </div>
-                        </div>
+                        <partial name="_CardCollapsebar" model="Model">
                     </div>
                 </div>
             </div>
@@ -128,9 +113,9 @@
                                 <div class="input-group">
                                     <div class="form-control d-sm-block d-md-inline">
                                         <div class="pretty p-switch p-slim mr-0">
-                                            <input type="checkbox" name="@(nameof(References))[@i].@nameof(ReferenceVM.Hide)" value="true" checked="@(Model.References[i].Hide ? "checked" : null)" />
+                                            <input type="checkbox" id="@(nameof(References))_@(i)__@nameof(ReferenceVM.Hide)" name="@(nameof(References))[@i].@nameof(ReferenceVM.Hide)" value="true" checked="@(Model.References[i].Hide ? "checked" : null)" />
                                             <div class="state">
-                                                <label asp-for="@Model.References[i].Hide"></label>
+                                                <label class="cursor-pointer" asp-for="@Model.References[i].Hide"></label>
                                             </div>
                                         </div>
                                     </div>

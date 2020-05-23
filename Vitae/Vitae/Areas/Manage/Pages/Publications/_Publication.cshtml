@@ -17,9 +17,9 @@
                         <button asp-page-handler="AddPublication" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-success cancel font-weight-bold mr-2" disabled="@(Model.Publications?.Count < Model.MaxPublications ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
                         <div class="form-control d-sm-block d-md-inline mt-2">
                             <div class="pretty p-switch p-slim mr-0 mr-0">
-                                <input type="checkbox" name="@nameof(Model.Collapsed)" class="dirty-ignore cancel" value="true" onclick="$('#btnCollapse').click()" checked="@(Model.Collapsed ? "checked" : null)" />
+                                <input type="checkbox" id="@nameof(Model.Collapsed)" name="@nameof(Model.Collapsed)" class="dirty-ignore cancel" value="true" onclick="$('#btnCollapse').click()" checked="@(Model.Collapsed ? "checked" : null)" />
                                 <div class="state">
-                                    <label asp-for="@Model.Collapsed">@SharedResource.Collapse</label>
+                                    <label class="cursor-pointer" asp-for="@Model.Collapsed">@SharedResource.Collapse</label>
                                 </div>
                             </div>
                         </div>
@@ -64,9 +64,9 @@
                                     <div class="@(Model.Publications[i].EnablePassword ? "input-group-prepend" : "w-auto flex-fill")">
                                         <div class="form-control"  style="min-width: 160px;">
                                             <div class="pretty p-switch p-slim" onchange="$('#btnEnablePassword'+@i).trigger('click');">
-                                                <input type="checkbox" name="@(nameof(Publications))[@i].@nameof(PublicationVM.EnablePassword)" value="true" checked="@(Model.Publications[i].EnablePassword ? "checked" : null)" />
+                                                <input type="checkbox" id="@(nameof(Publications))_@(i)__@nameof(PublicationVM.EnablePassword)" name="@(nameof(Publications))[@i].@nameof(PublicationVM.EnablePassword)" value="true" checked="@(Model.Publications[i].EnablePassword ? "checked" : null)" />
                                                 <div class="state">
-                                                    <label class="d-none d-xs-block d-sm-block" asp-for="@Model.Publications[i].EnablePassword"></label><label class="d-sm-none"></label>
+                                                    <label class="d-none d-xs-block d-sm-block cursor-pointer" asp-for="@Model.Publications[i].EnablePassword"></label><label class="d-sm-none"></label>
                                                     <input type="hidden" asp-for="@Model.Publications[i].Order" />
                                                 </div>
                                             </div>
@@ -97,9 +97,9 @@
                                 <div class="d-flex">
                                     <div class="form-control w-auto flex-fill">
                                         <div class="pretty p-switch p-slim mr-0">
-                                            <input type="checkbox" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Anonymize)" value="true" checked="@(Model.Publications[i].Anonymize ? "checked" : null)" />
+                                            <input type="checkbox" id="@(nameof(Publications))_@(i)__@nameof(PublicationVM.Anonymize)" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Anonymize)" value="true" checked="@(Model.Publications[i].Anonymize ? "checked" : null)" />
                                             <div class="state">
-                                                <label class="d-none d-xs-block d-sm-block" asp-for="@Model.Publications[i].Anonymize"></label><label class="d-sm-none"></label>
+                                                <label class="d-none d-xs-block d-sm-block cursor-pointer" asp-for="@Model.Publications[i].Anonymize"></label><label class="d-sm-none"></label>
                                             </div>
                                         </div>
                                     </div>
@@ -113,9 +113,9 @@
                                 <div class="d-flex">
                                     <div class="form-control w-auto flex-fill">
                                         <div class="pretty p-switch p-slim mr-0">
-                                            <input type="checkbox" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Secure)" value="true" checked="@(Model.Publications[i].Secure ? "checked" : null)" />
+                                            <input type="checkbox" id="@(nameof(Publications))_@(i)__@nameof(PublicationVM.Secure)" name="@(nameof(Publications))[@i].@nameof(PublicationVM.Secure)" value="true" checked="@(Model.Publications[i].Secure ? "checked" : null)" />
                                             <div class="state">
-                                                <label class="d-none d-xs-block d-sm-block" asp-for="@Model.Publications[i].Secure"></label><label class="d-sm-none"></label>
+                                                <label class="d-none d-xs-block d-sm-block cursor-pointer" asp-for="@Model.Publications[i].Secure"></label><label class="d-sm-none"></label>
                                             </div>
                                         </div>
                                     </div>
