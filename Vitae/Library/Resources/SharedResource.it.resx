@@ -694,7 +694,7 @@
     <value>Lingua</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>La lingua in cui è caricato il sito myVitae</value>
+    <value>Seleziona la lingua del tuo curriculum vitae</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Lingue</value>

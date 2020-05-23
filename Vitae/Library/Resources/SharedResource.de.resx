@@ -694,7 +694,7 @@
     <value>Sprache</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>Die Sprache in der die myVitae Webseite geladen wird</value>
+    <value>Wählen Sie die Sprache Ihres Lebenslaufes aus</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Sprachen</value>

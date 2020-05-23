@@ -694,7 +694,7 @@
     <value>Language</value>
   </data>
   <data name="LanguageDescription" xml:space="preserve">
-    <value>The language in which the myVitae website is loaded</value>
+    <value>Select the language of your resume</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>

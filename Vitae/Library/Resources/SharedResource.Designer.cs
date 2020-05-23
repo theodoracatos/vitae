@@ -1789,7 +1789,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The language in which the myVitae website is loaded.
+        ///   Looks up a localized string similar to Select the language of your resume.
         /// </summary>
         public static string LanguageDescription {
             get {
