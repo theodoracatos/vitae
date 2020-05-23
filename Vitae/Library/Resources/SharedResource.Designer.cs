@@ -2734,6 +2734,123 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Questions and answers.
+        /// </summary>
+        public static string QandA {
+            get {
+                return ResourceManager.GetString("QandA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to myVitae enables job seekers to enter their resume online. In doing so, people only have to worry about the content and no longer about the design..
+        /// </summary>
+        public static string QandA_A0 {
+            get {
+                return ResourceManager.GetString("QandA_A0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The created resume can be sent via link or generated QR code..
+        /// </summary>
+        public static string QandA_A1 {
+            get {
+                return ResourceManager.GetString("QandA_A1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The publication of a resume is done under a unique random link. This link can be additionally protected with a password and a captcha..
+        /// </summary>
+        public static string QandA_A2 {
+            get {
+                return ResourceManager.GetString("QandA_A2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to myVitae can be used without additional costs..
+        /// </summary>
+        public static string QandA_A3 {
+            get {
+                return ResourceManager.GetString("QandA_A3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All data is stored in a password-protected database located in Switzerland..
+        /// </summary>
+        public static string QandA_A4 {
+            get {
+                return ResourceManager.GetString("QandA_A4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To open an account with myVitae, you only need an e-mail address..
+        /// </summary>
+        public static string QandA_A5 {
+            get {
+                return ResourceManager.GetString("QandA_A5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is myVitae?.
+        /// </summary>
+        public static string QandA_Q0 {
+            get {
+                return ResourceManager.GetString("QandA_Q0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How can people share their resume?.
+        /// </summary>
+        public static string QandA_Q1 {
+            get {
+                return ResourceManager.GetString("QandA_Q1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How can you protect your resume from unauthorized persons?.
+        /// </summary>
+        public static string QandA_Q2 {
+            get {
+                return ResourceManager.GetString("QandA_Q2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is myVitae subject to a fee?.
+        /// </summary>
+        public static string QandA_Q3 {
+            get {
+                return ResourceManager.GetString("QandA_Q3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How and where is the data secured?.
+        /// </summary>
+        public static string QandA_Q4 {
+            get {
+                return ResourceManager.GetString("QandA_Q4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is required for registration?.
+        /// </summary>
+        public static string QandA_Q5 {
+            get {
+                return ResourceManager.GetString("QandA_Q5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Knowledge.
         /// </summary>
         public static string Rate {
@@ -2802,6 +2919,15 @@ namespace Library.Resources {
         public static string RememberMe {
             get {
                 return ResourceManager.GetString("RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stay logged in.
+        /// </summary>
+        public static string RememberMeDesc {
+            get {
+                return ResourceManager.GetString("RememberMeDesc", resourceCulture);
             }
         }
         

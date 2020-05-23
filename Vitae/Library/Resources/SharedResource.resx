@@ -1008,6 +1008,45 @@
   <data name="Publish" xml:space="preserve">
     <value>Publish</value>
   </data>
+  <data name="QandA" xml:space="preserve">
+    <value>Questions and answers</value>
+  </data>
+  <data name="QandA_A0" xml:space="preserve">
+    <value>myVitae enables job seekers to enter their resume online. In doing so, people only have to worry about the content and no longer about the design.</value>
+  </data>
+  <data name="QandA_A1" xml:space="preserve">
+    <value>The created resume can be sent via link or generated QR code.</value>
+  </data>
+  <data name="QandA_A2" xml:space="preserve">
+    <value>The publication of a resume is done under a unique random link. This link can be additionally protected with a password and a captcha.</value>
+  </data>
+  <data name="QandA_A3" xml:space="preserve">
+    <value>myVitae can be used without additional costs.</value>
+  </data>
+  <data name="QandA_A4" xml:space="preserve">
+    <value>All data is stored in a password-protected database located in Switzerland.</value>
+  </data>
+  <data name="QandA_A5" xml:space="preserve">
+    <value>To open an account with myVitae, you only need an e-mail address.</value>
+  </data>
+  <data name="QandA_Q0" xml:space="preserve">
+    <value>What is myVitae?</value>
+  </data>
+  <data name="QandA_Q1" xml:space="preserve">
+    <value>How can people share their resume?</value>
+  </data>
+  <data name="QandA_Q2" xml:space="preserve">
+    <value>How can you protect your resume from unauthorized persons?</value>
+  </data>
+  <data name="QandA_Q3" xml:space="preserve">
+    <value>Is myVitae subject to a fee?</value>
+  </data>
+  <data name="QandA_Q4" xml:space="preserve">
+    <value>How and where is the data secured?</value>
+  </data>
+  <data name="QandA_Q5" xml:space="preserve">
+    <value>What is required for registration?</value>
+  </data>
   <data name="Rate" xml:space="preserve">
     <value>Knowledge</value>
   </data>
@@ -1031,6 +1070,9 @@
   </data>
   <data name="RememberMe" xml:space="preserve">
     <value>Remember me?</value>
+  </data>
+  <data name="RememberMeDesc" xml:space="preserve">
+    <value>Stay logged in</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>

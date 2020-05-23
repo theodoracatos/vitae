@@ -1008,6 +1008,45 @@
   <data name="Publish" xml:space="preserve">
     <value>Veröffentlichen</value>
   </data>
+  <data name="QandA" xml:space="preserve">
+    <value>Fragen und Antworten</value>
+  </data>
+  <data name="QandA_A0" xml:space="preserve">
+    <value>myVitae ermöglicht Stellensuchenden ihren Lebenslauf online zu erfassen. Dabei müssen sich die Personen nur noch um die Inhalte und nicht mehr um die Gestaltung kümmern.</value>
+  </data>
+  <data name="QandA_A1" xml:space="preserve">
+    <value>Der erstellte Lebenslauf kann via Link oder generiertem QR-Code versendet werden.</value>
+  </data>
+  <data name="QandA_A2" xml:space="preserve">
+    <value>Die Veröffentlichung eines Lebenslaufes erfolgt unter einem eindeutigen zufälligen Link. Dieser kann zusätzlich mit einem Passwort und einem Captcha geschützt werden.</value>
+  </data>
+  <data name="QandA_A3" xml:space="preserve">
+    <value>myVitae kann ohne zusätzliche Kosten genutzt werden.</value>
+  </data>
+  <data name="QandA_A4" xml:space="preserve">
+    <value>Sämtliche Daten werden in einer passwortgeschützten Datenbank mit Standort in der Schweiz abgespeichert.</value>
+  </data>
+  <data name="QandA_A5" xml:space="preserve">
+    <value>Um ein Konto bei myVitae zu eröffnen wird lediglich eine E-Mail Adresse benötigt.</value>
+  </data>
+  <data name="QandA_Q0" xml:space="preserve">
+    <value>Was ist myVitae?</value>
+  </data>
+  <data name="QandA_Q1" xml:space="preserve">
+    <value>Wie kann man seinen Lebenslauf teilen?</value>
+  </data>
+  <data name="QandA_Q2" xml:space="preserve">
+    <value>Wie kann man seinen Lebenslauf vor unautorisierten Personen schützen?</value>
+  </data>
+  <data name="QandA_Q3" xml:space="preserve">
+    <value>Ist myVitae kostenpflichtig?</value>
+  </data>
+  <data name="QandA_Q4" xml:space="preserve">
+    <value>Wie und wo werden die Daten gesichtert?</value>
+  </data>
+  <data name="QandA_Q5" xml:space="preserve">
+    <value>Was wird für die Registration benötigt?</value>
+  </data>
   <data name="Rate" xml:space="preserve">
     <value>Kenntnis</value>
   </data>
@@ -1030,7 +1069,10 @@
     <value>Registrierungsbestätigung</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
-    <value>Eingeloggt bleiben</value>
+    <value>Angemeldet bleiben?</value>
+  </data>
+  <data name="RememberMeDesc" xml:space="preserve">
+    <value>Angemeldet bleiben</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Entfernen</value>

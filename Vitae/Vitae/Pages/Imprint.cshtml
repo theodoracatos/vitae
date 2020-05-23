@@ -20,19 +20,22 @@
             <div id="imprint" class="transparentWhite rounded shadow p-4">
                 <ul class="nav nav-tabs ml-0 rounded" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active font pl-4 pr-4 pt-3 pb-3 pl-md-5 pr-md-5 pt-md-4 pb-md-4" id="cookiepolicy-tab" data-toggle="tab" href="#cookiepolicy" role="tab" aria-controls="cookiepolicy" aria-selected="false">@SharedResource.CookiePolicy</a>
+                        <a class="nav-link active pl-4 pr-4 pt-3 pb-3" id="cookiepolicy-tab" data-toggle="tab" href="#cookiepolicy" role="tab" aria-controls="cookiepolicy" aria-selected="false">@SharedResource.CookiePolicy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-4 pr-4 pt-3 pb-3 pl-md-5 pr-md-5 pt-md-4 pb-md-4" id="disclaimer-tab" data-toggle="tab" href="#disclaimer" role="tab" aria-controls="disclaimer" aria-selected="true">@SharedResource.Disclaimer</a>
+                        <a class="nav-link pl-4 pr-4 pt-3 pb-3" id="disclaimer-tab" data-toggle="tab" href="#disclaimer" role="tab" aria-controls="disclaimer" aria-selected="true">@SharedResource.Disclaimer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-4 pr-4 pt-3 pb-3 pl-md-5 pr-md-5 pt-md-4 pb-md-4" id="privacypolicy-tab" data-toggle="tab" href="#privacypolicy" role="tab" aria-controls="privacypolicys" aria-selected="false">@SharedResource.PrivacyPolicy</a>
+                        <a class="nav-link pl-4 pr-4 pt-3 pb-3" id="privacypolicy-tab" data-toggle="tab" href="#privacypolicy" role="tab" aria-controls="privacypolicys" aria-selected="false">@SharedResource.PrivacyPolicy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-4 pr-4 pt-3 pb-3 pl-md-5 pr-md-5 pt-md-4 pb-md-4" id="legalnotice-tab" data-toggle="tab" href="#legalnotice" role="tab" aria-controls="legalnotice" aria-selected="false">@SharedResource.LegalNotice</a>
+                        <a class="nav-link pl-4 pr-4 pt-3 pb-3" id="legalnotice-tab" data-toggle="tab" href="#legalnotice" role="tab" aria-controls="legalnotice" aria-selected="false">@SharedResource.LegalNotice</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-4 pr-4 pt-3 pb-3" id="qanda-tab" data-toggle="tab" href="#qanda" role="tab" aria-controls="qanda" aria-selected="false">Q&amp;A</a>
                     </li>
                 </ul>
-                <div class="tab-content transparentWhite pl-4 pr-4 pt-3 pb-3 pl-md-5 pr-md-5 pt-md-4 pb-md-4 border-left border-bottom border-right tabborder" id="myTabContent">
+                <div class="tab-content transparentWhite pl-4 pr-4 pt-2 pb-2 border-left border-bottom border-right tabborder" id="myTabContent">
 
                     <div class="tab-pane fade show active" id="cookiepolicy" role="tabpanel" aria-labelledby="cookiepolicy-tab">
 
@@ -115,6 +118,21 @@
                                     @SharedResource.Switzerland<br />
                                     <a href="mailto:@(Globals.ATH_VITAE_MAIL)">@(Globals.ATH_VITAE_MAIL)</a>
                                 </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="qanda" role="tabpanel" aria-labelledby="qanda-tab">
+
+                        <div class="row">
+                            <div class="col text-left">
+                                <h1>@SharedResource.QandA</h1>
+                                @for (int i = 0; i < 6; i++)
+                                {
+                                    <p class="font-weight-bold">@CodeHelper.GetStaticPropValue(typeof(SharedResource), $"QandA_Q{i}")</p>
+                                    <p>@CodeHelper.GetStaticPropValue(typeof(SharedResource), $"QandA_A{i}")</p>
+                                    <hr class="thin" />
+                                }
                             </div>
                         </div>
                     </div>

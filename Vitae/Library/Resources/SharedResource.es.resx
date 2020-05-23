@@ -1008,6 +1008,45 @@
   <data name="Publish" xml:space="preserve">
     <value>Publica</value>
   </data>
+  <data name="QandA" xml:space="preserve">
+    <value>Preguntas y respuestas</value>
+  </data>
+  <data name="QandA_A0" xml:space="preserve">
+    <value>myVitae permite a los buscadores de empleo introducir su currículum en línea. Al hacerlo, la gente sólo tiene que preocuparse por el contenido y no por el diseño.</value>
+  </data>
+  <data name="QandA_A1" xml:space="preserve">
+    <value>El currículum creado puede ser enviado a través de un enlace o un código QR generado.</value>
+  </data>
+  <data name="QandA_A2" xml:space="preserve">
+    <value>La publicación de un currículum vitae se hace bajo un único enlace aleatorio. Este enlace puede ser protegido adicionalmente con una contraseña y un captcha.</value>
+  </data>
+  <data name="QandA_A3" xml:space="preserve">
+    <value>myVitae puede utilizarse sin costes adicionales.</value>
+  </data>
+  <data name="QandA_A4" xml:space="preserve">
+    <value>Todos los datos se almacenan en una base de datos protegida por contraseña ubicada en Suiza.</value>
+  </data>
+  <data name="QandA_A5" xml:space="preserve">
+    <value>Para abrir una cuenta con myVitae, sólo necesita una dirección de correo electrónico.</value>
+  </data>
+  <data name="QandA_Q0" xml:space="preserve">
+    <value>¿Qué es myVitae?</value>
+  </data>
+  <data name="QandA_Q1" xml:space="preserve">
+    <value>¿Cómo puede la gente compartir su currículum?</value>
+  </data>
+  <data name="QandA_Q2" xml:space="preserve">
+    <value>¿Cómo puede proteger su currículum vitae de las personas no autorizadas?</value>
+  </data>
+  <data name="QandA_Q3" xml:space="preserve">
+    <value>¿Está myVitae sujeto a una tarifa?</value>
+  </data>
+  <data name="QandA_Q4" xml:space="preserve">
+    <value>¿Cómo y dónde se protegen los datos?</value>
+  </data>
+  <data name="QandA_Q5" xml:space="preserve">
+    <value>¿Qué se requiere para registrarse?</value>
+  </data>
   <data name="Rate" xml:space="preserve">
     <value>Conocimiento</value>
   </data>
@@ -1031,6 +1070,9 @@
   </data>
   <data name="RememberMe" xml:space="preserve">
     <value>¿Me recuerdas?</value>
+  </data>
+  <data name="RememberMeDesc" xml:space="preserve">
+    <value>Manténgase conectado</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Retire</value>

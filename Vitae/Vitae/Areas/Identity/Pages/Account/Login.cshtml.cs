@@ -68,7 +68,7 @@ namespace Vitae.Areas.Identity.Pages.Account
             [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Password), Prompt = nameof(SharedResource.Password))]
             public string Password { get; set; }
 
-            [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.RememberMe), Prompt = nameof(SharedResource.RememberMe))]
+            [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.RememberMeDesc), Prompt = nameof(SharedResource.RememberMeDesc))]
             public bool RememberMe { get; set; }
         }
 
