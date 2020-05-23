@@ -2509,7 +2509,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwords must have at least one digit (&apos;0&apos;-&apos;9&apos;)..
+        ///   Looks up a localized string similar to Passwords must have at least one digit (0-9)..
         /// </summary>
         public static string PasswordRequiresDigit {
             get {
@@ -2518,7 +2518,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwords must have at least one lowercase (&apos;a&apos;-&apos;z&apos;)..
+        ///   Looks up a localized string similar to Passwords must have at least one lower case letter (a-z)..
         /// </summary>
         public static string PasswordRequiresLower {
             get {
@@ -2527,7 +2527,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwords must have at least one non alphanumeric character..
+        ///   Looks up a localized string similar to Passwords must contain at least one special character ($!?...).
         /// </summary>
         public static string PasswordRequiresNonAlphanumeric {
             get {
@@ -2536,7 +2536,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwords must have at least one uppercase (&apos;A&apos;-&apos;Z&apos;)..
+        ///   Looks up a localized string similar to Passwords must have at least one capital letter (A-Z).
         /// </summary>
         public static string PasswordRequiresUpper {
             get {
@@ -2545,7 +2545,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please choose a password consisting of lower and upper case letters, numbers and at least one special character. It must consist of at least 6 characters..
+        ///   Looks up a localized string similar to Please choose a password that consists of lower and upper case letters, numbers and at least one special character. The password must also consist of at least 6 characters..
         /// </summary>
         public static string PasswordRules {
             get {

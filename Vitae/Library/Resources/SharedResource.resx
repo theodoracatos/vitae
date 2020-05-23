@@ -934,19 +934,19 @@
     <value>This resume is also password protected. Please enter the password to open the view.</value>
   </data>
   <data name="PasswordRequiresDigit" xml:space="preserve">
-    <value>Passwords must have at least one digit ('0'-'9').</value>
+    <value>Passwords must have at least one digit (0-9).</value>
   </data>
   <data name="PasswordRequiresLower" xml:space="preserve">
-    <value>Passwords must have at least one lowercase ('a'-'z').</value>
+    <value>Passwords must have at least one lower case letter (a-z).</value>
   </data>
   <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
-    <value>Passwords must have at least one non alphanumeric character.</value>
+    <value>Passwords must contain at least one special character ($!?...)</value>
   </data>
   <data name="PasswordRequiresUpper" xml:space="preserve">
-    <value>Passwords must have at least one uppercase ('A'-'Z').</value>
+    <value>Passwords must have at least one capital letter (A-Z)</value>
   </data>
   <data name="PasswordRules" xml:space="preserve">
-    <value>Please choose a password consisting of lower and upper case letters, numbers and at least one special character. It must consist of at least 6 characters.</value>
+    <value>Please choose a password that consists of lower and upper case letters, numbers and at least one special character. The password must also consist of at least 6 characters.</value>
   </data>
   <data name="PasswordTooShort" xml:space="preserve">
     <value>Passwords must be at least {0} characters.</value>

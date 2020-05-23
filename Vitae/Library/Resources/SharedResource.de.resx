@@ -934,19 +934,19 @@
     <value>Dieser Lebenslauf ist zusätzlich mit einem Passwort geschützt. Bitte geben Sie das Kennwort ein um die Ansicht zu öffnen.</value>
   </data>
   <data name="PasswordRequiresDigit" xml:space="preserve">
-    <value>Passwörter müssen mindestens eine Ziffer ('0'-'9') haben.</value>
+    <value>Passwörter müssen mindestens eine Ziffer (0-9) haben.</value>
   </data>
   <data name="PasswordRequiresLower" xml:space="preserve">
-    <value>Passwörter müssen mindestens ein Kleinbuchstabe ('a'-'z') haben.</value>
+    <value>Passwörter müssen mindestens einen Kleinbuchstaben (a-z) haben.</value>
   </data>
   <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
-    <value>Passwörter müssen mindestens ein nicht alphanumerisches Zeichen enthalten.</value>
+    <value>Passwörter müssen mindestens ein Sonderzeichen ($!?...) enthalten.</value>
   </data>
   <data name="PasswordRequiresUpper" xml:space="preserve">
-    <value>Passwörter müssen mindestens ein Grossbuchstabenzeichen ('A'-'Z') haben.</value>
+    <value>Passwörter müssen mindestens einen Grossbuchstaben (A-Z) haben.</value>
   </data>
   <data name="PasswordRules" xml:space="preserve">
-    <value>Bitte wählen Sie ein Passwort, welches aus Klein- und Grossbuchstaben, Zahlen und mindestens einem Sonderzeichen besteht. Es muss aus mindestens 6 Zeichen bestehen.</value>
+    <value>Bitte wählen Sie ein Passwort, welches aus Klein- und Grossbuchstaben, Zahlen und mindestens einem Sonderzeichen besteht. Das Passwort muss zudem aus mindestens 6 Zeichen bestehen.</value>
   </data>
   <data name="PasswordTooShort" xml:space="preserve">
     <value>Passwörter müssen mindestens {0} Zeichen enthalten.</value>

@@ -934,19 +934,19 @@
     <value>Este currículum está protegido por una contraseña. Por favor, introduzca la contraseña para abrir la vista.</value>
   </data>
   <data name="PasswordRequiresDigit" xml:space="preserve">
-    <value>Las contraseñas deben tener al menos un dígito ('0'-'9').</value>
+    <value>Las contraseñas deben tener al menos un dígito (0-9).</value>
   </data>
   <data name="PasswordRequiresLower" xml:space="preserve">
-    <value>Las contraseñas deben tener al menos una minúscula ('a'-'z').</value>
+    <value>Las contraseñas deben tener al menos una letra minúscula (a-z).</value>
   </data>
   <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
-    <value>Las contraseñas deben tener al menos un carácter no alfanumérico.</value>
+    <value>Las contraseñas deben contener al menos un carácter especial ($!?...)</value>
   </data>
   <data name="PasswordRequiresUpper" xml:space="preserve">
-    <value>Las contraseñas deben tener al menos una mayúscula ('A'-'Z').</value>
+    <value>Las contraseñas deben tener al menos una letra mayúscula (A-Z)</value>
   </data>
   <data name="PasswordRules" xml:space="preserve">
-    <value>Por favor, elija una contraseña que consista en letras minúsculas y mayúsculas, números y al menos un carácter especial. Debe constar de al menos 6 caracteres.</value>
+    <value>Por favor, elija una contraseña que consista en letras minúsculas y mayúsculas, números y al menos un carácter especial. La contraseña también debe constar de al menos 6 caracteres.</value>
   </data>
   <data name="PasswordTooShort" xml:space="preserve">
     <value>Las contraseñas deben tener al menos {0} caracteres.</value>
@@ -1204,13 +1204,13 @@
     <value>Suiza</value>
   </data>
   <data name="TermsAndConditions" xml:space="preserve">
-    <value>Termini e condizioni</value>
+    <value>Términos y condiciones</value>
   </data>
   <data name="TermsAndConditionsDesc" xml:space="preserve">
-    <value>Accetto i termini e le condizioni</value>
+    <value>Acepto los términos y condiciones</value>
   </data>
   <data name="TermsAndConditionsError" xml:space="preserve">
-    <value>Tienes que aceptar los términos y condiciones</value>
+    <value>Vous devez accepter les termes et conditions</value>
   </data>
   <data name="TheLogout" xml:space="preserve">
     <value>Cierre de sesión</value>

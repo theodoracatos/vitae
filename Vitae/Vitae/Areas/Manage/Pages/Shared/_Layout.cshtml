@@ -65,30 +65,30 @@
                     <div class="nav mb-4">
                         @{var inManagement = page == null || page == nameof(Settings) || page == nameof(Publications);}
                         <div class="sb-sidenav-menu-heading cursor-pointer @(inManagement ? null : "collapsed")" data-toggle="collapse" data-target="#management">
-                            <small class="down"><i class="fas fa-chevron-right fa-fw"></i></small>
-                            <small class="up"><i class="fas fa-chevron-up fa-fw"></i></small>
+                            <small class="down"><i class="fas fa-chevron-right fa-fw mr-0"></i></small>
+                            <small class="up"><i class="fas fa-chevron-up fa-fw mr-0"></i></small>
                             @SharedResource.Management
                         </div>
 
                         <div id="management" class="collapse @(inManagement ? "show" : null)">
                             <a class="nav-link" href="/Manage">
-                                <i class="fas sideIcon fa-chart-line"></i>
+                                <i class="fas sideIcon fa-chart-line fa-fw"></i>
                                 @SharedResource.Dashboard
                             </a>
                             <a class="nav-link" href="/Manage/@nameof(Settings)">
-                                <i class="fas sideIcon fa-cogs"></i>
+                                <i class="fas sideIcon fa-cogs fa-fw"></i>
                                 @SharedResource.Settings
                             </a>
                             <a class="nav-link" href="/Manage/@nameof(Publications)">
-                                <i class="fas sideIcon fa-share-alt"></i>
+                                <i class="fas sideIcon fa-share-alt fa-fw"></i>
                                 @SharedResource.Publications
                             </a>
                         </div>
 
                         @{var inPersonalData = menuEntries.Any(e => e.Item1 == page);}
                         <div class="sb-sidenav-menu-heading cursor-pointer @(inPersonalData ? null : "collapsed")" data-toggle="collapse" data-target="#personalData">
-                            <small class="down"><i class="fas fa-chevron-right fa-fw"></i></small>
-                            <small class="up"><i class="fas fa-chevron-up fa-fw"></i></small>
+                            <small class="down"><i class="fas fa-chevron-right fa-fw mr-0"></i></small>
+                            <small class="up"><i class="fas fa-chevron-up fa-fw mr-0"></i></small>
                             @SharedResource.PersonalData
                         </div>
                         <div id="personalData" class="collapse @(inPersonalData ? "show" : null)">
@@ -96,15 +96,15 @@
                             @foreach (var menuEntry in menuEntries)
                             {
                                 <a class="nav-link" href="/Manage/@menuEntry.Item1">
-                                    <i class="fas sideIcon @menuEntry.Item2"></i>
+                                    <i class="fas sideIcon fa-fw @menuEntry.Item2"></i>
                                     @menuEntry.Item3
                                 </a>
                             }
                         </div>
 
                         <div class="sb-sidenav-menu-heading cursor-pointer collapsed" data-toggle="collapse" data-target="#preview">
-                            <small class="down"><i class="fas fa-chevron-right fa-fw"></i></small>
-                            <small class="up"><i class="fas fa-chevron-up fa-fw"></i></small>
+                            <small class="down"><i class="fas fa-chevron-right fa-fw mr-0"></i></small>
+                            <small class="up"><i class="fas fa-chevron-up fa-fw mr-0"></i></small>
                             @SharedResource.Preview
                         </div>
                         <div id="preview" class="collapse">

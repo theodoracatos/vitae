@@ -934,19 +934,19 @@
     <value>Ce CV est protégé par un mot de passe. Veuillez entrer le mot de passe pour ouvrir la vue.</value>
   </data>
   <data name="PasswordRequiresDigit" xml:space="preserve">
-    <value>Les mots de passe doivent comporter au moins un chiffre ("0" - "9").</value>
+    <value>Les mots de passe doivent comporter au moins un chiffre (0-9).</value>
   </data>
   <data name="PasswordRequiresLower" xml:space="preserve">
-    <value>Les mots de passe doivent comporter au moins une minuscule ("a"-"z").</value>
+    <value>Les mots de passe doivent comporter au moins une lettre minuscule (a-z).</value>
   </data>
   <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
-    <value>Les mots de passe doivent comporter au moins un caractère non alphanumérique.</value>
+    <value>Les mots de passe doivent contenir au moins un caractère spécial ($ !?...)</value>
   </data>
   <data name="PasswordRequiresUpper" xml:space="preserve">
-    <value>Les mots de passe doivent comporter au moins une majuscule ("A"-"Z").</value>
+    <value>Les mots de passe doivent comporter au moins une lettre majuscule (A-Z)</value>
   </data>
   <data name="PasswordRules" xml:space="preserve">
-    <value>Veuillez choisir un mot de passe composé de lettres minuscules et majuscules, de chiffres et d'au moins un caractère spécial. Il doit être composé d'au moins 6 caractères.</value>
+    <value>Veuillez choisir un mot de passe composé de lettres minuscules et majuscules, de chiffres et d'au moins un caractère spécial. Le mot de passe doit également comporter au moins 6 caractères.</value>
   </data>
   <data name="PasswordTooShort" xml:space="preserve">
     <value>Les mots de passe doivent comporter au moins {0} caractères.</value>

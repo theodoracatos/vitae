@@ -934,19 +934,19 @@
     <value>Questo curriculum è protetto da password. Inserisci la password per aprire la visualizzazione.</value>
   </data>
   <data name="PasswordRequiresDigit" xml:space="preserve">
-    <value>Le password devono avere almeno una cifra ('0'-'9').</value>
+    <value>Le password devono avere almeno una cifra (0-9).</value>
   </data>
   <data name="PasswordRequiresLower" xml:space="preserve">
-    <value>Le password devono avere almeno una lettera minuscola ('a'-'z').</value>
+    <value>Le password devono avere almeno una lettera minuscola (a-z).</value>
   </data>
   <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
-    <value>Le password devono avere almeno un carattere non alfanumerico.</value>
+    <value>Le password devono contenere almeno un carattere speciale ($!??....)</value>
   </data>
   <data name="PasswordRequiresUpper" xml:space="preserve">
-    <value>Le password devono avere almeno una lettera maiuscola ('A'-'Z').</value>
+    <value>Le password devono avere almeno una lettera maiuscola (A-Z)</value>
   </data>
   <data name="PasswordRules" xml:space="preserve">
-    <value>Scegliere una password composta da lettere minuscole e maiuscole, numeri e almeno un carattere speciale. Deve essere composta da almeno 6 caratteri.</value>
+    <value>Scegliete una password composta da lettere maiuscole e minuscole, numeri e almeno un carattere speciale. Anche la password deve essere composta da almeno 6 caratteri.</value>
   </data>
   <data name="PasswordTooShort" xml:space="preserve">
     <value>Le password devono essere composte da almeno {0} caratteri.</value>
