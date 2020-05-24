@@ -1,8 +1,17 @@
-﻿namespace Library.Constants
+﻿using System.Collections.Generic;
+
+namespace Library.Constants
 {
     public static class Globals
     {
-        public const string DEMO_PUBLICATIONID = "f87f0d20-e0ee-48a1-97fc-917b524869f3";
+        public static readonly List<string> DEMO_PUBLICATIONIDS = new List<string>()
+        {
+            "f87f0d20-e0ee-48a1-97fc-917b524869f3",
+            "3ddc167c-0cc0-4316-a891-3f91f0d361e7",
+            "42ee1d28-e605-4d85-ad65-1eb4ee83e840",
+            "80f2fbdf-42c6-45f2-b586-bd7c9afed02f",
+            "9273d56e-29d3-49c8-adbc-5d4fd3e4b2f5"
+        };
         public const int YEAR_START = 1900;
 
         public const string APPLICATION_URL = "https://myvitae.ch";

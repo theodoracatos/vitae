@@ -120,6 +120,8 @@
     <Compile Remove="Migrations\20200517220242_v.1.0.0.Designer.cs" />
     <Compile Remove="Migrations\20200519094617_v.1.0.0.cs" />
     <Compile Remove="Migrations\20200519094617_v.1.0.0.Designer.cs" />
+    <Compile Remove="Migrations\20200522213943_v.1.0.0.cs" />
+    <Compile Remove="Migrations\20200522213943_v.1.0.0.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

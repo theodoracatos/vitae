@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Model.Enumerations
+﻿namespace Model.Enumerations
 {
     public enum LogArea
     {

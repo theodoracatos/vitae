@@ -7,13 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
-    public class Log
+    public abstract class LogBase
     {
-        public long LogID { get; set; }
-
         public Guid CurriculumID { get; set; }
-
-        public Guid? PublicationID { get; set; }
 
         public LogLevel LogLevel { get; set; }
 
@@ -30,9 +26,6 @@ namespace Model.Poco
 
         [MaxLength(2)]
         public string UserLanguage { get; set; }
-
-        [MaxLength(200)]
-        public string Message { get; set; }
 
         public DateTime Timestamp { get; private set; } = DateTime.Now;
     }

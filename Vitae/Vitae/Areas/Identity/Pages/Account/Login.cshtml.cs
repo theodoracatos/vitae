@@ -104,7 +104,8 @@ namespace Vitae.Areas.Identity.Pages.Account
                     var claims = await _userManager.GetClaimsAsync(user);
                     var curriculumID = Guid.Parse(claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value);
                     _logger.LogInformation(SharedResource.UserLoggedIn);
-                    await repository.LogAsync(curriculumID, null, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(_signInManager.Context), CodeHelper.GetUserAgent(_signInManager.Context), requestCulture.RequestCulture.UICulture.Name, _signInManager.Context.Connection.RemoteIpAddress.ToString());
+
+                    await repository.LogActivityAsync(curriculumID, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(_signInManager.Context), CodeHelper.GetUserAgent(_signInManager.Context), requestCulture.RequestCulture.UICulture.Name, _signInManager.Context.Connection.RemoteIpAddress.ToString());
 
                     return LocalRedirect(returnUrl);
                 }

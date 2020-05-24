@@ -81,25 +81,45 @@ namespace Persistency.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Log",
+                name: "LogActivity",
                 columns: table => new
                 {
-                    LogID = table.Column<long>(nullable: false)
+                    LogActivityID = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CurriculumID = table.Column<Guid>(nullable: false),
-                    PublicationID = table.Column<Guid>(nullable: true),
                     LogLevel = table.Column<int>(nullable: false),
                     LogArea = table.Column<int>(nullable: false),
                     Link = table.Column<string>(maxLength: 1000, nullable: true),
                     IpAddress = table.Column<string>(maxLength: 50, nullable: true),
                     UserAgent = table.Column<string>(maxLength: 1000, nullable: true),
                     UserLanguage = table.Column<string>(maxLength: 2, nullable: true),
-                    Message = table.Column<string>(maxLength: 200, nullable: true),
-                    Timestamp = table.Column<DateTime>(nullable: false)
+                    Timestamp = table.Column<DateTime>(nullable: false),
+                    Message = table.Column<string>(maxLength: 1000, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Log", x => x.LogID);
+                    table.PrimaryKey("PK_LogActivity", x => x.LogActivityID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LogPublication",
+                columns: table => new
+                {
+                    LogPublicationID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CurriculumID = table.Column<Guid>(nullable: false),
+                    LogLevel = table.Column<int>(nullable: false),
+                    LogArea = table.Column<int>(nullable: false),
+                    Link = table.Column<string>(maxLength: 1000, nullable: true),
+                    IpAddress = table.Column<string>(maxLength: 50, nullable: true),
+                    UserAgent = table.Column<string>(maxLength: 1000, nullable: true),
+                    UserLanguage = table.Column<string>(maxLength: 2, nullable: true),
+                    Timestamp = table.Column<DateTime>(nullable: false),
+                    PublicationID = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LogPublication", x => x.LogPublicationID);
                 });
 
             migrationBuilder.CreateTable(
@@ -986,18 +1006,28 @@ namespace Persistency.Migrations
                 column: "SpokenLanguageID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Log_CurriculumID",
-                table: "Log",
+                name: "IX_LogActivity_CurriculumID",
+                table: "LogActivity",
                 column: "CurriculumID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Log_PublicationID",
-                table: "Log",
+                name: "IX_LogActivity_Timestamp",
+                table: "LogActivity",
+                column: "Timestamp");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LogPublication_CurriculumID",
+                table: "LogPublication",
+                column: "CurriculumID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LogPublication_PublicationID",
+                table: "LogPublication",
                 column: "PublicationID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Log_Timestamp",
-                table: "Log",
+                name: "IX_LogPublication_Timestamp",
+                table: "LogPublication",
                 column: "Timestamp");
 
             migrationBuilder.CreateIndex(
@@ -1130,7 +1160,10 @@ namespace Persistency.Migrations
                 name: "LanguageSkill");
 
             migrationBuilder.DropTable(
-                name: "Log");
+                name: "LogActivity");
+
+            migrationBuilder.DropTable(
+                name: "LogPublication");
 
             migrationBuilder.DropTable(
                 name: "Month");

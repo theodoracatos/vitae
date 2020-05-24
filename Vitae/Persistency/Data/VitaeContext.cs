@@ -23,11 +23,11 @@ namespace Persistency.Data
         public virtual DbSet<Vfile> Vfiles { get; set; }
         public virtual DbSet<Publication> Publications { get; set; }
 
-        public virtual DbSet<Log> Logs { get; set; }
+        public virtual DbSet<LogActivity> LogActivities { get; set; }
+        public virtual DbSet<LogPublication> LogPublications { get; set; }
 
         public VitaeContext(DbContextOptions<VitaeContext> options) : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -52,9 +52,12 @@ namespace Persistency.Data
             modelBuilder.Entity<MaritalStatus>().HasIndex(c => c.MaritalStatusCode).IsUnique();
             modelBuilder.Entity<Publication>().HasIndex(p => p.PublicationIdentifier).IsUnique();
 
-            modelBuilder.Entity<Log>().HasIndex(c => c.CurriculumID);
-            modelBuilder.Entity<Log>().HasIndex(c => c.PublicationID);
-            modelBuilder.Entity<Log>().HasIndex(c => c.Timestamp);
+            modelBuilder.Entity<LogActivity>().HasIndex(c => c.CurriculumID);
+            modelBuilder.Entity<LogActivity>().HasIndex(c => c.Timestamp);
+
+            modelBuilder.Entity<LogPublication>().HasIndex(c => c.CurriculumID);
+            modelBuilder.Entity<LogPublication>().HasIndex(c => c.PublicationID);
+            modelBuilder.Entity<LogPublication>().HasIndex(c => c.Timestamp);
 
             /* N-M */
             modelBuilder.Entity<PersonCountry>()

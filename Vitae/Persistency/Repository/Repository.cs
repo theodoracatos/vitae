@@ -30,9 +30,26 @@ namespace Persistency.Repository
 
         #region API
 
-        public async Task LogAsync(Guid curriculumID, Guid? publicationID, LogArea logArea, LogLevel logLevel, string link, string userAgent, string userLanguage, string ipAddress, string message = null)
+        public async Task LogActivityAsync(Guid curriculumID, LogArea logArea, LogLevel logLevel, string link, string userAgent, string userLanguage, string ipAddress, string message = null)
         {
-            vitaeContext.Logs.Add(new Log()
+            vitaeContext.LogActivities.Add(new LogActivity()
+            {
+                CurriculumID = curriculumID,
+                LogArea = logArea,
+                IpAddress = ipAddress,
+                LogLevel = logLevel,
+                Link = link,
+                UserAgent = userAgent,
+                UserLanguage = userLanguage,
+                Message = message
+            });
+
+            await vitaeContext.SaveChangesAsync();
+        }
+
+        public async Task LogPublicationAsync(Guid curriculumID, Guid publicationID, LogArea logArea, LogLevel logLevel, string link, string userAgent, string userLanguage, string ipAddress)
+        {
+            vitaeContext.LogPublications.Add(new LogPublication()
             {
                 CurriculumID = curriculumID,
                 PublicationID = publicationID,
@@ -42,7 +59,6 @@ namespace Persistency.Repository
                 Link = link,
                 UserAgent = userAgent,
                 UserLanguage = userLanguage,
-                Message = message
             });
 
             await vitaeContext.SaveChangesAsync();
@@ -741,7 +757,7 @@ namespace Persistency.Repository
 
         public IEnumerable<LogVM> GetHits(Guid curriculumID, int? days = null, int hits = 10000)
         {
-            var lastHits = vitaeContext.Logs
+            var lastHits = vitaeContext.LogPublications
                 .Where(l => l.CurriculumID == curriculumID && l.LogArea == LogArea.Access)
                 .Where(l => !days.HasValue || l.Timestamp > DateTime.Now.Date.AddDays(-days.Value))
                 .OrderByDescending(l => l.Timestamp)
@@ -751,7 +767,7 @@ namespace Persistency.Repository
                 {
                     Hits = l.Count(),
                     LogDate = l.Key.Date,
-                    PublicationID = l.Key.PublicationID.Value
+                    PublicationID = l.Key.PublicationID
                 }).ToList();
 
             return lastHits;
@@ -759,7 +775,7 @@ namespace Persistency.Repository
 
         public IEnumerable<LogVM> GetLogins(Guid curriculumID, int? days = null)
         {
-            var lastHits = vitaeContext.Logs
+            var lastHits = vitaeContext.LogActivities
                 .Where(l => l.CurriculumID == curriculumID && l.LogArea == LogArea.Login)
                 .Where(l => !days.HasValue || l.Timestamp > DateTime.Now.Date.AddDays(-days.Value))
                 .GroupBy(l => l.Timestamp.Date)

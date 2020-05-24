@@ -10,7 +10,7 @@ using Persistency.Data;
 namespace Persistency.Migrations
 {
     [DbContext(typeof(VitaeContext))]
-    [Migration("20200522213943_v.1.0.0")]
+    [Migration("20200524181941_v.1.0.0")]
     partial class v100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -757,9 +757,9 @@ namespace Persistency.Migrations
                     b.ToTable("LanguageSkill");
                 });
 
-            modelBuilder.Entity("Model.Poco.Log", b =>
+            modelBuilder.Entity("Model.Poco.LogActivity", b =>
                 {
-                    b.Property<long>("LogID")
+                    b.Property<long>("LogActivityID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -782,10 +782,54 @@ namespace Persistency.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Message")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
 
-                    b.Property<Guid?>("PublicationID")
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserAgent")
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("UserLanguage")
+                        .HasColumnType("nvarchar(2)")
+                        .HasMaxLength(2);
+
+                    b.HasKey("LogActivityID");
+
+                    b.HasIndex("CurriculumID");
+
+                    b.HasIndex("Timestamp");
+
+                    b.ToTable("LogActivity");
+                });
+
+            modelBuilder.Entity("Model.Poco.LogPublication", b =>
+                {
+                    b.Property<long>("LogPublicationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<Guid>("CurriculumID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IpAddress")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(1000)")
+                        .HasMaxLength(1000);
+
+                    b.Property<int>("LogArea")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LogLevel")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("PublicationID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Timestamp")
@@ -799,7 +843,7 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(2)")
                         .HasMaxLength(2);
 
-                    b.HasKey("LogID");
+                    b.HasKey("LogPublicationID");
 
                     b.HasIndex("CurriculumID");
 
@@ -807,7 +851,7 @@ namespace Persistency.Migrations
 
                     b.HasIndex("Timestamp");
 
-                    b.ToTable("Log");
+                    b.ToTable("LogPublication");
                 });
 
             modelBuilder.Entity("Model.Poco.MaritalStatus", b =>

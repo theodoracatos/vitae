@@ -71,7 +71,7 @@ namespace Vitae.Areas.Identity.Pages.Account
                 {
                     // CV
                     var curriculumID = await repository.AddCurriculumAsync(Guid.Parse(user.Id), requestCulture.RequestCulture.UICulture.Name);
-                    await repository.LogAsync(curriculumID, null, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
+                    await repository.LogActivityAsync(curriculumID, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
 
                     // Language
                     Response.Cookies.Append(

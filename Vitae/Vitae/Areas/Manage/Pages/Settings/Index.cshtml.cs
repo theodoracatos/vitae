@@ -67,8 +67,6 @@ namespace Vitae.Areas.Manage.Pages.Settings
                 var curriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
                 var curriculum = await repository.GetCurriculumAsync<Publication>(curriculumID);
 
-                var numberOfItems = 
-
                 Setting = new SettingVM()
                 {
                     CurriculumLanguages = curriculumLanguages.ToList(),
@@ -209,7 +207,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
                 }
                 vitaeContext.Entry(vitaeContext.Curriculums.Single(c => c.CurriculumID == curriculumID)).State = EntityState.Deleted;
 
-                await repository.LogAsync(curriculumID, null, LogArea.Delete, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
+                await repository.LogActivityAsync(curriculumID, LogArea.Delete, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
 
                 await vitaeContext.SaveChangesAsync();
 

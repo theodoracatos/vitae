@@ -170,9 +170,9 @@ namespace Vitae.Areas.CV.Pages
             }
 
             // Log
-            if (!CheckVM.IsLoggedIn && CheckVM.PublicationID.Value.ToString() != Globals.DEMO_PUBLICATIONID)
+            if (!CheckVM.IsLoggedIn && !Globals.DEMO_PUBLICATIONIDS.Contains(CheckVM.PublicationID.Value.ToString()))
             {
-                await repository.LogAsync(curriculum.CurriculumID, CheckVM.PublicationID.Value, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
+                await repository.LogPublicationAsync(curriculum.CurriculumID, CheckVM.PublicationID.Value, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
             }
 
             FillSelectionViewModel();
