@@ -95,12 +95,12 @@ namespace Vitae.Pages
             message.Append($"<html><body>");
             message.Append($"<h4>{Code}: {Message}</h4><hr />");
             message.Append($"<table>");
-            message.Append($"<tr><td style='width: 120px'><b>Method</b></td><td>{Method}</td></tr>");
-            message.Append($"<tr><td><b>Origin</b></td><td>{Origin}</td></tr>");
-            message.Append($"<tr><td><b>Ip</b></td><td>{_httpContext.Connection.RemoteIpAddress}</td></tr>");
-            message.Append($"<tr><td><b>Agent</b></td><td>{CodeHelper.GetUserAgent(_httpContext)}</td></tr>");
-            message.Append($"<tr><td><b>Uri</b></td><td>{CodeHelper.GetCalledUri(_httpContext)}</td></tr>");
-            message.Append($"<tr><td><b>Culture</b></td><td>{requestCulture.RequestCulture.UICulture.Name}</td></tr>");
+            message.Append($"<tr><td valign='top' style='width: 120px'><b>Method</b></td><td>{Method}</td></tr>");
+            message.Append($"<tr><td valign='top'><b>Origin</b></td><td>{Origin}</td></tr>");
+            message.Append($"<tr><td valign='top'><b>Ip</b></td><td>{_httpContext.Connection.RemoteIpAddress}</td></tr>");
+            message.Append($"<tr><td valign='top'><b>Agent</b></td><td>{CodeHelper.GetUserAgent(_httpContext)}</td></tr>");
+            message.Append($"<tr><td valign='top'><b>Uri</b></td><td>{CodeHelper.GetCalledUri(_httpContext)}</td></tr>");
+            message.Append($"<tr><td valign='top'><b>Culture</b></td><td>{requestCulture.RequestCulture.UICulture.Name}</td></tr>");
 
             if (CodeHelper.GetCurriculumID(_httpContext) != Guid.Empty)
             {
@@ -112,9 +112,9 @@ namespace Vitae.Pages
             var order = 1;
             while (e != null)
             {
-                message.Append($"<tr><td><b>{order}. Type</b></td><td>{ e.GetType() }</td></tr>");
-                message.Append($"<tr><td><b>{order}. Message</b></td><td>{ e.Message }</td></tr>");
-                message.Append($"<tr><td><b>{order++}. Stacktrace</b></td><td>{ e.StackTrace }</td></tr>");
+                message.Append($"<tr><td valign='top'><b>{order}.&nbsp;Type</b></td><td>{ e.GetType() }</td></tr>");
+                message.Append($"<tr><td valign='top'><b>{order}.&nbsp;Message</b></td><td>{ e.Message }</td></tr>");
+                message.Append($"<tr><td valign='top'><b>{order++}.&nbsp;Stacktrace</b></td><td>{ e.StackTrace }</td></tr>");
                 e = e.InnerException;
             }
             message.Append("</table></body></html>");
