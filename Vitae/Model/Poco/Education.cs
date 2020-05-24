@@ -6,7 +6,7 @@ namespace Model.Poco
     public class Education : Base
     {
         [Key]
-        public Guid EducationID { get; set; }
+        public long EducationID { get; set; }
 
         [Required]
         [MaxLength(100)]

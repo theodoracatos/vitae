@@ -1,12 +1,11 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
     public class Reference : Base
     {
         [Key]
-        public Guid ReferenceID { get; set; }
+        public long ReferenceID { get; set; }
 
         [Required]
         [MaxLength(100)]

@@ -35,6 +35,8 @@ namespace Persistency.Data
             modelBuilder.RemovePluralizingTableNameConvention();
 
             /* Index, unique */
+            modelBuilder.Entity<Curriculum>().HasIndex(c => c.UserID);
+
             modelBuilder.Entity<Country>().HasIndex(c => c.CountryCode).IsUnique();
             modelBuilder.Entity<Country>().HasIndex(c => c.Name);
             modelBuilder.Entity<Country>().HasIndex(c => c.Order);

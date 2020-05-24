@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
@@ -7,7 +6,7 @@ namespace Model.Poco
     public class Language
     {
         [Key]
-        public Guid LanguageID { get; set; }
+        public long LanguageID { get; set; }
 
         [Required]
         [MaxLength(3)]

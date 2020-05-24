@@ -6,7 +6,7 @@ namespace Model.Poco
     public class Experience : Base
     {
         [Key]
-        public Guid ExperienceID { get; set; }
+        public long ExperienceID { get; set; }
 
         [Required]
         [MaxLength(100)]

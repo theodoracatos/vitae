@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
@@ -7,7 +8,7 @@ namespace Model.Poco
         public Guid CurriculumID { get; set; }
         public Curriculum Curriculum { get; set; }
 
-        public Guid LanguageID { get; set; }
+        public long LanguageID { get; set; }
         public Language Language { get; set; }
 
         public int Order { get; set; }

@@ -8,7 +8,7 @@ namespace Model.Poco
     public class SocialLink : Base
     {
         [Key]
-        public Guid SocialLinkID { get; set; }
+        public long SocialLinkID { get; set; }
 
         [Required]
         public SocialPlatform SocialPlatform { get; set; }

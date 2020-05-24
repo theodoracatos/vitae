@@ -6,7 +6,7 @@ namespace Model.Poco
     public class Interest : Base
     {
         [Key]
-        public Guid InterestID { get; set; }
+        public long InterestID { get; set; }
 
         [Required]
         [MaxLength(100)]

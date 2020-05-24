@@ -6,7 +6,7 @@ namespace Model.Poco
     public class Abroad : Base
     {
         [Key]
-        public Guid AbroadID { get; set; }
+        public long AbroadID { get; set; }
 
         [Required]
         public virtual Country Country { get; set; }

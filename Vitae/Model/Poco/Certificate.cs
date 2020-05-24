@@ -6,7 +6,7 @@ namespace Model.Poco
     public class Certificate : Base
     {
         [Key]
-        public Guid CertificateID { get; set; }
+        public long CertificateID { get; set; }
 
         [Required]
         [MaxLength(100)]

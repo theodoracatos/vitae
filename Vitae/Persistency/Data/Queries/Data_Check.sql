@@ -1,11 +1,11 @@
 --361 NO AT3, 366 REGISTERED
 
-DECLARE @SHOWALL bit = 1
+DECLARE @SHOWALL bit = 0
 DECLARE @MAIL varchar(30) = 'at3@gmx.ch'
 DECLARE @ID uniqueidentifier = (select id from dbo.aspnetusers where email = @MAIL)
 DECLARE @CID uniqueidentifier = (select claimvalue from dbo.AspNetUserClaims where userid = @ID)
-DECLARE @PID uniqueidentifier = (select PersonalDetailID from dbo.PersonalDetail where CurriculumID = @CID)
-DECLARE @AID uniqueidentifier = (select AboutID from dbo.About where CurriculumID = @CID)
+DECLARE @PID bigint = (select PersonalDetailID from dbo.PersonalDetail where CurriculumID = @CID)
+DECLARE @AID bigint = (select AboutID from dbo.About where CurriculumID = @CID)
 
 select * from dbo.AspNetUserClaims where userid = @ID or @SHOWALL = 1
 select * from dbo.AspNetUserRoles where userid = @ID or @SHOWALL = 1

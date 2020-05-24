@@ -6,7 +6,7 @@ namespace Model.Poco
     public class Skill : Base
     {
         [Key]
-        public Guid SkillID { get; set; }
+        public long SkillID { get; set; }
 
         [Required]
         [MaxLength(100)]

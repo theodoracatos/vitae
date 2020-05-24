@@ -214,7 +214,7 @@ namespace Vitae.Areas.CV.Pages
                 {
                     // Found a publication
                     checkVM.CurriculumID = publication.Curriculum.CurriculumID;
-                    checkVM.PublicationID = publication.PublicationID;
+                    checkVM.PublicationID = publication.PublicationIdentifier;
                     checkVM.Secret = publication.Password;
                     checkVM.Anonymize = publication.Anonymize;
                     checkVM.LanguageCode = publication.CurriculumLanguage.LanguageCode;

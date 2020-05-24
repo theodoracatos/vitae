@@ -6,7 +6,7 @@ namespace Model.Poco
     public class HierarchyLevel
     {
         [Key]
-        public Guid HierarchyLevelID { get; set; }
+        public long HierarchyLevelID { get; set; }
 
         public int HierarchyLevelCode { get; set; }
 

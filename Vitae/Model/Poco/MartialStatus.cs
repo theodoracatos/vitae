@@ -1,12 +1,11 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
     public class MaritalStatus
     {
         [Key]
-        public Guid MaritalStatusID { get; set; }
+        public long MaritalStatusID { get; set; }
 
         public int MaritalStatusCode { get; set; }
 

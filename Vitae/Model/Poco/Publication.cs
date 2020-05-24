@@ -6,7 +6,7 @@ namespace Model.Poco
     public class Publication : Base
     {
         [Key]
-        public Guid PublicationID { get; set; }
+        public long PublicationID { get; set; }
 
         public Guid PublicationIdentifier { get; set; }
 
@@ -17,13 +17,13 @@ namespace Model.Poco
         [MaxLength(250)]
         public string Password { get; set; }
 
-        public virtual Curriculum Curriculum { get; set; }
-
         [MaxLength(1000)]
         public string Notes { get; set; }
 
         [MaxLength(100)]
         [Required]
         public string Color { get; set; }
+
+        public virtual Curriculum Curriculum { get; set; }
     }
 }

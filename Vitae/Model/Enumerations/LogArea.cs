@@ -4,6 +4,7 @@
     {
         Access,
         Login,
+        Logout,
         Delete
     }
 }

@@ -7,7 +7,7 @@ namespace Model.Poco
     public class About : Base
     {
         [Key]
-        public Guid AboutID { get; set; }
+        public long AboutID { get; set; }
 
         [MaxLength(100)]
         public string AcademicTitle { get; set; }

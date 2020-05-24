@@ -6,7 +6,7 @@ namespace Model.Poco
     public class Child
     {
         [Key]
-        public Guid ChildID { get; set; }
+        public long ChildID { get; set; }
 
         [Required]
         [MaxLength(100)]

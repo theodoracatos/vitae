@@ -6,7 +6,7 @@ namespace Model.Poco
     public class Industry
     {
         [Key]
-        public Guid IndustryID { get; set; }
+        public long IndustryID { get; set; }
 
         public int IndustryCode { get; set; }
 

@@ -7,7 +7,7 @@ namespace Model.Poco
     public class Country
     { 
         [Key]
-        public Guid CountryID { get; set; }
+        public long CountryID { get; set; }
 
         [MinLength(2)]
         [MaxLength(2)]

@@ -27,6 +27,7 @@ namespace Model.Poco
         [MaxLength(2)]
         public string UserLanguage { get; set; }
 
+        [Required]
         public DateTime Timestamp { get; private set; } = DateTime.Now;
     }
 }

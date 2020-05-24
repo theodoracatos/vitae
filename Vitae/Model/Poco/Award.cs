@@ -6,7 +6,7 @@ namespace Model.Poco
     public class Award : Base
     {
         [Key]
-        public Guid AwardID { get; set; }
+        public long AwardID { get; set; }
 
         [Required]
         [MaxLength(100)]

@@ -1,12 +1,11 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco
 {
     public class Month
     {
         [Key]
-        public Guid MonthID { get; set; }
+        public long MonthID { get; set; }
 
         public int MonthCode { get; set; }
 

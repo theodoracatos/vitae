@@ -74,7 +74,7 @@ namespace Persistency.Repository
                 LastUpdated = DateTime.Now,
                 Language = languagePoco
             };
-            curriculum.CurriculumLanguages = new List<CurriculumLanguage>() { new CurriculumLanguage() { Curriculum = curriculum, CurriculumID = curriculum.CurriculumID, Language = languagePoco, LanguageID = languagePoco.LanguageID } };
+            curriculum.CurriculumLanguages = new List<CurriculumLanguage>() { new CurriculumLanguage() { Curriculum = curriculum, CurriculumID = curriculum.CurriculumID, Language = languagePoco, LanguageID = languagePoco.LanguageID, IsSelected = true } };
             vitaeContext.Curriculums.Add(curriculum);
 
             await vitaeContext.SaveChangesAsync();

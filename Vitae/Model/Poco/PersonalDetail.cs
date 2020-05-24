@@ -1,6 +1,4 @@
-﻿using Model.Enumerations;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,7 +8,7 @@ namespace Model.Poco
     public class PersonalDetail : Base
     {
         [Key]
-        public Guid PersonalDetailID { get; set; }
+        public long PersonalDetailID { get; set; }
 
         [Required]
         [MaxLength(100)]
