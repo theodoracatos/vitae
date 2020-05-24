@@ -220,7 +220,7 @@ namespace Library.Helper
             return $"{prefix}{Convert.ToBase64String(imageBytes)}";
         }
 
-        public static string InvertColor(string rgba, string defaultColor)
+        public static string InvertColor(string rgba, string defaultColor, bool blackAndWhite, double opacity = 0.8)
         {
             var color = defaultColor;
 
@@ -229,16 +229,40 @@ namespace Library.Helper
                 var matches = Regex.Matches(rgba, @"\d+");
                 var invertedColor = new StringBuilder("rgba(");
 
-                for (int i = 0; i < matches.Count - 1; i++)
+                if (blackAndWhite)
                 {
-                    int value = Int32.Parse(matches[i].Value);
-                    if (i < 3)
+                    var rgbSum = 0;
+                    for (int i = 0; i < matches.Count - 1; i++)
                     {
-                        invertedColor.Append($"{255 - value},");
+                        if (i < 3)
+                        {
+                            rgbSum += Int32.Parse(matches[i].Value);
+                        }
+                        else
+                        {
+                            if(rgbSum < 383) // this is a dark color - we need white!
+                            {
+                                invertedColor.Append($"255,255,255,{opacity})");
+                            }
+                            else{
+                                invertedColor.Append($"0,0,0,{opacity})");
+                            }
+                        }
                     }
-                    else
+                }
+                else
+                {
+                    for (int i = 0; i < matches.Count - 1; i++)
                     {
-                        invertedColor.Append($"0.8)");
+                        int value = Int32.Parse(matches[i].Value);
+                        if (i < 3)
+                        {
+                            invertedColor.Append($"{255 - value},");
+                        }
+                        else
+                        {
+                            invertedColor.Append($"{opacity})");
+                        }
                     }
                 }
 
