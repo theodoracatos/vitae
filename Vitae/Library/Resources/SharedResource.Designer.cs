@@ -979,7 +979,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When you register for myVitae and create a resume, you voluntarily give us sensitive information. This includes (non-exhaustive list): your name, your gender, your e-mail address, your telephone number, your profile photo, your address, your marital status and other sensitive personal data. This data will not be passed on to third parties but will be used exclusively for the myVitae-application. In addition, the following data is collected without your intervention and stored until it is automatically delet [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to When you register for myVitae and create a resume, sensitive information about you is collected. This includes (but is not limited to): your gender, name, birthday, address, nationality, e-mail address, telephone number, marital status and other sensitive personal data. This data will not be passed on to third parties under any circumstances and will be used exclusively for the preparation of your CV. The following guideline is that only as much personal data is collected during data processing as is absolu [rest of string was truncated]&quot;;.
         /// </summary>
         public static string DataCollectionDesc {
             get {

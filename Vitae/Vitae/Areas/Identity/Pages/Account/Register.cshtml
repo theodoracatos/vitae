@@ -32,10 +32,10 @@
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label class="required" asp-for="Input.ConfirmAgreements"></label><label><i class="fas fa-arrow-right mr-1 ml-2"></i><a alt="@SharedResource.Imprint" href="/Imprint#imprint">@SharedResource.Imprint</a></label>
+                            <label class="required" asp-for="Input.ConfirmAgreements"></label><label><a alt="@SharedResource.Imprint" href="/Imprint#imprint"><i class="fas fa-balance-scale mr-1 ml-2"></i>@SharedResource.Imprint</a></label>
                             <div class="form-control">
                                 <div class="pretty p-switch p-slim mr-0">
-                                    <input type="checkbox" asp-for="Input.ConfirmAgreements" class="dirty-ignore" checked="checked" />
+                                    <input type="checkbox" asp-for="Input.ConfirmAgreements" class="dirty-ignore" />
                                     <div class="state">
                                         <label>@SharedResource.Iaccept</label>
                                     </div>

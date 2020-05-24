@@ -37,6 +37,10 @@ footer {
     background-color: transparent !important;
 }
 
+.rc-anchor-content {
+    cursor: pointer;
+}
+
 .btn-primary[disabled] {
     background-color: $qvs-lightgold-color !important;
     border-color: transparent !important;
