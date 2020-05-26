@@ -1,0 +1,48 @@
+﻿@page
+@model Vitae.Pages.ImprintModel
+@{
+    ViewData["Title"] = SharedResource.Homepage;
+    ViewBag.StartPage = true;
+}
+
+@{
+    var rqf = HttpContext.Features.Get<IRequestCultureFeature>();
+    var culture = rqf.RequestCulture.UICulture;
+    var languageCode = Enum.IsDefined(typeof(ApplicationLanguage), culture.TwoLetterISOLanguageName) ? culture.Name : ApplicationLanguage.en.ToString();
+}
+
+<!-- #region Main -->
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <partial name="_Advertisment" />
+    </div>
+</div>
+<!-- #endregion -->
+
+@section Subframe
+{
+    <div id="main" class="pt-5 pb-5 rounded">
+        <div class="container-md container-fluid">
+            <div class="transparentWhite rounded shadow p-4">
+                <ul class="nav nav-tabs ml-0 rounded" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active pl-4 pr-4 pt-3 pb-3" id="privacypolicy-tab" data-toggle="tab" href="#privacypolicy" role="tab" aria-controls="privacypolicys" aria-selected="false">@SharedResource.PrivacyPolicy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-4 pr-4 pt-3 pb-3" id="imprint-tab" data-toggle="tab" href="#imprint" role="tab" aria-controls="imprint" aria-selected="false">@SharedResource.Imprint</a>
+                    </li>
+                </ul>
+                <div class="tab-content transparentWhite pl-4 pr-4 pt-2 pb-2 border-left border-bottom border-right tabborder" id="myTabContent">
+
+                    <div class="tab-pane fade show active" id="privacypolicy" role="tabpanel" aria-labelledby="privacypolicy-tab">
+                        <partial name="_PrivacyPolicy_@languageCode" />
+                    </div>
+
+                    <div class="tab-pane fade show active" id="imprint" role="tabpanel" aria-labelledby="privacypolicy-tab">
+                        <partial name="_Imprint_@languageCode" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

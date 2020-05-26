@@ -18,9 +18,12 @@ namespace Library.Constants
         public const string APPLICATION_NAME = "myVitae";
         public const string LOGO = "logo.png";
         public const string VITAE_URL = "https://myvitae.ch";
+        public const string GENERAL_INFORMATION = "/GeneralInformation#subframe";
+
         public const string INFO_VITAE_MAIL = "info@myvitae.ch";
         public const string ADMIN_VITAE_MAIL = "admin@myvitae.ch";
         public const string ATH_VITAE_MAIL = "alexandros.theodoracatos@myvitae.ch";
+        public const string ATH_VITAE_PHONE = "+41 76 611 50 63";
         public const string DEFAULT_LANGUAGE = "de";
         public const string MIME_PDF = "application/pdf";
         public const string REGEX_PASSWORD = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W]).{6,}";
@@ -28,6 +31,13 @@ namespace Library.Constants
         public const string GOOGLE_CAPCHA = "https://www.google.com/recaptcha/api/siteverify";
         public const string GOOGLE_CAPTCHA_API = "https://www.google.com/recaptcha/api.js";
         public const string GOOGLE_ANALYTICS_DEACTIVATOR = "https://tools.google.com/dlpage/gaoptout";
+        public const string GOOGLE_ANALYTICS_INFO = "https://support.google.com/analytics/answer/6004245";
+
+        public const string GOOGLE_CHROME_LINK = "https://support.google.com/chrome/answer/95647";
+        public const string INTERNET_EXPLORER_LINK = "https://support.microsoft.com/de-de/help/17442/windows-internet-explorer-delete-manage-cookies";
+        public const string FIREFOX_LINK = "https://support.mozilla.org/en-US/kb/disable-third-party-cookies";
+        public const string SAFARI_LINK = "https://support.apple.com/kb/PH21411";
+
         public const string DEFAULT_BACKGROUND_COLOR = "rgba(0,0,0,0.9)";
         public const string DEFAULT_FOREGROUND_COLOR = "rgba(255,255,255,255,0.8)";
     }

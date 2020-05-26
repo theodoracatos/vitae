@@ -54,6 +54,12 @@ a:hover {
     background-color: #202020 !important
 }
 
+
+.subframe h2 {
+    font-size: 1.75em !important;
+}
+
+
 .jumbotron {
     padding-top: 2em;
     padding-bottom: 2em;
@@ -89,10 +95,6 @@ a:hover {
 
 .jconfirm-box {
     border-top: solid 4px $qvs-gold-color !important;
-}
-
-h1 svg {
-    /*color: $qvs-gold-color;*/
 }
 
 .line-height-2{
