@@ -1,6 +1,5 @@
 ﻿using Model.Enumerations;
 
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Model.Poco

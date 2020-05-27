@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.Extensions.Localization;
+
 using Model.Attriutes;
-using System;
-using System.Collections.Generic;
+
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Model.Attributes
 {

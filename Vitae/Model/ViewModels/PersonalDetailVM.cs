@@ -1,7 +1,5 @@
 ﻿using Library.Resources;
 
-using Model.Enumerations;
-using Model.Poco;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

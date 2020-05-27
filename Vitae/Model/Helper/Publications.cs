@@ -1,4 +1,5 @@
 ﻿using Model.Enumerations;
+
 using System.Collections.Generic;
 
 namespace Model.Helper
