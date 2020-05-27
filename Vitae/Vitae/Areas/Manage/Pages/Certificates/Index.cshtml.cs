@@ -51,11 +51,11 @@ namespace Vitae.Areas.Manage.Pages.Certificates
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync<Certificate>(curriculumID);
-                LoadLanguageCode(curriculum);
+                LoadLanguageCode();
 
-                await LoadCertificates(CurriculumLanguageCode, curriculum);
+                await LoadCertificatesAsync();
                 FillSelectionViewModel();
+
                 return Page();
             }
         }
@@ -180,7 +180,7 @@ namespace Vitae.Areas.Manage.Pages.Certificates
         {
             await SaveLanguageChangeAsync();
 
-            await LoadCertificates(CurriculumLanguageCode);
+            await LoadCertificatesAsync();
 
             FillSelectionViewModel();
 
@@ -197,11 +197,11 @@ namespace Vitae.Areas.Manage.Pages.Certificates
             CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
         }
 
-        private async Task LoadCertificates(string languageCode, Curriculum curr = null)
+        private async Task LoadCertificatesAsync()
         {
-            var curriculum = curr ?? await repository.GetCurriculumAsync<Certificate>(curriculumID);
+            var curriculum = await repository.GetCurriculumAsync<Certificate>(curriculumID);
 
-            Certificates = repository.GetCertificates(curriculum, languageCode);
+            Certificates = repository.GetCertificates(curriculum, CurriculumLanguageCode);
         }
 
         #endregion

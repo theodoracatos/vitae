@@ -78,18 +78,19 @@
                                         <input asp-for="@Model.Abroads[i].End_Month" class="ignoreValidation" type="hidden" />
                                         <input asp-for="@Model.Abroads[i].End_Year" class="ignoreValidation" type="hidden" />
                                     }
-                                <div class="@(!@Model.Abroads[i].UntilNow ? "input-group-append" : " w-auto flex-fill")">
-                                    <div class="form-control">
-                                        <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
-                                            <input type="checkbox" id="@(nameof(Abroads))_@(i)__@nameof(AbroadVM.UntilNow)" name="@(nameof(Abroads))[@i].@nameof(AbroadVM.UntilNow)" value="true" checked="@(Model.Abroads[i].UntilNow ? "checked" : null)" />
-                                            <div class="state">
-                                                <label class="d-none d-sm-block cursor-pointer" asp-for="@Model.Abroads[i].UntilNow"></label><label class="d-sm-none"></label>
+                                <input type="hidden" asp-for="@Model.Abroads[i].Order" />
+                                    <div class="@(!@Model.Abroads[i].UntilNow ? "input-group-append" : " w-auto flex-fill")">
+                                        <div class="form-control">
+                                            <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
+                                                <input type="checkbox" id="@(nameof(Abroads))_@(i)__@nameof(AbroadVM.UntilNow)" name="@(nameof(Abroads))[@i].@nameof(AbroadVM.UntilNow)" value="true" checked="@(Model.Abroads[i].UntilNow ? "checked" : null)" />
+                                                <div class="state">
+                                                    <label class="d-none d-sm-block cursor-pointer" asp-for="@Model.Abroads[i].UntilNow"></label><label class="d-sm-none"></label>
+                                                </div>
                                             </div>
+                                            <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeUntilNow" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                                         </div>
-                                        <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeUntilNow" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
                                     </div>
                                 </div>
-                                    </div>
                                     <div>
                                         <span asp-validation-for="@Model.Abroads[i].End_Year" class="text-danger text-right mt-1 d-block"></span>
                                     </div>

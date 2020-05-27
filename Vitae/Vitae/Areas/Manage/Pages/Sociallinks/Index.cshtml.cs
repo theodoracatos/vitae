@@ -50,11 +50,11 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync<SocialLink>(curriculumID);
-                LoadLanguageCode(curriculum);
+                LoadLanguageCode();
 
-                await LoadSocialLinks(CurriculumLanguageCode, curriculum);
+                await LoadSocialLinksAsync();
                 FillSelectionViewModel();
+
                 return Page();
             }
         }
@@ -173,7 +173,7 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
         {
             await SaveLanguageChangeAsync();
 
-            await LoadSocialLinks(CurriculumLanguageCode);
+            await LoadSocialLinksAsync();
 
             FillSelectionViewModel();
 
@@ -189,11 +189,11 @@ namespace Vitae.Areas.Manage.Pages.Sociallinks
             CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
         }
 
-        private async Task LoadSocialLinks(string languageCode, Curriculum curr = null)
+        private async Task LoadSocialLinksAsync()
         {
-            var curriculum = curr ?? await repository.GetCurriculumAsync<SocialLink>(curriculumID);
+            var curriculum = await repository.GetCurriculumAsync<SocialLink>(curriculumID);
 
-            SocialLinks = repository.GetSocialLinks(curriculum, languageCode);
+            SocialLinks = repository.GetSocialLinks(curriculum, CurriculumLanguageCode);
         }
 
         #endregion

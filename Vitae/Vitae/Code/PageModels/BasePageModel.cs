@@ -192,6 +192,13 @@ namespace Vitae.Code.PageModels
             }
         }
 
+        protected void LoadLanguageCode()
+        {
+            var curriculumLanguages = vitaeContext.CurriculumLanguages.Include(cl => cl.Language).Where(c => c.CurriculumID == curriculumID);
+            CurriculumLanguageCode ??= (curriculumLanguages.Any(c => c.IsSelected) ? curriculumLanguages.Single(c => c.IsSelected).Language.LanguageCode : curriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode);
+        }
+
+        [Obsolete]
         protected void LoadLanguageCode(Curriculum curriculum)
         {
             CurriculumLanguageCode ??= (curriculum.CurriculumLanguages.Any(c => c.IsSelected) ? curriculum.CurriculumLanguages.Single(c => c.IsSelected).Language.LanguageCode : curriculum.CurriculumLanguages.Single(c => c.Order == 0).Language.LanguageCode);

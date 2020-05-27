@@ -57,11 +57,11 @@ namespace Vitae.Areas.Manage.Pages.Experiences
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync<Experience>(curriculumID);
-                LoadLanguageCode(curriculum);
+                LoadLanguageCode();
 
-                await LoadExperiences(CurriculumLanguageCode, curriculum);
+                await LoadExperiencesAsync();
                 FillSelectionViewModel();
+
                 return Page();
             }
         }
@@ -192,8 +192,7 @@ namespace Vitae.Areas.Manage.Pages.Experiences
         {
             await SaveLanguageChangeAsync();
 
-            await LoadExperiences(CurriculumLanguageCode);
-
+            await LoadExperiencesAsync();
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_EXPERIENCES);
@@ -212,11 +211,11 @@ namespace Vitae.Areas.Manage.Pages.Experiences
             Industries = repository.GetIndustries(requestCulture.RequestCulture.UICulture.Name);
         }
 
-        private async Task LoadExperiences(string languageCode, Curriculum curr = null)
+        private async Task LoadExperiencesAsync()
         {
-            var curriculum = curr ?? await repository.GetCurriculumAsync<Experience>(curriculumID);
+            var curriculum = await repository.GetCurriculumAsync<Experience>(curriculumID);
 
-            Experiences = repository.GetExperiences(curriculum, languageCode);
+            Experiences = repository.GetExperiences(curriculum, CurriculumLanguageCode);
         }
         #endregion
     }

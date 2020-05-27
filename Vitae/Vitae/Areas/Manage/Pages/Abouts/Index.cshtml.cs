@@ -44,10 +44,9 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync<About>(curriculumID);
-                LoadLanguageCode(curriculum);
-                
-                await LoadAbouts(CurriculumLanguageCode, curriculum);
+                LoadLanguageCode();
+
+                await LoadAboutsAsync();
                 FillSelectionViewModel();
 
                 return Page();
@@ -144,7 +143,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
         {
             await SaveLanguageChangeAsync();
 
-            await LoadAbouts(CurriculumLanguageCode);
+            await LoadAboutsAsync();
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_ABOUTS);
@@ -158,10 +157,10 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
         }
 
-        private async Task LoadAbouts(string languageCode, Curriculum curr = null)
+        private async Task LoadAboutsAsync()
         {
-            var curriculum = curr ?? await repository.GetCurriculumAsync<About>(curriculumID);
-            About = repository.GetAbouts(curriculum, languageCode).SingleOrDefault()
+            var curriculum = await repository.GetCurriculumAsync<About>(curriculumID);
+            About = repository.GetAbouts(curriculum, CurriculumLanguageCode).SingleOrDefault()
                    ?? new AboutVM()
                    {
                        Vfile = new VfileVM()

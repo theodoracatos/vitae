@@ -54,9 +54,7 @@ namespace Vitae.Areas.Manage.Pages.Publications
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync<Publication>(curriculumID);
-
-                await LoadPublications(curriculum);
+                await LoadPublicationsAsync();
 
                 FillSelectionViewModel();
                 return Page();
@@ -66,7 +64,7 @@ namespace Vitae.Areas.Manage.Pages.Publications
         public async Task<IActionResult> OnGetDownloadQrCodeAsync(int index)
         {
             var curriculum = await repository.GetCurriculumAsync<Publication>(curriculumID);
-            await LoadPublications(curriculum);
+            await LoadPublicationsAsync();
 
             var base64 = Publications[index].QrCode.Substring(22, Publications[index].QrCode.Length - 22);
             byte[] bytes = Convert.FromBase64String(base64);
@@ -210,9 +208,9 @@ namespace Vitae.Areas.Manage.Pages.Publications
 
         #region HELPER
 
-        private async Task LoadPublications(Curriculum curr = null)
+        private async Task LoadPublicationsAsync()
         {
-            var curriculum = curr ?? await repository.GetCurriculumAsync<Publication>(curriculumID);
+            var curriculum = await repository.GetCurriculumAsync<Publication>(curriculumID);
 
             Publications = repository.GetPublications(curriculum, this.BaseUrl);
         }

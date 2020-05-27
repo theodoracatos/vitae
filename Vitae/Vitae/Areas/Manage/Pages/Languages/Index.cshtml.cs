@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
+
 using Model.Poco;
 using Model.ViewModels;
 
 using Persistency.Data;
 using Persistency.Repository;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,8 +20,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-using Vitae.Code;
 using Vitae.Code.PageModels;
+
 using Poco = Model.Poco;
 
 namespace Vitae.Areas.Manage.Pages.Languages
@@ -48,10 +50,9 @@ namespace Vitae.Areas.Manage.Pages.Languages
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync<LanguageSkill>(curriculumID);
-                LoadLanguageCode(curriculum);
+                LoadLanguageCode();
 
-                await LoadLanguageSkills(CurriculumLanguageCode, curriculum);
+                await LoadLanguageSkillsAsync();
 
                 FillSelectionViewModel();
                 return Page();
@@ -172,8 +173,7 @@ namespace Vitae.Areas.Manage.Pages.Languages
         {
             await SaveLanguageChangeAsync();
 
-            await LoadLanguageSkills(CurriculumLanguageCode);
-
+            await LoadLanguageSkillsAsync();
             FillSelectionViewModel();
 
             return GetPartialViewResult(PAGE_LANGUAGES);
@@ -189,11 +189,11 @@ namespace Vitae.Areas.Manage.Pages.Languages
             CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
         }
 
-        private async Task LoadLanguageSkills(string languageCode, Curriculum curr = null)
+        private async Task LoadLanguageSkillsAsync()
         {
-            var curriculum = curr ?? await repository.GetCurriculumAsync<LanguageSkill>(curriculumID);
+            var curriculum = await repository.GetCurriculumAsync<LanguageSkill>(curriculumID);
 
-            LanguageSkills = repository.GetLanguageSkills(curriculum, languageCode);
+            LanguageSkills = repository.GetLanguageSkills(curriculum, CurriculumLanguageCode);
         }
 
         #endregion

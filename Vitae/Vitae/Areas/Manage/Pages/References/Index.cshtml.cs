@@ -51,11 +51,11 @@ namespace Vitae.Areas.Manage.Pages.References
             }
             else
             {
-                var curriculum = await repository.GetCurriculumAsync<Reference>(curriculumID);
-                LoadLanguageCode(curriculum);
+                LoadLanguageCode();
 
-                await LoadReferences(CurriculumLanguageCode, curriculum);
+                await LoadReferencesAsync();
                 FillSelectionViewModel();
+
                 return Page();
             }
         }
@@ -183,7 +183,7 @@ namespace Vitae.Areas.Manage.Pages.References
         {
             await SaveLanguageChangeAsync();
 
-            await LoadReferences(CurriculumLanguageCode);
+            await LoadReferencesAsync();
 
             FillSelectionViewModel();
 
@@ -200,11 +200,11 @@ namespace Vitae.Areas.Manage.Pages.References
             CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
         }
 
-        private async Task LoadReferences(string languageCode, Curriculum curr = null)
+        private async Task LoadReferencesAsync()
         {
-            var curriculum = curr ?? await repository.GetCurriculumAsync<Reference>(curriculumID);
+            var curriculum = await repository.GetCurriculumAsync<Reference>(curriculumID);
 
-            References = repository.GetReferences(curriculum, languageCode);
+            References = repository.GetReferences(curriculum, CurriculumLanguageCode);
         }
         #endregion
     }
