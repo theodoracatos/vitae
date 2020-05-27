@@ -66,6 +66,8 @@ namespace Vitae.Areas.Manage.Pages.Settings
             {
                 var curriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
                 var curriculum = await repository.GetCurriculumAsync<Publication>(curriculumID);
+                var countPerLanguages = await repository.CountItemsFromCurriculumAsync(curriculumID);
+                var publications = repository.GetPublications(curriculum, this.BaseUrl);
 
                 Setting = new SettingVM()
                 {
@@ -75,8 +77,8 @@ namespace Vitae.Areas.Manage.Pages.Settings
                         {
                             Copy = false,
                             FormerLanguageCode = cl.LanguageCode,
-                            NrOfItems = (repository.CountItemsFromCurriculumAsync(curriculumID, cl.LanguageCode).Result).Single().Value.Sum(i => i.Value),
-                                HasPublication = repository.GetPublications(curriculum, this.BaseUrl).Any(p => p.LanguageCode == cl.LanguageCode)
+                            NrOfItems = countPerLanguages[cl.LanguageCode].Sum(i => i.Value),
+                            HasPublication = publications.Any(p => p.LanguageCode == cl.LanguageCode)
                         }).ToList()
                 };
 
