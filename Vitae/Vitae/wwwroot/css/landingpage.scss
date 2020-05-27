@@ -352,10 +352,15 @@ nav.navbar{
         line-height: 1.5;
         border-radius: 0.2rem;
     }
+
+    .logo-small{
+        display:none !important;
+    }
 }
 
 @media all and (max-height: 320px) {
     #advertsment {
         display: none !important;
     }
+
 }
