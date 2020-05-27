@@ -1,0 +1,11 @@
+﻿@model Tuple<int, int, IList<BaseVM>, string, string>
+
+<div class="float-right">
+    <button asp-page-handler="Up@(Model.Item5)" asp-route-order="@Model.Item1" data-toggle="tooltip" title="@SharedResource.Up" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel @(Model.Item1 > 0 ? null : "d-none")"><i class="fas fa-arrow-up"></i></button>
+    <button asp-page-handler="Down@(Model.Item5)" asp-route-order="@Model.Item1" data-toggle="tooltip" title="@SharedResource.Down" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1 @(Model.Item1 == Model.Item3.Count - 1 ? "d-none" : null)"><i class="fas fa-arrow-down"></i></button>
+    <button asp-page-handler="Copy@(Model.Item5)" asp-route-order="@Model.Item1" data-toggle="tooltip" title="@SharedResource.Copy" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-outline-dark cancel ml-1" disabled="@(Model.Item3.Count < Model.Item2 ? null: "disabled")"><i class="fas fa-copy"></i></button>
+    <span class="d-inline-block ml-1" tabindex="0" data-toggle="tooltip" title="@SharedResource.Save">
+        <button type="submit" class="btn btn-sm btn-outline-dark" disabled><i class="fas fa-save"></i></button>
+    </span>
+    <button asp-page-handler="Delete@(Model.Item5)" asp-route-order="@Model.Item1" data-toggle="tooltip" title="@SharedResource.Delete" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"\"{Model.Item4} {(Model.Item1+1)}\"")" data-ajax="true" data-ajax-update="#panel" class="btn btn-sm btn-danger cancel dirty-ignore confirmation ml-1" disabled="@(Model.Item3?.Count <= 0 ? "disabled": null)"><i class="far fa-trash-alt"></i></button>
+</div>

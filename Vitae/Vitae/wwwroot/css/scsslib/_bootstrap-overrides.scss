@@ -1,0 +1,19 @@
+@import '_colors.scss';
+
+.bg-primary {
+    background-color: $sidenav-color !important;
+}
+
+.text-primary {
+    color: $qvs-gold-color !important;
+}
+
+a {
+    color: $qvs-gold-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: darken($qvs-gold-color, 15%);
+    }
+}

@@ -1,0 +1,32 @@
+﻿@page
+@model Vitae.Areas.Identity.Pages.Account.LockoutModel
+@{
+    ViewData["Title"] = @SharedResource.LockedOut;
+}
+
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-sm-12 col-md-8 mx-auto my-auto">
+            <div class="container">
+                <div class="jumbotron">
+                    <form method="post">
+                        <h3><i class="fas fa-sign-out-alt fa-fw"></i>@SharedResource.Lockout</h3>
+                        <hr />
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <p class="text-danger">
+                                    @SharedResource.LockoutMessage
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col mb-0 text-right">
+                                <a id="forgot-password" class="btn btn-danger" href="/">@SharedResource.Homepage</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

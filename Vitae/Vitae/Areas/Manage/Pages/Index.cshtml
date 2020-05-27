@@ -1,0 +1,82 @@
+﻿@page
+@model Vitae.Areas.Manage.Pages.IndexModel
+@{
+    ViewData["Title"] = SharedResource.Homepage;
+}
+@{
+    var xLabelsHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.LastHits.Item1);
+    var yValuesHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.LastHits.Item2);
+    var yLabelsHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.LastHits.Item3);
+
+    var xLabelsLogins = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Logins.Item1);
+    var yValuesLogins = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Logins.Item2);
+    var yLabelsLogins = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.Logins.Item3);
+
+    var xLabelsSumHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.SumHits.Item1);
+    var yValuesSumHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.SumHits.Item2);
+    var yLabelsSumHits = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.SumHits.Item3);
+
+    var xLabelsCvCompletenes = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.CvOverview.Item1);
+    var yValuesCvCompletenes = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.CvOverview.Item2);
+    var yLabelsCvCompletenes = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Report.CvOverview.Item3);
+
+}
+    <div id="panel">
+        <div class="card">
+            <div class="card-header">
+                <h1><i class="fas fa-chart-line mr-3"></i>@SharedResource.Dashboard</h1>
+                <p>@SharedResource.DashboardDescription</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-6 mb-4">
+                        <div class="grouping mb-0">
+                            <div class="box-body">
+                                <div class="chart-container">
+                                    <canvas id="chartHits" class="w-100 chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 mb-4">
+                        <div class="grouping mb-0">
+                            <div class="box-body">
+                                <div class="chart-container">
+                                    <canvas id="chartLogins" class="w-100 chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 mb-4 mb-xl-2">
+                        <div class="box-body">
+                            <div class="grouping">
+                                <canvas id="chartMaxHits" class="w-100 chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 mb-0 mb-xl-2">
+                        <div class="box-body">
+                            <div class="grouping">
+                                <canvas id="chartCvOverview" class="w-100 chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        @section Scripts {
+
+            <script type="text/javascript">
+        $(function () {
+            drawChart('chartHits', Resources.SharedResource.NrOfCVHits, @Html.Raw(xLabelsHits), @Html.Raw(yValuesHits),  @Html.Raw(yLabelsHits));
+            drawChart('chartLogins', Resources.SharedResource.NrOfLogins, @Html.Raw(xLabelsLogins), @Html.Raw(yValuesLogins),  @Html.Raw(yLabelsLogins));
+            drawChart('chartMaxHits', Resources.SharedResource.SumOfCVHits, @Html.Raw(xLabelsSumHits), @Html.Raw(yValuesSumHits),  @Html.Raw(yLabelsSumHits));
+            drawRadar('chartCvOverview', Resources.SharedResource.CVCompleteness, @Html.Raw(xLabelsCvCompletenes), @Html.Raw(yValuesCvCompletenes), @Html.Raw(yLabelsCvCompletenes));
+
+        });
+            </script>
+        }

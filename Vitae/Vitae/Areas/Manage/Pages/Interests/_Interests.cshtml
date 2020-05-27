@@ -1,0 +1,65 @@
+﻿@model Vitae.Areas.Manage.Pages.Interests.IndexModel
+
+<div id="panel">
+    <div class="card">
+        <partial name="_CardHeader" model="@(new Tuple<BasePageModel, string, string, string>(Model, "fas fa-volleyball-ball", SharedResource.Interests, SharedResource.InterestsDescription))" />
+
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label class="control-label" asp-for="@Model.Interests"></label>
+                    <div>
+                        <button asp-page-handler="AddInterest" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-success cancel font-weight-bold mr-2" disabled="@(Model.Interests?.Count < Model.MaxInterests ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                        <partial name="_CardCollapsebar" model="Model">
+                    </div>
+                </div>
+            </div>
+            @for (int i = 0; i < Model.Interests.Count; i++)
+            {
+                <div class="card @(i < Model.Interests.Count - 1 ? "mb-4" : "mb-2")">
+                    <div class="card-header card-header-small">
+                        <div class="float-left line-height-2">
+                            <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark mr-1">
+                                @(i + 1). @SharedResource.Interest
+                                <input type="hidden" asp-for="@Model.Interests[i].Collapsed" />
+                            </a>
+                        </div>
+
+                        <partial name="_CardButtonbar" model="new Tuple<int, int, IList<BaseVM>, string, string>(i, Model.MaxInterests, Model.Interests.Cast<BaseVM>().ToList(), SharedResource.Interest, nameof(Interest))" />
+
+                    </div>
+                    <div class="card-body collapse pb-0 @(Model.Interests[i].Collapsed ? null : "show")" id="collapse-@i">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label class="control-label" asp-for="@Model.Interests[i].InterestName"></label>
+                                <input class="form-control" type="text" asp-for="@Model.Interests[i].InterestName" />
+                                <span asp-validation-for="@Model.Interests[i].InterestName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="control-label" asp-for="@Model.Interests[i].Association"></label>
+                                <input class="form-control" type="text" asp-for="@Model.Interests[i].Association" />
+                                <span asp-validation-for="@Model.Interests[i].Association" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="control-label" asp-for="@Model.Interests[i].Link"></label>
+                                <input class="form-control" type="text" asp-for="@Model.Interests[i].Link" />
+                                <span asp-validation-for="@Model.Interests[i].Link" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label class="control-label" asp-for="@Model.Interests[i].Description"></label>
+                                <textarea rows="2" asp-for="@Model.Interests[i].Description" class="form-control"></textarea>
+                                <span asp-validation-for="@Model.Interests[i].Description" class="text-danger"></span>
+                                <input type="hidden" asp-for="@Model.Interests[i].Order" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (i < Model.Interests.Count - 1)
+                {<hr />}
+            }
+        </div>
+        <partial name="_CardFooter" model="@Model" />
+    </div>
+</div>

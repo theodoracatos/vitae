@@ -1,0 +1,1361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Ulteriori informazioni</value>
+  </data>
+  <data name="AboutDetailsDescription" xml:space="preserve">
+    <value>Completa i tuoi dati personali.</value>
+  </data>
+  <data name="AboutInfo" xml:space="preserve">
+    <value>Informazioni su</value>
+  </data>
+  <data name="Abroad" xml:space="preserve">
+    <value>Soggiorno all'estero</value>
+  </data>
+  <data name="Abroads" xml:space="preserve">
+    <value>Soggiorni all'estero</value>
+  </data>
+  <data name="AbroadsDescription" xml:space="preserve">
+    <value>Elenca i soggiorni all'estero più lunghi.</value>
+  </data>
+  <data name="AcademicTitle" xml:space="preserve">
+    <value>Titolo accademico</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accetta</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Accesso negato</value>
+  </data>
+  <data name="AccessDeniedMessage" xml:space="preserve">
+    <value>Si prega di compilare prima i dati personali.</value>
+  </data>
+  <data name="AccountDeleted" xml:space="preserve">
+    <value>Conto cancellato con successo</value>
+  </data>
+  <data name="AccountLockedOut" xml:space="preserve">
+    <value>Account utente bloccato.</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Attivare</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Aggiungi</value>
+  </data>
+  <data name="AddToTop" xml:space="preserve">
+    <value>Aggiungi all'inizio</value>
+  </data>
+  <data name="AdTextA0" xml:space="preserve">
+    <value>Dai una spinta alla tua carriera</value>
+  </data>
+  <data name="AdTextA1" xml:space="preserve">
+    <value>Presentarsi nella luce migliore</value>
+  </data>
+  <data name="AdTextA2" xml:space="preserve">
+    <value>Mostrate le vostre capacità</value>
+  </data>
+  <data name="AdTextB0" xml:space="preserve">
+    <value>Volete migliorare le vostre possibilità sul mercato del lavoro? Nessun problema, perché con myVitae potete creare in poco tempo il vostro sito web personale per il curriculum vitae. Crea subito un account gratuito e inizia a lavorare!</value>
+  </data>
+  <data name="AllowedFiles" xml:space="preserve">
+    <value>i file possono essere caricati</value>
+  </data>
+  <data name="Anonymize" xml:space="preserve">
+    <value>Anonimizzare il myVitae</value>
+  </data>
+  <data name="AnonymizeDescription" xml:space="preserve">
+    <value>Alcuni dati personali saranno nascosti</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Volete davvero eliminare questa voce?</value>
+  </data>
+  <data name="Association" xml:space="preserve">
+    <value>Associazione</value>
+  </data>
+  <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
+    <value>Il valore '{0}' non è valido per {y}</value>
+  </data>
+  <data name="Award" xml:space="preserve">
+    <value>Premio</value>
+  </data>
+  <data name="AwardedFrom" xml:space="preserve">
+    <value>Premiato da</value>
+  </data>
+  <data name="AwardedOn" xml:space="preserve">
+    <value>Premiato il</value>
+  </data>
+  <data name="Awards" xml:space="preserve">
+    <value>Premi</value>
+  </data>
+  <data name="AwardsDescription" xml:space="preserve">
+    <value>Elenca i risultati che hai conseguito nel corso della tua carriera.</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Torna indietro</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Compleanno</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Sfoglia</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Categoria</value>
+  </data>
+  <data name="Certificate" xml:space="preserve">
+    <value>Certificato</value>
+  </data>
+  <data name="Certificates" xml:space="preserve">
+    <value>Certificati</value>
+  </data>
+  <data name="CertificatesDescription" xml:space="preserve">
+    <value>Elenca i certificati di lingua e di formazione continua.</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Cambia</value>
+  </data>
+  <data name="ChangeEmail" xml:space="preserve">
+    <value>Cambia e-mail</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>Cambia lingua</value>
+  </data>
+  <data name="ChangeLanguageDescription" xml:space="preserve">
+    <value>Cambia la lingua del sito web qui. Assicurati di aver accettato i cookie.</value>
+  </data>
+  <data name="ChangeLanguageDescriptionSmall" xml:space="preserve">
+    <value>Si prega di assicurarsi che i cookie siano accettati</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Cambiare la password</value>
+  </data>
+  <data name="ChangePasswordDescription" xml:space="preserve">
+    <value>Cambia qui la tua password per accedere al sito.</value>
+  </data>
+  <data name="CheckYourEmail" xml:space="preserve">
+    <value>Controlla la tua email per reimpostare la password.</value>
+  </data>
+  <data name="CheckYourEmailConfirm" xml:space="preserve">
+    <value>Controlla la tua email per confermare il tuo account.</value>
+  </data>
+  <data name="Child" xml:space="preserve">
+    <value>Bambino</value>
+  </data>
+  <data name="Children" xml:space="preserve">
+    <value>Bambini</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>Scegliere un file da caricare</value>
+  </data>
+  <data name="ChosenFile" xml:space="preserve">
+    <value>il file è stato scelto</value>
+  </data>
+  <data name="ChronologicalAsc" xml:space="preserve">
+    <value>Si raccomanda un ordine cronologico ascendente.</value>
+  </data>
+  <data name="ChronologicalDesc" xml:space="preserve">
+    <value>Si raccomanda un ordine cronologico decrescente.</value>
+  </data>
+  <data name="Citizenship" xml:space="preserve">
+    <value>Cittadinanza</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Città</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>Clicca qui</value>
+  </data>
+  <data name="ClickingHere" xml:space="preserve">
+    <value>cliccando qui</value>
+  </data>
+  <data name="Collapse" xml:space="preserve">
+    <value>Elementi di collasso</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Colore</value>
+  </data>
+  <data name="ColorDescription" xml:space="preserve">
+    <value>Cambia il colore del tuo myVitae</value>
+  </data>
+  <data name="CompanyDescription" xml:space="preserve">
+    <value>Descrizione dell'azienda</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Nome dell'azienda</value>
+  </data>
+  <data name="CompareFailed" xml:space="preserve">
+    <value>La password e la password di conferma non corrispondono.</value>
+  </data>
+  <data name="Concubinage" xml:space="preserve">
+    <value>Concubinaggio</value>
+  </data>
+  <data name="ConcurrencyFailure" xml:space="preserve">
+    <value>Ottimizzazione dell'errore di valuta, l'oggetto è stato modificato.</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confermare</value>
+  </data>
+  <data name="ConfirmationEmailSent" xml:space="preserve">
+    <value>Link di conferma per modificare l'email inviata. Si prega di controllare l'e-mail.</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Stai per cancellare {0}. Vuoi continuare?</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Conferma email</value>
+  </data>
+  <data name="ConfirmEmail1" xml:space="preserve">
+    <value>Conferma la tua e-mail</value>
+  </data>
+  <data name="ConfirmEmailThankYou" xml:space="preserve">
+    <value>Grazie per aver confermato la vostra e-mail.</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Conferma la password</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contattate</value>
+  </data>
+  <data name="CookiePolicy" xml:space="preserve">
+    <value>Politica dei biscotti</value>
+  </data>
+  <data name="CookiePolicyDescription" xml:space="preserve">
+    <value>Continuando a visitare il sito web, si accetta la memorizzazione dei cookie sul proprio computer</value>
+  </data>
+  <data name="CookiePolicyLearnMore" xml:space="preserve">
+    <value>Per saperne di più</value>
+  </data>
+  <data name="Cookies" xml:space="preserve">
+    <value>Biscotti</value>
+  </data>
+  <data name="CookiesText1" xml:space="preserve">
+    <value>Quando visitate questo sito web, il server web registrerà automaticamente alcuni dettagli della vostra visita (indirizzo IP, sito web di origine, sito web di destinazione) utilizzando una tecnologia di tracciamento chiamata "cookies". Un cookie è un piccolo dato che viene memorizzato dal sito web sul browser o sul dispositivo mobile. Il cookie consente al sito web di salvare le impostazioni o le preferenze dell'utente per un certo periodo di tempo.</value>
+  </data>
+  <data name="CookiesText2" xml:space="preserve">
+    <value>Questo sito web richiede i cookie per ottimizzare il contenuto delle sue pagine web e per fornire informazioni sull'utilizzo del sito. I cookie utilizzati non possono essere utilizzati per l'identificazione dell'utente. Potete accettare o rifiutare i cookies in qualsiasi momento modificando le impostazioni del vostro browser. Si prega di notare, tuttavia, che se si rifiutano i cookies, alcune funzionalità potrebbero essere compromesse. Continuando a utilizzare il sito web, accettate automaticamente la memorizzazione dei cookie sul vostro computer.</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copia</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Il copyright di questo sito web appartiene a vitae.ch, Alexandros Theodoracatos.</value>
+  </data>
+  <data name="CopyrightLaw" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="CopyrightLawText" xml:space="preserve">
+    <value>L'applicazione web myVitae è di proprietà esclusiva di Alexandros Theodoracatos ed è protetta dal diritto d'autore svizzero. Pertanto, il sito web non può essere riprodotto o reso disponibile in tutto o in parte in alcun modo, né può essere utilizzato in alcun modo diverso da quello autorizzato, senza il previo consenso di Alexandros Theodoracatos.</value>
+  </data>
+  <data name="CopyValues" xml:space="preserve">
+    <value>Copiare i valori</value>
+  </data>
+  <data name="CopyValuesDescription" xml:space="preserve">
+    <value>Copia tutti i valori dalla prima lingua</value>
+  </data>
+  <data name="CountryCode" xml:space="preserve">
+    <value>Codice</value>
+  </data>
+  <data name="CountryName" xml:space="preserve">
+    <value>Paese</value>
+  </data>
+  <data name="Course" xml:space="preserve">
+    <value>Corso</value>
+  </data>
+  <data name="Courses" xml:space="preserve">
+    <value>Corsi</value>
+  </data>
+  <data name="CoursesDescription" xml:space="preserve">
+    <value>Elenca i corsi di formazione continua e i piccoli corsi di formazione.</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Crea un nuovo account.</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Password attuale</value>
+  </data>
+  <data name="CurriculumLanguage" xml:space="preserve">
+    <value>Lingua del curriculum</value>
+  </data>
+  <data name="CurriculumVitae" xml:space="preserve">
+    <value>Curriculum Vitae</value>
+  </data>
+  <data name="CV" xml:space="preserve">
+    <value>Curriculum vitae</value>
+  </data>
+  <data name="CVCompleteness" xml:space="preserve">
+    <value>Completezza del myVitae</value>
+  </data>
+  <data name="CVLanguage" xml:space="preserve">
+    <value>Lingua del myVitae</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Cruscotto</value>
+  </data>
+  <data name="DashboardDescription" xml:space="preserve">
+    <value>Il cruscotto vi mostra l'andamento cronologico dell'accesso ai vostri CV myVitae e altre statistiche utili sul vostro comportamento di login.</value>
+  </data>
+  <data name="DashboardOverview" xml:space="preserve">
+    <value>Affinché il vostro CV venga pubblicato, l'applicazione web myVitae crea un link di pubblicazione casuale. Potete quindi utilizzare questo link per uno o più posti vacanti e cancellarlo completamente dopo aver presentato la vostra candidatura con successo. Il cruscotto mostra il successo dei vostri CV pubblicati visualizzando il numero di clic sul link di pubblicazione inviato. Potete anche inserire il vostro curriculum vitae in un massimo di cinque lingue.</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Dati</value>
+  </data>
+  <data name="DataCollection" xml:space="preserve">
+    <value>Raccolta dei dati</value>
+  </data>
+  <data name="DataCollectionDesc" xml:space="preserve">
+    <value>Quando vi registrate a myVitae e create un curriculum, vengono raccolte informazioni sensibili su di voi. Ciò include (ma non si limita a): il vostro sesso, nome, compleanno, indirizzo, nazionalità, indirizzo e-mail, numero di telefono, stato civile e altri dati personali sensibili. Questi dati non saranno trasmessi a terzi in nessun caso e saranno utilizzati esclusivamente per la preparazione del vostro CV. Le seguenti linee guida prevedono che durante l'elaborazione dei dati vengano raccolti solo i dati personali assolutamente necessari per la creazione del CV. I rispettivi utenti di myVitae possono determinare in qualsiasi momento quante informazioni si desidera divulgare nel proprio CV.
+Inoltre, i seguenti dati vengono raccolti senza il vostro intervento e conservati fino alla loro cancellazione automatica: Indirizzo IP del computer richiedente e la "user agent string (UA)". La UA è un campo del protocollo HTTP, attraverso il quale è possibile trasmettere informazioni dettagliate sul dispositivo richiedente con una query di rete. 
+Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla protezione dei dati (DSGVO) si basa sul seguente scopo: garantire un uso conveniente dell'applicazione del sito web, valutare la sicurezza e la stabilità del sistema e per altri scopi amministrativi. In nessun caso utilizziamo i dati raccolti per trarre conclusioni su di voi. Su richiesta, saremo lieti di comunicarvi se e quali dati personali su di voi vengono memorizzati.</value>
+  </data>
+  <data name="DataProtection" xml:space="preserve">
+    <value>Protezione dei dati</value>
+  </data>
+  <data name="DataProtectionText" xml:space="preserve">
+    <value>Non possiamo garantire la sicurezza della trasmissione dei dati su Internet. In particolare, vi è il rischio di accesso da parte di terzi quando i dati vengono trasmessi via e-mail. Ci opponiamo espressamente all'utilizzo dei dati di contatto pubblicati nell'impronta da parte di terzi per scopi pubblicitari. Il gestore si riserva espressamente il diritto di intraprendere azioni legali in caso di invio di materiale pubblicitario o informativo non richiesto. Qualora singole disposizioni o formulazioni della presente clausola di esclusione di responsabilità siano o diventino invalide, il contenuto e la validità delle restanti disposizioni rimangono invariati.</value>
+  </data>
+  <data name="DateCompareError" xml:space="preserve">
+    <value>Non possiamo garantire la sicurezza della trasmissione dei dati su Internet. In particolare, vi è il rischio di accesso da parte di terzi quando i dati vengono trasmessi via e-mail. Ci opponiamo espressamente all'utilizzo dei dati di contatto pubblicati nell'impronta da parte di terzi per scopi pubblicitari. Il gestore si riserva espressamente il diritto di intraprendere azioni legali in caso di invio di materiale pubblicitario o informativo non richiesto. Qualora singole disposizioni o formulazioni della presente clausola di esclusione di responsabilità siano o diventino invalide, il contenuto e la validità delle restanti disposizioni rimangono invariati.</value>
+  </data>
+  <data name="DateProtectionText" xml:space="preserve">
+    <value>La data di inizio non può essere superiore alla data di fine</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Giorno</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Giorni</value>
+  </data>
+  <data name="DefaultError" xml:space="preserve">
+    <value>Si è verificato un guasto sconosciuto.</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Cancellare</value>
+  </data>
+  <data name="DeleteAccount" xml:space="preserve">
+    <value>Cancellare il conto</value>
+  </data>
+  <data name="DeleteAccountConfirm" xml:space="preserve">
+    <value>Volete davvero cancellare il vostro account? Tutti i dati saranno irrevocabilmente cancellati.</value>
+  </data>
+  <data name="Demo" xml:space="preserve">
+    <value>Demo</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descrizione</value>
+  </data>
+  <data name="Disclaimer" xml:space="preserve">
+    <value>Esclusione di responsabilità</value>
+  </data>
+  <data name="DisclaimerText" xml:space="preserve">
+    <value>Tutti i testi e i link sono stati accuratamente controllati e vengono continuamente aggiornati. Facciamo ogni sforzo per fornire informazioni corrette e complete su questo sito web, ma non ci assumiamo alcuna responsabilità, garanzia o responsabilità che gli strumenti e le informazioni fornite da questo sito web siano corrette, complete o aggiornate. Ci riserviamo il diritto di modificare le informazioni contenute in questo sito web in qualsiasi momento e senza preavviso e non ci impegniamo ad aggiornare e, se necessario, a modificare le informazioni in esso contenute. Tutti i link a fornitori esterni sono stati controllati per verificarne la correttezza al momento della loro inclusione, ma non siamo responsabili del contenuto e della disponibilità dei siti web raggiungibili tramite i collegamenti ipertestuali degli utenti di myVitae. Solo il fornitore del sito al quale il link conduce è responsabile per contenuti illegali, errati o incompleti e in particolare per danni derivanti dal contenuto dei siti collegati. È irrilevante se il danno è di natura diretta, indiretta o finanziaria o se vi sono altri danni che potrebbero derivare dalla perdita di dati, dalla perdita di utilizzo o da altri motivi di qualsiasi tipo.</value>
+  </data>
+  <data name="Divorced" xml:space="preserve">
+    <value>Divorziato</value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value>Giù</value>
+  </data>
+  <data name="DownloadQR" xml:space="preserve">
+    <value>Scarica il codice QR</value>
+  </data>
+  <data name="DropFile" xml:space="preserve">
+    <value>Lasciare un file da caricare</value>
+  </data>
+  <data name="DuplicateEmail" xml:space="preserve">
+    <value>L'e-mail '{0}' è già stata ricevuta.</value>
+  </data>
+  <data name="DuplicateRoleName" xml:space="preserve">
+    <value>Il nome del ruolo '{0}' è già stato preso.</value>
+  </data>
+  <data name="DuplicateUserName" xml:space="preserve">
+    <value>Il nome utente '{0}' è già preso.</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Istruzione</value>
+  </data>
+  <data name="Educations" xml:space="preserve">
+    <value>Educazioni</value>
+  </data>
+  <data name="EducationsDescription" xml:space="preserve">
+    <value>Elenca le fasi della tua formazione.</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Invia un'e-mail a</value>
+  </data>
+  <data name="EmailAlreadyConfirmed" xml:space="preserve">
+    <value>La tua e-mail è già stata confermata.</value>
+  </data>
+  <data name="EmailSent" xml:space="preserve">
+    <value>L'e-mail è stata inviata</value>
+  </data>
+  <data name="EmailUnchanged" xml:space="preserve">
+    <value>La tua e-mail non è cambiata.</value>
+  </data>
+  <data name="EnablePassword" xml:space="preserve">
+    <value>Accesso con password</value>
+  </data>
+  <data name="EnablePasswordDescription" xml:space="preserve">
+    <value>Assicura il vostro curriculum myVitae con una password aggiuntiva</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>Fine</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Inserisci la password</value>
+  </data>
+  <data name="EnterSkill" xml:space="preserve">
+    <value>Premere Invio per inserire una nuova abilità</value>
+  </data>
+  <data name="Entries" xml:space="preserve">
+    <value>voci</value>
+  </data>
+  <data name="Entry" xml:space="preserve">
+    <value>voce</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Errore</value>
+  </data>
+  <data name="ErrorConfirmEmail" xml:space="preserve">
+    <value>Errore nella conferma dell'e-mail.</value>
+  </data>
+  <data name="ErrorInfoMail" xml:space="preserve">
+    <value>Si prega di inviare una e-mail al seguente indirizzo, nel caso in cui l'errore persista</value>
+  </data>
+  <data name="Etc" xml:space="preserve">
+    <value>…</value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>Esperienza</value>
+  </data>
+  <data name="Experiences" xml:space="preserve">
+    <value>Esperienze</value>
+  </data>
+  <data name="ExperiencesDescription" xml:space="preserve">
+    <value>Elenca i tuoi precedenti datori di lavoro.</value>
+  </data>
+  <data name="ExpiresOn" xml:space="preserve">
+    <value>Scade il</value>
+  </data>
+  <data name="FAQ" xml:space="preserve">
+    <value>Domande poste frequentemente</value>
+  </data>
+  <data name="FilesTooLarge" xml:space="preserve">
+    <value>I file scelti sono troppo grandi</value>
+  </data>
+  <data name="FileTooLarge" xml:space="preserve">
+    <value>è troppo grande - il massimo dei file è</value>
+  </data>
+  <data name="Firstname" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="FolderUpload" xml:space="preserve">
+    <value>Non è consentito caricare cartelle</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Da</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Funzione</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Sesso</value>
+  </data>
+  <data name="German" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="Goodbye" xml:space="preserve">
+    <value>Arrivederci</value>
+  </data>
+  <data name="GoogleAnalytics" xml:space="preserve">
+    <value>Google Analytics</value>
+  </data>
+  <data name="GoogleAnalyticsText1" xml:space="preserve">
+    <value>Questo sito web utilizza i cookies di Google Analytics, un servizio di analisi web di Google Inc. ("Google"). Le informazioni generate dal cookie sull'utilizzo di questo sito web vengono di norma trasmesse a un server di Google negli Stati Uniti e lì memorizzate. Tuttavia, in caso di attivazione dell'anonimizzazione dell'IP su questo sito web, l'indirizzo IP dell'utente viene abbreviato da Google all'interno degli Stati membri dell'Unione Europea o in altri Stati firmatari dell'accordo sullo Spazio Economico Europeo prima che ciò avvenga. Solo in casi eccezionali l'indirizzo IP completo verrà trasferito ad un server di Google negli USA e lì abbreviato. Su incarico del gestore di questo sito web, Google utilizzerà queste informazioni per valutare il vostro utilizzo del sito web, compilare report sulle attività del sito web e fornire ulteriori servizi al gestore del sito web in relazione all'utilizzo del sito web e di Internet. L'indirizzo IP trasmesso dal vostro browser nell'ambito di Google Analytics non viene associato ad altri dati di Google.</value>
+  </data>
+  <data name="GoogleAnalyticsText2" xml:space="preserve">
+    <value>Potete rifiutarvi di usare i cookies selezionando l'impostazione appropriata sul vostro browser, tuttavia vi preghiamo di notare che in questo caso potreste non essere in grado di utilizzare tutte le funzionalità di questo sito web.  Potete anche impedire il rilevamento dei dati generati dal cookie e relativi al vostro utilizzo del sito web (compreso il vostro indirizzo IP) a Google e l'elaborazione di questi dati da parte di Google scaricando e installando il plugin del browser disponibile al seguente link. Il link attuale è:</value>
+  </data>
+  <data name="GoogleCaptcha" xml:space="preserve">
+    <value>Google Captcha</value>
+  </data>
+  <data name="GoogleCaptchaDesc" xml:space="preserve">
+    <value>Utilizzando il Sito, l'utente acconsente al nostro utilizzo di Google reCAPTCHA. Google troncherà il vostro indirizzo IP all'interno degli stati membri dell'Unione Europea o in altri stati che sono parte dell'accordo sullo Spazio Economico Europeo e il vostro indirizzo IP, è quindi reso anonimo. Solo in circostanze eccezionali un indirizzo IP completo viene trasmesso a un server di Google negli Stati Uniti e lì troncato. L'utilizzo di reCAPTCHA è soggetto alla Politica sulla privacy e ai Termini di servizio di Google.</value>
+  </data>
+  <data name="Grade" xml:space="preserve">
+    <value>Grado</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Ciao</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Nascondi</value>
+  </data>
+  <data name="HideReference" xml:space="preserve">
+    <value>Nascondi il riferimento</value>
+  </data>
+  <data name="HierarchyLevel" xml:space="preserve">
+    <value>Livello di gerarchia</value>
+  </data>
+  <data name="HierarchyLevels" xml:space="preserve">
+    <value>Livelli di gerarchia</value>
+  </data>
+  <data name="Homepage" xml:space="preserve">
+    <value>Homepage</value>
+  </data>
+  <data name="Iaccept" xml:space="preserve">
+    <value>Accetto</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importazione</value>
+  </data>
+  <data name="Imprint" xml:space="preserve">
+    <value>Impronta</value>
+  </data>
+  <data name="Industries" xml:space="preserve">
+    <value>Industrie</value>
+  </data>
+  <data name="Industry" xml:space="preserve">
+    <value>Industria</value>
+  </data>
+  <data name="Interest" xml:space="preserve">
+    <value>Interesse</value>
+  </data>
+  <data name="Interests" xml:space="preserve">
+    <value>Interessi</value>
+  </data>
+  <data name="InterestsDescription" xml:space="preserve">
+    <value>Elenca i tuoi hobby e i tuoi interessi professionali secondari.</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>L'e-mail '{0}' non è valida.</value>
+  </data>
+  <data name="InvalidLoginAttempt" xml:space="preserve">
+    <value>Tentativo di accesso non valido.</value>
+  </data>
+  <data name="InvalidRoleName" xml:space="preserve">
+    <value>Il nome del ruolo '{0}' non è valido.</value>
+  </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>Gettone non valido.</value>
+  </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value>Il nome utente '{0}' non è valido, può contenere solo lettere o cifre.</value>
+  </data>
+  <data name="IssuedOn" xml:space="preserve">
+    <value>Emesso il</value>
+  </data>
+  <data name="Issuer" xml:space="preserve">
+    <value>Emittente</value>
+  </data>
+  <data name="Italian" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="JobExperiences" xml:space="preserve">
+    <value>Esperienze lavorative</value>
+  </data>
+  <data name="JobTitle" xml:space="preserve">
+    <value>Titolo di lavoro</value>
+  </data>
+  <data name="KeepControl" xml:space="preserve">
+    <value>Mantenere sempre il pieno controllo</value>
+  </data>
+  <data name="KnowledgeBasic" xml:space="preserve">
+    <value>Conoscenze di base</value>
+  </data>
+  <data name="KnowledgeBusinessFluent" xml:space="preserve">
+    <value>Business fluente</value>
+  </data>
+  <data name="KnowledgeFluent" xml:space="preserve">
+    <value>Fluentemente</value>
+  </data>
+  <data name="KnowledgeNative" xml:space="preserve">
+    <value>Lingua madre</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="LanguageDescription" xml:space="preserve">
+    <value>Seleziona la lingua del tuo curriculum vitae</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Lingue</value>
+  </data>
+  <data name="LanguageSkillsDescription" xml:space="preserve">
+    <value>Elenca le lingue che puoi parlare.</value>
+  </data>
+  <data name="LanguageVersions" xml:space="preserve">
+    <value>Versioni linguistiche</value>
+  </data>
+  <data name="Lastname" xml:space="preserve">
+    <value>Cognome</value>
+  </data>
+  <data name="LegalNotice" xml:space="preserve">
+    <value>Avviso legale</value>
+  </data>
+  <data name="LegalNoticeResponsible" xml:space="preserve">
+    <value>Responsabile dell'applicazione web myVitae</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Livello</value>
+  </data>
+  <data name="LinkAwards" xml:space="preserve">
+    <value>Sito web dell'autorità aggiudicatrice</value>
+  </data>
+  <data name="LinkCertificate" xml:space="preserve">
+    <value>Sito web dell'autorità di certificazione</value>
+  </data>
+  <data name="LinkEducation" xml:space="preserve">
+    <value>Sito web del centro di formazione</value>
+  </data>
+  <data name="LinkExperience" xml:space="preserve">
+    <value>Sito web del datore di lavoro</value>
+  </data>
+  <data name="LinkInterest" xml:space="preserve">
+    <value>Sito web dell'associazione</value>
+  </data>
+  <data name="LinkNotGenerated" xml:space="preserve">
+    <value>Il link non è stato ancora generato</value>
+  </data>
+  <data name="LinkReference" xml:space="preserve">
+    <value>Sito web dell'azienda</value>
+  </data>
+  <data name="LockedOut" xml:space="preserve">
+    <value>Chiuso fuori</value>
+  </data>
+  <data name="Lockout" xml:space="preserve">
+    <value>Blocco</value>
+  </data>
+  <data name="LockoutMessage" xml:space="preserve">
+    <value>Questo conto è stato bloccato, si prega di riprovare più tardi.</value>
+  </data>
+  <data name="LoggedInAs" xml:space="preserve">
+    <value>Loggato come</value>
+  </data>
+  <data name="Loggedout" xml:space="preserve">
+    <value>Disconnesso</value>
+  </data>
+  <data name="LoggedoutMessage" xml:space="preserve">
+    <value>L'utente ha effettuato con successo il log-out dall'applicazione.</value>
+  </data>
+  <data name="LoginAlreadyAssociated" xml:space="preserve">
+    <value>Un utente con questo login esiste già.</value>
+  </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>Utilizzate il vostro account locale per effettuare il login.</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Esci</value>
+  </data>
+  <data name="LongIdentifier" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="MailAdvert1" xml:space="preserve">
+    <value>Non è mai stato così facile creare un curriculum.</value>
+  </data>
+  <data name="MailAdvert2a" xml:space="preserve">
+    <value>Con</value>
+  </data>
+  <data name="MailAdvert2b" xml:space="preserve">
+    <value>ora avete lo strumento perfetto per questo. Fai grandi passi verso il lavoro dei tuoi sogni!</value>
+  </data>
+  <data name="MailAdvert3" xml:space="preserve">
+    <value>Attivare il tuo account tramite</value>
+  </data>
+  <data name="MailAdvert4" xml:space="preserve">
+    <value>Vi auguriamo ogni successo nella vostra ricerca di lavoro con myVitae - state all'erta!</value>
+  </data>
+  <data name="MailAdvert5" xml:space="preserve">
+    <value>Il tuo team myVitae</value>
+  </data>
+  <data name="MailAdvert6" xml:space="preserve">
+    <value>Non è mai stato così facile.</value>
+  </data>
+  <data name="MailBye3" xml:space="preserve">
+    <value>Il tuo account è stato cancellato con successo. Ci dispiace che se ne sia andato. Tuttavia, è possibile registrarsi di nuovo in qualsiasi momento con questo indirizzo e-mail da</value>
+  </data>
+  <data name="MailFooter1" xml:space="preserve">
+    <value>Questa e-mail è stata inviata da myVitae a</value>
+  </data>
+  <data name="MailFooter2" xml:space="preserve">
+    <value>Cancella il tuo account se non desideri più ricevere queste e-mail.</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Gestisci</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>Direzione</value>
+  </data>
+  <data name="MaritalStatus" xml:space="preserve">
+    <value>Stato civile</value>
+  </data>
+  <data name="Married" xml:space="preserve">
+    <value>Sposato</value>
+  </data>
+  <data name="MissingBindRequiredValueAccessor" xml:space="preserve">
+    <value>Non è stato fornito un valore per l'immobile '{0}'.</value>
+  </data>
+  <data name="MissingKeyOrValueAccessor" xml:space="preserve">
+    <value>È richiesto un valore</value>
+  </data>
+  <data name="MissingRequestBodyRequiredValueAccessor" xml:space="preserve">
+    <value>È richiesto un organismo di richiesta non vuoto</value>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>Numero di cellulare</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Mese</value>
+  </data>
+  <data name="Months" xml:space="preserve">
+    <value>Mesi</value>
+  </data>
+  <data name="Mr" xml:space="preserve">
+    <value>Il signor</value>
+  </data>
+  <data name="Ms" xml:space="preserve">
+    <value>Sig.ra</value>
+  </data>
+  <data name="MyVitae" xml:space="preserve">
+    <value>My Vitae</value>
+  </data>
+  <data name="MyVitaeSlogan" xml:space="preserve">
+    <value>myVitae - Il tuo CV online</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Nationalities" xml:space="preserve">
+    <value>Nazionalità</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>Nazionalità</value>
+  </data>
+  <data name="NeverExpires" xml:space="preserve">
+    <value>Non scade mai</value>
+  </data>
+  <data name="NewEmail" xml:space="preserve">
+    <value>Nuova e-mail</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nuova password</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoHits" xml:space="preserve">
+    <value>Nessun riscontro</value>
+  </data>
+  <data name="NoInformation" xml:space="preserve">
+    <value>Nessuna informazione</value>
+  </data>
+  <data name="NonPropertyAttemptedValueIsInvalidAccessor" xml:space="preserve">
+    <value>Il valore '{0}' non è valido</value>
+  </data>
+  <data name="NonPropertyUnknownValueIsInvalidAccessor" xml:space="preserve">
+    <value>Il valore fornito non è valido</value>
+  </data>
+  <data name="NonPropertyValueMustBeANumberAccessor" xml:space="preserve">
+    <value>Il campo deve essere un numero</value>
+  </data>
+  <data name="NoResults" xml:space="preserve">
+    <value>Nessun risultato per {0}</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="NotesDescription" xml:space="preserve">
+    <value>Le note sono invisibili per i visitatori</value>
+  </data>
+  <data name="NrOfCVHits" xml:space="preserve">
+    <value>Chiamate myVitae (ultimi 30 giorni)</value>
+  </data>
+  <data name="NrOfLogins" xml:space="preserve">
+    <value>Login (ultimi 30 giorni)</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Only" xml:space="preserve">
+    <value>Solo</value>
+  </data>
+  <data name="OnlyPdf" xml:space="preserve">
+    <value>Solo i file PDF possono essere caricati</value>
+  </data>
+  <data name="OnRequest" xml:space="preserve">
+    <value>Su richiesta</value>
+  </data>
+  <data name="OptionalInformation" xml:space="preserve">
+    <value>Informazioni facoltative</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Panoramica</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>La tua password è stata modificata.</value>
+  </data>
+  <data name="PasswordCheckError" xml:space="preserve">
+    <value>Scegliere una password conforme alle linee guida sulle password</value>
+  </data>
+  <data name="PasswordErrorLength" xml:space="preserve">
+    <value>La {0} deve essere lunga almeno {2} e al massimo {1} caratteri.</value>
+  </data>
+  <data name="PasswordForgot" xml:space="preserve">
+    <value>Hai dimenticato la tua password?</value>
+  </data>
+  <data name="PasswordMismatch" xml:space="preserve">
+    <value>Password errata.</value>
+  </data>
+  <data name="PasswordProtection" xml:space="preserve">
+    <value>Protezione della password</value>
+  </data>
+  <data name="PasswordProtectionDesc" xml:space="preserve">
+    <value>Questo curriculum è protetto da password. Inserisci la password per aprire la visualizzazione.</value>
+  </data>
+  <data name="PasswordRequiresDigit" xml:space="preserve">
+    <value>Le password devono avere almeno una cifra (0-9).</value>
+  </data>
+  <data name="PasswordRequiresLower" xml:space="preserve">
+    <value>Le password devono avere almeno una lettera minuscola (a-z).</value>
+  </data>
+  <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
+    <value>Le password devono contenere almeno un carattere speciale ($!??....)</value>
+  </data>
+  <data name="PasswordRequiresUpper" xml:space="preserve">
+    <value>Le password devono avere almeno una lettera maiuscola (A-Z)</value>
+  </data>
+  <data name="PasswordRules" xml:space="preserve">
+    <value>Scegliete una password composta da lettere maiuscole e minuscole, numeri e almeno un carattere speciale. Anche la password deve essere composta da almeno 6 caratteri.</value>
+  </data>
+  <data name="PasswordTooShort" xml:space="preserve">
+    <value>Le password devono essere composte da almeno {0} caratteri.</value>
+  </data>
+  <data name="PersonalData" xml:space="preserve">
+    <value>Dati personali</value>
+  </data>
+  <data name="PersonalDetails" xml:space="preserve">
+    <value>Dati personali</value>
+  </data>
+  <data name="PersonalDetailsDescription" xml:space="preserve">
+    <value>Inserisci qui i tuoi dati personali.</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Numero di telefono</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Foto</value>
+  </data>
+  <data name="PleaseCheckEmail" xml:space="preserve">
+    <value>Controlla la tua e-mail.</value>
+  </data>
+  <data name="PleaseClickHereToConfirm" xml:space="preserve">
+    <value>Si prega di confermare il tuo account di posta elettronica con</value>
+  </data>
+  <data name="PleaseConfirm" xml:space="preserve">
+    <value>Si prega di confermare</value>
+  </data>
+  <data name="PleaseUpload" xml:space="preserve">
+    <value>Si prega di caricare i file fino a</value>
+  </data>
+  <data name="Prefix" xml:space="preserve">
+    <value>Prefisso</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Anteprima</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Informativa sulla privacy</value>
+  </data>
+  <data name="ProfileOverview" xml:space="preserve">
+    <value>Panoramica del profilo</value>
+  </data>
+  <data name="ProperValue" xml:space="preserve">
+    <value>Si prega di inserire un valore corretto</value>
+  </data>
+  <data name="Publication" xml:space="preserve">
+    <value>Pubblicazione</value>
+  </data>
+  <data name="PublicationDescription" xml:space="preserve">
+    <value>Gestisci qui la pubblicazione del tuo CV.</value>
+  </data>
+  <data name="PublicationIdentifier" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Publications" xml:space="preserve">
+    <value>Pubblicazioni</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Pubblicare</value>
+  </data>
+  <data name="QandA" xml:space="preserve">
+    <value>Domande e risposte</value>
+  </data>
+  <data name="QandA_A0" xml:space="preserve">
+    <value>myVitae permette a chi cerca lavoro di inserire il proprio curriculum online. In questo modo, le persone devono solo preoccuparsi del contenuto e non più del design.</value>
+  </data>
+  <data name="QandA_A1" xml:space="preserve">
+    <value>Il curriculum creato può essere inviato tramite link o codice QR generato.</value>
+  </data>
+  <data name="QandA_A2" xml:space="preserve">
+    <value>La pubblicazione di un curriculum vitae avviene sotto un unico link casuale. Questo link può essere ulteriormente protetto con una password e un captcha.</value>
+  </data>
+  <data name="QandA_A3" xml:space="preserve">
+    <value>myVitae può essere utilizzato senza costi aggiuntivi.</value>
+  </data>
+  <data name="QandA_A4" xml:space="preserve">
+    <value>Tutti i dati sono memorizzati in una banca dati protetta da password che si trova in Svizzera.</value>
+  </data>
+  <data name="QandA_A5" xml:space="preserve">
+    <value>Per aprire un conto presso myVitae è sufficiente un indirizzo e-mail.</value>
+  </data>
+  <data name="QandA_Q0" xml:space="preserve">
+    <value>Che cos'è myVitae?</value>
+  </data>
+  <data name="QandA_Q1" xml:space="preserve">
+    <value>Come si può condividere il proprio curriculum?</value>
+  </data>
+  <data name="QandA_Q2" xml:space="preserve">
+    <value>Come potete proteggere il vostro curriculum da persone non autorizzate?</value>
+  </data>
+  <data name="QandA_Q3" xml:space="preserve">
+    <value>myVitae è a pagamento?</value>
+  </data>
+  <data name="QandA_Q4" xml:space="preserve">
+    <value>Come e dove vengono protetti i dati?</value>
+  </data>
+  <data name="QandA_Q5" xml:space="preserve">
+    <value>Cosa è necessario per la registrazione?</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Conoscenza</value>
+  </data>
+  <data name="Reference" xml:space="preserve">
+    <value>Riferimento</value>
+  </data>
+  <data name="References" xml:space="preserve">
+    <value>Riferimenti</value>
+  </data>
+  <data name="ReferencesDescription" xml:space="preserve">
+    <value>Elencate tutte le referenze che vorreste condividere con il vostro futuro datore di lavoro. Potete anche scegliere di nasconderle.</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Crea un conto</value>
+  </data>
+  <data name="RegisterANewUser" xml:space="preserve">
+    <value>Registrare un nuovo utente</value>
+  </data>
+  <data name="RegisterConfirmation" xml:space="preserve">
+    <value>Conferma del registro</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Ti ricordi di me?</value>
+  </data>
+  <data name="RememberMeDesc" xml:space="preserve">
+    <value>Resta connesso</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Rimuovi</value>
+  </data>
+  <data name="RemoveFileConfirmation" xml:space="preserve">
+    <value>Sei sicuro di voler rimuovere questo file</value>
+  </data>
+  <data name="RemovePicture" xml:space="preserve">
+    <value>Rimuovere questa immagine</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Richiesta</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Si prega di aggiungere un valore</value>
+  </data>
+  <data name="RequiredSelection" xml:space="preserve">
+    <value>Selezionare un valore</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reimposta la password</value>
+  </data>
+  <data name="ResetPasswordBy" xml:space="preserve">
+    <value>Si prega di reimpostare la password</value>
+  </data>
+  <data name="ResetPasswordConfirmation" xml:space="preserve">
+    <value>Reimpostare la conferma della password</value>
+  </data>
+  <data name="ResetPasswordText1" xml:space="preserve">
+    <value>La password è stata reimpostata. Per favore</value>
+  </data>
+  <data name="ResetPasswordText2" xml:space="preserve">
+    <value>clicca qui per effettuare il login.</value>
+  </data>
+  <data name="ResetYourPassword" xml:space="preserve">
+    <value>Reimposta la tua password</value>
+  </data>
+  <data name="Resumee" xml:space="preserve">
+    <value>Sommario</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="SavePublications" xml:space="preserve">
+    <value>Proteggi le tue pubblicazioni</value>
+  </data>
+  <data name="SavePublicationsDescription" xml:space="preserve">
+    <value>Il link della pubblicazione è inizialmente noto solo a voi e può essere protetto anche con una password. Inoltre, un Google Catcha può essere utilizzato per fornire una protezione aggiuntiva contro i bot. Per le applicazioni cieche è adatta anche la funzione di anonimizzazione, che nasconde alcune informazioni sensibili.</value>
+  </data>
+  <data name="SchoolName" xml:space="preserve">
+    <value>Istituzione educativa</value>
+  </data>
+  <data name="Secure" xml:space="preserve">
+    <value>Sicuro</value>
+  </data>
+  <data name="SecureDescription" xml:space="preserve">
+    <value>Assicurate inoltre il vostro myVitae con un captcha (blocco dei bot)</value>
+  </data>
+  <data name="SecurityCheck" xml:space="preserve">
+    <value>Controllo di sicurezza</value>
+  </data>
+  <data name="SecurityCheckDesc" xml:space="preserve">
+    <value>Prima di procedere con il curriculum, si prega di compilare il captcha qui sotto.</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Selezionare</value>
+  </data>
+  <data name="SendVerificationEmail" xml:space="preserve">
+    <value>Inviare e-mail di verifica</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="SettingsAccountHint" xml:space="preserve">
+    <value>Attenzione, questa azione non può essere annullata!</value>
+  </data>
+  <data name="SettingsDescription" xml:space="preserve">
+    <value>Qui potete selezionare le diverse lingue del vostro curriculum.</value>
+  </data>
+  <data name="SettingsLanguageHint" xml:space="preserve">
+    <value>Questa lingua può essere modificata solo se tutte le pubblicazioni di riferimento vengono cancellate.</value>
+  </data>
+  <data name="ShareLink" xml:space="preserve">
+    <value>Condividi questo link / codice QR con il tuo futuro datore di lavoro</value>
+  </data>
+  <data name="ShortIdentifier" xml:space="preserve">
+    <value>ID breve</value>
+  </data>
+  <data name="ShowYourStrengths" xml:space="preserve">
+    <value>Mostra i tuoi punti di forza</value>
+  </data>
+  <data name="ShowYourStrengthsDescription" xml:space="preserve">
+    <value>Con il tuo sito web personale di CV puoi tenere aggiornati i tuoi dati e candidarti per il prossimo lavoro con pochi click. Puoi concentrarti sull'essenziale fin dall'inizio e presentarti nella migliore luce possibile. Così nulla ostacola il vostro nuovo lavoro dei sogni. Vi auguriamo un grande successo!</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Accedi</value>
+  </data>
+  <data name="Single" xml:space="preserve">
+    <value>Singola</value>
+  </data>
+  <data name="SingleDay" xml:space="preserve">
+    <value>Singolo giorno</value>
+  </data>
+  <data name="Skill" xml:space="preserve">
+    <value>Abilità</value>
+  </data>
+  <data name="Skills" xml:space="preserve">
+    <value>Competenze</value>
+  </data>
+  <data name="SkillsDescription" xml:space="preserve">
+    <value>Elenca tutte le competenze sociali che hai acquisito nel corso della tua carriera.</value>
+  </data>
+  <data name="Skillset" xml:space="preserve">
+    <value>Competenze</value>
+  </data>
+  <data name="Slogan" xml:space="preserve">
+    <value>Slogan</value>
+  </data>
+  <data name="SocialLink" xml:space="preserve">
+    <value>Collegamento sociale</value>
+  </data>
+  <data name="SocialLinks" xml:space="preserve">
+    <value>Collegamenti sociali</value>
+  </data>
+  <data name="SocialLinksDescription" xml:space="preserve">
+    <value>Elenca tutti i collegamenti sociali a siti web esterni.</value>
+  </data>
+  <data name="SocialPlatform" xml:space="preserve">
+    <value>Piattaforma sociale</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Iniziare</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Stato</value>
+  </data>
+  <data name="Status403" xml:space="preserve">
+    <value>L'accesso a questa pagina è stato negato.</value>
+  </data>
+  <data name="Status404" xml:space="preserve">
+    <value>La pagina richiesta non è stata trovata</value>
+  </data>
+  <data name="Status500" xml:space="preserve">
+    <value>Si è verificato un errore interno.</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Via</value>
+  </data>
+  <data name="StreetNo" xml:space="preserve">
+    <value>Numero</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Oggetto dell'istruzione</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Invia a</value>
+  </data>
+  <data name="SumOfCVHits" xml:space="preserve">
+    <value>Somma delle ultime chiamate di myVitae (ultimi 50)</value>
+  </data>
+  <data name="SupplyCode" xml:space="preserve">
+    <value>Per il reset della password deve essere fornito un codice.</value>
+  </data>
+  <data name="Switzerland" xml:space="preserve">
+    <value>Svizzera</value>
+  </data>
+  <data name="TermsAndConditions" xml:space="preserve">
+    <value>Termini e condizioni</value>
+  </data>
+  <data name="TermsAndConditionsDesc" xml:space="preserve">
+    <value>Accetto i termini e le condizioni</value>
+  </data>
+  <data name="TermsAndConditionsError" xml:space="preserve">
+    <value>Devi accettare i termini e le condizioni</value>
+  </data>
+  <data name="TheLogout" xml:space="preserve">
+    <value>Esci</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titolo di studio</value>
+  </data>
+  <data name="UnableToLoadUser" xml:space="preserve">
+    <value>Impossibile caricare l'utente con la posta elettronica</value>
+  </data>
+  <data name="UnableToLoadUserID" xml:space="preserve">
+    <value>Impossibile caricare l'utente con ID </value>
+  </data>
+  <data name="UnknownValueIsInvalidAccessor" xml:space="preserve">
+    <value>Il valore fornito non è valido per {0}</value>
+  </data>
+  <data name="UnsafedChanges" xml:space="preserve">
+    <value>Hai dei cambiamenti non salvati. Volete continuare?</value>
+  </data>
+  <data name="UntilNow" xml:space="preserve">
+    <value>Fino ad ora</value>
+  </data>
+  <data name="Up" xml:space="preserve">
+    <value>Su</value>
+  </data>
+  <data name="URL" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="UserAlreadyHasPassword" xml:space="preserve">
+    <value>L'utente ha già una password impostata.</value>
+  </data>
+  <data name="UserAlreadyInRole" xml:space="preserve">
+    <value>Utente già nel ruolo '{0}'.</value>
+  </data>
+  <data name="UserCreatedWithPassword" xml:space="preserve">
+    <value>L'utente ha creato un nuovo account con password.</value>
+  </data>
+  <data name="UserLockoutNotEnabled" xml:space="preserve">
+    <value>Il blocco non è abilitato per questo utente.</value>
+  </data>
+  <data name="UserLoggedIn" xml:space="preserve">
+    <value>L'utente ha effettuato l'accesso.</value>
+  </data>
+  <data name="UserNotInRole" xml:space="preserve">
+    <value>L'utente non è nel ruolo '{0}'.</value>
+  </data>
+  <data name="ValueIsInvalidAccessor" xml:space="preserve">
+    <value>Il valore '{0}' non è valido</value>
+  </data>
+  <data name="ValueMustBeANumberAccessor" xml:space="preserve">
+    <value>Il campo {0} deve essere un numero</value>
+  </data>
+  <data name="ValueMustNotBeNullAccessor" xml:space="preserve">
+    <value>Il valore '{0}' non è valido</value>
+  </data>
+  <data name="VariousMaritalStatus" xml:space="preserve">
+    <value>Varie</value>
+  </data>
+  <data name="VerificationEmailSent" xml:space="preserve">
+    <value>Email di verifica inviata.</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Attenzione</value>
+  </data>
+  <data name="WelcomeToVitae" xml:space="preserve">
+    <value>Benvenuti a myVitae</value>
+  </data>
+  <data name="WhyMyVitae" xml:space="preserve">
+    <value>Perché myVitae?</value>
+  </data>
+  <data name="WhyMyVitaeReason" xml:space="preserve">
+    <value>Creare un buon CV e mantenerlo aggiornato è un processo che richiede molto tempo. Inoltre, è possibile raggiungere rapidamente i propri limiti durante la progettazione. Tuttavia, un candidato deve mettere tutto sulla bilancia, perché "non c'è una seconda possibilità per una prima impressione" (Mark Twain). È qui che myVitae interviene e si concentra su un design chiaro e conciso. Con facilità si può creare il proprio sito web di curriculum personale - e soprattutto è gratuito!</value>
+  </data>
+  <data name="WhyMyVitaeTest" xml:space="preserve">
+    <value>Date un'occhiata - ne sarete entusiasti!</value>
+  </data>
+  <data name="Widowed" xml:space="preserve">
+    <value>Vedova</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Anno</value>
+  </data>
+  <data name="YearOld" xml:space="preserve">
+    <value>Anno</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>Anni</value>
+  </data>
+  <data name="YearsOld" xml:space="preserve">
+    <value>anni</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Sì</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Codice postale</value>
+  </data>
+</root>

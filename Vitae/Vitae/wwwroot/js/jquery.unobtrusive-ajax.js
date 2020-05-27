@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Unobtrusive Ajax support library for jQuery
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
@@ -16,6 +17,7 @@
 
 /*jslint white: true, browser: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, newcap: true, immed: true, strict: false */
 /*global window: false, jQuery: false */
+
 
 $(document).ready(function () {
     var data_click = "unobtrusiveAjaxClick",
@@ -53,8 +55,6 @@ $(document).ready(function () {
 
         mode = (element.getAttribute("data-ajax-mode") || "").toUpperCase();
         $(element.getAttribute("data-ajax-update")).each(function (i, update) {
-            var top;
-
             switch (mode) {
                 case "BEFORE":
                     $(update).prepend(data);
@@ -70,10 +70,15 @@ $(document).ready(function () {
                     break;
             }
         });
+
+        // Remove data
+        $('form').removeData(data_click);
+        $('form').removeData(data_target);
     }
 
     function asyncRequest(element, options) {
-        var confirm, loading, method, duration;
+        var confirm, loading, method, duration, dirtyignore;
+        dirtyignore = element.getAttribute("data-dirty-ignore");
         confirm = element.getAttribute("data-ajax-confirm");
         if (confirm && !window.confirm(confirm)) {
             return;
@@ -91,18 +96,19 @@ $(document).ready(function () {
                 asyncOnBeforeSend(xhr, method);
                 result = getFunction(element.getAttribute("data-ajax-begin"), ["xhr"]).apply(element, arguments);
                 if (result !== false) {
-                    loading.delay(200).show(0);
+                    loading.removeClass('d-none');
                 }
                 return result;
             },
             complete: function () {
-                loading.hide(duration);
+                loading.addClass('d-none');
                 getFunction(element.getAttribute("data-ajax-complete"), ["xhr", "status"]).apply(element, arguments);
             },
             success: function (data, status, xhr) {
                 asyncOnSuccess(element, data, xhr.getResponseHeader("Content-Type") || "text/html");
                 getFunction(element.getAttribute("data-ajax-success"), ["data", "status", "xhr"]).apply(element, arguments);
-                loading.hide();
+                ajaxCompleted(dirtyignore); // QVS
+                loading.addClass('d-none');
             },
             error: function () {
                 getFunction(element.getAttribute("data-ajax-failure"), ["xhr", "status", "error"]).apply(element, arguments);
@@ -177,17 +183,16 @@ $(document).ready(function () {
     //new code from QVS
     $(document).on("click", "button[data-ajax=true], input[data-ajax=true]", function (evt) {
         var name = evt.currentTarget.name,
-            target = $(evt.target),
+            target = $(evt.currentTarget),
             form = $(target.parents("form")[0]);
 
+        $(form).attr('data-ajax-update', $(this).attr('data-ajax-update'));
         $(form).attr('data-ajax', 'true');
+        $(form).attr('data-dirty-ignore', $(this).hasClass('dirty-ignore'));
+        $(form).attr('data-ajax-loading', $(this).attr('data-ajax-loading'));
+        $(form).attr('data-ajax-loading-duration', $(this).attr('data-ajax-loading-duration'));
         form.data(data_click, name ? [{ name: name, value: evt.currentTarget.value }] : []);
         form.data(data_target, target);
-
-        setTimeout(function () {
-            form.removeData(data_click);
-            form.removeData(data_target);
-        }, 0);
     });
     //end new code
 

@@ -1,0 +1,17 @@
+﻿@model Tuple<BasePageModel, string, string, string>
+
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-9">
+                <h1><i class="@Model.Item2 mr-3"></i>@Model.Item3</h1>
+                <p>@Model.Item4</p>
+            </div>
+            <div class="col-md-3">
+                <div id="languageSelect" class="float-right">
+                    <label class="control-label ml-2" asp-for="@Model.Item1.CurriculumLanguageCode">@SharedResource.CVLanguage</label>
+                    <select asp-for="@Model.Item1.CurriculumLanguageCode" style="width: 140px" class="form-control dirty-ignore cancel" onchange="setHiddenLanguageSelect(); $('#btnLanguageChange').trigger('click')" asp-items="@(new SelectList(Model.Item1.CurriculumLanguages, "LanguageCode", "Name"))"></select>
+                    <input id="@nameof(Model.Item1.CurriculumLanguageCode)" type="hidden" name="@nameof(Model.Item1.CurriculumLanguageCode)" value="@Model.Item1.CurriculumLanguageCode" />
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,6 +1,27 @@
+@using System.Text
+
 @using Microsoft.AspNetCore.Identity
-@using CVitae
+
+@using Vitae
+@using Vitae.Code
+
 @using Persistency.Data
+@using Persistency.Repository
+
+@using Library.Constants
 @using Library.Extensions
-@namespace CVitae.Pages
+@using Library.Resources
+@using Library.Helper
+
+@using Model.Enumerations
+@using Model.Poco
+@using Model.Helper
+
+@using Microsoft.Extensions.Configuration
+
+@using Marital = Model.Enumerations.MaritalStatus
+
+@namespace Vitae.Pages
+
+@addTagHelper *, Vitae
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

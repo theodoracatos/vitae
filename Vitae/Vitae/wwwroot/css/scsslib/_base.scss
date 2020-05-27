@@ -1,0 +1,225 @@
+﻿@import '_fonts.scss';
+@import '_colors.scss';
+@import '../../lib/bootstrap/scss/bootstrap.scss';
+
+/* change all .btn to .btn-sm size on xs */
+@include media-breakpoint-between(xs,sm) {
+    .btn:not(.notransition) {
+        @include button-size($input-btn-padding-y-sm, $input-btn-padding-x-sm, $font-size-sm, $line-height-sm, $btn-border-radius-sm);
+    }
+}
+
+hr.thin {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.05));
+    margin-bottom: 24px;
+}
+
+.preline {
+    white-space: pre-line;
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar, .sb-sidenav-menu::-webkit-scrollbar {
+    width: 0.75em;
+}
+
+body::-webkit-scrollbar-track, .sb-sidenav-menu::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #f0f0f0;
+}
+
+body::-webkit-scrollbar-thumb, .sb-sidenav-menu::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
+
+/* Rating */
+.rating-symbol {
+    cursor: help;
+}
+
+.rating-symbol {
+    color: $main-font-light;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.rating-symbol-foreground {
+    color: $qvs-gold-color;
+}
+
+/* Tooltip */
+.tooltip > .tooltip-inner {
+    color: #fff !important;
+    background-color: #212529 !important;
+}
+
+/* Tagsinput */
+.bootstrap-tagsinput {
+    min-height: 38px;
+}
+
+.tagsreadonly .bootstrap-tagsinput {
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.tagsreadonly .badge.badge-info {
+    margin-left: 0px !important;
+    margin: 0em 0.5em 0.3em 0em;
+    background-color: $qvs-gold-color;
+    border-color: $qvs-gold-color;
+    padding: 4px;
+}
+
+.tagsreadonly .bootstrap-tagsinput input {
+    display: none;
+}
+
+.tagsreadonly .bootstrap-tagsinput span [data-role="remove"] {
+    display: none !important;
+}
+
+.badge.badge-info {
+    margin-left: 0.75em;
+    font-weight: 400;
+    color: #fff;
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+}
+
+.bootstrap-tagsinput input {
+    margin-top: 2px;
+    margin-left: 0.5em;
+    color: #495057 !important;
+}
+
+.bootstrap-tagsinput .badge {
+    margin-top: 0px;
+    padding: 3px 0px 3px 5px;
+}
+
+.bootstrap-tagsinput span[data-role="remove"]:after {
+    background-color: transparent !important;
+}
+
+.bg-snowwhite {
+    background-color: #f8f8f8;
+}
+
+.bg-gold{
+    background-color: $qvs-gold-color;
+    color: #ffffff;
+}
+
+.bg-gold:hover {
+    background-color: $qvs-darkgold-color;
+    color: #ffffff;
+}
+
+.logo {
+    margin-left: 0.75em;
+    height: 34px;
+}
+
+.logo-small {
+    margin-left: 0.75em;
+    height: 30px;
+}
+
+.cvbutton {
+    max-width: 200px;
+    word-break: break-word;
+}
+
+.speech-bubble {
+    position: relative;
+    background: #ffffff;
+    border-radius: .4em;
+    padding: 1.25em;
+    width: auto;
+    max-width: 400px;
+    box-shadow: 0 2px 18px 1px rgba(49,53,72,.1);
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 41px solid transparent;
+    border-bottom-color: #ffffff;
+    border-top: 0;
+    border-left: 0;
+    margin-left: -20.5px;
+    margin-top: -25px;
+}
+
+.greyimage {
+    /*-webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%);*/
+}
+
+h1.headingTitle{
+    line-height: 1em;
+}
+
+.headingTitle {
+    font-size: calc(35px + 20 * ((100vw - 320px) / 680));
+}
+
+span.flag-icon {
+    line-height: 0.8em;
+}
+
+.greyborder {
+    border: 0.5rem solid rgba(0, 0, 0, 0.2) !important;
+}
+
+h2{
+    font-size: calc(35px + 20 * ((100vw - 320px) / 800));
+}
+
+.fullcard {
+    padding: 90px 46px;
+}
+
+
+.form-label-group > input,
+.form-label-group > label {
+    padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+.form-label-group > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin-bottom: 0; /* Override default `<label>` margin */
+    line-height: 1.5;
+    color: #495057;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: all .1s ease-in-out;
+}
+
+.notransition {
+    -webkit-transition-property: none;
+    -moz-transition-property: none;
+    -o-transition-property: none;
+    transition-property: none;
+    -webkit-transform: none;
+    transform: none;
+}

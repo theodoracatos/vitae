@@ -1,0 +1,16 @@
+﻿    <div class="col-xl-6 text-left my-auto">
+        <div class="ml-xl-5 mr-xl-5 ml-md-4 mr-md-4 ml-sm-3 mr-sm-3 ml-xs-2 mr-xs-2 ml-1 mr-1">
+            <div id="adContainer" class="bg-white-opaque p-4 p-sm-4 p-md-5 ml-xl-5 mr-xl-5 rounded shadow">
+                <h1>@(CodeHelper.GetStaticPropValue(typeof(SharedResource), $"AdTextA{new Random().Next() % 3}"))</h1>
+                <h2 class="mb-5">@SharedResource.AdTextB0</h2>
+                <div class="form-group mt-5">
+                    <a href="/Identity/Account/Register" class="btn btn-lg btn-success notransition">@SharedResource.Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="imgAdvertCol" class="col-xl-6 d-none d-xl-block text-center my-auto">
+        <div class="">
+            <img src="~/img/advert/preview.png" alt="@Globals.APPLICATION_NAME" class="fit-image" />
+        </div>
+    </div>

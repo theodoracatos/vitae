@@ -1,0 +1,10 @@
+﻿@page
+@model Vitae.Areas.Manage.Pages.Settings.IndexModel
+
+@{
+    ViewData["Title"] = @SharedResource.Settings;
+}
+
+<form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
+    <partial name="@IndexModel.PAGE_SETTINGS" model="Model" />
+</form>

@@ -1,0 +1,35 @@
+section.resume-section {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+    background-color: #f0f3f8;
+
+    .resume-item {
+        .resume-content {
+        }
+
+        .resume-date {
+            min-width: 0;
+        }
+    }
+}
+
+h3{
+    font-size: 2rem !important;
+}
+
+@media (min-width: 768px) {
+  section.resume-section {
+    min-height: 100vh;
+    .resume-item {
+      .resume-date {
+        min-width: 18rem;
+      }
+    }
+  }
+}
+@media (min-width: 992px) {
+  section.resume-section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}

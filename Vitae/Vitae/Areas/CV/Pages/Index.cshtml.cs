@@ -1,160 +1,244 @@
-using Library.ViewModels;
+using Library.Constants;
+using Library.Helper;
+using Library.Resources;
 
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
+
+using Model.Enumerations;
+using Model.ViewModels;
 
 using Persistency.Data;
-
-using QRCoder;
+using Persistency.Repository;
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
-namespace CVitae.Areas.CV.Pages
+using Vitae.Code.PageModels;
+
+namespace Vitae.Areas.CV.Pages
 {
     [Area("CV")]
-    public class IndexModel : PageModel
+    public class IndexModel : BasePageModel
     {
-        #region Variables
+        [BindProperty]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Password), Prompt = nameof(SharedResource.Password))]
+        public string Password { get; set; }
 
-        private readonly ApplicationContext appContext;
+        [BindProperty]
+        public CheckVM CheckVM { get; set; }
 
-        #endregion
+        public PersonalDetailVM PersonalDetail { get; set; } = new PersonalDetailVM();
 
-        public PersonVM PersonVM { get; set; } = new PersonVM();
+        public IList<AboutVM> Abouts { get; set; } = new List<AboutVM>();
+        public IList<AwardVM> Awards { get; set; } = new List<AwardVM>();
+        public IList<EducationVM> Educations { get; set; } = new List<EducationVM>();
+        public IList<ExperienceVM> Experiences { get; set; } = new List<ExperienceVM>();
+        public IList<CourseVM> Courses { get; set; } = new List<CourseVM>();
+        public IList<AbroadVM> Abroads { get; set; } = new List<AbroadVM>();
+        public IList<InterestVM> Interests { get; set; } = new List<InterestVM>();
+        public IList<LanguageSkillVM> LanguageSkills { get; set; } = new List<LanguageSkillVM>();
+        public IList<SkillVM> Skills { get; set; } = new List<SkillVM>();
+        public IList<SocialLinkVM> SocialLinks { get; set; } = new List<SocialLinkVM>();
+        public IList<CertificateVM> Certificates { get; set; } = new List<CertificateVM>();
+        public IList<ReferenceVM> References { get; set; } = new List<ReferenceVM>();
 
-        public Guid Guid { get; set; }
-        public string QRTag { get; set; }
+        public IEnumerable<LanguageVM> Languages { get; set; }
+        public IEnumerable<CountryVM> Countries { get; set; }
+        public IEnumerable<MaritalStatusVM> MaritalStatuses { get; set; }
+        public IEnumerable<IndustryVM> Industries { get; set; }
+        public IEnumerable<HierarchyLevelVM> HierarchyLevels { get; set; }
 
-        public IndexModel(ApplicationContext appContext)
+        public IndexModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+    : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
+
+        #region SYNC
+
+        public async Task<IActionResult> OnGetAsync(Guid? id, string culture)
         {
-            this.appContext = appContext;
+            CheckVM = LoadCheckModel(id, culture);
+
+            if (CheckVM.HasValidCurriculumID) // Valid
+            {
+                if(!CheckVM.Challenge)
+                {
+                    await LoadPageAsync();
+                }
+
+                return Page();
+            }
+            else if(CheckVM.Challenge) // Bot?
+            {
+                return Page();
+            }
+            else // No parameter
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
         }
 
-        public IActionResult OnGet(Guid id)
+        public async Task<IActionResult> OnPostAsync(Guid id, string culture)
         {
-            if(id == Guid.Empty || !appContext.Curriculums.Any(c => c.Identifier == id))
+            CheckVM = LoadCheckModel(id, culture);
+            var isCaptchaOk = CheckVM.MustCheckCaptcha ? await CheckCaptcha() : true;
+            var isPasswordEntered = CheckVM.MustCheckPassword ? ModelState.IsValid : true;
+
+            if (isCaptchaOk && isPasswordEntered)
             {
-                return NotFound();
+                if (CheckVM.HasValidCurriculumID)
+                {
+                    if (!CheckVM.MustCheckPassword || AesHandler.Decrypt(CheckVM.Secret, CheckVM.CurriculumID.ToString()) == Password)
+                    {
+                        CheckVM.Challenge = false;
+                        return await LoadPageAsync();
+                    }
+                    else
+                    {
+                        // Wrong password
+                        return StatusCode(StatusCodes.Status403Forbidden);
+                    }
+                }
+                else
+                {
+                    // Someone modified the id or a bot is bruteforcing
+                    return StatusCode(StatusCodes.Status404NotFound);
+                }
             }
             else
             {
-                FillValues(id);
-
-                Guid = id;
-                QRTag = CreateQRCode(id);
-
+                // Retry
                 return Page();
             }
         }
 
-        private void FillValues(Guid id)
+        public IActionResult OnGetOpenFile(Guid identifier)
         {
-            var curriculum = appContext.Curriculums
-                    .Include(c => c.Person)
-                    .Include(c => c.Person.About)
-                    .Include(c => c.Person.SocialLinks)
-                    .Include(c => c.Person.Experiences)
-                    .Include(c => c.Person.Educations)
-                    .Include(c => c.Person.LanguageSkills)
-                    .Single(c => c.Identifier == id);
+            var vfile = repository.GetFile(identifier);
 
-            // Set values
-            PersonVM.Firstname = curriculum.Person.Firstname;
-            PersonVM.Lastname = curriculum.Person.Lastname;
-            PersonVM.Street = curriculum.Person.Street;
-            PersonVM.StreetNo = curriculum.Person.StreetNo;
-            PersonVM.City = curriculum.Person.City;
-            PersonVM.ZipCode = curriculum.Person.ZipCode;
-            PersonVM.Email = curriculum.Person.Email;
-            PersonVM.MobileNumber = curriculum.Person.MobileNumber;
-            PersonVM.Slogan = curriculum.Person.About.Slogan;
-            PersonVM.Photo = curriculum.Person.About.Photo;
-
-            // Social links
-            PersonVM.SocialLinks = new List<SocialLinkVM>();
-            foreach (var socialLink in curriculum.Person.SocialLinks.OrderByDescending(s => s.SocialLinkID))
+            if(vfile != null)
             {
-                PersonVM.SocialLinks.Add(new SocialLinkVM()
-                { 
-                    SocialPlatform = socialLink.SocialPlatform,
-                    Hyperlink = socialLink.Hyperlink
-                });
+                return File(vfile.Content, vfile.MimeType, vfile.FileName);
             }
-
-            // Experiences
-            PersonVM.Experiences = new List<ExperienceVM>();
-            foreach (var experience in curriculum.Person.Experiences.OrderByDescending(e => e.Start))
+            else
             {
-                PersonVM.Experiences.Add(new ExperienceVM()
-                {
-                    JobTitle = experience.JobTitle,
-                    CompanyName = experience.CompanyName,
-                    CompanyLink = experience.CompanyLink,
-                    City = experience.City,
-                    Resumee = experience.Resumee,
-                    Start = experience.Start,
-                    End = experience.End
-                });
-            }
-
-            // Education
-            PersonVM.Educations = new List<EducationVM>();
-            foreach (var education in curriculum.Person.Educations.OrderByDescending(e => e.Start))
-            {
-                PersonVM.Educations.Add(new EducationVM()
-                {
-                    SchoolName = education.SchoolName,
-                    SchoolLink = education.SchoolName,
-                    Subject = education.Subject,
-                    City = education.City,
-                    Title = education.Title,
-                    Resumee = education.Resumee,
-                    Start = education.Start,
-                    End = education.End,
-                    Grade = education.Grade
-                });
-            }
-
-            // Languages
-            PersonVM.LanguageSkills = new List<LanguageSkillVM>();
-            foreach (var languageSkill in curriculum.Person.LanguageSkills)
-            {
-                PersonVM.LanguageSkills.Add(new LanguageSkillVM()
-                {
-                    Language = new LanguageVM()
-                    {
-                        Name = languageSkill.Language.Name,
-                        IsoCode = languageSkill.Language.IsoCode
-                    },
-                     Rate = languageSkill.Rate
-                });
+                throw new FileNotFoundException(identifier.ToString());
             }
         }
 
-        private string CreateQRCode(Guid id)
+        #endregion
+
+        #region Helper
+
+        private async Task<PageResult> LoadPageAsync()
         {
-            using (var qrGenerator = new QRCodeGenerator())
+            var curriculum = await repository.GetCurriculumAsync(CheckVM.CurriculumID.Value);
+
+            List<Task> tasks = new List<Task>
             {
-                var qrCodeData = qrGenerator.CreateQrCode($"https//localhost/" + id.ToString(), QRCodeGenerator.ECCLevel.Q);
-                var qrCode = new QRCode(qrCodeData);
-                var bitmap = qrCode.GetGraphic(3);
-                var imageBytes = BitmapToBytes(bitmap);
-                return Convert.ToBase64String(imageBytes);
+                Task.Factory.StartNew(() => PersonalDetail = repository.GetPersonalDetail(curriculum)),
+                Task.Factory.StartNew(() => Abouts = repository.GetAbouts(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => SocialLinks = repository.GetSocialLinks(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Educations = repository.GetEducations(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Experiences = repository.GetExperiences(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Courses = repository.GetCourses(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Abroads = repository.GetAbroads(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => LanguageSkills = repository.GetLanguageSkills(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Interests = repository.GetInterests(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Awards = repository.GetAwards(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Skills = repository.GetSkills(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => Certificates = repository.GetCertificates(curriculum, CheckVM.LanguageCode)),
+                Task.Factory.StartNew(() => References = repository.GetReferences(curriculum, CheckVM.LanguageCode))
+            };
+
+            Task.WaitAll(tasks.ToArray());
+
+            if (CheckVM.Anonymize)
+            {
+                Anonymize();
             }
+
+            // Log
+            if (!CheckVM.IsLoggedIn && !Globals.DEMO_PUBLICATIONIDS.Contains(CheckVM.PublicationID.Value.ToString()))
+            {
+                await repository.LogPublicationAsync(curriculum.CurriculumID, CheckVM.PublicationID.Value, LogArea.Access, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
+            }
+
+            FillSelectionViewModel();
+
+            return Page();
         }
 
-        private static Byte[] BitmapToBytes(Bitmap img)
+        private void Anonymize()
         {
-            using (MemoryStream stream = new MemoryStream())
-            {
-                img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-                return stream.ToArray();
-            }
+            PersonalDetail.Firstname = "---";
+            PersonalDetail.Lastname = "---";
+            PersonalDetail.Nationalities.Clear();
+            Abouts.ToList().ForEach(a => a.Photo = string.Empty);
         }
+
+        protected override void FillSelectionViewModel() 
+        {
+            Languages = repository.GetLanguages(requestCulture.RequestCulture.UICulture.Name);
+            Countries = repository.GetCountries(requestCulture.RequestCulture.UICulture.Name);
+            MaritalStatuses = repository.GetMaritalStatuses(requestCulture.RequestCulture.UICulture.Name);
+            CurriculumLanguages = repository.GetCurriculumLanguages(curriculumID, requestCulture.RequestCulture.UICulture.Name);
+            Industries = repository.GetIndustries(requestCulture.RequestCulture.UICulture.Name);
+            HierarchyLevels = repository.GetHierarchyLevels(requestCulture.RequestCulture.UICulture.Name);
+        }
+
+        private CheckVM LoadCheckModel(Guid? id, string lang)
+        {
+            var checkVM = new CheckVM()
+            {
+                IsLoggedIn = curriculumID != Guid.Empty
+            };
+
+            if (id.HasValue)
+            {
+                // External or internal?
+                var publication = vitaeContext.Publications.Include(p => p.Curriculum).Include(p => p.CurriculumLanguage).SingleOrDefault(p => p.PublicationIdentifier == id);
+
+                if(publication != null)
+                {
+                    // Found a publication
+                    checkVM.CurriculumID = publication.Curriculum.CurriculumID;
+                    checkVM.PublicationID = publication.PublicationIdentifier;
+                    checkVM.Secret = publication.Password;
+                    checkVM.Anonymize = publication.Anonymize;
+                    checkVM.LanguageCode = publication.CurriculumLanguage.LanguageCode;
+                    checkVM.MustCheckCaptcha = publication.Secure;
+                    checkVM.Challenge = checkVM.MustCheckCaptcha || checkVM.MustCheckPassword;
+                    checkVM.BackgroundColor = publication.Color;
+                }
+                else
+                {
+                    // Could be a bot, bruteforcing URL's
+                    checkVM.MustCheckCaptcha = true;
+                    checkVM.Challenge = true;
+                }
+            }
+            else if(curriculumID != Guid.Empty)
+            {
+                // Preview...
+                checkVM.CurriculumID = curriculumID;
+                checkVM.LanguageCode = lang;
+            }
+
+            return checkVM;
+        }
+
+        #endregion
     }
 }

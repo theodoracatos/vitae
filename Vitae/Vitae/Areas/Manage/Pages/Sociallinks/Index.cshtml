@@ -1,0 +1,10 @@
+﻿@page
+@model Vitae.Areas.Manage.Pages.Sociallinks.IndexModel
+
+@{
+    ViewData["Title"] = @SharedResource.SocialLinks;
+}
+
+<form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
+    <partial name="@IndexModel.PAGE_SOCIALLINKS" model="Model" />
+</form>

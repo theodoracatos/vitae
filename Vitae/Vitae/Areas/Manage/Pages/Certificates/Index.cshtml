@@ -1,0 +1,10 @@
+﻿@page
+@model Vitae.Areas.Manage.Pages.Certificates.IndexModel
+
+@{
+    ViewData["Title"] = @SharedResource.Certificates;
+}
+
+<form class="form-horizontal" method="post" data-ajax-method="post" enctype="multipart/form-data">
+    <partial name="@IndexModel.PAGE_CERTIFICATES" model="Model" />
+</form>

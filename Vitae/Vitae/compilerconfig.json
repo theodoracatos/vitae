@@ -4,7 +4,15 @@
     "inputFile": "wwwroot/css/site.scss"
   },
   {
-    "outputFile": "wwwroot/css/_colors.css",
-    "inputFile": "wwwroot/css/_colors.scss"
+    "outputFile": "wwwroot/css/resume.css",
+    "inputFile": "wwwroot/css/resume.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/landingpage.css",
+    "inputFile": "wwwroot/css/landingpage.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/sbadmin.css",
+    "inputFile": "wwwroot/css/sbadmin.scss"
   }
 ]

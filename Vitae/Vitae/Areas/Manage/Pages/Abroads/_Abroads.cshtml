@@ -1,0 +1,108 @@
+﻿@model Vitae.Areas.Manage.Pages.Abroads.IndexModel
+
+<div id="panel">
+    <div class="card">
+        <partial name="_CardHeader" model="@(new Tuple<BasePageModel, string, string, string>(Model, "fas fa-plane", SharedResource.Abroads, $"{SharedResource.AbroadsDescription} {SharedResource.ChronologicalDesc}"))" />
+
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label class="control-label" asp-for="@Model.Abroads"></label>
+                    <div>
+                        <button asp-page-handler="AddAbroad" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-success cancel font-weight-bold mr-2" disabled="@(Model.Abroads?.Count < Model.MaxAbroads ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                        <partial name="_CardCollapsebar" model="Model">
+                    </div>
+                </div>
+            </div>
+
+            @for (int i = 0; i < Model.Abroads.Count; i++)
+            {
+                <div class="card @(i < Model.Abroads.Count - 1 ? "mb-4" : "mb-2")">
+                    <div class="card-header card-header-small">
+                        <div class="float-left line-height-2">
+                            <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark mr-1">
+                                @(i + 1). @SharedResource.Abroad
+                                <input type="hidden" asp-for="@Model.Abroads[i].Collapsed" />
+                            </a>
+                        </div>
+
+                        <partial name="_CardButtonbar" model="new Tuple<int, int, IList<BaseVM>, string, string>(i, Model.MaxAbroads, Model.Abroads.Cast<BaseVM>().ToList(), SharedResource.Abroad, nameof(Abroad))" />
+
+                    </div>
+                    <div class="card-body collapse pb-0 @(Model.Abroads[i].Collapsed ? null : "show")" id="collapse-@i">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Abroads[i].CountryCode"></label>
+                                <select asp-for="@Model.Abroads[i].CountryCode" class="form-control selectpicker" asp-items="@(new SelectList(@Model.Countries, "CountryCode", "Name"))">
+                                    <option value="" selected="selected" disabled="disabled">-- @SharedResource.Select --</option>
+                                </select>
+                                <span asp-validation-for="@Model.Abroads[i].CountryCode" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Abroads[i].City"></label>
+                                <input class="form-control" type="text" asp-for="@Model.Abroads[i].City" />
+                                <span asp-validation-for="@Model.Abroads[i].City" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label class="control-label" asp-for="@Model.Abroads[i].Description"></label>
+                                <textarea rows="2" asp-for="@Model.Abroads[i].Description" class="form-control"></textarea>
+                                <span asp-validation-for="@Model.Abroads[i].Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Abroads[i].Start_Month"></label>
+                                <div class="input-group">
+                                    <select asp-for="@Model.Abroads[i].Start_Month" class="form-control" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+                                    <div class="input-group-append">
+                                        <select asp-for="@Model.Abroads[i].Start_Year" class="form-control" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Abroads[i].End_Month"></label>
+                                <div class="input-group">
+
+                                    @if (!@Model.Abroads[i].UntilNow)
+                                    {
+                                        <select asp-for="@Model.Abroads[i].End_Month" class="form-control" asp-items="@(new SelectList(@Model.Months, "MonthCode", "Name"))" onchange="$('#btnChangeDate').trigger('click');"></select>
+
+                                        <div class="input-group-append">
+                                            <select asp-for="@Model.Abroads[i].End_Year" class="form-control" asp-items="@(new SelectList(Enumerable.Range(Globals.YEAR_START, DateTime.Now.Year - Globals.YEAR_START + 6).Reverse().Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "Text", "Value"))"></select>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <input asp-for="@Model.Abroads[i].End_Month" class="ignoreValidation" type="hidden" />
+                                        <input asp-for="@Model.Abroads[i].End_Year" class="ignoreValidation" type="hidden" />
+                                    }
+                                <input type="hidden" asp-for="@Model.Abroads[i].Order" />
+                                    <div class="@(!@Model.Abroads[i].UntilNow ? "input-group-append" : " w-auto flex-fill")">
+                                        <div class="form-control">
+                                            <div class="pretty p-switch p-slim" onchange="$('#btnCheckUntilNow'+@i).trigger('click');">
+                                                <input type="checkbox" id="@(nameof(Abroads))_@(i)__@nameof(AbroadVM.UntilNow)" name="@(nameof(Abroads))[@i].@nameof(AbroadVM.UntilNow)" value="true" checked="@(Model.Abroads[i].UntilNow ? "checked" : null)" />
+                                                <div class="state">
+                                                    <label class="d-none d-sm-block cursor-pointer" asp-for="@Model.Abroads[i].UntilNow"></label><label class="d-sm-none"></label>
+                                                </div>
+                                            </div>
+                                            <button id="btnCheckUntilNow@(i)" asp-page-handler="ChangeUntilNow" data-ajax="true" data-ajax-update="#panel" class="btn btn-secondary cancel d-none"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div>
+                                        <span asp-validation-for="@Model.Abroads[i].End_Year" class="text-danger text-right mt-1 d-block"></span>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                @if (i < Model.Abroads.Count - 1)
+                {<hr />}
+            }
+
+        </div>
+        <partial name="_CardFooter" model="@Model" />
+    </div>
+</div>

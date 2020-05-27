@@ -1,10 +1,75 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = SharedResource.Homepage;
+    ViewBag.ShowSlideshow = true;
+    ViewBag.StartPage = true;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@{
+    var rqf = HttpContext.Features.Get<IRequestCultureFeature>();
+    var culture = rqf.RequestCulture.UICulture;
+    var languageCode = Enum.IsDefined(typeof(ApplicationLanguage), culture.TwoLetterISOLanguageName) ? culture.Name : ApplicationLanguage.en.ToString();
+}
+
+<!-- #region Main -->
+<div class="container-fluid h-100">
+    <div id="advertsment" class="row h-100">
+        <partial name="_Advertisment" />
+    </div>
 </div>
+<!-- #endregion -->
+
+@section Subframe
+{
+    <div class="container-fluid">
+        <div class="row p-xl-5 p-4 transparentLightGrey">
+            <div class="col-xl-12 text-center">
+                <h1>@SharedResource.MyVitaeSlogan</h1>
+                <p>
+                    @SharedResource.WhyMyVitaeReason
+                </p>
+                <p>
+                    <b>@SharedResource.WhyMyVitaeTest</b>
+                </p>
+                <p>
+                    <a href="@string.Format(Globals.TEST_URL, Publications.PublicationSet[languageCode], languageCode)" class="btn btn-secondary mb-1"><i class="fas fa-desktop fa-fw"></i>@SharedResource.Demo</a>
+                    <small class="d-block">@SharedResource.Password: <label class="font-weight-bold">Demo</label></small>
+                </p>
+            </div>
+        </div>
+
+        <div class="row p-xl-5 p-4 transparentLightWhite animation-element slide-left">
+            <div class="col-xl-12 text-center">
+                <h1>@SharedResource.KeepControl</h1>
+                <p>
+                    @SharedResource.DashboardOverview
+                </p>
+            </div>
+            <div class="col-xl-12">
+                <img src="~/img/advert/dashboard-@(languageCode).png" alt="Dashboard" class="fit-image-big pb-4" />
+            </div>
+        </div>
+
+        <div class="row p-xl-5 p-4 transparentLightGrey animation-element slide-left">
+            <div class="col-xl-12 text-center">
+                <h1>@SharedResource.SavePublications</h1>
+                <p>@SharedResource.SavePublicationsDescription</p>
+            </div>
+            <div class="col-xl-12">
+                <img src="~/img/advert/publications-@(languageCode).png" alt="Publications" class="fit-image-big pb-4" />
+            </div>
+        </div>
+
+        <div class="row p-xl-5 p-4 transparentLightWhite animation-element slide-left">
+            <div class="col-xl-12 text-center">
+                <h1>@SharedResource.ShowYourStrengths</h1>
+                <p>@SharedResource.ShowYourStrengthsDescription</p>
+            </div>
+            <div class="col-xl-12">
+                @*TODO*@
+                <img src="~/img/advert/curriculum-@(languageCode).png" alt="Curriculum" class="fit-image-big pb-4" />
+            </div>
+        </div>
+    </div>
+}

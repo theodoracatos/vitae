@@ -3,23 +3,15 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "font-awesome@5.11.2",
+      "library": "font-awesome@5.13.0",
       "destination": "wwwroot/lib/font-awesome/"
-    },
-    {
-      "library": "pretty-checkbox@3.0.0",
-      "destination": "wwwroot/lib/pretty-checkbox/"
     },
     {
       "library": "jquery-confirm@3.3.4",
       "destination": "wwwroot/lib/jquery-confirm/"
     },
     {
-      "library": "twitter-bootstrap@4.4.1",
-      "destination": "wwwroot/lib/twitter-bootstrap/"
-    },
-    {
-      "library": "jquery@3.4.1",
+      "library": "jquery@3.5.1",
       "destination": "wwwroot/lib/jquery/"
     },
     {
@@ -31,19 +23,55 @@
       "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
     },
     {
-      "provider": "unpkg",
-      "library": "@chenfengyuan/datepicker@1.0.9",
-      "destination": "wwwroot/lib/@chenfengyuan/datepicker/"
+      "library": "cropper@4.1.0",
+      "destination": "wwwroot/lib/cropper/"
     },
     {
-      "provider": "unpkg",
-      "library": "jquery-validation-bootstrap-tooltip@0.10.3",
-      "destination": "wwwroot/lib/jquery-validation-bootstrap-tooltip/"
+      "provider": "jsdelivr",
+      "library": "jquery.filer@1.3.0",
+      "destination": "wwwroot/lib/jquery.filer/"
+    },
+    {
+      "library": "Chart.js@2.9.3",
+      "destination": "wwwroot/lib/Chart.js/"
+    },
+    {
+      "library": "bootstrap-rating@1.5.0",
+      "destination": "wwwroot/lib/bootstrap-rating/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "bootstrap4-tagsinput@4.1.3",
+      "destination": "wwwroot/lib/bootstrap4-tagsinput/"
+    },
+    {
+      "library": "pretty-checkbox@3.0.3",
+      "destination": "wwwroot/lib/pretty-checkbox/"
+    },
+    {
+      "library": "flag-icon-css@3.4.6",
+      "destination": "wwwroot/lib/flag-icon-css/"
+    },
+    {
+      "library": "jquery.dirtyforms@2.0.0",
+      "destination": "wwwroot/lib/jquery.dirtyforms/"
+    },
+    {
+      "library": "autosize.js@4.0.2",
+      "destination": "wwwroot/lib/autosize.js/"
+    },
+    {
+      "library": "jquery-easing@1.4.1",
+      "destination": "wwwroot/lib/jquery-easing/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "bootstrap@4.5.0",
+      "destination": "wwwroot/lib/bootstrap/"
+    },
+    {
+      "library": "bootstrap-colorpicker@3.2.0",
+      "destination": "wwwroot/lib/bootstrap-colorpicker/"
     }
-  ,
-{
-  "library": "jquery-easing@1.4.1",
-  "destination": "wwwroot/lib/jquery-easing/"
-}
-]
+  ]
 }

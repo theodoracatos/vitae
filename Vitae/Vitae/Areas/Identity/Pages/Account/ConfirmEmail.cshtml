@@ -1,0 +1,39 @@
+﻿@page
+@model Vitae.Areas.Identity.Pages.Account.ConfirmEmailModel
+@{
+    ViewData["Title"] = SharedResource.Confirm;
+}
+
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-sm-12 col-md-8 mx-auto my-auto">
+            <div class="container">
+                <div class="jumbotron">
+                    <h3>
+                        <i class="fas fa-user-circle fa-fw"></i>@SharedResource.ConfirmEmail
+                    </h3>
+                    <hr />
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <partial name="_StatusMessage" model="new KeyValuePair<bool, string>(Model.Succeeded, Model.StatusMessage)" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col mb-0 text-right">
+                            @{
+                                if (Model.Succeeded)
+                                {
+                                    <a class="btn btn-success" href="/Manage">@SharedResource.Dashboard</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-danger" href="/">@SharedResource.Homepage</a>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

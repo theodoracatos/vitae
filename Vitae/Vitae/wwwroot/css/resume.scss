@@ -1,6 +1,148 @@
-@import "variables.scss";
-@import "mixins.scss";
-@import "global.scss";
-@import "nav.scss";
-@import "resume-item.scss";
-@import "bootstrap-overrides.scss";
+@import 'scsslib/_colors.scss';
+@import 'scsslib/_variables.scss';
+@import 'scsslib/_mixins.scss';
+@import 'scsslib/_global.scss';
+@import 'scsslib/_nav.scss';
+@import 'scsslib/_resume-item.scss';
+@import 'scsslib/_base.scss';
+@import 'scsslib/_bootstrap-overrides.scss';
+
+.subheadingBig {
+    text-transform: uppercase;
+    font-weight: 500;
+    @include heading-font;
+    font-size: 2.0rem;
+}
+
+body {
+    background: rgb(240,243,248) url('../img/mountain-transparent.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+footer {
+    height: 60px;
+    line-height: 60px;
+    position: fixed;
+    bottom: 0;
+    z-index: 10 !important;
+    width: 100%;
+    background-color: rgba(255,255,255,0.95) !important;
+    box-shadow: 0 2px 18px 1px $qvs-box-shadow-form;
+}
+
+.resume-section{
+    background-color: transparent !important;
+}
+
+.rc-anchor-content {
+    cursor: pointer;
+}
+
+.btn-primary[disabled] {
+    background-color: $qvs-lightgold-color !important;
+    border-color: transparent !important;
+    opacity: 0.8;
+}
+
+.btn-primary:not([disabled]):hover, .btn-primary:not([disabled]):active, .btn-primary:not([disabled]):focus {
+    background-color: $qvs-lightgold-color !important;
+    border-color: transparent !important;
+    text-decoration: none !important;
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(208, 187, 149, 0.5) !important;
+}
+
+#sideNav .navbar-toggler:focus {
+    outline-color: $qvs-gold-color;
+}
+
+.logo-container, .logo {
+    height: 34px;
+}
+
+.corner-ribbon {
+    width: 200px;
+    background: $qvs-error-color;
+    color: #fff;
+    position: fixed;
+    text-align: center;
+    top: 25px;
+    line-height: 40px;
+    font-family: Lato-Light;
+    font-weight: bold;
+}
+
+.corner-ribbon.right {
+    right: -50px;
+    left: auto;
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+a.nav-link {
+    font-weight: 600 !important;
+}
+
+a.nav-link:hover {
+    color: $qvs-gold-border-color !important;
+}
+
+a.nav-link.active {
+    color: $qvs-gold-color !important;
+}
+
+.btn-primary {
+    background-color: $qvs-gold-color !important;
+    border-color: transparent;
+}
+
+/* RESIZING */
+@media all and (max-width: 991px) {
+    .corner-ribbon {
+        top: 85px;
+    }
+}
+
+@media all and (max-height: 767px) {
+    .navbar {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+    }
+
+    .logo-container, .logo {
+        height: 30px;
+    }
+
+    footer {
+        height: 45px !important;
+        min-height: 45px !important;
+        line-height: 45px !important;
+        font-size: 13px;
+    }
+}
+
+@media all and (max-width: 480px) {
+
+    .corner-ribbon {
+        top: 85px;
+        line-height: 30px !important;
+        font-size: 12px !important;
+    }
+
+    .corner-ribbon.right {
+        right: -65px;
+    }
+}

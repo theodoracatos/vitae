@@ -1,0 +1,142 @@
+﻿@inject UserManager<IdentityUser> UserManager
+
+@{
+    var pageMatch = Regex.Matches(ViewContext.RouteData.Values["page"].ToString(), @"(?<=\/)(.*?)(?=\/)", RegexOptions.Singleline);
+    var page = pageMatch.Any() ? pageMatch.First().ToString() : null;
+    var curriculumID = Guid.Parse(User.Claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @Globals.APPLICATION_NAME</title>
+
+    <link rel="stylesheet" href="~/css/sbadmin.min.css" />
+    <partial name="_Styles" />
+</head>
+
+<body id="resume" class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <button class="btn btn-link order-1 navbar-toggler notransition d-block mr-2" id="sidebarToggle" href="#">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/Manage">
+            <img alt="myVitae" src="~/img/logo.png" class="logo" title="@Globals.APPLICATION_NAME" />
+        </a><!-- Navbar Search-->
+        <!-- Navbar-->
+        <ul class="navbar-nav ml-auto ml-0 mr-3">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="/Identity/Account/Manage/ChangePassword"><i class="fas fa-key fa-fw"></i>@SharedResource.ChangePassword</a>
+                    <a class="dropdown-item" href="/Identity/Account/Manage/ChangeLanguage"><i class="fas fa-globe-americas fa-fw"></i>@SharedResource.ChangeLanguage</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/Identity/Account/Logout"><i class="fas fa-sign-out-alt fa-fw"></i>@SharedResource.Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    @{
+        var menuEntries = new List<Tuple<string, string, string>>()
+   {
+          new Tuple<string, string,string>(nameof(Personalities), "fa-address-book", SharedResource.PersonalDetails),
+          new Tuple<string, string,string>(nameof(Abouts), "fa-user-edit", SharedResource.OptionalInformation),
+          new Tuple<string, string,string>(nameof(Experiences), "fa-briefcase", SharedResource.Experiences),
+          new Tuple<string, string,string>(nameof(Educations), "fa-graduation-cap", SharedResource.Educations),
+          new Tuple<string, string,string>(nameof(Courses), "fa-book-reader", SharedResource.Courses),
+          new Tuple<string, string,string>(nameof(Abroads), "fa-plane", SharedResource.Abroads),
+          new Tuple<string, string,string>(nameof(Languages), "fa-globe-americas", SharedResource.Languages),
+          new Tuple<string, string,string>(nameof(Interests), "fa-volleyball-ball", SharedResource.Interests),
+          new Tuple<string, string,string>(nameof(Awards), "fa-trophy", SharedResource.Awards),
+          new Tuple<string, string,string>(nameof(Sociallinks), "fa-link", SharedResource.SocialLinks),
+          new Tuple<string, string,string>(nameof(Skills), "fa-tools", SharedResource.Skills),
+          new Tuple<string, string,string>(nameof(Certificates), "fa-certificate", SharedResource.Certificates),
+          new Tuple<string, string,string>(nameof(References), "fa-user-tie", SharedResource.References),
+       };
+    }
+
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav mb-4">
+                        @{var inManagement = page == null || page == nameof(Settings) || page == nameof(Publications);}
+                        <div class="sb-sidenav-menu-heading cursor-pointer @(inManagement ? null : "collapsed")" data-toggle="collapse" data-target="#management">
+                            <small class="down"><i class="fas fa-chevron-right fa-fw mr-0"></i></small>
+                            <small class="up"><i class="fas fa-chevron-up fa-fw mr-0"></i></small>
+                            @SharedResource.Management
+                        </div>
+
+                        <div id="management" class="collapse @(inManagement ? "show" : null)">
+                            <a class="nav-link" href="/Manage">
+                                <i class="fas sideIcon fa-chart-line fa-fw"></i>
+                                @SharedResource.Dashboard
+                            </a>
+                            <a class="nav-link" href="/Manage/@nameof(Settings)">
+                                <i class="fas sideIcon fa-cogs fa-fw"></i>
+                                @SharedResource.Settings
+                            </a>
+                            <a class="nav-link" href="/Manage/@nameof(Publications)">
+                                <i class="fas sideIcon fa-share-alt fa-fw"></i>
+                                @SharedResource.Publications
+                            </a>
+                        </div>
+
+                        @{var inPersonalData = menuEntries.Any(e => e.Item1 == page);}
+                        <div class="sb-sidenav-menu-heading cursor-pointer @(inPersonalData ? null : "collapsed")" data-toggle="collapse" data-target="#personalData">
+                            <small class="down"><i class="fas fa-chevron-right fa-fw mr-0"></i></small>
+                            <small class="up"><i class="fas fa-chevron-up fa-fw mr-0"></i></small>
+                            @SharedResource.PersonalData
+                        </div>
+                        <div id="personalData" class="collapse @(inPersonalData ? "show" : null)">
+
+                            @foreach (var menuEntry in menuEntries)
+                            {
+                                <a class="nav-link" href="/Manage/@menuEntry.Item1">
+                                    <i class="fas sideIcon fa-fw @menuEntry.Item2"></i>
+                                    @menuEntry.Item3
+                                </a>
+                            }
+                        </div>
+
+                        <div class="sb-sidenav-menu-heading cursor-pointer collapsed" data-toggle="collapse" data-target="#preview">
+                            <small class="down"><i class="fas fa-chevron-right fa-fw mr-0"></i></small>
+                            <small class="up"><i class="fas fa-chevron-up fa-fw mr-0"></i></small>
+                            @SharedResource.Preview
+                        </div>
+                        <div id="preview" class="collapse">
+                            <vc:vitae-link-generator></vc:vitae-link-generator>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">@SharedResource.LoggedInAs:</div>
+                    <div class="small">
+                        @UserManager.GetUserName(User)
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main class="mt-2 ml-3 mr-3">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </main>
+            <footer class="mt-auto fixed-bottom">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-end small mr-2">
+                        &copy; @DateTime.Now.Year, <a class="ml-1 mr-1" href="https://myvitae.ch">@Globals.APPLICATION_NAME</a> &middot; Made with <font class="d-inline" color="red">&nbsp;❤&nbsp;</font> in Switzerland
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <partial name="_Scripts" />
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

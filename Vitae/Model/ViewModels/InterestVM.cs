@@ -1,0 +1,29 @@
+﻿using Library.Resources;
+
+using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace Model.ViewModels
+{
+    [Serializable]
+    public class InterestVM : BaseVM
+    {
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Interest), Prompt = nameof(SharedResource.Interest))]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.Required))]
+        [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        public string InterestName { get; set; }
+
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Association), Prompt = nameof(SharedResource.Association))]
+        [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        public string Association { get; set; }
+
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Description), Prompt = nameof(SharedResource.Description))]
+        [MaxLength(1000, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        public string Description { get; set; }
+
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.LinkInterest), Prompt = nameof(SharedResource.LinkInterest))]
+        [Url(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        [MaxLength(255, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
+        public string Link { get; set; }
+    }
+}

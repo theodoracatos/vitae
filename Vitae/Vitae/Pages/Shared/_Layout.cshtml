@@ -3,75 +3,86 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Vitae</title>
+    <title>@ViewData["Title"] - @Globals.APPLICATION_NAME</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="~/favicon/favicon.ico" />
-
-    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/jquery-confirm/jquery-confirm.min.css" />
-    <link rel="stylesheet" href="~/lib/@@chenfengyuan/datepicker/dist/datepicker.min.css" />
-    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
-    <link rel="stylesheet" href="~/lib/pretty-checkbox/pretty-checkbox.min.css" />
-
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/landingpage.min.css" />
+    <partial name="_Styles" />
 </head>
-<body>
+
+<body id="page-top" class="@(ViewBag.ShowSlideshow ?? false ? "normal-screen" : "bg-screen")">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Vitae</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Manage/Index" asp-route-id="a05c13a8-21fb-42c9-a5bc-98b7d94f464a">Manage</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Demo">Demo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="CV" asp-page="/Index" asp-route-id="a05c13a8-21fb-42c9-a5bc-98b7d94f464a">CV</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+        @if (ViewBag.ShowSlideshow ?? false)
+        {
+            <div id="vitae-indicators" class="carousel slide carousel-fade" data-interval="6000" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active" style="background-image: url('/img/backgrounds/bg0.jpg')"></div>
+                    <div class="carousel-item" style="background-image: url('/img/backgrounds/bg1.jpg')"></div>
+                    <div class="carousel-item" style="background-image: url('/img/backgrounds/bg2.jpg')"></div>
+                    <div class="carousel-item" style="background-image: url('/img/backgrounds/bg3.jpg')"></div>
                 </div>
             </div>
-        </nav>
+        }
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">
+            <img alt="myVitae" src="~/img/logo.png" class="d-none d-md-block logo" title="@Globals.APPLICATION_NAME" />
+            <img alt="myVitae" src="~/img/logo.png" class="d-block d-md-none logo-small" title="@Globals.APPLICATION_NAME" />
+
+        </a>
+        <div class="ml-auto">
+            @if (ViewBag.StartPage ?? false)
+            {
+            <div class="buttonbar">
+                <a href="/Identity/Account/Login" class="btn btn-outline-secondary text-white align-baseline notransition mr-1">@SharedResource.SignIn</a>
+                <a href="/Identity/Account/Register" class="btn btn-success ml-2 mr-2 notransition align-baseline">@SharedResource.Register</a>
+            </div>
+            }
+        </div>
+    </nav>
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="mainframe">
+        @RenderBody()
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - Vitae - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    @if (ViewBag.StartPage ?? false)
+    {
+        <div class="scrollbar">
+            <div class="w-100">
+                <div class="row ml-0 mr-0">
+                    <div class="col text-center">
+                        <a class="js-scroll-trigger" href="#subframe"><img src="~/img/scroll.gif" class="scroll" alt="Scroll" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <footer class="@(ViewBag.StartPage ?? false ? "" : "account")">
+        <div class="w-100">
+            <div class="d-flex justify-content-end small mr-xl-4 mr-md-4 mr-sm-4 mr-2">
+                <a class="js-scroll-trigger" href="@Globals.GENERAL_INFORMATION">@SharedResource.PrivacyPolicy</a>
+                <div class="ml-1 mr-1">&middot;</div>
+                <div class="text-muted">&copy; @DateTime.Now.Year, <a class="ml-1" href="@Globals.VITAE_URL">@Globals.APPLICATION_NAME</a></div>
+                <div class="ml-1 mr-1">&middot;</div>
+                <div>Made with <font color="red">❤</font> in Switzerland</div>
+            </div>
         </div>
     </footer>
 
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/@@chenfengyuan/datepicker/dist/datepicker.min.js"></script>
-    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/lib/jquery-validation-bootstrap-tooltip/jquery-validate.bootstrap-tooltip.min.js"></script>
+    <div id="subframe" class="subframe">
 
-    <script src="~/lib/jquery-confirm/jquery-confirm.min.js"></script>
-    <script src="~/lib/font-awesome/js/all.min.js"></script>
+        @RenderSection("Subframe", false)
 
-    <script src="~/js/jquery.unobtrusive-ajax.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+        <!-- Scroll to Top Button-->
+        <a id="scrollToTopButton" class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
+    </div>
+
+    <partial name="_Scripts" />
     @RenderSection("Scripts", required: false)
 </body>
 </html>

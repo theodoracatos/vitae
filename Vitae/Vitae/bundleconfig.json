@@ -1,5 +1,11 @@
 [
   {
+    "outputFileName": "wwwroot/js/base.min.js",
+    "inputFiles": [
+      "wwwroot/js/base.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
       "wwwroot/js/site.js"
@@ -9,6 +15,12 @@
     "outputFileName": "wwwroot/js/resume.min.js",
     "inputFiles": [
       "wwwroot/js/resume.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/jquery.unobtrusive-ajax.min.js",
+    "inputFiles": [
+      "wwwroot/js/jquery.unobtrusive-ajax.js"
     ]
   }
 ]

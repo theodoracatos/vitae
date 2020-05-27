@@ -1,0 +1,55 @@
+﻿@model Vitae.Areas.Manage.Pages.Skills.IndexModel
+
+<div id="panel">
+    <div class="card">
+        <partial name="_CardHeader" model="@(new Tuple<BasePageModel, string, string, string>(Model, "fas fa-tools", SharedResource.Skills, SharedResource.SkillsDescription))" />
+
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label class="control-label" asp-for="@Model.Skills"></label>
+                    <div>
+                        <button asp-page-handler="AddSkill" style="margin-bottom: 5px" data-ajax="true" data-ajax-update="#panel" class="btn btn-success cancel font-weight-bold mr-2" disabled="@(Model.Skills?.Count < Model.MaxSkills ? null : "disabled")"><i class="fas fa-plus mr-2"></i>@SharedResource.Add</button>
+                        <partial name="_CardCollapsebar" model="Model">
+                    </div>
+                </div>
+            </div>
+            @for (int i = 0; i < Model.Skills.Count; i++)
+            {
+                <div class="card @(i < Model.Skills.Count - 1 ? "mb-4" : "mb-2")">
+                    <div class="card-header card-header-small">
+                        <div class="float-left line-height-2">
+                            <a data-toggle="collapse" href="#collapse-@i" aria-expanded="true" aria-controls="collapse-@i" class="d-block text-dark mr-1">
+                                @(i + 1). @SharedResource.Skill
+                                <input type="hidden" asp-for="@Model.Skills[i].Collapsed" />
+                            </a>
+                        </div>
+
+                        <partial name="_CardButtonbar" model="new Tuple<int, int, IList<BaseVM>, string, string>(i, Model.MaxSkills, Model.Skills.Cast<BaseVM>().ToList(), SharedResource.Skill, nameof(Skill))" />
+
+                    </div>
+                    <div class="card-body collapse pb-0 @(Model.Skills[i].Collapsed ? null : "show")" id="collapse-@i">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label mr-1">@(i + 1).</label><label class="control-label" asp-for="@Model.Skills[i].Category"></label>
+                                <input class="form-control" type="text" asp-for="@Model.Skills[i].Category" />
+                                <span asp-validation-for="@Model.Skills[i].Category" class="text-danger"></span>
+                                <input type="hidden" asp-for="@Model.Skills[i].Order" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Skills[i].Skillset"></label>
+                                <input class="form-control mytags" type="text" asp-for="@Model.Skills[i].Skillset" />
+                                <small class="d-block">@SharedResource.EnterSkill</small>
+                                <span asp-validation-for="@Model.Skills[i].Skillset" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (i < Model.Skills.Count - 1)
+                {<hr />}
+            }
+        </div>
+
+        <partial name="_CardFooter" model="@Model" />
+    </div>
+</div>
