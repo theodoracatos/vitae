@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -108,6 +109,7 @@ namespace Vitae
                 {
                     options.Conventions.AuthorizeAreaFolder("Manage", "/");
                     options.Conventions.AddAreaPageRoute("CV", "/CV/index", "id");
+                    options.Conventions.AddPageRoute("/robotstxt", "/Robots.Txt");
                 });
 
             if (hostingEnvironment.IsDevelopment())

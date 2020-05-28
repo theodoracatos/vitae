@@ -18,6 +18,7 @@ namespace Library.Constants
         public const string APPLICATION_NAME = "myVitae";
         public const string LOGO = "logo.png";
         public const string VITAE_URL = "https://myvitae.ch";
+        public const string ERROR = "Error";
         public const string GENERAL_INFORMATION = "GeneralInformation";
         public const string GENERAL_INFORMATION_LINK = "/" + GENERAL_INFORMATION + "#subframe";
 
