@@ -74,7 +74,7 @@ namespace Vitae.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Range(typeof(bool), "true", "true", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.TermsAndConditionsError))]
-            [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.TermsAndConditions), Prompt = nameof(SharedResource.TermsAndConditions))]
+            [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.TermsAndConditionsAccept), Prompt = nameof(SharedResource.TermsAndConditionsAccept))]
             public bool ConfirmAgreements { get; set; }
         }
 

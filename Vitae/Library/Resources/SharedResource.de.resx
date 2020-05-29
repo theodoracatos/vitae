@@ -183,9 +183,6 @@
   <data name="AnonymizeDescription" xml:space="preserve">
     <value>Einige Personalien werden versteckt</value>
   </data>
-  <data name="AreYouSure" xml:space="preserve">
-    <value>Möchten Sie diesen Eintrag wirklich löschen?</value>
-  </data>
   <data name="Association" xml:space="preserve">
     <value>Verein / Club</value>
   </data>
@@ -230,9 +227,6 @@
   </data>
   <data name="CertificatesDescription" xml:space="preserve">
     <value>Listen Sie Sprach- und Weiterbildungszertifikate auf.</value>
-  </data>
-  <data name="Change" xml:space="preserve">
-    <value>Ändern</value>
   </data>
   <data name="ChangeEmail" xml:space="preserve">
     <value>Email ändern</value>
@@ -282,9 +276,6 @@
   <data name="City" xml:space="preserve">
     <value>Stadt</value>
   </data>
-  <data name="ClickHere" xml:space="preserve">
-    <value>Klicken Sie hier</value>
-  </data>
   <data name="ClickingHere" xml:space="preserve">
     <value>hier klicken</value>
   </data>
@@ -306,9 +297,6 @@
   <data name="CompareFailed" xml:space="preserve">
     <value>Die Passwörter stimmen nicht überein</value>
   </data>
-  <data name="Concubinage" xml:space="preserve">
-    <value>Konkubinat</value>
-  </data>
   <data name="ConcurrencyFailure" xml:space="preserve">
     <value>Objekt wurde in der Zwischenzeit geändert.</value>
   </data>
@@ -324,20 +312,11 @@
   <data name="ConfirmEmail" xml:space="preserve">
     <value>E-Mail bestätigen</value>
   </data>
-  <data name="ConfirmEmail1" xml:space="preserve">
-    <value>Bestätigen Sie Ihr E-Mail</value>
-  </data>
   <data name="ConfirmEmailThankYou" xml:space="preserve">
     <value>Vielen Dank für die Bestätigung Ihrer E-Mail.</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Passwort bestätigen</value>
-  </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Kontakt</value>
-  </data>
-  <data name="CookiePolicy" xml:space="preserve">
-    <value>Cookie-Richtlinie</value>
   </data>
   <data name="CookiePolicyDescription" xml:space="preserve">
     <value>Mit dem weiteren Besuch der Website akzeptieren Sie das Speichern von Cookies auf Ihrem Computer</value>
@@ -345,35 +324,11 @@
   <data name="CookiePolicyLearnMore" xml:space="preserve">
     <value>Mehr Infos</value>
   </data>
-  <data name="Cookies" xml:space="preserve">
-    <value>Cookies</value>
-  </data>
-  <data name="CookiesText1" xml:space="preserve">
-    <value>Wenn Sie diese Website besuchen, wird der Webserver automatisch gewisse Details Ihres Besuches (IP Adresse, Ursprungs-Webseite, Ziel-Webseite) mit einer Tracking-Technologie namens "Cookies" aufzeichnen. Ein Cookie ist ein kleines Datenstück, welches von der Webseite auf dem Browser oder mobilen Gerät gespeichert wird. Das Cookie erlaubt der Webseite Ihre Einstellungen oder Präferenzen in einer gewissen Zeitspanne zu speichern.</value>
-  </data>
-  <data name="CookiesText2" xml:space="preserve">
-    <value>Diese Webseite benötigt Cookies um den Inhalt ihrer Webseiten zu optimieren und um Informationen über die Benutzung der Webseite zu liefern. Cookies, welche eingesetzt werden, können nicht zur Benutzeridentifikation eingesetzt werden. Sie können die Cookies akzeptieren oder zu jeder Zeit durch Einstellungen ihres Webbrowsers die Cookies verweigern. Bitte beachten Sie jedoch, dass im Falle einer Ablehnung gewisse Funktionalitäten beeinträchtigt werden können. Durch die Weiternutzung der Website akzeptieren Sie automatisch die Speicherung von Cookies auf Ihrem Computer.</value>
-  </data>
   <data name="Copy" xml:space="preserve">
     <value>Kopieren</value>
   </data>
-  <data name="Copyright" xml:space="preserve">
-    <value>Das Copyright dieser Website liegt bei vitae.ch, Alexandros Theodoracatos.</value>
-  </data>
-  <data name="CopyrightLaw" xml:space="preserve">
-    <value>Urheberrecht</value>
-  </data>
-  <data name="CopyrightLawText" xml:space="preserve">
-    <value>Die myVitae Webapplikation ist das ausschliessliche Eigentum von Alexandros Theodoracatos und ist durch das schweizerische Urherberrechtsgesetz geschützt. Daher darf die Website in keiner Weise und ohne vorherige Genehmigung von Alexandros Theodoracatos vollständig oder teilweise reproduziert oder zur Verfügung gestellt oder anders als auf die genehmigte Art und Weise verwendet werden.</value>
-  </data>
   <data name="CopyValues" xml:space="preserve">
     <value>Werte kopieren</value>
-  </data>
-  <data name="CopyValuesDescription" xml:space="preserve">
-    <value>Kopiert alle Werte von der ersten Sprache</value>
-  </data>
-  <data name="CountryCode" xml:space="preserve">
-    <value>Code</value>
   </data>
   <data name="CountryName" xml:space="preserve">
     <value>Land</value>
@@ -396,9 +351,6 @@
   <data name="CurriculumLanguage" xml:space="preserve">
     <value>Sprachversion</value>
   </data>
-  <data name="CurriculumVitae" xml:space="preserve">
-    <value>Curriculum Vitae</value>
-  </data>
   <data name="CV" xml:space="preserve">
     <value>Lebenslauf</value>
   </data>
@@ -417,28 +369,8 @@
   <data name="DashboardOverview" xml:space="preserve">
     <value>Damit Ihr Lebenslauf veröffentlicht werden kann, wird von der myVitae Webapplikation ein zufälliger Publikationslink erstellt. Diesen können Sie dann für eine oder mehrere Vakanzen verwenden und, nach erfolgreicher Bewerbung, wieder komplett löschen. Das Dashboard zeigt Ihnen dabei den Erfolgsverlauf Ihrer veröffentlichten Lebensläufe auf, in dem die Anzahl Klicks auf den versendeten Publikationslink aufgezeigt werden. Sie können Ihren Lebenslauf zudem in bis zu fünf Sprachen erfassen.</value>
   </data>
-  <data name="Data" xml:space="preserve">
-    <value>Daten</value>
-  </data>
-  <data name="DataCollection" xml:space="preserve">
-    <value>Datenerfassung</value>
-  </data>
-  <data name="DataCollectionDesc" xml:space="preserve">
-    <value>Wenn Sie sich für myVitae anmelden und einen Lebenslauf erstellen, werden sensitive Informationen über Sie gesammelt. Dazu gehören (es folgt eine nicht abschliessende Aufzählung): Ihr Geschlecht, Name, Geburtstag, Adresse, Nationalität, E-Mail-Adresse, Telefonnummer, Familienstand sowie weitere sensitive Persönlichkeitsdaten. Diese Daten werden keinesfalls an Dritte weitergegeben und werden ausschliesslich für die Erstellung Ihres Lebenslaufes verwendet. Dabei besteht folgende Richtlinie, dass bei der Datenverarbeitung nur so viele personenbezogene Daten gesammelt werden, wie für die Erstellung des Lebenslaufes unbedingt notwendig sind. Die jeweiligen Benutzer von myVitae können dabei jederzeit selbst bestimmen, wie viele Informationen Sie in Ihrem Lebenslauf preisgeben möchten.
-Zusätzlich werden die folgenden Daten ohne Ihr Zutun erhoben und bis zur automatisierten Löschung gespeichert: IP-Adresse des anfragenden Rechners sowie der "user agent string (UA)". Beim UA handelt es sich um ein Feld im HTTP Protokoll, über welches eine ausführliche Information über das abfragende Gerät, bei einer Netzwerkanfrage, mit übermittelt werden kann. 
-Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerhebung beruht zum folgenden Zweck: Der Sicherstellung einer komfortablen Nutzung der Webseitenapplikation, die Bewertung der Systemsicherheit und -stabilität sowie die Nutzung für weitere administrative Zwecke. Keinesfalls verwenden wir die erhobenen Daten, um Rückschlüsse auf Sie zu ziehen. Auf Anfrage teilen wir Ihnen gerne mit, ob und welche eindeutig personenbezogenen Daten über Sie gespeichert sind.</value>
-  </data>
-  <data name="DataProtection" xml:space="preserve">
-    <value>Datenschutz</value>
-  </data>
-  <data name="DataProtectionText" xml:space="preserve">
-    <value>Für die Sicherheit der Datenübertragung im Internet können wir keine Gewähr übernehmen, insbesondere besteht bei der Übertragung von Daten per E-Mail die Gefahr des Zugriffs durch Dritte. Einer Nutzung der im Impressum veröffentlichten Kontaktdaten durch Dritte zu Werbezwecken wird hiermit ausdrücklich widersprochen. Der Betreiber behält sich für den Fall unverlangt zugesandter Werbe- oder Informationsmaterialien ausdrücklich rechtliche Schritte vor. Sollten einzelne Regelungen oder Formulierungen dieses Haftungsausschlusses unwirksam sein oder werden, bleiben die übrigen Regelungen in ihrem Inhalt und ihrer Gültigkeit hiervon unberührt.</value>
-  </data>
   <data name="DateCompareError" xml:space="preserve">
     <value>Das Start-Datum darf nicht grösser als das End-Datum sein</value>
-  </data>
-  <data name="DateProtectionText" xml:space="preserve">
-    <value>Für die Sicherheit der Datenübertragung im Internet können wir keine Gewähr übernehmen, insbesondere besteht bei der Übertragung von Daten per E-Mail die Gefahr des Zugriffs durch Dritte. Einer Nutzung der im Impressum veröffentlichten Kontaktdaten durch Dritte zu Werbezwecken wird hiermit ausdrücklich widersprochen. Der Betreiber behält sich für den Fall unverlangt zugesandter Werbe- oder Informationsmaterialien ausdrücklich rechtliche Schritte vor. Sollten einzelne Regelungen oder Formulierungen dieses Haftungsausschlusses unwirksam sein oder werden, bleiben die übrigen Regelungen in ihrem Inhalt und ihrer Gültigkeit hiervon unberührt.</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>Tag</value>
@@ -463,15 +395,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   </data>
   <data name="Description" xml:space="preserve">
     <value>Beschreibung</value>
-  </data>
-  <data name="Disclaimer" xml:space="preserve">
-    <value>Haftungsausschluss</value>
-  </data>
-  <data name="DisclaimerText" xml:space="preserve">
-    <value>Alle Texte und Links wurden sorgfältig geprüft und werden laufend aktualisiert. Wir sind bemüht, richtige und vollständige Informationen auf dieser Website bereitzustellen, übernehmen aber keinerlei Verantwortung, Garantien oder Haftung dafür, dass die durch diese Website bereitgestellten Werkzeuge und Informationen, richtig, vollständig oder aktuell sind. Wir behalten uns das Recht vor, jederzeit und ohne Vorankündigung die Informationen auf dieser Website zu ändern und verpflichten uns auch nicht, die enthaltenen Informationen zu aktualisieren und gegebenenfalls abzuändern. Alle Links zu externen Anbietern wurden zum Zeitpunkt ihrer Aufnahme auf ihre Richtigkeit überprüft, dennoch haften wir nicht für Inhalte und Verfügbarkeit von Websites, die mittels Hyperlinks der Benutzer von myVitae zu erreichen sind. Für illegale, fehlerhafte oder unvollständige Inhalte und insbesondere für Schäden, die durch Inhalte verknüpfter Seiten entstehen, haftet allein der Anbieter der Seite, auf welche verwiesen wurde. Dabei ist es gleichgültig, ob der Schaden direkter, indirekter oder finanzieller Natur ist oder ein sonstiger Schaden vorliegt, der sich aus Datenverlust, Nutzungsausfall oder anderen Gründen aller Art ergeben könnte.</value>
-  </data>
-  <data name="Divorced" xml:space="preserve">
-    <value>Geschieden</value>
   </data>
   <data name="Down" xml:space="preserve">
     <value>Nach unten</value>
@@ -512,9 +435,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="EmailUnchanged" xml:space="preserve">
     <value>Ihre E-Mail wurde nicht verändert.</value>
   </data>
-  <data name="EnablePassword" xml:space="preserve">
-    <value>Zugang mit Passwort</value>
-  </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
     <value>Der myVitae Lebenslauf wird zusätzlich mit einem Passwort geschützt</value>
   </data>
@@ -523,9 +443,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
-  </data>
-  <data name="EnterPassword" xml:space="preserve">
-    <value>Passwort eingeben</value>
   </data>
   <data name="EnterSkill" xml:space="preserve">
     <value>Bitte drücken Sie die Enter-Taste um eine neue Kompetenz einzufügen</value>
@@ -560,9 +477,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="ExpiresOn" xml:space="preserve">
     <value>Verfällt am</value>
   </data>
-  <data name="FAQ" xml:space="preserve">
-    <value>Häufig gestellte Fragen</value>
-  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Die Dateien sind zu gross</value>
   </data>
@@ -581,9 +495,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="From" xml:space="preserve">
     <value>Aus</value>
   </data>
-  <data name="Function" xml:space="preserve">
-    <value>Funktion</value>
-  </data>
   <data name="Gender" xml:space="preserve">
     <value>Geschlecht</value>
   </data>
@@ -593,29 +504,11 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="Goodbye" xml:space="preserve">
     <value>Auf Wiedersehen</value>
   </data>
-  <data name="GoogleAnalytics" xml:space="preserve">
-    <value>Google analytics</value>
-  </data>
-  <data name="GoogleAnalyticsText1" xml:space="preserve">
-    <value>Diese Website benutzt Cookies von Google Analytics, einem Webanalysedienst der Google Inc. ("Google"). Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Im Falle der Aktivierung der IP-Anonymisierung auf dieser Webseite, wird Ihre IP-Adresse von Google jedoch innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum zuvor gekürzt. Nur in Ausnahmefällen wird die volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt. Im Auftrag des Betreibers dieser Website wird Google diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Websiteaktivitäten zusammenzustellen und um weitere mit der Websitenutzung und der Internetnutzung verbundene Dienstleistungen gegenüber dem Websitebetreiber zu erbringen. Die im Rahmen von Google Analytics von Ihrem Browser übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt.</value>
-  </data>
-  <data name="GoogleAnalyticsText2" xml:space="preserve">
-    <value>Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich werden nutzen können.  Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren. Der aktuelle Link ist:</value>
-  </data>
-  <data name="GoogleCaptcha" xml:space="preserve">
-    <value>Google Captcha</value>
-  </data>
-  <data name="GoogleCaptchaDesc" xml:space="preserve">
-    <value>Durch die Nutzung der Website erklären Sie sich mit der Verwendung von Google reCAPTCHA durch uns einverstanden. Google wird Ihre IP-Adresse innerhalb der Mitgliedsstaaten der Europäischen Union oder in anderen Staaten, die dem Abkommen über den Europäischen Wirtschaftsraum angehören, kürzen und Ihre IP-Adresse wird somit anonymisiert. Nur in Ausnahmefällen wird eine vollständige IP-Adresse an einen Google-Server in den Vereinigten Staaten übermittelt und dort abgeschnitten. Die Verwendung von reCAPTCHA unterliegt den Datenschutzbestimmungen und Nutzungsbedingungen von Google.</value>
-  </data>
   <data name="Grade" xml:space="preserve">
     <value>Note</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Hallo</value>
-  </data>
-  <data name="Hide" xml:space="preserve">
-    <value>Verstecken</value>
   </data>
   <data name="HideReference" xml:space="preserve">
     <value>Referenz verstecken</value>
@@ -716,15 +609,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="Lastname" xml:space="preserve">
     <value>Nachname</value>
   </data>
-  <data name="LegalNotice" xml:space="preserve">
-    <value>Rechtlicher Hinweis</value>
-  </data>
-  <data name="LegalNoticeResponsible" xml:space="preserve">
-    <value>Verantwortlich für die myVitae Webapplikation</value>
-  </data>
-  <data name="Level" xml:space="preserve">
-    <value>Niveau</value>
-  </data>
   <data name="LinkAwards" xml:space="preserve">
     <value>Website der Vergabebehörde</value>
   </data>
@@ -739,9 +623,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   </data>
   <data name="LinkInterest" xml:space="preserve">
     <value>Website der Vereinigung</value>
-  </data>
-  <data name="LinkNotGenerated" xml:space="preserve">
-    <value>Der Link wurde noch nicht generiert</value>
   </data>
   <data name="LinkReference" xml:space="preserve">
     <value>Website des Unternehmens</value>
@@ -773,9 +654,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="Logout" xml:space="preserve">
     <value>Abmelden</value>
   </data>
-  <data name="LongIdentifier" xml:space="preserve">
-    <value>ID</value>
-  </data>
   <data name="MailAdvert1" xml:space="preserve">
     <value>Es war noch nie so einfach, einen Lebenslauf zu erstellen.</value>
   </data>
@@ -794,9 +672,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="MailAdvert5" xml:space="preserve">
     <value>Ihr myVitae Team</value>
   </data>
-  <data name="MailAdvert6" xml:space="preserve">
-    <value>Es war noch nie so einfach.</value>
-  </data>
   <data name="MailBye3" xml:space="preserve">
     <value>Ihr Konto wurde erfolgreich gelöscht. Wir bedauern, dass Sie gegangen sind. Sie können sich jedoch jederzeit mit dieser E-Mail-Adresse wieder neu registrieren</value>
   </data>
@@ -806,17 +681,11 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="MailFooter2" xml:space="preserve">
     <value>Bitte löschen Sie Ihr Konto, wenn Sie diese E-Mails nicht mehr erhalten möchten.</value>
   </data>
-  <data name="Manage" xml:space="preserve">
-    <value>Ändern</value>
-  </data>
   <data name="Management" xml:space="preserve">
     <value>Verwaltung</value>
   </data>
   <data name="MaritalStatus" xml:space="preserve">
     <value>Zivilstand</value>
-  </data>
-  <data name="Married" xml:space="preserve">
-    <value>Verheiratet</value>
   </data>
   <data name="MissingBindRequiredValueAccessor" xml:space="preserve">
     <value>Ein Wert für das '{0}' Feld wurde nicht angegeben</value>
@@ -872,9 +741,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="NoHits" xml:space="preserve">
     <value>Noch keine Aufrufe</value>
   </data>
-  <data name="NoInformation" xml:space="preserve">
-    <value>Keine Information</value>
-  </data>
   <data name="NonPropertyAttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>Der Wert '{0}' ist nicht gültig</value>
   </data>
@@ -914,9 +780,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="OptionalInformation" xml:space="preserve">
     <value>Optionale Angaben</value>
   </data>
-  <data name="Overview" xml:space="preserve">
-    <value>Übersicht</value>
-  </data>
   <data name="Password" xml:space="preserve">
     <value>Passwort</value>
   </data>
@@ -934,9 +797,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   </data>
   <data name="PasswordMismatch" xml:space="preserve">
     <value>Falsches Kennwort.</value>
-  </data>
-  <data name="PasswordProtection" xml:space="preserve">
-    <value>Passwortschutz</value>
   </data>
   <data name="PasswordProtectionDesc" xml:space="preserve">
     <value>Dieser Lebenslauf ist zusätzlich mit einem Passwort geschützt. Bitte geben Sie das Kennwort ein um die Ansicht zu öffnen.</value>
@@ -977,9 +837,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="PleaseCheckEmail" xml:space="preserve">
     <value>Bitte überprüfen Sie Ihre E-Mail.</value>
   </data>
-  <data name="PleaseClickHereToConfirm" xml:space="preserve">
-    <value>Bitte bestätigen Sie ihr Benutzerkonto in dem Sie</value>
-  </data>
   <data name="PleaseConfirm" xml:space="preserve">
     <value>Bitte bestätigen</value>
   </data>
@@ -991,12 +848,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   </data>
   <data name="Preview" xml:space="preserve">
     <value>Vorschau</value>
-  </data>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Datenschutzerklärung</value>
-  </data>
-  <data name="ProfileOverview" xml:space="preserve">
-    <value>Profilübersicht</value>
   </data>
   <data name="ProperValue" xml:space="preserve">
     <value>Bitte einen gültigen Wert eingeben</value>
@@ -1012,12 +863,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   </data>
   <data name="Publications" xml:space="preserve">
     <value>Veröffentlichungen</value>
-  </data>
-  <data name="Publish" xml:space="preserve">
-    <value>Veröffentlichen</value>
-  </data>
-  <data name="QandA" xml:space="preserve">
-    <value>Fragen und Antworten</value>
   </data>
   <data name="QandA_A0" xml:space="preserve">
     <value>myVitae ermöglicht Stellensuchenden ihren Lebenslauf online zu erfassen. Dabei müssen sich die Personen nur noch um die Inhalte und nicht mehr um die Gestaltung kümmern.</value>
@@ -1087,9 +932,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   </data>
   <data name="RemoveFileConfirmation" xml:space="preserve">
     <value>Möchten Sie diese Datei wirklich entfernen</value>
-  </data>
-  <data name="RemovePicture" xml:space="preserve">
-    <value>Dieses Bild entfernen</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Anfordern</value>
@@ -1169,9 +1011,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="ShareLink" xml:space="preserve">
     <value>Teilen Sie diesen Link / QR-Code mit Ihrem zukünftigen Arbeitgeber.</value>
   </data>
-  <data name="ShortIdentifier" xml:space="preserve">
-    <value>Kurze ID</value>
-  </data>
   <data name="ShowYourStrengths" xml:space="preserve">
     <value>Zeigen Sie Ihre Stärken</value>
   </data>
@@ -1180,9 +1019,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Einloggen</value>
-  </data>
-  <data name="Single" xml:space="preserve">
-    <value>Single</value>
   </data>
   <data name="SingleDay" xml:space="preserve">
     <value>Einzeltag</value>
@@ -1254,10 +1090,10 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
     <value>Schweiz</value>
   </data>
   <data name="TermsAndConditions" xml:space="preserve">
-    <value>Bedingungen und Konditionen</value>
+    <value>Datenschutzrichtlinie</value>
   </data>
-  <data name="TermsAndConditionsDesc" xml:space="preserve">
-    <value>Ich akzeptiere die Bedingungen und Konditionen</value>
+  <data name="TermsAndConditionsAccept" xml:space="preserve">
+    <value>Datenschutzrichtlinie akzeptieren</value>
   </data>
   <data name="TermsAndConditionsError" xml:space="preserve">
     <value>Sie müssen die Bedingungen akzeptieren</value>
@@ -1276,9 +1112,6 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   </data>
   <data name="UnknownValueIsInvalidAccessor" xml:space="preserve">
     <value>Der gelieferte Wert ist ungültig für {0}</value>
-  </data>
-  <data name="UnsafedChanges" xml:space="preserve">
-    <value>Sie haben Ihre Änderungen noch nicht gespeichert. Möchten Sie fortfahren?</value>
   </data>
   <data name="UntilNow" xml:space="preserve">
     <value>Bis jetzt</value>
@@ -1316,29 +1149,17 @@ Unser Interesse im Sinne der Datenschutz-Grundverordnung (DSGVO) an der Datenerh
   <data name="ValueMustNotBeNullAccessor" xml:space="preserve">
     <value>Der Wert '{0}' ist ungültig</value>
   </data>
-  <data name="VariousMaritalStatus" xml:space="preserve">
-    <value>Sonst. Zivilstand</value>
-  </data>
   <data name="VerificationEmailSent" xml:space="preserve">
     <value>Verifikations-E-Mail wurde verschickt.</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warnung</value>
   </data>
-  <data name="WelcomeToVitae" xml:space="preserve">
-    <value>Willkommen auf myVitae</value>
-  </data>
-  <data name="WhyMyVitae" xml:space="preserve">
-    <value>Warum myVitae?</value>
-  </data>
   <data name="WhyMyVitaeReason" xml:space="preserve">
     <value>Einen guten Lebenslauf zu erstellen und diesen stets auf dem neuesten Stand zu halten, ist ein sehr zeitaufwändiger Prozess. Zudem kann man bei der Gestaltung schnell an seine Grenzen stossen. Ein Bewerber muss jedoch alles in eine Waagschale werfen, denn "es gibt keine zweite Chance für den ersten Eindruck" (Mark Twain). An dieser Stelle springt myVitae ein und setzt auf ein klares und übersichtliches Design. Mit Leichtigkeit können Sie Ihre persönliche passwortgeschützte Lebenslauf-Website erstellen – und dies erst noch kostenlos!</value>
   </data>
   <data name="WhyMyVitaeTest" xml:space="preserve">
     <value>Schauen Sie es sich an - Sie werden begeistert sein!</value>
-  </data>
-  <data name="Widowed" xml:space="preserve">
-    <value>Verwitwet</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>Jahr</value>

@@ -259,15 +259,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete this item?.
-        /// </summary>
-        public static string AreYouSure {
-            get {
-                return ResourceManager.GetString("AreYouSure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Association.
         /// </summary>
         public static string Association {
@@ -399,15 +390,6 @@ namespace Library.Resources {
         public static string CertificatesDescription {
             get {
                 return ResourceManager.GetString("CertificatesDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Change.
-        /// </summary>
-        public static string Change {
-            get {
-                return ResourceManager.GetString("Change", resourceCulture);
             }
         }
         
@@ -556,15 +538,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click here.
-        /// </summary>
-        public static string ClickHere {
-            get {
-                return ResourceManager.GetString("ClickHere", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to clicking here.
         /// </summary>
         public static string ClickingHere {
@@ -628,15 +601,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Concubinage.
-        /// </summary>
-        public static string Concubinage {
-            get {
-                return ResourceManager.GetString("Concubinage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Optimistic concurrency failure, object has been modified..
         /// </summary>
         public static string ConcurrencyFailure {
@@ -682,15 +646,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Confirm your email.
-        /// </summary>
-        public static string ConfirmEmail1 {
-            get {
-                return ResourceManager.GetString("ConfirmEmail1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Thank you for confirming your email..
         /// </summary>
         public static string ConfirmEmailThankYou {
@@ -705,24 +660,6 @@ namespace Library.Resources {
         public static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Contact.
-        /// </summary>
-        public static string Contact {
-            get {
-                return ResourceManager.GetString("Contact", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cookie policy.
-        /// </summary>
-        public static string CookiePolicy {
-            get {
-                return ResourceManager.GetString("CookiePolicy", resourceCulture);
             }
         }
         
@@ -745,33 +682,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cookies.
-        /// </summary>
-        public static string Cookies {
-            get {
-                return ResourceManager.GetString("Cookies", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to When you visit this website, the web server will automatically record certain details of your visit (IP address, source website, destination website) using a tracking technology called &quot;cookies&quot;. A cookie is a small piece of data that is stored by the website on the browser or mobile device. The cookie allows the website to save your settings or preferences for a certain period of time..
-        /// </summary>
-        public static string CookiesText1 {
-            get {
-                return ResourceManager.GetString("CookiesText1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This website requires cookies to optimize the content of its web pages and to provide information about the use of the website. Cookies, which are used, cannot be used for user identification. You can accept cookies or refuse cookies at any time by changing the settings on your web browser. Please note, however, that if you refuse cookies, certain functionalities may be impaired. By continuing to use the website, you automatically accept the storage of cookies on your computer..
-        /// </summary>
-        public static string CookiesText2 {
-            get {
-                return ResourceManager.GetString("CookiesText2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string Copy {
@@ -781,56 +691,11 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The copyright of this website belongs to vitae.ch, Alexandros Theodoracatos..
-        /// </summary>
-        public static string Copyright {
-            get {
-                return ResourceManager.GetString("Copyright", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copyright.
-        /// </summary>
-        public static string CopyrightLaw {
-            get {
-                return ResourceManager.GetString("CopyrightLaw", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The myVitae web application is the exclusive property of Alexandros Theodoracatos and is protected by Swiss copyright law. Therefore, the website may not be reproduced or made available in whole or in part in any manner whatsoever, nor may it be used in any way other than that authorized, without the prior consent of Alexandros Theodoracatos..
-        /// </summary>
-        public static string CopyrightLawText {
-            get {
-                return ResourceManager.GetString("CopyrightLawText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Copy values.
         /// </summary>
         public static string CopyValues {
             get {
                 return ResourceManager.GetString("CopyValues", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copies all values from the first language.
-        /// </summary>
-        public static string CopyValuesDescription {
-            get {
-                return ResourceManager.GetString("CopyValuesDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Code.
-        /// </summary>
-        public static string CountryCode {
-            get {
-                return ResourceManager.GetString("CountryCode", resourceCulture);
             }
         }
         
@@ -898,15 +763,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Curriculum Vitae.
-        /// </summary>
-        public static string CurriculumVitae {
-            get {
-                return ResourceManager.GetString("CurriculumVitae", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Resume.
         /// </summary>
         public static string CV {
@@ -961,65 +817,11 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data.
-        /// </summary>
-        public static string Data {
-            get {
-                return ResourceManager.GetString("Data", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Data collection.
-        /// </summary>
-        public static string DataCollection {
-            get {
-                return ResourceManager.GetString("DataCollection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to When you register for myVitae and create a resume, sensitive information about you is collected. This includes (but is not limited to): your gender, name, birthday, address, nationality, e-mail address, telephone number, marital status and other sensitive personal data. This data will not be passed on to third parties under any circumstances and will be used exclusively for the preparation of your CV. The following guideline is that only as much personal data is collected during data processing as is absolu [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string DataCollectionDesc {
-            get {
-                return ResourceManager.GetString("DataCollectionDesc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Data protection.
-        /// </summary>
-        public static string DataProtection {
-            get {
-                return ResourceManager.GetString("DataProtection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We cannot guarantee the security of data transmission on the Internet. In particular, there is a risk of access by third parties when data is transmitted by e-mail. We hereby expressly object to the use of the contact data published in the imprint by third parties for advertising purposes. The operator expressly reserves the right to take legal action in the event of unsolicited advertising or information material being sent. Should individual provisions or formulations of this disclaimer be or become inval [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string DataProtectionText {
-            get {
-                return ResourceManager.GetString("DataProtectionText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The start date can&apos;t be greater than the end date.
         /// </summary>
         public static string DateCompareError {
             get {
                 return ResourceManager.GetString("DateCompareError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We cannot guarantee the security of data transmission on the Internet. In particular, there is a risk of access by third parties when data is transmitted by e-mail. We hereby expressly object to the use of the contact data published in the imprint by third parties for advertising purposes. The operator expressly reserves the right to take legal action in the event of unsolicited advertising or information material being sent. Should individual provisions or formulations of this disclaimer be or become inval [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string DateProtectionText {
-            get {
-                return ResourceManager.GetString("DateProtectionText", resourceCulture);
             }
         }
         
@@ -1092,33 +894,6 @@ namespace Library.Resources {
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disclaimer.
-        /// </summary>
-        public static string Disclaimer {
-            get {
-                return ResourceManager.GetString("Disclaimer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All texts and links have been carefully checked and are continuously updated. We make every effort to provide correct and complete information on this website, but accept no responsibility, guarantee or liability whatsoever that the tools and information provided by this website are correct, complete or up-to-date. We reserve the right to change the information on this website at any time and without prior notice and do not undertake to update and, if necessary, modify the information contained herein. All  [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string DisclaimerText {
-            get {
-                return ResourceManager.GetString("DisclaimerText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Divorced.
-        /// </summary>
-        public static string Divorced {
-            get {
-                return ResourceManager.GetString("Divorced", resourceCulture);
             }
         }
         
@@ -1240,15 +1015,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Access with password.
-        /// </summary>
-        public static string EnablePassword {
-            get {
-                return ResourceManager.GetString("EnablePassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Secures your myVitae curriculum with an additional password.
         /// </summary>
         public static string EnablePasswordDescription {
@@ -1272,15 +1038,6 @@ namespace Library.Resources {
         public static string English {
             get {
                 return ResourceManager.GetString("English", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enter password.
-        /// </summary>
-        public static string EnterPassword {
-            get {
-                return ResourceManager.GetString("EnterPassword", resourceCulture);
             }
         }
         
@@ -1384,15 +1141,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Famous asked questions.
-        /// </summary>
-        public static string FAQ {
-            get {
-                return ResourceManager.GetString("FAQ", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Files you&apos;ve chosen are too large.
         /// </summary>
         public static string FilesTooLarge {
@@ -1447,15 +1195,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Function.
-        /// </summary>
-        public static string Function {
-            get {
-                return ResourceManager.GetString("Function", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Gender.
         /// </summary>
         public static string Gender {
@@ -1483,51 +1222,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Google analytics.
-        /// </summary>
-        public static string GoogleAnalytics {
-            get {
-                return ResourceManager.GetString("GoogleAnalytics", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This website uses cookies from Google Analytics, a web analysis service of Google Inc. (&quot;Google&quot;). The information generated by the cookie about your use of this website is usually transferred to a Google server in the USA and stored there. However, in the event that IP anonymisation is activated on this website, your IP address will be shortened by Google within member states of the European Union or in other signatory states to the Agreement on the European Economic Area before this happens. Only in excep [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string GoogleAnalyticsText1 {
-            get {
-                return ResourceManager.GetString("GoogleAnalyticsText1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You may refuse the use of cookies by selecting the appropriate settings on your browser, however please note that if you do this you may not be able to use the full functionality of this website.  You can also prevent the collection of data generated by the cookie and related to your use of the website (including your IP address) to Google and the processing of this data by Google by downloading and installing the browser plugin available at the following link. The current link is:.
-        /// </summary>
-        public static string GoogleAnalyticsText2 {
-            get {
-                return ResourceManager.GetString("GoogleAnalyticsText2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Google Captcha.
-        /// </summary>
-        public static string GoogleCaptcha {
-            get {
-                return ResourceManager.GetString("GoogleCaptcha", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to By using the Site, you consent to our use of Google reCAPTCHA. Google will truncate your IP address within member states of the European Union or in other states which are party to the agreement on the European Economic Area and your IP address, is therefore anonymized. Only in exceptional circumstances is a full IP address transmitted to a Google server in the United States and truncated there. The use of reCAPTCHA is subject to Google&apos;s Privacy Policy and Terms of Service..
-        /// </summary>
-        public static string GoogleCaptchaDesc {
-            get {
-                return ResourceManager.GetString("GoogleCaptchaDesc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Grade.
         /// </summary>
         public static string Grade {
@@ -1542,15 +1236,6 @@ namespace Library.Resources {
         public static string Hello {
             get {
                 return ResourceManager.GetString("Hello", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide.
-        /// </summary>
-        public static string Hide {
-            get {
-                return ResourceManager.GetString("Hide", resourceCulture);
             }
         }
         
@@ -1852,33 +1537,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legal notice.
-        /// </summary>
-        public static string LegalNotice {
-            get {
-                return ResourceManager.GetString("LegalNotice", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Responsible for the myVitae web application.
-        /// </summary>
-        public static string LegalNoticeResponsible {
-            get {
-                return ResourceManager.GetString("LegalNoticeResponsible", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Level.
-        /// </summary>
-        public static string Level {
-            get {
-                return ResourceManager.GetString("Level", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Website of the awarding authority.
         /// </summary>
         public static string LinkAwards {
@@ -1920,15 +1578,6 @@ namespace Library.Resources {
         public static string LinkInterest {
             get {
                 return ResourceManager.GetString("LinkInterest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The link has not been generated yet.
-        /// </summary>
-        public static string LinkNotGenerated {
-            get {
-                return ResourceManager.GetString("LinkNotGenerated", resourceCulture);
             }
         }
         
@@ -2023,15 +1672,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ID.
-        /// </summary>
-        public static string LongIdentifier {
-            get {
-                return ResourceManager.GetString("LongIdentifier", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to It has never been so easy to create a resume..
         /// </summary>
         public static string MailAdvert1 {
@@ -2086,15 +1726,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It has never been easier..
-        /// </summary>
-        public static string MailAdvert6 {
-            get {
-                return ResourceManager.GetString("MailAdvert6", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Your account has been successfully deleted. We regret that you have left. However, you can register again at any time with this e-mail address by.
         /// </summary>
         public static string MailBye3 {
@@ -2122,15 +1753,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage.
-        /// </summary>
-        public static string Manage {
-            get {
-                return ResourceManager.GetString("Manage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Management.
         /// </summary>
         public static string Management {
@@ -2145,15 +1767,6 @@ namespace Library.Resources {
         public static string MaritalStatus {
             get {
                 return ResourceManager.GetString("MaritalStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Married.
-        /// </summary>
-        public static string Married {
-            get {
-                return ResourceManager.GetString("Married", resourceCulture);
             }
         }
         
@@ -2320,15 +1933,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No information.
-        /// </summary>
-        public static string NoInformation {
-            get {
-                return ResourceManager.GetString("NoInformation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The value &apos;{0}&apos; is not valid.
         /// </summary>
         public static string NonPropertyAttemptedValueIsInvalidAccessor {
@@ -2446,15 +2050,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Overview.
-        /// </summary>
-        public static string Overview {
-            get {
-                return ResourceManager.GetString("Overview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
@@ -2505,15 +2100,6 @@ namespace Library.Resources {
         public static string PasswordMismatch {
             get {
                 return ResourceManager.GetString("PasswordMismatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password protection.
-        /// </summary>
-        public static string PasswordProtection {
-            get {
-                return ResourceManager.GetString("PasswordProtection", resourceCulture);
             }
         }
         
@@ -2635,15 +2221,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please confirm your email account by.
-        /// </summary>
-        public static string PleaseClickHereToConfirm {
-            get {
-                return ResourceManager.GetString("PleaseClickHereToConfirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please confirm.
         /// </summary>
         public static string PleaseConfirm {
@@ -2676,24 +2253,6 @@ namespace Library.Resources {
         public static string Preview {
             get {
                 return ResourceManager.GetString("Preview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Privacy policy.
-        /// </summary>
-        public static string PrivacyPolicy {
-            get {
-                return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Profile overview.
-        /// </summary>
-        public static string ProfileOverview {
-            get {
-                return ResourceManager.GetString("ProfileOverview", resourceCulture);
             }
         }
         
@@ -2739,24 +2298,6 @@ namespace Library.Resources {
         public static string Publications {
             get {
                 return ResourceManager.GetString("Publications", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Publish.
-        /// </summary>
-        public static string Publish {
-            get {
-                return ResourceManager.GetString("Publish", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Questions and answers.
-        /// </summary>
-        public static string QandA {
-            get {
-                return ResourceManager.GetString("QandA", resourceCulture);
             }
         }
         
@@ -2964,15 +2505,6 @@ namespace Library.Resources {
         public static string RemoveFileConfirmation {
             get {
                 return ResourceManager.GetString("RemoveFileConfirmation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove this picture.
-        /// </summary>
-        public static string RemovePicture {
-            get {
-                return ResourceManager.GetString("RemovePicture", resourceCulture);
             }
         }
         
@@ -3211,15 +2743,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Short ID.
-        /// </summary>
-        public static string ShortIdentifier {
-            get {
-                return ResourceManager.GetString("ShortIdentifier", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show your strengths.
         /// </summary>
         public static string ShowYourStrengths {
@@ -3243,15 +2766,6 @@ namespace Library.Resources {
         public static string SignIn {
             get {
                 return ResourceManager.GetString("SignIn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Single.
-        /// </summary>
-        public static string Single {
-            get {
-                return ResourceManager.GetString("Single", resourceCulture);
             }
         }
         
@@ -3463,7 +2977,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Terms &amp; conditions.
+        ///   Looks up a localized string similar to Privacy policy.
         /// </summary>
         public static string TermsAndConditions {
             get {
@@ -3472,11 +2986,11 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I accept the terms &amp; conditions.
+        ///   Looks up a localized string similar to Accept privacy policy.
         /// </summary>
-        public static string TermsAndConditionsDesc {
+        public static string TermsAndConditionsAccept {
             get {
-                return ResourceManager.GetString("TermsAndConditionsDesc", resourceCulture);
+                return ResourceManager.GetString("TermsAndConditionsAccept", resourceCulture);
             }
         }
         
@@ -3531,15 +3045,6 @@ namespace Library.Resources {
         public static string UnknownValueIsInvalidAccessor {
             get {
                 return ResourceManager.GetString("UnknownValueIsInvalidAccessor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You have unsaved changes. Do you want to continue?.
-        /// </summary>
-        public static string UnsafedChanges {
-            get {
-                return ResourceManager.GetString("UnsafedChanges", resourceCulture);
             }
         }
         
@@ -3652,15 +3157,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Various.
-        /// </summary>
-        public static string VariousMaritalStatus {
-            get {
-                return ResourceManager.GetString("VariousMaritalStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Verification email sent..
         /// </summary>
         public static string VerificationEmailSent {
@@ -3679,24 +3175,6 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to myVitae.
-        /// </summary>
-        public static string WelcomeToVitae {
-            get {
-                return ResourceManager.GetString("WelcomeToVitae", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Why myVitae?.
-        /// </summary>
-        public static string WhyMyVitae {
-            get {
-                return ResourceManager.GetString("WhyMyVitae", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Creating a good CV and keeping it up to date is a very time-consuming process. In addition, you can quickly reach your limits when designing. However, an applicant has to put everything on the scales, because &quot;there is no second chance for a first impression&quot; (Mark Twain). This is where myVitae steps in and focuses on a clear and concise design. With ease you can create your secure personal resume website - and best of all, it&apos;s free!.
         /// </summary>
         public static string WhyMyVitaeReason {
@@ -3711,15 +3189,6 @@ namespace Library.Resources {
         public static string WhyMyVitaeTest {
             get {
                 return ResourceManager.GetString("WhyMyVitaeTest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Widowed.
-        /// </summary>
-        public static string Widowed {
-            get {
-                return ResourceManager.GetString("Widowed", resourceCulture);
             }
         }
         

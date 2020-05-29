@@ -183,9 +183,6 @@
   <data name="AnonymizeDescription" xml:space="preserve">
     <value>Some personal details will be hidden</value>
   </data>
-  <data name="AreYouSure" xml:space="preserve">
-    <value>Do you really want to delete this item?</value>
-  </data>
   <data name="Association" xml:space="preserve">
     <value>Association</value>
   </data>
@@ -230,9 +227,6 @@
   </data>
   <data name="CertificatesDescription" xml:space="preserve">
     <value>List language and further education certificates.</value>
-  </data>
-  <data name="Change" xml:space="preserve">
-    <value>Change</value>
   </data>
   <data name="ChangeEmail" xml:space="preserve">
     <value>Change email</value>
@@ -282,9 +276,6 @@
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
-  <data name="ClickHere" xml:space="preserve">
-    <value>Click here</value>
-  </data>
   <data name="ClickingHere" xml:space="preserve">
     <value>clicking here</value>
   </data>
@@ -306,9 +297,6 @@
   <data name="CompareFailed" xml:space="preserve">
     <value>The password and confirmation password do not match.</value>
   </data>
-  <data name="Concubinage" xml:space="preserve">
-    <value>Concubinage</value>
-  </data>
   <data name="ConcurrencyFailure" xml:space="preserve">
     <value>Optimistic concurrency failure, object has been modified.</value>
   </data>
@@ -324,20 +312,11 @@
   <data name="ConfirmEmail" xml:space="preserve">
     <value>Confirm email</value>
   </data>
-  <data name="ConfirmEmail1" xml:space="preserve">
-    <value>Confirm your email</value>
-  </data>
   <data name="ConfirmEmailThankYou" xml:space="preserve">
     <value>Thank you for confirming your email.</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm password</value>
-  </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Contact</value>
-  </data>
-  <data name="CookiePolicy" xml:space="preserve">
-    <value>Cookie policy</value>
   </data>
   <data name="CookiePolicyDescription" xml:space="preserve">
     <value>By continuing to visit the website, you accept the storage of cookies on your computer</value>
@@ -345,35 +324,11 @@
   <data name="CookiePolicyLearnMore" xml:space="preserve">
     <value>Learn more</value>
   </data>
-  <data name="Cookies" xml:space="preserve">
-    <value>Cookies</value>
-  </data>
-  <data name="CookiesText1" xml:space="preserve">
-    <value>When you visit this website, the web server will automatically record certain details of your visit (IP address, source website, destination website) using a tracking technology called "cookies". A cookie is a small piece of data that is stored by the website on the browser or mobile device. The cookie allows the website to save your settings or preferences for a certain period of time.</value>
-  </data>
-  <data name="CookiesText2" xml:space="preserve">
-    <value>This website requires cookies to optimize the content of its web pages and to provide information about the use of the website. Cookies, which are used, cannot be used for user identification. You can accept cookies or refuse cookies at any time by changing the settings on your web browser. Please note, however, that if you refuse cookies, certain functionalities may be impaired. By continuing to use the website, you automatically accept the storage of cookies on your computer.</value>
-  </data>
   <data name="Copy" xml:space="preserve">
     <value>Copy</value>
   </data>
-  <data name="Copyright" xml:space="preserve">
-    <value>The copyright of this website belongs to vitae.ch, Alexandros Theodoracatos.</value>
-  </data>
-  <data name="CopyrightLaw" xml:space="preserve">
-    <value>Copyright</value>
-  </data>
-  <data name="CopyrightLawText" xml:space="preserve">
-    <value>The myVitae web application is the exclusive property of Alexandros Theodoracatos and is protected by Swiss copyright law. Therefore, the website may not be reproduced or made available in whole or in part in any manner whatsoever, nor may it be used in any way other than that authorized, without the prior consent of Alexandros Theodoracatos.</value>
-  </data>
   <data name="CopyValues" xml:space="preserve">
     <value>Copy values</value>
-  </data>
-  <data name="CopyValuesDescription" xml:space="preserve">
-    <value>Copies all values from the first language</value>
-  </data>
-  <data name="CountryCode" xml:space="preserve">
-    <value>Code</value>
   </data>
   <data name="CountryName" xml:space="preserve">
     <value>Country</value>
@@ -396,9 +351,6 @@
   <data name="CurriculumLanguage" xml:space="preserve">
     <value>Curriculum language</value>
   </data>
-  <data name="CurriculumVitae" xml:space="preserve">
-    <value>Curriculum Vitae</value>
-  </data>
   <data name="CV" xml:space="preserve">
     <value>Resume</value>
   </data>
@@ -417,28 +369,8 @@
   <data name="DashboardOverview" xml:space="preserve">
     <value>In order for your CV to be published, a random publication link is created by the myVitae web application. You can then use this link for one or more vacancies and delete it completely after you have successfully applied. The dashboard shows you the success of your published CVs by displaying the number of clicks on the sent publication link. You can also enter your resume in up to five languages.</value>
   </data>
-  <data name="Data" xml:space="preserve">
-    <value>Data</value>
-  </data>
-  <data name="DataCollection" xml:space="preserve">
-    <value>Data collection</value>
-  </data>
-  <data name="DataCollectionDesc" xml:space="preserve">
-    <value>When you register for myVitae and create a resume, sensitive information about you is collected. This includes (but is not limited to): your gender, name, birthday, address, nationality, e-mail address, telephone number, marital status and other sensitive personal data. This data will not be passed on to third parties under any circumstances and will be used exclusively for the preparation of your CV. The following guideline is that only as much personal data is collected during data processing as is absolutely necessary for the creation of the CV. The respective users of myVitae can determine at any time how much information you would like to disclose in your CV.
-In addition, the following data is collected without your intervention and stored until it is automatically deleted: IP address of the requesting computer and the "user agent string (UA)". The UA is a field in the HTTP protocol, through which detailed information about the requesting device can be transmitted with a network query. 
-Our interest in data collection in accordance with the German Data Protection Ordinance (DSGVO) is based on the following purpose: to ensure convenient use of the website application, to evaluate system security and stability, and for other administrative purposes. Under no circumstances do we use the collected data to draw conclusions about you. On request, we will be happy to inform you whether and which clearly personal data about you is stored.</value>
-  </data>
-  <data name="DataProtection" xml:space="preserve">
-    <value>Data protection</value>
-  </data>
-  <data name="DataProtectionText" xml:space="preserve">
-    <value>We cannot guarantee the security of data transmission on the Internet. In particular, there is a risk of access by third parties when data is transmitted by e-mail. We hereby expressly object to the use of the contact data published in the imprint by third parties for advertising purposes. The operator expressly reserves the right to take legal action in the event of unsolicited advertising or information material being sent. Should individual provisions or formulations of this disclaimer be or become invalid, the content and validity of the remaining provisions shall remain unaffected.</value>
-  </data>
   <data name="DateCompareError" xml:space="preserve">
     <value>The start date can't be greater than the end date</value>
-  </data>
-  <data name="DateProtectionText" xml:space="preserve">
-    <value>We cannot guarantee the security of data transmission on the Internet. In particular, there is a risk of access by third parties when data is transmitted by e-mail. We hereby expressly object to the use of the contact data published in the imprint by third parties for advertising purposes. The operator expressly reserves the right to take legal action in the event of unsolicited advertising or information material being sent. Should individual provisions or formulations of this disclaimer be or become invalid, the content and validity of the remaining provisions shall remain unaffected.</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>Day</value>
@@ -463,15 +395,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
-  </data>
-  <data name="Disclaimer" xml:space="preserve">
-    <value>Disclaimer</value>
-  </data>
-  <data name="DisclaimerText" xml:space="preserve">
-    <value>All texts and links have been carefully checked and are continuously updated. We make every effort to provide correct and complete information on this website, but accept no responsibility, guarantee or liability whatsoever that the tools and information provided by this website are correct, complete or up-to-date. We reserve the right to change the information on this website at any time and without prior notice and do not undertake to update and, if necessary, modify the information contained herein. All links to external providers were checked for correctness at the time of their inclusion, but we are not liable for the content and availability of websites that can be reached via hyperlinks of users of myVitae. Only the provider of the site to which the link leads is liable for illegal, incorrect or incomplete content and in particular for damages resulting from the content of linked sites. It is irrelevant whether the damage is of a direct, indirect or financial nature or whether there is any other damage which could result from data loss, loss of use or other reasons of any kind.</value>
-  </data>
-  <data name="Divorced" xml:space="preserve">
-    <value>Divorced</value>
   </data>
   <data name="Down" xml:space="preserve">
     <value>Down</value>
@@ -512,9 +435,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="EmailUnchanged" xml:space="preserve">
     <value>Your email is unchanged.</value>
   </data>
-  <data name="EnablePassword" xml:space="preserve">
-    <value>Access with password</value>
-  </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
     <value>Secures your myVitae curriculum with an additional password</value>
   </data>
@@ -523,9 +443,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
-  </data>
-  <data name="EnterPassword" xml:space="preserve">
-    <value>Enter password</value>
   </data>
   <data name="EnterSkill" xml:space="preserve">
     <value>Please press Enter to insert a new Skill</value>
@@ -560,9 +477,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="ExpiresOn" xml:space="preserve">
     <value>Expires on</value>
   </data>
-  <data name="FAQ" xml:space="preserve">
-    <value>Famous asked questions</value>
-  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Files you've chosen are too large</value>
   </data>
@@ -581,9 +495,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="From" xml:space="preserve">
     <value>From</value>
   </data>
-  <data name="Function" xml:space="preserve">
-    <value>Function</value>
-  </data>
   <data name="Gender" xml:space="preserve">
     <value>Gender</value>
   </data>
@@ -593,29 +504,11 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="Goodbye" xml:space="preserve">
     <value>Goodbye</value>
   </data>
-  <data name="GoogleAnalytics" xml:space="preserve">
-    <value>Google analytics</value>
-  </data>
-  <data name="GoogleAnalyticsText1" xml:space="preserve">
-    <value>This website uses cookies from Google Analytics, a web analysis service of Google Inc. ("Google"). The information generated by the cookie about your use of this website is usually transferred to a Google server in the USA and stored there. However, in the event that IP anonymisation is activated on this website, your IP address will be shortened by Google within member states of the European Union or in other signatory states to the Agreement on the European Economic Area before this happens. Only in exceptional cases will the full IP address be transferred to a Google server in the USA and shortened there. On behalf of the operator of this website, Google will use this information to evaluate your use of the website, to compile reports on the website activities and to provide further services to the website operator in connection with the use of the website and the Internet. The IP address transmitted by your browser within the scope of Google Analytics is not combined with other data from Google.</value>
-  </data>
-  <data name="GoogleAnalyticsText2" xml:space="preserve">
-    <value>You may refuse the use of cookies by selecting the appropriate settings on your browser, however please note that if you do this you may not be able to use the full functionality of this website.  You can also prevent the collection of data generated by the cookie and related to your use of the website (including your IP address) to Google and the processing of this data by Google by downloading and installing the browser plugin available at the following link. The current link is:</value>
-  </data>
-  <data name="GoogleCaptcha" xml:space="preserve">
-    <value>Google Captcha</value>
-  </data>
-  <data name="GoogleCaptchaDesc" xml:space="preserve">
-    <value>By using the Site, you consent to our use of Google reCAPTCHA. Google will truncate your IP address within member states of the European Union or in other states which are party to the agreement on the European Economic Area and your IP address, is therefore anonymized. Only in exceptional circumstances is a full IP address transmitted to a Google server in the United States and truncated there. The use of reCAPTCHA is subject to Google's Privacy Policy and Terms of Service.</value>
-  </data>
   <data name="Grade" xml:space="preserve">
     <value>Grade</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>
-  </data>
-  <data name="Hide" xml:space="preserve">
-    <value>Hide</value>
   </data>
   <data name="HideReference" xml:space="preserve">
     <value>Hide reference</value>
@@ -716,15 +609,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="Lastname" xml:space="preserve">
     <value>Last name</value>
   </data>
-  <data name="LegalNotice" xml:space="preserve">
-    <value>Legal notice</value>
-  </data>
-  <data name="LegalNoticeResponsible" xml:space="preserve">
-    <value>Responsible for the myVitae web application</value>
-  </data>
-  <data name="Level" xml:space="preserve">
-    <value>Level</value>
-  </data>
   <data name="LinkAwards" xml:space="preserve">
     <value>Website of the awarding authority</value>
   </data>
@@ -739,9 +623,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   </data>
   <data name="LinkInterest" xml:space="preserve">
     <value>Website of the association</value>
-  </data>
-  <data name="LinkNotGenerated" xml:space="preserve">
-    <value>The link has not been generated yet</value>
   </data>
   <data name="LinkReference" xml:space="preserve">
     <value>Website of the company</value>
@@ -773,9 +654,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
-  <data name="LongIdentifier" xml:space="preserve">
-    <value>ID</value>
-  </data>
   <data name="MailAdvert1" xml:space="preserve">
     <value>It has never been so easy to create a resume.</value>
   </data>
@@ -794,9 +672,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="MailAdvert5" xml:space="preserve">
     <value>Your myVitae team</value>
   </data>
-  <data name="MailAdvert6" xml:space="preserve">
-    <value>It has never been easier.</value>
-  </data>
   <data name="MailBye3" xml:space="preserve">
     <value>Your account has been successfully deleted. We regret that you have left. However, you can register again at any time with this e-mail address by</value>
   </data>
@@ -806,17 +681,11 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="MailFooter2" xml:space="preserve">
     <value>Please delete your account if you no longer wish to receive these emails.</value>
   </data>
-  <data name="Manage" xml:space="preserve">
-    <value>Manage</value>
-  </data>
   <data name="Management" xml:space="preserve">
     <value>Management</value>
   </data>
   <data name="MaritalStatus" xml:space="preserve">
     <value>Marital status</value>
-  </data>
-  <data name="Married" xml:space="preserve">
-    <value>Married</value>
   </data>
   <data name="MissingBindRequiredValueAccessor" xml:space="preserve">
     <value>A value for the '{0}' property was not provided</value>
@@ -872,9 +741,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="NoHits" xml:space="preserve">
     <value>No hits</value>
   </data>
-  <data name="NoInformation" xml:space="preserve">
-    <value>No information</value>
-  </data>
   <data name="NonPropertyAttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>The value '{0}' is not valid</value>
   </data>
@@ -914,9 +780,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="OptionalInformation" xml:space="preserve">
     <value>Optional information</value>
   </data>
-  <data name="Overview" xml:space="preserve">
-    <value>Overview</value>
-  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -934,9 +797,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   </data>
   <data name="PasswordMismatch" xml:space="preserve">
     <value>Incorrect password.</value>
-  </data>
-  <data name="PasswordProtection" xml:space="preserve">
-    <value>Password protection</value>
   </data>
   <data name="PasswordProtectionDesc" xml:space="preserve">
     <value>This resume is also password protected. Please enter the password to open the view.</value>
@@ -977,9 +837,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="PleaseCheckEmail" xml:space="preserve">
     <value>Please check your email.</value>
   </data>
-  <data name="PleaseClickHereToConfirm" xml:space="preserve">
-    <value>Please confirm your email account by</value>
-  </data>
   <data name="PleaseConfirm" xml:space="preserve">
     <value>Please confirm</value>
   </data>
@@ -991,12 +848,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   </data>
   <data name="Preview" xml:space="preserve">
     <value>Preview</value>
-  </data>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
-  </data>
-  <data name="ProfileOverview" xml:space="preserve">
-    <value>Profile overview</value>
   </data>
   <data name="ProperValue" xml:space="preserve">
     <value>Please enter a proper value</value>
@@ -1012,12 +863,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   </data>
   <data name="Publications" xml:space="preserve">
     <value>Publications</value>
-  </data>
-  <data name="Publish" xml:space="preserve">
-    <value>Publish</value>
-  </data>
-  <data name="QandA" xml:space="preserve">
-    <value>Questions and answers</value>
   </data>
   <data name="QandA_A0" xml:space="preserve">
     <value>myVitae enables job seekers to enter their resume online. In doing so, people only have to worry about the content and no longer about the design.</value>
@@ -1087,9 +932,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   </data>
   <data name="RemoveFileConfirmation" xml:space="preserve">
     <value>Are you sure you want to remove this file</value>
-  </data>
-  <data name="RemovePicture" xml:space="preserve">
-    <value>Remove this picture</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Request</value>
@@ -1169,9 +1011,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="ShareLink" xml:space="preserve">
     <value>Share this link / QR code with your future employer</value>
   </data>
-  <data name="ShortIdentifier" xml:space="preserve">
-    <value>Short ID</value>
-  </data>
   <data name="ShowYourStrengths" xml:space="preserve">
     <value>Show your strengths</value>
   </data>
@@ -1180,9 +1019,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign in</value>
-  </data>
-  <data name="Single" xml:space="preserve">
-    <value>Single</value>
   </data>
   <data name="SingleDay" xml:space="preserve">
     <value>Single day</value>
@@ -1254,10 +1090,10 @@ Our interest in data collection in accordance with the German Data Protection Or
     <value>Switzerland</value>
   </data>
   <data name="TermsAndConditions" xml:space="preserve">
-    <value>Terms &amp; conditions</value>
+    <value>Privacy policy</value>
   </data>
-  <data name="TermsAndConditionsDesc" xml:space="preserve">
-    <value>I accept the terms &amp; conditions</value>
+  <data name="TermsAndConditionsAccept" xml:space="preserve">
+    <value>Accept privacy policy</value>
   </data>
   <data name="TermsAndConditionsError" xml:space="preserve">
     <value>You have to accept the terms &amp; conditions</value>
@@ -1276,9 +1112,6 @@ Our interest in data collection in accordance with the German Data Protection Or
   </data>
   <data name="UnknownValueIsInvalidAccessor" xml:space="preserve">
     <value>The supplied value is invalid for {0}</value>
-  </data>
-  <data name="UnsafedChanges" xml:space="preserve">
-    <value>You have unsaved changes. Do you want to continue?</value>
   </data>
   <data name="UntilNow" xml:space="preserve">
     <value>Until now</value>
@@ -1316,29 +1149,17 @@ Our interest in data collection in accordance with the German Data Protection Or
   <data name="ValueMustNotBeNullAccessor" xml:space="preserve">
     <value>The value '{0}' is invalid</value>
   </data>
-  <data name="VariousMaritalStatus" xml:space="preserve">
-    <value>Various</value>
-  </data>
   <data name="VerificationEmailSent" xml:space="preserve">
     <value>Verification email sent.</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>
   </data>
-  <data name="WelcomeToVitae" xml:space="preserve">
-    <value>Welcome to myVitae</value>
-  </data>
-  <data name="WhyMyVitae" xml:space="preserve">
-    <value>Why myVitae?</value>
-  </data>
   <data name="WhyMyVitaeReason" xml:space="preserve">
     <value>Creating a good CV and keeping it up to date is a very time-consuming process. In addition, you can quickly reach your limits when designing. However, an applicant has to put everything on the scales, because "there is no second chance for a first impression" (Mark Twain). This is where myVitae steps in and focuses on a clear and concise design. With ease you can create your secure personal resume website - and best of all, it's free!</value>
   </data>
   <data name="WhyMyVitaeTest" xml:space="preserve">
     <value>Check it out - you will be thrilled!</value>
-  </data>
-  <data name="Widowed" xml:space="preserve">
-    <value>Widowed</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>Year</value>
