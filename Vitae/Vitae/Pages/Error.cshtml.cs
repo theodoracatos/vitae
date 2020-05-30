@@ -59,7 +59,7 @@ namespace Vitae.Pages
             Message = GetCustomizedMessage(statusCode) ?? ReasonPhrases.GetReasonPhrase(statusCode); // https://httpstatuses.com/
 
             // Send mail...
-            var message = new Message(new string[] { Globals.ADMIN_VITAE_MAIL }, $"{SharedResource.Error} {(Code)}", GetHtmlMessage(), null);
+            var message = new Message(new string[] { Globals.ADMIN_VITAE_MAIL }, $"Error {(Code)}", GetHtmlMessage(), null);
             await _emailSender.SendEmailAsync(message);
         }
 
@@ -93,9 +93,9 @@ namespace Vitae.Pages
         {
             var message = new StringBuilder();
             message.Append($"<html><body>");
-            message.Append($"<h4>{Code}: {Message}</h4><hr />");
+            message.Append($"<h2>{Code}: {Message}</h2><hr />");
             message.Append($"<table>");
-            message.Append($"<tr><td valign='top' style='width: 120px'><b>Method</b></td><td>{Method}</td></tr>");
+            message.Append($"<tr><td valign='top' style='width: 100px'><b>Method</b></td><td>{Method}</td></tr>");
             message.Append($"<tr><td valign='top'><b>Origin</b></td><td>{Origin}</td></tr>");
             message.Append($"<tr><td valign='top'><b>Ip</b></td><td>{_httpContext.Connection.RemoteIpAddress}</td></tr>");
             message.Append($"<tr><td valign='top'><b>Agent</b></td><td>{CodeHelper.GetUserAgent(_httpContext)}</td></tr>");

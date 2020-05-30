@@ -33,9 +33,7 @@ namespace Vitae.Areas.Manage.Pages.Settings
 {
     public class IndexModel : BasePageModel
     {
-        private readonly SignInManager<IdentityUser> signInManager;
-        private readonly IdentityContext identityContext;
-        private readonly IEmailSender emailSender;
+        protected readonly IdentityContext identityContext;
 
         public const string PAGE_SETTINGS = "_Settings";
 
@@ -46,14 +44,11 @@ namespace Vitae.Areas.Manage.Pages.Settings
 
         public IEnumerable<LanguageVM> Languages { get; set; }
 
-        public IndexModel(IHttpClientFactory clientFactory, IConfiguration configuration, SignInManager<IdentityUser> signInManager, IEmailSender emailSender, IStringLocalizer<SharedResource> localizer, IdentityContext identityContext, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
-            : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository)
+        public IndexModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository, SignInManager<IdentityUser> signInManager, IEmailSender emailSender, IdentityContext identityContext)
+        : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository, signInManager, emailSender) 
         {
-            this.signInManager = signInManager;
             this.identityContext = identityContext;
-            this.emailSender = emailSender;
         }
-
         #region SYNC
 
         public async Task<IActionResult> OnGetAsync()

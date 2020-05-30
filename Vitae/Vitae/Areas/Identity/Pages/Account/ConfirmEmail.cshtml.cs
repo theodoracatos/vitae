@@ -9,37 +9,31 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 
 using Model.Enumerations;
-
+using Persistency.Data;
 using Persistency.Repository;
 
 using System;
 using System.Globalization;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Vitae.Code.Mailing;
+using Vitae.Code.PageModels;
 
 namespace Vitae.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class ConfirmEmailModel : PageModel
+    public class ConfirmEmailModel : BasePageModel
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly Repository repository;
-        private readonly SignInManager<IdentityUser> signInManager;
-        private readonly IRequestCultureFeature requestCulture;
-        private readonly HttpContext httpContext;
-
-        public ConfirmEmailModel(UserManager<IdentityUser> userManager, Repository repository, SignInManager<IdentityUser> signInManager, IHttpContextAccessor httpContextAccessor)
-        {
-            this.userManager = userManager;
-            this.repository = repository;
-            this.signInManager = signInManager;
-            requestCulture = httpContextAccessor.HttpContext.Features.Get<IRequestCultureFeature>();
-            httpContext = httpContextAccessor.HttpContext;
-        }
+        public ConfirmEmailModel(IEmailSender emailSender, SignInManager<IdentityUser> signInManager, ILogger<RegisterModel> logger, IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+            : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository, signInManager, emailSender)
+        {}
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -69,28 +63,7 @@ namespace Vitae.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    // CV
-                    var curriculumID = await repository.AddCurriculumAsync(Guid.Parse(user.Id), requestCulture.RequestCulture.UICulture.Name);
-                    await repository.LogActivityAsync(curriculumID, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
-
-                    // Language
-                    Response.Cookies.Append(
-                       CookieRequestCultureProvider.DefaultCookieName,
-                       CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(new CultureInfo(requestCulture.RequestCulture.UICulture.Name))),
-                       new CookieOptions 
-                       { 
-                           Expires = DateTimeOffset.UtcNow.AddYears(1),
-                           SameSite = SameSiteMode.Lax,
-                           Secure = true
-                       }
-                   );
-
-                    // Role & Claims
-                    await userManager.AddToRoleAsync(user, Roles.USER);
-                    var claim = new Claim(Claims.CURRICULUM_ID, curriculumID.ToString());
-                    await userManager.AddClaimAsync(user, claim);
-
-                    await signInManager.SignInAsync(user, isPersistent: false);
+                    await base.CreateCurriculumAndSignInAsync(user);
                 }
             }
             else
@@ -99,6 +72,11 @@ namespace Vitae.Areas.Identity.Pages.Account
             }
 
             return Page();
+        }
+
+        protected override void FillSelectionViewModel()
+        {
+            throw new NotImplementedException();
         }
     }
 }

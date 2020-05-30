@@ -1,0 +1,18 @@
+﻿@page "/sitemap.xml"
+@model XmlSitemapModel 
+@{
+
+    Layout = null;
+    Response.ContentType = "text/xml";
+    await Response.WriteAsync("<?xml version='1.0' encoding='UTF-8' ?>");
+}
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    @foreach (var p in Model.VitaePages)
+    {
+        <url>
+            <loc>@p.Key</loc>
+            <lastmod>@p.Value.ToString("yyyy-MM-dd")</lastmod>
+        </url>
+    }
+</urlset>

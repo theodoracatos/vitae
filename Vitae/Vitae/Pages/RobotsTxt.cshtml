@@ -1,0 +1,14 @@
+﻿@page
+@{
+    Layout = null;
+    this.Response.ContentType = "text/plain";
+}
+# /robots.txt file for http://myvitae.ch
+# Group 1
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+# Group 2
+User-agent: *
+Allow: /
+UserSitemap: @Globals.APPLICATION_URL/sitemap.xml

@@ -6,43 +6,38 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 
 using Model.Enumerations;
 
+using Persistency.Data;
 using Persistency.Repository;
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Vitae.Code.Mailing;
+using Vitae.Code.PageModels;
 
 namespace Vitae.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class LoginModel : PageModel
+    public class LoginModel : BasePageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly Repository repository;
-        private readonly IRequestCultureFeature requestCulture;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, 
-            ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager,
-            Repository repository)
+        public LoginModel(IEmailSender emailSender, SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger, IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+            : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository, signInManager, emailSender)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
             _logger = logger;
-            this.repository = repository;
-            requestCulture = _signInManager.Context.Features.Get<IRequestCultureFeature>();
         }
+
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -84,7 +79,7 @@ namespace Vitae.Areas.Identity.Pages.Account
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            ExternalLogins = (await signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             ReturnUrl = returnUrl;
         }
@@ -97,15 +92,15 @@ namespace Vitae.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+                var result = await signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByNameAsync(Input.Email);
-                    var claims = await _userManager.GetClaimsAsync(user);
+                    var user = await userManager.FindByNameAsync(Input.Email);
+                    var claims = await userManager.GetClaimsAsync(user);
                     var curriculumID = Guid.Parse(claims.Single(c => c.Type == Claims.CURRICULUM_ID).Value);
                     _logger.LogInformation(SharedResource.UserLoggedIn);
 
-                    await repository.LogActivityAsync(curriculumID, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(_signInManager.Context), CodeHelper.GetUserAgent(_signInManager.Context), requestCulture.RequestCulture.UICulture.Name, _signInManager.Context.Connection.RemoteIpAddress.ToString());
+                    await repository.LogActivityAsync(curriculumID, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(signInManager.Context), CodeHelper.GetUserAgent(signInManager.Context), requestCulture.RequestCulture.UICulture.Name, signInManager.Context.Connection.RemoteIpAddress.ToString());
 
                     return LocalRedirect(returnUrl);
                 }
@@ -127,6 +122,11 @@ namespace Vitae.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        protected override void FillSelectionViewModel()
+        {
+            throw new NotImplementedException();
         }
     }
 }
