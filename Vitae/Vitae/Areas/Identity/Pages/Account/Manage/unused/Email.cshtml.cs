@@ -106,7 +106,6 @@ namespace Vitae.Areas.Identity.Pages.Account.Manage
                     values: new { userId = userId, email = Input.NewEmail, code = code },
                     protocol: Request.Scheme);
 
-                //var bodyText = await CodeHelper.GetMailBodyTextAsync(HttpUtility.HtmlEncode(SharedResource.ConfirmEmail), $"{HttpUtility.HtmlEncode(SharedResource.PleaseClickHereToConfirm)} <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>{HttpUtility.HtmlEncode(SharedResource.ClickingHere)}</a>.");
                 await _emailSender.SendEmailAsync(
                     Input.NewEmail,
                     SharedResource.ConfirmEmail,

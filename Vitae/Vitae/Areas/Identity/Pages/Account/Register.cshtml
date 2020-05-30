@@ -32,7 +32,7 @@
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label class="required" asp-for="Input.ConfirmAgreements"></label><label><a class="js-scroll-trigger ml-2" href="@Globals.GENERAL_INFORMATION">@SharedResource.PrivacyPolicy</a></label>
+                            <label class="required" asp-for="Input.ConfirmAgreements"></label><label><a class="js-scroll-trigger ml-2" href="@Globals.GENERAL_INFORMATION_LINK">@SharedResource.TermsAndConditions</a></label>
                             <div class="form-control">
                                 <div class="pretty p-switch p-slim mr-0">
                                     <input type="checkbox" asp-for="Input.ConfirmAgreements" class="dirty-ignore" />
@@ -43,15 +43,16 @@
                             </div>
                             <span asp-validation-for="Input.ConfirmAgreements" class="text-danger"></span>
                         </div>
-                            <div class="form-group">
-                                <label class="text-body required">@SharedResource.SecurityCheck</label>
-                                <div class="g-recaptcha" data-sitekey="@configuration["reCAPTCHA:SiteKey"]" data-callback="enableSubmit"></div>
-                            </div>
-                            <partial name="_StatusMessage" model="new KeyValuePair<bool, string>(ViewData.ModelState.IsValid, string.Empty)" />
-                            <div class="form-group text-right mb-0">
-                                <button id="submitCaptcha" type="submit" class="btn btn-success" disabled>@SharedResource.Register</button>
-                            </div>
-                      </form>
+                        <div class="form-group">
+                            <label class="text-body required">@SharedResource.SecurityCheck</label>
+                            <div class="g-recaptcha" data-sitekey="@configuration["reCAPTCHA:SiteKey"]" data-callback="enableSubmit"></div>
+                        </div>
+                        <partial name="_StatusMessage" model="new KeyValuePair<bool, string>(ViewData.ModelState.IsValid, string.Empty)" />
+                        <div class="form-group text-right mb-0">
+                            <button id="submitCaptcha" type="submit" class="btn btn-success" disabled>@SharedResource.Register</button>
+                        </div>
+                        <partial name="_ExternalProviderList" />
+                    </form>
                 </div>
             </div>
         </div>

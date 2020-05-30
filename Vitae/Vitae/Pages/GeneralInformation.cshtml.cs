@@ -2,7 +2,7 @@ using Vitae.Code.PageModels;
 
 namespace Vitae.Pages
 {
-    public class ImprintModel : LandingPageBaseModel
+    public class GeneralInformationModel : LandingPageBaseModel
     {
         public const int MAX_FAQ = 6;
 

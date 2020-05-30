@@ -147,6 +147,9 @@
   <data name="AccessDeniedMessage" xml:space="preserve">
     <value>Si prega di compilare prima i dati personali.</value>
   </data>
+  <data name="AccountCreated" xml:space="preserve">
+    <value>Conto creato</value>
+  </data>
   <data name="AccountDeleted" xml:space="preserve">
     <value>Conto cancellato con successo</value>
   </data>
@@ -183,14 +186,14 @@
   <data name="AnonymizeDescription" xml:space="preserve">
     <value>Alcuni dati personali saranno nascosti</value>
   </data>
-  <data name="AreYouSure" xml:space="preserve">
-    <value>Volete davvero eliminare questa voce?</value>
-  </data>
   <data name="Association" xml:space="preserve">
     <value>Associazione</value>
   </data>
   <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>Il valore '{0}' non è valido per {y}</value>
+  </data>
+  <data name="AuthenticationSuccess" xml:space="preserve">
+    <value>Hai autenticato con successo con</value>
   </data>
   <data name="Award" xml:space="preserve">
     <value>Premio</value>
@@ -230,9 +233,6 @@
   </data>
   <data name="CertificatesDescription" xml:space="preserve">
     <value>Elenca i certificati di lingua e di formazione continua.</value>
-  </data>
-  <data name="Change" xml:space="preserve">
-    <value>Cambia</value>
   </data>
   <data name="ChangeEmail" xml:space="preserve">
     <value>Cambia e-mail</value>
@@ -282,9 +282,6 @@
   <data name="City" xml:space="preserve">
     <value>Città</value>
   </data>
-  <data name="ClickHere" xml:space="preserve">
-    <value>Clicca qui</value>
-  </data>
   <data name="ClickingHere" xml:space="preserve">
     <value>cliccando qui</value>
   </data>
@@ -306,14 +303,14 @@
   <data name="CompareFailed" xml:space="preserve">
     <value>La password e la password di conferma non corrispondono.</value>
   </data>
-  <data name="Concubinage" xml:space="preserve">
-    <value>Concubinaggio</value>
-  </data>
   <data name="ConcurrencyFailure" xml:space="preserve">
     <value>Ottimizzazione dell'errore di valuta, l'oggetto è stato modificato.</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confermare</value>
+  </data>
+  <data name="ConfirmAgreements" xml:space="preserve">
+    <value>Confermare gli accordi e cliccare sul pulsante Registrati per terminare il login.</value>
   </data>
   <data name="ConfirmationEmailSent" xml:space="preserve">
     <value>Link di conferma per modificare l'email inviata. Si prega di controllare l'e-mail.</value>
@@ -324,20 +321,11 @@
   <data name="ConfirmEmail" xml:space="preserve">
     <value>Conferma email</value>
   </data>
-  <data name="ConfirmEmail1" xml:space="preserve">
-    <value>Conferma la tua e-mail</value>
-  </data>
   <data name="ConfirmEmailThankYou" xml:space="preserve">
     <value>Grazie per aver confermato la vostra e-mail.</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Conferma la password</value>
-  </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Contattate</value>
-  </data>
-  <data name="CookiePolicy" xml:space="preserve">
-    <value>Politica dei biscotti</value>
   </data>
   <data name="CookiePolicyDescription" xml:space="preserve">
     <value>Continuando a visitare il sito web, si accetta la memorizzazione dei cookie sul proprio computer</value>
@@ -345,35 +333,11 @@
   <data name="CookiePolicyLearnMore" xml:space="preserve">
     <value>Per saperne di più</value>
   </data>
-  <data name="Cookies" xml:space="preserve">
-    <value>Biscotti</value>
-  </data>
-  <data name="CookiesText1" xml:space="preserve">
-    <value>Quando visitate questo sito web, il server web registrerà automaticamente alcuni dettagli della vostra visita (indirizzo IP, sito web di origine, sito web di destinazione) utilizzando una tecnologia di tracciamento chiamata "cookies". Un cookie è un piccolo dato che viene memorizzato dal sito web sul browser o sul dispositivo mobile. Il cookie consente al sito web di salvare le impostazioni o le preferenze dell'utente per un certo periodo di tempo.</value>
-  </data>
-  <data name="CookiesText2" xml:space="preserve">
-    <value>Questo sito web richiede i cookie per ottimizzare il contenuto delle sue pagine web e per fornire informazioni sull'utilizzo del sito. I cookie utilizzati non possono essere utilizzati per l'identificazione dell'utente. Potete accettare o rifiutare i cookies in qualsiasi momento modificando le impostazioni del vostro browser. Si prega di notare, tuttavia, che se si rifiutano i cookies, alcune funzionalità potrebbero essere compromesse. Continuando a utilizzare il sito web, accettate automaticamente la memorizzazione dei cookie sul vostro computer.</value>
-  </data>
   <data name="Copy" xml:space="preserve">
     <value>Copia</value>
   </data>
-  <data name="Copyright" xml:space="preserve">
-    <value>Il copyright di questo sito web appartiene a vitae.ch, Alexandros Theodoracatos.</value>
-  </data>
-  <data name="CopyrightLaw" xml:space="preserve">
-    <value>Copyright</value>
-  </data>
-  <data name="CopyrightLawText" xml:space="preserve">
-    <value>L'applicazione web myVitae è di proprietà esclusiva di Alexandros Theodoracatos ed è protetta dal diritto d'autore svizzero. Pertanto, il sito web non può essere riprodotto o reso disponibile in tutto o in parte in alcun modo, né può essere utilizzato in alcun modo diverso da quello autorizzato, senza il previo consenso di Alexandros Theodoracatos.</value>
-  </data>
   <data name="CopyValues" xml:space="preserve">
     <value>Copiare i valori</value>
-  </data>
-  <data name="CopyValuesDescription" xml:space="preserve">
-    <value>Copia tutti i valori dalla prima lingua</value>
-  </data>
-  <data name="CountryCode" xml:space="preserve">
-    <value>Codice</value>
   </data>
   <data name="CountryName" xml:space="preserve">
     <value>Paese</value>
@@ -396,9 +360,6 @@
   <data name="CurriculumLanguage" xml:space="preserve">
     <value>Lingua del curriculum</value>
   </data>
-  <data name="CurriculumVitae" xml:space="preserve">
-    <value>Curriculum Vitae</value>
-  </data>
   <data name="CV" xml:space="preserve">
     <value>Curriculum vitae</value>
   </data>
@@ -417,28 +378,8 @@
   <data name="DashboardOverview" xml:space="preserve">
     <value>Affinché il vostro CV venga pubblicato, l'applicazione web myVitae crea un link di pubblicazione casuale. Potete quindi utilizzare questo link per uno o più posti vacanti e cancellarlo completamente dopo aver presentato la vostra candidatura con successo. Il cruscotto mostra il successo dei vostri CV pubblicati visualizzando il numero di clic sul link di pubblicazione inviato. Potete anche inserire il vostro curriculum vitae in un massimo di cinque lingue.</value>
   </data>
-  <data name="Data" xml:space="preserve">
-    <value>Dati</value>
-  </data>
-  <data name="DataCollection" xml:space="preserve">
-    <value>Raccolta dei dati</value>
-  </data>
-  <data name="DataCollectionDesc" xml:space="preserve">
-    <value>Quando vi registrate a myVitae e create un curriculum, vengono raccolte informazioni sensibili su di voi. Ciò include (ma non si limita a): il vostro sesso, nome, compleanno, indirizzo, nazionalità, indirizzo e-mail, numero di telefono, stato civile e altri dati personali sensibili. Questi dati non saranno trasmessi a terzi in nessun caso e saranno utilizzati esclusivamente per la preparazione del vostro CV. Le seguenti linee guida prevedono che durante l'elaborazione dei dati vengano raccolti solo i dati personali assolutamente necessari per la creazione del CV. I rispettivi utenti di myVitae possono determinare in qualsiasi momento quante informazioni si desidera divulgare nel proprio CV.
-Inoltre, i seguenti dati vengono raccolti senza il vostro intervento e conservati fino alla loro cancellazione automatica: Indirizzo IP del computer richiedente e la "user agent string (UA)". La UA è un campo del protocollo HTTP, attraverso il quale è possibile trasmettere informazioni dettagliate sul dispositivo richiedente con una query di rete. 
-Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla protezione dei dati (DSGVO) si basa sul seguente scopo: garantire un uso conveniente dell'applicazione del sito web, valutare la sicurezza e la stabilità del sistema e per altri scopi amministrativi. In nessun caso utilizziamo i dati raccolti per trarre conclusioni su di voi. Su richiesta, saremo lieti di comunicarvi se e quali dati personali su di voi vengono memorizzati.</value>
-  </data>
-  <data name="DataProtection" xml:space="preserve">
-    <value>Protezione dei dati</value>
-  </data>
-  <data name="DataProtectionText" xml:space="preserve">
-    <value>Non possiamo garantire la sicurezza della trasmissione dei dati su Internet. In particolare, vi è il rischio di accesso da parte di terzi quando i dati vengono trasmessi via e-mail. Ci opponiamo espressamente all'utilizzo dei dati di contatto pubblicati nell'impronta da parte di terzi per scopi pubblicitari. Il gestore si riserva espressamente il diritto di intraprendere azioni legali in caso di invio di materiale pubblicitario o informativo non richiesto. Qualora singole disposizioni o formulazioni della presente clausola di esclusione di responsabilità siano o diventino invalide, il contenuto e la validità delle restanti disposizioni rimangono invariati.</value>
-  </data>
   <data name="DateCompareError" xml:space="preserve">
     <value>Non possiamo garantire la sicurezza della trasmissione dei dati su Internet. In particolare, vi è il rischio di accesso da parte di terzi quando i dati vengono trasmessi via e-mail. Ci opponiamo espressamente all'utilizzo dei dati di contatto pubblicati nell'impronta da parte di terzi per scopi pubblicitari. Il gestore si riserva espressamente il diritto di intraprendere azioni legali in caso di invio di materiale pubblicitario o informativo non richiesto. Qualora singole disposizioni o formulazioni della presente clausola di esclusione di responsabilità siano o diventino invalide, il contenuto e la validità delle restanti disposizioni rimangono invariati.</value>
-  </data>
-  <data name="DateProtectionText" xml:space="preserve">
-    <value>La data di inizio non può essere superiore alla data di fine</value>
   </data>
   <data name="Day" xml:space="preserve">
     <value>Giorno</value>
@@ -463,15 +404,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descrizione</value>
-  </data>
-  <data name="Disclaimer" xml:space="preserve">
-    <value>Esclusione di responsabilità</value>
-  </data>
-  <data name="DisclaimerText" xml:space="preserve">
-    <value>Tutti i testi e i link sono stati accuratamente controllati e vengono continuamente aggiornati. Facciamo ogni sforzo per fornire informazioni corrette e complete su questo sito web, ma non ci assumiamo alcuna responsabilità, garanzia o responsabilità che gli strumenti e le informazioni fornite da questo sito web siano corrette, complete o aggiornate. Ci riserviamo il diritto di modificare le informazioni contenute in questo sito web in qualsiasi momento e senza preavviso e non ci impegniamo ad aggiornare e, se necessario, a modificare le informazioni in esso contenute. Tutti i link a fornitori esterni sono stati controllati per verificarne la correttezza al momento della loro inclusione, ma non siamo responsabili del contenuto e della disponibilità dei siti web raggiungibili tramite i collegamenti ipertestuali degli utenti di myVitae. Solo il fornitore del sito al quale il link conduce è responsabile per contenuti illegali, errati o incompleti e in particolare per danni derivanti dal contenuto dei siti collegati. È irrilevante se il danno è di natura diretta, indiretta o finanziaria o se vi sono altri danni che potrebbero derivare dalla perdita di dati, dalla perdita di utilizzo o da altri motivi di qualsiasi tipo.</value>
-  </data>
-  <data name="Divorced" xml:space="preserve">
-    <value>Divorziato</value>
   </data>
   <data name="Down" xml:space="preserve">
     <value>Giù</value>
@@ -512,9 +444,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="EmailUnchanged" xml:space="preserve">
     <value>La tua e-mail non è cambiata.</value>
   </data>
-  <data name="EnablePassword" xml:space="preserve">
-    <value>Accesso con password</value>
-  </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
     <value>Assicura il vostro curriculum myVitae con una password aggiuntiva</value>
   </data>
@@ -523,9 +452,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
-  </data>
-  <data name="EnterPassword" xml:space="preserve">
-    <value>Inserisci la password</value>
   </data>
   <data name="EnterSkill" xml:space="preserve">
     <value>Premere Invio per inserire una nuova abilità</value>
@@ -560,8 +486,8 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="ExpiresOn" xml:space="preserve">
     <value>Scade il</value>
   </data>
-  <data name="FAQ" xml:space="preserve">
-    <value>Domande poste frequentemente</value>
+  <data name="ExternalLoginSuccess" xml:space="preserve">
+    <value>Avete creato con successo un conto utilizzando {0}. Effettua il login al tuo account</value>
   </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>I file scelti sono troppo grandi</value>
@@ -581,9 +507,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="From" xml:space="preserve">
     <value>Da</value>
   </data>
-  <data name="Function" xml:space="preserve">
-    <value>Funzione</value>
-  </data>
   <data name="Gender" xml:space="preserve">
     <value>Sesso</value>
   </data>
@@ -593,29 +516,11 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="Goodbye" xml:space="preserve">
     <value>Arrivederci</value>
   </data>
-  <data name="GoogleAnalytics" xml:space="preserve">
-    <value>Google Analytics</value>
-  </data>
-  <data name="GoogleAnalyticsText1" xml:space="preserve">
-    <value>Questo sito web utilizza i cookies di Google Analytics, un servizio di analisi web di Google Inc. ("Google"). Le informazioni generate dal cookie sull'utilizzo di questo sito web vengono di norma trasmesse a un server di Google negli Stati Uniti e lì memorizzate. Tuttavia, in caso di attivazione dell'anonimizzazione dell'IP su questo sito web, l'indirizzo IP dell'utente viene abbreviato da Google all'interno degli Stati membri dell'Unione Europea o in altri Stati firmatari dell'accordo sullo Spazio Economico Europeo prima che ciò avvenga. Solo in casi eccezionali l'indirizzo IP completo verrà trasferito ad un server di Google negli USA e lì abbreviato. Su incarico del gestore di questo sito web, Google utilizzerà queste informazioni per valutare il vostro utilizzo del sito web, compilare report sulle attività del sito web e fornire ulteriori servizi al gestore del sito web in relazione all'utilizzo del sito web e di Internet. L'indirizzo IP trasmesso dal vostro browser nell'ambito di Google Analytics non viene associato ad altri dati di Google.</value>
-  </data>
-  <data name="GoogleAnalyticsText2" xml:space="preserve">
-    <value>Potete rifiutarvi di usare i cookies selezionando l'impostazione appropriata sul vostro browser, tuttavia vi preghiamo di notare che in questo caso potreste non essere in grado di utilizzare tutte le funzionalità di questo sito web.  Potete anche impedire il rilevamento dei dati generati dal cookie e relativi al vostro utilizzo del sito web (compreso il vostro indirizzo IP) a Google e l'elaborazione di questi dati da parte di Google scaricando e installando il plugin del browser disponibile al seguente link. Il link attuale è:</value>
-  </data>
-  <data name="GoogleCaptcha" xml:space="preserve">
-    <value>Google Captcha</value>
-  </data>
-  <data name="GoogleCaptchaDesc" xml:space="preserve">
-    <value>Utilizzando il Sito, l'utente acconsente al nostro utilizzo di Google reCAPTCHA. Google troncherà il vostro indirizzo IP all'interno degli stati membri dell'Unione Europea o in altri stati che sono parte dell'accordo sullo Spazio Economico Europeo e il vostro indirizzo IP, è quindi reso anonimo. Solo in circostanze eccezionali un indirizzo IP completo viene trasmesso a un server di Google negli Stati Uniti e lì troncato. L'utilizzo di reCAPTCHA è soggetto alla Politica sulla privacy e ai Termini di servizio di Google.</value>
-  </data>
   <data name="Grade" xml:space="preserve">
     <value>Grado</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Ciao</value>
-  </data>
-  <data name="Hide" xml:space="preserve">
-    <value>Nascondi</value>
   </data>
   <data name="HideReference" xml:space="preserve">
     <value>Nascondi il riferimento</value>
@@ -716,15 +621,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="Lastname" xml:space="preserve">
     <value>Cognome</value>
   </data>
-  <data name="LegalNotice" xml:space="preserve">
-    <value>Avviso legale</value>
-  </data>
-  <data name="LegalNoticeResponsible" xml:space="preserve">
-    <value>Responsabile dell'applicazione web myVitae</value>
-  </data>
-  <data name="Level" xml:space="preserve">
-    <value>Livello</value>
-  </data>
   <data name="LinkAwards" xml:space="preserve">
     <value>Sito web dell'autorità aggiudicatrice</value>
   </data>
@@ -739,9 +635,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   </data>
   <data name="LinkInterest" xml:space="preserve">
     <value>Sito web dell'associazione</value>
-  </data>
-  <data name="LinkNotGenerated" xml:space="preserve">
-    <value>Il link non è stato ancora generato</value>
   </data>
   <data name="LinkReference" xml:space="preserve">
     <value>Sito web dell'azienda</value>
@@ -767,14 +660,14 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="LoginAlreadyAssociated" xml:space="preserve">
     <value>Un utente con questo login esiste già.</value>
   </data>
+  <data name="LoginThirdParty" xml:space="preserve">
+    <value>Effettuare il login tramite un provider di terze parti</value>
+  </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Utilizzate il vostro account locale per effettuare il login.</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Esci</value>
-  </data>
-  <data name="LongIdentifier" xml:space="preserve">
-    <value>ID</value>
   </data>
   <data name="MailAdvert1" xml:space="preserve">
     <value>Non è mai stato così facile creare un curriculum.</value>
@@ -794,9 +687,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="MailAdvert5" xml:space="preserve">
     <value>Il tuo team myVitae</value>
   </data>
-  <data name="MailAdvert6" xml:space="preserve">
-    <value>Non è mai stato così facile.</value>
-  </data>
   <data name="MailBye3" xml:space="preserve">
     <value>Il tuo account è stato cancellato con successo. Ci dispiace che se ne sia andato. Tuttavia, è possibile registrarsi di nuovo in qualsiasi momento con questo indirizzo e-mail da</value>
   </data>
@@ -806,17 +696,11 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="MailFooter2" xml:space="preserve">
     <value>Cancella il tuo account se non desideri più ricevere queste e-mail.</value>
   </data>
-  <data name="Manage" xml:space="preserve">
-    <value>Gestisci</value>
-  </data>
   <data name="Management" xml:space="preserve">
     <value>Direzione</value>
   </data>
   <data name="MaritalStatus" xml:space="preserve">
     <value>Stato civile</value>
-  </data>
-  <data name="Married" xml:space="preserve">
-    <value>Sposato</value>
   </data>
   <data name="MissingBindRequiredValueAccessor" xml:space="preserve">
     <value>Non è stato fornito un valore per l'immobile '{0}'.</value>
@@ -872,9 +756,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="NoHits" xml:space="preserve">
     <value>Nessun riscontro</value>
   </data>
-  <data name="NoInformation" xml:space="preserve">
-    <value>Nessuna informazione</value>
-  </data>
   <data name="NonPropertyAttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>Il valore '{0}' non è valido</value>
   </data>
@@ -914,9 +795,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="OptionalInformation" xml:space="preserve">
     <value>Informazioni facoltative</value>
   </data>
-  <data name="Overview" xml:space="preserve">
-    <value>Panoramica</value>
-  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -934,9 +812,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   </data>
   <data name="PasswordMismatch" xml:space="preserve">
     <value>Password errata.</value>
-  </data>
-  <data name="PasswordProtection" xml:space="preserve">
-    <value>Protezione della password</value>
   </data>
   <data name="PasswordProtectionDesc" xml:space="preserve">
     <value>Questo curriculum è protetto da password. Inserisci la password per aprire la visualizzazione.</value>
@@ -977,9 +852,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="PleaseCheckEmail" xml:space="preserve">
     <value>Controlla la tua e-mail.</value>
   </data>
-  <data name="PleaseClickHereToConfirm" xml:space="preserve">
-    <value>Si prega di confermare il tuo account di posta elettronica con</value>
-  </data>
   <data name="PleaseConfirm" xml:space="preserve">
     <value>Si prega di confermare</value>
   </data>
@@ -991,12 +863,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   </data>
   <data name="Preview" xml:space="preserve">
     <value>Anteprima</value>
-  </data>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Informativa sulla privacy</value>
-  </data>
-  <data name="ProfileOverview" xml:space="preserve">
-    <value>Panoramica del profilo</value>
   </data>
   <data name="ProperValue" xml:space="preserve">
     <value>Si prega di inserire un valore corretto</value>
@@ -1012,12 +878,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   </data>
   <data name="Publications" xml:space="preserve">
     <value>Pubblicazioni</value>
-  </data>
-  <data name="Publish" xml:space="preserve">
-    <value>Pubblicare</value>
-  </data>
-  <data name="QandA" xml:space="preserve">
-    <value>Domande e risposte</value>
   </data>
   <data name="QandA_A0" xml:space="preserve">
     <value>myVitae permette a chi cerca lavoro di inserire il proprio curriculum online. In questo modo, le persone devono solo preoccuparsi del contenuto e non più del design.</value>
@@ -1087,9 +947,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   </data>
   <data name="RemoveFileConfirmation" xml:space="preserve">
     <value>Sei sicuro di voler rimuovere questo file</value>
-  </data>
-  <data name="RemovePicture" xml:space="preserve">
-    <value>Rimuovere questa immagine</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Richiesta</value>
@@ -1169,9 +1026,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="ShareLink" xml:space="preserve">
     <value>Condividi questo link / codice QR con il tuo futuro datore di lavoro</value>
   </data>
-  <data name="ShortIdentifier" xml:space="preserve">
-    <value>ID breve</value>
-  </data>
   <data name="ShowYourStrengths" xml:space="preserve">
     <value>Mostra i tuoi punti di forza</value>
   </data>
@@ -1180,9 +1034,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Accedi</value>
-  </data>
-  <data name="Single" xml:space="preserve">
-    <value>Singola</value>
   </data>
   <data name="SingleDay" xml:space="preserve">
     <value>Singolo giorno</value>
@@ -1254,10 +1105,10 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
     <value>Svizzera</value>
   </data>
   <data name="TermsAndConditions" xml:space="preserve">
-    <value>Termini e condizioni</value>
+    <value>Informativa sulla privacy</value>
   </data>
-  <data name="TermsAndConditionsDesc" xml:space="preserve">
-    <value>Accetto i termini e le condizioni</value>
+  <data name="TermsAndConditionsAccept" xml:space="preserve">
+    <value>Accetta l'informativa sulla privacy</value>
   </data>
   <data name="TermsAndConditionsError" xml:space="preserve">
     <value>Devi accettare i termini e le condizioni</value>
@@ -1276,9 +1127,6 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   </data>
   <data name="UnknownValueIsInvalidAccessor" xml:space="preserve">
     <value>Il valore fornito non è valido per {0}</value>
-  </data>
-  <data name="UnsafedChanges" xml:space="preserve">
-    <value>Hai dei cambiamenti non salvati. Volete continuare?</value>
   </data>
   <data name="UntilNow" xml:space="preserve">
     <value>Fino ad ora</value>
@@ -1316,29 +1164,17 @@ Il nostro interesse per la raccolta di dati secondo l'ordinanza tedesca sulla pr
   <data name="ValueMustNotBeNullAccessor" xml:space="preserve">
     <value>Il valore '{0}' non è valido</value>
   </data>
-  <data name="VariousMaritalStatus" xml:space="preserve">
-    <value>Varie</value>
-  </data>
   <data name="VerificationEmailSent" xml:space="preserve">
     <value>Email di verifica inviata.</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Attenzione</value>
   </data>
-  <data name="WelcomeToVitae" xml:space="preserve">
-    <value>Benvenuti a myVitae</value>
-  </data>
-  <data name="WhyMyVitae" xml:space="preserve">
-    <value>Perché myVitae?</value>
-  </data>
   <data name="WhyMyVitaeReason" xml:space="preserve">
     <value>Creare un buon CV e mantenerlo aggiornato è un processo che richiede molto tempo. Inoltre, è possibile raggiungere rapidamente i propri limiti durante la progettazione. Tuttavia, un candidato deve mettere tutto sulla bilancia, perché "non c'è una seconda possibilità per una prima impressione" (Mark Twain). È qui che myVitae interviene e si concentra su un design chiaro e conciso. Con facilità si può creare il proprio sito web di curriculum personale - e soprattutto è gratuito!</value>
   </data>
   <data name="WhyMyVitaeTest" xml:space="preserve">
     <value>Date un'occhiata - ne sarete entusiasti!</value>
-  </data>
-  <data name="Widowed" xml:space="preserve">
-    <value>Vedova</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>Anno</value>

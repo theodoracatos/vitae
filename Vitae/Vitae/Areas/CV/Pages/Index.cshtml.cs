@@ -24,7 +24,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-
+using Vitae.Code.Mailing;
 using Vitae.Code.PageModels;
 
 namespace Vitae.Areas.CV.Pages
@@ -61,8 +61,8 @@ namespace Vitae.Areas.CV.Pages
         public IEnumerable<IndustryVM> Industries { get; set; }
         public IEnumerable<HierarchyLevelVM> HierarchyLevels { get; set; }
 
-        public IndexModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
-    : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
+        public IndexModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository, SignInManager<IdentityUser> signInManager, IEmailSender emailSender)
+    : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository, signInManager, emailSender) { }
 
         #region SYNC
 

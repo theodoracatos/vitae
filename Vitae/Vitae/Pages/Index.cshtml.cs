@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
@@ -6,7 +7,7 @@ using Vitae.Code.PageModels;
 
 namespace Vitae.Pages
 {
-
+    [AllowAnonymous]
     public class IndexModel : LandingPageBaseModel
     {
         private const string PAGE_PARTIAL = "_Content{0}";
