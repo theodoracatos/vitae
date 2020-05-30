@@ -1,0 +1,16 @@
+﻿@inject SignInManager<IdentityUser> signInManager
+
+@{
+    var providers = (await signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+}
+
+<hr class="thin mb-3" />
+<label class="d-block text-right">@SharedResource.LoginThirdParty</label>
+<div class="form-group text-right mb-0">
+    @foreach (var provider in providers)
+    {
+        <button type="submit" formaction="?provider=@provider.Name&handler=ExternalLogin" class="btn btn-primary cancel ml-2">
+            <i class="fab mr-2 fa-@provider.Name.ToLower()"></i>@provider.Name
+        </button>
+    }
+</div>

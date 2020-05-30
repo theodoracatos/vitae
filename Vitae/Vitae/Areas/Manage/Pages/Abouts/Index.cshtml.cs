@@ -19,7 +19,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-
+using Vitae.Code.Mailing;
 using Vitae.Code.PageModels;
 
 namespace Vitae.Areas.Manage.Pages.Abouts
@@ -31,8 +31,8 @@ namespace Vitae.Areas.Manage.Pages.Abouts
         [BindProperty]
         public AboutVM About { get; set; }
 
-        public IndexModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
-    : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository) { }
+        public IndexModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository, SignInManager<IdentityUser> signInManager, IEmailSender emailSender)
+    : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository, signInManager, emailSender) { }
 
         #region SYNC
 

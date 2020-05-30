@@ -151,6 +151,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account created.
+        /// </summary>
+        public static string AccountCreated {
+            get {
+                return ResourceManager.GetString("AccountCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account successfully deleted.
         /// </summary>
         public static string AccountDeleted {
@@ -273,6 +282,15 @@ namespace Library.Resources {
         public static string AttemptedValueIsInvalidAccessor {
             get {
                 return ResourceManager.GetString("AttemptedValueIsInvalidAccessor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;ve successfully authenticated with.
+        /// </summary>
+        public static string AuthenticationSuccess {
+            get {
+                return ResourceManager.GetString("AuthenticationSuccess", resourceCulture);
             }
         }
         
@@ -615,6 +633,15 @@ namespace Library.Resources {
         public static string Confirm {
             get {
                 return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please confirm the agreements and click the Register button to finish logging in..
+        /// </summary>
+        public static string ConfirmAgreements {
+            get {
+                return ResourceManager.GetString("ConfirmAgreements", resourceCulture);
             }
         }
         
@@ -1141,6 +1168,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have successfully created an account using {0}. Please log in to your account by.
+        /// </summary>
+        public static string ExternalLoginSuccess {
+            get {
+                return ResourceManager.GetString("ExternalLoginSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Files you&apos;ve chosen are too large.
         /// </summary>
         public static string FilesTooLarge {
@@ -1650,6 +1686,15 @@ namespace Library.Resources {
         public static string LoginAlreadyAssociated {
             get {
                 return ResourceManager.GetString("LoginAlreadyAssociated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login via third-party provider.
+        /// </summary>
+        public static string LoginThirdParty {
+            get {
+                return ResourceManager.GetString("LoginThirdParty", resourceCulture);
             }
         }
         

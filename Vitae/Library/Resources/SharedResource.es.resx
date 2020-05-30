@@ -147,6 +147,9 @@
   <data name="AccessDeniedMessage" xml:space="preserve">
     <value>Por favor, rellene primero los datos personales.</value>
   </data>
+  <data name="AccountCreated" xml:space="preserve">
+    <value>Cuenta creada</value>
+  </data>
   <data name="AccountDeleted" xml:space="preserve">
     <value>la cuenta se ha eliminado con éxito</value>
   </data>
@@ -188,6 +191,9 @@
   </data>
   <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>El valor "{0}" no es válido para</value>
+  </data>
+  <data name="AuthenticationSuccess" xml:space="preserve">
+    <value>Te has autentificado con éxito con</value>
   </data>
   <data name="Award" xml:space="preserve">
     <value>Premio</value>
@@ -302,6 +308,9 @@
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirmar</value>
+  </data>
+  <data name="ConfirmAgreements" xml:space="preserve">
+    <value>Por favor, confirme los acuerdos y haga clic en el botón de registro para terminar de conectarse.</value>
   </data>
   <data name="ConfirmationEmailSent" xml:space="preserve">
     <value>Enlace de confirmación para cambiar el correo electrónico enviado. Por favor, compruebe su correo electrónico.</value>
@@ -477,6 +486,9 @@
   <data name="ExpiresOn" xml:space="preserve">
     <value>Expira el</value>
   </data>
+  <data name="ExternalLoginSuccess" xml:space="preserve">
+    <value>Ha creado con éxito una cuenta usando {0}. Por favor, acceda a su cuenta por</value>
+  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Los archivos que has elegido son demasiado grandes</value>
   </data>
@@ -647,6 +659,9 @@
   </data>
   <data name="LoginAlreadyAssociated" xml:space="preserve">
     <value>Ya existe un usuario con este inicio de sesión.</value>
+  </data>
+  <data name="LoginThirdParty" xml:space="preserve">
+    <value>Iniciar sesión a través de un proveedor externo</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Utilice su cuenta local para iniciar la sesión.</value>
