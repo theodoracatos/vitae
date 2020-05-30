@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -99,6 +98,32 @@ namespace Vitae
             services.AddSingleton(emailConfig);
             services.AddTransient<Code.Mailing.IEmailSender, EmailSender>();
 
+            services.AddAuthentication()
+            .AddGoogle(options =>
+            {
+                var googleAuthNSection = Configuration.GetSection("Authentication:Google");
+                options.ClientId = googleAuthNSection["ClientId"];
+                options.ClientSecret = googleAuthNSection["ClientSecret"];
+            })
+            .AddFacebook(options =>
+            {
+                var facebookAuthNSection = Configuration.GetSection("Authentication:Facebook");
+                options.AppId = facebookAuthNSection["AppId"];
+                options.AppSecret = facebookAuthNSection["AppSecret"];
+            })
+            .AddMicrosoftAccount(options =>
+             {
+                 var microsoftAuthNSection = Configuration.GetSection("Authentication:Microsoft");
+                 options.ClientId = microsoftAuthNSection["ClientId"];
+                 options.ClientSecret = microsoftAuthNSection["ClientSecret"];
+             })
+            .AddTwitter(options =>
+             {
+                 var twitterAuthNSection = Configuration.GetSection("Authentication:Twitter");
+                 options.ConsumerKey = twitterAuthNSection["ConsumerKey"];
+                 options.ConsumerSecret = twitterAuthNSection["ConsumerSecret"];
+                 options.RetrieveUserDetails = true;
+             });
             services.Configure<RazorViewEngineOptions>(o =>
             {
                 o.PageViewLocationFormats.Add("/Pages/Shared/RessourceViews/{0}" + RazorViewEngine.ViewExtension);

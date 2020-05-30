@@ -147,6 +147,9 @@
   <data name="AccessDeniedMessage" xml:space="preserve">
     <value>Si prega di compilare prima i dati personali.</value>
   </data>
+  <data name="AccountCreated" xml:space="preserve">
+    <value>Conto creato</value>
+  </data>
   <data name="AccountDeleted" xml:space="preserve">
     <value>Conto cancellato con successo</value>
   </data>
@@ -188,6 +191,9 @@
   </data>
   <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>Il valore '{0}' non è valido per {y}</value>
+  </data>
+  <data name="AuthenticationSuccess" xml:space="preserve">
+    <value>Hai autenticato con successo con</value>
   </data>
   <data name="Award" xml:space="preserve">
     <value>Premio</value>
@@ -302,6 +308,9 @@
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confermare</value>
+  </data>
+  <data name="ConfirmAgreements" xml:space="preserve">
+    <value>Confermare gli accordi e cliccare sul pulsante Registrati per terminare il login.</value>
   </data>
   <data name="ConfirmationEmailSent" xml:space="preserve">
     <value>Link di conferma per modificare l'email inviata. Si prega di controllare l'e-mail.</value>
@@ -477,6 +486,9 @@
   <data name="ExpiresOn" xml:space="preserve">
     <value>Scade il</value>
   </data>
+  <data name="ExternalLoginSuccess" xml:space="preserve">
+    <value>Avete creato con successo un conto utilizzando {0}. Effettua il login al tuo account</value>
+  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>I file scelti sono troppo grandi</value>
   </data>
@@ -647,6 +659,9 @@
   </data>
   <data name="LoginAlreadyAssociated" xml:space="preserve">
     <value>Un utente con questo login esiste già.</value>
+  </data>
+  <data name="LoginThirdParty" xml:space="preserve">
+    <value>Effettuare il login tramite un provider di terze parti</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Utilizzate il vostro account locale per effettuare il login.</value>
@@ -1094,9 +1109,6 @@
   </data>
   <data name="TermsAndConditionsAccept" xml:space="preserve">
     <value>Accetta l'informativa sulla privacy</value>
-  </data>
-  <data name="TermsAndConditionsAccept1" xml:space="preserve">
-    <value />
   </data>
   <data name="TermsAndConditionsError" xml:space="preserve">
     <value>Devi accettare i termini e le condizioni</value>

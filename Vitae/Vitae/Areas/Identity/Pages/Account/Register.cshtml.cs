@@ -35,14 +35,12 @@ namespace Vitae.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
 
         public RegisterModel(IEmailSender emailSender, SignInManager<IdentityUser> signInManager, ILogger<RegisterModel> logger, IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
-            : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository) 
+            : base(clientFactory, configuration, localizer, vitaeContext, httpContextAccessor, userManager, repository, signInManager, emailSender) 
         {
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
         }
 
         [BindProperty]
@@ -105,10 +103,7 @@ namespace Vitae.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    var bodyText = await CodeHelper.GetMailBodyTextAsync(SharedResource.ConfirmEmail, Input.Email, new Tuple<string, string, string>(SharedResource.MailAdvert3, callbackUrl, SharedResource.ClickingHere), true, SharedResource.Hello);
-                    var logoStream = CodeHelper.GetLogoStream(Globals.LOGO);
-                    var message = new Message(new string[] { Input.Email }, SharedResource.ConfirmEmail, bodyText, new FormFileCollection() { new FormFile(logoStream, 0, logoStream.Length, "image/png", "logo") });
-                    await _emailSender.SendEmailAsync(message);
+                    await base.SendRegistrationMailAsync(SharedResource.ConfirmEmail, Input.Email, callbackUrl);
 
                     if (userManager.Options.SignIn.RequireConfirmedAccount)
                     {

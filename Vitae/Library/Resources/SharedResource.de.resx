@@ -147,6 +147,9 @@
   <data name="AccessDeniedMessage" xml:space="preserve">
     <value>Bitte füllen Sie zuerst die persönlichen Angaben aus.</value>
   </data>
+  <data name="AccountCreated" xml:space="preserve">
+    <value>Konto erstellt</value>
+  </data>
   <data name="AccountDeleted" xml:space="preserve">
     <value>Konto erfolgreich gelöscht</value>
   </data>
@@ -188,6 +191,9 @@
   </data>
   <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>Der Wert '{0}' ist nicht gültig für {y}</value>
+  </data>
+  <data name="AuthenticationSuccess" xml:space="preserve">
+    <value>Sie haben sich erfolgreich authentifiziert bei</value>
   </data>
   <data name="Award" xml:space="preserve">
     <value>Errungenschaft</value>
@@ -302,6 +308,9 @@
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Bestätigung</value>
+  </data>
+  <data name="ConfirmAgreements" xml:space="preserve">
+    <value>Bitte bestätigen Sie die Vereinbarungen und klicken Sie auf die Schaltfläche Registrieren, um die Anmeldung abzuschliessen.</value>
   </data>
   <data name="ConfirmationEmailSent" xml:space="preserve">
     <value>Bestätigungslink zur E-Mail-Änderung wurde versandt.</value>
@@ -477,6 +486,9 @@
   <data name="ExpiresOn" xml:space="preserve">
     <value>Verfällt am</value>
   </data>
+  <data name="ExternalLoginSuccess" xml:space="preserve">
+    <value>Sie haben mit {0} erfolgreich ein Konto erstellt. Bitte loggen Sie sich in Ihr Konto ein, indem Sie</value>
+  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Die Dateien sind zu gross</value>
   </data>
@@ -647,6 +659,9 @@
   </data>
   <data name="LoginAlreadyAssociated" xml:space="preserve">
     <value>Ein Benutzer mit diesem Login existiert bereits.</value>
+  </data>
+  <data name="LoginThirdParty" xml:space="preserve">
+    <value>Anmeldung über Drittanbieter</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Melden Sie sich mit Ihrem Konto an.</value>

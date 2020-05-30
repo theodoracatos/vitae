@@ -147,6 +147,9 @@
   <data name="AccessDeniedMessage" xml:space="preserve">
     <value>Please fill out the Personal details first.</value>
   </data>
+  <data name="AccountCreated" xml:space="preserve">
+    <value>Account created</value>
+  </data>
   <data name="AccountDeleted" xml:space="preserve">
     <value>Account successfully deleted</value>
   </data>
@@ -188,6 +191,9 @@
   </data>
   <data name="AttemptedValueIsInvalidAccessor" xml:space="preserve">
     <value>The value '{0}' is not valid for {y}</value>
+  </data>
+  <data name="AuthenticationSuccess" xml:space="preserve">
+    <value>You've successfully authenticated with</value>
   </data>
   <data name="Award" xml:space="preserve">
     <value>Award</value>
@@ -302,6 +308,9 @@
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
+  </data>
+  <data name="ConfirmAgreements" xml:space="preserve">
+    <value>Please confirm the agreements and click the Register button to finish logging in.</value>
   </data>
   <data name="ConfirmationEmailSent" xml:space="preserve">
     <value>Confirmation link to change email sent. Please check your email.</value>
@@ -477,6 +486,9 @@
   <data name="ExpiresOn" xml:space="preserve">
     <value>Expires on</value>
   </data>
+  <data name="ExternalLoginSuccess" xml:space="preserve">
+    <value>You have successfully created an account using {0}. Please log in to your account by</value>
+  </data>
   <data name="FilesTooLarge" xml:space="preserve">
     <value>Files you've chosen are too large</value>
   </data>
@@ -647,6 +659,9 @@
   </data>
   <data name="LoginAlreadyAssociated" xml:space="preserve">
     <value>A user with this login already exists.</value>
+  </data>
+  <data name="LoginThirdParty" xml:space="preserve">
+    <value>Login via third-party provider</value>
   </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Use your local account to log in.</value>

@@ -1,0 +1,49 @@
+﻿@page
+@model Vitae.Areas.Identity.Pages.Account.ExternalLoginModel
+@{
+    ViewData["Title"] = SharedResource.Register;
+}
+
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-sm-12 col-md-8 mx-auto my-auto">
+            <div class="container">
+                <div class="jumbotron">
+                    <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <h3><i class="fas fa-user-circle fa-fw"></i>@SharedResource.CreateAccount</h3>
+                        <label class="small">
+                            @SharedResource.AuthenticationSuccess <strong>@Model.LoginProvider</strong>.
+                            @SharedResource.ConfirmAgreements
+                        </label>
+                        <hr />
+                        <div class="form-group">
+                            <label asp-for="Input.Email"></label>
+                            <input asp-for="Input.Email" class="form-control dirty-ignore" disabled />
+                            <input type="hidden" asp-for="Input.Email" />
+                        </div>
+                        <div class="form-group">
+                            <label class="required" asp-for="Input.ConfirmAgreements"></label><label><a class="js-scroll-trigger ml-2" href="@Globals.GENERAL_INFORMATION_LINK">@SharedResource.TermsAndConditions</a></label>
+                            <div class="form-control">
+                                <div class="pretty p-switch p-slim mr-0">
+                                    <input type="checkbox" asp-for="Input.ConfirmAgreements" class="dirty-ignore" />
+                                    <div class="state">
+                                        <label>@SharedResource.Iaccept</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <span asp-validation-for="Input.ConfirmAgreements" class="text-danger"></span>
+                        </div>
+                        <partial name="_StatusMessage" model="new KeyValuePair<bool, string>(ViewData.ModelState.IsValid, string.Empty)" />
+                        <div class="form-group text-right mb-0">
+                            <button type="submit" class="btn btn-success">@SharedResource.Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

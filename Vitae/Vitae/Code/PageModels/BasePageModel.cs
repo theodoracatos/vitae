@@ -12,7 +12,8 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
-
+using Microsoft.Extensions.Logging;
+using Model.Enumerations;
 using Model.Poco;
 using Model.ViewModels;
 
@@ -23,10 +24,13 @@ using Persistency.Repository;
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Vitae.Code.Mailing;
 
 namespace Vitae.Code.PageModels
 {
@@ -43,6 +47,8 @@ namespace Vitae.Code.PageModels
         protected readonly Repository repository;
         protected readonly HttpContext httpContext;
         protected readonly UserManager<IdentityUser> userManager;
+        protected readonly SignInManager<IdentityUser> signInManager;
+        protected readonly IEmailSender emailSender;
 
         public bool IsLoggedIn { get { return this.curriculumID != Guid.Empty; } }
 
@@ -65,7 +71,7 @@ namespace Vitae.Code.PageModels
             }
         }
 
-        public BasePageModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository)
+        public BasePageModel(IHttpClientFactory clientFactory, IConfiguration configuration, IStringLocalizer<SharedResource> localizer, VitaeContext vitaeContext, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, Repository repository, SignInManager<IdentityUser> signInManager, IEmailSender emailSender)
         {
             this.clientFactory = clientFactory;
             this.configuration = configuration;
@@ -77,6 +83,27 @@ namespace Vitae.Code.PageModels
             this.repository = repository;
             this.httpContext = httpContextAccessor.HttpContext;
             this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.emailSender = emailSender;
+        }
+
+        #region API
+        public IActionResult OnPostExternalLogin(string provider)
+        {
+            // Request a redirect to the external login provider.
+            var redirectUrl = Url.Page("ExternalLogin", pageHandler: "Callback");
+            var properties = signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            return new ChallengeResult(provider, properties);
+        }
+        #endregion
+
+        protected async Task SendRegistrationMailAsync(string title, string emailTo, string callbackUrl = null, string loginPrivider = null)
+        {
+            var midtext = string.IsNullOrEmpty(callbackUrl) ? new Tuple<string, string, string>(string.Format(SharedResource.ExternalLoginSuccess, loginPrivider), Globals.VITAE_URL, SharedResource.ClickingHere) : new Tuple<string, string, string>(SharedResource.MailAdvert3, callbackUrl, SharedResource.ClickingHere); 
+            var bodyText = await CodeHelper.GetMailBodyTextAsync(title, emailTo, midtext, true, SharedResource.Hello);
+            var logoStream = CodeHelper.GetLogoStream(Globals.LOGO);
+            var message = new Message(new string[] { emailTo }, title, bodyText, new FormFileCollection() { new FormFile(logoStream, 0, logoStream.Length, "image/png", "logo") });
+            await emailSender.SendEmailAsync(message);
         }
 
         protected PartialViewResult GetPartialViewResult(string viewName, string modelName = "IndexModel")
@@ -92,6 +119,32 @@ namespace Vitae.Code.PageModels
             };
 
             return result;
+        }
+
+        protected async Task CreateCurriculumAndSignInAsync(IdentityUser user)
+        {
+            // CV
+            var curriculumID = await repository.AddCurriculumAsync(Guid.Parse(user.Id), requestCulture.RequestCulture.UICulture.Name);
+            await repository.LogActivityAsync(curriculumID, LogArea.Login, LogLevel.Information, CodeHelper.GetCalledUri(httpContext), CodeHelper.GetUserAgent(httpContext), requestCulture.RequestCulture.UICulture.Name, httpContext.Connection.RemoteIpAddress.ToString());
+
+            // Language
+            Response.Cookies.Append(
+               CookieRequestCultureProvider.DefaultCookieName,
+               CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(new CultureInfo(requestCulture.RequestCulture.UICulture.Name))),
+               new CookieOptions
+               {
+                   Expires = DateTimeOffset.UtcNow.AddYears(1),
+                   SameSite = SameSiteMode.Lax,
+                   Secure = true
+               }
+           );
+
+            // Role & Claims
+            await userManager.AddToRoleAsync(user, Roles.USER);
+            var claim = new Claim(Claims.CURRICULUM_ID, curriculumID.ToString());
+            await userManager.AddClaimAsync(user, claim);
+
+            await signInManager.SignInAsync(user, isPersistent: false);
         }
 
         protected int CorrectDate(int year, int month, int day)
