@@ -10,9 +10,10 @@ namespace Vitae.Pages
         public Dictionary<string, DateTime> VitaePages { get; private set; } = new Dictionary<string, DateTime>()
         {
             { $"{Globals.APPLICATION_URL}", DateTime.Now },
-            { $"{Globals.APPLICATION_URL}/{Globals.GENERAL_INFORMATION}", DateTime.Now },
-            { $"{Globals.APPLICATION_URL}/{nameof(Areas.Manage)}", DateTime.Now },
-            { $"{Globals.APPLICATION_URL}/{nameof(Areas.Identity)}", DateTime.Now }
+            { $"{Globals.APPLICATION_URL}{Globals.GENERAL_INFORMATION_LINK}", DateTime.Now },
+            { $"{Globals.APPLICATION_URL}/Identity/Account/Login", DateTime.Now },
+            { $"{Globals.APPLICATION_URL}/Identity/Account/Register", DateTime.Now },
+            { $"{Globals.APPLICATION_URL}/Identity/Account/ForgotPassword", DateTime.Now },
         };
 
         public void OnGet()
