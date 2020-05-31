@@ -48,10 +48,13 @@ namespace UnitTests
         [TestMethod]
         public void EncoderTest()
         {
-            var passphrase = "Demo";
             var salt = Globals.APPLICATION_NAME;
 
-            var message = AesHandler.Encrypt(passphrase, salt);
+            var message1 = AesHandler.Encrypt("6LcGpfcUAAAAAIEmHWQQ1wkzunv_WnMGeUj54zOj", salt);
+            var message2 = AesHandler.Encrypt("tQMwhRHI3sKVMriSOrLJjoAB", salt);
+            var message3 = AesHandler.Encrypt("06f2da524c578cf1ed1745a23f1ac45c", salt);
+            var message4 = AesHandler.Encrypt("HH69tOPtc419rk._YkbsUU60D_-Y35_0S1", salt);
+            var message5 = AesHandler.Encrypt("czyxEqXtqiS4kYiehmm0Ut0e7zkoVnTYflgrq9aKRkrE7gVeJD", salt);
         }
     }
 }

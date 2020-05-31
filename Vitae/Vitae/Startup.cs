@@ -1,4 +1,6 @@
 using Library.Attributes;
+using Library.Constants;
+using Library.Helper;
 using Library.Resources;
 
 using Microsoft.AspNetCore.Builder;
@@ -103,25 +105,25 @@ namespace Vitae
             {
                 var googleAuthNSection = Configuration.GetSection("Authentication:Google");
                 options.ClientId = googleAuthNSection["ClientId"];
-                options.ClientSecret = googleAuthNSection["ClientSecret"];
+                options.ClientSecret = AesHandler.Decrypt(googleAuthNSection["ClientSecret"], Globals.APPLICATION_NAME);
             })
             .AddFacebook(options =>
             {
                 var facebookAuthNSection = Configuration.GetSection("Authentication:Facebook");
                 options.AppId = facebookAuthNSection["AppId"];
-                options.AppSecret = facebookAuthNSection["AppSecret"];
+                options.AppSecret = AesHandler.Decrypt(facebookAuthNSection["AppSecret"], Globals.APPLICATION_NAME);
             })
             .AddMicrosoftAccount(options =>
              {
                  var microsoftAuthNSection = Configuration.GetSection("Authentication:Microsoft");
                  options.ClientId = microsoftAuthNSection["ClientId"];
-                 options.ClientSecret = microsoftAuthNSection["ClientSecret"];
+                 options.ClientSecret = AesHandler.Decrypt(microsoftAuthNSection["ClientSecret"], Globals.APPLICATION_NAME);
              })
             .AddTwitter(options =>
              {
                  var twitterAuthNSection = Configuration.GetSection("Authentication:Twitter");
                  options.ConsumerKey = twitterAuthNSection["ConsumerKey"];
-                 options.ConsumerSecret = twitterAuthNSection["ConsumerSecret"];
+                 options.ConsumerSecret = AesHandler.Decrypt(twitterAuthNSection["ConsumerSecret"], Globals.APPLICATION_NAME);
                  options.RetrieveUserDetails = true;
              });
             services.Configure<RazorViewEngineOptions>(o =>
