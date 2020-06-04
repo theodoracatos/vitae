@@ -981,6 +981,9 @@
   <data name="Resumee" xml:space="preserve">
     <value>Beschreibung</value>
   </data>
+  <data name="SatisifiedUsers" xml:space="preserve">
+    <value>Mehr als 1000 zufriedene Anwender</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>
   </data>

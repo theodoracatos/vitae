@@ -2653,6 +2653,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to More than 1000 satisfied users.
+        /// </summary>
+        public static string SatisifiedUsers {
+            get {
+                return ResourceManager.GetString("SatisifiedUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {

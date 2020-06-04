@@ -33,10 +33,10 @@
         <div class="ml-auto">
             @if (ViewBag.StartPage ?? false)
             {
-            <div class="buttonbar">
-                <a href="/Identity/Account/Login" class="btn btn-outline-secondary text-white align-baseline notransition mr-1">@SharedResource.SignIn</a>
-                <a href="/Identity/Account/Register" class="btn btn-success ml-2 mr-2 notransition align-baseline">@SharedResource.Register</a>
-            </div>
+                <div class="buttonbar">
+                    <a href="/Identity/Account/Login" class="btn btn-outline-secondary text-white align-baseline notransition mr-1">@SharedResource.SignIn</a>
+                    <a href="/Identity/Account/Register" class="btn btn-success ml-2 mr-2 notransition align-baseline">@SharedResource.Register</a>
+                </div>
             }
         </div>
     </nav>
@@ -60,7 +60,7 @@
         </div>
     }
 
-    <footer class="@(ViewBag.StartPage ?? false ? "" : "account")">
+    <footer class="@(ViewBag.StartPage ?? false ? null : "account")">
         <div class="w-100">
             <div class="d-flex justify-content-end small mr-xl-4 mr-md-4 mr-sm-4 mr-2">
                 <a class="js-scroll-trigger" href="@Globals.GENERAL_INFORMATION_LINK">@SharedResource.TermsAndConditions</a>
