@@ -99,7 +99,7 @@ namespace Vitae.Code.PageModels
 
         protected async Task SendRegistrationMailAsync(string title, string emailTo, string callbackUrl = null, string loginPrivider = null)
         {
-            var midtext = string.IsNullOrEmpty(callbackUrl) ? new Tuple<string, string, string>(string.Format(SharedResource.ExternalLoginSuccess, loginPrivider), Globals.VITAE_URL, SharedResource.ClickingHere) : new Tuple<string, string, string>(SharedResource.MailAdvert3, callbackUrl, SharedResource.ClickingHere); 
+            var midtext = string.IsNullOrEmpty(callbackUrl) ? new Tuple<string, string, string>(string.Format(SharedResource.ExternalLoginSuccess, loginPrivider), Globals.VITAE_URL, SharedResource.ClickingHere) : new Tuple<string, string, string>(SharedResource.MailAdvert3, callbackUrl, SharedResource.ClickingHere);
             var bodyText = await CodeHelper.GetMailBodyTextAsync(title, emailTo, midtext, true, SharedResource.Hello);
             var logoStream = CodeHelper.GetLogoStream(Globals.LOGO);
             var message = new Message(new string[] { emailTo }, title, bodyText, new FormFileCollection() { new FormFile(logoStream, 0, logoStream.Length, "image/png", "logo") });
@@ -183,7 +183,7 @@ namespace Vitae.Code.PageModels
             {
                 copyList = items.ToArray();
             }
-            
+
             return copyList.ToList();
         }
 
@@ -213,7 +213,7 @@ namespace Vitae.Code.PageModels
             }
 
             // Reorder
-            for(int i = 0; i < items.Count; i++)
+            for (int i = 0; i < items.Count; i++)
             {
                 items[i].Order = i;
             }
@@ -237,7 +237,7 @@ namespace Vitae.Code.PageModels
             items[order + 1] = oldItem;
         }
 
-        protected void Collapse<T>(IList<T> items) where T : BaseVM 
+        protected void Collapse<T>(IList<T> items) where T : BaseVM
         {
             foreach (var item in items)
             {
@@ -275,10 +275,10 @@ namespace Vitae.Code.PageModels
             try
             {
                 var parameters = new Dictionary<string, string>
-             {
-                {"secret", this.configuration["reCAPTCHA:SecretKey"]},
-                {"response", recaptchaResponse},
-                {"remoteip", this.HttpContext.Connection.RemoteIpAddress.ToString()}
+                {
+                    {"secret", AesHandler.Decrypt(this.configuration["reCAPTCHA:SecretKey"], Globals.APPLICATION_NAME)},
+                    {"response", recaptchaResponse},
+                    {"remoteip", this.HttpContext.Connection.RemoteIpAddress.ToString()}
                 };
 
                 var response = await client.PostAsync(Globals.GOOGLE_CAPCHA, new FormUrlEncodedContent(parameters));

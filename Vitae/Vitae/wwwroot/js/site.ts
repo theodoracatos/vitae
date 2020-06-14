@@ -462,8 +462,9 @@ function resetFormValidator(formId) {
 }
 
 function initializeTooltips() {
-    /* Tooltips */
-    $("body").tooltip({ selector: '[data-toggle=tooltip]', container: 'body' });
+/* Tooltips */
+    $("body .tooltip").remove();
+    $("form").tooltip({ selector: '[data-toggle=tooltip]', container: 'form' });
 }
 
 function setRequiredLabel() {

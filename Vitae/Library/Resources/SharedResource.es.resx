@@ -532,7 +532,7 @@
     <value>Niveles de jerarquía</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Página web</value>
+    <value>El sitio web de su currículum</value>
   </data>
   <data name="Iaccept" xml:space="preserve">
     <value>Acepto</value>
@@ -980,6 +980,9 @@
   </data>
   <data name="Resumee" xml:space="preserve">
     <value>Resumen</value>
+  </data>
+  <data name="SatisifiedUsers" xml:space="preserve">
+    <value>Más de 1000 usuarios satisfechos</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Guardar</value>

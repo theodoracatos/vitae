@@ -191,6 +191,7 @@ $(document).ready(function () {
         $(form).attr('data-dirty-ignore', $(this).hasClass('dirty-ignore'));
         $(form).attr('data-ajax-loading', $(this).attr('data-ajax-loading'));
         $(form).attr('data-ajax-loading-duration', $(this).attr('data-ajax-loading-duration'));
+
         form.data(data_click, name ? [{ name: name, value: evt.currentTarget.value }] : []);
         form.data(data_target, target);
     });

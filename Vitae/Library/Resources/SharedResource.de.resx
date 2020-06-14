@@ -532,7 +532,7 @@
     <value>Hierarchiestufen</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Startseite</value>
+    <value>Ihre Lebenslaufwebseite</value>
   </data>
   <data name="Iaccept" xml:space="preserve">
     <value>Ich akzeptiere</value>
@@ -980,6 +980,9 @@
   </data>
   <data name="Resumee" xml:space="preserve">
     <value>Beschreibung</value>
+  </data>
+  <data name="SatisifiedUsers" xml:space="preserve">
+    <value>Mehr als 1000 zufriedene Anwender</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>

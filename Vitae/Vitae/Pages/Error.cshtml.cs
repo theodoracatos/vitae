@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.WebUtilities;
 
 using System;
 using System.Diagnostics;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,8 +60,11 @@ namespace Vitae.Pages
             Message = GetCustomizedMessage(statusCode) ?? ReasonPhrases.GetReasonPhrase(statusCode); // https://httpstatuses.com/
 
             // Send mail...
-            var message = new Message(new string[] { Globals.ADMIN_VITAE_MAIL }, $"Error {(Code)}", GetHtmlMessage(), null);
-            await _emailSender.SendEmailAsync(message);
+            if (statusCode != (int)HttpStatusCode.NotFound)
+            {
+                var message = new Message(new string[] { Globals.ADMIN_VITAE_MAIL }, $"Error {(Code)}", GetHtmlMessage(), null);
+                await _emailSender.SendEmailAsync(message);
+            }
         }
 
         private string GetCustomizedMessage(int statusCode)
@@ -69,19 +73,23 @@ namespace Vitae.Pages
 
             switch(statusCode)
             {
-                case 404:
+                case (int)HttpStatusCode.NotFound:
                     {
                         message = SharedResource.Status404;
                         break;
                     }
-                case 403:
+                case (int)HttpStatusCode.Forbidden:
                     {
                         message = SharedResource.Status403;
                         break;
                     }
-                case 500:
+                case (int)HttpStatusCode.InternalServerError:
                     {
                         message = SharedResource.Status500;
+                        break;
+                    }
+                default:
+                    {
                         break;
                     }
             }

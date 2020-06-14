@@ -532,7 +532,7 @@
     <value>Niveaux hiérarchiques</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Page d'accueil</value>
+    <value>Le site de votre CV</value>
   </data>
   <data name="Iaccept" xml:space="preserve">
     <value>J'accepte</value>
@@ -980,6 +980,9 @@
   </data>
   <data name="Resumee" xml:space="preserve">
     <value>Résumé</value>
+  </data>
+  <data name="SatisifiedUsers" xml:space="preserve">
+    <value>Plus de 1000 utilisateurs satisfaits</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Sauvegarder</value>

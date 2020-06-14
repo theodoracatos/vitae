@@ -22,7 +22,7 @@
                             <input type="hidden" asp-for="Input.Email" />
                         </div>
                         <div class="form-group">
-                            <label class="required" asp-for="Input.ConfirmAgreements"></label><label><a class="js-scroll-trigger ml-2" href="@Globals.GENERAL_INFORMATION_LINK">@SharedResource.TermsAndConditions</a></label>
+                            <label class="required mr-2" asp-for="Input.ConfirmAgreements"></label><label><a class="js-scroll-trigger" href="@Globals.GENERAL_INFORMATION_LINK">@SharedResource.TermsAndConditions</a></label>
                             <div class="form-control">
                                 <div class="pretty p-switch p-slim mr-0">
                                     <input type="checkbox" asp-for="Input.ConfirmAgreements" class="dirty-ignore" />

@@ -532,7 +532,7 @@
     <value>Livelli di gerarchia</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Homepage</value>
+    <value>Il tuo sito web del curriculum</value>
   </data>
   <data name="Iaccept" xml:space="preserve">
     <value>Accetto</value>
@@ -980,6 +980,9 @@
   </data>
   <data name="Resumee" xml:space="preserve">
     <value>Sommario</value>
+  </data>
+  <data name="SatisifiedUsers" xml:space="preserve">
+    <value>Più di 1000 utenti soddisfatti</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Salva</value>
