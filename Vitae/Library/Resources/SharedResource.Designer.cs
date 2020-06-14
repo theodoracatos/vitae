@@ -1303,7 +1303,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Homepage.
+        ///   Looks up a localized string similar to Your resume website.
         /// </summary>
         public static string Homepage {
             get {
