@@ -1,0 +1,5 @@
+1) Personalisierbarer Lebenslauf: Firmenlogo, Firma, Einführungstext?
+
+2) PDF Export
+
+3) Screenreader

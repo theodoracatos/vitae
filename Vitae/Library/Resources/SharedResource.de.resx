@@ -373,7 +373,7 @@
     <value>Dashboard</value>
   </data>
   <data name="DashboardDescription" xml:space="preserve">
-    <value>Das Dashboard zeigt Ihnen die den zeitlichen Verlauf der Zugriffe auf Ihre myVitae Lebensläufe sowie weitere nützliche Statistiken zu Ihrem Login verhalten.</value>
+    <value>Das Dashboard zeigt Ihnen die den zeitlichen Verlauf der Zugriffe auf Ihre myVitae Lebensläufe sowie weitere nützliche Statistiken zu Ihrem Loginverhalten.</value>
   </data>
   <data name="DashboardOverview" xml:space="preserve">
     <value>Damit Ihr Lebenslauf veröffentlicht werden kann, wird von der myVitae Webapplikation ein zufälliger Publikationslink erstellt. Diesen können Sie dann für eine oder mehrere Vakanzen verwenden und, nach erfolgreicher Bewerbung, wieder komplett löschen. Das Dashboard zeigt Ihnen dabei den Erfolgsverlauf Ihrer veröffentlichten Lebensläufe auf, in dem die Anzahl Klicks auf den versendeten Publikationslink aufgezeigt werden. Sie können Ihren Lebenslauf zudem in bis zu fünf Sprachen erfassen.</value>
