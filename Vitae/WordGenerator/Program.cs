@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Processing;
+using System.Text;
 
 namespace WordGenerator
 {
@@ -6,7 +7,12 @@ namespace WordGenerator
     {
         static void Main(string[] args)
         {
+            var path = @"C:\Projects\MyVitae\Vitae\WordGenerator\Templates\Template1.docx";
 
+            using(var processor = new WordProcessor(path))
+            {
+                processor.ProcessDocument();
+            }
         }
     }
 }
