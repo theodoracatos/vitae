@@ -433,6 +433,9 @@ function fixAnchorPosition() {
         var offsetSize = $(".navbar").innerHeight();
         // fire the animation from the top of the page to the anchor link offsetting by the fixed elements height, the number is the speed of the animation
         $("html, body").animate({ scrollTop: anchorLink.offset().top - offsetSize }, 500);
+
+        // Remove anchor
+        history.pushState("", document.title, window.location.pathname + window.location.search);
     }
 }
 
