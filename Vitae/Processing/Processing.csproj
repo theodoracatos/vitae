@@ -8,6 +8,7 @@
     <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
     <PackageReference Include="System.Security.Permissions" Version="4.7.0" />
     <ProjectReference Include="..\Library\Library.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
     <Reference Include="Aspose.Words">
       <HintPath>Libs\Aspose.Words.dll</HintPath>
     </Reference>

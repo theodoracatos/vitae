@@ -7,9 +7,7 @@ namespace WordGenerator
     {
         static void Main(string[] args)
         {
-            var path = @"C:\Projects\MyVitae\Vitae\WordGenerator\Templates\Template1.docx";
-
-            using(var processor = new WordProcessor(path))
+            using(var processor = new WordProcessor("Template1.docx"))
             {
                 processor.ProcessDocument();
             }
