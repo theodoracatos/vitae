@@ -198,7 +198,7 @@ namespace Library.Helper
             {
                 if (Attribute.IsDefined(property, typeof(KeyAttribute)))
                 {
-                    property.SetValue(newObj, Guid.Empty, null);
+                    property.SetValue(newObj, null, null);
                 }
                 else
                 {
