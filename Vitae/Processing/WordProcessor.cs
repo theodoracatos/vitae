@@ -7,11 +7,17 @@ using Library.Helper;
 using Model.Poco;
 
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Model.ViewModels;
+using Persistency.Repository;
+using Persistency.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace Processing
 {
@@ -45,20 +51,54 @@ namespace Processing
             ChangeText("${FIRSTNAME}", "Alexandros");
 
             DeleteTableElement<Row>("${CHILDREN}");
-            DeleteTableElement<Table>("${EXPERIENCE}");
+            //DeleteTableElement<Table>("${EXPERIENCE}");
 
             // TODO: Copy row and fill table
+            var optionsBuilder = new DbContextOptionsBuilder<VitaeContext>();
+            optionsBuilder.UseSqlServer("Server=(localdb)\\ProjectsV13;Database=MyVitaeDebug;Trusted_Connection=True;MultipleActiveResultSets=true");
+            var context = new VitaeContext(optionsBuilder.Options);
+            var repo = new Repository(context);
+            var curriculum = repo.GetCurriculumAsync(new Guid("a7e161f0-0ff5-45f8-851f-9b041f565abb")).Result;
+            var exp = repo.GetExperiences(curriculum, "de").ToList();
+            FillTable<ExperienceVM>("Experience", exp);
 
             document.Save(Path.Combine(TEMPLATE_PATH, "Out.docx"));
         }
 
-        private void FillTable<T>(string tableName, List<T> values) where T : Base
+        private void FillTable<T>(string tableName, List<T> elements) where T : BaseVM
         {
-            var table = FindTableElement<Table>(tableName);
+            var table = (Table)FindTableElement<Table>(tableName);
             if(table != null)
             {
+                Row templateRow = (Row)table.Rows[table.Rows.Count - 1].Clone(true);
+                table.Rows[table.Rows.Count - 1].Remove();
 
+                foreach (T element in elements)
+                {
+                    var row = FillTemplateRow<T>((Row)templateRow.Clone(true), element);
+                    table.Rows.Add(row);
+                }
             }
+        }
+
+        private Row FillTemplateRow<T>(Row row, T element)
+        {
+            FindProperties(row);
+            var properties = element.GetType().GetProperties();
+            foreach (var property in properties)
+            {
+                var name = property.Name;
+                var value = property.GetValue(element)?.ToString();
+
+                var variable = $"${{{name.ToUpper()}}}";
+                var cell = FindCell(variable, row);
+                if (cell != null)
+                {
+                    cell.Range.Replace(variable, value, true, false);
+                }
+            };
+
+            return row;
         }
 
         private void ChangeImage(string variable, Image image)
@@ -79,6 +119,26 @@ namespace Processing
             element?.Remove();
         }
 
+        private List<string> FindProperties(Row row)
+        {
+            var x = row.Range.Text;
+
+            return null;
+        }
+
+        private Cell FindCell(string variable, Row row)
+        {
+            foreach (Cell cell in row.Cells)
+            {
+                if (cell.GetText().Contains(variable.ToUpper()))
+                {
+                    return cell;
+                }
+            }
+
+            return null;
+        }
+
         private CompositeNode FindTableElement<T>(string variable) where T : CompositeNode
         {
             var tables = document.GetChildNodes(NodeType.Table, true);
@@ -88,7 +148,7 @@ namespace Processing
                 {
                     foreach (Cell cell in row.Cells)
                     {
-                        if (cell.GetText().Contains(variable))
+                        if (cell.GetText().Contains(variable.ToUpper()))
                         {
                             if (typeof(T) == typeof(Table))
                             {

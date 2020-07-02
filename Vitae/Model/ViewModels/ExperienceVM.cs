@@ -1,6 +1,7 @@
 ﻿using Library.Resources;
-
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Model.Attriutes;
+using Model.Helper;
 
 using System;
 using System.Collections.Generic;
@@ -70,5 +71,32 @@ namespace Model.ViewModels
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.UntilNow), Prompt = nameof(SharedResource.UntilNow))]
         public bool UntilNow { get; set; }
+
+        [BindNever]
+        public DateTime Date_Start_Date
+        {
+            get
+            {
+                return new DateTime(Start_Year, Start_Month, 1);
+            }
+        }
+
+        [BindNever]
+        public DateTime? Date_End_Date
+        {
+            get
+            {
+                return End_Year.HasValue ? new DateTime(End_Year.Value, End_Month.Value, 1) : (DateTime?)null;
+            }
+        }
+
+        [BindNever]
+        public DateDifference Date_Difference
+        {
+            get
+            {
+                return End_Year.HasValue ? new DateDifference(Date_Start_Date, Date_End_Date.Value) : null;
+            }
+        }
     }
 }
