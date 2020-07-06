@@ -18,13 +18,27 @@ using Persistency.Repository;
 using Persistency.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Library.Extensions;
+using Model.Helper;
+using Library.Resources;
+using Microsoft.VisualBasic;
+using System.Drawing.Imaging;
+using System.Drawing.Printing;
 
 namespace Processing
 {
     public class WordProcessor : IDisposable
     {
         private const string TEMPLATE_PATH = @"C:\Projects\MyVitae\Vitae\WordGenerator\Templates\";
+        private const string LANG_CODE = "de";
+
         private readonly Document document;
+        private readonly Repository repository;
+
+        private Curriculum curriculum;
+        private List<IndustryVM> industries;
+        private List<HierarchyLevelVM> hierarchyLevels;
 
         public WordProcessor(string templateName)
         {
@@ -32,6 +46,16 @@ namespace Processing
             license.SetLicense($@"{CodeHelper.AssemblyDirectory}\Libs\Aspose.Words.lic");
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             this.document = new Document(Path.Combine(TEMPLATE_PATH, templateName));
+            
+            // Get DBContext (TEST)
+            var optionsBuilder = new DbContextOptionsBuilder<VitaeContext>();
+            optionsBuilder.UseSqlServer("Server=(localdb)\\ProjectsV13;Database=MyVitaeDebug;Trusted_Connection=True;MultipleActiveResultSets=true");
+            var context = new VitaeContext(optionsBuilder.Options);
+            this.repository = new Repository(context);
+            this.curriculum = repository.GetCurriculumAsync(new Guid("a7e161f0-0ff5-45f8-851f-9b041f565abb")).Result;
+
+            industries = repository.GetIndustries("de").ToList();
+            hierarchyLevels = repository.GetHierarchyLevels("de").ToList();
         }
 
         public void ProcessDocument()
@@ -42,30 +66,51 @@ namespace Processing
             //// Replace any instances of our string in the last cell of the table only.
             //var clonedRow = table.Rows[0].Clone(true);
             //table.Rows.Add(clonedRow);
-
+            //DeleteTableElement<Row>("${CHILDREN}");
+            //DeleteTableElement<Table>("${EXPERIENCE}");
             //table.Rows[0].Cells[0].Range.Replace("A", "B", true, true);
 
-            var image = Image.FromFile(@"C:\Temp\ATH.jpg");
-            ChangeImage("${PICTURE}", image);
 
-            ChangeText("${FIRSTNAME}", "Alexandros");
 
-            DeleteTableElement<Row>("${CHILDREN}");
-            //DeleteTableElement<Table>("${EXPERIENCE}");
+            ReplacePersonalDetails();
+            ReplaceCVContent();
 
-            // TODO: Copy row and fill table
-            var optionsBuilder = new DbContextOptionsBuilder<VitaeContext>();
-            optionsBuilder.UseSqlServer("Server=(localdb)\\ProjectsV13;Database=MyVitaeDebug;Trusted_Connection=True;MultipleActiveResultSets=true");
-            var context = new VitaeContext(optionsBuilder.Options);
-            var repo = new Repository(context);
-            var curriculum = repo.GetCurriculumAsync(new Guid("a7e161f0-0ff5-45f8-851f-9b041f565abb")).Result;
-            var exp = repo.GetExperiences(curriculum, "de").ToList();
-            FillTable<ExperienceVM>("Experience", exp);
+
+
+
+
 
             document.Save(Path.Combine(TEMPLATE_PATH, "Out.docx"));
         }
 
-        private void FillTable<T>(string tableName, List<T> elements) where T : BaseVM
+        private void ReplacePersonalDetails()
+        {
+            var personalDetail = repository.GetPersonalDetail(curriculum);
+ //           var about = repository.GetAbouts(curriculum, LANG_CODE).Single();
+   //         var image = CodeHelper.Base64ToImage(about.Photo);
+
+            // Personal Detail
+            foreach (var property in personalDetail.GetType().GetProperties())
+            {
+                var name = property.Name;
+                var propertyValue = property.GetValue(personalDetail)?.ToString();
+                var value = ResolveValue(name, propertyValue);
+                var variable = $"${{{name.ToUpper()}}}";
+
+                ChangeText(variable, value);
+            };
+
+            // About
+
+        }
+
+        private void ReplaceCVContent()
+        {
+            var exp = repository.GetExperiences(curriculum, LANG_CODE);
+            FillTable("Experience", exp);
+        }
+
+        private void FillTable<T>(string tableName, IEnumerable<T> elements) where T : BaseVM
         {
             var table = (Table)FindTableElement<Table>(tableName);
             if(table != null)
@@ -75,20 +120,20 @@ namespace Processing
 
                 foreach (T element in elements)
                 {
-                    var row = FillTemplateRow<T>((Row)templateRow.Clone(true), element);
+                    var row = FillRow((Row)templateRow.Clone(true), element);
                     table.Rows.Add(row);
                 }
             }
         }
 
-        private Row FillTemplateRow<T>(Row row, T element)
+        private Row FillRow<T>(Row row, T element)
         {
-            FindProperties(row);
             var properties = element.GetType().GetProperties();
             foreach (var property in properties)
             {
                 var name = property.Name;
-                var value = property.GetValue(element)?.ToString();
+                var propertyValue = property.GetValue(element)?.ToString();
+                var value = ResolveValue(name, propertyValue);
 
                 var variable = $"${{{name.ToUpper()}}}";
                 var cell = FindCell(variable, row);
@@ -117,13 +162,6 @@ namespace Processing
         {
             var element = FindTableElement<T>(variable);
             element?.Remove();
-        }
-
-        private List<string> FindProperties(Row row)
-        {
-            var x = row.Range.Text;
-
-            return null;
         }
 
         private Cell FindCell(string variable, Row row)
@@ -168,6 +206,60 @@ namespace Processing
             }
 
             return null;
+        }
+
+        private string ResolveValue(string name, string value)
+        {
+            var result = value;
+
+            switch(name)
+            {
+                case "IndustryCode":
+                    {
+                        result = industries.Single(i => i.IndustryCode.ToString() == value).Name;
+                        break;
+                    }
+                case "HierarchyLevelCode":
+                    {
+                        result = hierarchyLevels.Single(i => i.HierarchyLevelCode.ToString() == value).Name;
+                        break;
+                    }
+                case "Start_Date":
+                    {
+                        var date = DateTime.Parse(value);
+                        result = date.ToShortDateCultureString();
+                        break;
+                    }
+                case "End_Date":
+                    {
+                        if (DateTime.TryParse(value, out DateTime date))
+                        {
+                            result = date.ToShortDateCultureString();
+                            break;
+                        }
+                        else
+                        {
+                            result = "-";
+                            break;
+                        }
+                    }
+                case "Difference_Date":
+                    {
+                        var dateDifference = new DateDifference(DateTime.Parse(value.Split(";").First()), DateTime.Parse(value.Split(";").Last()));
+                        var years = dateDifference.Years == 0 ? string.Empty : dateDifference.Years == 1 ? $"{dateDifference.Years} {SharedResource.Year}" : $"{dateDifference.Years} {SharedResource.Years}";
+                        var months = dateDifference.Months == 0 ? string.Empty : dateDifference.Months == 1 ? $"{dateDifference.Months} {SharedResource.Month}" : $"{dateDifference.Months} {SharedResource.Months}";
+                        var days = dateDifference.Days == 0 ? string.Empty : dateDifference.Days == 1 ? $"{dateDifference.Days} {SharedResource.Day}" : $"{dateDifference.Days} {SharedResource.Days}";
+
+                        result = (years != string.Empty ? years : string.Empty) +
+                            (years != string.Empty && months != string.Empty ? ", " : string.Empty) +
+                            (months != string.Empty ? months : string.Empty) +
+                            (months != string.Empty && days != string.Empty ? ", " : string.Empty) +
+                            (days != string.Empty ? days : string.Empty);
+                        break;
+                    }
+            }
+
+            return result;
         }
 
         public void Dispose() { }

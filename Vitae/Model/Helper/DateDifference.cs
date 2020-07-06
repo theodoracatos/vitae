@@ -100,8 +100,7 @@ namespace Model.Helper
 
         public override string ToString()
         {
-            //return base.ToString();
-            return this.year + " Year(s), " + this.month + " month(s), " + this.day + " day(s)";
+            return $"{fromDate.ToLongDateString()};{toDate.ToLongDateString()}";
         }
 
         public int Years

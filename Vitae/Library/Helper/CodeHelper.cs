@@ -18,6 +18,7 @@ namespace Library.Helper
     public static class CodeHelper
     {
         private const string MAIL_TEMPLATE = "Mail.html";
+        private const string BASE64_PREFIX = "data:image/png;base64,";
 
         public static string AssemblyDirectory
         {
@@ -271,6 +272,17 @@ namespace Library.Helper
             catch { }
 
             return color;
+        }
+
+        public static Image Base64ToImage(string base64String)
+        {
+            byte[] imageBytes = Convert.FromBase64String(base64String.Replace(BASE64_PREFIX, string.Empty));
+
+            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+            {
+                Image image = Image.FromStream(ms, true);
+                return image;
+            }
         }
 
         private static Byte[] BitmapToBytes(Bitmap img)

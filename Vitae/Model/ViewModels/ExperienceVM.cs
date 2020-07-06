@@ -73,7 +73,7 @@ namespace Model.ViewModels
         public bool UntilNow { get; set; }
 
         [BindNever]
-        public DateTime Date_Start_Date
+        public DateTime Start_Date
         {
             get
             {
@@ -82,7 +82,7 @@ namespace Model.ViewModels
         }
 
         [BindNever]
-        public DateTime? Date_End_Date
+        public DateTime? End_Date
         {
             get
             {
@@ -91,11 +91,11 @@ namespace Model.ViewModels
         }
 
         [BindNever]
-        public DateDifference Date_Difference
+        public DateDifference Difference_Date
         {
             get
             {
-                return End_Year.HasValue ? new DateDifference(Date_Start_Date, Date_End_Date.Value) : null;
+                return End_Year.HasValue ? new DateDifference(Start_Date, End_Date.Value) : null;
             }
         }
     }
