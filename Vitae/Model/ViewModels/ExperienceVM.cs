@@ -86,7 +86,7 @@ namespace Model.ViewModels
         {
             get
             {
-                return End_Year.HasValue ? new DateTime(End_Year.Value, End_Month.Value, 1) : (DateTime?)null;
+                return !UntilNow ? new DateTime(End_Year.Value, End_Month.Value, 1) : (DateTime?)null;
             }
         }
 
@@ -95,7 +95,7 @@ namespace Model.ViewModels
         {
             get
             {
-                return End_Year.HasValue ? new DateDifference(Start_Date, End_Date.Value) : null;
+                return !UntilNow ? new DateDifference(Start_Date, End_Date.Value) : new DateDifference(Start_Date, new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1));
             }
         }
     }

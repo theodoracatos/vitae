@@ -162,6 +162,9 @@
   <data name="Add" xml:space="preserve">
     <value>Añadir</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
   <data name="AddToTop" xml:space="preserve">
     <value>Añadir a la parte superior</value>
   </data>

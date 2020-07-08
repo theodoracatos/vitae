@@ -2,29 +2,26 @@
 using Aspose.Words.Drawing;
 using Aspose.Words.Tables;
 
+using Library.Extensions;
 using Library.Helper;
+using Library.Resources;
 
+using Microsoft.EntityFrameworkCore;
+
+using Model.Helper;
 using Model.Poco;
+using Model.ViewModels;
+
+using Persistency.Data;
+using Persistency.Repository;
 
 using System;
-using System.Reflection;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
-using Model.ViewModels;
-using Persistency.Repository;
-using Persistency.Data;
-using Microsoft.EntityFrameworkCore;
-using System.Configuration;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Library.Extensions;
-using Model.Helper;
-using Library.Resources;
-using Microsoft.VisualBasic;
-using System.Drawing.Imaging;
-using System.Drawing.Printing;
 
 namespace Processing
 {
@@ -33,12 +30,27 @@ namespace Processing
         private const string TEMPLATE_PATH = @"C:\Projects\MyVitae\Vitae\WordGenerator\Templates\";
         private const string LANG_CODE = "de";
 
+        private const string PERSONALDETAIL_CHILDREN = "Children";
+        private const string PERSONALDETAIL_INDUSTRYCODE = "IndustryCode";
+        private const string PERSONALDETAIL_HIERARCHYLEVELCODE = "HierarchyLevelCode";
+        private const string PERSONALDETAIL_BIRTHDAY_DATE = "Birthday_Date";
+        private const string PERSONALDETAIL_MARITALSTATUSCODE = "MaritalStatusCode";
+        private const string PERSONALDETAIL_NATIONALITY = "Nationalities";
+        private const string VM_START_DATE = "Start_Date";
+        private const string VM_END_DATE = "End_Date";
+        private const string VM_DIFFERENCE_DATE = "Difference_Date";
+        private const string VM_COUNTRYCODE = "CountryCode";
+        private const string ABOUT_PHOTO = "Photo";
+
+
         private readonly Document document;
         private readonly Repository repository;
 
-        private Curriculum curriculum;
-        private List<IndustryVM> industries;
-        private List<HierarchyLevelVM> hierarchyLevels;
+        private readonly Curriculum curriculum;
+        private readonly List<IndustryVM> industries;
+        private readonly List<HierarchyLevelVM> hierarchyLevels;
+        private readonly List<MaritalStatusVM> maritalStatuses;
+        private readonly List<CountryVM> countries;
 
         public WordProcessor(string templateName)
         {
@@ -54,8 +66,10 @@ namespace Processing
             this.repository = new Repository(context);
             this.curriculum = repository.GetCurriculumAsync(new Guid("a7e161f0-0ff5-45f8-851f-9b041f565abb")).Result;
 
-            industries = repository.GetIndustries("de").ToList();
-            hierarchyLevels = repository.GetHierarchyLevels("de").ToList();
+            industries = repository.GetIndustries(LANG_CODE).ToList();
+            hierarchyLevels = repository.GetHierarchyLevels(LANG_CODE).ToList();
+            maritalStatuses = repository.GetMaritalStatuses(LANG_CODE).ToList();
+            countries = repository.GetCountries(LANG_CODE).ToList();
         }
 
         public void ProcessDocument()
@@ -71,43 +85,127 @@ namespace Processing
             //table.Rows[0].Cells[0].Range.Replace("A", "B", true, true);
 
 
-
             ReplacePersonalDetails();
+            ReplaceAbout();
             ReplaceCVContent();
-
-
-
-
+            ReplaceLabels();
 
 
             document.Save(Path.Combine(TEMPLATE_PATH, "Out.docx"));
         }
 
+        private void ReplaceLabels()
+        {
+            foreach (var property in typeof(SharedResource).GetProperties(BindingFlags.Public | BindingFlags.Static).Where(p => p.PropertyType == typeof(string)))
+            {
+                var name = property.Name;
+                var value = property.GetValue(null).ToString();
+     
+                var variable = $"${{LABEL_{name.ToUpper()}}}";
+                ChangeText(variable, value);
+            }
+        }
+
+        private void ReplaceAbout()
+        {
+            var about = repository.GetAbouts(curriculum, LANG_CODE).Single();
+
+            foreach (var property in about.GetType().GetProperties())
+            {
+                var name = property.Name;
+                var variable = $"${{{name.ToUpper()}}}";
+                var propertyValue = property.GetValue(about)?.ToString();
+
+                switch (name)
+                {
+                    case ABOUT_PHOTO:
+                        {
+                            var image = CodeHelper.Base64ToImage(propertyValue);
+                            ChangeImage(variable, image);
+                            break;
+                        }
+                    default:
+                        {
+                            var value = ResolveValue(name, propertyValue);
+                            ReplaceTextOrDeleteRow(variable, value);
+                            break;
+                        }
+                }
+            };
+        }
+
         private void ReplacePersonalDetails()
         {
             var personalDetail = repository.GetPersonalDetail(curriculum);
- //           var about = repository.GetAbouts(curriculum, LANG_CODE).Single();
-   //         var image = CodeHelper.Base64ToImage(about.Photo);
 
             // Personal Detail
             foreach (var property in personalDetail.GetType().GetProperties())
             {
                 var name = property.Name;
-                var propertyValue = property.GetValue(personalDetail)?.ToString();
-                var value = ResolveValue(name, propertyValue);
                 var variable = $"${{{name.ToUpper()}}}";
+                var value = string.Empty;
 
-                ChangeText(variable, value);
+                switch(name)
+                {
+                    case PERSONALDETAIL_CHILDREN:
+                        {
+                            value = string.Join(", ", personalDetail.Children.Select(c => $"{c.Firstname} ({CodeHelper.GetAge(c.Birthday_Date)} {(CodeHelper.GetAge(c.Birthday_Date) == 1 ? SharedResource.YearOld : SharedResource.YearsOld)})"));
+                            break;
+                        }
+                    case PERSONALDETAIL_NATIONALITY:
+                        {
+                            value = string.Join(", ", personalDetail.Nationalities.Select(n => $"{countries.Single(c => c.CountryCode == n.CountryCode).Name}"));
+                            break;
+                        }
+                    default:
+                        {
+                            var propertyValue = property.GetValue(personalDetail)?.ToString();
+                            value = ResolveValue(name, propertyValue);
+                            break;
+                        }
+                }
+
+                ReplaceTextOrDeleteRow(variable, value);
             };
+        }
 
-            // About
-
+        private void ReplaceTextOrDeleteRow(string variable, string value)
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+                ChangeText(variable, value);
+            }
+            else
+            {
+                DeleteTableElement<Row>(variable);
+            }
         }
 
         private void ReplaceCVContent()
         {
+            // Experience
+            var experience = "${LABEL_EXPERIENCES}";
             var exp = repository.GetExperiences(curriculum, LANG_CODE);
-            FillTable("Experience", exp);
+            if (exp.Count > 0)
+            {
+                FillTable(experience, exp);
+            }
+            else
+            {
+                DeleteTableElement<Table>(experience);
+            }
+
+            // Educations
+            var educations = "${LABEL_EDUCATIONS}";
+            var edu = repository.GetEducations(curriculum, LANG_CODE);
+            if(edu.Count > 0)
+            {
+                FillTable(educations, edu);
+            }
+            else
+            {
+                DeleteTableElement<Table>(educations);
+            }
         }
 
         private void FillTable<T>(string tableName, IEnumerable<T> elements) where T : BaseVM
@@ -139,7 +237,14 @@ namespace Processing
                 var cell = FindCell(variable, row);
                 if (cell != null)
                 {
-                    cell.Range.Replace(variable, value, true, false);
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        cell.Range.Replace(variable, value, true, false);
+                    }
+                    else
+                    {
+                        cell.ChildNodes.ToArray().Single(c => c.Range.Text.Contains(variable)).Remove();
+                    }
                 }
             };
 
@@ -214,23 +319,23 @@ namespace Processing
 
             switch(name)
             {
-                case "IndustryCode":
+                case PERSONALDETAIL_INDUSTRYCODE:
                     {
                         result = industries.Single(i => i.IndustryCode.ToString() == value).Name;
                         break;
                     }
-                case "HierarchyLevelCode":
+                case PERSONALDETAIL_HIERARCHYLEVELCODE:
                     {
                         result = hierarchyLevels.Single(i => i.HierarchyLevelCode.ToString() == value).Name;
                         break;
                     }
-                case "Start_Date":
+                case VM_START_DATE:
                     {
                         var date = DateTime.Parse(value);
                         result = date.ToShortDateCultureString();
                         break;
                     }
-                case "End_Date":
+                case VM_END_DATE:
                     {
                         if (DateTime.TryParse(value, out DateTime date))
                         {
@@ -239,11 +344,11 @@ namespace Processing
                         }
                         else
                         {
-                            result = "-";
+                            result = SharedResource.UntilNow;
                             break;
                         }
                     }
-                case "Difference_Date":
+                case VM_DIFFERENCE_DATE:
                     {
                         var dateDifference = new DateDifference(DateTime.Parse(value.Split(";").First()), DateTime.Parse(value.Split(";").Last()));
                         var years = dateDifference.Years == 0 ? string.Empty : dateDifference.Years == 1 ? $"{dateDifference.Years} {SharedResource.Year}" : $"{dateDifference.Years} {SharedResource.Years}";
@@ -257,6 +362,18 @@ namespace Processing
                             (days != string.Empty ? days : string.Empty);
                         break;
                     }
+                case PERSONALDETAIL_BIRTHDAY_DATE:
+                    {
+                        var date = DateTime.Parse(value);
+                        result = date.ToLongDateCultureString();
+                        break;
+                    }
+                case PERSONALDETAIL_MARITALSTATUSCODE:
+                    {
+                        result = maritalStatuses.Single(m => m.MaritalStatusCode.ToString() == value).Name;
+                        break;
+                    }
+
             }
 
             return result;
