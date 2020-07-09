@@ -1,6 +1,9 @@
 ﻿using Library.Resources;
 
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+
 using Model.Attriutes;
+using Model.Helper;
 
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -55,5 +58,32 @@ namespace Model.ViewModels
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.SingleDay), Prompt = nameof(SharedResource.SingleDay))]
         public bool SingleDay { get; set; }
+
+        [BindNever]
+        public DateTime Start_Date_Long
+        {
+            get
+            {
+                return new DateTime(Start_Year, Start_Month, Start_Day);
+            }
+        }
+
+        [BindNever]
+        public DateTime? End_Date_Long
+        {
+            get
+            {
+                return !SingleDay ? new DateTime(End_Year.Value, End_Month.Value, End_Day.Value) : Start_Date_Long;
+            }
+        }
+
+        [BindNever]
+        public DateDifference Difference_Date_Long
+        {
+            get
+            {
+                return new DateDifference(Start_Date_Long, End_Date_Long ?? Start_Date_Long);
+            }
+        }
     }
 }

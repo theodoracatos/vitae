@@ -38,7 +38,10 @@ namespace Processing
         private const string PERSONALDETAIL_NATIONALITY = "Nationalities";
         private const string VM_START_DATE = "Start_Date";
         private const string VM_END_DATE = "End_Date";
+        private const string VM_START_DATE_LONG = "Start_Date_Long";
+        private const string VM_END_DATE_LONG = "End_Date_Long";
         private const string VM_DIFFERENCE_DATE = "Difference_Date";
+        private const string VM_DIFFERENCE_DATE_LONG = "Difference_Date_Long";
         private const string VM_COUNTRYCODE = "CountryCode";
         private const string ABOUT_PHOTO = "Photo";
 
@@ -102,7 +105,7 @@ namespace Processing
                 var value = property.GetValue(null).ToString();
      
                 var variable = $"${{LABEL_{name.ToUpper()}}}";
-                ChangeText(variable, value);
+                ChangeText(document, variable, value);
             }
         }
 
@@ -114,6 +117,7 @@ namespace Processing
             {
                 var name = property.Name;
                 var variable = $"${{{name.ToUpper()}}}";
+                var table = FindTableElement<Table>($"${{LABEL_BIRTHDAY}}");
                 var propertyValue = property.GetValue(about)?.ToString();
 
                 switch (name)
@@ -127,7 +131,7 @@ namespace Processing
                     default:
                         {
                             var value = ResolveValue(name, propertyValue);
-                            ReplaceTextOrDeleteRow(variable, value);
+                            ReplaceTextOrDeleteRow(table, variable, value);
                             break;
                         }
                 }
@@ -143,6 +147,7 @@ namespace Processing
             {
                 var name = property.Name;
                 var variable = $"${{{name.ToUpper()}}}";
+                var table = FindTableElement<Table>($"${{LABEL_BIRTHDAY}}");
                 var value = string.Empty;
 
                 switch(name)
@@ -165,15 +170,15 @@ namespace Processing
                         }
                 }
 
-                ReplaceTextOrDeleteRow(variable, value);
+                ReplaceTextOrDeleteRow(table, variable, value);
             };
         }
 
-        private void ReplaceTextOrDeleteRow(string variable, string value)
+        private void ReplaceTextOrDeleteRow(CompositeNode node, string variable, string value)
         {
             if (!string.IsNullOrEmpty(value))
             {
-                ChangeText(variable, value);
+                ChangeText(node, variable, value);
             }
             else
             {
@@ -205,6 +210,30 @@ namespace Processing
             else
             {
                 DeleteTableElement<Table>(educations);
+            }
+
+            // Courses
+            var courses = "${LABEL_COURSES}";
+            var cou = repository.GetCourses(curriculum, LANG_CODE);
+            if (edu.Count > 0)
+            {
+                FillTable(courses, cou);
+            }
+            else
+            {
+                DeleteTableElement<Table>(courses);
+            }
+
+            // Abroads
+            var abroads = $"LABEL_ABROADS";
+            var abr = repository.GetAbroads(curriculum, LANG_CODE);
+            if (abr.Count > 0)
+            {
+                FillTable(abroads, abr);
+            }
+            else
+            {
+                DeleteTableElement<Table>(abroads);
             }
         }
 
@@ -258,14 +287,15 @@ namespace Processing
             drawing.ImageData.SetImage(image);
         }
 
-        private void ChangeText(string variable, string text)
+        private void ChangeText(CompositeNode node, string variable, string text)
         {
-            document.Range.Replace(variable, text, true, false);
+            node.Range.Replace(variable, text, true, false);
         }
 
         private void DeleteTableElement<T>(string variable) where T : CompositeNode
         {
             var element = FindTableElement<T>(variable);
+            element.PreviousSibling.Remove();
             element?.Remove();
         }
 
@@ -348,12 +378,30 @@ namespace Processing
                             break;
                         }
                     }
+                case VM_START_DATE_LONG:
+                case VM_END_DATE_LONG:
+                    {
+                        var date = DateTime.Parse(value);
+                        result = date.ToLongDateCultureString();
+                        break;
+                    }
                 case VM_DIFFERENCE_DATE:
                     {
                         var dateDifference = new DateDifference(DateTime.Parse(value.Split(";").First()), DateTime.Parse(value.Split(";").Last()));
                         var years = dateDifference.Years == 0 ? string.Empty : dateDifference.Years == 1 ? $"{dateDifference.Years} {SharedResource.Year}" : $"{dateDifference.Years} {SharedResource.Years}";
                         var months = dateDifference.Months == 0 ? string.Empty : dateDifference.Months == 1 ? $"{dateDifference.Months} {SharedResource.Month}" : $"{dateDifference.Months} {SharedResource.Months}";
-                        var days = dateDifference.Days == 0 ? string.Empty : dateDifference.Days == 1 ? $"{dateDifference.Days} {SharedResource.Day}" : $"{dateDifference.Days} {SharedResource.Days}";
+
+                        result = (years != string.Empty ? years : string.Empty) +
+                            (years != string.Empty && months != string.Empty ? ", " : string.Empty) +
+                            (months != string.Empty ? months : string.Empty);
+                        break;
+                    }
+                case VM_DIFFERENCE_DATE_LONG:
+                    {
+                        var dateDifference = new DateDifference(DateTime.Parse(value.Split(";").First()), DateTime.Parse(value.Split(";").Last()));
+                        var years = dateDifference.Years == 0 ? string.Empty : dateDifference.Years == 1 ? $"{dateDifference.Years} {SharedResource.Year}" : $"{dateDifference.Years} {SharedResource.Years}";
+                        var months = dateDifference.Months == 0 ? string.Empty : dateDifference.Months == 1 ? $"{dateDifference.Months} {SharedResource.Month}" : $"{dateDifference.Months} {SharedResource.Months}";
+                        var days = dateDifference.Days == 0 ? $"{dateDifference.Days + 1} {SharedResource.Day}" : $"{dateDifference.Days + 1} {SharedResource.Days}";
 
                         result = (years != string.Empty ? years : string.Empty) +
                             (years != string.Empty && months != string.Empty ? ", " : string.Empty) +

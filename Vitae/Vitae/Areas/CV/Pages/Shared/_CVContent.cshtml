@@ -157,7 +157,7 @@
                             <p class="preline">@experience.Description</p>
                         </div>
                         <div class="resume-date text-md-right">
-                            <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(experience.Start_Year, experience.Start_Month, 1), experience.UntilNow ? (DateTime?)null : new DateTime(experience.End_Year.Value, experience.End_Month.Value, 1), false)" />
+                            <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(experience.Start_Date, experience.UntilNow ? (DateTime?)null : experience.End_Date, false)" />
                         </div>
                     </div>
                     <hr class="mb-4 pb-2">
@@ -188,7 +188,7 @@
                         </div>
                         <div class="resume-date text-md-right">
                             <div class="resume-date text-md-right">
-                                <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(education.Start_Year, education.Start_Month, 1), education.UntilNow ? (DateTime?)null : new DateTime(education.End_Year.Value, education.End_Month.Value, 1), false)" />
+                                <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(education.Start_Date, education.UntilNow ? (DateTime?)null : education.End_Date, false)" />
                             </div>
                         </div>
                     </div>
@@ -215,7 +215,7 @@
                         </div>
                         <div class="resume-date text-md-right">
                             <div class="resume-date text-md-right">
-                                <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(course.Start_Year, course.Start_Month, course.Start_Day), course.SingleDay ? new DateTime(course.Start_Year, course.Start_Month, course.Start_Day) : new DateTime(course.End_Year.Value, course.End_Month.Value, course.End_Day.Value), true)" />
+                                <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(course.Start_Date_Long, course.SingleDay ? course.Start_Date_Long : course.End_Date_Long, true)" />
                             </div>
                         </div>
                     </div>
@@ -244,7 +244,7 @@
                         </div>
                         <div class="resume-date text-md-right">
                             <div class="resume-date text-md-right">
-                                <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(new DateTime(abroad.Start_Year, abroad.Start_Month, 1), abroad.UntilNow ? (DateTime?)null : new DateTime(abroad.End_Year.Value, abroad.End_Month.Value, 1), false)" />
+                                <partial name="_DateDifference" model="new Tuple<DateTime, DateTime?, bool>(abroad.Start_Date, abroad.UntilNow ? (DateTime?)null : abroad.End_Date, false)" />
                             </div>
                         </div>
                     </div>

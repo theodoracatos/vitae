@@ -216,7 +216,7 @@ VALUES (6, @CurrLangId_en, GETDATE(), 'Development methods', 'Domain driven Deve
 
 /* ABROAD */
 INSERT INTO [Abroad]
-VALUES (0, @CurrLangId_de, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'Bath', 'Dreiwöchiger Sprachaufenthalt in einer EF-Sprachschule mit Unterkunft in einer Gastfamilie.', '2001-04-01', '2001-04-01', @CurriculumID)
+VALUES (0, @CurrLangId_de, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'Bath', 'Dreiwöchiger Sprachaufenthalt in einer EF-Sprachschule mit Unterkunft in einer Gastfamilie.', '2001-04-01', '2001-04-22', @CurriculumID)
 INSERT INTO [Abroad]
 VALUES (0, @CurrLangId_en, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'Bath', 'Three weeks of study in an EF language school with host family accommodation.', '2001-04-01', '2001-04-01', @CurriculumID)
 
@@ -266,7 +266,7 @@ INSERT INTO [Course]
 VALUES(8, @CurrLangId_de, GETDATE(), 'ETH Zürich', 'https://ethz.ch', 'XSLT - Einführung mit Übungen', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2004-09-20', '2004-09-21', @CurriculumID)
 
 INSERT INTO [Course]              
-VALUES(0, @CurrLangId_de, GETDATE(), 'IFA Weiterbildung AG', 'https://www.ifa.ch', 'Certification as an online tutor', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2020-06-15', null, @CurriculumID)
+VALUES(0, @CurrLangId_en, GETDATE(), 'IFA Weiterbildung AG', 'https://www.ifa.ch', 'Certification as an online tutor', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2020-06-15', null, @CurriculumID)
 INSERT INTO [Course]               
 VALUES(1, @CurrLangId_en, GETDATE(), 'IFA Weiterbildung AG', 'https://www.ifa.ch', 'Use of digital media in education', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
 INSERT INTO [Course]              
