@@ -1,5 +1,4 @@
 ﻿using Aspose.Words;
-using Aspose.Words.Drawing;
 using Aspose.Words.Tables;
 
 using Library.Extensions;
@@ -17,11 +16,8 @@ using Persistency.Repository;
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace Processing
 {
@@ -42,11 +38,12 @@ namespace Processing
         private const string VM_END_DATE_LONG = "End_Date_Long";
         private const string VM_DIFFERENCE_DATE = "Difference_Date";
         private const string VM_DIFFERENCE_DATE_LONG = "Difference_Date_Long";
-        private const string VM_COUNTRYCODE = "CountryCode";
+        private const string VM_LANGUAGECODE = "LanguageCode";
         private const string ABOUT_PHOTO = "Photo";
+        private const string LANG_RATE = "Rate";
 
+        private readonly AsposeHandler asposeHandler;
 
-        private readonly Document document;
         private readonly Repository repository;
 
         private readonly Curriculum curriculum;
@@ -54,15 +51,13 @@ namespace Processing
         private readonly List<HierarchyLevelVM> hierarchyLevels;
         private readonly List<MaritalStatusVM> maritalStatuses;
         private readonly List<CountryVM> countries;
+        private readonly List<LanguageVM> languages;
 
         public WordProcessor(string templateName)
         {
-            var license = new License();
-            license.SetLicense($@"{CodeHelper.AssemblyDirectory}\Libs\Aspose.Words.lic");
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            this.document = new Document(Path.Combine(TEMPLATE_PATH, templateName));
-            
-            // Get DBContext (TEST)
+            this.asposeHandler = new AsposeHandler(TEMPLATE_PATH, templateName);
+
+            #region PREPARATION
             var optionsBuilder = new DbContextOptionsBuilder<VitaeContext>();
             optionsBuilder.UseSqlServer("Server=(localdb)\\ProjectsV13;Database=MyVitaeDebug;Trusted_Connection=True;MultipleActiveResultSets=true");
             var context = new VitaeContext(optionsBuilder.Options);
@@ -73,29 +68,27 @@ namespace Processing
             hierarchyLevels = repository.GetHierarchyLevels(LANG_CODE).ToList();
             maritalStatuses = repository.GetMaritalStatuses(LANG_CODE).ToList();
             countries = repository.GetCountries(LANG_CODE).ToList();
+            languages = repository.GetLanguages(LANG_CODE).ToList();
+            #endregion PREPARATION
         }
+
+        #region Api
 
         public void ProcessDocument()
         {
-            // Get the first table in the document.
-            //var table = (Table)doc.GetChild(NodeType.Table, 0, true);
-
-            //// Replace any instances of our string in the last cell of the table only.
-            //var clonedRow = table.Rows[0].Clone(true);
-            //table.Rows.Add(clonedRow);
-            //DeleteTableElement<Row>("${CHILDREN}");
-            //DeleteTableElement<Table>("${EXPERIENCE}");
-            //table.Rows[0].Cells[0].Range.Replace("A", "B", true, true);
-
-
             ReplacePersonalDetails();
             ReplaceAbout();
             ReplaceCVContent();
             ReplaceLabels();
 
-
-            document.Save(Path.Combine(TEMPLATE_PATH, "Out.docx"));
+            asposeHandler.Save();
         }
+
+        public void Dispose() { }
+
+        #endregion
+
+        #region Helper
 
         private void ReplaceLabels()
         {
@@ -105,7 +98,7 @@ namespace Processing
                 var value = property.GetValue(null).ToString();
      
                 var variable = $"${{LABEL_{name.ToUpper()}}}";
-                ChangeText(document, variable, value);
+                asposeHandler.ChangeText(variable, value);
             }
         }
 
@@ -117,7 +110,7 @@ namespace Processing
             {
                 var name = property.Name;
                 var variable = $"${{{name.ToUpper()}}}";
-                var table = FindTableElement<Table>($"${{LABEL_BIRTHDAY}}");
+                var table = asposeHandler.FindTableElement<Table>($"${{LABEL_BIRTHDAY}}");
                 var propertyValue = property.GetValue(about)?.ToString();
 
                 switch (name)
@@ -125,13 +118,13 @@ namespace Processing
                     case ABOUT_PHOTO:
                         {
                             var image = CodeHelper.Base64ToImage(propertyValue);
-                            ChangeImage(variable, image);
+                            asposeHandler.ChangeImage(variable, image);
                             break;
                         }
                     default:
                         {
-                            var value = ResolveValue(name, propertyValue);
-                            ReplaceTextOrDeleteRow(table, variable, value);
+                            var value = ResolveValue(table, name, propertyValue);
+                            asposeHandler.ReplaceTextOrDeleteRow(table, variable, value);
                             break;
                         }
                 }
@@ -147,7 +140,7 @@ namespace Processing
             {
                 var name = property.Name;
                 var variable = $"${{{name.ToUpper()}}}";
-                var table = FindTableElement<Table>($"${{LABEL_BIRTHDAY}}");
+                var table = asposeHandler.FindTableElement<Table>($"${{LABEL_BIRTHDAY}}");
                 var value = string.Empty;
 
                 switch(name)
@@ -165,25 +158,13 @@ namespace Processing
                     default:
                         {
                             var propertyValue = property.GetValue(personalDetail)?.ToString();
-                            value = ResolveValue(name, propertyValue);
+                            value = ResolveValue(table, name, propertyValue);
                             break;
                         }
                 }
 
-                ReplaceTextOrDeleteRow(table, variable, value);
+                asposeHandler.ReplaceTextOrDeleteRow(table, variable, value);
             };
-        }
-
-        private void ReplaceTextOrDeleteRow(CompositeNode node, string variable, string value)
-        {
-            if (!string.IsNullOrEmpty(value))
-            {
-                ChangeText(node, variable, value);
-            }
-            else
-            {
-                DeleteTableElement<Row>(variable);
-            }
         }
 
         private void ReplaceCVContent()
@@ -193,11 +174,11 @@ namespace Processing
             var exp = repository.GetExperiences(curriculum, LANG_CODE);
             if (exp.Count > 0)
             {
-                FillTable(experience, exp);
+                asposeHandler.FillTable(experience, exp, ResolveValue);
             }
             else
             {
-                DeleteTableElement<Table>(experience);
+                asposeHandler.DeleteTableElement<Table>(experience);
             }
 
             // Educations
@@ -205,11 +186,11 @@ namespace Processing
             var edu = repository.GetEducations(curriculum, LANG_CODE);
             if(edu.Count > 0)
             {
-                FillTable(educations, edu);
+                asposeHandler.FillTable(educations, edu, ResolveValue);
             }
             else
             {
-                DeleteTableElement<Table>(educations);
+                asposeHandler.DeleteTableElement<Table>(educations);
             }
 
             // Courses
@@ -217,11 +198,11 @@ namespace Processing
             var cou = repository.GetCourses(curriculum, LANG_CODE);
             if (edu.Count > 0)
             {
-                FillTable(courses, cou);
+                asposeHandler.FillTable(courses, cou, ResolveValue);
             }
             else
             {
-                DeleteTableElement<Table>(courses);
+                asposeHandler.DeleteTableElement<Table>(courses);
             }
 
             // Abroads
@@ -229,125 +210,27 @@ namespace Processing
             var abr = repository.GetAbroads(curriculum, LANG_CODE);
             if (abr.Count > 0)
             {
-                FillTable(abroads, abr);
+                asposeHandler.FillTable(abroads, abr, ResolveValue);
             }
             else
             {
-                DeleteTableElement<Table>(abroads);
+                asposeHandler.DeleteTableElement<Table>(abroads);
+            }
+
+            // Languages
+            var languages = $"LABEL_LANGUAGES";
+            var lan = repository.GetLanguageSkills(curriculum, LANG_CODE);
+            if(lan.Count > 0)
+            {
+                asposeHandler.FillTable(languages, lan, ResolveValue);
             }
         }
 
-        private void FillTable<T>(string tableName, IEnumerable<T> elements) where T : BaseVM
-        {
-            var table = (Table)FindTableElement<Table>(tableName);
-            if(table != null)
-            {
-                Row templateRow = (Row)table.Rows[table.Rows.Count - 1].Clone(true);
-                table.Rows[table.Rows.Count - 1].Remove();
-
-                foreach (T element in elements)
-                {
-                    var row = FillRow((Row)templateRow.Clone(true), element);
-                    table.Rows.Add(row);
-                }
-            }
-        }
-
-        private Row FillRow<T>(Row row, T element)
-        {
-            var properties = element.GetType().GetProperties();
-            foreach (var property in properties)
-            {
-                var name = property.Name;
-                var propertyValue = property.GetValue(element)?.ToString();
-                var value = ResolveValue(name, propertyValue);
-
-                var variable = $"${{{name.ToUpper()}}}";
-                var cell = FindCell(variable, row);
-                if (cell != null)
-                {
-                    if (!string.IsNullOrEmpty(value))
-                    {
-                        cell.Range.Replace(variable, value, true, false);
-                    }
-                    else
-                    {
-                        cell.ChildNodes.ToArray().Single(c => c.Range.Text.Contains(variable)).Remove();
-                    }
-                }
-            };
-
-            return row;
-        }
-
-        private void ChangeImage(string variable, Image image)
-        {
-            var drawings = document.GetChildNodes(NodeType.DrawingML, true);
-            var drawing = (DrawingML)drawings.ToArray().Where(d => ((DrawingML)d).AlternativeText == variable).Single();
-            drawing.ImageData.SetImage(image);
-        }
-
-        private void ChangeText(CompositeNode node, string variable, string text)
-        {
-            node.Range.Replace(variable, text, true, false);
-        }
-
-        private void DeleteTableElement<T>(string variable) where T : CompositeNode
-        {
-            var element = FindTableElement<T>(variable);
-            element.PreviousSibling.Remove();
-            element?.Remove();
-        }
-
-        private Cell FindCell(string variable, Row row)
-        {
-            foreach (Cell cell in row.Cells)
-            {
-                if (cell.GetText().Contains(variable.ToUpper()))
-                {
-                    return cell;
-                }
-            }
-
-            return null;
-        }
-
-        private CompositeNode FindTableElement<T>(string variable) where T : CompositeNode
-        {
-            var tables = document.GetChildNodes(NodeType.Table, true);
-            foreach (Table table in tables)
-            {
-                foreach (Row row in table.Rows)
-                {
-                    foreach (Cell cell in row.Cells)
-                    {
-                        if (cell.GetText().Contains(variable.ToUpper()))
-                        {
-                            if (typeof(T) == typeof(Table))
-                            {
-                                return table;
-                            }
-                            else if (typeof(T) == typeof(Row))
-                            {
-                                return row;
-                            }
-                            else if (typeof(T) == typeof(Cell))
-                            {
-                                return cell;
-                            }
-                        }
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        private string ResolveValue(string name, string value)
+        private string ResolveValue(CompositeNode element, string name, string value)
         {
             var result = value;
 
-            switch(name)
+            switch (name)
             {
                 case PERSONALDETAIL_INDUSTRYCODE:
                     {
@@ -421,12 +304,45 @@ namespace Processing
                         result = maritalStatuses.Single(m => m.MaritalStatusCode.ToString() == value).Name;
                         break;
                     }
+                case VM_LANGUAGECODE:
+                    {
+                        result = languages.Single(l => l.LanguageCode == value).Name;
+                        break;
+                    }
+                case LANG_RATE:
+                    {
+                        var variable = $"${{{name.ToUpper()}}}";
+                        var cell = asposeHandler.FindCell(variable, (Row)element);
+                        var stars = ((Cell)cell.NextSibling).GetChildNodes(NodeType.DrawingML, true);
+
+                        switch (int.Parse(value))
+                        {
+                            case 1:
+                                result = SharedResource.KnowledgeBasic;
+                                stars.ToArray().Skip(1).ToList().ForEach(s => s.Remove());
+                                break;
+                            case 2:
+                                result = SharedResource.KnowledgeBusinessFluent;
+                                stars.ToArray().Skip(2).ToList().ForEach(s => s.Remove());
+                                break;
+                            case 3:
+                                result = SharedResource.KnowledgeFluent;
+                                stars.ToArray().Skip(3).ToList().ForEach(s => s.Remove());
+                                break;
+                            case 4:
+                                result = SharedResource.KnowledgeNative;
+                                break;
+                        }
+
+                        break;
+                    }
 
             }
 
             return result;
         }
 
-        public void Dispose() { }
+        #endregion
+
     }
 }
