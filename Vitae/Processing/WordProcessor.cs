@@ -224,6 +224,14 @@ namespace Processing
             {
                 asposeHandler.FillTable(languages, lan, ResolveValue);
             }
+
+            // Interests
+            var interests = $"LABEL_INTERESTS";
+            var ine = repository.GetInterests(curriculum, LANG_CODE);
+            if (ine.Count > 0)
+            {
+                asposeHandler.FillTable(interests, ine, ResolveValue);
+            }
         }
 
         private string ResolveValue(CompositeNode element, string name, string value)
