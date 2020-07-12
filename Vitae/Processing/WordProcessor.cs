@@ -323,25 +323,26 @@ namespace Processing
                 case LANG_RATE:
                     {
                         var variable = $"${{{name.ToUpper()}}}";
+                        var variable_star = $"${{STAR}}";
                         var cell = asposeHandler.FindCell(variable, (Row)element);
-                        var stars = ((Cell)cell.NextSibling).GetChildNodes(NodeType.DrawingML, true);
 
                         switch (int.Parse(value))
                         {
                             case 1:
                                 result = SharedResource.KnowledgeBasic;
-                                stars.ToArray().Skip(1).ToList().ForEach(s => s.Remove());
+                                asposeHandler.ReplaceTextOrDeleteRow(((Cell)cell.NextSibling), variable_star, "★");
                                 break;
                             case 2:
                                 result = SharedResource.KnowledgeBusinessFluent;
-                                stars.ToArray().Skip(2).ToList().ForEach(s => s.Remove());
+                                asposeHandler.ReplaceTextOrDeleteRow(((Cell)cell.NextSibling), variable_star, "★★");
                                 break;
                             case 3:
                                 result = SharedResource.KnowledgeFluent;
-                                stars.ToArray().Skip(3).ToList().ForEach(s => s.Remove());
+                                asposeHandler.ReplaceTextOrDeleteRow(((Cell)cell.NextSibling), variable_star, "★★★");
                                 break;
                             case 4:
                                 result = SharedResource.KnowledgeNative;
+                                asposeHandler.ReplaceTextOrDeleteRow(((Cell)cell.NextSibling), variable_star, "★★★★");
                                 break;
                         }
 
