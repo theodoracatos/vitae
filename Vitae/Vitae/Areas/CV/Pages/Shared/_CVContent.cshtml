@@ -343,7 +343,7 @@
                             <p class="mt-3 preline">@award.Description</p>
                         </div>
                         <div class="resume-date text-md-right">
-                            <span class="text-primary">@(new DateTime(award.Year, award.Month, 1).ToShortDateCultureString())</span>
+                            <span class="text-primary">@(award.Start_Date.ToShortDateCultureString())</span>
                         </div>
                     </div>
                     <hr class="mb-4 pb-2">
@@ -392,11 +392,11 @@
                         </div>
                         <div class="resume-date text-md-right">
                             <span class="text-primary">
-                                @(new DateTime(certificate.Start_Year, certificate.Start_Month, 1).ToShortDateCultureString())
+                                @(certificate.Start_Date.ToShortDateCultureString())
                                 @{
                                     if (!certificate.NeverExpires)
                                     {
-                                        @($"- {new DateTime(certificate.End_Year.Value, certificate.End_Month.Value, 1).ToShortDateCultureString()}")
+                                        @($"- {certificate.End_Date_Opt.Value.ToShortDateCultureString()}")
                                     }
                                 }
                             </span>

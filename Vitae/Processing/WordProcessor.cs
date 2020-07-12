@@ -26,6 +26,7 @@ namespace Processing
         private const string TEMPLATE_PATH = @"C:\Projects\MyVitae\Vitae\WordGenerator\Templates\";
         private const string LANG_CODE = "de";
 
+        private const string PERSONALDETAIL_ACADEMICTITLE = "AcademicTitle";
         private const string PERSONALDETAIL_CHILDREN = "Children";
         private const string PERSONALDETAIL_INDUSTRYCODE = "IndustryCode";
         private const string PERSONALDETAIL_HIERARCHYLEVELCODE = "HierarchyLevelCode";
@@ -39,6 +40,11 @@ namespace Processing
         private const string VM_DIFFERENCE_DATE = "Difference_Date";
         private const string VM_DIFFERENCE_DATE_LONG = "Difference_Date_Long";
         private const string VM_LANGUAGECODE = "LanguageCode";
+        private const string VM_END_DATE_OPT = "End_Date_Opt";
+        private const string VM_GENDER = "Gender";
+        private const string VM_PASSWORD = "Password";
+        private const string VM_QRCODE = "QrCode";
+
         private const string ABOUT_PHOTO = "Photo";
         private const string LANG_RATE = "Rate";
 
@@ -76,6 +82,7 @@ namespace Processing
 
         public void ProcessDocument()
         {
+            ReplaceQRCode();
             ReplacePersonalDetails();
             ReplaceAbout();
             ReplaceCVContent();
@@ -90,13 +97,22 @@ namespace Processing
 
         #region Helper
 
+        private void ReplaceQRCode()
+        {
+            var table = asposeHandler.FindTableElement<Table>(VM_PASSWORD);
+            var variable1 = $"${{{VM_QRCODE.ToUpper()}}}";
+            var variable2 = $"${{{VM_PASSWORD.ToUpper()}}}";
+            //asposeHandler.ChangeImage(variable1, null);
+            asposeHandler.ReplaceTextOrDeleteRow(table, variable2, "Password" ?? "-");
+        }
+
         private void ReplaceLabels()
         {
             foreach (var property in typeof(SharedResource).GetProperties(BindingFlags.Public | BindingFlags.Static).Where(p => p.PropertyType == typeof(string)))
             {
                 var name = property.Name;
                 var value = property.GetValue(null).ToString();
-     
+
                 var variable = $"${{LABEL_{name.ToUpper()}}}";
                 asposeHandler.ChangeText(variable, value);
             }
@@ -110,7 +126,6 @@ namespace Processing
             {
                 var name = property.Name;
                 var variable = $"${{{name.ToUpper()}}}";
-                var table = asposeHandler.FindTableElement<Table>($"${{LABEL_BIRTHDAY}}");
                 var propertyValue = property.GetValue(about)?.ToString();
 
                 switch (name)
@@ -123,8 +138,8 @@ namespace Processing
                         }
                     default:
                         {
-                            var value = ResolveValue(table, name, propertyValue);
-                            asposeHandler.ReplaceTextOrDeleteRow(table, variable, value);
+                            var value = ResolveValue(asposeHandler.Document, name, propertyValue);
+                            asposeHandler.ReplaceTextOrDeleteRow(asposeHandler.Document, variable, value);
                             break;
                         }
                 }
@@ -134,16 +149,17 @@ namespace Processing
         private void ReplacePersonalDetails()
         {
             var personalDetail = repository.GetPersonalDetail(curriculum);
+            var table1 = asposeHandler.FindTableElement<Table>(PERSONALDETAIL_ACADEMICTITLE);
+            var table2 = asposeHandler.FindTableElement<Table>(PERSONALDETAIL_CHILDREN);
 
             // Personal Detail
             foreach (var property in personalDetail.GetType().GetProperties())
             {
                 var name = property.Name;
                 var variable = $"${{{name.ToUpper()}}}";
-                var table = asposeHandler.FindTableElement<Table>($"${{LABEL_BIRTHDAY}}");
                 var value = string.Empty;
 
-                switch(name)
+                switch (name)
                 {
                     case PERSONALDETAIL_CHILDREN:
                         {
@@ -158,79 +174,67 @@ namespace Processing
                     default:
                         {
                             var propertyValue = property.GetValue(personalDetail)?.ToString();
-                            value = ResolveValue(table, name, propertyValue);
+                            value = ResolveValue(asposeHandler.Document, name, propertyValue);
                             break;
                         }
                 }
-
-                asposeHandler.ReplaceTextOrDeleteRow(table, variable, value);
+                asposeHandler.ReplaceTextOrDeleteRow(table1, variable, value);
+                asposeHandler.ReplaceTextOrDeleteRow(table2, variable, value);
             };
         }
 
         private void ReplaceCVContent()
         {
             // Experience
-            var experience = "${LABEL_EXPERIENCES}";
-            var exp = repository.GetExperiences(curriculum, LANG_CODE);
-            if (exp.Count > 0)
-            {
-                asposeHandler.FillTable(experience, exp, ResolveValue);
-            }
-            else
-            {
-                asposeHandler.DeleteTableElement<Table>(experience);
-            }
+            var experiences = repository.GetExperiences(curriculum, LANG_CODE);
+            FillTableOrDelete("${LABEL_EXPERIENCES}", experiences);
 
             // Educations
-            var educations = "${LABEL_EDUCATIONS}";
-            var edu = repository.GetEducations(curriculum, LANG_CODE);
-            if(edu.Count > 0)
-            {
-                asposeHandler.FillTable(educations, edu, ResolveValue);
-            }
-            else
-            {
-                asposeHandler.DeleteTableElement<Table>(educations);
-            }
+            var educations = repository.GetEducations(curriculum, LANG_CODE);
+            FillTableOrDelete("${LABEL_EDUCATIONS}", educations);
 
             // Courses
-            var courses = "${LABEL_COURSES}";
-            var cou = repository.GetCourses(curriculum, LANG_CODE);
-            if (edu.Count > 0)
-            {
-                asposeHandler.FillTable(courses, cou, ResolveValue);
-            }
-            else
-            {
-                asposeHandler.DeleteTableElement<Table>(courses);
-            }
+            var courses = repository.GetCourses(curriculum, LANG_CODE);
+            FillTableOrDelete("${LABEL_COURSES}", courses);
 
             // Abroads
-            var abroads = $"LABEL_ABROADS";
-            var abr = repository.GetAbroads(curriculum, LANG_CODE);
-            if (abr.Count > 0)
+            var abroads = repository.GetAbroads(curriculum, LANG_CODE);
+            FillTableOrDelete("${LABEL_ABROADS}", abroads);
+
+            // Languages
+            var languages = repository.GetLanguageSkills(curriculum, LANG_CODE);
+            FillTableOrDelete("${LABEL_LANGUAGES}", languages);
+
+            // Interests
+            var interests = repository.GetInterests(curriculum, LANG_CODE);
+            FillTableOrDelete("${LABEL_INTERESTS}", interests);
+
+            // Awards
+            var awards = repository.GetAwards(curriculum, LANG_CODE);
+            FillTableOrDelete("${LABEL_AWARDS}", awards);
+
+            // Skills
+            var skills = repository.GetSkills(curriculum, LANG_CODE);
+            FillTableOrDelete("${LABEL_SKILLS}", skills);
+
+            // Certificates
+            var certificates = repository.GetCertificates(curriculum, LANG_CODE);
+            FillTableOrDelete("${LABEL_CERTIFICATES}", certificates);
+
+            // References
+            var references = repository.GetReferences(curriculum, LANG_CODE);
+            FillTableOrDelete("${LABEL_REFERENCES}", references.Where(r => !r.Hide));
+        }
+
+        private void FillTableOrDelete(string variable, IEnumerable<BaseVM> viewModels)
+        {
+            if (viewModels.Count() > 0)
             {
-                asposeHandler.FillTable(abroads, abr, ResolveValue);
+                asposeHandler.FillTable(variable, viewModels, ResolveValue);
             }
             else
             {
-                asposeHandler.DeleteTableElement<Table>(abroads);
-            }
-
-            // Languages
-            var languages = $"LABEL_LANGUAGES";
-            var lan = repository.GetLanguageSkills(curriculum, LANG_CODE);
-            if(lan.Count > 0)
-            {
-                asposeHandler.FillTable(languages, lan, ResolveValue);
-            }
-
-            // Interests
-            var interests = $"LABEL_INTERESTS";
-            var ine = repository.GetInterests(curriculum, LANG_CODE);
-            if (ine.Count > 0)
-            {
-                asposeHandler.FillTable(interests, ine, ResolveValue);
+                asposeHandler.DeleteTableElement<Table>(variable);
             }
         }
 
@@ -261,13 +265,12 @@ namespace Processing
                         if (DateTime.TryParse(value, out DateTime date))
                         {
                             result = date.ToShortDateCultureString();
-                            break;
                         }
                         else
                         {
                             result = SharedResource.UntilNow;
-                            break;
                         }
+                        break;
                     }
                 case VM_START_DATE_LONG:
                 case VM_END_DATE_LONG:
@@ -344,7 +347,30 @@ namespace Processing
 
                         break;
                     }
-
+                case VM_END_DATE_OPT:
+                    {
+                        if (DateTime.TryParse(value, out DateTime date))
+                        {
+                            result = date.ToShortDateCultureString();
+                        }
+                        else
+                        {
+                            result = SharedResource.NeverExpires;
+                        }
+                        break;
+                    }
+                case VM_GENDER:
+                    {
+                        if (bool.Parse(value))
+                        {
+                            result = SharedResource.Mr;
+                        }
+                        else
+                        {
+                            result = SharedResource.Ms;
+                        }
+                        break;
+                    }
             }
 
             return result;

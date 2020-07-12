@@ -18,6 +18,8 @@ namespace Processing
         private readonly Document document;
         private readonly string path;
 
+        public Document Document { get { return document; } }
+
         public AsposeHandler(string path, string name)
         {
             var license = new License();

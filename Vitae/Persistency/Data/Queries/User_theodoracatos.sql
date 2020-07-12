@@ -227,23 +227,23 @@ INSERT INTO [Reference]
 VALUES (0, @CurrLangId_en, GETDATE(), 'Wolfgang', 'Schmidt', 1, 'ABB (Schweiz) AG', 'https://abb.ch', 'Former supervisor at Ruf Telematik AG', 'wolfgang.schmidt@abb.ch', '+41', '58 585 00 00', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 0, @CurriculumID)
 
 /* CERTIFICATE */
+INSERT INTO [Certificate]        
+VALUES (0, @CurrLangId_de, GETDATE(), 'SVEB Kursleiter Stufe 1', 'Lernveranstaltungen mit Erwachsenen durchführen / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, @CurriculumID)
+ INSERT INTO [Certificate]         
+VALUES (1, @CurrLangId_de, GETDATE(), 'Scrum Master', 'Professional Scrum Master I (PSM 1)', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
+INSERT INTO [Certificate]         
+VALUES (2, @CurrLangId_de, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, @CurriculumID)
 INSERT INTO [Certificate]
-VALUES (0, @CurrLangId_de, GETDATE(), 'Cambridge English Level 4 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
+VALUES (3, @CurrLangId_de, GETDATE(), 'Cambridge English Level 4 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
+   
 INSERT INTO [Certificate]         
-VALUES (1, @CurrLangId_de, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, @CurriculumID)
+VALUES (0, @CurrLangId_en, GETDATE(), 'SVEB instructor level 1', 'Conduct learning events with adults / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, @CurriculumID)
 INSERT INTO [Certificate]         
-VALUES (2, @CurrLangId_de, GETDATE(), 'Scrum Master', 'Professional Scrum Master I (PSM 1)', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
+VALUES (1, @CurrLangId_en, GETDATE(), 'Scrum Master', 'Professional Scrum Master I (PSM 1)', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
 INSERT INTO [Certificate]        
-VALUES (3, @CurrLangId_de, GETDATE(), 'SVEB Kursleiter Stufe 1', 'Lernveranstaltungen mit Erwachsenen durchführen / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, @CurriculumID)
-                                 
+VALUES (2, @CurrLangId_en, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, @CurriculumID)
 INSERT INTO [Certificate]        
-VALUES (0, @CurrLangId_en, GETDATE(), 'Cambridge English Level 4 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
-INSERT INTO [Certificate]        
-VALUES (1, @CurrLangId_en, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, @CurriculumID)
-INSERT INTO [Certificate]         
-VALUES (2, @CurrLangId_en, GETDATE(), 'Scrum Master', 'Professional Scrum Master I (PSM 1)', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
-INSERT INTO [Certificate]         
-VALUES (3, @CurrLangId_en, GETDATE(), 'SVEB instructor level 1', 'Conduct learning events with adults / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, @CurriculumID)
+VALUES (3, @CurrLangId_en, GETDATE(), 'Cambridge English Level 4 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
 
 /* COURSE */
 INSERT INTO [Course]              
