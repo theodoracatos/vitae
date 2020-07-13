@@ -131,10 +131,6 @@ namespace Vitae.Areas.CV.Pages
             }
         }
 
-        public async Task<IActionResult> OnPostDownloadCV(Guid id, string culture)
-        {
-            return null;
-        }
         #endregion
 
 
