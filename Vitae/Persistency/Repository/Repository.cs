@@ -64,6 +64,13 @@ namespace Persistency.Repository
             await vitaeContext.SaveChangesAsync();
         }
 
+        public string GetPassword(Guid publicationID)
+        {
+            var publication = vitaeContext.Publications.Include(p => p.Curriculum).Single(p => p.PublicationIdentifier == publicationID);
+
+            return AesHandler.Decrypt(publication.Password, publication.Curriculum.CurriculumID.ToString());
+        }
+
         public async Task<Guid> AddCurriculumAsync(Guid userid, string language)
         {
             var languagePoco = vitaeContext.Languages.SingleOrDefault(l => l.LanguageCode == language.ToLower()) ?? vitaeContext.Languages.Single(l => l.LanguageCode == Globals.DEFAULT_LANGUAGE);

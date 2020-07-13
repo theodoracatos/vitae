@@ -6,6 +6,7 @@ using Persistency.Repository;
 using Processing;
 
 using System;
+using System.Threading.Tasks;
 
 namespace WordGenerator
 {
@@ -23,7 +24,7 @@ namespace WordGenerator
 
             using (var processor = new WordProcessor(repository, "Template1.docx"))
             {
-                processor.ProcessDocument(new Guid("a7e161f0-0ff5-45f8-851f-9b041f565abb"), "de", "https://localhost");
+                Task.FromResult(processor.ProcessDocument(new Guid("a7e161f0-0ff5-45f8-851f-9b041f565abb"), "de", "https://localhost", "Test"));
             }
         }
     }

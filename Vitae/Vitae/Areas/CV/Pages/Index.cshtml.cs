@@ -152,11 +152,17 @@ namespace Vitae.Areas.CV.Pages
             }
         }
 
-        public async Task<IActionResult> OnGetDownloadCV(Guid curriculumID, string languageCode)
+        public async Task<IActionResult> OnGetDownloadCV(Guid curriculumID, string languageCode, Guid? publicationID)
         {
            using(var wordProcessor = new WordProcessor(repository, TEMPLATE1))
-            { 
-                var file = await wordProcessor.ProcessDocument(curriculumID, languageCode, this.BaseUrl);
+            {
+                var password = string.Empty;
+                if(publicationID.HasValue)
+                {
+                    password = repository.GetPassword(publicationID.Value);
+                }
+
+                var file = await wordProcessor.ProcessDocument(curriculumID, languageCode, this.BaseUrl, password);
                 file.Position = 0;
                 return File(file, Globals.MIME_PDF, $"CV_{languageCode.ToUpper()}.{Globals.PDF}");
             }

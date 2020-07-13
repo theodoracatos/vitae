@@ -69,7 +69,7 @@ namespace Processing
 
         #region Api
 
-        public async Task<MemoryStream> ProcessDocument(Guid curriculumID, string languageCode, string baseUrl)
+        public async Task<MemoryStream> ProcessDocument(Guid curriculumID, string languageCode, string baseUrl, string password)
         {
             var curriculum = await repository.GetCurriculumAsync(curriculumID);
 
@@ -79,7 +79,7 @@ namespace Processing
             countries = repository.GetCountries(languageCode).ToList();
             languages = repository.GetLanguages(languageCode).ToList();
 
-            ReplaceQRCode(curriculum, languageCode, baseUrl);
+            ReplaceQRCode(curriculum, languageCode, baseUrl, password);
             ReplacePersonalDetails(curriculum, languageCode);
             ReplaceAbout(curriculum, languageCode);
             ReplaceCVContent(curriculum, languageCode);
@@ -94,15 +94,15 @@ namespace Processing
 
         #region Helper
 
-        private void ReplaceQRCode(Curriculum curriculum, string languageCode, string baseUrl)
+        private void ReplaceQRCode(Curriculum curriculum, string languageCode, string baseUrl, string password)
         {
             var table = asposeHandler.FindTableElement<Table>(VM_PASSWORD);
-            var variable1 = $"${{{VM_QRCODE.ToUpper()}}}";
-            var variable2 = $"${{{VM_PASSWORD.ToUpper()}}}";
+            var variable_qrcode = $"${{{VM_QRCODE.ToUpper()}}}";
+            var variable_password = $"${{{VM_PASSWORD.ToUpper()}}}";
 
             var qrCode = CodeHelper.CreateQRCode($"{baseUrl}/CV/{curriculum.CurriculumID}?langCode={languageCode}");
-            asposeHandler.ChangeImage(variable1, CodeHelper.Base64ToImage(qrCode));
-            asposeHandler.ReplaceTextOrDeleteRow(table, variable2, "Password" ?? "-");
+            asposeHandler.ChangeImage(variable_qrcode, CodeHelper.Base64ToImage(qrCode));
+            asposeHandler.ReplaceTextOrDeleteRow(table, variable_password, string.IsNullOrEmpty(password) ? " " : password);
         }
 
         private void ReplaceLabels(string languageCode)

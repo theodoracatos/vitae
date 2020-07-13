@@ -54,7 +54,7 @@
                     }
                     <li>
                         <div class="social-icons mt-1">
-                            <a class="mt-2 mb-1 ml-1 mr-1" data-toggle="tooltip" asp-page-handler="DownloadCV" asp-route-curriculumid="@Model.CheckVM.CurriculumID.Value" asp-route-languagecode="@Model.CheckVM.LanguageCode" title="@SharedResource.Resumee">
+                            <a class="mt-2 mb-1 ml-1 mr-1" data-toggle="tooltip" asp-page-handler="DownloadCV" asp-route-curriculumid="@Model.CheckVM.CurriculumID.Value" asp-route-languagecode="@Model.CheckVM.LanguageCode" asp-route-publicationid="@Model.CheckVM.PublicationID" title="@SharedResource.Resumee">
                                 <i class="fas fa-file-download"></i>
                             </a>
                             <a class="mt-2 mb-1 ml-1 mr-1" data-toggle="tooltip" asp-page-handler="DownloadFiles" title="@SharedResource.About">
