@@ -130,9 +130,12 @@ namespace Processing
 
         public void Dispose() { }
 
-        public void Save()
+        public MemoryStream Save()
         {
-            document.Save(Path.Combine(path, "Out.docx"));
+            var fileStream = new MemoryStream();
+            document.Save(fileStream, SaveFormat.Pdf);
+
+            return fileStream;
         }
 
         #endregion

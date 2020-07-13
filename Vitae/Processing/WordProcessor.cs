@@ -16,15 +16,18 @@ using Persistency.Repository;
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Processing
 {
     public class WordProcessor : IDisposable
     {
         private const string TEMPLATE_PATH = @"C:\Projects\MyVitae\Vitae\WordGenerator\Templates\";
-        private const string LANG_CODE = "de";
 
         private const string PERSONALDETAIL_ACADEMICTITLE = "AcademicTitle";
         private const string PERSONALDETAIL_CHILDREN = "Children";
@@ -52,43 +55,37 @@ namespace Processing
 
         private readonly Repository repository;
 
-        private readonly Curriculum curriculum;
-        private readonly List<IndustryVM> industries;
-        private readonly List<HierarchyLevelVM> hierarchyLevels;
-        private readonly List<MaritalStatusVM> maritalStatuses;
-        private readonly List<CountryVM> countries;
-        private readonly List<LanguageVM> languages;
+        private List<IndustryVM> industries;
+        private List<HierarchyLevelVM> hierarchyLevels;
+        private List<MaritalStatusVM> maritalStatuses;
+        private List<CountryVM> countries;
+        private List<LanguageVM> languages;
 
-        public WordProcessor(string templateName)
+        public WordProcessor(Repository repository, string templateName)
         {
             this.asposeHandler = new AsposeHandler(TEMPLATE_PATH, templateName);
-
-            #region PREPARATION
-            var optionsBuilder = new DbContextOptionsBuilder<VitaeContext>();
-            optionsBuilder.UseSqlServer("Server=(localdb)\\ProjectsV13;Database=MyVitaeDebug;Trusted_Connection=True;MultipleActiveResultSets=true");
-            var context = new VitaeContext(optionsBuilder.Options);
-            this.repository = new Repository(context);
-            this.curriculum = repository.GetCurriculumAsync(new Guid("a7e161f0-0ff5-45f8-851f-9b041f565abb")).Result;
-
-            industries = repository.GetIndustries(LANG_CODE).ToList();
-            hierarchyLevels = repository.GetHierarchyLevels(LANG_CODE).ToList();
-            maritalStatuses = repository.GetMaritalStatuses(LANG_CODE).ToList();
-            countries = repository.GetCountries(LANG_CODE).ToList();
-            languages = repository.GetLanguages(LANG_CODE).ToList();
-            #endregion PREPARATION
+            this.repository = repository;
         }
 
         #region Api
 
-        public void ProcessDocument()
+        public async Task<MemoryStream> ProcessDocument(Guid curriculumID, string languageCode, string baseUrl)
         {
-            ReplaceQRCode();
-            ReplacePersonalDetails();
-            ReplaceAbout();
-            ReplaceCVContent();
-            ReplaceLabels();
+            var curriculum = await repository.GetCurriculumAsync(curriculumID);
 
-            asposeHandler.Save();
+            industries = repository.GetIndustries(languageCode).ToList();
+            hierarchyLevels = repository.GetHierarchyLevels(languageCode).ToList();
+            maritalStatuses = repository.GetMaritalStatuses(languageCode).ToList();
+            countries = repository.GetCountries(languageCode).ToList();
+            languages = repository.GetLanguages(languageCode).ToList();
+
+            ReplaceQRCode(curriculum, languageCode, baseUrl);
+            ReplacePersonalDetails(curriculum, languageCode);
+            ReplaceAbout(curriculum, languageCode);
+            ReplaceCVContent(curriculum, languageCode);
+            ReplaceLabels(languageCode);
+
+            return asposeHandler.Save();
         }
 
         public void Dispose() { }
@@ -97,17 +94,21 @@ namespace Processing
 
         #region Helper
 
-        private void ReplaceQRCode()
+        private void ReplaceQRCode(Curriculum curriculum, string languageCode, string baseUrl)
         {
             var table = asposeHandler.FindTableElement<Table>(VM_PASSWORD);
             var variable1 = $"${{{VM_QRCODE.ToUpper()}}}";
             var variable2 = $"${{{VM_PASSWORD.ToUpper()}}}";
-            //asposeHandler.ChangeImage(variable1, null);
+
+            var qrCode = CodeHelper.CreateQRCode($"{baseUrl}/CV/{curriculum.CurriculumID}?langCode={languageCode}");
+            asposeHandler.ChangeImage(variable1, CodeHelper.Base64ToImage(qrCode));
             asposeHandler.ReplaceTextOrDeleteRow(table, variable2, "Password" ?? "-");
         }
 
-        private void ReplaceLabels()
+        private void ReplaceLabels(string languageCode)
         {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(languageCode);
+
             foreach (var property in typeof(SharedResource).GetProperties(BindingFlags.Public | BindingFlags.Static).Where(p => p.PropertyType == typeof(string)))
             {
                 var name = property.Name;
@@ -118,35 +119,7 @@ namespace Processing
             }
         }
 
-        private void ReplaceAbout()
-        {
-            var about = repository.GetAbouts(curriculum, LANG_CODE).Single();
-
-            foreach (var property in about.GetType().GetProperties())
-            {
-                var name = property.Name;
-                var variable = $"${{{name.ToUpper()}}}";
-                var propertyValue = property.GetValue(about)?.ToString();
-
-                switch (name)
-                {
-                    case ABOUT_PHOTO:
-                        {
-                            var image = CodeHelper.Base64ToImage(propertyValue);
-                            asposeHandler.ChangeImage(variable, image);
-                            break;
-                        }
-                    default:
-                        {
-                            var value = ResolveValue(asposeHandler.Document, name, propertyValue);
-                            asposeHandler.ReplaceTextOrDeleteRow(asposeHandler.Document, variable, value);
-                            break;
-                        }
-                }
-            };
-        }
-
-        private void ReplacePersonalDetails()
+        private void ReplacePersonalDetails(Curriculum curriculum, string languageCode)
         {
             var personalDetail = repository.GetPersonalDetail(curriculum);
             var table1 = asposeHandler.FindTableElement<Table>(PERSONALDETAIL_ACADEMICTITLE);
@@ -183,46 +156,74 @@ namespace Processing
             };
         }
 
-        private void ReplaceCVContent()
+        private void ReplaceAbout(Curriculum curriculum, string languageCode)
+        {
+            var about = repository.GetAbouts(curriculum, languageCode).Single();
+
+            foreach (var property in about.GetType().GetProperties())
+            {
+                var name = property.Name;
+                var variable = $"${{{name.ToUpper()}}}";
+                var propertyValue = property.GetValue(about)?.ToString();
+
+                switch (name)
+                {
+                    case ABOUT_PHOTO:
+                        {
+                            var image = CodeHelper.Base64ToImage(propertyValue);
+                            asposeHandler.ChangeImage(variable, image);
+                            break;
+                        }
+                    default:
+                        {
+                            var value = ResolveValue(asposeHandler.Document, name, propertyValue);
+                            asposeHandler.ReplaceTextOrDeleteRow(asposeHandler.Document, variable, value);
+                            break;
+                        }
+                }
+            };
+        }
+
+        private void ReplaceCVContent(Curriculum curriculum, string languageCode)
         {
             // Experience
-            var experiences = repository.GetExperiences(curriculum, LANG_CODE);
+            var experiences = repository.GetExperiences(curriculum, languageCode);
             FillTableOrDelete("${LABEL_EXPERIENCES}", experiences);
 
             // Educations
-            var educations = repository.GetEducations(curriculum, LANG_CODE);
+            var educations = repository.GetEducations(curriculum, languageCode);
             FillTableOrDelete("${LABEL_EDUCATIONS}", educations);
 
             // Courses
-            var courses = repository.GetCourses(curriculum, LANG_CODE);
+            var courses = repository.GetCourses(curriculum, languageCode);
             FillTableOrDelete("${LABEL_COURSES}", courses);
 
             // Abroads
-            var abroads = repository.GetAbroads(curriculum, LANG_CODE);
+            var abroads = repository.GetAbroads(curriculum, languageCode);
             FillTableOrDelete("${LABEL_ABROADS}", abroads);
 
             // Languages
-            var languages = repository.GetLanguageSkills(curriculum, LANG_CODE);
+            var languages = repository.GetLanguageSkills(curriculum, languageCode);
             FillTableOrDelete("${LABEL_LANGUAGES}", languages);
 
             // Interests
-            var interests = repository.GetInterests(curriculum, LANG_CODE);
+            var interests = repository.GetInterests(curriculum, languageCode);
             FillTableOrDelete("${LABEL_INTERESTS}", interests);
 
             // Awards
-            var awards = repository.GetAwards(curriculum, LANG_CODE);
+            var awards = repository.GetAwards(curriculum, languageCode);
             FillTableOrDelete("${LABEL_AWARDS}", awards);
 
             // Skills
-            var skills = repository.GetSkills(curriculum, LANG_CODE);
+            var skills = repository.GetSkills(curriculum, languageCode);
             FillTableOrDelete("${LABEL_SKILLS}", skills);
 
             // Certificates
-            var certificates = repository.GetCertificates(curriculum, LANG_CODE);
+            var certificates = repository.GetCertificates(curriculum, languageCode);
             FillTableOrDelete("${LABEL_CERTIFICATES}", certificates);
 
             // References
-            var references = repository.GetReferences(curriculum, LANG_CODE);
+            var references = repository.GetReferences(curriculum, languageCode);
             FillTableOrDelete("${LABEL_REFERENCES}", references.Where(r => !r.Hide));
         }
 

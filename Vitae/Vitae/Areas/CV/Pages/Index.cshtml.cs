@@ -17,6 +17,8 @@ using Model.ViewModels;
 using Persistency.Data;
 using Persistency.Repository;
 
+using Processing;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,6 +26,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+
 using Vitae.Code.Mailing;
 using Vitae.Code.PageModels;
 
@@ -32,6 +35,8 @@ namespace Vitae.Areas.CV.Pages
     [Area("CV")]
     public class IndexModel : BasePageModel
     {
+        private const string TEMPLATE1 = "Template1.docx";
+
         [BindProperty]
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Password), Prompt = nameof(SharedResource.Password))]
@@ -66,20 +71,21 @@ namespace Vitae.Areas.CV.Pages
 
         #region SYNC
 
+        #region GET
         public async Task<IActionResult> OnGetAsync(Guid? id, string culture)
         {
             CheckVM = LoadCheckModel(id, culture);
 
             if (CheckVM.HasValidCurriculumID) // Valid
             {
-                if(!CheckVM.Challenge)
+                if (!CheckVM.Challenge)
                 {
                     await LoadPageAsync();
                 }
 
                 return Page();
             }
-            else if(CheckVM.Challenge) // Bot?
+            else if (CheckVM.Challenge) // Bot?
             {
                 return Page();
             }
@@ -88,7 +94,9 @@ namespace Vitae.Areas.CV.Pages
                 return StatusCode(StatusCodes.Status404NotFound);
             }
         }
+        #endregion
 
+        #region POST
         public async Task<IActionResult> OnPostAsync(Guid id, string culture)
         {
             CheckVM = LoadCheckModel(id, culture);
@@ -123,6 +131,13 @@ namespace Vitae.Areas.CV.Pages
             }
         }
 
+        public async Task<IActionResult> OnPostDownloadCV(Guid id, string culture)
+        {
+            return null;
+        }
+        #endregion
+
+
         public IActionResult OnGetOpenFile(Guid identifier)
         {
             var vfile = repository.GetFile(identifier);
@@ -135,6 +150,21 @@ namespace Vitae.Areas.CV.Pages
             {
                 throw new FileNotFoundException(identifier.ToString());
             }
+        }
+
+        public async Task<IActionResult> OnGetDownloadCV(Guid curriculumID, string languageCode)
+        {
+           using(var wordProcessor = new WordProcessor(repository, TEMPLATE1))
+            { 
+                var file = await wordProcessor.ProcessDocument(curriculumID, languageCode, this.BaseUrl);
+                file.Position = 0;
+                return File(file, Globals.MIME_PDF, $"CV_{languageCode.ToUpper()}.{Globals.PDF}");
+            }
+        }
+
+        public IActionResult OnGetDownloadDocuments()
+        {
+            return null;
         }
 
         #endregion

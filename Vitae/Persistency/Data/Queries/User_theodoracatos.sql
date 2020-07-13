@@ -143,7 +143,7 @@ VALUES(1, @CurrLangId_de , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WH
 INSERT INTO [LanguageSkill]                                                                                      
 VALUES(2, @CurrLangId_de , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'el'), @CurriculumID)
 INSERT INTO [LanguageSkill]                                                                                        
-VALUES(3, @CurrLangId_de , GETDATE(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
+VALUES(3, @CurrLangId_de , GETDATE(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
 INSERT INTO [LanguageSkill]                                                                                                       
 VALUES(0, @CurrLangId_en , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), @CurriculumID)
 INSERT INTO [LanguageSkill]                                                                                   
@@ -151,7 +151,7 @@ VALUES(1, @CurrLangId_en , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WH
 INSERT INTO [LanguageSkill]                                                                                    
 VALUES(2, @CurrLangId_en , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'el'), @CurriculumID)
 INSERT INTO [LanguageSkill]                                                                                      
-VALUES(3, @CurrLangId_en , GETDATE(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
+VALUES(3, @CurrLangId_en , GETDATE(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
 
 /* AWARD */
 INSERT INTO [Award]
