@@ -370,7 +370,7 @@
     <value>myVitae Completeness</value>
   </data>
   <data name="CVDownloadDescription" xml:space="preserve">
-    <value>Visitors can download CV</value>
+    <value>Visitors can download CV as a PDF document</value>
   </data>
   <data name="CVLanguage" xml:space="preserve">
     <value>myVitae language</value>
@@ -412,7 +412,7 @@
     <value>Description</value>
   </data>
   <data name="DocumentsDownloadDescription" xml:space="preserve">
-    <value>Visitors can download documents</value>
+    <value>Visitors can download zipped documents</value>
   </data>
   <data name="Down" xml:space="preserve">
     <value>Down</value>
@@ -527,6 +527,9 @@
   </data>
   <data name="From" xml:space="preserve">
     <value>From</value>
+  </data>
+  <data name="FurtherDocuments" xml:space="preserve">
+    <value>Further documents (zipped)</value>
   </data>
   <data name="Gender" xml:space="preserve">
     <value>Gender</value>
@@ -809,6 +812,9 @@
   </data>
   <data name="OnlyPdf" xml:space="preserve">
     <value>Only PDF files are allowed to be uploaded</value>
+  </data>
+  <data name="OnlyZip" xml:space="preserve">
+    <value>Only ZIP files are allowed to be uploaded</value>
   </data>
   <data name="OnRequest" xml:space="preserve">
     <value>On request</value>

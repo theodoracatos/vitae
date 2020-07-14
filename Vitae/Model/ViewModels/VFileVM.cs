@@ -10,7 +10,7 @@ namespace Model.ViewModels
     [Serializable]
     public class VfileVM : BaseVM
     {
-        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.CV), Prompt = nameof(SharedResource.CV))]
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.FurtherDocuments), Prompt = nameof(SharedResource.FurtherDocuments))]
         public IFormFile Content { get; set; }
 
         public Guid Identifier { get; set; }

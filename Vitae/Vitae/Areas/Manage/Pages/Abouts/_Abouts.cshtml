@@ -50,7 +50,7 @@
                             <div class="uploadedFile @(Model.About.Vfile?.FileName == null ? "d-none" : null)">
                                 <div class="button-group" role="group">
                                     <a class="btn btn-secondary" asp-page-handler="OpenFile" asp-route-identifier="@Model.About.Vfile?.Identifier" title="@Model.About.Vfile?.FileName">
-                                        <i class="far fa-file-pdf fa-1x fa-fw"></i>
+                                        <i class="fas fa-file-archive fa-1x fa-fw"></i>
                                         @Model.About.Vfile?.FileName
                                     </a>
                                     <button id="btnRemoveFile" asp-page-handler="RemoveFile" data-ajax="true" data-confirm-text="@string.Format(SharedResource.ConfirmDelete, $"\"{Model.About.Vfile?.FileName}\"")" data-ajax-update="#panel" class="btn btn-danger cancel dirty-ignore confirmation"><i class="far fa-trash-alt"></i></button>

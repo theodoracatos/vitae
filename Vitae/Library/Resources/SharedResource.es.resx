@@ -369,6 +369,9 @@
   <data name="CVCompleteness" xml:space="preserve">
     <value>myVitae Completo</value>
   </data>
+  <data name="CVDownloadDescription" xml:space="preserve">
+    <value>Los visitantes pueden descargar el CV como un documento PDF</value>
+  </data>
   <data name="CVLanguage" xml:space="preserve">
     <value>Idioma del myVitae</value>
   </data>
@@ -408,8 +411,17 @@
   <data name="Description" xml:space="preserve">
     <value>Descripción</value>
   </data>
+  <data name="DocumentsDownloadDescription" xml:space="preserve">
+    <value>Los visitantes pueden descargar documentos comprimidos</value>
+  </data>
   <data name="Down" xml:space="preserve">
     <value>Abajo</value>
+  </data>
+  <data name="DownloadCV" xml:space="preserve">
+    <value>Descargar CV</value>
+  </data>
+  <data name="DownloadDocuments" xml:space="preserve">
+    <value>Descargue los documentos</value>
   </data>
   <data name="DownloadQR" xml:space="preserve">
     <value>Descargar el código QR</value>
@@ -446,6 +458,12 @@
   </data>
   <data name="EmailUnchanged" xml:space="preserve">
     <value>Su correo electrónico no ha cambiado.</value>
+  </data>
+  <data name="EnableCVDownload" xml:space="preserve">
+    <value>Habilitar la descarga de CV</value>
+  </data>
+  <data name="EnableDocumentsDownload" xml:space="preserve">
+    <value>Habilitar la descarga de documentos</value>
   </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
     <value>Asegura tu currículum myVitae con una contraseña adicional</value>
@@ -509,6 +527,9 @@
   </data>
   <data name="From" xml:space="preserve">
     <value>De</value>
+  </data>
+  <data name="FurtherDocuments" xml:space="preserve">
+    <value>Otros documentos (comprimidos)</value>
   </data>
   <data name="Gender" xml:space="preserve">
     <value>Género</value>
@@ -791,6 +812,9 @@
   </data>
   <data name="OnlyPdf" xml:space="preserve">
     <value>Sólo se pueden subir archivos PDF</value>
+  </data>
+  <data name="OnlyZip" xml:space="preserve">
+    <value>Sólo se permite subir archivos ZIP</value>
   </data>
   <data name="OnRequest" xml:space="preserve">
     <value>A petición.</value>

@@ -817,7 +817,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Visitors can download CV.
+        ///   Looks up a localized string similar to Visitors can download CV as a PDF document.
         /// </summary>
         public static string CVDownloadDescription {
             get {
@@ -943,7 +943,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Visitors can download documents.
+        ///   Looks up a localized string similar to Visitors can download zipped documents.
         /// </summary>
         public static string DocumentsDownloadDescription {
             get {
@@ -1290,6 +1290,15 @@ namespace Library.Resources {
         public static string From {
             get {
                 return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Further documents (zipped).
+        /// </summary>
+        public static string FurtherDocuments {
+            get {
+                return ResourceManager.GetString("FurtherDocuments", resourceCulture);
             }
         }
         
@@ -2136,6 +2145,15 @@ namespace Library.Resources {
         public static string OnlyPdf {
             get {
                 return ResourceManager.GetString("OnlyPdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only ZIP files are allowed to be uploaded.
+        /// </summary>
+        public static string OnlyZip {
+            get {
+                return ResourceManager.GetString("OnlyZip", resourceCulture);
             }
         }
         

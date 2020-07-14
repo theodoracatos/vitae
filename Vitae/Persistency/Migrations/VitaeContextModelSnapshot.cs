@@ -49,16 +49,11 @@ namespace Persistency.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.Property<Guid?>("VfileID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("AboutID");
 
                     b.HasIndex("CurriculumID");
 
                     b.HasIndex("CurriculumLanguageLanguageID");
-
-                    b.HasIndex("VfileID");
 
                     b.ToTable("About");
                 });
@@ -1277,6 +1272,9 @@ namespace Persistency.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<long?>("AboutID")
+                        .HasColumnType("bigint");
+
                     b.Property<byte[]>("Content")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
@@ -1295,6 +1293,10 @@ namespace Persistency.Migrations
 
                     b.HasKey("VfileID");
 
+                    b.HasIndex("AboutID")
+                        .IsUnique()
+                        .HasFilter("[AboutID] IS NOT NULL");
+
                     b.ToTable("Vfile");
                 });
 
@@ -1307,10 +1309,6 @@ namespace Persistency.Migrations
                     b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
                         .HasForeignKey("CurriculumLanguageLanguageID");
-
-                    b.HasOne("Model.Poco.Vfile", "Vfile")
-                        .WithMany()
-                        .HasForeignKey("VfileID");
                 });
 
             modelBuilder.Entity("Model.Poco.Abroad", b =>
@@ -1554,6 +1552,13 @@ namespace Persistency.Migrations
                     b.HasOne("Model.Poco.Language", "CurriculumLanguage")
                         .WithMany()
                         .HasForeignKey("CurriculumLanguageLanguageID");
+                });
+
+            modelBuilder.Entity("Model.Poco.Vfile", b =>
+                {
+                    b.HasOne("Model.Poco.About", "About")
+                        .WithOne("Vfile")
+                        .HasForeignKey("Model.Poco.Vfile", "AboutID");
                 });
 #pragma warning restore 612, 618
         }

@@ -122,6 +122,42 @@ namespace Library.Helper
             return bodyText.ToString();
         }
 
+        public static bool IsZip(Stream stream)
+        {
+            var zipBytes = new byte[] { 0x50, 0x4b, 0x03, 0x04 };
+            var len = zipBytes.Length;
+            var buf = new byte[len];
+            var remaining = len;
+            var pos = 0;
+            while (remaining > 0)
+            {
+                var amtRead = stream.Read(buf, pos, remaining);
+                if (amtRead == 0) return false;
+                remaining -= amtRead;
+                pos += amtRead;
+            }
+            stream.Position = 0;
+            return zipBytes.SequenceEqual(buf);
+        }
+
+        public static bool IsGZip(Stream stream)
+        {
+            var gzipBytes = new byte[] { 0x1f, 0x8b };
+            var len = gzipBytes.Length;
+            var buf = new byte[len];
+            var remaining = len;
+            var pos = 0;
+            while (remaining > 0)
+            {
+                var amtRead = stream.Read(buf, pos, remaining);
+                if (amtRead == 0) return false;
+                remaining -= amtRead;
+                pos += amtRead;
+            }
+            stream.Position = 0;
+            return gzipBytes.SequenceEqual(buf);
+        }
+
         public static bool IsPdf(Stream stream)
         {
             var pdfString = "%PDF-";

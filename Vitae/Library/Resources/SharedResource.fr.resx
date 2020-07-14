@@ -369,6 +369,9 @@
   <data name="CVCompleteness" xml:space="preserve">
     <value>Complétude du myVitae</value>
   </data>
+  <data name="CVDownloadDescription" xml:space="preserve">
+    <value>Les visiteurs peuvent télécharger leur CV au format PDF</value>
+  </data>
   <data name="CVLanguage" xml:space="preserve">
     <value>Langue du myVitae</value>
   </data>
@@ -408,8 +411,17 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="DocumentsDownloadDescription" xml:space="preserve">
+    <value>Les visiteurs peuvent télécharger des documents zippés</value>
+  </data>
   <data name="Down" xml:space="preserve">
     <value>En bas</value>
+  </data>
+  <data name="DownloadCV" xml:space="preserve">
+    <value>Télécharger le CV</value>
+  </data>
+  <data name="DownloadDocuments" xml:space="preserve">
+    <value>Télécharger les documents</value>
   </data>
   <data name="DownloadQR" xml:space="preserve">
     <value>Télécharger le code QR</value>
@@ -446,6 +458,12 @@
   </data>
   <data name="EmailUnchanged" xml:space="preserve">
     <value>Votre adresse électronique est inchangée.</value>
+  </data>
+  <data name="EnableCVDownload" xml:space="preserve">
+    <value>Activer le téléchargement des CV</value>
+  </data>
+  <data name="EnableDocumentsDownload" xml:space="preserve">
+    <value>Permettre le téléchargement de documents</value>
   </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
     <value>Sécurisez votre curriculum myVitae avec un mot de passe supplémentaire</value>
@@ -509,6 +527,9 @@
   </data>
   <data name="From" xml:space="preserve">
     <value>De</value>
+  </data>
+  <data name="FurtherDocuments" xml:space="preserve">
+    <value>Autres documents (zippés)</value>
   </data>
   <data name="Gender" xml:space="preserve">
     <value>Genre</value>
@@ -791,6 +812,9 @@
   </data>
   <data name="OnlyPdf" xml:space="preserve">
     <value>Seuls les fichiers PDF sont autorisés à être téléchargés</value>
+  </data>
+  <data name="OnlyZip" xml:space="preserve">
+    <value>Seuls les fichiers ZIP sont autorisés à être téléchargés</value>
   </data>
   <data name="OnRequest" xml:space="preserve">
     <value>Sur demande</value>
