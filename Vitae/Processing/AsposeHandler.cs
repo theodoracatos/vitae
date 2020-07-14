@@ -80,7 +80,7 @@ namespace Processing
         public void DeleteTableElement<T>(string variable) where T : CompositeNode
         {
             var element = FindTableElement<T>(variable);
-            element.PreviousSibling.Remove();
+            //element.PreviousSibling.Remove();
             element?.Remove();
         }
 

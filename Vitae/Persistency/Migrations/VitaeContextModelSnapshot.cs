@@ -15,7 +15,7 @@ namespace Persistency.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.4")
+                .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -1087,6 +1087,12 @@ namespace Persistency.Migrations
 
                     b.Property<long?>("CurriculumLanguageLanguageID")
                         .HasColumnType("bigint");
+
+                    b.Property<bool>("EnableCVDownload")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("EnableDocumentsDownload")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(1000)")

@@ -729,7 +729,9 @@ namespace Persistency.Repository
                     Link = $"{baseUrl}/CV/{p.PublicationIdentifier}?culture={p.CurriculumLanguage.LanguageCode.ToLower()}",
                     Notes = p.Notes,
                     QrCode = CodeHelper.CreateQRCode($"{baseUrl}/CV/{p.PublicationIdentifier}"),
-                    Color = p.Color
+                    Color = p.Color,
+                    EnableCVDownload = p.EnableCVDownload,
+                    EnableDocumentsDownload = p.EnableDocumentsDownload
                 }).ToList();
 
             return publicationsVM;

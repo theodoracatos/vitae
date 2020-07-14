@@ -133,21 +133,6 @@ namespace Vitae.Areas.CV.Pages
 
         #endregion
 
-
-        public IActionResult OnGetOpenFile(Guid identifier)
-        {
-            var vfile = repository.GetFile(identifier);
-
-            if(vfile != null)
-            {
-                return File(vfile.Content, vfile.MimeType, vfile.FileName);
-            }
-            else
-            {
-                throw new FileNotFoundException(identifier.ToString());
-            }
-        }
-
         public async Task<IActionResult> OnGetDownloadCV(Guid curriculumID, string languageCode, Guid? publicationID)
         {
            using(var wordProcessor = new WordProcessor(repository, TEMPLATE1))
@@ -164,9 +149,18 @@ namespace Vitae.Areas.CV.Pages
             }
         }
 
-        public IActionResult OnGetDownloadDocuments()
+        public IActionResult OnGetDownloadDocuments(Guid identifier)
         {
-            return null;
+            var vfile = repository.GetFile(identifier);
+
+            if (vfile != null)
+            {
+                return File(vfile.Content, vfile.MimeType, vfile.FileName);
+            }
+            else
+            {
+                throw new FileNotFoundException(identifier.ToString());
+            }
         }
 
         #endregion
@@ -253,6 +247,8 @@ namespace Vitae.Areas.CV.Pages
                     checkVM.MustCheckCaptcha = publication.Secure;
                     checkVM.Challenge = checkVM.MustCheckCaptcha || checkVM.MustCheckPassword;
                     checkVM.BackgroundColor = publication.Color;
+                    checkVM.EnableCVDownload = publication.EnableCVDownload;
+                    checkVM.EnableDocumentsDownload = publication.EnableDocumentsDownload;
                 }
                 else
                 {
@@ -266,6 +262,8 @@ namespace Vitae.Areas.CV.Pages
                 // Preview...
                 checkVM.CurriculumID = curriculumID;
                 checkVM.LanguageCode = lang;
+                checkVM.EnableCVDownload = true;
+                checkVM.EnableDocumentsDownload = true;
             }
 
             return checkVM;

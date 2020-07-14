@@ -27,8 +27,6 @@ namespace Processing
 {
     public class WordProcessor : IDisposable
     {
-        private const string TEMPLATE_PATH = @"C:\Projects\MyVitae\Vitae\WordGenerator\Templates\";
-
         private const string PERSONALDETAIL_ACADEMICTITLE = "AcademicTitle";
         private const string PERSONALDETAIL_CHILDREN = "Children";
         private const string PERSONALDETAIL_INDUSTRYCODE = "IndustryCode";
@@ -63,7 +61,7 @@ namespace Processing
 
         public WordProcessor(Repository repository, string templateName)
         {
-            this.asposeHandler = new AsposeHandler(TEMPLATE_PATH, templateName);
+            this.asposeHandler = new AsposeHandler(@$"{CodeHelper.AssemblyDirectory}/Templates", templateName);
             this.repository = repository;
         }
 

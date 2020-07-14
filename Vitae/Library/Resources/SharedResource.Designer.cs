@@ -817,6 +817,15 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Visitors can download CV.
+        /// </summary>
+        public static string CVDownloadDescription {
+            get {
+                return ResourceManager.GetString("CVDownloadDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to myVitae language.
         /// </summary>
         public static string CVLanguage {
@@ -934,11 +943,38 @@ namespace Library.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Visitors can download documents.
+        /// </summary>
+        public static string DocumentsDownloadDescription {
+            get {
+                return ResourceManager.GetString("DocumentsDownloadDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Down.
         /// </summary>
         public static string Down {
             get {
                 return ResourceManager.GetString("Down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download CV.
+        /// </summary>
+        public static string DownloadCV {
+            get {
+                return ResourceManager.GetString("DownloadCV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download documents.
+        /// </summary>
+        public static string DownloadDocuments {
+            get {
+                return ResourceManager.GetString("DownloadDocuments", resourceCulture);
             }
         }
         
@@ -1047,6 +1083,24 @@ namespace Library.Resources {
         public static string EmailUnchanged {
             get {
                 return ResourceManager.GetString("EmailUnchanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable CV download.
+        /// </summary>
+        public static string EnableCVDownload {
+            get {
+                return ResourceManager.GetString("EnableCVDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable documents download.
+        /// </summary>
+        public static string EnableDocumentsDownload {
+            get {
+                return ResourceManager.GetString("EnableDocumentsDownload", resourceCulture);
             }
         }
         

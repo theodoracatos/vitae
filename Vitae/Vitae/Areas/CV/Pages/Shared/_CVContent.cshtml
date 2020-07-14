@@ -52,16 +52,25 @@
                             </li>
                         }
                     }
+                    @if (Model.CheckVM.EnableCVDownload || Model.CheckVM.EnableDocumentsDownload)
+                    {
                     <li>
                         <div class="social-icons mt-1">
-                            <a class="mt-2 mb-1 ml-1 mr-1" data-toggle="tooltip" asp-page-handler="DownloadCV" asp-route-curriculumid="@Model.CheckVM.CurriculumID.Value" asp-route-languagecode="@Model.CheckVM.LanguageCode" asp-route-publicationid="@Model.CheckVM.PublicationID" title="@SharedResource.Resumee">
-                                <i class="fas fa-file-download"></i>
-                            </a>
-                            <a class="mt-2 mb-1 ml-1 mr-1" data-toggle="tooltip" asp-page-handler="DownloadFiles" title="@SharedResource.About">
-                                <i class="fas fa-file-archive"></i>
-                            </a>
+                            @if (Model.CheckVM.EnableCVDownload)
+                            {
+                                <a class="mt-2 mb-1 ml-1 mr-1" data-toggle="tooltip" asp-page-handler="DownloadCV" asp-route-curriculumid="@Model.CheckVM.CurriculumID.Value" asp-route-languagecode="@Model.CheckVM.LanguageCode" asp-route-publicationid="@Model.CheckVM.PublicationID" title="@SharedResource.DownloadCV">
+                                    <i class="fas fa-file-download"></i>
+                                </a>
+                            }
+                            @if (Model.CheckVM.EnableDocumentsDownload && about?.Vfile?.FileName != null)
+                            {
+                                <a class="mt-2 mb-1 ml-1 mr-1" data-toggle="tooltip" asp-page-handler="DownloadDocuments" asp-route-identifier="@about.Vfile?.Identifier" title="@SharedResource.DownloadDocuments">
+                                    <i class="fas fa-file-archive"></i>
+                                </a>
+                            }
                         </div>
                     </li>
+                    }
                     @if (Model.IsLoggedIn && !Model.CheckVM.HasPublicationID)
                     {
                         <li>
@@ -129,12 +138,6 @@
                             </p>
                         }
                         <div class="social-icons">
-                            @if (about?.Vfile?.FileName != null)
-                            {
-                                <a class="mt-2 mb-1" data-toggle="tooltip" asp-page-handler="OpenFile" asp-route-identifier="@about.Vfile?.Identifier" title="@about.Vfile?.FileName">
-                                    <i class="far fa-file-pdf"></i>
-                                </a>
-                            }
                             @foreach (var socialLink in Model.SocialLinks)
                             {
                                 <a class="mt-2 mb-1" data-toggle="tooltip" href="@socialLink.Link" target="_blank" title="@socialLink.SocialPlatform">

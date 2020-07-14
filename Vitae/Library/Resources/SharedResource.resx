@@ -369,6 +369,9 @@
   <data name="CVCompleteness" xml:space="preserve">
     <value>myVitae Completeness</value>
   </data>
+  <data name="CVDownloadDescription" xml:space="preserve">
+    <value>Visitors can download CV</value>
+  </data>
   <data name="CVLanguage" xml:space="preserve">
     <value>myVitae language</value>
   </data>
@@ -408,8 +411,17 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="DocumentsDownloadDescription" xml:space="preserve">
+    <value>Visitors can download documents</value>
+  </data>
   <data name="Down" xml:space="preserve">
     <value>Down</value>
+  </data>
+  <data name="DownloadCV" xml:space="preserve">
+    <value>Download CV</value>
+  </data>
+  <data name="DownloadDocuments" xml:space="preserve">
+    <value>Download documents</value>
   </data>
   <data name="DownloadQR" xml:space="preserve">
     <value>Download QR code</value>
@@ -446,6 +458,12 @@
   </data>
   <data name="EmailUnchanged" xml:space="preserve">
     <value>Your email is unchanged.</value>
+  </data>
+  <data name="EnableCVDownload" xml:space="preserve">
+    <value>Enable CV download</value>
+  </data>
+  <data name="EnableDocumentsDownload" xml:space="preserve">
+    <value>Enable documents download</value>
   </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
     <value>Secures your myVitae curriculum with an additional password</value>

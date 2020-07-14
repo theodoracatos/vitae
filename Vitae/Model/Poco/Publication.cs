@@ -24,6 +24,10 @@ namespace Model.Poco
         [Required]
         public string Color { get; set; }
 
+        public bool EnableCVDownload { get; set; }
+
+        public bool EnableDocumentsDownload { get; set; }
+
         public virtual Curriculum Curriculum { get; set; }
     }
 }
