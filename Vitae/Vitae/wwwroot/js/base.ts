@@ -16,15 +16,16 @@ function startTooltips() {
 }
 
 function startRating() {
+
+    $('.ratingstar').on('change', function () {
+        setDirty();
+    });
+
         $(".ratingstar").rating({
             filled: 'fas fa-star fa-2x',
             empty: 'far fa-2x fa-star', 
             stop: 4,
             extendSymbol: function (symbolNr) {
-                $(this).on('rating.rateclick', function (e, currentRate) {
-                     
-                }) 
-
                 $(this).tooltip({
                     container: 'body',
                     placement: 'bottom',

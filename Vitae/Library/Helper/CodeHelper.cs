@@ -18,6 +18,8 @@ namespace Library.Helper
     public static class CodeHelper
     {
         private const string MAIL_TEMPLATE = "Mail.html";
+        private const string BASE64_PREFIX_PNG = "data:image/png;base64,";
+        private const string BASE64_PREFIX_JPG = "data:image/jpg;base64,";
 
         public static string AssemblyDirectory
         {
@@ -120,6 +122,42 @@ namespace Library.Helper
             return bodyText.ToString();
         }
 
+        public static bool IsZip(Stream stream)
+        {
+            var zipBytes = new byte[] { 0x50, 0x4b, 0x03, 0x04 };
+            var len = zipBytes.Length;
+            var buf = new byte[len];
+            var remaining = len;
+            var pos = 0;
+            while (remaining > 0)
+            {
+                var amtRead = stream.Read(buf, pos, remaining);
+                if (amtRead == 0) return false;
+                remaining -= amtRead;
+                pos += amtRead;
+            }
+            stream.Position = 0;
+            return zipBytes.SequenceEqual(buf);
+        }
+
+        public static bool IsGZip(Stream stream)
+        {
+            var gzipBytes = new byte[] { 0x1f, 0x8b };
+            var len = gzipBytes.Length;
+            var buf = new byte[len];
+            var remaining = len;
+            var pos = 0;
+            while (remaining > 0)
+            {
+                var amtRead = stream.Read(buf, pos, remaining);
+                if (amtRead == 0) return false;
+                remaining -= amtRead;
+                pos += amtRead;
+            }
+            stream.Position = 0;
+            return gzipBytes.SequenceEqual(buf);
+        }
+
         public static bool IsPdf(Stream stream)
         {
             var pdfString = "%PDF-";
@@ -198,7 +236,7 @@ namespace Library.Helper
             {
                 if (Attribute.IsDefined(property, typeof(KeyAttribute)))
                 {
-                    property.SetValue(newObj, Guid.Empty, null);
+                    property.SetValue(newObj, null, null);
                 }
                 else
                 {
@@ -271,6 +309,17 @@ namespace Library.Helper
             catch { }
 
             return color;
+        }
+
+        public static Image Base64ToImage(string base64String)
+        {
+            byte[] imageBytes = Convert.FromBase64String(base64String.Replace(BASE64_PREFIX_PNG, string.Empty).Replace(BASE64_PREFIX_JPG, string.Empty));
+
+            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+            {
+                Image image = Image.FromStream(ms, true);
+                return image;
+            }
         }
 
         private static Byte[] BitmapToBytes(Bitmap img)

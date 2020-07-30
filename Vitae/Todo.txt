@@ -1,0 +1,5 @@
+1) Personalisierbarer Lebenslauf: Firmenlogo, Firma, Einführungstext?
+2) Screenreader
+3) intro.js
+4) Nr of users (ATH)
+5) Auswählbares Set für CV (download)

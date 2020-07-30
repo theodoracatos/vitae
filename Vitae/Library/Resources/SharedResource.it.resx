@@ -162,6 +162,9 @@
   <data name="Add" xml:space="preserve">
     <value>Aggiungi</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Indirizzo</value>
+  </data>
   <data name="AddToTop" xml:space="preserve">
     <value>Aggiungi all'inizio</value>
   </data>
@@ -366,6 +369,9 @@
   <data name="CVCompleteness" xml:space="preserve">
     <value>Completezza del myVitae</value>
   </data>
+  <data name="CVDownloadDescription" xml:space="preserve">
+    <value>I visitatori possono scaricare il CV in formato PDF</value>
+  </data>
   <data name="CVLanguage" xml:space="preserve">
     <value>Lingua del myVitae</value>
   </data>
@@ -405,8 +411,17 @@
   <data name="Description" xml:space="preserve">
     <value>Descrizione</value>
   </data>
+  <data name="DocumentsDownloadDescription" xml:space="preserve">
+    <value>I visitatori possono scaricare i documenti con zip</value>
+  </data>
   <data name="Down" xml:space="preserve">
     <value>Giù</value>
+  </data>
+  <data name="DownloadCV" xml:space="preserve">
+    <value>Scarica il CV</value>
+  </data>
+  <data name="DownloadDocuments" xml:space="preserve">
+    <value>Scaricare i documenti</value>
   </data>
   <data name="DownloadQR" xml:space="preserve">
     <value>Scarica il codice QR</value>
@@ -443,6 +458,12 @@
   </data>
   <data name="EmailUnchanged" xml:space="preserve">
     <value>La tua e-mail non è cambiata.</value>
+  </data>
+  <data name="EnableCVDownload" xml:space="preserve">
+    <value>Abilita il download del CV</value>
+  </data>
+  <data name="EnableDocumentsDownload" xml:space="preserve">
+    <value>Attivare il download dei documenti</value>
   </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
     <value>Assicura il vostro curriculum myVitae con una password aggiuntiva</value>
@@ -507,6 +528,9 @@
   <data name="From" xml:space="preserve">
     <value>Da</value>
   </data>
+  <data name="FurtherDocuments" xml:space="preserve">
+    <value>Altri documenti (con zip)</value>
+  </data>
   <data name="Gender" xml:space="preserve">
     <value>Sesso</value>
   </data>
@@ -532,7 +556,7 @@
     <value>Livelli di gerarchia</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Il tuo sito web del curriculum</value>
+    <value>Homepage</value>
   </data>
   <data name="Iaccept" xml:space="preserve">
     <value>Accetto</value>
@@ -788,6 +812,9 @@
   </data>
   <data name="OnlyPdf" xml:space="preserve">
     <value>Solo i file PDF possono essere caricati</value>
+  </data>
+  <data name="OnlyZip" xml:space="preserve">
+    <value>Solo i file ZIP possono essere caricati</value>
   </data>
   <data name="OnRequest" xml:space="preserve">
     <value>Su richiesta</value>
@@ -1193,6 +1220,9 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Sì</value>
+  </data>
+  <data name="YourResumee" xml:space="preserve">
+    <value>Il tuo sito web del curriculum</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>Codice postale</value>

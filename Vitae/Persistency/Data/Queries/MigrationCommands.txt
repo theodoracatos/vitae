@@ -2,7 +2,7 @@
 /***** VITAE CONTEXT *****/
 /*************************/
 // ADD
-EntityFrameworkCore\add-migration -startupproject Vitae -project Persistency -context VitaeContext v.1.0.0
+EntityFrameworkCore\add-migration -startupproject Vitae -project Persistency -context VitaeContext v.1.1.0
 
 // UPDATE
 EntityFrameworkCore\update-database -startupproject Vitae -project Persistency -context VitaeContext

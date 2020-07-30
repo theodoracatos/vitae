@@ -433,6 +433,9 @@ function fixAnchorPosition() {
         var offsetSize = $(".navbar").innerHeight();
         // fire the animation from the top of the page to the anchor link offsetting by the fixed elements height, the number is the speed of the animation
         $("html, body").animate({ scrollTop: anchorLink.offset().top - offsetSize }, 500);
+
+        // Remove anchor
+        history.pushState("", document.title, window.location.pathname + window.location.search);
     }
 }
 
@@ -621,9 +624,9 @@ function loadFilerUpload() {
         {
             showThumbs: true,
             limit: 1,
-            fileMaxSize: 10,
+            fileMaxSize: 80,
             icon: '<i class="fas fa-plus"></i>',
-            extensions: ['application/pdf'],
+            extensions: ['zip'],
             onSelect: function () {
                 $('.uploadedFile').hide();
 
@@ -642,7 +645,7 @@ function loadFilerUpload() {
                 removeConfirmation: Resources.SharedResource.RemoveFileConfirmation + "?",
                 errors: {
                     filesLimit: Resources.SharedResource.Only + " {{fi-limit}} " + Resources.SharedResource.AllowedFiles,
-                    filesType: Resources.SharedResource.OnlyPdf,
+                    filesType: Resources.SharedResource.OnlyZip,
                     filesSize: "{{fi-name}} " + Resources.SharedResource.FileTooLarge + " {{fi-fileMaxSize}} MB.",
                     filesSizeAll: Resources.SharedResource.FilesTooLarge + "! " + Resources.SharedResource.PleaseUpload + " {{fi-maxSize}} MB.",
                     folderUpload: Resources.SharedResource.FolderUpload

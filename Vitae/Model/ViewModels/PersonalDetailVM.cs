@@ -1,5 +1,7 @@
 ﻿using Library.Resources;
 
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -95,5 +97,14 @@ namespace Model.ViewModels
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Nationalities), Prompt = nameof(SharedResource.Nationalities))]
         public IList<NationalityVM> Nationalities { get; set; }
+
+        [BindNever]
+        public DateTime Birthday_Date
+        {
+            get
+            {
+                return new DateTime(Birthday_Year, Birthday_Month, Birthday_Day);
+            }
+        }
     }
 }

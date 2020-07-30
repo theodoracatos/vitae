@@ -57,6 +57,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Library\Library.csproj" />
     <ProjectReference Include="..\Persistency\Persistency.csproj" />
+    <ProjectReference Include="..\Processing\Processing.csproj" />
   </ItemGroup>
 
 

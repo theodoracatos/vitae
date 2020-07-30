@@ -109,7 +109,7 @@ namespace Vitae.Areas.Manage.Pages
         {
             var lastHits = filterDays ? repository.GetHits(curriculumID, days: DAYS) : repository.GetHits(curriculumID, hits: HITS);
             var lastHits_Dates = filterDays ? GetDateRange(DateTime.Now.Date.AddDays(-DAYS), DAYS) : lastHits.OrderBy(l => l.LogDate).Select(l => l.LogDate.ToString("dd.MM")).Distinct();
-            var lastHits_PublicationIds = lastHits.OrderByDescending(l => l.LogDate).Select(l => l.PublicationID).Distinct();
+            var lastHits_PublicationIds = lastHits.OrderBy(l => l.LogDate).Select(l => l.PublicationID).Distinct();
 
             // Hits
             var lastHitsHits = new List<List<int>>();

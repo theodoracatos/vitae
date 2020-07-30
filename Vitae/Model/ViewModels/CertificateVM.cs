@@ -1,7 +1,7 @@
 ﻿using Library.Resources;
-
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Model.Attriutes;
-
+using Model.Helper;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -42,5 +42,32 @@ namespace Model.ViewModels
 
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.NeverExpires), Prompt = nameof(SharedResource.NeverExpires))]
         public bool NeverExpires { get; set; }
+
+        [BindNever]
+        public DateTime Start_Date
+        {
+            get
+            {
+                return new DateTime(Start_Year, Start_Month, 1);
+            }
+        }
+
+        [BindNever]
+        public DateTime? End_Date_Opt
+        {
+            get
+            {
+                return !NeverExpires ? new DateTime(End_Year.Value, End_Month.Value, 1) : (DateTime?)null;
+            }
+        }
+
+        [BindNever]
+        public DateDifference Difference_Date
+        {
+            get
+            {
+                return !NeverExpires ? new DateDifference(Start_Date, End_Date_Opt.Value) : new DateDifference(Start_Date, new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1));
+            }
+        }
     }
 }

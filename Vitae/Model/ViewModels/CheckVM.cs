@@ -1,6 +1,8 @@
 ﻿using Library.Constants;
 using Library.Helper;
 
+using Microsoft.AspNetCore.Mvc;
+
 using System;
 
 namespace Model.ViewModels
@@ -17,6 +19,8 @@ namespace Model.ViewModels
         public bool MustCheckCaptcha { get; set; }
         public string BackgroundColor { get; set; } = Globals.DEFAULT_BACKGROUND_COLOR;
         public string ForegroundColor { get { return CodeHelper.InvertColor(BackgroundColor, Globals.DEFAULT_FOREGROUND_COLOR, true); } }
+        public bool EnableCVDownload { get; set; }
+        public bool EnableDocumentsDownload { get; set; }
 
         public bool MustCheckPassword { get { return !string.IsNullOrEmpty(Secret); } }
         public bool HasValidCurriculumID { get { return CurriculumID.HasValue && CurriculumID != Guid.Empty; } }

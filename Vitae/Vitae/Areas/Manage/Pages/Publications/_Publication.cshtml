@@ -62,7 +62,7 @@
                                 <label class="control-label" asp-for="@Model.Publications[i].Password"></label>
                                 <div class="input-group">
                                     <div class="@(Model.Publications[i].EnablePassword ? "input-group-prepend" : "w-auto flex-fill")">
-                                        <div class="form-control"  style="min-width: 160px;">
+                                        <div class="form-control" style="min-width: 160px;">
                                             <div class="pretty p-switch p-slim" onchange="$('#btnEnablePassword'+@i).trigger('click');">
                                                 <input type="checkbox" id="@(nameof(Publications))_@(i)__@nameof(PublicationVM.EnablePassword)" name="@(nameof(Publications))[@i].@nameof(PublicationVM.EnablePassword)" value="true" checked="@(Model.Publications[i].EnablePassword ? "checked" : null)" />
                                                 <div class="state">
@@ -124,7 +124,41 @@
                                     <small class="muted mt-1 float-left">@SharedResource.SecureDescription</small>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Publications[i].EnableCVDownload"></label>
+                                <div class="d-flex">
+                                    <div class="form-control w-auto flex-fill">
+                                        <div class="pretty p-switch p-slim mr-0">
+                                            <input type="checkbox" id="@(nameof(Publications))_@(i)__@nameof(PublicationVM.EnableCVDownload)" name="@(nameof(Publications))[@i].@nameof(PublicationVM.EnableCVDownload)" value="true" checked="@(Model.Publications[i].EnableCVDownload ? "checked" : null)" />
+                                            <div class="state">
+                                                <label class="d-none d-xs-block d-sm-block cursor-pointer" asp-for="@Model.Publications[i].EnableCVDownload"></label><label class="d-sm-none"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <small class="muted mt-1 float-left">@SharedResource.CVDownloadDescription</small>
+                                </div>
                             </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label" asp-for="@Model.Publications[i].EnableDocumentsDownload"></label>
+                                <div class="d-flex">
+                                    <div class="form-control w-auto flex-fill">
+                                        <div class="pretty p-switch p-slim mr-0">
+                                            <input type="checkbox" id="@(nameof(Publications))_@(i)__@nameof(PublicationVM.EnableDocumentsDownload)" name="@(nameof(Publications))[@i].@nameof(PublicationVM.EnableDocumentsDownload)" value="true" checked="@(Model.Publications[i].EnableDocumentsDownload ? "checked" : null)" />
+                                            <div class="state">
+                                                <label class="d-none d-xs-block d-sm-block cursor-pointer" asp-for="@Model.Publications[i].EnableDocumentsDownload"></label><label class="d-sm-none"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <small class="muted mt-1 float-left">@SharedResource.DocumentsDownloadDescription</small>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="control-label" asp-for="@Model.Publications[i].Notes"></label>
@@ -144,36 +178,36 @@
                                 <span asp-validation-for="@Model.Publications[i].Color" class="text-danger"></span>
                             </div>
                         </div>
-                            <div class="form-row">
-                                <div class="form-group col">
-                                    <label class="control-label" asp-for="@Model.Publications[i].Link"></label>
-                                    @if (string.IsNullOrEmpty(Model.Publications[i].Link))
-                                    {
-                                        <div class="d-flex">
-                                            <div class="form-control w-auto flex-fill bg-light">
-                                                <label class="d-block">-</label>
-                                            </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label class="control-label" asp-for="@Model.Publications[i].Link"></label>
+                                @if (string.IsNullOrEmpty(Model.Publications[i].Link))
+                                {
+                                    <div class="d-flex">
+                                        <div class="form-control w-auto flex-fill bg-light">
+                                            <label class="d-block">-</label>
                                         </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="d-flex">
-                                            <div class="form-control w-auto h-auto flex-fill bg-light">
-                                                <img alt="QR code" class="rounded border border-light shadow mt-1 mb-1" src="@Model.Publications[i].QrCode" />
-                                                <a target="_blank" class="btn btn-outline-secondary ml-1 cancel" asp-page-handler="DownloadQrCode" asp-route-index="@i" data-toggle="tooltip" title="@SharedResource.DownloadQR"><i class="fas fa-download"></i></a>
-                                                <br />
-                                                <a target="_blank" class="text-break ml-1" alt="@Model.Publications[i].Link" href="@Model.Publications[i].Link">
-                                                    @Model.Publications[i].Link
-                                                </a>
-                                            </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="d-flex">
+                                        <div class="form-control w-auto h-auto flex-fill bg-light">
+                                            <img alt="QR code" class="rounded border border-light shadow mt-1 mb-1" src="@Model.Publications[i].QrCode" />
+                                            <a target="_blank" class="btn btn-outline-secondary ml-1 cancel" asp-page-handler="DownloadQrCode" asp-route-index="@i" data-toggle="tooltip" title="@SharedResource.DownloadQR"><i class="fas fa-download"></i></a>
+                                            <br />
+                                            <a target="_blank" class="text-break ml-1" alt="@Model.Publications[i].Link" href="@Model.Publications[i].Link">
+                                                @Model.Publications[i].Link
+                                            </a>
                                         </div>
-                                    }
-                                    <input type="hidden" class="ignoreValidation"  asp-for="@Model.Publications[i].QrCode" />
-                                    <input type="hidden" class="ignoreValidation"  asp-for="@Model.Publications[i].Link" />
-                                    <small class="mt-1">@SharedResource.ShareLink</small>
-                                </div>
+                                    </div>
+                                }
+                                <input type="hidden" class="ignoreValidation" asp-for="@Model.Publications[i].QrCode" />
+                                <input type="hidden" class="ignoreValidation" asp-for="@Model.Publications[i].Link" />
+                                <small class="mt-1">@SharedResource.ShareLink</small>
                             </div>
                         </div>
+                    </div>
                 </div>
                 @if (i < Model.Publications.Count - 1)
                 {<hr />}

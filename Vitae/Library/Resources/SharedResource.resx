@@ -162,6 +162,9 @@
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
   <data name="AddToTop" xml:space="preserve">
     <value>Add to top</value>
   </data>
@@ -366,6 +369,9 @@
   <data name="CVCompleteness" xml:space="preserve">
     <value>myVitae Completeness</value>
   </data>
+  <data name="CVDownloadDescription" xml:space="preserve">
+    <value>Visitors can download CV as a PDF document</value>
+  </data>
   <data name="CVLanguage" xml:space="preserve">
     <value>myVitae language</value>
   </data>
@@ -405,8 +411,17 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="DocumentsDownloadDescription" xml:space="preserve">
+    <value>Visitors can download zipped documents</value>
+  </data>
   <data name="Down" xml:space="preserve">
     <value>Down</value>
+  </data>
+  <data name="DownloadCV" xml:space="preserve">
+    <value>Download CV</value>
+  </data>
+  <data name="DownloadDocuments" xml:space="preserve">
+    <value>Download documents</value>
   </data>
   <data name="DownloadQR" xml:space="preserve">
     <value>Download QR code</value>
@@ -443,6 +458,12 @@
   </data>
   <data name="EmailUnchanged" xml:space="preserve">
     <value>Your email is unchanged.</value>
+  </data>
+  <data name="EnableCVDownload" xml:space="preserve">
+    <value>Enable CV download</value>
+  </data>
+  <data name="EnableDocumentsDownload" xml:space="preserve">
+    <value>Enable documents download</value>
   </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
     <value>Secures your myVitae curriculum with an additional password</value>
@@ -507,6 +528,9 @@
   <data name="From" xml:space="preserve">
     <value>From</value>
   </data>
+  <data name="FurtherDocuments" xml:space="preserve">
+    <value>Further documents (zipped)</value>
+  </data>
   <data name="Gender" xml:space="preserve">
     <value>Gender</value>
   </data>
@@ -532,7 +556,7 @@
     <value>Hierarchy levels</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Your resume website</value>
+    <value>Homepage</value>
   </data>
   <data name="Iaccept" xml:space="preserve">
     <value>I accept</value>
@@ -788,6 +812,9 @@
   </data>
   <data name="OnlyPdf" xml:space="preserve">
     <value>Only PDF files are allowed to be uploaded</value>
+  </data>
+  <data name="OnlyZip" xml:space="preserve">
+    <value>Only ZIP files are allowed to be uploaded</value>
   </data>
   <data name="OnRequest" xml:space="preserve">
     <value>On request</value>
@@ -1193,6 +1220,9 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="YourResumee" xml:space="preserve">
+    <value>Your resumee website</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>ZIP-Code</value>

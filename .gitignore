@@ -52,3 +52,9 @@
 /Vitae/Vitae/wwwroot/css/account.min.css
 /Vitae/Vitae/wwwroot/css/account.css
 /Vitae/Vitae/wwwroot/js/jquery.unobtrusive-ajax.min.js
+
+/Vitae/Processing/bin/
+/Vitae/Processing/obj
+
+/Vitae/WordGenerator/bin
+/Vitae/WordGenerator/obj

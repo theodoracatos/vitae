@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Model.ViewModels
 {
     public class PublicationVM : BaseVM
-    { 
+    {
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.PublicationIdentifier), Prompt = nameof(SharedResource.PublicationIdentifier))]
         [MaxLength(200, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string PublicationIdentifier { get; set; }
@@ -41,5 +41,11 @@ namespace Model.ViewModels
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Color), Prompt = nameof(SharedResource.Color))]
         [RegularExpression(@"^rgba\(((25[0-5]|2[0-4]\d|1\d{1,2}|\d\d?)\s*,\s*?){2}(25[0-5]|2[0-4]\d|1\d{1,2}|\d\d?)\s*,?\s*([01]\.?\d*?)?\)", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.ProperValue))]
         public string Color { get; set; }
+
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.EnableCVDownload), Prompt = nameof(SharedResource.EnableCVDownload))]
+        public bool EnableCVDownload { get; set; }
+
+        [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.EnableDocumentsDownload), Prompt = nameof(SharedResource.EnableDocumentsDownload))]
+        public bool EnableDocumentsDownload { get; set; }
     }
 }

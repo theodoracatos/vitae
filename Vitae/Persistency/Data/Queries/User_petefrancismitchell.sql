@@ -74,7 +74,7 @@ VALUES(0, @CurrLangId_es, GETDATE(), 'Master of Science (M.Sc.)', '"La mayor glo
 
 /* PERSONAL DETAIL */
 INSERT INTO [PersonalDetail]
-VALUES (0, @CurrLangId_en, GETDATE(), 'Pete Francis', 'Mitchell', '1976-06-23', 1, 'Friedensgasse', 12, 'Zürich', 'Zürich', '8003', 'petefrancis.mitchell@myvitae.ch', '+41', '791234567', 'New York (USA)', (SELECT [MaritalStatusID] FROM [MaritalStatus] WHERE [MaritalStatusCode] = 3), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), @CurriculumID)
+VALUES (0, @CurrLangId_en, GETDATE(), 'Pete Francis', 'Mitchell', '1976-06-23', 1, 'Friedensgasse', 12, 'Zürich', 'Zürich', '8003', 'petefrancis.mitchell@myvitae.ch', '+41', '701234567', 'New York (USA)', (SELECT [MaritalStatusID] FROM [MaritalStatus] WHERE [MaritalStatusCode] = 3), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), @CurriculumID)
 INSERT INTO [PersonCountry]
 VALUES ((SELECT TOP 1 [PersonalDetailID] FROM [PersonalDetail] WHERE [CurriculumID] = @CurriculumID), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 0, GETDATE())
 INSERT INTO [PersonCountry]
@@ -633,15 +633,15 @@ VALUES(6, @CurrLangId_es, GETDATE(), 'Trainingcenter Greece', 'https://www.trani
 
 /* PUBLICATION */
 INSERT INTO [Publication]
-VALUES(0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), GETDATE(), @PUBID_EN, 0, 1, '/U9MomNJQMMPlraAidrJJstOWLAY/f2Tn9T1NB9ZB/F6lv4FVrevsE5cHX06vTdy', null, 'rgba(0, 0, 0, 0.9)', @CurriculumID)
+VALUES(0, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_en), GETDATE(), @PUBID_EN, 0, 0, null, null, 'rgba(0, 0, 0, 0.9)', @CurriculumID)
 INSERT INTO [Publication]																															
-VALUES(1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), GETDATE(), @PUBID_DE, 0, 1, '/U9MomNJQMMPlraAidrJJstOWLAY/f2Tn9T1NB9ZB/F6lv4FVrevsE5cHX06vTdy', null, 'rgba(0, 0, 0, 0.9)', @CurriculumID)
+VALUES(1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_de), GETDATE(), @PUBID_DE, 0, 0, null, null, 'rgba(0, 0, 0, 0.9)', @CurriculumID)
 INSERT INTO [Publication]																															
-VALUES(2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_fr), GETDATE(), @PUBID_FR, 0, 1, '/U9MomNJQMMPlraAidrJJstOWLAY/f2Tn9T1NB9ZB/F6lv4FVrevsE5cHX06vTdy', null, 'rgba(0, 0, 0, 0.9)', @CurriculumID)
+VALUES(2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_fr), GETDATE(), @PUBID_FR, 0, 0, null, null, 'rgba(0, 0, 0, 0.9)', @CurriculumID)
 INSERT INTO [Publication]																															
-VALUES(3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_it), GETDATE(), @PUBID_IT, 0, 1, '/U9MomNJQMMPlraAidrJJstOWLAY/f2Tn9T1NB9ZB/F6lv4FVrevsE5cHX06vTdy', null, 'rgba(0, 0, 0, 0.9)', @CurriculumID)
+VALUES(3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_it), GETDATE(), @PUBID_IT, 0, 0, null, null, 'rgba(0, 0, 0, 0.9)', @CurriculumID)
 INSERT INTO [Publication]																															
-VALUES(4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_es), GETDATE(), @PUBID_ES, 0, 1, '/U9MomNJQMMPlraAidrJJstOWLAY/f2Tn9T1NB9ZB/F6lv4FVrevsE5cHX06vTdy', null, 'rgba(0, 0, 0, 0.9)', @CurriculumID)
+VALUES(4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = @LanguageCode_es), GETDATE(), @PUBID_ES, 0, 0, null, null, 'rgba(0, 0, 0, 0.9)', @CurriculumID)
 
 
 /* PHOTO */

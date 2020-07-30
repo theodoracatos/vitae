@@ -162,6 +162,9 @@
   <data name="Add" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
   <data name="AddToTop" xml:space="preserve">
     <value>Nach oben erweitern</value>
   </data>
@@ -366,6 +369,9 @@
   <data name="CVCompleteness" xml:space="preserve">
     <value>myVitae-Vollständigkeit</value>
   </data>
+  <data name="CVDownloadDescription" xml:space="preserve">
+    <value>Besucher können den Lebenslauf als PDF-Dokument herunterladen</value>
+  </data>
   <data name="CVLanguage" xml:space="preserve">
     <value>myVitae Sprache</value>
   </data>
@@ -373,7 +379,7 @@
     <value>Dashboard</value>
   </data>
   <data name="DashboardDescription" xml:space="preserve">
-    <value>Das Dashboard zeigt Ihnen die den zeitlichen Verlauf der Zugriffe auf Ihre myVitae Lebensläufe sowie weitere nützliche Statistiken zu Ihrem Login verhalten.</value>
+    <value>Das Dashboard zeigt Ihnen die den zeitlichen Verlauf der Zugriffe auf Ihre myVitae Lebensläufe sowie weitere nützliche Statistiken zu Ihrem Loginverhalten.</value>
   </data>
   <data name="DashboardOverview" xml:space="preserve">
     <value>Damit Ihr Lebenslauf veröffentlicht werden kann, wird von der myVitae Webapplikation ein zufälliger Publikationslink erstellt. Diesen können Sie dann für eine oder mehrere Vakanzen verwenden und, nach erfolgreicher Bewerbung, wieder komplett löschen. Das Dashboard zeigt Ihnen dabei den Erfolgsverlauf Ihrer veröffentlichten Lebensläufe auf, in dem die Anzahl Klicks auf den versendeten Publikationslink aufgezeigt werden. Sie können Ihren Lebenslauf zudem in bis zu fünf Sprachen erfassen.</value>
@@ -405,8 +411,17 @@
   <data name="Description" xml:space="preserve">
     <value>Beschreibung</value>
   </data>
+  <data name="DocumentsDownloadDescription" xml:space="preserve">
+    <value>Besucher können gezippte Dokumente herunterladen</value>
+  </data>
   <data name="Down" xml:space="preserve">
     <value>Nach unten</value>
+  </data>
+  <data name="DownloadCV" xml:space="preserve">
+    <value>Lebenslauf herunterladen</value>
+  </data>
+  <data name="DownloadDocuments" xml:space="preserve">
+    <value>Unterlagen herunterladen</value>
   </data>
   <data name="DownloadQR" xml:space="preserve">
     <value>QR-Code herunterladen</value>
@@ -443,6 +458,12 @@
   </data>
   <data name="EmailUnchanged" xml:space="preserve">
     <value>Ihre E-Mail wurde nicht verändert.</value>
+  </data>
+  <data name="EnableCVDownload" xml:space="preserve">
+    <value>CV-Download aktivieren</value>
+  </data>
+  <data name="EnableDocumentsDownload" xml:space="preserve">
+    <value>Dokumenten-Download aktivieren</value>
   </data>
   <data name="EnablePasswordDescription" xml:space="preserve">
     <value>Der myVitae Lebenslauf wird zusätzlich mit einem Passwort geschützt</value>
@@ -507,6 +528,9 @@
   <data name="From" xml:space="preserve">
     <value>Aus</value>
   </data>
+  <data name="FurtherDocuments" xml:space="preserve">
+    <value>Weitere Dokumente (gezippt)</value>
+  </data>
   <data name="Gender" xml:space="preserve">
     <value>Geschlecht</value>
   </data>
@@ -532,7 +556,7 @@
     <value>Hierarchiestufen</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Ihre Lebenslaufwebseite</value>
+    <value>Startseite</value>
   </data>
   <data name="Iaccept" xml:space="preserve">
     <value>Ich akzeptiere</value>
@@ -788,6 +812,9 @@
   </data>
   <data name="OnlyPdf" xml:space="preserve">
     <value>Nur PDF-Dateien können hochgeladen werden</value>
+  </data>
+  <data name="OnlyZip" xml:space="preserve">
+    <value>Es dürfen nur ZIP-Dateien hochgeladen werden</value>
   </data>
   <data name="OnRequest" xml:space="preserve">
     <value>Auf Anfrage</value>
@@ -1193,6 +1220,9 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>
+  </data>
+  <data name="YourResumee" xml:space="preserve">
+    <value>Ihre Lebenslaufwebseite</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>PLZ</value>
