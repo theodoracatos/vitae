@@ -556,7 +556,7 @@
     <value>Niveaux hiérarchiques</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Le site de votre CV</value>
+    <value>Page d'accueil</value>
   </data>
   <data name="Iaccept" xml:space="preserve">
     <value>J'accepte</value>
@@ -1220,6 +1220,9 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Oui</value>
+  </data>
+  <data name="YourResumee" xml:space="preserve">
+    <value>Le site de votre CV</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>Code ZIP</value>

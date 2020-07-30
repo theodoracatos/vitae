@@ -556,7 +556,7 @@
     <value>Hierarchiestufen</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Ihre Lebenslaufwebseite</value>
+    <value>Startseite</value>
   </data>
   <data name="Iaccept" xml:space="preserve">
     <value>Ich akzeptiere</value>
@@ -1220,6 +1220,9 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>
+  </data>
+  <data name="YourResumee" xml:space="preserve">
+    <value>Ihre Lebenslaufwebseite</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>PLZ</value>

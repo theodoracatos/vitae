@@ -1375,7 +1375,7 @@ namespace Library.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your resume website.
+        ///   Looks up a localized string similar to Homepage.
         /// </summary>
         public static string Homepage {
             get {
@@ -3369,6 +3369,15 @@ namespace Library.Resources {
         public static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your resumee website.
+        /// </summary>
+        public static string YourResumee {
+            get {
+                return ResourceManager.GetString("YourResumee", resourceCulture);
             }
         }
         

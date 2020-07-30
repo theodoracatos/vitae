@@ -556,7 +556,7 @@
     <value>Niveles de jerarquía</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>El sitio web de su currículum</value>
+    <value>Página web</value>
   </data>
   <data name="Iaccept" xml:space="preserve">
     <value>Acepto</value>
@@ -1220,6 +1220,9 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Sí</value>
+  </data>
+  <data name="YourResumee" xml:space="preserve">
+    <value>El sitio web de su currículum</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>Código postal</value>

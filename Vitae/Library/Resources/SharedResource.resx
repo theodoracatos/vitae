@@ -556,7 +556,7 @@
     <value>Hierarchy levels</value>
   </data>
   <data name="Homepage" xml:space="preserve">
-    <value>Your resume website</value>
+    <value>Homepage</value>
   </data>
   <data name="Iaccept" xml:space="preserve">
     <value>I accept</value>
@@ -1220,6 +1220,9 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="YourResumee" xml:space="preserve">
+    <value>Your resumee website</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>ZIP-Code</value>
