@@ -24,6 +24,7 @@ using Vitae.Code.PageModels;
 
 namespace Vitae.Areas.Manage.Pages.Abouts
 {
+    [RequestSizeLimit(100_000_000)]
     public class IndexModel : BasePageModel
     {
         public const string PAGE_ABOUTS = "_Abouts";
@@ -81,7 +82,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
                 if (About.Vfile?.Content != null)
                 {
                     using var stream = About.Vfile.Content.OpenReadStream();
-                    if (CodeHelper.IsPdf(stream))
+                    if (CodeHelper.IsZip(stream) || CodeHelper.IsGZip(stream))
                     {
                         using (var reader = new BinaryReader(stream))
                         {
@@ -91,12 +92,16 @@ namespace Vitae.Areas.Manage.Pages.Abouts
                             {
                                 Content = bytes,
                                 FileName = About.Vfile.Content.FileName,
-                                MimeType = Globals.MIME_PDF
+                                MimeType = Globals.MIME_ZIP
                             };
                         }
 
                         // UpdateVM
                         About.Vfile.FileName = About.Vfile.Content.FileName;
+                    }
+                    else
+                    {
+                        return StatusCode(StatusCodes.Status422UnprocessableEntity);
                     }
                 }
                 else if (About.Vfile?.FileName == null && About.Vfile.Identifier != Guid.Empty)

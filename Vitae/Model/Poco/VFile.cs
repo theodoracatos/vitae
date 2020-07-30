@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Poco
 {
@@ -19,5 +20,8 @@ namespace Model.Poco
         public string FileName { get; set; }
 
         public DateTime CreatedOn { get; private set; } = DateTime.Now;
+
+        [ForeignKey("AboutID")]
+        public virtual About About { get; set; }
     }
 }

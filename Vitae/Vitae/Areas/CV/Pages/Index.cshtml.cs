@@ -17,6 +17,8 @@ using Model.ViewModels;
 using Persistency.Data;
 using Persistency.Repository;
 
+using Processing;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,6 +26,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+
 using Vitae.Code.Mailing;
 using Vitae.Code.PageModels;
 
@@ -32,6 +35,8 @@ namespace Vitae.Areas.CV.Pages
     [Area("CV")]
     public class IndexModel : BasePageModel
     {
+        private const string TEMPLATE1 = "Template1.docx";
+
         [BindProperty]
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = nameof(SharedResource.RequiredSelection))]
         [Display(ResourceType = typeof(SharedResource), Name = nameof(SharedResource.Password), Prompt = nameof(SharedResource.Password))]
@@ -66,20 +71,21 @@ namespace Vitae.Areas.CV.Pages
 
         #region SYNC
 
+        #region GET
         public async Task<IActionResult> OnGetAsync(Guid? id, string culture)
         {
             CheckVM = LoadCheckModel(id, culture);
 
             if (CheckVM.HasValidCurriculumID) // Valid
             {
-                if(!CheckVM.Challenge)
+                if (!CheckVM.Challenge)
                 {
                     await LoadPageAsync();
                 }
 
                 return Page();
             }
-            else if(CheckVM.Challenge) // Bot?
+            else if (CheckVM.Challenge) // Bot?
             {
                 return Page();
             }
@@ -88,7 +94,9 @@ namespace Vitae.Areas.CV.Pages
                 return StatusCode(StatusCodes.Status404NotFound);
             }
         }
+        #endregion
 
+        #region POST
         public async Task<IActionResult> OnPostAsync(Guid id, string culture)
         {
             CheckVM = LoadCheckModel(id, culture);
@@ -123,11 +131,29 @@ namespace Vitae.Areas.CV.Pages
             }
         }
 
-        public IActionResult OnGetOpenFile(Guid identifier)
+        #endregion
+
+        public async Task<IActionResult> OnGetDownloadCV(Guid curriculumID, string languageCode, Guid? publicationID)
+        {
+           using(var wordProcessor = new WordProcessor(repository, TEMPLATE1))
+            {
+                var password = string.Empty;
+                if(publicationID.HasValue)
+                {
+                    password = repository.GetPassword(publicationID.Value);
+                }
+
+                var file = await wordProcessor.ProcessDocument(curriculumID, languageCode, this.BaseUrl, password);
+                file.Position = 0;
+                return File(file, Globals.MIME_PDF, $"CV_{languageCode.ToUpper()}.{Globals.PDF}");
+            }
+        }
+
+        public IActionResult OnGetDownloadDocuments(Guid identifier)
         {
             var vfile = repository.GetFile(identifier);
 
-            if(vfile != null)
+            if (vfile != null)
             {
                 return File(vfile.Content, vfile.MimeType, vfile.FileName);
             }
@@ -221,6 +247,8 @@ namespace Vitae.Areas.CV.Pages
                     checkVM.MustCheckCaptcha = publication.Secure;
                     checkVM.Challenge = checkVM.MustCheckCaptcha || checkVM.MustCheckPassword;
                     checkVM.BackgroundColor = publication.Color;
+                    checkVM.EnableCVDownload = publication.EnableCVDownload;
+                    checkVM.EnableDocumentsDownload = publication.EnableDocumentsDownload;
                 }
                 else
                 {
@@ -234,6 +262,8 @@ namespace Vitae.Areas.CV.Pages
                 // Preview...
                 checkVM.CurriculumID = curriculumID;
                 checkVM.LanguageCode = lang;
+                checkVM.EnableCVDownload = true;
+                checkVM.EnableDocumentsDownload = true;
             }
 
             return checkVM;

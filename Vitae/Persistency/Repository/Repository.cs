@@ -64,6 +64,13 @@ namespace Persistency.Repository
             await vitaeContext.SaveChangesAsync();
         }
 
+        public string GetPassword(Guid publicationID)
+        {
+            var publication = vitaeContext.Publications.Include(p => p.Curriculum).Single(p => p.PublicationIdentifier == publicationID);
+
+            return AesHandler.Decrypt(publication.Password, publication.Curriculum.CurriculumID.ToString());
+        }
+
         public async Task<Guid> AddCurriculumAsync(Guid userid, string language)
         {
             var languagePoco = vitaeContext.Languages.SingleOrDefault(l => l.LanguageCode == language.ToLower()) ?? vitaeContext.Languages.Single(l => l.LanguageCode == Globals.DEFAULT_LANGUAGE);
@@ -132,7 +139,7 @@ namespace Persistency.Repository
             var curriculum = await GetCurriculumAsync(curriculumID);
 
             curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
-            curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete && a.Vfile != null).ToList().ForEach(i => vitaeContext.Entry(i.Vfile).State = EntityState.Deleted);
+            //curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete && a.Vfile != null).ToList().ForEach(i => vitaeContext.Entry(i.Vfile).State = EntityState.Deleted);
             curriculum.Abroads.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
             curriculum.Awards.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
             curriculum.Courses.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeToDelete).ToList().ForEach(i => vitaeContext.Entry(i).State = EntityState.Deleted);
@@ -174,7 +181,7 @@ namespace Persistency.Repository
                 .ToList().ForEach(a => curriculum.Abouts.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
 
             curriculum.Abouts.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
-            .ToList().ForEach(a => curriculum.Abouts.Single(ab => ab.CurriculumLanguage.LanguageCode == newLanguage.LanguageCode).Vfile = (copy ? CopyEntity(a.Vfile) : a.Vfile));
+     .ToList().ForEach(a => curriculum.Abouts.Single(ab => ab.CurriculumLanguage.LanguageCode == newLanguage.LanguageCode).Vfile = (copy ? CopyEntity(a.Vfile) : a.Vfile));
 
             curriculum.Abroads.Where(a => a.CurriculumLanguage.LanguageCode == languageCodeFrom)
                 .ToList().ForEach(a => curriculum.Abroads.Add(SetKeys(copy ? CopyEntity(a) : a, newLanguage)));
@@ -469,8 +476,8 @@ namespace Persistency.Repository
                    Slogan = a.Slogan,
                    Vfile = new VfileVM()
                    {
-                       FileName = a.Vfile?.FileName,
-                       Identifier = a.Vfile?.VfileID ?? Guid.Empty
+                       FileName = vitaeContext.Vfiles.Include(v => v.About).SingleOrDefault(v => v.About.AboutID == a.AboutID)?.FileName,
+                       Identifier = vitaeContext.Vfiles.Include(v => v.About).SingleOrDefault(v => v.About.AboutID == a.AboutID)?.VfileID ?? Guid.Empty
                    }
                }).ToList();
 
@@ -722,7 +729,9 @@ namespace Persistency.Repository
                     Link = $"{baseUrl}/CV/{p.PublicationIdentifier}?culture={p.CurriculumLanguage.LanguageCode.ToLower()}",
                     Notes = p.Notes,
                     QrCode = CodeHelper.CreateQRCode($"{baseUrl}/CV/{p.PublicationIdentifier}"),
-                    Color = p.Color
+                    Color = p.Color,
+                    EnableCVDownload = p.EnableCVDownload,
+                    EnableDocumentsDownload = p.EnableDocumentsDownload
                 }).ToList();
 
             return publicationsVM;
@@ -805,7 +814,7 @@ namespace Persistency.Repository
 
         private async Task LoadAbouts(IQueryable<Curriculum> curriculumQuery)
         {
-            await curriculumQuery.Include(c => c.Abouts).ThenInclude(a => a.Vfile).LoadAsync();
+            await curriculumQuery.Include(c => c.Abouts).LoadAsync();
         }
 
         private async Task LoadAbroads(IQueryable<Curriculum> curriculumQuery)

@@ -1,5 +1,13 @@
 1) Personalisierbarer Lebenslauf: Firmenlogo, Firma, Einführungstext?
 
-2) PDF Export
+2) PDF Export (Lebenslauf)
 
 3) Screenreader
+
+4) intro.js
+
+5) Nr of users (ATH)
+
+6) CV mit Zip ersetzen
+
+7) Auswählbares Set für CV (download)

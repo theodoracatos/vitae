@@ -102,7 +102,9 @@ namespace Vitae.Areas.Manage.Pages.Publications
                     PublicationIdentifier = Guid.Parse(p.PublicationIdentifier),
                     Notes = p.Notes,
                     CurriculumLanguage = vitaeContext.Languages.Single(l => l.LanguageCode == p.LanguageCode),
-                    Color = p.Color
+                    Color = p.Color,
+                    EnableCVDownload = p.EnableCVDownload,
+                    EnableDocumentsDownload = p.EnableDocumentsDownload
                 }).ToList().ForEach(p => curriculum.Publications.Add(p));
                 curriculum.LastUpdated = DateTime.Now;
 

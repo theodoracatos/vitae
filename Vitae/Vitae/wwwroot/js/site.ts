@@ -624,9 +624,9 @@ function loadFilerUpload() {
         {
             showThumbs: true,
             limit: 1,
-            fileMaxSize: 10,
+            fileMaxSize: 80,
             icon: '<i class="fas fa-plus"></i>',
-            extensions: ['application/pdf'],
+            extensions: ['zip'],
             onSelect: function () {
                 $('.uploadedFile').hide();
 
@@ -645,7 +645,7 @@ function loadFilerUpload() {
                 removeConfirmation: Resources.SharedResource.RemoveFileConfirmation + "?",
                 errors: {
                     filesLimit: Resources.SharedResource.Only + " {{fi-limit}} " + Resources.SharedResource.AllowedFiles,
-                    filesType: Resources.SharedResource.OnlyPdf,
+                    filesType: Resources.SharedResource.OnlyZip,
                     filesSize: "{{fi-name}} " + Resources.SharedResource.FileTooLarge + " {{fi-fileMaxSize}} MB.",
                     filesSizeAll: Resources.SharedResource.FilesTooLarge + "! " + Resources.SharedResource.PleaseUpload + " {{fi-maxSize}} MB.",
                     folderUpload: Resources.SharedResource.FolderUpload

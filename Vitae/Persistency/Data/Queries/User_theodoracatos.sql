@@ -143,7 +143,7 @@ VALUES(1, @CurrLangId_de , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WH
 INSERT INTO [LanguageSkill]                                                                                      
 VALUES(2, @CurrLangId_de , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'el'), @CurriculumID)
 INSERT INTO [LanguageSkill]                                                                                        
-VALUES(3, @CurrLangId_de , GETDATE(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
+VALUES(3, @CurrLangId_de , GETDATE(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
 INSERT INTO [LanguageSkill]                                                                                                       
 VALUES(0, @CurrLangId_en , GETDATE(), 4, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'de'), @CurriculumID)
 INSERT INTO [LanguageSkill]                                                                                   
@@ -151,7 +151,7 @@ VALUES(1, @CurrLangId_en , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WH
 INSERT INTO [LanguageSkill]                                                                                    
 VALUES(2, @CurrLangId_en , GETDATE(), 3, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'el'), @CurriculumID)
 INSERT INTO [LanguageSkill]                                                                                      
-VALUES(3, @CurrLangId_en , GETDATE(), 2, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
+VALUES(3, @CurrLangId_en , GETDATE(), 1, (SELECT [LanguageID] FROM [Language] WHERE [LanguageCode] = 'fr'), @CurriculumID)
 
 /* AWARD */
 INSERT INTO [Award]
@@ -216,7 +216,7 @@ VALUES (6, @CurrLangId_en, GETDATE(), 'Development methods', 'Domain driven Deve
 
 /* ABROAD */
 INSERT INTO [Abroad]
-VALUES (0, @CurrLangId_de, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'Bath', 'Dreiwöchiger Sprachaufenthalt in einer EF-Sprachschule mit Unterkunft in einer Gastfamilie.', '2001-04-01', '2001-04-01', @CurriculumID)
+VALUES (0, @CurrLangId_de, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'Bath', 'Dreiwöchiger Sprachaufenthalt in einer EF-Sprachschule mit Unterkunft in einer Gastfamilie.', '2001-04-01', '2001-04-22', @CurriculumID)
 INSERT INTO [Abroad]
 VALUES (0, @CurrLangId_en, GETDATE(), (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'gb'), 'Bath', 'Three weeks of study in an EF language school with host family accommodation.', '2001-04-01', '2001-04-01', @CurriculumID)
 
@@ -227,58 +227,62 @@ INSERT INTO [Reference]
 VALUES (0, @CurrLangId_en, GETDATE(), 'Wolfgang', 'Schmidt', 1, 'ABB (Schweiz) AG', 'https://abb.ch', 'Former supervisor at Ruf Telematik AG', 'wolfgang.schmidt@abb.ch', '+41', '58 585 00 00', (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'de'), 0, @CurriculumID)
 
 /* CERTIFICATE */
+INSERT INTO [Certificate]        
+VALUES (0, @CurrLangId_de, GETDATE(), 'SVEB Kursleiter Stufe 1', 'Lernveranstaltungen mit Erwachsenen durchführen / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, @CurriculumID)
+ INSERT INTO [Certificate]         
+VALUES (1, @CurrLangId_de, GETDATE(), 'Scrum Master', 'Professional Scrum Master I (PSM 1)', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
+INSERT INTO [Certificate]         
+VALUES (2, @CurrLangId_de, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, @CurriculumID)
 INSERT INTO [Certificate]
-VALUES (0, @CurrLangId_de, GETDATE(), 'Cambridge English Level 4 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
+VALUES (3, @CurrLangId_de, GETDATE(), 'Cambridge English Level 4 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
+   
 INSERT INTO [Certificate]         
-VALUES (1, @CurrLangId_de, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, @CurriculumID)
+VALUES (0, @CurrLangId_en, GETDATE(), 'SVEB instructor level 1', 'Conduct learning events with adults / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, @CurriculumID)
 INSERT INTO [Certificate]         
-VALUES (2, @CurrLangId_de, GETDATE(), 'Scrum Master', 'Professional Scrum Master I (PSM 1)', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
+VALUES (1, @CurrLangId_en, GETDATE(), 'Scrum Master', 'Professional Scrum Master I (PSM 1)', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
 INSERT INTO [Certificate]        
-VALUES (3, @CurrLangId_de, GETDATE(), 'SVEB Kursleiter Stufe 1', 'Lernveranstaltungen mit Erwachsenen durchführen / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, @CurriculumID)
-                                 
+VALUES (2, @CurrLangId_en, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, @CurriculumID)
 INSERT INTO [Certificate]        
-VALUES (0, @CurrLangId_en, GETDATE(), 'Cambridge English Level 4 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
-INSERT INTO [Certificate]        
-VALUES (1, @CurrLangId_en, GETDATE(), 'Microsoft Certified Professional (MCP)', 'Microsoft Specialist: Programming in C#', 'Microsoft', 'https://www.microsoft.com', '2015-04-13', null, @CurriculumID)
-INSERT INTO [Certificate]         
-VALUES (2, @CurrLangId_en, GETDATE(), 'Scrum Master', 'Professional Scrum Master I (PSM 1)', 'Scrum.org', 'https://www.scrum.org/certificates/205995', '2016-09-06', null, @CurriculumID)
-INSERT INTO [Certificate]         
-VALUES (3, @CurrLangId_en, GETDATE(), 'SVEB instructor level 1', 'Conduct learning events with adults / AdA FA-M 1', 'Klubschule Migros', 'https://alice.ch/de/ausbilden-als-beruf/ada-abschluesse/sveb-zertifikat-kursleiterin', '2019-05-16', null, @CurriculumID)
+VALUES (3, @CurrLangId_en, GETDATE(), 'Cambridge English Level 4 Certificate in ESOL International', 'Certificate in Advanced English', 'Cambridge Assessment English', 'https://www.cambridgeenglish.org', '2014-03-01', null, @CurriculumID)
 
 /* COURSE */
 INSERT INTO [Course]              
-VALUES(0, @CurrLangId_de, GETDATE(), 'IFA Weiterbildung AG', 'https://www.ifa.ch', 'Einsatz digitaler Medien im Unterricht', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
+VALUES(0, @CurrLangId_de, GETDATE(), 'IFA Weiterbildung AG', 'https://www.ifa.ch', 'Zertifizierung zum Online-Tutor', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2020-06-15', null, @CurriculumID)
 INSERT INTO [Course]              
-VALUES(1, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Entwicklung von Webapplikationen mit ASP.NET Core 3.0', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
+VALUES(1, @CurrLangId_de, GETDATE(), 'IFA Weiterbildung AG', 'https://www.ifa.ch', 'Einsatz digitaler Medien im Unterricht', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
+INSERT INTO [Course]              
+VALUES(2, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Entwicklung von Webapplikationen mit ASP.NET Core 3.0', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
 INSERT INTO [Course]           
-VALUES(2, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Sichere Websites entwickeln', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-01-17', null, @CurriculumID)
+VALUES(3, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Sichere Websites entwickeln', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-01-17', null, @CurriculumID)
 INSERT INTO [Course]            
-VALUES(3, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Application Lifecycle Management Basis', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2017-10-31', null, @CurriculumID)
+VALUES(4, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Application Lifecycle Management Basis', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2017-10-31', null, @CurriculumID)
 INSERT INTO [Course]            
-VALUES(4, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Datenzugriff in .NET mit dem Entity Framework und ADO.NET', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2016-02-24', '2016-02-26', @CurriculumID)
+VALUES(5, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Datenzugriff in .NET mit dem Entity Framework und ADO.NET', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2016-02-24', '2016-02-26', @CurriculumID)
 INSERT INTO [Course]              
-VALUES(5, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Entwicklung von Webapplikationen mit MVC 5', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2015-11-12', '2015-11-13', @CurriculumID)
+VALUES(6, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Entwicklung von Webapplikationen mit MVC 5', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2015-11-12', '2015-11-13', @CurriculumID)
 INSERT INTO [Course]             
-VALUES(6, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Neues in .NET 4.5 und Visual Studio 2013', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2014-11-03', '2014-11-04', @CurriculumID)
+VALUES(7, @CurrLangId_de, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Neues in .NET 4.5 und Visual Studio 2013', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2014-11-03', '2014-11-04', @CurriculumID)
 INSERT INTO [Course]
-VALUES(7, @CurrLangId_de, GETDATE(), 'ETH Zürich', 'https://ethz.ch', 'XSLT - Einführung mit Übungen', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2004-09-20', '2004-09-21', @CurriculumID)
-     
-INSERT INTO [Course]               
-VALUES(0, @CurrLangId_en, GETDATE(), 'IFA Weiterbildung AG', 'https://www.ifa.ch', 'Use of digital media in education', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
+VALUES(8, @CurrLangId_de, GETDATE(), 'ETH Zürich', 'https://ethz.ch', 'XSLT - Einführung mit Übungen', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2004-09-20', '2004-09-21', @CurriculumID)
+
 INSERT INTO [Course]              
-VALUES(1, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Web application development with ASP.NET Core 3.0', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
+VALUES(0, @CurrLangId_en, GETDATE(), 'IFA Weiterbildung AG', 'https://www.ifa.ch', 'Certification as an online tutor', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2020-06-15', null, @CurriculumID)
 INSERT INTO [Course]               
-VALUES(2, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Develop secure websites', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-01-17', null, @CurriculumID)
+VALUES(1, @CurrLangId_en, GETDATE(), 'IFA Weiterbildung AG', 'https://www.ifa.ch', 'Use of digital media in education', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
 INSERT INTO [Course]              
-VALUES(3, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Application Lifecycle Management Basis', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2017-10-31', null, @CurriculumID)
+VALUES(2, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Web application development with ASP.NET Core 3.0', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-11-07', '2019-11-08', @CurriculumID)
+INSERT INTO [Course]               
+VALUES(3, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Develop secure websites', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2019-01-17', null, @CurriculumID)
+INSERT INTO [Course]              
+VALUES(4, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Application Lifecycle Management Basis', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2017-10-31', null, @CurriculumID)
 INSERT INTO [Course]             
-VALUES(4, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Data Access in .NET with the Entity Framework and ADO.NET', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2016-02-24', '2016-02-26', @CurriculumID)
+VALUES(5, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Data Access in .NET with the Entity Framework and ADO.NET', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2016-02-24', '2016-02-26', @CurriculumID)
 INSERT INTO [Course]           
-VALUES(5, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Web application development with MVC 5', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2015-11-12', '2015-11-13', @CurriculumID)
+VALUES(6, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'Web application development with MVC 5', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2015-11-12', '2015-11-13', @CurriculumID)
 INSERT INTO [Course]            
-VALUES(6, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'What''s new in .NET 4.5 and Visual Studio 2013', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2014-11-03', '2014-11-04', @CurriculumID)
+VALUES(7, @CurrLangId_en, GETDATE(), 'Digicomp Academy AG', 'https://www.digicomp.ch', 'What''s new in .NET 4.5 and Visual Studio 2013', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2014-11-03', '2014-11-04', @CurriculumID)
 INSERT INTO [Course]              
-VALUES(7, @CurrLangId_en, GETDATE(), 'ETH Zürich', 'https://ethz.ch', 'XSLT - Introduction with exercises', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2004-09-20', '2004-09-21', @CurriculumID)
+VALUES(8, @CurrLangId_en, GETDATE(), 'ETH Zürich', 'https://ethz.ch', 'XSLT - Introduction with exercises', null, (SELECT [CountryID] FROM [Country] WHERE [CountryCode] = 'ch'), 'Zürich', '2004-09-20', '2004-09-21', @CurriculumID)
 
 /* PUBLICATION */
 INSERT INTO [Publication]

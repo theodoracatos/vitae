@@ -28,6 +28,8 @@ namespace Library.Constants
         public const string ATH_VITAE_PHONE = "+41 76 611 50 63";
         public const string DEFAULT_LANGUAGE = "de";
         public const string MIME_PDF = "application/pdf";
+        public const string MIME_ZIP = "application/zip";
+        public const string PDF = "pdf";
         public const string REGEX_PASSWORD = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W]).{6,}";
         public const string TEST_URL = "/CV/{0}?culture={1}";
         public const string GOOGLE_CAPCHA = "https://www.google.com/recaptcha/api/siteverify";

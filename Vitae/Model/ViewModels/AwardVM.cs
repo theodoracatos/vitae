@@ -1,5 +1,5 @@
 ﻿using Library.Resources;
-
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -31,5 +31,14 @@ namespace Model.ViewModels
         public int Month { get; set; }
 
         public int Year { get; set; }
+
+        [BindNever]
+        public DateTime Start_Date
+        {
+            get
+            {
+                return new DateTime(Year, Month, 1);
+            }
+        }
     }
 }
