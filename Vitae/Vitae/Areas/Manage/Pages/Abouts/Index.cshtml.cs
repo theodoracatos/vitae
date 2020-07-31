@@ -15,6 +15,7 @@ using Persistency.Data;
 using Persistency.Repository;
 
 using System;
+using System.Data.Common;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -73,6 +74,7 @@ namespace Vitae.Areas.Manage.Pages.Abouts
             if (ModelState.IsValid)
             {
                 var curriculum = await repository.GetCurriculumAsync<About>(curriculumID);
+
                 var about = curriculum.Abouts.SingleOrDefault(a => a.CurriculumLanguage.LanguageCode == CurriculumLanguageCode) ?? new About() { };
                 about.AcademicTitle = About.AcademicTitle;
                 about.Slogan = About.Slogan;
@@ -84,9 +86,17 @@ namespace Vitae.Areas.Manage.Pages.Abouts
                     using var stream = About.Vfile.Content.OpenReadStream();
                     if (CodeHelper.IsZip(stream) || CodeHelper.IsGZip(stream))
                     {
+                        var existingVFile = repository.GetAbouts(curriculum, CurriculumLanguageCode).Single().Vfile;
+                        if (existingVFile.Identifier != Guid.Empty)
+                        {
+                            // Remove existing file
+                            vitaeContext.Vfiles.Remove(vitaeContext.Vfiles.Single(v => v.VfileID == existingVFile.Identifier));
+
+                            await vitaeContext.SaveChangesAsync();
+                        }
+
                         using (var reader = new BinaryReader(stream))
                         {
-                            var identifier = Guid.NewGuid();
                             byte[] bytes = reader.ReadBytes((int)About.Vfile.Content.Length);
                             about.Vfile = new Vfile()
                             {
@@ -95,9 +105,6 @@ namespace Vitae.Areas.Manage.Pages.Abouts
                                 MimeType = Globals.MIME_ZIP
                             };
                         }
-
-                        // UpdateVM
-                        About.Vfile.FileName = About.Vfile.Content.FileName;
                     }
                     else
                     {
@@ -119,9 +126,10 @@ namespace Vitae.Areas.Manage.Pages.Abouts
 
                 await vitaeContext.SaveChangesAsync();
 
-                // Update VM
+                // UpdateVM
                 if (About.Vfile?.Content != null)
                 {
+                    About.Vfile.FileName = About.Vfile.Content.FileName;
                     About.Vfile.Identifier = about.Vfile.VfileID;
                 }
             }
