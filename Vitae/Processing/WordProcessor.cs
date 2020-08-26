@@ -45,6 +45,7 @@ namespace Processing
         private const string VM_GENDER = "Gender";
         private const string VM_PASSWORD = "Password";
         private const string VM_QRCODE = "QrCode";
+        private const string VM_SKILLSET = "Skillset";
 
         private const string ABOUT_PHOTO = "Photo";
         private const string LANG_RATE = "Rate";
@@ -369,6 +370,11 @@ namespace Processing
                         {
                             result = SharedResource.Ms;
                         }
+                        break;
+                    }
+                case VM_SKILLSET:
+                    {
+                        result = value.Replace(",", ", ");
                         break;
                     }
             }

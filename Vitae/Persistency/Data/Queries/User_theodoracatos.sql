@@ -189,7 +189,7 @@ VALUES (0, @CurrLangId_de, GETDATE(), 'Programmiersprachen', 'C#, Java, Visual B
 INSERT INTO [Skill]              
 VALUES (1, @CurrLangId_de, GETDATE(), 'Frameworks', '.NET Framework (v4.8), .NET Core (v3.1), Entity Framework (v6.4), Entity Framework Core (v3.1), ADO.Net, WinForms', @CurriculumID)
 INSERT INTO [Skill]              
-VALUES (2, @CurrLangId_de, GETDATE(), 'Webtechnologien', 'ASP.NET Core, ASP.NET Web API, ASP.NET MVC, ASP.NET WebForms, TypeScript, HTML, XML, SASS', @CurriculumID)
+VALUES (2, @CurrLangId_de, GETDATE(), 'Webtechnologien', 'ASP.NET Core, ASP.NET Web API, ASP.NET MVC, ASP.NET WebForms, TypeScript, HTML, XML, SASS, Blazor Web Assembly', @CurriculumID)
 INSERT INTO [Skill]              
 VALUES (3, @CurrLangId_de, GETDATE(), 'Datenbanktechnologien', 'Microsoft SQL Server, Oracle, T-SQL, PL/SQL', @CurriculumID)
 INSERT INTO [Skill]             
@@ -204,7 +204,7 @@ VALUES (0, @CurrLangId_en, GETDATE(), 'Programming languages', 'C#, Java, Visual
 INSERT INTO [Skill]              
 VALUES (1, @CurrLangId_en, GETDATE(), 'Frameworks', '.NET Framework (v4.8), .NET Core (v3.1), Entity Framework (v6.4), Entity Framework Core (v3.1), ADO.Net, WinForms', @CurriculumID)
 INSERT INTO [Skill]               
-VALUES (2, @CurrLangId_en, GETDATE(), 'Web technologies', 'ASP.NET Core, ASP.NET Web API, ASP.NET MVC, ASP.NET WebForms, TypeScript, HTML, XML, SASS', @CurriculumID)
+VALUES (2, @CurrLangId_en, GETDATE(), 'Web technologies', 'ASP.NET Core, ASP.NET Web API, ASP.NET MVC, ASP.NET WebForms, TypeScript, HTML, XML, SASS, Blazor Web Assembly', @CurriculumID)
 INSERT INTO [Skill]               
 VALUES (3, @CurrLangId_en, GETDATE(), 'Database technlogies', 'Microsoft SQL Server, Oracle, T-SQL, PL/SQL', @CurriculumID)
 INSERT INTO [Skill]           
