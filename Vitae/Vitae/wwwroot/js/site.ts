@@ -10,6 +10,7 @@ $(document).ready(function () {
     displayScrollButton();
     setupDirtyForms(false, false);
     animateItemsInView();
+    setupButtonPost();
 });
 
 $(window).on('load', function () {
@@ -23,6 +24,17 @@ function ajaxCompleted(dirtyignore) {
     showDynamicContent();
     resetFormValidator('form');
     setupDirtyForms(true, dirtyignore);
+}
+
+function setupButtonPost() {
+    $(document).ready(function () {
+        $('input').keyup(function (event) {
+            if (event.which === 13) {
+                event.preventDefault();
+                $('form').submit();
+            }
+        });
+    });
 }
 
 function setupCarousel() {
