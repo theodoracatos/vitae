@@ -1,12 +1,21 @@
 ﻿@model Tuple<DateTime, DateTime?, bool>
 
-    <span class="text-primary">
+<span class="text-primary">
+    @{
+    var displaySingleDate = Model.Item2.HasValue && Model.Item1.Year == Model.Item2.Value.Year && Model.Item1.Month == Model.Item2.Value.Month;
+    if(displaySingleDate)
+    {
+        @(Model.Item1.ToShortDateCultureString())
+    }
+    else{
         @(Model.Item1.ToShortDateCultureString())@(!Model.Item2.HasValue ? (Model.Item1 < DateTime.Now ? $" - {SharedResource.UntilNow}" : string.Empty) : $" - {Model.Item2.Value.ToShortDateCultureString()}")
-    </span>
+    }
+    }
+</span>
 @{
     if (Model.Item1 < DateTime.Now.Date || Model.Item2.HasValue)
     {
-        var dateDifference = new DateDifference(Model.Item1, new DateTime(Model.Item2.HasValue ? Model.Item2.Value.Year : DateTime.Now.Year, Model.Item2.HasValue ? Model.Item2.Value.Month : DateTime.Now.Month, Model.Item2.HasValue ? Model.Item2.Value.Day : 1));
+        var dateDifference = new DateDifference(Model.Item1, new DateTime(Model.Item2.HasValue ? Model.Item2.Value.Year : DateTime.Now.Year, Model.Item2.HasValue ? Model.Item2.Value.Month : DateTime.Now.Month, Model.Item2.HasValue ? Model.Item2.Value.Day : 1), Model.Item3 ? 0 : 1);
         var text = new StringBuilder();
         if (dateDifference.Years > 0)
         {

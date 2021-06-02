@@ -28,9 +28,10 @@ namespace Model.Helper
         private int month;
         private int day;
 
-        public DateDifference(DateTime d1, DateTime d2)
+        public DateDifference(DateTime d1, DateTime d2, int monthCorrection = 0)
         {
             int increment;
+            d2 = d2.AddMonths(monthCorrection);
 
             if (d1 > d2)
             {
