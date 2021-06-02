@@ -56,6 +56,18 @@ namespace UnitTests
         }
 
         [TestMethod]
+        public void MonthYearTest5()
+        {
+            var startDate = new DateTime(2000, 2, 1);
+            var endDate = new DateTime(2001, 1, 1);
+
+            var dateDifference = new DateDifference(startDate, endDate, 1);
+
+            Assert.IsTrue(dateDifference.Years == 1);
+            Assert.IsTrue(dateDifference.Months == 0);
+        }
+
+        [TestMethod]
         public void EncoderTest()
         {
             var salt = Globals.APPLICATION_NAME;
